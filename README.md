@@ -12,6 +12,10 @@ pnpm i
 pnpm dev
 ```
 
+## BMM-API-SDK
+
+Generate types and functions with `pnpm generate`.
+
 ## Recommended IDE Setup
 
 - [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
