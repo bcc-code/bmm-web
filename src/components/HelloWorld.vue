@@ -1,13 +1,31 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, Ref } from 'vue'
+import { AlbumApi, AlbumModel, Configuration } from '../../generated/api/index';
 
 defineProps<{ msg: string }>()
 
+const albums : Ref<AlbumModel[]> = ref([]);
+
+new AlbumApi(new Configuration({
+  basePath: "https://int-bmm-api.brunstad.org",
+  headers: {
+    Authorization: import.meta.env.VITE_BMM_TOKEN,
+    "Accept-Language": "en"
+  }
+})).albumGet().then(list => {
+  albums.value = list;
+});
 const count = ref(0)
 </script>
 
 <template>
   <h1>{{ msg }}</h1>
+
+  <ul id="example-1">
+    <li v-for="album in albums" :key="album.id">
+      {{ album.title }}
+    </li>
+  </ul>
 
   <div class="card">
     <button type="button" @click="count++">count is {{ count }}</button>
