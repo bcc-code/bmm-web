@@ -1,0 +1,7 @@
+{
+"auth0": {
+    "domain": "bcc-sso-sandbox.eu.auth0.com",
+    "client_id": "kKrElC5jhZ9NpQCE0t5mRbi8qD7KF57z",
+    "audience": "sandbox-api.bcc.no"
+  }
+}
