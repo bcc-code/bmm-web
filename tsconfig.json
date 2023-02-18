@@ -11,6 +11,9 @@
     "esModuleInterop": true,
     "lib": ["ESNext", "DOM"],
     "skipLibCheck": true,
+    "noUncheckedIndexedAccess": true,
+    "forceConsistentCasingInFileNames": true,
+    "sourceMap": true,
     "noEmit": true,
     "baseUrl": ".",
     "paths": {

@@ -1,21 +1,27 @@
 <script setup lang="ts">
-import { ref, Ref } from 'vue'
-import { AlbumApi, AlbumModel, Configuration } from '../../generated/api/index';
+import { ref, Ref } from "vue";
+import { AlbumApi, AlbumModel, Configuration } from "../../generated/api/index";
 
-defineProps<{ msg: string }>()
+defineProps<{ msg: string }>();
 
-const albums : Ref<AlbumModel[]> = ref([]);
+const albums: Ref<AlbumModel[]> = ref([]);
 
-new AlbumApi(new Configuration({
-  basePath: "https://int-bmm-api.brunstad.org",
-  headers: {
-    Authorization: import.meta.env.VITE_BMM_TOKEN,
-    "Accept-Language": "en"
-  }
-})).albumGet().then(list => {
-  albums.value = list;
-});
-const count = ref(0)
+new AlbumApi(
+  new Configuration({
+    basePath: "https://int-bmm-api.brunstad.org",
+    headers: {
+      Authorization: import.meta.env.VITE_BMM_TOKEN,
+      "Accept-Language": "en",
+    },
+  })
+)
+  .albumGet()
+  .then((list) => {
+    albums.value = list;
+  })
+  .catch(() => {});
+
+const count = ref(0);
 </script>
 
 <template>
