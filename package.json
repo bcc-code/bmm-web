@@ -6,7 +6,7 @@
     "dev": "vite",
     "generate": "openapi-generator-cli generate",
     "build": "vue-tsc && vite build",
-    "lint": "stylelint '**/*.{vue,scss}' && eslint --ext ts,js,vue .",
+    "lint": "stylelint '**/*.{vue,scss}' && prettier . --check && eslint --ext ts,js,vue .",
     "preview": "vite preview"
   },
   "dependencies": {
@@ -26,8 +26,6 @@
     "eslint-config-prettier": "^8.6.0",
     "eslint-import-resolver-alias": "^1.1.2",
     "eslint-plugin-import": "^2.27.5",
-    "eslint-plugin-prettier": "^4.2.1",
-    "eslint-plugin-prettier-vue": "^4.2.0",
     "eslint-plugin-promise": "^6.1.1",
     "eslint-plugin-vue": "^9.9.0",
     "postcss": "^8.4.21",

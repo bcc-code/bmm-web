@@ -10,7 +10,7 @@
     "plugin:vue/vue3-recommended",
     "plugin:promise/recommended",
     "plugin:@typescript-eslint/recommended",
-    "plugin:prettier-vue/recommended"
+    "prettier"
   ],
   "overrides": [],
   "parser": "vue-eslint-parser",
