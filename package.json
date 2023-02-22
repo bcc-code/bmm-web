@@ -4,9 +4,10 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "generate": "openapi-generator-cli generate",
+    "generate": "shx rm -rf generated/api && openapi-generator-cli generate",
     "build": "vue-tsc && vite build",
     "lint": "stylelint '**/*.{vue,scss}' && prettier . --check && eslint --ext ts,js,vue .",
+    "clean": "shx rm -rf .eslintcache .stylelintcache dist",
     "preview": "vite preview"
   },
   "dependencies": {
@@ -31,6 +32,7 @@
     "postcss": "^8.4.21",
     "postcss-html": "^1.5.0",
     "prettier": "2.8.4",
+    "shx": "^0.3.4",
     "stylelint": "^15.1.0",
     "stylelint-config-recommended-scss": "^9.0.1",
     "stylelint-config-recommended-vue": "^1.4.0",
