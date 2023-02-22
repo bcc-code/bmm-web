@@ -1,13 +1,10 @@
 import { useAuth0 } from '@auth0/auth0-vue'
 import { acceptHMRUpdate, defineStore } from 'pinia'
 import { computed, ref } from 'vue'
-import { PiniaPersistedStateOptions } from '~/utils/data'
+import { PiniaPersistedStateOptions } from '../../src/utils/data'
 
 export const useUserStore = defineStore('user', () => {
   const { isAuthenticated, loginWithRedirect, logout, user } = useAuth0()
-
-  const isCookieAccepted = ref(false)
-  const cookiePopupVisible = ref(true)
 
   const isUserAuthenticated = computed(() => {
     return isAuthenticated.value
@@ -17,27 +14,18 @@ export const useUserStore = defineStore('user', () => {
   })
 
   const handleLogin = () => {
-    loginWithRedirect({ appState: { targetUrl: '/' } })
+    loginWithRedirect({ appState: { targetUrl: '/login' } })
   }
 
   const handleLogout = () => {
     logout({ returnTo: window.location.origin })
   }
-
-  const acceptDeclineCookie = (value: boolean) => {
-    isCookieAccepted.value = value
-    cookiePopupVisible.value = false
-  }
-
   return {
     isUserAuthenticated,
     currentUser,
-    isCookieAccepted,
-    cookiePopupVisible,
 
     handleLogin,
     handleLogout,
-    acceptDeclineCookie,
   }
 },
 {

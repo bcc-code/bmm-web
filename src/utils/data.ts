@@ -41,11 +41,9 @@ export const PiniaPersistedStateOptions = {
     if (key) {
       if (value && isDate(value))
         return value.toUTCString()
-  
       if (value && Guid.isGuid(value))
         return value.value.toString()
     }
-  
     return value
   }
 
