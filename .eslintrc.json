@@ -1,0 +1,36 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "airbnb-base",
+    "airbnb-typescript/base",
+    "plugin:vue/vue3-recommended",
+    "plugin:promise/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "prettier"
+  ],
+  "overrides": [],
+  "parser": "vue-eslint-parser",
+  "parserOptions": {
+    "parser": "@typescript-eslint/parser",
+    "project": ["**/tsconfig.json", "**/tsconfig.*.json"],
+    "ecmaVersion": "latest",
+    "sourceType": "module",
+    "extraFileExtensions": [".vue"]
+  },
+  "plugins": ["vue", "@typescript-eslint"],
+  "rules": {
+    "promise/always-return": "off"
+  },
+  "settings": {
+    "import/resolver": {
+      "alias": {
+        "map": [["@", "./src/"]],
+        "extensions": [".js", ".ts", ".vue"]
+      }
+    }
+  }
+}
