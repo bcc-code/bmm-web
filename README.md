@@ -9,6 +9,7 @@ This repository uses Vue 3 `<script setup>` SFCs, check out the [script setup do
 
 ```
 pnpm i
+pnpm generate
 pnpm dev
 ```
 

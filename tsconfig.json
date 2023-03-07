@@ -13,7 +13,6 @@
     "skipLibCheck": true,
     "noUncheckedIndexedAccess": true,
     "forceConsistentCasingInFileNames": true,
-    "exactOptionalPropertyTypes": true,
     "sourceMap": true,
     "noEmit": true,
     "baseUrl": ".",
