@@ -10,11 +10,11 @@ export default createRouter({
     },
     {
       path: "/about",
-      component: () => import("@/views/AboutView.vue"),
+      component: () => import("@/views/BrowseView.vue"),
     },
     {
       path: "/contact",
-      component: () => import("@/views/ContactView.vue"),
+      component: () => import("@/views/SearchView.vue"),
     },
   ],
 });
