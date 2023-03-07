@@ -4,8 +4,8 @@
 <template>
   <nav>
     <router-link to="/">Home</router-link>
-    <router-link to="/about">Browse</router-link>
-    <router-link to="/contact">Search</router-link>
+    <router-link to="/browse">Browse</router-link>
+    <router-link to="/search">Search</router-link>
   </nav>
   <main>
     <router-view />
