@@ -15,7 +15,8 @@ app.use(
     domain: import.meta.env.VITE_AUTH_URL,
     clientId: import.meta.env.VITE_CLIENT_ID,
     authorizationParams: {
-      redirect_uri: window.location.origin
+      redirect_uri: window.location.origin,
+      audeince: 'https://bmm-api.brunstad.org'
     }
   })
 );
