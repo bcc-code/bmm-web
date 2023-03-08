@@ -7,7 +7,7 @@
     "dev:prod": "vite --mode PROD",
     "build": "vue-tsc && vite build",
     "build:prod": "vue-tsc && vite build --mode PROD",
-    "lint": "stylelint '**/*.{vue,scss}' && prettier . --check && eslint --ext ts,js,vue .",
+    "lint": "stylelint '**/*.{vue,scss}' && prettier . --check && eslint --ext ts,js,vue . && vue-tsc --noEmit",
     "clean": "shx rm -rf .eslintcache .stylelintcache dist",
     "preview": "vite preview"
   },
