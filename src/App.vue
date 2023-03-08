@@ -1,4 +1,24 @@
 <script setup lang="ts">
+import { useAuth0 } from '@auth0/auth0-vue';
+import { watch } from 'vue'
+
+// logout
+const { getAccessTokenSilently, isLoading, loginWithRedirect, user, isAuthenticated } = useAuth0();
+
+watch(isLoading, async (loading) => {
+  if (loading) return
+  if (!isAuthenticated.value) {
+    console.log('does not have user')
+    await loginWithRedirect();
+  } else {
+    console.log('has user', user)
+    let token = await getAccessTokenSilently()
+    localStorage.setItem('token', token)
+    console.log('got token', token)
+  }
+})
+
+// logout({ logoutParams: { returnTo: window.location.origin } });
 </script>
 
 <template>
@@ -13,15 +33,16 @@
 </template>
 
 <style scoped>
-
 .logo {
   height: 6em;
   padding: 1.5em;
   will-change: filter;
 }
+
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
 }
+
 .logo.vue:hover {
   filter: drop-shadow(0 0 2em #42b883aa);
 }

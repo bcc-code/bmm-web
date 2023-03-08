@@ -9,7 +9,7 @@ new PlaylistApi(
   new Configuration({
     basePath: import.meta.env.VITE_API_URL,
     headers: {
-      Authorization: import.meta.env.VITE_BMM_TOKEN,
+      Authorization: 'Bearer ' + localStorage.getItem('token'),
       "Accept-Language": "nb,en,zxx",
     },
   })
@@ -18,7 +18,7 @@ new PlaylistApi(
   .then((list) => {
     playlists.value = list;
   })
-  .catch(() => {});
+  .catch(() => { });
 
 </script>
 
@@ -31,6 +31,4 @@ new PlaylistApi(
       </span>
     </div>
   </div>
-
-
 </template>

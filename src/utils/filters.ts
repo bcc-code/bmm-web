@@ -4,8 +4,8 @@ export default {
             return urlString;
         }
 
-        var url = new URL(urlString);
-        url.searchParams.set("auth", import.meta.env.VITE_BMM_TOKEN);
+        const url = new URL(urlString);
+        url.searchParams.set("auth", import.meta.env.BMM_TOKEN);
         return url.toString();
     }
 }
