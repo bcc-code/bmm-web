@@ -1,20 +1,19 @@
 <script setup lang="ts">
 import { useAuth0 } from '@auth0/auth0-vue';
-import { watch } from 'vue'
+import { inject, watch } from 'vue'
+import useStore from './composables/useStore';
 
 // logout
 const { getAccessTokenSilently, isLoading, loginWithRedirect, user, isAuthenticated } = useAuth0();
+const { store, state } = useStore()
 
 watch(isLoading, async (loading) => {
   if (loading) return
   if (!isAuthenticated.value) {
-    console.log('does not have user')
     await loginWithRedirect();
   } else {
-    console.log('has user', user)
-    let token = await getAccessTokenSilently()
-    localStorage.setItem('token', token)
-    console.log('got token', token)
+    const token = await getAccessTokenSilently()
+    store.authenticated(token)
   }
 })
 
