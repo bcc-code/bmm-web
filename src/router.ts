@@ -9,12 +9,12 @@ export default createRouter({
       component: Home,
     },
     {
-      path: "/about",
-      component: () => import("@/views/AboutView.vue"),
+      path: "/browse",
+      component: () => import("@/views/BrowseView.vue"),
     },
     {
-      path: "/contact",
-      component: () => import("@/views/ContactView.vue"),
+      path: "/search",
+      component: () => import("@/views/SearchView.vue"),
     },
   ],
 });

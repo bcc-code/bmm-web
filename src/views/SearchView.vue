@@ -1,3 +1,3 @@
 <template>
-  <h2>Contact</h2>
+  <h2>Search</h2>
 </template>
