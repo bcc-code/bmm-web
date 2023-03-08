@@ -1,14 +1,21 @@
 <script setup lang="ts">
 import HelloWorld from './components/HelloWorld.vue'
-import { watchEffect } from 'vue';
+import { watch, watchEffect } from 'vue';
 import { useAuth0 } from '@auth0/auth0-vue'
 import { useUserStore } from '../src/stores/userStore';
+import { useStorage } from '@vueuse/core';
 const { isAuthenticated, isLoading } = useAuth0()
 
 watchEffect(() => {
   if(!isAuthenticated.value && !isLoading.value) {
     useUserStore().handleLogin()
   }
+})
+const homeUrl = '/test'
+const userStore = useUserStore()
+watch(useAuth0().isLoading, async (newIsLoading) => {
+  if (!newIsLoading && userStore.isUserAuthenticated)
+    window.location.href = homeUrl
 })
 
 </script>

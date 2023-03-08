@@ -2,6 +2,7 @@
 "auth0": {
     "domain": "login.bcc.no",
     "client_id": "L9891KdcqtoKmHg4r65lT7zbSjv55dNN",
-    "audience": "api.bcc.no"
+    "audience": "api.bcc.no",
+    "scope": "openid profile email church offline_access"
   }
 }

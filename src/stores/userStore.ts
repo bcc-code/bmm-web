@@ -17,15 +17,15 @@ export const useUserStore = defineStore('user', () => {
     loginWithRedirect({ appState: { targetUrl: '/login' } })
   }
 
-  const handleLogout = () => {
-    logout({ returnTo: window.location.origin })
-  }
+  // const handleLogout = () => {
+  //   logout({ returnTo: window.location.origin })
+  // }
   return {
     isUserAuthenticated,
     currentUser,
 
     handleLogin,
-    handleLogout,
+    // handleLogout,
   }
 },
 {

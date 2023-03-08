@@ -15,12 +15,15 @@ app.use(pinia)
 if (config.auth0) {
     app.use(
       createAuth0({
+        clientId: config.auth0.client_id,
         domain: config.auth0.domain,
-        client_id: config.auth0.client_id,
-        redirect_uri: window.location.origin,
         cacheLocation: 'localstorage',
-        audience: config.auth0.audience,
         useRefreshTokens: true,
+        authorizationParams: {
+          redirect_uri: window.location.origin,
+          audience: config.auth0.audience,
+          scope: config.auth0.scope,
+        },
       }),
     )
   }

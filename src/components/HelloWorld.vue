@@ -6,15 +6,15 @@ defineProps<{ msg: string }>()
 
 const albums : Ref<AlbumModel[]> = ref([]);
 
-new AlbumApi(new Configuration({
-  basePath: "https://int-bmm-api.brunstad.org",
-  headers: {
-    Authorization: import.meta.env.VITE_BMM_TOKEN,
-    "Accept-Language": "en"
-  }
-})).albumGet().then(list => {
-  albums.value = list;
-});
+// new AlbumApi(new Configuration({
+//   basePath: "https://int-bmm-api.brunstad.org",
+//   headers: {
+//     Authorization: import.meta.env.VITE_BMM_TOKEN,
+//     "Accept-Language": "en"
+//   }
+// })).albumGet().then(list => {
+//   albums.value = list;
+// });
 const count = ref(0)
 </script>
 
