@@ -26,7 +26,8 @@ a:hover {
   color: #535bf2;
 }
 
-body, html {
+body,
+html {
   margin: 0;
   height: 100%;
 }
@@ -36,7 +37,7 @@ h1 {
   line-height: 1.1;
 }
 h2 {
-  padding-left: 20px
+  padding-left: 20px;
 }
 
 button {
@@ -73,7 +74,7 @@ button:focus-visible {
 nav {
   flex-basis: 200px;
   flex-shrink: 0;
-  background: #F5F6F7;
+  background: #f5f6f7;
   border-right: 1px solid rgba(129, 136, 143, 0.1);
   padding: 12px;
   padding-top: 30px;

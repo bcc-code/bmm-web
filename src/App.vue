@@ -1,5 +1,4 @@
-<script setup lang="ts">
-</script>
+<script setup lang="ts"></script>
 
 <template>
   <nav>
@@ -13,7 +12,6 @@
 </template>
 
 <style scoped>
-
 .logo {
   height: 6em;
   padding: 1.5em;
@@ -37,7 +35,7 @@ nav a {
 }
 
 nav a.router-link-active {
-  background: #A4E16A;
+  background: #a4e16a;
   border-radius: 12px;
 }
 </style>

@@ -19,18 +19,19 @@ new PlaylistApi(
     playlists.value = list;
   })
   .catch(() => {});
-
 </script>
 
 <template>
   <div id="example-1" class="covers">
     <div v-for="playlist in playlists" :key="playlist.id" class="cover">
-      <img :src="filters.authorizedUrl(playlist.cover)" width="214" height="214" />
+      <img
+        :src="filters.authorizedUrl(playlist.cover)"
+        width="214"
+        height="214"
+      />
       <span class="title">
         {{ playlist.title }}
       </span>
     </div>
   </div>
-
-
 </template>
