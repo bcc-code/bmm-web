@@ -1,10 +1,10 @@
 export default {
-  authorizedUrl(urlString) {
+  authorizedUrl(urlString: string | null | undefined) {
     if (!urlString) {
-      return urlString;
+      return "";
     }
 
-    var url = new URL(urlString);
+    const url = new URL(urlString);
     url.searchParams.set("auth", import.meta.env.VITE_BMM_TOKEN);
     return url.toString();
   },

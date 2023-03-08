@@ -27,7 +27,7 @@ new PlaylistApi(
 
 <template>
   <div id="example-1" class="covers">
-    <div v-for="playlist in playlists" :key="playlist.id" class="cover">
+    <div v-for="playlist in playlists" :key="playlist.id || 0" class="cover">
       <img
         :src="filters.authorizedUrl(playlist.cover)"
         width="214"
