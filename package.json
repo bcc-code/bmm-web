@@ -5,7 +5,6 @@
   "scripts": {
     "dev": "vite",
     "dev:prod": "vite --mode PROD",
-    "generate": "shx rm -rf generated/api && openapi-generator-cli generate",
     "build": "vue-tsc && vite build",
     "build:prod": "vue-tsc && vite build --mode PROD",
     "lint": "stylelint '**/*.{vue,scss}' && prettier . --check && eslint --ext ts,js,vue .",
@@ -13,11 +12,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@bcc-code/bmm-sdk-fetch": "^1.0.0",
     "vue": "^3.2.45",
     "vue-router": "^4.1.6"
   },
   "devDependencies": {
-    "@openapitools/openapi-generator-cli": "^2.5.2",
     "@types/eslint": "^8.21.1",
     "@types/node": "^18.14.0",
     "@typescript-eslint/eslint-plugin": "^5.52.0",

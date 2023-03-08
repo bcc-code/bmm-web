@@ -1,7 +1,11 @@
 <script setup lang="ts">
 import filters from "@/utils/filters";
 import { ref, Ref } from "vue";
-import { PlaylistApi, PlaylistModel, Configuration } from "../../generated/api/index";
+import {
+  PlaylistApi,
+  PlaylistModel,
+  Configuration,
+} from "@bcc-code/bmm-sdk-fetch";
 
 const playlists: Ref<PlaylistModel[]> = ref([]);
 
