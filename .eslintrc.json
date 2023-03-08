@@ -23,7 +23,10 @@
   },
   "plugins": ["vue", "@typescript-eslint"],
   "rules": {
-    "promise/always-return": "off"
+    "promise/always-return": "off",
+    "no-undef": "warn",
+    "prefer-const": "warn",
+    "prefer-template": "warn"
   },
   "settings": {
     "import/resolver": {
