@@ -1,11 +1,11 @@
 export default {
-  authorizedUrl(urlString: string | null | undefined) {
-    if (!urlString) {
-      return "";
-    }
+    authorizedUrl(urlString) {
+        if (!urlString) {
+            return urlString;
+        }
 
-    const url = new URL(urlString);
-    url.searchParams.set("auth", import.meta.env.VITE_BMM_TOKEN);
-    return url.toString();
-  },
-};
+        const url = new URL(urlString);
+        url.searchParams.set("auth", "Bearer " + localStorage.getItem("token"));
+        return url.toString();
+    }
+}

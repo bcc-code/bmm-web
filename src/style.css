@@ -1,4 +1,7 @@
-/* ToDo: this should be thrown away and replaced with Tailwind (or similar) */
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
 
 :root {
   font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
