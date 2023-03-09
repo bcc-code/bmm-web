@@ -23,6 +23,10 @@
   },
   "plugins": ["vue", "@typescript-eslint"],
   "rules": {
+    "@typescript-eslint/consistent-type-assertions": [
+      "warn",
+      { "assertionStyle": "never" }
+    ],
     "promise/always-return": "off"
   },
   "settings": {
