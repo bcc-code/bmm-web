@@ -10,11 +10,11 @@ export default class Store {
   protected state: IState;
 
   constructor(data: IState) {
-    this.state = reactive(data) as IState;
+    this.state = reactive(data);
   }
 
   public getState() {
-    return readonly(this.state) as IState;
+    return readonly(this.state);
   }
 
   public authenticated(token: string) {
