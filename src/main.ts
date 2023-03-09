@@ -1,30 +1,33 @@
 import { createApp } from "vue";
-import { createAuth0 } from '@auth0/auth0-vue';
+import { createAuth0 } from "@auth0/auth0-vue";
 import "./style.css";
 import App from "./App.vue";
 import router from "./router";
 import Store from "./store";
 
-const app = createApp(App)
+const app = createApp(App);
 
-app.use(router)
+app.use(router);
 
 app.use(
   createAuth0({
     domain: import.meta.env.VITE_AUTH_URL,
     clientId: import.meta.env.VITE_CLIENT_ID,
-    cacheLocation: 'localstorage',
+    cacheLocation: "localstorage",
     authorizationParams: {
       redirect_uri: window.location.origin,
-      audience: 'https://bmm-api.brunstad.org',
+      audience: "https://bmm-api.brunstad.org",
     },
   })
 );
 
-app.provide('store', new Store({
-  loading: true,
-  authenticated: false,
-  token: null,
-}));
+app.provide(
+  "store",
+  new Store({
+    loading: true,
+    authenticated: false,
+    token: null,
+  })
+);
 
-app.mount("#app")
+app.mount("#app");

@@ -1,10 +1,10 @@
-import { reactive, readonly } from 'vue';
+import { reactive, readonly } from "vue";
 
 type IState = {
-  loading: boolean,
-  authenticated: boolean,
-  token: string | null,
-}
+  loading: boolean;
+  authenticated: boolean;
+  token: string | null;
+};
 
 export default class Store {
   protected state: IState;
@@ -14,12 +14,12 @@ export default class Store {
   }
 
   public getState() {
-    return readonly(this.state) as IState
+    return readonly(this.state) as IState;
   }
 
   public authenticated(token: string) {
     this.state.token = token;
     this.state.authenticated = true;
-    localStorage.setItem('token', token)
+    localStorage.setItem("token", token);
   }
 }

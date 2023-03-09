@@ -9,17 +9,12 @@ This repository uses Vue 3 `<script setup>` SFCs, check out the [script setup do
 
 ```
 pnpm i
-pnpm generate
 pnpm dev
 ```
 
 Until there's a proper login mechanism in place, you'll have to extract a valid token e.g. by accessing https://int-bmm.brunstad.org and extracting it from one of the requests to https://int-bmm-api.brunstad.org.
 
 _Note:_ If you had an error in your code and the system still shows you the error but you've already fixed it, consider running `pnpm clean`. If you have this problem often, consider contacting one of the maintainers of the project.
-
-## BMM-API-SDK
-
-Generate types and functions with `pnpm generate`.
 
 ## Recommended IDE Setup
 

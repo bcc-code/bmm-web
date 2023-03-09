@@ -22,8 +22,8 @@ jobs:
         run: npm install -g pnpm
       - name: pnpm install
         run: pnpm install
-      - name: generate Api typings
-        run: pnpm generate
+      - name: Lint
+        run: pnpm lint
       - name: build
         run: pnpm build:prod
       - name: Deploy
