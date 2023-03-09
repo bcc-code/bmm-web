@@ -1,21 +1,27 @@
 <script setup lang="ts">
-import { useAuth0 } from '@auth0/auth0-vue';
-import { inject, watch } from 'vue'
-import useStore from './composables/useStore';
+import { useAuth0 } from "@auth0/auth0-vue";
+import { inject, watch } from "vue";
+import useStore from "./composables/useStore";
 
 // logout
-const { getAccessTokenSilently, isLoading, loginWithRedirect, user, isAuthenticated } = useAuth0();
-const { store, state } = useStore()
+const {
+  getAccessTokenSilently,
+  isLoading,
+  loginWithRedirect,
+  user,
+  isAuthenticated,
+} = useAuth0();
+const { store, state } = useStore();
 
 watch(isLoading, async (loading) => {
-  if (loading) return
+  if (loading) return;
   if (!isAuthenticated.value) {
     await loginWithRedirect();
   } else {
-    const token = await getAccessTokenSilently()
-    store.authenticated(token)
+    const token = await getAccessTokenSilently();
+    store.authenticated(token);
   }
-})
+});
 
 // logout({ logoutParams: { returnTo: window.location.origin } });
 </script>
@@ -57,7 +63,7 @@ nav a {
 }
 
 nav a.router-link-active {
-  background: #A4E16A;
+  background: #a4e16a;
   border-radius: 12px;
 }
 </style>

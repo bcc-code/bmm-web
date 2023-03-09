@@ -13,7 +13,7 @@ new PlaylistApi(
   new Configuration({
     basePath: import.meta.env.VITE_API_URL,
     headers: {
-      Authorization: 'Bearer ' + localStorage.getItem('token'),
+      Authorization: "Bearer " + localStorage.getItem("token"),
       "Accept-Language": "nb,en,zxx",
     },
   })
