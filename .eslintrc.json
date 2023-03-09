@@ -9,7 +9,7 @@
     "airbnb-typescript/base",
     "plugin:vue/vue3-recommended",
     "plugin:promise/recommended",
-    "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/strict",
     "prettier"
   ],
   "overrides": [],

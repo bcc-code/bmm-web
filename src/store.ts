@@ -1,10 +1,10 @@
 import { reactive, readonly } from "vue";
 
-type IState = {
+interface IState {
   loading: boolean;
   authenticated: boolean;
   token: string | null;
-};
+}
 
 export default class Store {
   protected state: IState;
