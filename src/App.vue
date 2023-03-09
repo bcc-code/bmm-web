@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useAuth0 } from "@auth0/auth0-vue";
-import { inject, watch } from "vue";
+import { watch } from "vue";
 import useStore from "./composables/useStore";
 
 // logout
@@ -8,10 +8,9 @@ const {
   getAccessTokenSilently,
   isLoading,
   loginWithRedirect,
-  user,
   isAuthenticated,
 } = useAuth0();
-const { store, state } = useStore();
+const { store } = useStore();
 
 watch(isLoading, async (loading) => {
   if (loading) return;
