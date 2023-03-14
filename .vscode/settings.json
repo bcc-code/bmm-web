@@ -1,8 +1,5 @@
 {
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,
-  "stylelint.validate": ["css", "less", "postcss", "vue"],
-  "[typescript]": {
-    "editor.defaultFormatter": "vscode.typescript-language-features"
-  }
+  "stylelint.validate": ["css", "less", "postcss", "vue"]
 }
