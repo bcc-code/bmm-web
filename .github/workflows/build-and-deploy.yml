@@ -41,6 +41,7 @@ jobs:
 
   upload_code_coverage:
     runs-on: ubuntu-latest
+    needs: build_and_test
     steps:
       - name: Download code coverage reports
         uses: actions/download-artifact@v3
@@ -51,6 +52,7 @@ jobs:
 
   deploy_azure_static_web_apps:
     runs-on: ubuntu-latest
+    needs: build_and_test
     name: Deploy to Azure Static Web Apps
     steps:
       - name: Download production artifacts
