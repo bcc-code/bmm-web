@@ -1,4 +1,4 @@
-name: Azure Static Web Apps CI/CD
+name: Build and deploy
 
 on:
   push:
@@ -10,49 +10,74 @@ on:
       - main
 
 jobs:
-  build_and_deploy_job:
+  build_and_test:
     if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
     runs-on: ubuntu-latest
-    name: Build and Deploy Job
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
+      - uses: pnpm/action-setup@v2
         with:
-          submodules: true
-      - name: install pnpm globally
-        run: npm install -g pnpm
-      - name: pnpm install
+          version: 7
+
+      - name: Install dependencies
         run: pnpm install
-      - name: Lint
+      - name: Run linters
         run: pnpm lint
       - name: Test and create coverage
         run: pnpm coverage
+      - name: Build for production
+        run: pnpm build:prod
+
+      - name: Archive production artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: dist
+          path: dist
+      - name: Archive code coverage results
+        uses: actions/upload-artifact@v3
+        with:
+          name: code-coverage-report
+          path: coverage
+
+  upload_code_coverage:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download code coverage reports
+        uses: actions/download-artifact@v3
+        with:
+          name: code-coverage-report
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v3
-      - name: build
-        run: pnpm build:prod
+
+  deploy_azure_static_web_apps:
+    runs-on: ubuntu-latest
+    name: Deploy to Azure Static Web Apps
+    steps:
+      - name: Download production artifacts
+        uses: actions/download-artifact@v3
+        with:
+          name: dist
       - name: Deploy
-        id: deploy
         uses: Azure/static-web-apps-deploy@v1
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_SALMON_PEBBLE_009136D03 }}
-          repo_token: ${{ secrets.GITHUB_TOKEN }} # Used for Github integrations (i.e. PR comments)
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
           action: "upload"
           ###### Repository/Build Configurations - These values can be configured to match your app requirements. ######
           # For more information regarding Static Web App workflow configurations, please visit: https://aka.ms/swaworkflowconfig
           skip_app_build: true
-          app_location: "dist" # App source code path
-          output_location: "dist" # Built app content directory - optional
+          app_location: "dist"
+          output_location: ""
           ###### End of Repository/Build Configurations ######
         env:
           SKIP_DEPLOY_ON_MISSING_SECRETS: true
 
-  close_pull_request_job:
+  remove_azure_static_web_apps_when_pr_closed:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
     runs-on: ubuntu-latest
-    name: Close Pull Request Job
+    name: Remove Azure Static Web App
     steps:
-      - name: Close Pull Request
-        id: closepullrequest
+      - name: Remove the Azure Static Web App
         uses: Azure/static-web-apps-deploy@v1
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_SALMON_PEBBLE_009136D03 }}
