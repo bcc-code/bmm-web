@@ -1,28 +1,27 @@
 <script setup lang="ts">
 import { useAuth0 } from "@auth0/auth0-vue";
-import { watch } from "vue";
+import { watch, ref } from "vue";
 import useStore from "./composables/useStore";
 
-// logout
 const {
-  getAccessTokenSilently,
   isLoading,
-  loginWithRedirect,
   isAuthenticated,
+  loginWithRedirect,
+  getAccessTokenSilently,
 } = useAuth0();
 const { store } = useStore();
+const hasToken = ref(false);
 
-watch(isLoading, async (loading) => {
+watch(isLoading, async loading => {
   if (loading) return;
   if (!isAuthenticated.value) {
     await loginWithRedirect();
   } else {
     const token = await getAccessTokenSilently();
     store.authenticated(token);
+    hasToken.value = true;
   }
 });
-
-// logout({ logoutParams: { returnTo: window.location.origin } });
 </script>
 
 <template>
@@ -32,25 +31,11 @@ watch(isLoading, async (loading) => {
     <router-link to="/search">Search</router-link>
   </nav>
   <main>
-    <router-view />
+    <router-view v-if="hasToken" />
   </main>
 </template>
 
 <style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-}
-
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
-}
-
 nav a {
   display: block;
   color: black;
