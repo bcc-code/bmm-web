@@ -15,7 +15,7 @@
   },
   "dependencies": {
     "@auth0/auth0-vue": "^2.0.2",
-    "@bcc-code/bmm-sdk-fetch": "^2.0.0",
+    "@bcc-code/bmm-sdk-fetch": "^3.0.0",
     "vue": "^3.2.45",
     "vue-router": "^4.1.6"
   },

@@ -27,7 +27,15 @@ new PlaylistApi(
 
 <template>
   <div id="example-1" class="covers">
-    <div v-for="playlist in playlists" :key="playlist.id || 0" class="cover">
+    <RouterLink
+      v-for="playlist in playlists"
+      :key="playlist.id || 0"
+      :to="{
+        name: 'CuratedPlaylistDetails',
+        params: { playlistId: playlist.id },
+      }"
+      class="cover"
+    >
       <img
         :src="filters.authorizedUrl(playlist.cover || '')"
         width="214"
@@ -36,6 +44,6 @@ new PlaylistApi(
       <span class="title">
         {{ playlist.title }}
       </span>
-    </div>
+    </RouterLink>
   </div>
 </template>
