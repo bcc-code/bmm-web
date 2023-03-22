@@ -11,7 +11,7 @@ import {
 const props = defineProps<{
   playlistId: number;
 }>();
-const playlist: Ref<PlaylistModel> = ref([]);
+const playlist: Ref<PlaylistModel> = ref({});
 const tracks: Ref<TrackModel[]> = ref([]);
 
 const api = new PlaylistApi(
