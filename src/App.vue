@@ -12,7 +12,7 @@ const {
 const { store } = useStore();
 const hasToken = ref(false);
 
-watch(isLoading, async loading => {
+watch(isLoading, async (loading) => {
   if (loading) return;
   if (!isAuthenticated.value) {
     await loginWithRedirect();
