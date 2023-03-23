@@ -4,12 +4,21 @@ import { ref, Ref } from "vue";
 import { PlaylistModel } from "@bcc-code/bmm-sdk-fetch";
 
 import { list } from "@/api/playlists";
+import { useAuth0 } from "@auth0/auth0-vue";
 
 const playlists: Ref<PlaylistModel[]> = ref([]);
 
+const { getAccessTokenSilently } = useAuth0();
+
 list()
-  .then((r) => {
-    playlists.value = r;
+  .then(async (r) => {
+    const token = await getAccessTokenSilently();
+    playlists.value = r.map((p) => {
+      // TODO: better solution for authorized urls
+      const pl = p;
+      pl.cover = filters.authorizedUrl(p.cover!, token);
+      return pl;
+    });
   })
   .catch(() => null /* TODO: implement error-handling */);
 </script>
