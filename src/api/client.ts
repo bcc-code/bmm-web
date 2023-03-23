@@ -4,7 +4,7 @@ import { BaseAPI, Configuration, Middleware } from "@bcc-code/bmm-sdk-fetch";
 export interface Token {
   type: "bearer";
   value: string;
-};
+}
 
 type TokenFactory = () => Promise<Token | null>;
 
@@ -14,19 +14,8 @@ export class Client {
       pre: async (ctx) => {
         const token = await tokenFactory();
         const headers = new Headers(ctx.init.headers);
-
-        let authHeader: string | null = null;
-        if (token) {
-          switch (token.type) {
-            case "bearer":
-              authHeader = "Bearer " + token.value;
-              break;
-            default:
-              break;
-          }
-        }
-        if (authHeader) {
-          headers.set("Authorization", authHeader);
+        if (token && token.type === "bearer") {
+          headers.set("Authorization", `Bearer ${token.value}`);
         }
 
         ctx.init.headers = headers;
