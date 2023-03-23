@@ -15,6 +15,12 @@ const router = createRouter({
       path: "/search",
       component: () => import("@/views/SearchView.vue"),
     },
+    {
+      name: "CuratedPlaylistDetails",
+      path: "/playlist/curated/:playlistId",
+      component: () => import("@/views/CuratedPlaylistDetails.vue"),
+      props: true,
+    },
   ],
 });
 
