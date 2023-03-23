@@ -8,4 +8,4 @@ export default createAuth0({
     redirect_uri: window.location.origin,
     audience: "https://bmm-api.brunstad.org",
   },
-})
+});

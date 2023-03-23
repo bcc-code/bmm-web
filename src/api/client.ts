@@ -5,7 +5,6 @@ type TokenFactory = () => Promise<string | null>;
 
 export class Client {
   constructor(tokenFactory: TokenFactory) {
-    
     this.middleware = {
       pre: async (ctx) => {
         const token = await tokenFactory();
