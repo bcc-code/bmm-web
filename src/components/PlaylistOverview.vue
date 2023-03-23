@@ -2,23 +2,26 @@
 import filters from "@/utils/filters";
 import { ref, Ref } from "vue";
 import {
+  Configuration,
   PlaylistApi,
   PlaylistModel,
-  Configuration,
 } from "@bcc-code/bmm-sdk-fetch";
+import { useAuth0 } from "@auth0/auth0-vue";
 
 const playlists: Ref<PlaylistModel[]> = ref([]);
-
-new PlaylistApi(
-  new Configuration({
-    basePath: import.meta.env.VITE_API_URL,
-    headers: {
-      Authorization: `Bearer ${localStorage.getItem("token")}`,
-      "Accept-Language": "nb,en,zxx",
-    },
-  })
-)
-  .playlistGet()
+const { getAccessTokenSilently } = useAuth0();
+getAccessTokenSilently()
+  .then((token) =>
+    new PlaylistApi(
+      new Configuration({
+        basePath: import.meta.env.VITE_API_URL,
+        headers: {
+          Authorization: `Bearer ${token}`,
+          "Accept-Language": "nb,en,zxx",
+        },
+      })
+    ).playlistGet()
+  )
   .then((list) => {
     playlists.value = list;
   })
