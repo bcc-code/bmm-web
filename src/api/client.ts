@@ -1,12 +1,7 @@
 import { useAuth0 } from "@auth0/auth0-vue";
 import { BaseAPI, Configuration, Middleware } from "@bcc-code/bmm-sdk-fetch";
 
-export interface Token {
-  type: "bearer";
-  value: string;
-}
-
-type TokenFactory = () => Promise<Token | null>;
+type TokenFactory = () => Promise<string | null>;
 
 export class Client {
   constructor(tokenFactory: TokenFactory) {
@@ -14,8 +9,8 @@ export class Client {
       pre: async (ctx) => {
         const token = await tokenFactory();
         const headers = new Headers(ctx.init.headers);
-        if (token && token.type === "bearer") {
-          headers.set("Authorization", `Bearer ${token.value}`);
+        if (token) {
+          headers.set("Authorization", `Bearer ${token}`);
         }
 
         ctx.init.headers = headers;
@@ -43,9 +38,5 @@ export default new Client(async () => {
   if (!isAuthenticated.value) {
     return null;
   }
-  const token = await getAccessTokenSilently();
-  return {
-    type: "bearer",
-    value: token,
-  };
+  return await getAccessTokenSilently();
 });
