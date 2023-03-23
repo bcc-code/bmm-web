@@ -9,8 +9,9 @@ import {
 } from "@bcc-code/bmm-sdk-fetch";
 
 const props = defineProps<{
-  playlistId: number;
+  playlistId: string;
 }>();
+const playlistId = parseInt(props.playlistId, 10);
 const playlist: Ref<PlaylistModel> = ref({});
 const tracks: Ref<TrackModel[]> = ref([]);
 
@@ -25,13 +26,13 @@ const api = new PlaylistApi(
 );
 
 api
-  .playlistIdGet({ id: props.playlistId })
+  .playlistIdGet({ id: playlistId })
   .then((result) => {
     playlist.value = result;
   })
   .catch(() => {});
 api
-  .playlistIdTrackGet({ id: props.playlistId })
+  .playlistIdTrackGet({ id: playlistId })
   .then((list) => {
     tracks.value = list;
   })
