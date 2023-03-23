@@ -1,12 +1,11 @@
-import Home from "@/views/HomeView.vue";
 import { createRouter, createWebHistory } from "vue-router";
 
-export default createRouter({
+const router = createRouter({
   history: createWebHistory(),
   routes: [
     {
       path: "/",
-      component: Home,
+      component: () => import("@/views/HomeView.vue"),
     },
     {
       path: "/browse",
@@ -17,9 +16,12 @@ export default createRouter({
       component: () => import("@/views/SearchView.vue"),
     },
     {
-      path: '/playlist/private/:id',
+      name: "CuratedPlaylistDetails",
+      path: "/playlist/curated/:playlistId",
+      component: () => import("@/views/CuratedPlaylistDetails.vue"),
       props: true,
-      component: () => import('@/views/Playlist/PrivatePlaylist.vue')
-    }
+    },
   ],
 });
+
+export default router;
