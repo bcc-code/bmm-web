@@ -8,7 +8,7 @@ import {
 export const list = async () => {
   const { getAccessTokenSilently } = useAuth0();
 
-  const token = await getAccessTokenSilently()
+  const token = await getAccessTokenSilently();
 
   return new PlaylistApi(
     new Configuration({
@@ -24,7 +24,7 @@ export const list = async () => {
 export const get = async (id: NonNullable<PlaylistModel["id"]>) => {
   const { getAccessTokenSilently } = useAuth0();
 
-  const token = await getAccessTokenSilently()
+  const token = await getAccessTokenSilently();
 
   return new PlaylistApi(
     new Configuration({

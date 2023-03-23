@@ -11,7 +11,7 @@ list()
   .then((r) => {
     playlists.value = r;
   })
-  .catch(/* TODO: implement error-handling */);
+  .catch(() => null /* TODO: implement error-handling */);
 </script>
 
 <template>
