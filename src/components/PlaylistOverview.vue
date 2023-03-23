@@ -27,9 +27,13 @@ new PlaylistApi(
 
 <template>
   <div class="flex flex-row flex-wrap">
-    <div
+    <RouterLink
       v-for="playlist in playlists"
       :key="playlist.id || 0"
+      :to="{
+        name: 'CuratedPlaylistDetails',
+        params: { playlistId: playlist.id },
+      }"
       class="m-4 text-ellipsis overflow-hidden w-52"
     >
       <img
@@ -39,6 +43,6 @@ new PlaylistApi(
       <span class="whitespace-nowrap">
         {{ playlist.title }}
       </span>
-    </div>
+    </RouterLink>
   </div>
 </template>
