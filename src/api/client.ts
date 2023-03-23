@@ -22,10 +22,8 @@ export class Client {
 
   private middleware: Middleware;
 
-  public attach<T extends BaseAPI>(api: {
-    new (configuration: Configuration): T;
-  }) {
-    return new api(
+  public use<T extends BaseAPI>(Api: new (configuration: Configuration) => T) {
+    return new Api(
       new Configuration({
         middleware: [this.middleware],
       })
@@ -38,5 +36,5 @@ export default new Client(async () => {
   if (!isAuthenticated.value) {
     return null;
   }
-  return await getAccessTokenSilently();
+  return getAccessTokenSilently();
 });
