@@ -94,19 +94,3 @@ nav {
     background-color: #f9f9f9;
   }
 }
-
-.covers {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-}
-
-.covers .cover {
-  display: flex;
-  flex-direction: column;
-  margin: 12px;
-}
-
-.covers .cover img {
-  border-radius: 16px;
-}
