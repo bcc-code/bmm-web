@@ -1,38 +1,28 @@
 <script setup lang="ts">
 import { useAuth0 } from "@auth0/auth0-vue";
-import { watch, ref } from "vue";
-import useStore from "./composables/useStore";
+import { watch } from "vue";
 
-const {
-  isLoading,
-  isAuthenticated,
-  loginWithRedirect,
-  getAccessTokenSilently,
-} = useAuth0();
-const { store } = useStore();
-const hasToken = ref(false);
-
+// logout
+const { isLoading, loginWithRedirect, isAuthenticated } = useAuth0();
 watch(isLoading, async (loading) => {
   if (loading) return;
   if (!isAuthenticated.value) {
     await loginWithRedirect();
-  } else {
-    const token = await getAccessTokenSilently();
-    store.authenticated(token);
-    hasToken.value = true;
   }
 });
 </script>
 
 <template>
-  <nav>
-    <router-link to="/">Home</router-link>
-    <router-link to="/browse">Browse</router-link>
-    <router-link to="/search">Search</router-link>
-  </nav>
-  <main>
-    <router-view v-if="hasToken" />
-  </main>
+  <div class="flex">
+    <nav>
+      <router-link to="/">Home</router-link>
+      <router-link to="/browse">Browse</router-link>
+      <router-link to="/search">Search</router-link>
+    </nav>
+    <main class="overflow-scroll">
+      <router-view v-if="isAuthenticated" />
+    </main>
+  </div>
 </template>
 
 <style scoped>

@@ -1,10 +1,6 @@
 import { reactive, readonly } from "vue";
 
-interface IState {
-  loading: boolean;
-  authenticated: boolean;
-  token: string | null;
-}
+interface IState {}
 
 export default class Store {
   protected state: IState;
@@ -15,11 +11,5 @@ export default class Store {
 
   public getState() {
     return readonly(this.state);
-  }
-
-  public authenticated(token: string) {
-    this.state.token = token;
-    this.state.authenticated = true;
-    localStorage.setItem("token", token);
   }
 }

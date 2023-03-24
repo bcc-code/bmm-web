@@ -1,28 +1,28 @@
 <script setup lang="ts">
 import filters from "@/utils/filters";
 import { ref, Ref } from "vue";
-import {
-  PlaylistApi,
-  PlaylistModel,
-  Configuration,
-} from "@bcc-code/bmm-sdk-fetch";
+import { PlaylistModel } from "@bcc-code/bmm-sdk-fetch";
+
+import { list } from "@/api/playlists";
+import { useAuth0 } from "@auth0/auth0-vue";
 
 const playlists: Ref<PlaylistModel[]> = ref([]);
 
-new PlaylistApi(
-  new Configuration({
-    basePath: import.meta.env.VITE_API_URL,
-    headers: {
-      Authorization: `Bearer ${localStorage.getItem("token")}`,
-      "Accept-Language": "nb,en,zxx",
-    },
+const { getAccessTokenSilently } = useAuth0() ?? {
+  getAccessTokenSilently: async () => "",
+};
+
+list()
+  .then(async (r) => {
+    const token = await getAccessTokenSilently();
+    playlists.value = r.map((p) => {
+      // TODO: better solution for authorized urls
+      const pl = p;
+      pl.cover = filters.authorizedUrl(p.cover!, token);
+      return pl;
+    });
   })
-)
-  .playlistGet()
-  .then((list) => {
-    playlists.value = list;
-  })
-  .catch(() => {});
+  .catch(() => null /* TODO: implement error-handling */);
 </script>
 
 <template>
