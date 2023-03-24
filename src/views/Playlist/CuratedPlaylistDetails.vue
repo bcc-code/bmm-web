@@ -25,7 +25,7 @@ getTracks(playlistId)
 
 <template>
   <h1>Playlist</h1>
-  <div class="flex flex-row flex-wrap" style="margin: 20px">
+  <div class="flex flex-row flex-wrap">
     <ProtectedImage
       v-if="playlist.cover"
       :src="playlist.cover"

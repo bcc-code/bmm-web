@@ -19,7 +19,7 @@ watch(isLoading, async (loading) => {
       <router-link to="/browse">Browse</router-link>
       <router-link to="/search">Search</router-link>
     </nav>
-    <main class="overflow-scroll">
+    <main class="overflow-scroll" style="padding: 20px">
       <router-view v-if="isAuthenticated" />
     </main>
   </div>
