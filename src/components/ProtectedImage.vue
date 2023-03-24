@@ -9,11 +9,7 @@ const props = defineProps<{
 
 const source = ref("");
 
-// TODO: fix this for tests (auth0 isn't in context in tests at this time)
-// eslint-disable-next-line @typescript-eslint/no-unnecessary-condition
-const { getAccessTokenSilently } = useAuth0() ?? {
-  getAccessTokenSilently: async () => "",
-};
+const { getAccessTokenSilently } = useAuth0();
 
 onMounted(async () => {
   const token = await getAccessTokenSilently();
