@@ -1,9 +1,5 @@
 <script lang="ts" setup>
-import {
-  Configuration,
-  GetTrackCollectionModel,
-  TrackCollectionApi,
-} from "@bcc-code/bmm-sdk-fetch";
+import { GetTrackCollectionModel } from "@bcc-code/bmm-sdk-fetch";
 import { ref } from "vue";
 import { get } from "@/api/privatePlaylists";
 
