@@ -3,31 +3,31 @@ import {
   Configuration,
   GetTrackCollectionModel,
   TrackCollectionApi,
-} from '@bcc-code/bmm-sdk-fetch'
-import { ref } from 'vue'
+} from "@bcc-code/bmm-sdk-fetch";
+import { ref } from "vue";
 
 const props = defineProps<{
-  id: string
-}>()
+  id: string;
+}>();
 
-const trackCollection = ref<GetTrackCollectionModel>({})
+const trackCollection = ref<GetTrackCollectionModel>({});
 
 new TrackCollectionApi(
   new Configuration({
     basePath: import.meta.env.VITE_API_URL,
     headers: {
-      Authorization: `Bearer ${localStorage.getItem('token')}`,
-      'Accept-Language': 'nb,en,zxx',
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+      "Accept-Language": "nb,en,zxx",
     },
   })
 )
   .trackCollectionIdGet({
     id: Number(props.id),
   })
-  .then(collection => {
-    trackCollection.value = collection
+  .then((collection) => {
+    trackCollection.value = collection;
   })
-  .catch(() => {})
+  .catch(() => {});
 </script>
 
 <template>
