@@ -34,7 +34,7 @@ new TrackCollectionApi(
   <h1>{{ trackCollection?.name }}</h1>
   <table>
     <ol class="list-decimal list-inside">
-      <li v-for="track in trackCollection.tracks" :key="track.id">
+      <li v-for="track in trackCollection.tracks" :key="`track-${track.id}`">
         {{ track.title }}
       </li>
     </ol>
