@@ -26,6 +26,7 @@ list()
       class="m-4 text-ellipsis overflow-hidden w-52"
     >
       <ProtectedImage
+        v-if="playlist.cover"
         :src="playlist.cover"
         class="w-full aspect-square rounded-xl"
       />
