@@ -1,6 +1,3 @@
-<template>
-  <img :src="source" />
-</template>
 <script lang="ts" setup>
 import filters from "@/utils/filters";
 import { useAuth0 } from "@auth0/auth0-vue";
@@ -24,3 +21,6 @@ onMounted(async () => {
   source.value = filters.authorizedUrl(props.src ?? "", token);
 });
 </script>
+<template>
+  <img :src="source" />
+</template>
