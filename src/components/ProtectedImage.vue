@@ -12,6 +12,7 @@ const props = defineProps<{
 
 const source = ref("");
 
+// TODO: fix this for tests (auth0 isn't in context in tests at this time)
 const { getAccessTokenSilently } = useAuth0() ?? {
   getAccessTokenSilently: async () => "",
 };
