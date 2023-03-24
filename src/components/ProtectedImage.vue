@@ -12,7 +12,7 @@ const props = defineProps<{
 
 const source = ref("");
 
-const { getAccessTokenSilently } = useAuth0();
+const { getAccessTokenSilently } = useAuth0() ?? { getAccessTokenSilently: async () => ""};
 
 onMounted(async () => {
   const token = await getAccessTokenSilently();
