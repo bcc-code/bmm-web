@@ -8,7 +8,9 @@ import { useAuth0 } from "@auth0/auth0-vue";
 
 const playlists: Ref<PlaylistModel[]> = ref([]);
 
-const { getAccessTokenSilently } = useAuth0();
+const { getAccessTokenSilently } = useAuth0() ?? {
+  getAccessTokenSilently: async () => "",
+};
 
 list()
   .then(async (r) => {
