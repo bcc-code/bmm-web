@@ -1,12 +1,8 @@
 <script setup lang="ts">
-import filters from "@/utils/filters";
 import { ref, Ref } from "vue";
-import {
-  PlaylistApi,
-  Configuration,
-  TrackModel,
-  PlaylistModel,
-} from "@bcc-code/bmm-sdk-fetch";
+import { TrackModel, PlaylistModel } from "@bcc-code/bmm-sdk-fetch";
+import { get, getTracks } from "@/api/playlists";
+import ProtectedImage from "@/components/ProtectedImage.vue";
 
 const props = defineProps<{
   playlistId: string;
@@ -15,24 +11,12 @@ const playlistId = Number(props.playlistId);
 const playlist: Ref<PlaylistModel> = ref({});
 const tracks: Ref<TrackModel[]> = ref([]);
 
-const api = new PlaylistApi(
-  new Configuration({
-    basePath: import.meta.env.VITE_API_URL,
-    headers: {
-      Authorization: `Bearer ${localStorage.getItem("token")}`,
-      "Accept-Language": "nb,en,zxx",
-    },
-  })
-);
-
-api
-  .playlistIdGet({ id: playlistId })
+get(playlistId)
   .then((result) => {
     playlist.value = result;
   })
   .catch(() => {});
-api
-  .playlistIdTrackGet({ id: playlistId })
+getTracks(playlistId)
   .then((list) => {
     tracks.value = list;
   })
@@ -41,11 +25,11 @@ api
 
 <template>
   <h2>Playlist</h2>
-  <div style="margin: 20px">
-    <img
-      :src="filters.authorizedUrl(playlist.cover || '')"
-      width="240"
-      height="240"
+  <div class="flex flex-row flex-wrap" style="margin: 20px">
+    <ProtectedImage
+      v-if="playlist.cover"
+      :src="playlist.cover"
+      class="w-52 aspect-square rounded-xl"
     />
     <h3>{{ playlist.title }}</h3>
     <br />
