@@ -35,6 +35,12 @@ new TrackCollectionApi(
         <a href="">{{ collection.name }}</a>
       </li>
     </ul>
+    <!-- <input type="text" placeholder="+ Add playlist" /> -->
+    <input
+      class="placeholder placeholder:text-gray-500 w-full bg-gray-100 py-2 sm:text-sm"
+      placeholder="+ Add playlist"
+      type="text"
+    />
   </div>
 </template>
 
