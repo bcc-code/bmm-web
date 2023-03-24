@@ -36,10 +36,7 @@ list()
       }"
       class="m-4 text-ellipsis overflow-hidden w-52"
     >
-      <img
-        :src="filters.authorizedUrl(playlist.cover || '')"
-        class="w-full aspect-square rounded-xl"
-      />
+      <img :src="playlist.cover!" class="w-full aspect-square rounded-xl" />
       <span class="whitespace-nowrap">
         {{ playlist.title }}
       </span>

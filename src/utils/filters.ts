@@ -5,10 +5,7 @@ export default {
     }
 
     const url = new URL(urlString);
-    url.searchParams.set(
-      "auth",
-      `Bearer ${token ?? localStorage.getItem("token")}`
-    );
+    url.searchParams.set("auth", `Bearer ${token}`);
     return url.toString();
   },
 };
