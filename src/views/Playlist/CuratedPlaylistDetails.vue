@@ -24,7 +24,7 @@ getTracks(playlistId)
 </script>
 
 <template>
-  <h2>Playlist</h2>
+  <h1>Playlist</h1>
   <div class="flex flex-row flex-wrap" style="margin: 20px">
     <ProtectedImage
       v-if="playlist.cover"
@@ -33,10 +33,10 @@ getTracks(playlistId)
     />
     <h3>{{ playlist.title }}</h3>
     <br />
-    <ul v-for="track in tracks" :key="track.id || 0">
-      <li>
+    <ol class="list-decimal list-inside">
+      <li v-for="track in tracks" :key="track.id || 0">
         {{ track.meta?.artist }} - <b>{{ track.meta?.title }}</b>
       </li>
-    </ul>
+    </ol>
   </div>
 </template>
