@@ -18,7 +18,13 @@ const router = createRouter({
     {
       name: "CuratedPlaylistDetails",
       path: "/playlist/curated/:playlistId",
-      component: () => import("@/views/CuratedPlaylistDetails.vue"),
+      component: () => import("@/views/Playlist/CuratedPlaylistDetails.vue"),
+      props: true,
+    },
+    {
+      name: "PrivatePlaylist",
+      path: "/playlist/private/:id",
+      component: () => import("@/views/Playlist/PrivatePlaylist.vue"),
       props: true,
     },
   ],
