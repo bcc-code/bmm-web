@@ -13,9 +13,9 @@ function toggleMenu() {
 
 <template>
   <header
-    class="p-4 sticky top-0 bg-white/80 backdrop-blur-lg border-b border-gray-100 leading-none flex justify-between align-center"
+    class="py-4 px-5 sticky top-0 bg-white/80 backdrop-blur-lg border-b border-gray-100 leading-none flex justify-between align-center"
   >
-    <strong>{{ route.name || "Home" }}</strong>
+    <strong>{{ route.meta.toolbarTitle }}</strong>
     <div class="relative">
       <button @click="toggleMenu">Profile</button>
       <div

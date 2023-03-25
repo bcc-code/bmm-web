@@ -34,7 +34,7 @@ const navLinks = [
         {{ link.name }}
       </router-link>
     </nav>
-    <div>
+    <div class="grow">
       <Toolbar />
       <main class="p-5 grow">
         <router-view v-if="isAuthenticated" />
