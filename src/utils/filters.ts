@@ -1,6 +1,6 @@
 export default {
   authorizedUrl(urlString: string, token?: string) {
-    if (!urlString) {
+    if (!token) {
       return urlString;
     }
 

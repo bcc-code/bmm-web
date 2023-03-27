@@ -12,7 +12,24 @@
     "plugin:@typescript-eslint/strict",
     "prettier"
   ],
-  "overrides": [],
+  "overrides": [
+    {
+      "files": ["*.spec.ts"],
+      "rules": {
+        // Sometimes its too much of a hassle to implement the full type, so we want to cast and object having a subset of it.
+        "@typescript-eslint/consistent-type-assertions": "off",
+
+        // If I want an element to exist and the system to throw if not found. Useful when searching for UI elements to act on.
+        "@typescript-eslint/no-non-null-assertion": "off",
+
+        // If it doesn't exist or has the wrong type, the test should fail. Added to support calling methods of ".vue" files.
+        "@typescript-eslint/no-unsafe-assignment": "off",
+        "@typescript-eslint/no-unsafe-call": "off",
+        "@typescript-eslint/no-unsafe-return": "off",
+        "@typescript-eslint/no-unsafe-member-access": "off"
+      }
+    }
+  ],
   "parser": "vue-eslint-parser",
   "parserOptions": {
     "parser": "@typescript-eslint/parser",

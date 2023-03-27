@@ -14,7 +14,6 @@ const { getAccessTokenSilently } = useAuth0();
 onMounted(async () => {
   const token = await getAccessTokenSilently();
 
-  // TODO: placeholder image url
   source.value = filters.authorizedUrl(props.src, token);
 });
 </script>
