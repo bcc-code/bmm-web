@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useAuth0 } from "@auth0/auth0-vue";
 import { watch } from "vue";
+import MediaPlayer from "./components/MediaPlayer.vue";
 
 // logout
 const { isLoading, loginWithRedirect, isAuthenticated } = useAuth0();
@@ -23,6 +24,9 @@ watch(isLoading, async (loading) => {
       <router-view v-if="isAuthenticated" />
     </main>
   </div>
+  <footer>
+    <media-player />
+  </footer>
 </template>
 
 <style scoped>
