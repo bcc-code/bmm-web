@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useAuth0 } from "@auth0/auth0-vue";
 import { watch } from "vue";
+import privatePlaylist from "@/components/privatePlaylist.vue";
 
 // logout
 const { isLoading, loginWithRedirect, isAuthenticated } = useAuth0();
@@ -18,6 +19,7 @@ watch(isLoading, async (loading) => {
       <router-link to="/">Home</router-link>
       <router-link to="/browse">Browse</router-link>
       <router-link to="/search">Search</router-link>
+      <privatePlaylist />
     </nav>
     <main class="overflow-scroll p-5">
       <router-view v-if="isAuthenticated" />
