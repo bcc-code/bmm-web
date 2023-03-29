@@ -21,8 +21,6 @@ new TrackCollectionApi(
   .trackCollectionGet()
   .then((list) => {
     collections.value = list;
-    // eslint-disable-next-line no-console
-    console.log(list);
   })
   .catch(() => {});
 </script>
@@ -30,12 +28,12 @@ new TrackCollectionApi(
 <template>
   <div>
     <h3>Playlists</h3>
-    <ul v-for="collection in collections" :key="collection.id || 0">
-      <li>
+    <ul>
+      <li v-for="collection in collections" :key="collection.id || 0">
         <a href="">{{ collection.name }}</a>
       </li>
     </ul>
-    <!-- <input type="text" placeholder="+ Add playlist" /> -->
+
     <input
       class="placeholder placeholder:text-gray-500 w-full bg-gray-100 py-2 sm:text-sm"
       placeholder="+ Add playlist"
