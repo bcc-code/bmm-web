@@ -3,17 +3,36 @@
     "browser": true,
     "es2021": true
   },
-  "extends": [
-    "eslint:recommended",
-    "airbnb-base",
-    "airbnb-typescript/base",
-    "plugin:vue/vue3-recommended",
-    "plugin:promise/recommended",
-    "plugin:@typescript-eslint/strict",
-    "plugin:@intlify/vue-i18n/recommended",
-    "prettier"
-  ],
   "overrides": [
+    {
+      "files": ["*.json", "*.json5"],
+      "extends": [
+        "eslint:recommended",
+        "airbnb-base",
+        "plugin:@intlify/vue-i18n/recommended",
+        "prettier"
+      ]
+    },
+    {
+      "files": ["*.ts", "*.js", "*.vue"],
+      "extends": [
+        "eslint:recommended",
+        "airbnb-base",
+        "airbnb-typescript/base",
+        "plugin:vue/vue3-recommended",
+        "plugin:promise/recommended",
+        "plugin:@typescript-eslint/strict",
+        "plugin:@intlify/vue-i18n/recommended",
+        "prettier"
+      ],
+      "rules": {
+        "@typescript-eslint/consistent-type-assertions": [
+          "warn",
+          { "assertionStyle": "never" }
+        ],
+        "promise/always-return": "off"
+      }
+    },
     {
       "files": ["*.spec.ts"],
       "rules": {
@@ -41,11 +60,11 @@
   },
   "plugins": ["vue", "@typescript-eslint"],
   "rules": {
-    "@typescript-eslint/consistent-type-assertions": [
+    "@intlify/vue-i18n/no-missing-keys-in-other-locales": "warn",
+    "@intlify/vue-i18n/no-unused-keys": [
       "warn",
-      { "assertionStyle": "never" }
-    ],
-    "promise/always-return": "off"
+      { "extensions": [".json", ".vue", ".ts"] }
+    ]
   },
   "settings": {
     "import/resolver": {
