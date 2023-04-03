@@ -2,7 +2,7 @@ lockfileVersion: 5.4
 
 specifiers:
   '@auth0/auth0-vue': ^2.0.2
-  '@bcc-code/bmm-sdk-fetch': ^3.0.1
+  '@bcc-code/bmm-sdk-fetch': ^4.0.0
   '@types/eslint': ^8.21.1
   '@types/node': ^18.14.0
   '@typescript-eslint/eslint-plugin': ^5.52.0
@@ -38,7 +38,7 @@ specifiers:
 
 dependencies:
   '@auth0/auth0-vue': 2.0.2_vue-router@4.1.6
-  '@bcc-code/bmm-sdk-fetch': 3.0.1
+  '@bcc-code/bmm-sdk-fetch': 4.0.0
   vue: 3.2.47
   vue-router: 4.1.6_vue@3.2.47
 
@@ -132,8 +132,8 @@ packages:
       '@babel/helper-validator-identifier': 7.19.1
       to-fast-properties: 2.0.0
 
-  /@bcc-code/bmm-sdk-fetch/3.0.1:
-    resolution: {integrity: sha512-LDIIdtVSQZTKjqWVH20ULnoxHBGnJ/Ui6hlMPXChlEjQ1F8gWZ+HAsorSSIzW96xxxRDh0PQ4pxxX3nDvzT8sg==}
+  /@bcc-code/bmm-sdk-fetch/4.0.0:
+    resolution: {integrity: sha512-CQSDwDG260Z6EbUBMSxWfj9XrhSLpVVq82nBmykB++/pWxcNSUuA3Z6PcGMyynbozBs4w1L8auanjUjDl4cNxQ==}
     dev: false
 
   /@bcoe/v8-coverage/0.2.3:
