@@ -19,7 +19,7 @@ watch(isLoading, async (loading) => {
       <router-link to="/">Home</router-link>
       <router-link to="/browse">Browse</router-link>
       <router-link to="/search">Search</router-link>
-      <privatePlaylist />
+      <privatePlaylist v-if="isAuthenticated" />
     </nav>
     <main class="overflow-scroll p-5">
       <router-view v-if="isAuthenticated" />

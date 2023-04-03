@@ -1,38 +1,37 @@
 <script setup lang="ts">
-// import filters from "@/utils/filters";
 import { ref, Ref } from "vue";
-import {
-  TrackCollectionApi,
-  TrackCollectionDetails,
-  Configuration,
-} from "@bcc-code/bmm-sdk-fetch";
+import { TrackCollectionDetails } from "@bcc-code/bmm-sdk-fetch";
+import { list } from "@/api/privatePlaylists";
 
 const collections: Ref<TrackCollectionDetails[]> = ref([]);
 
-new TrackCollectionApi(
-  new Configuration({
-    basePath: import.meta.env.VITE_API_URL,
-    headers: {
-      Authorization: `Bearer ${localStorage.getItem("token")}`,
-      "Accept-Language": "nb,en,zxx",
-    },
+list()
+  .then((r) => {
+    collections.value = r;
   })
-)
-  .trackCollectionGet()
-  .then((list) => {
-    collections.value = list;
-  })
-  .catch(() => {});
+  .catch((error) => {
+    // eslint-disable-next-line no-console
+    console.log(error);
+  });
 </script>
 
 <template>
   <div>
     <h3>Playlists</h3>
-    <ul>
-      <li v-for="collection in collections" :key="collection.id || 0">
-        <a href="">{{ collection.name }}</a>
-      </li>
-    </ul>
+    <RouterLink
+      v-for="collection in collections"
+      :key="collection.id || 0"
+      :to="{
+        name: 'PrivatePlaylist',
+        params: { id: collection.id },
+      }"
+    >
+      <ul>
+        <li>
+          {{ collection.name }}
+        </li>
+      </ul>
+    </RouterLink>
 
     <input
       class="placeholder placeholder:text-gray-500 w-full bg-gray-100 py-2 sm:text-sm"

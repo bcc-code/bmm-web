@@ -34,8 +34,8 @@ getTracks(playlistId)
     <h3>{{ playlist.title }}</h3>
     <br />
     <ol class="list-decimal list-inside">
-      <li v-for="track in tracks" :key="track.id || 0">
-        {{ track.meta?.artist }} - <b>{{ track.meta?.title }}</b>
+      <li v-for="track in tracks" :key="track.id || 0" class="flex">
+        {{ track.meta?.title }} - <b>{{ track.meta?.artist }}</b>
       </li>
     </ol>
   </div>
