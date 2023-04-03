@@ -18,9 +18,11 @@
     "@auth0/auth0-vue": "^2.0.2",
     "@bcc-code/bmm-sdk-fetch": "^3.0.1",
     "vue": "^3.2.45",
+    "vue-i18n": "^9.2.2",
     "vue-router": "^4.1.6"
   },
   "devDependencies": {
+    "@intlify/eslint-plugin-vue-i18n": "^2.0.0",
     "@types/eslint": "^8.21.1",
     "@types/node": "^18.14.0",
     "@typescript-eslint/eslint-plugin": "^5.52.0",

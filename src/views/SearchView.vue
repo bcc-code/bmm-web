@@ -1,3 +1,3 @@
 <template>
-  <h2>Search</h2>
+  <h2>{{ $t("nav.search") }}</h2>
 </template>

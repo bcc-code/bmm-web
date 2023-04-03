@@ -10,6 +10,7 @@
     "plugin:vue/vue3-recommended",
     "plugin:promise/recommended",
     "plugin:@typescript-eslint/strict",
+    "plugin:@intlify/vue-i18n/recommended",
     "prettier"
   ],
   "overrides": [
@@ -52,6 +53,9 @@
         "map": [["@", "./src/"]],
         "extensions": [".js", ".ts", ".vue"]
       }
+    },
+    "vue-i18n": {
+      "localeDir": "./src/locales/*.{json,json5,yaml,yml}"
     }
   }
 }
