@@ -9,10 +9,7 @@ list()
   .then((r) => {
     collections.value = r;
   })
-  .catch((error) => {
-    // eslint-disable-next-line no-console
-    console.log(error);
-  });
+  .catch(() => {});
 </script>
 
 <template>
