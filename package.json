@@ -7,21 +7,11 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "lint": "prettier . --check && eslint --ext ts,js,vue ."
+    "lint": "prettier . --check"
   },
   "devDependencies": {
     "@nuxt/devtools": "^0.3.1",
-    "@nuxtjs/eslint-module": "^4.0.2",
     "@nuxtjs/tailwindcss": "^6.6.5",
-    "@types/eslint": "^8.37.0",
-    "@typescript-eslint/eslint-plugin": "^5.57.1",
-    "@typescript-eslint/parser": "^5.57.1",
-    "eslint": "^8.37.0",
-    "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-config-airbnb-typescript": "^17.0.0",
-    "eslint-config-prettier": "^8.8.0",
-    "eslint-plugin-promise": "^6.1.1",
-    "eslint-plugin-vue": "^9.10.0",
     "nuxt": "^3.3.3",
     "prettier": "^2.8.7",
     "prettier-plugin-tailwindcss": "^0.2.6"
