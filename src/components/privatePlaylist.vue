@@ -15,20 +15,20 @@ list()
 <template>
   <div>
     <h3>Playlists</h3>
-    <RouterLink
-      v-for="collection in collections"
-      :key="collection.id || 0"
-      :to="{
-        name: 'PrivatePlaylist',
-        params: { id: collection.id },
-      }"
-    >
-      <ul>
-        <li>
+    <ul>
+      <li>
+        <RouterLink
+          v-for="collection in collections"
+          :key="collection.id || 0"
+          :to="{
+            name: 'PrivatePlaylist',
+            params: { id: collection.id },
+          }"
+        >
           {{ collection.name }}
-        </li>
-      </ul>
-    </RouterLink>
+        </RouterLink>
+      </li>
+    </ul>
 
     <input
       class="placeholder placeholder:text-gray-500 w-full bg-gray-100 py-2 sm:text-sm"
