@@ -1,11 +1,14 @@
 <script setup lang="ts">
 import { ref, Ref } from "vue";
-import { TrackCollectionDetails } from "@bcc-code/bmm-sdk-fetch";
-import { list } from "@/api/privatePlaylists";
+import {
+  TrackCollectionDetails,
+  TrackCollectionApi,
+} from "@bcc-code/bmm-sdk-fetch";
 
 const collections: Ref<TrackCollectionDetails[]> = ref([]);
 
-list()
+new TrackCollectionApi()
+  .trackCollectionGet()
   .then((r) => {
     collections.value = r;
   })
