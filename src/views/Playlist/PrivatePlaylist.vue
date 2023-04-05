@@ -1,7 +1,9 @@
 <script lang="ts" setup>
-import { GetTrackCollectionModel } from "@bcc-code/bmm-sdk-fetch";
+import {
+  GetTrackCollectionModel,
+  TrackCollectionApi,
+} from "@bcc-code/bmm-sdk-fetch";
 import { ref } from "vue";
-import { get } from "@/api/privatePlaylists";
 
 const props = defineProps<{
   id: string;
@@ -9,7 +11,8 @@ const props = defineProps<{
 
 const trackCollection = ref<GetTrackCollectionModel>({});
 
-get(Number(props.id))
+new TrackCollectionApi()
+  .trackCollectionIdGet({ id: Number(props.id) })
   .then((collection) => {
     trackCollection.value = collection;
   })
