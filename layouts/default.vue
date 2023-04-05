@@ -11,6 +11,9 @@ const onError = (error: any) => {
       <Toolbar />
       <NuxtErrorBoundary @error="onError">
         <slot />
+        <template #error="{ error }">
+          <Error :error="error" />
+        </template>
       </NuxtErrorBoundary>
     </main>
   </div>

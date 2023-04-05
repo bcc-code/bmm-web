@@ -1,5 +1,13 @@
 <script setup lang="ts">
 const { playlists, error } = usePlaylists();
+
+if (error.value) {
+  createError({
+    message: "Could not load playlists",
+    cause: error.value,
+    stack: error.value,
+  });
+}
 </script>
 
 <template>

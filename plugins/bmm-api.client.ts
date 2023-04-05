@@ -1,7 +1,7 @@
 import { useAuth0 } from "@auth0/auth0-vue";
 import { Configuration, DefaultConfig } from "@bcc-code/bmm-sdk-fetch";
 
-export default defineNuxtPlugin(() => {
+export default defineNuxtPlugin((nuxtApp) => {
 	const runtimeConfig = useRuntimeConfig()
 
 	DefaultConfig.config = new Configuration({
@@ -13,6 +13,7 @@ export default defineNuxtPlugin(() => {
 			{
 				pre: async (ctx) => {
 					const { getAccessTokenSilently, isAuthenticated } = useAuth0();
+
 					const token = isAuthenticated.value
 						? await getAccessTokenSilently()
 						: null;
