@@ -4,7 +4,7 @@ import { useRoute } from "vue-router";
 
 const route = useRoute();
 
-// TODO: replace placeholder profile menu
+// TODO: Replace placeholder by profile menu #8
 const showMenu = ref(false);
 function toggleMenu() {
   showMenu.value = !showMenu.value;
