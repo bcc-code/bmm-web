@@ -19,10 +19,8 @@ new TrackCollectionApi()
   <div>
     <h3>Playlists</h3>
     <ul>
-      <li>
+      <li v-for="collection in collections" :key="collection.id || 0">
         <RouterLink
-          v-for="collection in collections"
-          :key="collection.id || 0"
           :to="{
             name: 'PrivatePlaylist',
             params: { id: collection.id },
