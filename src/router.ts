@@ -1,5 +1,11 @@
 import { createRouter, createWebHistory } from "vue-router";
 
+declare module "vue-router" {
+  interface RouteMeta {
+    toolbarTitle: string;
+  }
+}
+
 const router = createRouter({
   history: createWebHistory(),
   routes: [
@@ -7,22 +13,22 @@ const router = createRouter({
       path: "/",
       component: () => import("@/views/HomeView.vue"),
       meta: {
-        toolbarTitle: 'Home'
-      }
+        toolbarTitle: "Home",
+      },
     },
     {
       path: "/browse",
       component: () => import("@/views/BrowseView.vue"),
       meta: {
-        toolbarTitle: 'Browse'
-      }
+        toolbarTitle: "Browse",
+      },
     },
     {
       path: "/search",
       component: () => import("@/views/SearchView.vue"),
       meta: {
-        toolbarTitle: 'Search'
-      }
+        toolbarTitle: "Search",
+      },
     },
     {
       name: "CuratedPlaylistDetails",
@@ -30,8 +36,8 @@ const router = createRouter({
       component: () => import("@/views/Playlist/CuratedPlaylistDetails.vue"),
       props: true,
       meta: {
-        toolbarTitle: 'Playlist'
-      }
+        toolbarTitle: "Playlist",
+      },
     },
     {
       name: "PrivatePlaylist",
@@ -39,8 +45,8 @@ const router = createRouter({
       component: () => import("@/views/Playlist/PrivatePlaylist.vue"),
       props: true,
       meta: {
-        toolbarTitle: 'Playlist',
-      }
+        toolbarTitle: "Playlist",
+      },
     },
   ],
 });
