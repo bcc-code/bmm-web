@@ -1,7 +1,10 @@
 <script setup lang="ts">
 import { ref, Ref } from "vue";
-import { TrackModel, PlaylistModel } from "@bcc-code/bmm-sdk-fetch";
-import { get, getTracks } from "@/api/playlists";
+import {
+  TrackModel,
+  PlaylistModel,
+  PlaylistApi,
+} from "@bcc-code/bmm-sdk-fetch";
 import ProtectedImage from "@/components/ProtectedImage.vue";
 
 const props = defineProps<{
@@ -11,12 +14,14 @@ const playlistId = Number(props.playlistId);
 const playlist: Ref<PlaylistModel> = ref({});
 const tracks: Ref<TrackModel[]> = ref([]);
 
-get(playlistId)
+new PlaylistApi()
+  .playlistIdGet({ id: playlistId })
   .then((result) => {
     playlist.value = result;
   })
   .catch(() => {});
-getTracks(playlistId)
+new PlaylistApi()
+  .playlistIdTrackGet({ id: playlistId })
   .then((list) => {
     tracks.value = list;
   })
