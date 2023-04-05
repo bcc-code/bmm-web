@@ -2,9 +2,9 @@
 
 <template>
   <div class="flex h-full">
-    <AppSidebar />
+    <Sidebar />
     <main class="flex-grow">
-      <AppToolbar />
+      <Toolbar />
       <slot />
     </main>
   </div>
