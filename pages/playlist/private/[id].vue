@@ -14,12 +14,13 @@ const { collection } = useTrackCollection({ id: collectionId });
     <header class="flex gap-6 mb-8">
       <Heading>{{ collection.name }}</Heading>
     </header>
-    <ol class="list-decimal list-inside">
+    <TrackList class="list-decimal list-inside">
       <Track
         v-for="track in collection.tracks"
         :key="track.id || 0"
         :track="track"
+        show-thumbnail
       />
-    </ol>
+    </TrackList>
   </div>
 </template>

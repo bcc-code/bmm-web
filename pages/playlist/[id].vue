@@ -23,8 +23,8 @@ const { tracks } = usePlaylistTracks({ id: playlistId });
         <Heading>{{ playlist.title }}</Heading>
       </div>
     </header>
-    <ol class="list-decimal list-inside">
+    <TrackList>
       <Track v-for="track in tracks" :key="track.id || 0" :track="track" />
-    </ol>
+    </TrackList>
   </div>
 </template>
