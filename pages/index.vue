@@ -3,13 +3,17 @@ definePageMeta({
   toolbarTitle: "Home",
 });
 
+// Playlists
 const { playlists } = usePlaylists();
+const newestPlaylists = computed(() => playlists.value?.splice(0, 4));
 
+// Speeches
 const { tracks: speeches } = useTracks({
   contentType2: ["speech"],
 });
 const newestSpeeches = computed(() => speeches.value?.splice(0, 5));
 
+// Audiobooks
 const { tracks: audiobooks } = useTracks({
   contentType2: ["audiobook"],
 });
@@ -17,9 +21,9 @@ const newestAudiobooks = computed(() => audiobooks.value?.splice(0, 5));
 </script>
 
 <template>
-  <section v-if="playlists" id="playlists">
+  <section v-if="newestPlaylists" id="playlists">
     <Heading :level="3" class="mb-4">Playlists</Heading>
-    <PlaylistCarousel :playlists="playlists" />
+    <PlaylistCarousel :playlists="newestPlaylists" />
   </section>
 
   <section id="speeches" class="py-8">
