@@ -1,39 +1,46 @@
-<script setup lang="ts">
-import { ref, Ref } from "vue";
-import { TrackApi, TrackModel } from "@bcc-code/bmm-sdk-fetch";
+<script lang="ts" setup>
+import filters from "@/utils/filters";
+import { useAuth0 } from "@auth0/auth0-vue";
+import { onMounted, ref } from "vue";
 
-import ProtectedImage from "./ProtectedImage.vue";
+// import ProtectedImage from "./ProtectedImage.vue";
 
-const tracks: Ref<TrackModel[]> = ref([]);
+const props = defineProps<{
+  src: any;
+  id: any;
+  title: any;
+  album: any;
+  subtype: any;
+}>();
 
-new TrackApi()
-  .trackGet()
-  .then((r) => {
-    tracks.value = r;
-  })
-  .catch(() => null /* TODO: implement error-handling */);
+const source = ref("");
+const trackNumber = ref();
+const trackTitle = ref("");
+const trackAlbum = ref("");
+const trackSubtype = ref("");
+
+const { getAccessTokenSilently } = useAuth0();
+
+onMounted(async () => {
+  const token = await getAccessTokenSilently();
+
+  source.value = filters.authorizedUrl(props.src, token);
+  trackNumber.value = filters.authorizedUrl(props.id, token);
+  trackTitle.value = filters.authorizedUrl(props.title, token);
+  trackAlbum.value = filters.authorizedUrl(props.album, token);
+  trackSubtype.value = filters.authorizedUrl(props.subtype, token);
+});
 </script>
 
 <template>
-  <div
-    v-for="track in tracks"
-    :key="track.id || 0"
-    class="grid gap-4 grid-cols-3"
-  >
-    <div v-if="track" class="flex flex-row m-2">
-      <ProtectedImage
-        v-if="track.meta?.attachedPicture"
-        :src="track.meta?.attachedPicture"
-        class="h-10 aspect-square rounded"
-      />
-      <span v-if="track" id="title" class="w-full">
-        {{ track.meta?.tracknumber }}. {{ track.meta?.title }}<br />
-        {{ track.meta?.album }}<br />
+  <div class="grid gap-4 grid-cols-3">
+    <div class="flex flex-row m-2">
+      <img :src="source" class="h-10 aspect-square rounded" />
+      <span class="w-full" :number="trackNumber">
+        <span :title="trackTitle"></span>
       </span>
     </div>
-    <div v-if="track.subtype" id="">
-      {{ track.subtype?.charAt(0).toUpperCase() + track.subtype?.slice(1) }}
-    </div>
+    <div :subtype="trackSubtype"></div>
     <div>...</div>
   </div>
 </template>

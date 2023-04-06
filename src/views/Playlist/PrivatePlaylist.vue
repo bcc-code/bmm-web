@@ -5,6 +5,8 @@ import {
 } from "@bcc-code/bmm-sdk-fetch";
 import { ref } from "vue";
 
+import tracksList from "@/components/tracksList.vue";
+
 const props = defineProps<{
   id: string;
 }>();
@@ -19,13 +21,31 @@ new TrackCollectionApi()
   .catch(() => {});
 </script>
 
-<template>
+<!-- <template>
   <h2>{{ trackCollection?.name }}</h2>
   <ol class="list-decimal list-inside">
     <li v-for="track in trackCollection.tracks" :key="`track-${track.id}`">
       {{ track.title }}
     </li>
   </ol>
+</template> -->
+
+<!-- This template is for test purpose. It might not work properly -->
+<template>
+  <h2>{{ trackCollection?.name }}</h2>
+  <div
+    v-for="track in trackCollection.tracks"
+    :key="track.id"
+    class="flex flex-row flex-wrap"
+  >
+    <tracksList
+      :id="track.meta?.tracknumber"
+      :src="track.meta?.attachedPicture"
+      :title="track.meta?.title"
+      :album="track.meta?.album"
+      :subtype="track.subtype"
+    />
+  </div>
 </template>
 
 <style scoped>
