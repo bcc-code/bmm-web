@@ -1,11 +1,22 @@
 <script lang="ts" setup>
-definePageMeta({
-  middleware: ["auth"],
-});
+import { useAuth0 } from "@auth0/auth0-vue";
+
+const { isLoading, loginWithRedirect, isAuthenticated } = useAuth0();
+
+watch(
+  isLoading,
+  async (loading) => {
+    if (loading) return;
+    if (!isAuthenticated.value) {
+      await loginWithRedirect();
+    }
+  },
+  { immediate: true }
+);
 </script>
 
 <template>
-  <NuxtLayout>
+  <NuxtLayout v-if="isAuthenticated">
     <div class="p-6 max-w-7xl mx-auto">
       <NuxtPage />
     </div>
