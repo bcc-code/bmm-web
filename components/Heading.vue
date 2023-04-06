@@ -1,9 +1,10 @@
 <script lang="ts" setup>
-import { cva } from "class-variance-authority";
+import { cva, cx } from "class-variance-authority";
 
 const props = withDefaults(
   defineProps<{
     level?: 1 | 2 | 3 | 4 | 5;
+    class?: string;
   }>(),
   {
     level: 1,
@@ -12,7 +13,7 @@ const props = withDefaults(
 
 const component = computed(() => `h${props.level}`);
 
-const className = cva("font-bold", {
+const className = cva("font-bold leading-tight", {
   variants: {
     level: {
       1: "text-5xl",
@@ -26,7 +27,7 @@ const className = cva("font-bold", {
 </script>
 
 <template>
-  <component :is="component" :class="className({ level })">
+  <component :is="component" :class="cx([className({ level }), props.class])">
     <slot />
   </component>
 </template>

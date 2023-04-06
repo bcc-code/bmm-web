@@ -12,7 +12,7 @@ const { tracks } = usePlaylistTracks({ id: playlistId });
 
 <template>
   <div v-if="playlist" class="">
-    <header class="flex gap-6 mb-8">
+    <header class="flex gap-6 mb-12">
       <ProtectedImage
         v-if="playlist.cover"
         :src="playlist.cover"

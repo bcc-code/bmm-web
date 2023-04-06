@@ -14,8 +14,8 @@ const props = defineProps<{
       alt=""
       class="rounded-xl aspect-square w-full bg-slate-100"
     />
-    <h3 class="leading-tight text-ellipsis whitespace-nowrap overflow-hidden">
+    <Heading :level="5" class="text-ellipsis whitespace-nowrap overflow-hidden">
       {{ playlist.title }}
-    </h3>
+    </Heading>
   </div>
 </template>
