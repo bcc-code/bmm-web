@@ -19,8 +19,12 @@ const { tracks } = usePlaylistTracks({ id: playlistId });
         :alt="playlist.title || ''"
         class="aspect-square rounded-2xl bg-slate-100 w-[300px]"
       />
-      <div class="p-6">
+      <div class="p-6 flex flex-col justify-between">
         <Heading>{{ playlist.title }}</Heading>
+        <div class="flex gap-2">
+          <Button>Shuffle</Button>
+          <Button intent="secondary">Follow</Button>
+        </div>
       </div>
     </header>
     <TrackList>
