@@ -22,8 +22,8 @@ const { tracks } = usePlaylistTracks({ id: playlistId });
       <div class="p-6 flex flex-col justify-between">
         <Heading>{{ playlist.title }}</Heading>
         <div class="flex gap-2">
-          <Button>Shuffle</Button>
-          <Button intent="secondary">Follow</Button>
+          <Button intent="primary">Shuffle</Button>
+          <Button>Follow</Button>
         </div>
       </div>
     </header>

@@ -6,7 +6,7 @@ withDefaults(
     intent?: "primary" | "secondary";
   }>(),
   {
-    intent: "primary",
+    intent: "secondary",
   }
 );
 
