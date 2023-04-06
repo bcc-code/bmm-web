@@ -10,7 +10,7 @@ const { collections } = useTrackCollections();
 
 <template>
   <aside
-    class="min-w-[250px] border-r border-slate-200 bg-slate-100 p-6 sticky flex flex-col gap-8"
+    class="min-w-[300px] border-r border-slate-200 bg-slate-100 p-6 sticky flex flex-col gap-8"
   >
     <Logo size="small" />
     <SidebarGroup>
@@ -20,6 +20,7 @@ const { collections } = useTrackCollections();
         v-bind="link"
       />
     </SidebarGroup>
+
     <SidebarGroup title="Collections">
       <SidebarItem
         v-for="collection in collections"
