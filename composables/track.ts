@@ -3,6 +3,7 @@ import { TrackApi, TrackGetRequest, TrackModel } from "@bcc-code/bmm-sdk-fetch";
 export function useTracks(options: TrackGetRequest = {}) {
 	const tracks = ref<TrackModel[]>()
 	const error = ref<any>()
+	const pending = ref(true)
 
 	new TrackApi()
 		.trackGet(options)
@@ -12,9 +13,13 @@ export function useTracks(options: TrackGetRequest = {}) {
 		.catch(err => {
 			error.value = err
 		})
+		.finally(() => {
+			pending.value = false
+		})
 
 	return {
 		tracks,
-		error
+		error,
+		pending
 	}
 }

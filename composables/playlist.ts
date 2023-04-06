@@ -12,6 +12,7 @@ export function usePlaylist(options: UsePlaylistOptions) {
 
 	const playlist = ref<PlaylistModel>()
 	const error = ref<any>()
+	const pending = ref(true)
 
 	new PlaylistApi()
 		.playlistIdGet({
@@ -22,11 +23,15 @@ export function usePlaylist(options: UsePlaylistOptions) {
 		})
 		.catch((err) => {
 			error.value = err
-		});
+		})
+		.finally(() => {
+			pending.value = false
+		})
 
 	return {
 		playlist,
-		error
+		error,
+		pending
 	}
 }
 
@@ -42,6 +47,7 @@ export function usePlaylistTracks(options: UsePlaylistTracksOptions) {
 
 	const tracks = ref<TrackModel[]>()
 	const error = ref<any>()
+	const pending = ref(true)
 
 	new PlaylistApi()
 		.playlistIdTrackGet({
@@ -52,11 +58,15 @@ export function usePlaylistTracks(options: UsePlaylistTracksOptions) {
 		})
 		.catch((err) => {
 			error.value = err
-		});
+		})
+		.finally(() => {
+			pending.value = false
+		})
 
 	return {
 		tracks,
-		error
+		error,
+		pending
 	}
 }
 
@@ -66,6 +76,7 @@ export function usePlaylistTracks(options: UsePlaylistTracksOptions) {
 export function usePlaylists() {
 	const playlists = ref<PlaylistModel[]>()
 	const error = ref<any>()
+	const pending = ref(true)
 
 	new PlaylistApi()
 		.playlistGet()
@@ -74,10 +85,14 @@ export function usePlaylists() {
 		})
 		.catch((err) => {
 			error.value = err
-		});
+		})
+		.finally(() => {
+			pending.value = false
+		})
 
 	return {
 		playlists,
-		error
+		error,
+		pending
 	}
 }

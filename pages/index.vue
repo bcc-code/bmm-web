@@ -4,49 +4,76 @@ definePageMeta({
 });
 
 // Playlists
-const { playlists } = usePlaylists();
+const { playlists, pending: playlistsPending } = usePlaylists();
 const newestPlaylists = computed(() => playlists.value?.splice(0, 4));
 
 // Speeches
-const { tracks: speeches } = useTracks({
+const { tracks: speeches, pending: speechesPending } = useTracks({
   contentType2: ["speech"],
 });
 const newestSpeeches = computed(() => speeches.value?.splice(0, 5));
 
 // Audiobooks
-const { tracks: audiobooks } = useTracks({
+const { tracks: audiobooks, pending: audiobooksPending } = useTracks({
   contentType2: ["audiobook"],
 });
 const newestAudiobooks = computed(() => audiobooks.value?.splice(0, 5));
 </script>
 
 <template>
-  <section v-if="newestPlaylists" id="playlists">
+  <section id="playlists">
     <Heading :level="3" class="mb-4">Playlists</Heading>
-    <PlaylistCarousel :playlists="newestPlaylists" />
+    <div v-if="playlistsPending" class="flex gap-6 h-64">
+      <div
+        v-for="i in 4"
+        class="bg-slate-100 rounded-xl aspect-square h-full"
+      ></div>
+    </div>
+    <PlaylistCarousel
+      v-else-if="newestPlaylists"
+      :playlists="newestPlaylists"
+    />
   </section>
 
   <section id="speeches" class="py-8">
     <Heading :level="3" class="mb-4">Speeches</Heading>
     <TrackList>
-      <Track
-        v-for="speech in newestSpeeches"
-        :key="speech.id || 0"
-        :track="speech"
-        show-thumbnail
-      />
+      <template v-if="speechesPending">
+        <div
+          v-for="i in 5"
+          :key="i"
+          class="w-full h-12 bg-slate-100 rounded-lg my-6"
+        ></div>
+      </template>
+      <template v-else>
+        <Track
+          v-for="speech in newestSpeeches"
+          :key="speech.id || 0"
+          :track="speech"
+          show-thumbnail
+        />
+      </template>
     </TrackList>
   </section>
 
   <section id="podcasts" class="py-8">
     <Heading :level="3" class="mb-4">Audiobooks</Heading>
     <TrackList>
-      <Track
-        v-for="audiobook in newestAudiobooks"
-        :key="audiobook.id || 0"
-        :track="audiobook"
-        show-thumbnail
-      />
+      <template v-if="audiobooksPending">
+        <div
+          v-for="i in 5"
+          :key="i"
+          class="w-full h-12 bg-slate-100 rounded-lg my-6"
+        ></div>
+      </template>
+      <template v-else>
+        <Track
+          v-for="audiobook in newestAudiobooks"
+          :key="audiobook.id || 0"
+          :track="audiobook"
+          show-thumbnail
+        />
+      </template>
     </TrackList>
   </section>
 </template>
