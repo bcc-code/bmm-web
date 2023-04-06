@@ -19,7 +19,9 @@ const { tracks } = usePlaylistTracks({ id: playlistId });
         :alt="playlist.title || ''"
         class="aspect-square rounded-xl bg-slate-100 w-[300px]"
       />
-      <h1 class="font-bold text-4xl">{{ playlist.title }}</h1>
+      <div class="p-6">
+        <Heading>{{ playlist.title }}</Heading>
+      </div>
     </header>
     <ol class="list-decimal list-inside">
       <Track v-for="track in tracks" :key="track.id || 0" :track="track" />

@@ -15,6 +15,9 @@ devDependencies:
   '@nuxtjs/tailwindcss':
     specifier: ^6.6.5
     version: 6.6.5(webpack@5.77.0)
+  class-variance-authority:
+    specifier: ^0.5.1
+    version: 0.5.1
   nuxt:
     specifier: ^3.3.3
     version: 3.3.3
@@ -2043,6 +2046,15 @@ packages:
   /ci-info@3.8.0:
     resolution: {integrity: sha512-eXTggHWSooYhq49F2opQhuHWgzucfF2YgODK4e1566GQs5BIfP30B0oenwBJHfWxAs2fyPB1s7Mg949zLf61Yw==}
     engines: {node: '>=8'}
+    dev: true
+
+  /class-variance-authority@0.5.1:
+    resolution: {integrity: sha512-J3tAiPbmBhPffsZ6Le3cR4o5hN78XBTst5NwCJJF7hAkZYIDuHQKV03Tb89zMDAxIONmM+DFRooMUCK5nTWpvQ==}
+    peerDependencies:
+      typescript: '>= 4.5.5 < 6'
+    peerDependenciesMeta:
+      typescript:
+        optional: true
     dev: true
 
   /clean-stack@2.2.0:

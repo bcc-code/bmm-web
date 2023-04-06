@@ -12,7 +12,7 @@ const { collection } = useTrackCollection({ id: collectionId });
 <template>
   <div v-if="collection">
     <header class="flex gap-6 mb-8">
-      <h1 class="font-bold text-6xl">{{ collection.name }}</h1>
+      <Heading>{{ collection.name }}</Heading>
     </header>
     <ol class="list-decimal list-inside">
       <Track

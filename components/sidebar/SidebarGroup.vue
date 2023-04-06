@@ -6,7 +6,9 @@ const props = defineProps<{
 
 <template>
   <div>
-    <span v-if="title" class="opacity-50 block px-4 py-2">{{ title }}</span>
+    <span v-if="title" class="text-slate-400 block px-4 py-2">
+      {{ title }}
+    </span>
     <slot />
   </div>
 </template>
