@@ -12,6 +12,7 @@ const { collections } = useTrackCollections();
   <aside
     class="min-w-[250px] border-r border-slate-200 bg-slate-100 p-6 sticky flex flex-col gap-8"
   >
+    <Logo size="small" />
     <SidebarGroup>
       <SidebarItem
         v-for="(link, i) in links"
