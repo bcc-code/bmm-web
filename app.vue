@@ -6,7 +6,7 @@ definePageMeta({
 
 <template>
   <NuxtLayout>
-    <div class="p-6">
+    <div class="p-6 max-w-7xl mx-auto">
       <NuxtPage />
     </div>
   </NuxtLayout>

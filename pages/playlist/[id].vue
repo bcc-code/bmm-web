@@ -1,50 +1,28 @@
 <script lang="ts" setup>
-import {
-  PlaylistApi,
-  PlaylistModel,
-  TrackModel,
-} from "@bcc-code/bmm-sdk-fetch";
-
-const { id } = useRoute().params;
-
-const playlistId = Number(id);
-const playlist: Ref<PlaylistModel> = ref({});
-const tracks: Ref<TrackModel[]> = ref([]);
-
-new PlaylistApi()
-  .playlistIdGet({ id: playlistId })
-  .then((result) => {
-    playlist.value = result;
-  })
-  .catch(() => {});
-
-new PlaylistApi()
-  .playlistIdTrackGet({ id: playlistId })
-  .then((list) => {
-    tracks.value = list;
-  })
-  .catch(() => {});
-
 definePageMeta({
   toolbarTitle: "Playlist",
 });
+
+const { id } = useRoute().params;
+const playlistId = Number(id);
+
+const { playlist } = usePlaylist({ id: playlistId });
+const { tracks } = usePlaylistTracks({ id: playlistId });
 </script>
 
 <template>
-  <h1>Curated Playlist</h1>
-  <div class="flex flex-row flex-wrap">
-    <ProtectedImage
-      v-if="playlist.cover"
-      :src="playlist.cover"
-      alt=""
-      class="w-52 aspect-square rounded-xl"
-    />
-    <h3>{{ playlist.title }}</h3>
-    <br />
+  <div v-if="playlist" class="">
+    <header class="flex gap-6 mb-8">
+      <ProtectedImage
+        v-if="playlist.cover"
+        :src="playlist.cover"
+        :alt="playlist.title || ''"
+        class="aspect-square rounded-xl bg-slate-100 w-[300px]"
+      />
+      <h1 class="font-bold text-4xl">{{ playlist.title }}</h1>
+    </header>
     <ol class="list-decimal list-inside">
-      <li v-for="track in tracks" :key="track.id || 0" class="flex">
-        {{ track.meta?.title }} - <b>{{ track.meta?.artist }}</b>
-      </li>
+      <Track v-for="track in tracks" :key="track.id || 0" :track="track" />
     </ol>
   </div>
 </template>

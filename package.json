@@ -14,7 +14,7 @@
     "@nuxtjs/tailwindcss": "^6.6.5",
     "nuxt": "^3.3.3",
     "prettier": "^2.8.7",
-    "prettier-plugin-tailwindcss": "^0.2.6"
+    "prettier-plugin-tailwindcss": "^0.2.7"
   },
   "dependencies": {
     "@auth0/auth0-vue": "^2.1.0",

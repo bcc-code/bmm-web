@@ -12,13 +12,11 @@ withDefaults(
 </script>
 
 <template>
-  <li>
-    <NuxtLink
-      :to="url"
-      class="py-3 px-4 rounded-lg flex"
-      active-class="bg-lime-300"
-    >
-      {{ title }}
-    </NuxtLink>
-  </li>
+  <NuxtLink
+    :to="url"
+    active-class="bg-lime-300"
+    class="py-3 px-4 rounded-lg flex hover:bg-slate-200"
+  >
+    {{ title }}
+  </NuxtLink>
 </template>

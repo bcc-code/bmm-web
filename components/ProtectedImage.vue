@@ -7,7 +7,7 @@ const props = defineProps<{
   alt?: string;
 }>();
 
-const source = ref("");
+const source = ref<string>();
 const { getAccessTokenSilently } = useAuth0();
 
 onMounted(async () => {
