@@ -14,8 +14,4 @@ export default defineNuxtPlugin((nuxtApp) => {
 	})
 
 	nuxtApp.vueApp.use(auth0)
-
-	nuxtApp.hook('app:mounted', (app) => {
-		console.log({ 'auth0': app.config.globalProperties.$auth0 })
-	})
 })
