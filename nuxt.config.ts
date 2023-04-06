@@ -16,5 +16,10 @@ export default defineNuxtConfig({
 			authUrl: 'https://login.bcc.no',
 			clientId: ''
 		}
+	},
+	app: {
+		head: {
+			title: 'BMM'
+		}
 	}
 })
