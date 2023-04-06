@@ -15,7 +15,7 @@ withDefaults(
   <NuxtLink
     :to="url"
     active-class="bg-lime-300"
-    class="py-3 px-4 rounded-lg flex hover:bg-slate-200"
+    class="py-3 px-4 rounded-xl flex"
   >
     {{ title }}
   </NuxtLink>
