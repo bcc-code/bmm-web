@@ -14,8 +14,8 @@ withDefaults(
 <template>
   <NuxtLink
     :to="url"
-    active-class="bg-lime-300"
-    class="py-3 px-4 rounded-xl flex"
+    active-class="bg-lime-400"
+    class="py-2 px-4 rounded-xl flex"
   >
     {{ title }}
   </NuxtLink>
