@@ -5,5 +5,5 @@ definePageMeta({
 </script>
 
 <template>
-  <h1>Search</h1>
+  <Heading class="mb-6">Search</Heading>
 </template>

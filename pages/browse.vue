@@ -2,8 +2,11 @@
 definePageMeta({
   toolbarTitle: "Browse",
 });
+
+const { playlists } = usePlaylists();
 </script>
 
 <template>
-  <h1>Browse</h1>
+  <Heading class="mb-6">Browse</Heading>
+  <PlaylistOverview v-if="playlists" :playlists="playlists" />
 </template>
