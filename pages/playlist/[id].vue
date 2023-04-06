@@ -17,7 +17,7 @@ const { tracks } = usePlaylistTracks({ id: playlistId });
         v-if="playlist.cover"
         :src="playlist.cover"
         :alt="playlist.title || ''"
-        class="aspect-square rounded-xl bg-slate-100 w-[300px]"
+        class="aspect-square rounded-2xl bg-slate-100 w-[300px]"
       />
       <div class="p-6">
         <Heading>{{ playlist.title }}</Heading>

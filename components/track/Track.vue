@@ -13,12 +13,12 @@ const props = defineProps<{
       v-if="track.meta?.attachedPicture && showThumbnail"
       :src="track.meta?.attachedPicture"
       alt=""
-      class="rounded-md w-10 bg-slate-100"
+      class="rounded-md w-10 aspect-square bg-slate-100"
     />
     <div class="w-1/2">
       <h4 class="font-semibold">{{ track.meta?.title }}</h4>
-      <span class="text-slate-700">
-        {{ track.meta?.artist || track.meta?.composer }}
+      <span class="text-slate-700" v-if="track.meta?.artist">
+        {{ track.meta?.artist }}
       </span>
     </div>
     <div class="">

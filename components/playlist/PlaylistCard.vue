@@ -12,10 +12,10 @@ const props = defineProps<{
       v-if="playlist.cover"
       :src="playlist.cover"
       alt=""
-      class="rounded-xl aspect-square w-full bg-slate-100"
+      class="rounded-2xl aspect-square w-full bg-slate-100"
     />
-    <Heading :level="5" class="text-ellipsis whitespace-nowrap overflow-hidden">
+    <span class="text-ellipsis whitespace-nowrap overflow-hidden text-center">
       {{ playlist.title }}
-    </Heading>
+    </span>
   </div>
 </template>
