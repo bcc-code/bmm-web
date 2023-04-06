@@ -6,7 +6,7 @@ I wanted to try implementing the new BMM project in Nuxt instead of pure Vite, a
 
 The Nuxt Devtools provide a useful overview of the whole app. You can see all routes, components and composables used in the project, where they are used and so on. You can also jump directly to a component definition in VSCode by clicking on the component in the devtools.
 
-![CleanShot 2023-04-06 at 02 30 24](https://user-images.githubusercontent.com/18753964/230243188-9e4f1d45-f0fc-403d-80b7-7d44df47677a.gif)
+![Nuxt Devtools](https://user-images.githubusercontent.com/18753964/230243188-9e4f1d45-f0fc-403d-80b7-7d44df47677a.gif)
 
 ## Setup
 
