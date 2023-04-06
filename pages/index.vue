@@ -3,6 +3,8 @@ definePageMeta({
   toolbarTitle: "Home",
 });
 
+const { playlists } = usePlaylists();
+
 const { tracks: speeches } = useTracks({
   contentType2: ["speech"],
 });
@@ -15,6 +17,11 @@ const newestAudiobooks = computed(() => audiobooks.value?.splice(0, 5));
 </script>
 
 <template>
+  <section v-if="playlists" id="playlists">
+    <Heading :level="3" class="mb-4">Playlists</Heading>
+    <PlaylistCarousel :playlists="playlists" />
+  </section>
+
   <section id="speeches" class="py-8">
     <Heading :level="3" class="mb-4">Speeches</Heading>
     <TrackList>
