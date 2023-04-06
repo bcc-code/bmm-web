@@ -1,19 +1,12 @@
-# Nuxt 3 Minimal Starter
+# BMM Nuxt experiment
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+I wanted to try implementing the new BMM project in Nuxt instead of pure Vite, as I really enjoy the conventions of Nuxt and all the nice DX that comes out of them.
 
 ## Setup
 
 Make sure to install the dependencies:
 
 ```bash
-# yarn
-yarn install
-
-# npm
-npm install
-
-# pnpm
 pnpm install
 ```
 
@@ -22,7 +15,7 @@ pnpm install
 Start the development server on `http://localhost:3000`
 
 ```bash
-npm run dev
+pnpm dev
 ```
 
 ## Production
