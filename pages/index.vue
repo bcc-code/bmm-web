@@ -3,13 +3,15 @@ definePageMeta({
   toolbarTitle: "Home",
 });
 
-const { playlists } = usePlaylists();
 const { tracks: speeches } = useTracks({
   contentType2: ["speech"],
 });
-const { tracks: podcasts } = useTracks({
+const newestSpeeches = computed(() => speeches.value?.splice(0, 5));
+
+const { tracks: audiobooks } = useTracks({
   contentType2: ["audiobook"],
 });
+const newestAudiobooks = computed(() => audiobooks.value?.splice(0, 5));
 </script>
 
 <template>
@@ -17,7 +19,7 @@ const { tracks: podcasts } = useTracks({
     <Heading :level="3" class="mb-4">Speeches</Heading>
     <TrackList>
       <Track
-        v-for="speech in speeches"
+        v-for="speech in newestSpeeches"
         :key="speech.id || 0"
         :track="speech"
         show-thumbnail
@@ -29,9 +31,9 @@ const { tracks: podcasts } = useTracks({
     <Heading :level="3" class="mb-4">Audiobooks</Heading>
     <TrackList>
       <Track
-        v-for="podcast in podcasts"
-        :key="podcast.id || 0"
-        :track="podcast"
+        v-for="audiobook in newestAudiobooks"
+        :key="audiobook.id || 0"
+        :track="audiobook"
         show-thumbnail
       />
     </TrackList>
