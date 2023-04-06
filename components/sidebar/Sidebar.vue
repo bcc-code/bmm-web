@@ -9,7 +9,9 @@ const { collections } = useTrackCollections();
 </script>
 
 <template>
-  <aside class="min-w-[250px] bg-slate-100 p-6 sticky flex flex-col gap-8">
+  <aside
+    class="min-w-[250px] border-r border-slate-200 bg-slate-100 p-6 sticky flex flex-col gap-8"
+  >
     <SidebarGroup>
       <SidebarItem
         v-for="(link, i) in links"
