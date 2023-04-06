@@ -16,5 +16,5 @@ onMounted(async () => {
 });
 </script>
 <template>
-  <img :src="source" :alt="alt || ''" v-bind="$attrs" />
+  <img :src="source" :alt="alt || ''" loading="lazy" v-bind="$attrs" />
 </template>
