@@ -10,31 +10,9 @@ interface UsePlaylistOptions {
 export function usePlaylist(options: UsePlaylistOptions) {
 	const { id } = options
 
-	const playlist = useState<PlaylistModel>(`playlist-${id}`, () => ({}))
-	const error = ref<any>()
-	const pending = ref(true)
-
-	onBeforeMount(() => {
-		new PlaylistApi()
-			.playlistIdGet({
-				id
-			})
-			.then((data) => {
-				playlist.value = data;
-			})
-			.catch((err) => {
-				error.value = err
-			})
-			.finally(() => {
-				pending.value = false
-			})
+	return useAsyncData<PlaylistModel>(`playlist-${id}`, async () => {
+		return await new PlaylistApi().playlistIdGet({ id })
 	})
-
-	return {
-		playlist,
-		error,
-		pending
-	}
 }
 
 interface UsePlaylistTracksOptions {
@@ -47,54 +25,16 @@ interface UsePlaylistTracksOptions {
 export function usePlaylistTracks(options: UsePlaylistTracksOptions) {
 	const { id } = options
 
-	const tracks = useState<TrackModel[]>('playlist-tracks', () => [])
-	const error = ref<any>()
-	const pending = ref(true)
-
-	new PlaylistApi()
-		.playlistIdTrackGet({
-			id
-		})
-		.then((data) => {
-			tracks.value = data;
-		})
-		.catch((err) => {
-			error.value = err
-		})
-		.finally(() => {
-			pending.value = false
-		})
-
-	return {
-		tracks,
-		error,
-		pending
-	}
+	return useAsyncData<TrackModel[]>(`playlist-tracks-${id}`, async () => {
+		return await new PlaylistApi().playlistIdTrackGet({ id })
+	})
 }
 
 /**
  * Get all curated playlists
  */
 export function usePlaylists() {
-	const playlists = useState<PlaylistModel[]>('playlists', () => [])
-	const error = ref<any>()
-	const pending = ref(true)
-
-	new PlaylistApi()
-		.playlistGet()
-		.then((data) => {
-			playlists.value = data;
-		})
-		.catch((err) => {
-			error.value = err
-		})
-		.finally(() => {
-			pending.value = false
-		})
-
-	return {
-		playlists,
-		error,
-		pending
-	}
+	return useAsyncData<PlaylistModel[]>('playlists', async () => {
+		return await new PlaylistApi().playlistGet()
+	})
 }
