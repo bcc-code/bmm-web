@@ -21,9 +21,8 @@ const newestAudiobooks = computed(() => audiobooks.value?.splice(0, 5));
 </script>
 
 <template>
-  <div>
-    <section id="playlists">
-      <Heading :level="3" class="mb-4">Playlists</Heading>
+  <div class="flex flex-col gap-16">
+    <ContentSection title="Playlists">
       <div v-if="playlistsPending" class="flex gap-6 h-64">
         <div
           v-for="i in 4"
@@ -34,9 +33,8 @@ const newestAudiobooks = computed(() => audiobooks.value?.splice(0, 5));
         v-else-if="newestPlaylists"
         :playlists="newestPlaylists"
       />
-    </section>
-    <section id="speeches" class="py-8">
-      <Heading :level="3" class="mb-4">Speeches</Heading>
+    </ContentSection>
+    <ContentSection title="Speeches" :link="{ to: '/messages' }">
       <TrackList :skeleton-count="5" :show-skeleton="speechesPending">
         <Track
           v-for="speech in newestSpeeches"
@@ -45,9 +43,8 @@ const newestAudiobooks = computed(() => audiobooks.value?.splice(0, 5));
           show-thumbnail
         />
       </TrackList>
-    </section>
-    <section id="podcasts" class="py-8">
-      <Heading :level="3" class="mb-4">Audiobooks</Heading>
+    </ContentSection>
+    <ContentSection title="Audiobooks" :link="{ to: '/audiobooks' }">
       <TrackList :skeleton-count="5" :show-skeleton="audiobooksPending">
         <Track
           v-for="audiobook in newestAudiobooks"
@@ -56,6 +53,6 @@ const newestAudiobooks = computed(() => audiobooks.value?.splice(0, 5));
           show-thumbnail
         />
       </TrackList>
-    </section>
+    </ContentSection>
   </div>
 </template>
