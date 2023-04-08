@@ -30,7 +30,7 @@ useHead({
 <style>
 .page-enter-active,
 .page-leave-active {
-  transition: all 250ms ease-out;
+  transition: all 200ms ease-out;
 }
 .page-enter-from,
 .page-leave-to {
