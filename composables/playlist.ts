@@ -10,7 +10,7 @@ interface UsePlaylistOptions {
 export function usePlaylist(options: UsePlaylistOptions) {
 	const { id } = options
 
-	const playlist = ref<PlaylistModel>()
+	const playlist = useState<PlaylistModel>('playlist', () => ({}))
 	const error = ref<any>()
 	const pending = ref(true)
 
@@ -47,7 +47,7 @@ interface UsePlaylistTracksOptions {
 export function usePlaylistTracks(options: UsePlaylistTracksOptions) {
 	const { id } = options
 
-	const tracks = ref<TrackModel[]>()
+	const tracks = useState<TrackModel[]>('playlist-tracks', () => [])
 	const error = ref<any>()
 	const pending = ref(true)
 
@@ -76,7 +76,7 @@ export function usePlaylistTracks(options: UsePlaylistTracksOptions) {
  * Get all curated playlists
  */
 export function usePlaylists() {
-	const playlists = ref<PlaylistModel[]>()
+	const playlists = useState<PlaylistModel[]>('playlists', () => [])
 	const error = ref<any>()
 	const pending = ref(true)
 

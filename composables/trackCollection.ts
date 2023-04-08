@@ -10,7 +10,7 @@ interface UseTrackCollectionOptions {
 export function useTrackCollection(options: UseTrackCollectionOptions) {
 	const { id } = options
 
-	const collection = ref<GetTrackCollectionModel>()
+	const collection = useState<GetTrackCollectionModel>(`track-collection-${id}`, () => ({}))
 	const error = ref<any>()
 	const pending = ref(true)
 
@@ -38,7 +38,7 @@ export function useTrackCollection(options: UseTrackCollectionOptions) {
  * Get all track collections
  */
 export function useTrackCollections() {
-	const collections = ref<GetTrackCollectionModel[]>()
+	const collections = useState<GetTrackCollectionModel[]>('track-collections', () => [])
 	const error = ref<any>()
 	const pending = ref(true)
 

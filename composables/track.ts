@@ -1,7 +1,7 @@
 import { TrackApi, TrackGetRequest, TrackModel } from "@bcc-code/bmm-sdk-fetch";
 
 export function useTracks(options: TrackGetRequest = {}) {
-	const tracks = ref<TrackModel[]>()
+	const tracks = useState<TrackModel[]>('tracks', () => [])
 	const error = ref<any>()
 	const pending = ref(true)
 
