@@ -22,6 +22,7 @@ const className = cva("py-3 px-6 rounded-full flex gap-3 items-center", {
 
 <template>
   <button :class="className({ intent })">
+    <slot name="icon" />
     <slot />
   </button>
 </template>

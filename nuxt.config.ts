@@ -3,6 +3,7 @@ export default defineNuxtConfig({
 	modules: [
 		'@nuxt/devtools',
 		'@nuxtjs/tailwindcss',
+		'nuxt-icon',
 	],
 	css: ['assets/main.css'],
 	routeRules: {
