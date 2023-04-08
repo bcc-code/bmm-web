@@ -5,7 +5,7 @@ definePageMeta({
 
 const { id } = useRoute().params;
 const collectionId = Number(id);
-const { collection, pending } = useTrackCollection({ id: collectionId });
+const { data: collection, pending } = useTrackCollection({ id: collectionId });
 
 useHead({
   title: collection.value?.name,

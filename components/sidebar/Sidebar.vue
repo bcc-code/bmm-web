@@ -5,7 +5,7 @@ const links: Record<"title" | "url", string>[] = [
   { title: "Search", url: "/search" },
 ];
 
-const { collections } = useTrackCollections();
+const { data: collections } = useTrackCollections();
 </script>
 
 <template>

@@ -3,7 +3,7 @@ definePageMeta({
   toolbarTitle: "Browse",
 });
 
-const { playlists } = usePlaylists();
+const { data: playlists } = usePlaylists();
 </script>
 
 <template>

@@ -6,8 +6,8 @@ definePageMeta({
 const { id } = useRoute().params;
 const playlistId = Number(id);
 
-const { playlist } = usePlaylist({ id: playlistId });
-const { tracks, pending } = usePlaylistTracks({ id: playlistId });
+const { data: playlist } = usePlaylist({ id: playlistId });
+const { data: tracks, pending } = usePlaylistTracks({ id: playlistId });
 
 onBeforeMount(() => {
   useHead({
