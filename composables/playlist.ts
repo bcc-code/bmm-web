@@ -10,7 +10,7 @@ interface UsePlaylistOptions {
 export function usePlaylist(options: UsePlaylistOptions) {
 	const { id } = options
 
-	const playlist = useState<PlaylistModel>('playlist', () => ({}))
+	const playlist = useState<PlaylistModel>(`playlist-${id}`, () => ({}))
 	const error = ref<any>()
 	const pending = ref(true)
 
