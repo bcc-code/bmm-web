@@ -17,7 +17,7 @@ onBeforeMount(() => {
 </script>
 
 <template>
-  <div v-if="playlist" class="">
+  <div v-if="playlist">
     <header class="flex gap-6 mb-12">
       <ProtectedImage
         v-if="playlist.cover"

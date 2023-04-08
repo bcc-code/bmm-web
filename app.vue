@@ -26,3 +26,14 @@ useHead({
     </div>
   </NuxtLayout>
 </template>
+
+<style>
+.page-enter-active,
+.page-leave-active {
+  transition: all 250ms ease-out;
+}
+.page-enter-from,
+.page-leave-to {
+  opacity: 0;
+}
+</style>

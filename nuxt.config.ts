@@ -17,4 +17,7 @@ export default defineNuxtConfig({
 			clientId: ''
 		}
 	},
+	app: {
+		pageTransition: { name: 'page', mode: 'out-in' }
+	},
 })

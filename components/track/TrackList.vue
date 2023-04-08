@@ -14,7 +14,7 @@ withDefaults(
   <ol class="divide-y divide-slate-100 w-full">
     <template v-if="showSkeleton">
       <li
-        class="w-full h-12 bg-slate-100 rounded-lg my-6"
+        class="w-full h-12 bg-slate-100 rounded-lg my-6 animate-pulse"
         v-for="skeleton in skeletonCount"
         :key="skeleton"
       ></li>

@@ -7,6 +7,8 @@ const { playlists } = usePlaylists();
 </script>
 
 <template>
-  <Heading class="mb-6">Browse</Heading>
-  <PlaylistOverview v-if="playlists" :playlists="playlists" />
+  <div>
+    <Heading class="mb-6">Browse</Heading>
+    <PlaylistOverview v-if="playlists" :playlists="playlists" />
+  </div>
 </template>
