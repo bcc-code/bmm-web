@@ -7,7 +7,13 @@ const { id } = useRoute().params;
 const playlistId = Number(id);
 
 const { playlist } = usePlaylist({ id: playlistId });
-const { tracks } = usePlaylistTracks({ id: playlistId });
+const { tracks, pending } = usePlaylistTracks({ id: playlistId });
+
+onBeforeMount(() => {
+  useHead({
+    title: playlist.value?.title,
+  });
+});
 </script>
 
 <template>
@@ -27,7 +33,7 @@ const { tracks } = usePlaylistTracks({ id: playlistId });
         </div>
       </div>
     </header>
-    <TrackList>
+    <TrackList :skeleton-count="10" :show-skeleton="pending">
       <Track v-for="track in tracks" :key="track.id || 0" :track="track" />
     </TrackList>
   </div>

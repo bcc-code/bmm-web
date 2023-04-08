@@ -21,7 +21,7 @@ const { collections } = useTrackCollections();
       />
     </SidebarGroup>
 
-    <SidebarGroup title="Collections">
+    <SidebarGroup title="Playlists">
       <SidebarItem
         v-for="collection in collections"
         :key="collection.id"

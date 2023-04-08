@@ -17,9 +17,4 @@ export default defineNuxtConfig({
 			clientId: ''
 		}
 	},
-	app: {
-		head: {
-			title: 'BMM'
-		}
-	}
 })

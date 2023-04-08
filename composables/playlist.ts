@@ -14,19 +14,21 @@ export function usePlaylist(options: UsePlaylistOptions) {
 	const error = ref<any>()
 	const pending = ref(true)
 
-	new PlaylistApi()
-		.playlistIdGet({
-			id
-		})
-		.then((data) => {
-			playlist.value = data;
-		})
-		.catch((err) => {
-			error.value = err
-		})
-		.finally(() => {
-			pending.value = false
-		})
+	onBeforeMount(() => {
+		new PlaylistApi()
+			.playlistIdGet({
+				id
+			})
+			.then((data) => {
+				playlist.value = data;
+			})
+			.catch((err) => {
+				error.value = err
+			})
+			.finally(() => {
+				pending.value = false
+			})
+	})
 
 	return {
 		playlist,

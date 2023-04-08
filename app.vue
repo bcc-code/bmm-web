@@ -13,6 +13,10 @@ watch(
   },
   { immediate: true }
 );
+
+useHead({
+  titleTemplate: (chunk) => (chunk ? `${chunk} | BMM` : "BMM"),
+});
 </script>
 
 <template>

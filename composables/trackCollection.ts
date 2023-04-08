@@ -12,6 +12,7 @@ export function useTrackCollection(options: UseTrackCollectionOptions) {
 
 	const collection = ref<GetTrackCollectionModel>()
 	const error = ref<any>()
+	const pending = ref(true)
 
 	new TrackCollectionApi()
 		.trackCollectionIdGet({ id })
@@ -21,10 +22,15 @@ export function useTrackCollection(options: UseTrackCollectionOptions) {
 		.catch(err => {
 			error.value = err
 		})
+		.finally(() => {
+			pending.value = false
+		})
+
 
 	return {
 		collection,
-		error
+		error,
+		pending
 	}
 }
 
@@ -34,6 +40,7 @@ export function useTrackCollection(options: UseTrackCollectionOptions) {
 export function useTrackCollections() {
 	const collections = ref<GetTrackCollectionModel[]>()
 	const error = ref<any>()
+	const pending = ref(true)
 
 	new TrackCollectionApi()
 		.trackCollectionGet()
@@ -43,9 +50,13 @@ export function useTrackCollections() {
 		.catch(err => {
 			error.value = err
 		})
+		.finally(() => {
+			pending.value = false
+		})
 
 	return {
 		collections,
-		error
+		error,
+		pending
 	}
 }

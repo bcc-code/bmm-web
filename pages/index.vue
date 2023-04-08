@@ -37,43 +37,25 @@ const newestAudiobooks = computed(() => audiobooks.value?.splice(0, 5));
 
   <section id="speeches" class="py-8">
     <Heading :level="3" class="mb-4">Speeches</Heading>
-    <TrackList>
-      <template v-if="speechesPending">
-        <div
-          v-for="i in 5"
-          :key="i"
-          class="w-full h-12 bg-slate-100 rounded-lg my-6"
-        ></div>
-      </template>
-      <template v-else>
-        <Track
-          v-for="speech in newestSpeeches"
-          :key="speech.id || 0"
-          :track="speech"
-          show-thumbnail
-        />
-      </template>
+    <TrackList :show-skeleton="speechesPending">
+      <Track
+        v-for="speech in newestSpeeches"
+        :key="speech.id || 0"
+        :track="speech"
+        show-thumbnail
+      />
     </TrackList>
   </section>
 
   <section id="podcasts" class="py-8">
     <Heading :level="3" class="mb-4">Audiobooks</Heading>
-    <TrackList>
-      <template v-if="audiobooksPending">
-        <div
-          v-for="i in 5"
-          :key="i"
-          class="w-full h-12 bg-slate-100 rounded-lg my-6"
-        ></div>
-      </template>
-      <template v-else>
-        <Track
-          v-for="audiobook in newestAudiobooks"
-          :key="audiobook.id || 0"
-          :track="audiobook"
-          show-thumbnail
-        />
-      </template>
+    <TrackList :show-skeleton="audiobooksPending">
+      <Track
+        v-for="audiobook in newestAudiobooks"
+        :key="audiobook.id || 0"
+        :track="audiobook"
+        show-thumbnail
+      />
     </TrackList>
   </section>
 </template>
