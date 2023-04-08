@@ -20,7 +20,7 @@ withDefaults(
       <NuxtLink
         v-if="link"
         v-bind="link"
-        class="bg-slate-100 rounded-full leading-none inline-block px-3 py-2"
+        class="bg-slate-100 rounded-full leading-none inline-block px-3 py-2 hover:bg-slate-200 text-sm"
       >
         {{ linkLabel }}
       </NuxtLink>
