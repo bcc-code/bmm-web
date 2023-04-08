@@ -26,9 +26,17 @@ onBeforeMount(() => {
         class="aspect-square rounded-2xl bg-slate-100 w-[300px]"
       />
       <div class="p-6 flex flex-col justify-between">
-        <Heading>{{ playlist.title }}</Heading>
+        <div>
+          <Heading>{{ playlist.title }}</Heading>
+          <p v-if="tracks">{{ tracks.length }} tracks</p>
+        </div>
         <div class="flex gap-2">
-          <Button intent="primary">Shuffle</Button>
+          <Button intent="primary">
+            <template #icon>
+              <Icon name="tabler:player-play-filled" />
+            </template>
+            Shuffle
+          </Button>
           <Button>Follow</Button>
         </div>
       </div>
