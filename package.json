@@ -10,7 +10,7 @@
     "lint": "prettier . --check"
   },
   "devDependencies": {
-    "@nuxt/devtools": "^0.3.1",
+    "@nuxt/devtools": "^0.3.2",
     "@nuxtjs/tailwindcss": "^6.6.5",
     "class-variance-authority": "^0.5.1",
     "nuxt": "^3.3.3",
@@ -18,7 +18,7 @@
     "prettier-plugin-tailwindcss": "^0.2.7"
   },
   "dependencies": {
-    "@auth0/auth0-vue": "^2.1.0",
+    "@auth0/auth0-vue": "^2.2.0",
     "@bcc-code/bmm-sdk-fetch": "^4.0.0"
   }
 }
