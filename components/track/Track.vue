@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { TrackModel } from "@bcc-code/bmm-sdk-fetch";
 
-const props = defineProps<{
+defineProps<{
   track: TrackModel;
   showThumbnail?: boolean;
 }>();
