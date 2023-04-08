@@ -10,9 +10,10 @@ interface UsePlaylistOptions {
 export function usePlaylist(options: UsePlaylistOptions) {
 	const { id } = options
 
-	return useAsyncData<PlaylistModel>(`playlist-${id}`, async () => {
-		return await new PlaylistApi().playlistIdGet({ id })
-	})
+	return useAsyncData<PlaylistModel>(
+		`playlist-${id}`,
+		async () => await new PlaylistApi().playlistIdGet({ id })
+	)
 }
 
 interface UsePlaylistTracksOptions {
@@ -25,16 +26,18 @@ interface UsePlaylistTracksOptions {
 export function usePlaylistTracks(options: UsePlaylistTracksOptions) {
 	const { id } = options
 
-	return useAsyncData<TrackModel[]>(`playlist-tracks-${id}`, async () => {
-		return await new PlaylistApi().playlistIdTrackGet({ id })
-	})
+	return useAsyncData<TrackModel[]>(
+		`playlist-tracks-${id}`,
+		async () => await new PlaylistApi().playlistIdTrackGet({ id })
+	)
 }
 
 /**
  * Get all curated playlists
  */
 export function usePlaylists() {
-	return useAsyncData<PlaylistModel[]>('playlists', async () => {
-		return await new PlaylistApi().playlistGet()
-	})
+	return useAsyncData<PlaylistModel[]>(
+		'playlists',
+		async () => await new PlaylistApi().playlistGet()
+	)
 }

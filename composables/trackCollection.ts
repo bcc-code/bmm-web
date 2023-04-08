@@ -10,17 +10,18 @@ interface UseTrackCollectionOptions {
 export function useTrackCollection(options: UseTrackCollectionOptions) {
 	const { id } = options
 
-	return useAsyncData<GetTrackCollectionModel>(`track-collection-${id}`, async () => {
-		return await new TrackCollectionApi().trackCollectionIdGet({ id })
-	})
-
+	return useAsyncData<GetTrackCollectionModel>(
+		`track-collection-${id}`,
+		async () => await new TrackCollectionApi().trackCollectionIdGet({ id })
+	)
 }
 
 /**
  * Get all track collections
  */
 export function useTrackCollections() {
-	return useAsyncData<GetTrackCollectionModel[]>('track-collections', async () => {
-		return await new TrackCollectionApi().trackCollectionGet()
-	})
+	return useAsyncData<GetTrackCollectionModel[]>(
+		'track-collections',
+		async () => await new TrackCollectionApi().trackCollectionGet()
+	)
 }
