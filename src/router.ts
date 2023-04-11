@@ -30,7 +30,7 @@ const router = createRouter({
     {
       name: "error",
       path: "/:path(.*)",
-      component: () => import("@/views/404.vue"),
+      component: () => import("@/views/NotFound.vue"),
       props: true,
     },
   ],

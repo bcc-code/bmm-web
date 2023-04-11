@@ -3,5 +3,11 @@
     "home": "Home",
     "browse": "Stöbern",
     "search": "Suche"
+  },
+  "error": {
+    "page-not-found": {
+      "headline": "Fehler",
+      "text": "Die Seite \"{path}\" gibt es nicht"
+    }
   }
 }
