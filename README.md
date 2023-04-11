@@ -2,6 +2,17 @@
 
 I wanted to try implementing the new BMM project in Nuxt instead of pure Vite, as I really enjoy the conventions of Nuxt and all the nice DX that comes out of them.
 
+## Why?
+
+Nuxt does have a multitude of conventions and utilities to make fullstack development with Vue as easy as possible:
+
+- **[File-based routing](https://nuxt.com/docs/getting-started/routing)**  
+You can also [define you own route-config](https://nuxt.com/docs/guide/going-further/custom-routing)
+- **Built-in composables for [data fetching and caching](https://nuxt.com/docs/getting-started/data-fetching)**
+- **Built-in composables for [state management](https://nuxt.com/docs/getting-started/state-management)**
+- **It handles SSR if that is relevant**  
+You can [disable SSR on a per-route basis](https://nuxt.com/docs/guide/concepts/rendering#route-rules)
+
 ### Devtools
 
 The Nuxt Devtools provide a useful overview of the whole app. You can see all routes, components and composables used in the project, where they are used and so on. You can also jump directly to a component definition in VSCode by clicking on the component in the devtools.
