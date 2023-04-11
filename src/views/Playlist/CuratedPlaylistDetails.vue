@@ -1,7 +1,10 @@
 <script setup lang="ts">
 import { inject, ref, Ref } from "vue";
-import { TrackModel, PlaylistModel } from "@bcc-code/bmm-sdk-fetch";
-import { get, getTracks } from "@/api/playlists";
+import {
+  TrackModel,
+  PlaylistModel,
+  PlaylistApi,
+} from "@bcc-code/bmm-sdk-fetch";
 import ProtectedImage from "@/components/ProtectedImage.vue";
 import filters from "@/utils/filters";
 import { MediaPlaylistInjectionKey } from "@/plugins/mediaPlayer";
@@ -28,12 +31,14 @@ let token: string = "";
     })()) ?? "";
 })();
 
-get(playlistId)
+new PlaylistApi()
+  .playlistIdGet({ id: playlistId })
   .then((result) => {
     playlist.value = result;
   })
   .catch(() => {});
-getTracks(playlistId)
+new PlaylistApi()
+  .playlistIdTrackGet({ id: playlistId })
   .then((list) => {
     tracks.value = list;
   })
@@ -62,8 +67,9 @@ getTracks(playlistId)
             )
           )
         "
+        class="flex"
       >
-        {{ track.meta?.artist }} - <b>{{ track.meta?.title }}</b>
+        {{ track.meta?.title }} - <b>{{ track.meta?.artist }}</b>
       </li>
     </ol>
   </div>

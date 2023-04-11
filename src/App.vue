@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { useAuth0 } from "@auth0/auth0-vue";
 import { watch } from "vue";
+import privatePlaylist from "@/components/privatePlaylist.vue";
+import ChangeLocale from "./components/ChangeLocale.vue";
 import MediaPlayer from "./components/MediaPlayer.vue";
 
 // logout
@@ -16,9 +18,11 @@ watch(isLoading, async (loading) => {
 <template>
   <div class="flex">
     <nav>
-      <router-link to="/">Home</router-link>
-      <router-link to="/browse">Browse</router-link>
-      <router-link to="/search">Search</router-link>
+      <change-locale />
+      <router-link to="/">{{ $t("nav.home") }}</router-link>
+      <router-link to="/browse">{{ $t("nav.browse") }}</router-link>
+      <router-link to="/search">{{ $t("nav.search") }}</router-link>
+      <privatePlaylist v-if="isAuthenticated" />
     </nav>
     <main class="overflow-scroll p-5">
       <router-view v-if="isAuthenticated" />
