@@ -3,5 +3,11 @@
     "home": "Home",
     "browse": "Browse",
     "search": "Search"
+  },
+  "error": {
+    "page-not-found": {
+      "headline": "Error",
+      "text": "No route for \"{path}\""
+    }
   }
 }
