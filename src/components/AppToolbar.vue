@@ -17,7 +17,7 @@ function toggleMenu() {
   >
     <strong>{{ route.meta.toolbarTitle }}</strong>
     <div class="relative">
-      <button @click="toggleMenu">Profile</button>
+      <button @click="toggleMenu">{{ $t("nav.profile") }}</button>
       <div
         v-if="showMenu"
         class="p-2 rounded-lg border border-gray-100 bg-white absolute"

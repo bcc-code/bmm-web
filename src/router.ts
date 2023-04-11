@@ -1,10 +1,21 @@
+import { Ref, ref, watch } from "vue";
 import { createRouter, createWebHistory } from "vue-router";
+import i18n from "./plugins/i18n";
 
 declare module "vue-router" {
   interface RouteMeta {
-    toolbarTitle: string;
+    toolbarTitle: Ref<string>;
   }
 }
+
+const { locale, t } = i18n.global;
+const rT = (translate: () => string) => {
+  const translation: Ref<string> = ref(translate());
+  watch(locale, () => {
+    translation.value = translate();
+  });
+  return translation;
+};
 
 const router = createRouter({
   history: createWebHistory(),
@@ -13,21 +24,21 @@ const router = createRouter({
       path: "/",
       component: () => import("@/views/HomeView.vue"),
       meta: {
-        toolbarTitle: "Home",
+        toolbarTitle: rT(() => t("nav.home")),
       },
     },
     {
       path: "/browse",
       component: () => import("@/views/BrowseView.vue"),
       meta: {
-        toolbarTitle: "Browse",
+        toolbarTitle: rT(() => t("nav.browse")),
       },
     },
     {
       path: "/search",
       component: () => import("@/views/SearchView.vue"),
       meta: {
-        toolbarTitle: "Search",
+        toolbarTitle: rT(() => t("nav.search")),
       },
     },
     {
@@ -36,7 +47,7 @@ const router = createRouter({
       component: () => import("@/views/Playlist/CuratedPlaylistDetails.vue"),
       props: true,
       meta: {
-        toolbarTitle: "Playlist",
+        toolbarTitle: rT(() => t("nav.playlist")),
       },
     },
     {
@@ -45,7 +56,7 @@ const router = createRouter({
       component: () => import("@/views/Playlist/PrivatePlaylist.vue"),
       props: true,
       meta: {
-        toolbarTitle: "Playlist",
+        toolbarTitle: rT(() => t("nav.playlist")),
       },
     },
   ],

@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { useAuth0 } from "@auth0/auth0-vue";
 import { Ref, ref, watch } from "vue";
+import { useI18n } from "vue-i18n";
 import privatePlaylist from "@/components/privatePlaylist.vue";
 import ChangeLocale from "./components/ChangeLocale.vue";
 import Toolbar from "./components/AppToolbar.vue";
-import { useI18n } from "vue-i18n";
 
 // logout
 const { isLoading, loginWithRedirect, isAuthenticated } = useAuth0();

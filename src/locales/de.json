@@ -2,6 +2,8 @@
   "nav": {
     "home": "Home",
     "browse": "Stöbern",
+    "playlist": "Playliste",
+    "profile": "Profil",
     "search": "Suche"
   }
 }
