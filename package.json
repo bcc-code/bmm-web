@@ -10,17 +10,19 @@
     "buildAndRun": "pnpm build:prod && http-server dist -p 9001",
     "test": "vitest",
     "coverage": "vitest run --coverage",
-    "lint": "stylelint '**/*.{vue,scss}' && prettier . --check && eslint --ext ts,js,vue . && vue-tsc --noEmit",
+    "lint": "stylelint '**/*.{vue,scss}' && prettier . --check && eslint --ext ts,js,vue,json . && vue-tsc --noEmit",
     "clean": "shx rm -rf .eslintcache .stylelintcache dist",
     "preview": "vite preview"
   },
   "dependencies": {
     "@auth0/auth0-vue": "^2.0.2",
-    "@bcc-code/bmm-sdk-fetch": "^3.0.1",
+    "@bcc-code/bmm-sdk-fetch": "^4.0.0",
     "vue": "^3.2.45",
+    "vue-i18n": "^9.2.2",
     "vue-router": "^4.1.6"
   },
   "devDependencies": {
+    "@intlify/eslint-plugin-vue-i18n": "^2.0.0",
     "@types/eslint": "^8.21.1",
     "@types/node": "^18.14.0",
     "@typescript-eslint/eslint-plugin": "^5.52.0",
@@ -35,6 +37,7 @@
     "eslint-config-prettier": "^8.6.0",
     "eslint-import-resolver-alias": "^1.1.2",
     "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-jsonc": "^2.7.0",
     "eslint-plugin-promise": "^6.1.1",
     "eslint-plugin-vue": "^9.9.0",
     "happy-dom": "^8.9.0",

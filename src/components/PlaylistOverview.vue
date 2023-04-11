@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { ref, Ref } from "vue";
-import { PlaylistModel } from "@bcc-code/bmm-sdk-fetch";
+import { PlaylistApi, PlaylistModel } from "@bcc-code/bmm-sdk-fetch";
 
-import { list } from "@/api/playlists";
 import ProtectedImage from "./ProtectedImage.vue";
 
 const playlists: Ref<PlaylistModel[]> = ref([]);
 
-list()
+new PlaylistApi()
+  .playlistGet()
   .then((r) => {
     playlists.value = r;
   })
