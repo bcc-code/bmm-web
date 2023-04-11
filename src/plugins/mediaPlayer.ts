@@ -34,13 +34,11 @@ export default (app: App) => {
   const ended = ref(false);
   const currentSong: Ref<string | undefined> = ref(undefined);
 
-  const playerStatus = computed(() =>
-    paused.value
-      ? MediaPlayerStatus.Paused
-      : ended.value
-      ? MediaPlayerStatus.Stopped
-      : MediaPlayerStatus.Playing
-  );
+  const playerStatus = computed(() => {
+    if (paused.value) return MediaPlayerStatus.Paused;
+    if (ended.value) return MediaPlayerStatus.Stopped;
+    return MediaPlayerStatus.Playing;
+  });
 
   app.provide(MediaPlayerInjectionKey, {
     status: playerStatus,

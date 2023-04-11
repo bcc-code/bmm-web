@@ -59,6 +59,7 @@ new PlaylistApi()
       <li
         v-for="track in tracks"
         :key="track.id || 0"
+        class="flex"
         @click="
           setCurrentSong(
             filters.authorizedUrl(
@@ -67,7 +68,6 @@ new PlaylistApi()
             )
           )
         "
-        class="flex"
       >
         {{ track.meta?.title }} - <b>{{ track.meta?.artist }}</b>
       </li>
