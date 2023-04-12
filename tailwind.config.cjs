@@ -2,7 +2,16 @@
 module.exports = {
   content: ["./index.html", "./src/**/*.{vue,js,ts,jsx,tsx}"],
   theme: {
-    extend: {},
+    extend: {
+      fontSize: {
+        "17px": "17px",
+        "15px": "15px",
+      },
+      colors: {
+        black: "#0D131A",
+        gray: "#46494D",
+      },
+    },
   },
   plugins: [],
 };
