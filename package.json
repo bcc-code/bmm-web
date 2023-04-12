@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "vite",
     "dev:prod": "vite --mode PROD",
+    "e2e": "cypress open",
     "build": "vue-tsc && vite build",
     "build:prod": "vue-tsc && vite build --mode PROD",
     "buildAndRun": "pnpm build:prod && http-server dist -p 9001",
@@ -12,7 +13,7 @@
     "coverage": "vitest run --coverage",
     "lint": "stylelint '**/*.{vue,scss}' && prettier . --check && eslint --ext ts,js,vue,json . && vue-tsc --noEmit",
     "clean": "shx rm -rf .eslintcache .stylelintcache dist",
-    "preview": "vite preview"
+    "preview": "vite preview --port 9001"
   },
   "dependencies": {
     "@auth0/auth0-vue": "^2.0.2",
@@ -31,6 +32,7 @@
     "@vitest/coverage-c8": "^0.29.2",
     "@vue/test-utils": "^2.3.1",
     "autoprefixer": "^10.4.13",
+    "cypress": "^12.9.0",
     "eslint": "^8.34.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-airbnb-typescript": "^17.0.0",

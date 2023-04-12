@@ -48,6 +48,15 @@
         "@typescript-eslint/no-unsafe-return": "off",
         "@typescript-eslint/no-unsafe-member-access": "off"
       }
+    },
+    {
+      "files": ["cypress.config.ts", "cypress/**/*.ts"],
+      "rules": {
+        "import/no-extraneous-dependencies": [
+          "error",
+          { "devDependencies": true }
+        ]
+      }
     }
   ],
   "parser": "vue-eslint-parser",
