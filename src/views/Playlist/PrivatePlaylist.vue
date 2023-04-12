@@ -16,7 +16,6 @@ new TrackCollectionApi()
   .trackCollectionIdGet({ id: Number(props.id) })
   .then((collection) => {
     trackCollection.value = collection;
-    console.log(collection);
   })
   .catch(() => {});
 </script>
