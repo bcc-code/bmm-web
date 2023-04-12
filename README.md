@@ -20,6 +20,8 @@ _Note:_ If you had an error in your code and the system still shows you the erro
 
 Prepare by having a version of this project running. You may use `pnpm preview` to run the tests against a build locally or `pnpm dev`. The command `pnpm e2e` will start an interactive version of cypress.
 
+You may create the file `cypress.env.json` to set e.g. the username and password used for testing.
+
 ## Recommended IDE Setup
 
 - [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) + [Stylelint](https://marketplace.visualstudio.com/items?itemName=stylelint.vscode-stylelint)
