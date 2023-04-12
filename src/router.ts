@@ -27,6 +27,12 @@ const router = createRouter({
       component: () => import("@/views/Playlist/PrivatePlaylist.vue"),
       props: true,
     },
+    {
+      name: "error",
+      path: "/:path(.*)",
+      component: () => import("@/views/NotFound.vue"),
+      props: true,
+    },
   ],
 });
 
