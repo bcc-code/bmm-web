@@ -31,6 +31,14 @@ jobs:
         uses: codecov/codecov-action@v3
       - name: Build for production
         run: pnpm build:prod
+      - name: E2E testing
+        uses: cypress-io/github-action@v5
+        env:
+          CYPRESS_LOGIN_USERNAME: ${{ secrets.CYPRESS_LOGIN_USERNAME }}
+          CYPRESS_LOGIN_PASSWORD: ${{ secrets.CYPRESS_LOGIN_PASSWORD }}
+        with:
+          start: pnpm preview
+          wait-on: "http://localhost:9001/"
 
       - name: Archive production artifacts
         uses: actions/upload-artifact@v3
