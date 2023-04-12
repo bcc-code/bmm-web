@@ -10,7 +10,7 @@
     "build:prod": "vue-tsc && vite build --mode PROD",
     "test": "vitest",
     "coverage": "vitest run --coverage",
-    "lint": "stylelint '**/*.{vue,scss}' && prettier . --check && eslint --ext ts,js,vue,json . && vue-tsc --noEmit",
+    "lint": "stylelint '**/*.{vue,scss}' && prettier . --check && eslint --ext ts,js,vue,json . && vue-tsc --noEmit && vue-tsc --noEmit -p tsconfig.node.json && vue-tsc --noEmit -p tsconfig.cypress.json",
     "clean": "shx rm -rf .eslintcache .stylelintcache dist",
     "preview": "vite preview --port 9001"
   },
