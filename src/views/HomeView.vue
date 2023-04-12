@@ -3,6 +3,6 @@ import PlaylistOverview from "@/components/PlaylistOverview.vue";
 </script>
 
 <template>
-  <h2>Home</h2>
+  <h2>{{ $t("nav.home") }}</h2>
   <PlaylistOverview />
 </template>
