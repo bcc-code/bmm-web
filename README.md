@@ -12,8 +12,6 @@ pnpm i
 pnpm dev
 ```
 
-Until there's a proper login mechanism in place, you'll have to extract a valid token e.g. by accessing https://int-bmm.brunstad.org and extracting it from one of the requests to https://int-bmm-api.brunstad.org.
-
 _Note:_ If you had an error in your code and the system still shows you the error but you've already fixed it, consider running `pnpm clean`. If you have this problem often, consider contacting one of the maintainers of the project.
 
 ## E2E testing
@@ -24,7 +22,7 @@ You may create the file `cypress.env.json` to set e.g. the username and password
 
 ## Recommended IDE Setup
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) + [Stylelint](https://marketplace.visualstudio.com/items?itemName=stylelint.vscode-stylelint)
+- [VS Code](https://code.visualstudio.com/) + Plugins and configuration provided by `.vscode/extensions.json` and `.vscode/settings.json`
 
 ## Type Support For `.vue` Imports in TS
 
