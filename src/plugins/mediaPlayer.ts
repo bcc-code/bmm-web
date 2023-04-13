@@ -1,4 +1,16 @@
-import { App, computed, ComputedRef, InjectionKey, Ref, ref } from "vue";
+import { App, computed, ComputedRef, InjectionKey, Ref, ref, watch } from "vue";
+import auth0 from "@/auth0";
+import filters from "@/utils/filters";
+
+const { getAccessTokenSilently, isAuthenticated } = auth0;
+const authToken: Ref<string | undefined> = ref();
+watch(
+  isAuthenticated,
+  async () => {
+    authToken.value = await getAccessTokenSilently();
+  },
+  { immediate: true }
+);
 
 export interface MediaPlayer {
   status: ComputedRef<MediaPlayerStatus>;
@@ -58,7 +70,7 @@ export default (app: App) => {
     setCurrentSong(src) {
       activeMedia?.pause();
 
-      activeMedia = new Audio(src);
+      activeMedia = new Audio(filters.authorizedUrl(src, authToken.value));
       activeMedia.autoplay = true;
       currentSong.value = src;
       paused.value = true;

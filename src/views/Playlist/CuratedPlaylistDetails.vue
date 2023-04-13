@@ -6,9 +6,7 @@ import {
   PlaylistApi,
 } from "@bcc-code/bmm-sdk-fetch";
 import ProtectedImage from "@/components/ProtectedImage.vue";
-import filters from "@/utils/filters";
 import { MediaPlaylistInjectionKey } from "@/plugins/mediaPlayer";
-import auth0 from "@/auth0";
 
 const props = defineProps<{
   playlistId: string;
@@ -18,18 +16,6 @@ const playlist: Ref<PlaylistModel> = ref({});
 const tracks: Ref<TrackModel[]> = ref([]);
 
 const { setCurrentSong } = inject(MediaPlaylistInjectionKey)!;
-// TODO: Please move this into a plugin or something the-like which configures the authorize-url function.
-let token: string = "";
-(async () => {
-  token =
-    (await (() => {
-      const { getAccessTokenSilently, isAuthenticated } = auth0;
-      if (!isAuthenticated.value) {
-        return null;
-      }
-      return getAccessTokenSilently();
-    })()) ?? "";
-})();
 
 new PlaylistApi()
   .playlistIdGet({ id: playlistId })
@@ -60,14 +46,7 @@ new PlaylistApi()
         v-for="track in tracks"
         :key="track.id || 0"
         class="flex"
-        @click="
-          setCurrentSong(
-            filters.authorizedUrl(
-              track.media?.[0]?.files?.[0]?.url || '',
-              token
-            )
-          )
-        "
+        @click="setCurrentSong(track.media?.[0]?.files?.[0]?.url || '')"
       >
         {{ track.meta?.title }} - <b>{{ track.meta?.artist }}</b>
       </li>
