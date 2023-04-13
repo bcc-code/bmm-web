@@ -27,10 +27,10 @@ watch(isLoading, async (loading) => {
     <main class="overflow-scroll p-5">
       <router-view v-if="isAuthenticated" />
     </main>
+    <footer>
+      <media-player v-if="isAuthenticated" />
+    </footer>
   </div>
-  <footer>
-    <media-player />
-  </footer>
 </template>
 
 <style scoped>
