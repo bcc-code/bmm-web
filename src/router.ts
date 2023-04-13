@@ -9,7 +9,9 @@ declare module "vue-router" {
 }
 
 const { locale, t } = i18n.global;
-const rT = (translate: () => string) => {
+const reactiveTranslation: (translate: () => string) => Ref<string> = (
+  translate
+) => {
   const translation: Ref<string> = ref(translate());
   watch(locale, () => {
     translation.value = translate();
@@ -24,21 +26,21 @@ const router = createRouter({
       path: "/",
       component: () => import("@/views/HomeView.vue"),
       meta: {
-        toolbarTitle: rT(() => t("nav.home")),
+        toolbarTitle: reactiveTranslation(() => t("nav.home")),
       },
     },
     {
       path: "/browse",
       component: () => import("@/views/BrowseView.vue"),
       meta: {
-        toolbarTitle: rT(() => t("nav.browse")),
+        toolbarTitle: reactiveTranslation(() => t("nav.browse")),
       },
     },
     {
       path: "/search",
       component: () => import("@/views/SearchView.vue"),
       meta: {
-        toolbarTitle: rT(() => t("nav.search")),
+        toolbarTitle: reactiveTranslation(() => t("nav.search")),
       },
     },
     {
@@ -47,7 +49,7 @@ const router = createRouter({
       component: () => import("@/views/Playlist/CuratedPlaylistDetails.vue"),
       props: true,
       meta: {
-        toolbarTitle: rT(() => t("nav.playlist")),
+        toolbarTitle: reactiveTranslation(() => t("nav.playlist")),
       },
     },
     {
@@ -56,7 +58,7 @@ const router = createRouter({
       component: () => import("@/views/Playlist/PrivatePlaylist.vue"),
       props: true,
       meta: {
-        toolbarTitle: rT(() => t("nav.playlist")),
+        toolbarTitle: reactiveTranslation(() => t("nav.playlist")),
       },
     },
   ],
