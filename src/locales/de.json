@@ -2,6 +2,8 @@
   "nav": {
     "home": "Start",
     "browse": "Stöbern",
+    "playlist": "Playliste",
+    "profile": "Profil",
     "search": "Suche"
   },
   "error": {
