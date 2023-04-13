@@ -32,7 +32,7 @@ new PlaylistApi()
 </script>
 
 <template>
-  <h1>Playlist</h1>
+  <h1>{{ $t("nav.playlist") }}</h1>
   <div class="flex flex-row flex-wrap">
     <ProtectedImage
       v-if="playlist.cover"
