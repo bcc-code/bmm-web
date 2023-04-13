@@ -27,7 +27,7 @@ Make sure to install the dependencies:
 pnpm install
 ```
 
-## Environment variables
+### Environment variables
 
 For Auth0 to work you need to provide a `clientId`. This can be done in two ways:
   
