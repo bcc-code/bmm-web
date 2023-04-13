@@ -5,5 +5,11 @@
     "playlist": "Playlist",
     "profile": "Profile",
     "search": "Search"
+  },
+  "error": {
+    "page-not-found": {
+      "headline": "Error",
+      "text": "Sorry. We can't find the page \"{path}\"."
+    }
   }
 }

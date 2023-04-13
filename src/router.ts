@@ -61,6 +61,12 @@ const router = createRouter({
         toolbarTitle: reactiveTranslation(() => t("nav.playlist")),
       },
     },
+    {
+      name: "error",
+      path: "/:path(.*)",
+      component: () => import("@/views/NotFound.vue"),
+      props: true,
+    },
   ],
 });
 
