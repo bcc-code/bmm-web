@@ -27,6 +27,26 @@ Make sure to install the dependencies:
 pnpm install
 ```
 
+## Environment variables
+
+For Auth0 to work you need to provide a `clientId`. This can be done in two ways:
+  
+  1. Put your id in `runtimeConfig.public.clientId` in `nuxt.config.ts`:
+  ```ts
+  // nuxt.config.ts
+  export default defineConfig({
+    //...
+    runtimeConfig: {
+      clientId: '<YOUR_CLIENT_ID>'
+    },
+    //...
+  })
+  ```
+
+  2. Put `NUXT_PUBLIC_CLIENT_ID` in a `.env` file
+
+If you don't provide an id you won't be able to log in.
+
 ## Development Server
 
 Start the development server on `http://localhost:3000`
