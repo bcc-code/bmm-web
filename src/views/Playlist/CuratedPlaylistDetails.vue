@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, Ref } from "vue";
+import { ref, Ref, watch } from "vue";
 import {
   TrackModel,
   PlaylistModel,
@@ -14,18 +14,24 @@ const playlistId = Number(props.playlistId);
 const playlist: Ref<PlaylistModel> = ref({});
 const tracks: Ref<TrackModel[]> = ref([]);
 
-new PlaylistApi()
-  .playlistIdGet({ id: playlistId })
-  .then((result) => {
-    playlist.value = result;
-  })
-  .catch(() => {});
-new PlaylistApi()
-  .playlistIdTrackGet({ id: playlistId })
-  .then((list) => {
-    tracks.value = list;
-  })
-  .catch(() => {});
+watch(
+  props,
+  () => {
+    new PlaylistApi()
+      .playlistIdGet({ id: playlistId })
+      .then((result) => {
+        playlist.value = result;
+      })
+      .catch(() => {});
+    new PlaylistApi()
+      .playlistIdTrackGet({ id: playlistId })
+      .then((list) => {
+        tracks.value = list;
+      })
+      .catch(() => {});
+  },
+  { immediate: true }
+);
 </script>
 
 <template>

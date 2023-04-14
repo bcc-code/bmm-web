@@ -3,7 +3,7 @@ import {
   GetTrackCollectionModel,
   TrackCollectionApi,
 } from "@bcc-code/bmm-sdk-fetch";
-import { ref } from "vue";
+import { ref, watch } from "vue";
 
 const props = defineProps<{
   id: string;
@@ -11,12 +11,18 @@ const props = defineProps<{
 
 const trackCollection = ref<GetTrackCollectionModel>({});
 
-new TrackCollectionApi()
-  .trackCollectionIdGet({ id: Number(props.id) })
-  .then((collection) => {
-    trackCollection.value = collection;
-  })
-  .catch(() => {});
+watch(
+  props,
+  () => {
+    new TrackCollectionApi()
+      .trackCollectionIdGet({ id: Number(props.id) })
+      .then((collection) => {
+        trackCollection.value = collection;
+      })
+      .catch(() => {});
+  },
+  { immediate: true }
+);
 </script>
 
 <template>
