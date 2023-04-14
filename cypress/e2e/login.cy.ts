@@ -1,6 +1,6 @@
 describe("template spec", () => {
   it("passes", () => {
-    cy.visit("http://localhost:9001");
+    cy.visit("/");
 
     cy.origin("login.bcc.no", () => {
       cy.get("form.auth0-lock-widget input[name=email]").type(
@@ -13,6 +13,6 @@ describe("template spec", () => {
       cy.get("form.auth0-lock-widget button[name=submit]").click();
     });
 
-    cy.url().should("match", /^http:\/\/localhost:9001\//);
+    cy.url().should("match", new RegExp(`^${Cypress.config().baseUrl}/`));
   });
 });
