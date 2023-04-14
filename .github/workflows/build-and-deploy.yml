@@ -37,7 +37,7 @@ jobs:
           CYPRESS_LOGIN_USERNAME: ${{ secrets.CYPRESS_LOGIN_USERNAME }}
           CYPRESS_LOGIN_PASSWORD: ${{ secrets.CYPRESS_LOGIN_PASSWORD }}
         with:
-          start: pnpm preview
+          start: npx vite preview --port 9001 --host
 
       - name: Archive production artifacts
         uses: actions/upload-artifact@v3
