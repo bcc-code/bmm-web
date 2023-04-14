@@ -39,18 +39,16 @@ jobs:
         with:
           start: pnpm preview
 
-      - uses: actions/upload-artifact@v1
+      - uses: actions/upload-artifact@v3
         if: always()
         with:
           name: cypress-videos
           path: cypress/videos
-          if-no-files-found: ignore
-      - uses: actions/upload-artifact@v1
+      - uses: actions/upload-artifact@v3
         if: always()
         with:
           name: cypress-screenshots
           path: cypress/screenshots
-          if-no-files-found: ignore
 
       - name: Archive production artifacts
         uses: actions/upload-artifact@v3
