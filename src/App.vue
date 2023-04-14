@@ -5,6 +5,7 @@ import { useI18n } from "vue-i18n";
 import privatePlaylist from "@/components/privatePlaylist.vue";
 import ChangeLocale from "./components/ChangeLocale.vue";
 import Toolbar from "./components/AppToolbar.vue";
+import MediaPlayer from "./components/MediaPlayer.vue";
 
 // logout
 const { isLoading, loginWithRedirect, isAuthenticated } = useAuth0();
@@ -53,5 +54,8 @@ watch(
         <router-view v-if="isAuthenticated" />
       </main>
     </div>
+    <footer>
+      <media-player v-if="isAuthenticated" />
+    </footer>
   </div>
 </template>

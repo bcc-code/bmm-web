@@ -6,6 +6,7 @@ import {
   PlaylistApi,
 } from "@bcc-code/bmm-sdk-fetch";
 import ProtectedImage from "@/components/ProtectedImage.vue";
+import { MediaPlaylistInjectionKey } from "@/plugins/mediaPlayer";
 
 const props = defineProps<{
   playlistId: string;
@@ -13,6 +14,8 @@ const props = defineProps<{
 const playlistId = Number(props.playlistId);
 const playlist: Ref<PlaylistModel> = ref({});
 const tracks: Ref<TrackModel[]> = ref([]);
+
+const { setCurrentSong } = inject(MediaPlaylistInjectionKey)!;
 
 watch(
   props,
@@ -45,7 +48,12 @@ watch(
     <h3>{{ playlist.title }}</h3>
     <br />
     <ol class="list-decimal list-inside">
-      <li v-for="track in tracks" :key="track.id || 0" class="flex">
+      <li
+        v-for="track in tracks"
+        :key="track.id || 0"
+        class="flex"
+        @click="setCurrentSong(track.media?.[0]?.files?.[0]?.url || '')"
+      >
         {{ track.meta?.title }} - <b>{{ track.meta?.artist }}</b>
       </li>
     </ol>
