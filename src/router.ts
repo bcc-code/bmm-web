@@ -24,21 +24,21 @@ const router = createRouter({
   routes: [
     {
       path: "/",
-      component: () => import("@/views/HomeView.vue"),
+      component: () => import("@/pages/index.vue"),
       meta: {
         toolbarTitle: reactiveTranslation(() => t("nav.home")),
       },
     },
     {
       path: "/browse",
-      component: () => import("@/views/BrowseView.vue"),
+      component: () => import("@/pages/browse.vue"),
       meta: {
         toolbarTitle: reactiveTranslation(() => t("nav.browse")),
       },
     },
     {
       path: "/search",
-      component: () => import("@/views/SearchView.vue"),
+      component: () => import("@/pages/search.vue"),
       meta: {
         toolbarTitle: reactiveTranslation(() => t("nav.search")),
       },
@@ -46,7 +46,7 @@ const router = createRouter({
     {
       name: "CuratedPlaylistDetails",
       path: "/playlist/curated/:playlistId",
-      component: () => import("@/views/Playlist/CuratedPlaylistDetails.vue"),
+      component: () => import("@/pages/playlist/[id].vue"),
       props: true,
       meta: {
         toolbarTitle: reactiveTranslation(() => t("nav.playlist")),
@@ -55,7 +55,7 @@ const router = createRouter({
     {
       name: "PrivatePlaylist",
       path: "/playlist/private/:id",
-      component: () => import("@/views/Playlist/PrivatePlaylist.vue"),
+      component: () => import("@/pages/playlist/private/[id].vue"),
       props: true,
       meta: {
         toolbarTitle: reactiveTranslation(() => t("nav.playlist")),
@@ -64,7 +64,7 @@ const router = createRouter({
     {
       name: "error",
       path: "/:path(.*)",
-      component: () => import("@/views/NotFound.vue"),
+      component: () => import("@/pages/not-found.vue"),
       props: true,
     },
   ],

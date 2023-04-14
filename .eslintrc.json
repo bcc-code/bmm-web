@@ -16,12 +16,10 @@
     {
       "files": ["*.ts", "*.js", "*.vue"],
       "extends": [
-        "eslint:recommended",
         "airbnb-base",
         "airbnb-typescript/base",
-        "plugin:vue/vue3-recommended",
+        "@nuxtjs/eslint-config-typescript",
         "plugin:promise/recommended",
-        "plugin:@typescript-eslint/strict",
         "plugin:@intlify/vue-i18n/recommended",
         "prettier"
       ],

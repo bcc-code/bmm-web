@@ -2,7 +2,7 @@
 import { ref, Ref } from "vue";
 import { PlaylistApi, PlaylistModel } from "@bcc-code/bmm-sdk-fetch";
 
-import ProtectedImage from "./ProtectedImage.vue";
+import ProtectedImage from "../ProtectedImage.vue";
 
 const playlists: Ref<PlaylistModel[]> = ref([]);
 
