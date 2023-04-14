@@ -1,5 +1,5 @@
 import { App, computed, ComputedRef, InjectionKey, Ref, ref, watch } from "vue";
-import filters from "@/utils/filters";
+import authorizedUrl from "@/utils/authorizedUrl";
 
 export enum MediaPlayerStatus {
   Paused = "PAUSED",
@@ -70,7 +70,7 @@ export default (app: App) => {
     setCurrentSong(src) {
       activeMedia?.pause();
 
-      activeMedia = new Audio(filters.authorizedUrl(src, authToken.value));
+      activeMedia = new Audio(authorizedUrl(src, authToken.value));
       activeMedia.autoplay = true;
       currentSong.value = src;
       paused.value = true;

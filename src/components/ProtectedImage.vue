@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import filters from "@/utils/filters";
+import authorizedUrl from "@/utils/authorizedUrl";
 import { AUTH0_INJECTION_KEY } from "@auth0/auth0-vue";
 import { watch, ref, inject } from "vue";
 
@@ -16,7 +16,7 @@ watch(
   async () => {
     const token = await getAccessTokenSilently();
 
-    source.value = filters.authorizedUrl(props.src, token);
+    source.value = authorizedUrl(props.src, token);
   },
   { immediate: true }
 );
