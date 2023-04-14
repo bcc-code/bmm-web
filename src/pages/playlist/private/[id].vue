@@ -26,12 +26,14 @@ watch(
 </script>
 
 <template>
-  <h2>{{ trackCollection?.name }}</h2>
-  <ol class="list-decimal list-inside">
-    <li v-for="track in trackCollection.tracks" :key="`track-${track.id}`">
-      {{ track.title }}
-    </li>
-  </ol>
+  <div>
+    <h2>{{ trackCollection?.name }}</h2>
+    <ol class="list-decimal list-inside">
+      <li v-for="track in trackCollection.tracks" :key="`track-${track.id}`">
+        {{ track.title }}
+      </li>
+    </ol>
+  </div>
 </template>
 
 <style scoped>

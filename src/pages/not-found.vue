@@ -5,6 +5,8 @@ const props = defineProps<{
 </script>
 
 <template>
-  <h2>{{ $t("error.page-not-found.headline") }}</h2>
-  {{ $t("error.page-not-found.text", props) }}
+  <div>
+    <h2>{{ $t("error.page-not-found.headline") }}</h2>
+    {{ $t("error.page-not-found.text", props) }}
+  </div>
 </template>

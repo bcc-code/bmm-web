@@ -38,24 +38,26 @@ watch(
 </script>
 
 <template>
-  <h1>{{ $t("nav.playlist") }}</h1>
-  <div class="flex flex-row flex-wrap">
-    <ProtectedImage
-      v-if="playlist.cover"
-      :src="playlist.cover"
-      class="w-52 aspect-square rounded-xl"
-    />
-    <h3>{{ playlist.title }}</h3>
-    <br />
-    <ol class="list-decimal list-inside">
-      <li
-        v-for="track in tracks"
-        :key="track.id || 0"
-        class="flex"
-        @click="setCurrentSong(track.media?.[0]?.files?.[0]?.url || '')"
-      >
-        {{ track.meta?.title }} - <b>{{ track.meta?.artist }}</b>
-      </li>
-    </ol>
+  <div>
+    <h1>{{ $t("nav.playlist") }}</h1>
+    <div class="flex flex-row flex-wrap">
+      <ProtectedImage
+        v-if="playlist.cover"
+        :src="playlist.cover"
+        class="w-52 aspect-square rounded-xl"
+      />
+      <h3>{{ playlist.title }}</h3>
+      <br />
+      <ol class="list-decimal list-inside">
+        <li
+          v-for="track in tracks"
+          :key="track.id || 0"
+          class="flex"
+          @click="setCurrentSong(track.media?.[0]?.files?.[0]?.url || '')"
+        >
+          {{ track.meta?.title }} - <b>{{ track.meta?.artist }}</b>
+        </li>
+      </ol>
+    </div>
   </div>
 </template>
