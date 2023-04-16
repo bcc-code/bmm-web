@@ -20,7 +20,7 @@ const props = defineProps<{
 
 <template>
   <div class="grid gap-4 grid-cols-3">
-    <div class="flex flex-row m-2">
+    <div class="flex flex-row m-2 w-96">
       <ProtectedImage
         v-if="track.meta?.attachedPicture"
         :src="track.meta?.attachedPicture"

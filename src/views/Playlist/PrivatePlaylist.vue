@@ -4,7 +4,7 @@ import {
   TrackCollectionApi,
 } from "@bcc-code/bmm-sdk-fetch";
 import { ref } from "vue";
-import tracksList from "@/components/tracksList.vue";
+import Track from "@/components/Track.vue";
 
 const props = defineProps<{
   id: string;
@@ -33,7 +33,7 @@ new TrackCollectionApi()
 <template>
   <h2>{{ trackCollection?.name }}</h2>
   <div v-for="track in trackCollection.tracks" :key="`track-${track.id}`">
-    <tracksList :track="track" />
+    <Track :track="track" />
   </div>
 </template>
 
