@@ -20,16 +20,6 @@ new TrackCollectionApi()
   .catch(() => {});
 </script>
 
-<!-- <template>
-  <h2>{{ trackCollection?.name }}</h2>
-  <ol class="list-decimal list-inside">
-    <li v-for="track in trackCollection.tracks" :key="`track-${track.id}`">
-      {{ track.title }}
-    </li>
-  </ol>
-</template> -->
-
-<!-- Test template -->
 <template>
   <h2>{{ trackCollection?.name }}</h2>
   <div v-for="track in trackCollection.tracks" :key="`track-${track.id}`">

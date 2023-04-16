@@ -42,7 +42,7 @@ new PlaylistApi()
     />
     <h3>{{ playlist.title }}</h3>
     <br />
-    <ol class="list-decimal list-inside">
+    <ol class="list-inside">
       <li
         v-for="track in tracks"
         :key="track.id || 0"
