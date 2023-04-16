@@ -51,7 +51,8 @@ const i18n = createI18n<
   | "sl"
   | "tr"
   | "uk"
-  | "zh"
+  | "zh",
+  false
 >({
   legacy: false,
   locale: "en",

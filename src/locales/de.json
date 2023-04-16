@@ -2,6 +2,14 @@
   "nav": {
     "home": "Start",
     "browse": "Stöbern",
+    "playlist": "Playliste",
+    "profile": "Profil",
     "search": "Suche"
+  },
+  "error": {
+    "page-not-found": {
+      "headline": "Fehler",
+      "text": "Die Seite \"{path}\" gibt es nicht"
+    }
   }
 }

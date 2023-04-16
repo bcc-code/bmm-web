@@ -17,7 +17,7 @@ new TrackCollectionApi()
 
 <template>
   <div>
-    <h3>Playlists</h3>
+    <h3>{{ $t("nav.playlist") }}</h3>
     <ul>
       <li v-for="collection in collections" :key="collection.id || 0">
         <RouterLink

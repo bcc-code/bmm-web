@@ -1,8 +1,11 @@
 <script setup lang="ts">
 import { useAuth0 } from "@auth0/auth0-vue";
-import { watch } from "vue";
+import { Ref, ref, watch } from "vue";
+import { useI18n } from "vue-i18n";
 import privatePlaylist from "@/components/privatePlaylist.vue";
 import ChangeLocale from "./components/ChangeLocale.vue";
+import Toolbar from "./components/AppToolbar.vue";
+import MediaPlayer from "./components/MediaPlayer.vue";
 
 // logout
 const { isLoading, loginWithRedirect, isAuthenticated } = useAuth0();
@@ -12,36 +15,47 @@ watch(isLoading, async (loading) => {
     await loginWithRedirect();
   }
 });
+
+const navLinks: Ref<{ to: string; name: string }[]> = ref([]);
+const { locale, t } = useI18n();
+watch(
+  locale,
+  () => {
+    navLinks.value = [
+      { to: "/", name: t("nav.home") },
+      { to: "/browse", name: t("nav.browse") },
+      { to: "/search", name: t("nav.search") },
+    ];
+  },
+  { immediate: true }
+);
 </script>
 
 <template>
   <div class="flex">
-    <nav>
+    <nav
+      class="bg-gray-50 border-r border-gray-100 p-4 sticky top-0 h-screen min-w-[200px]"
+    >
       <change-locale />
-      <router-link to="/">{{ $t("nav.home") }}</router-link>
-      <router-link to="/browse">{{ $t("nav.browse") }}</router-link>
-      <router-link to="/search">{{ $t("nav.search") }}</router-link>
+      <router-link
+        v-for="link in navLinks"
+        :key="link.name"
+        :to="link.to"
+        class="p-2 rounded-lg flex"
+        active-class="bg-lime-400"
+      >
+        {{ link.name }}
+      </router-link>
       <privatePlaylist v-if="isAuthenticated" />
     </nav>
-    <main class="overflow-scroll p-5">
-      <router-view v-if="isAuthenticated" />
-    </main>
+    <div class="grow">
+      <Toolbar />
+      <main class="p-5 grow">
+        <router-view v-if="isAuthenticated" />
+      </main>
+    </div>
+    <footer>
+      <media-player v-if="isAuthenticated" />
+    </footer>
   </div>
 </template>
-
-<style scoped>
-nav a {
-  display: block;
-  color: black;
-  font-style: normal;
-  font-weight: 700;
-  font-size: 18px;
-  line-height: 24px;
-  padding: 12px;
-}
-
-nav a.router-link-active {
-  background: #a4e16a;
-  border-radius: 12px;
-}
-</style>
