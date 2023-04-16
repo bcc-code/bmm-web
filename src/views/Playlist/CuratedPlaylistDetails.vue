@@ -6,6 +6,7 @@ import {
   PlaylistApi,
 } from "@bcc-code/bmm-sdk-fetch";
 import ProtectedImage from "@/components/ProtectedImage.vue";
+import tracksList from "@/components/tracksList.vue";
 
 const props = defineProps<{
   playlistId: string;
@@ -38,10 +39,13 @@ new PlaylistApi()
     />
     <h3>{{ playlist.title }}</h3>
     <br />
-    <ol class="list-decimal list-inside">
+    <!-- <ol class="list-decimal list-inside">
       <li v-for="track in tracks" :key="track.id || 0" class="flex">
         {{ track.meta?.title }} - <b>{{ track.meta?.artist }}</b>
       </li>
-    </ol>
+    </ol> -->
+    <div v-for="track in tracks" :key="track.id || 0">
+      <tracksList :track="track" />
+    </div>
   </div>
 </template>

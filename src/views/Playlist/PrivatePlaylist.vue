@@ -33,13 +33,7 @@ new TrackCollectionApi()
 <template>
   <h2>{{ trackCollection?.name }}</h2>
   <div v-for="track in trackCollection.tracks" :key="`track-${track.id}`">
-    <tracksList
-      :src="track.meta?.attachedPicture"
-      :subtype-track="track.subtype"
-      :artist-track="track.meta?.artist"
-      :title-track="track.title"
-      :number-track="track.meta?.tracknumber"
-    />
+    <tracksList :track="track" />
   </div>
 </template>
 
