@@ -9,5 +9,5 @@
     "moduleResolution": "Node",
     "allowSyntheticDefaultImports": true
   },
-  "include": ["vite.config.ts", "stylelint.config.cjs", "tailwind.config.cjs"]
+  "include": ["vite.config.ts", "tailwind.config.cjs"]
 }
