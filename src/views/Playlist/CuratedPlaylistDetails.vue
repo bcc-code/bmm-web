@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, Ref, watch } from "vue";
+import { inject, ref, Ref, watch } from "vue";
 import {
   TrackModel,
   PlaylistModel,
