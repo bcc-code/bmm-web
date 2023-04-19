@@ -11,7 +11,6 @@ import { MediaPlaylistInjectionKey } from "@/plugins/mediaPlayer";
 const props = defineProps<{
   playlistId: string;
 }>();
-const playlistId = Number(props.playlistId);
 const playlist: Ref<PlaylistModel> = ref({});
 const tracks: Ref<TrackModel[]> = ref([]);
 
@@ -20,6 +19,7 @@ const { setCurrentSong } = inject(MediaPlaylistInjectionKey)!;
 watch(
   () => props.playlistId,
   () => {
+    const playlistId = Number(props.playlistId);
     new PlaylistApi()
       .playlistIdGet({ id: playlistId })
       .then((result) => {
