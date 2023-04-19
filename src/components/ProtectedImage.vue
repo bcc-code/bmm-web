@@ -12,7 +12,7 @@ const source = ref("");
 const { getAccessTokenSilently } = useAuth0();
 
 watch(
-  props,
+  () => props.src,
   async () => {
     const token = await getAccessTokenSilently();
 

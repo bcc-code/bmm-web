@@ -12,7 +12,7 @@ const props = defineProps<{
 const trackCollection = ref<GetTrackCollectionModel>({});
 
 watch(
-  props,
+  () => props.id,
   () => {
     new TrackCollectionApi()
       .trackCollectionIdGet({ id: Number(props.id) })

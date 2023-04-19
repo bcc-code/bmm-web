@@ -18,7 +18,7 @@ const tracks: Ref<TrackModel[]> = ref([]);
 const { setCurrentSong } = inject(MediaPlaylistInjectionKey)!;
 
 watch(
-  props,
+  () => props.playlistId,
   () => {
     new PlaylistApi()
       .playlistIdGet({ id: playlistId })
