@@ -1,4 +1,4 @@
-import auth0 from "@/auth0";
+import auth0 from "@/plugins/auth0";
 import { Configuration, DefaultConfig } from "@bcc-code/bmm-sdk-fetch";
 
 export default () => {

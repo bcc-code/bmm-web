@@ -1,5 +1,5 @@
 import { App, computed, ComputedRef, InjectionKey, Ref, ref, watch } from "vue";
-import auth0 from "@/auth0";
+import auth0 from "@/plugins/auth0";
 import filters from "@/utils/filters";
 
 const { getAccessTokenSilently, isAuthenticated } = auth0;
