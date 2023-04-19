@@ -1,4 +1,5 @@
-import auth0 from "@/plugins/auth0";
+import { inject } from "vue";
+import { AUTH0_INJECTION_KEY } from "@auth0/auth0-vue";
 import { Configuration, DefaultConfig } from "@bcc-code/bmm-sdk-fetch";
 
 export default () => {
@@ -10,7 +11,8 @@ export default () => {
     middleware: [
       {
         pre: async (ctx) => {
-          const { getAccessTokenSilently, isAuthenticated } = auth0;
+          const { getAccessTokenSilently, isAuthenticated } =
+            inject(AUTH0_INJECTION_KEY)!;
           const token = isAuthenticated.value
             ? await getAccessTokenSilently()
             : null;

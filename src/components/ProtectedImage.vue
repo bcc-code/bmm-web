@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import filters from "@/utils/filters";
-import { useAuth0 } from "@auth0/auth0-vue";
-import { onMounted, ref } from "vue";
+import { AUTH0_INJECTION_KEY } from "@auth0/auth0-vue";
+import { inject, onMounted, ref } from "vue";
 
 const props = defineProps<{
   src: string;
@@ -9,7 +9,7 @@ const props = defineProps<{
 
 const source = ref("");
 
-const { getAccessTokenSilently } = useAuth0();
+const { getAccessTokenSilently } = inject(AUTH0_INJECTION_KEY)!;
 
 onMounted(async () => {
   const token = await getAccessTokenSilently();

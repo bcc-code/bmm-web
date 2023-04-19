@@ -1,16 +1,15 @@
-import { App, computed, ComputedRef, InjectionKey, Ref, ref, watch } from "vue";
-import auth0 from "@/plugins/auth0";
+import {
+  App,
+  computed,
+  ComputedRef,
+  inject,
+  InjectionKey,
+  Ref,
+  ref,
+  watch,
+} from "vue";
+import { AUTH0_INJECTION_KEY } from "@auth0/auth0-vue";
 import filters from "@/utils/filters";
-
-const { getAccessTokenSilently, isAuthenticated } = auth0;
-const authToken: Ref<string | undefined> = ref();
-watch(
-  isAuthenticated,
-  async () => {
-    authToken.value = await getAccessTokenSilently();
-  },
-  { immediate: true }
-);
 
 export interface MediaPlayer {
   status: ComputedRef<MediaPlayerStatus>;
@@ -39,6 +38,17 @@ export enum MediaPlayerStatus {
 }
 
 export default (app: App) => {
+  const { getAccessTokenSilently, isAuthenticated } =
+    inject(AUTH0_INJECTION_KEY)!;
+  const authToken: Ref<string | undefined> = ref();
+  watch(
+    isAuthenticated,
+    async () => {
+      authToken.value = await getAccessTokenSilently();
+    },
+    { immediate: true }
+  );
+
   // Good to know when writing tests: https://github.com/jsdom/jsdom/issues/2155#issuecomment-366703395
   let activeMedia: HTMLAudioElement | undefined;
 
