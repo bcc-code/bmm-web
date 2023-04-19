@@ -1,8 +1,7 @@
-import { inject } from "vue";
-import { AUTH0_INJECTION_KEY } from "@auth0/auth0-vue";
+import { App } from "vue";
 import { Configuration, DefaultConfig } from "@bcc-code/bmm-sdk-fetch";
 
-export default () => {
+export default (app: App) => {
   DefaultConfig.config = new Configuration({
     basePath: import.meta.env.VITE_API_URL,
     headers: {
@@ -12,7 +11,7 @@ export default () => {
       {
         pre: async (ctx) => {
           const { getAccessTokenSilently, isAuthenticated } =
-            inject(AUTH0_INJECTION_KEY)!;
+            app.config.globalProperties.$auth0;
           const token = isAuthenticated.value
             ? await getAccessTokenSilently()
             : null;

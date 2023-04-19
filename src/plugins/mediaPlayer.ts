@@ -1,14 +1,4 @@
-import {
-  App,
-  computed,
-  ComputedRef,
-  inject,
-  InjectionKey,
-  Ref,
-  ref,
-  watch,
-} from "vue";
-import { AUTH0_INJECTION_KEY } from "@auth0/auth0-vue";
+import { App, computed, ComputedRef, InjectionKey, Ref, ref, watch } from "vue";
 import filters from "@/utils/filters";
 
 export interface MediaPlayer {
@@ -39,7 +29,7 @@ export enum MediaPlayerStatus {
 
 export default (app: App) => {
   const { getAccessTokenSilently, isAuthenticated } =
-    inject(AUTH0_INJECTION_KEY)!;
+    app.config.globalProperties.$auth0;
   const authToken: Ref<string | undefined> = ref();
   watch(
     isAuthenticated,
