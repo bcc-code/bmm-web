@@ -1,15 +1,11 @@
 // @vitest-environment happy-dom
 
-import { describe, it, expect, vi, afterEach } from "vitest";
+import { describe, it, expect } from "vitest";
 import { flushPromises, mount } from "@vue/test-utils";
 import { AUTH0_INJECTION_KEY, Auth0VueClient } from "@auth0/auth0-vue";
 import ProtectedImage from "./ProtectedImage.vue";
 
 describe("component ProtectedImage", () => {
-  afterEach(() => {
-    vi.clearAllMocks();
-  });
-
   it("should add the access token to the given path", async () => {
     // Arrange
     const src = "http://localhost/image.jpg";
