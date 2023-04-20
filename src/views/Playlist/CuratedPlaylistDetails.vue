@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { inject, ref, Ref } from "vue";
+import { inject, ref, Ref, watch } from "vue";
 import {
   TrackModel,
   PlaylistModel,
@@ -11,24 +11,30 @@ import { MediaPlaylistInjectionKey } from "@/plugins/mediaPlayer";
 const props = defineProps<{
   playlistId: string;
 }>();
-const playlistId = Number(props.playlistId);
 const playlist: Ref<PlaylistModel> = ref({});
 const tracks: Ref<TrackModel[]> = ref([]);
 
 const { setCurrentSong } = inject(MediaPlaylistInjectionKey)!;
 
-new PlaylistApi()
-  .playlistIdGet({ id: playlistId })
-  .then((result) => {
-    playlist.value = result;
-  })
-  .catch(() => {});
-new PlaylistApi()
-  .playlistIdTrackGet({ id: playlistId })
-  .then((list) => {
-    tracks.value = list;
-  })
-  .catch(() => {});
+watch(
+  () => props.playlistId,
+  () => {
+    const playlistId = Number(props.playlistId);
+    new PlaylistApi()
+      .playlistIdGet({ id: playlistId })
+      .then((result) => {
+        playlist.value = result;
+      })
+      .catch(() => {});
+    new PlaylistApi()
+      .playlistIdTrackGet({ id: playlistId })
+      .then((list) => {
+        tracks.value = list;
+      })
+      .catch(() => {});
+  },
+  { immediate: true }
+);
 </script>
 
 <template>

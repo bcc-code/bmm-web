@@ -2,7 +2,7 @@
 
 import { PlaylistApi } from "@bcc-code/bmm-sdk-fetch";
 import { describe, it, expect, vi, afterEach } from "vitest";
-import { flushPromises, mount } from "@vue/test-utils";
+import { RouterLinkStub, flushPromises, mount } from "@vue/test-utils";
 import PlaylistOverview from "./PlaylistOverview.vue";
 
 describe("component PlaylistOverview", () => {
@@ -30,7 +30,9 @@ describe("component PlaylistOverview", () => {
     );
 
     // Act
-    const wrapper = mount(PlaylistOverview);
+    const wrapper = mount(PlaylistOverview, {
+      global: { stubs: { RouterLink: RouterLinkStub } },
+    });
     await flushPromises();
 
     // Assert
