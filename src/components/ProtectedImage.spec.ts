@@ -74,24 +74,27 @@ describe("component ProtectedImage", () => {
 
   it("should update the src in the template when it changes after mounting", async () => {
     // Arrange
-    vi.spyOn(auth0, "useAuth0").mockReturnValueOnce({
-      getAccessTokenSilently: (o) => {
-        if (o?.detailedResponse)
-          return {
-            id_token: "",
-            access_token: "MySecretAccessToken",
-            expires_in: 0,
-          };
-        return Promise.resolve("MySecretAccessToken");
-      },
-    } as auth0.Auth0VueClient);
-
     const src = "http://localhost/image.jpg";
 
     // Act
     const wrapper = mount(ProtectedImage, {
       props: {
         src,
+      },
+      global: {
+        provide: {
+          [AUTH0_INJECTION_KEY.valueOf()]: {
+            getAccessTokenSilently: (o) => {
+              if (o?.detailedResponse)
+                return {
+                  id_token: "",
+                  access_token: "MySecretAccessToken",
+                  expires_in: 0,
+                };
+              return Promise.resolve("MySecretAccessToken");
+            },
+          } as Auth0VueClient,
+        },
       },
     });
     await flushPromises();
