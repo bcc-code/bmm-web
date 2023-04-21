@@ -1,8 +1,13 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 const { t } = useI18n();
 toolbarTitleStore().setReactiveToolbarTitle(() => t("nav.browse"));
+
+const { data: playlists } = usePlaylists();
 </script>
 
 <template>
-  <h2>{{ $t("nav.browse") }}</h2>
+  <div>
+    <PageHeading class="mb-6">Browse</PageHeading>
+    <PlaylistOverview v-if="playlists" :playlists="playlists" />
+  </div>
 </template>

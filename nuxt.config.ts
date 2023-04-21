@@ -1,11 +1,11 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   modules: [
+    "@nuxt/devtools",
     "@nuxtjs/tailwindcss",
     "@nuxtjs/i18n",
     ["@pinia/nuxt", { autoImports: ["defineStore"] }],
   ],
-  devServer: { port: 9001 },
   runtimeConfig: {
     public: {
       apiUrl: "https://bmm-api.brunstad.org",
@@ -25,5 +25,8 @@ export default defineNuxtConfig({
   vite: {
     // https://stackoverflow.com/a/75655669/517914
     optimizeDeps: { exclude: ["fsevents"] },
+  },
+  app: {
+    pageTransition: { name: "page", mode: "out-in" },
   },
 });

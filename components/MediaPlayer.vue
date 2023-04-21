@@ -3,7 +3,7 @@ import {
   MediaPlayerInjectionKey,
   MediaPlaylistInjectionKey,
   MediaPlayerStatus,
-} from "~/plugins/mediaPlayer";
+} from "~/plugins/3.mediaPlayer";
 
 const { status, play, pause } = inject(MediaPlayerInjectionKey)!;
 const { currentSong } = inject(MediaPlaylistInjectionKey)!;

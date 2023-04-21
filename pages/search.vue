@@ -1,8 +1,8 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 const { t } = useI18n();
 toolbarTitleStore().setReactiveToolbarTitle(() => t("nav.search"));
 </script>
 
 <template>
-  <h2>{{ $t("nav.search") }}</h2>
+  <PageHeading class="mb-6">Search</PageHeading>
 </template>

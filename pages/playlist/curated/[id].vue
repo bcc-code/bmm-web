@@ -1,62 +1,42 @@
-<script setup lang="ts">
-import {
-  TrackModel,
-  PlaylistModel,
-  PlaylistApi,
-} from "@bcc-code/bmm-sdk-fetch";
-import { MediaPlaylistInjectionKey } from "@/plugins/mediaPlayer";
-
+<script lang="ts" setup>
 const { t } = useI18n();
 toolbarTitleStore().setReactiveToolbarTitle(() => t("nav.playlist"));
 
-const { params } = useRoute();
-const playlist: Ref<PlaylistModel> = ref({});
-const tracks: Ref<TrackModel[]> = ref([]);
+const { id } = useRoute().params;
+const playlistId = Number(id);
 
-const { setCurrentSong } = inject(MediaPlaylistInjectionKey)!;
+const { data: playlist } = usePlaylist({ id: playlistId });
+const { data: tracks, pending } = usePlaylistTracks({ id: playlistId });
 
-watch(
-  () => params.id,
-  () => {
-    const playlistId = Number(params.id);
-    new PlaylistApi()
-      .playlistIdGet({ id: playlistId })
-      .then((result) => {
-        playlist.value = result;
-      })
-      .catch(() => {});
-    new PlaylistApi()
-      .playlistIdTrackGet({ id: playlistId })
-      .then((list) => {
-        tracks.value = list;
-      })
-      .catch(() => {});
-  },
-  { immediate: true }
-);
+onBeforeMount(() => {
+  useHead({
+    title: playlist.value?.title || "",
+  });
+});
 </script>
 
 <template>
-  <div>
-    <h1>{{ $t("nav.playlist") }}</h1>
-    <div class="flex flex-row flex-wrap">
+  <div v-if="playlist">
+    <header class="flex gap-6 mb-12">
       <ProtectedImage
         v-if="playlist.cover"
         :src="playlist.cover"
-        class="w-52 aspect-square rounded-xl"
+        alt=""
+        class="aspect-square rounded-2xl bg-slate-100 w-[300px]"
       />
-      <h3>{{ playlist.title }}</h3>
-      <br />
-      <ol class="list-decimal list-inside">
-        <li
-          v-for="track in tracks"
-          :key="track.id || 0"
-          class="flex"
-          @click="setCurrentSong(track.media?.[0]?.files?.[0]?.url || '')"
-        >
-          {{ track.meta?.title }} - <b>{{ track.meta?.artist }}</b>
-        </li>
-      </ol>
-    </div>
+      <div class="p-6 flex flex-col justify-between">
+        <div>
+          <PageHeading>{{ playlist.title }}</PageHeading>
+          <p v-if="tracks">{{ tracks.length }} tracks</p>
+        </div>
+        <div class="flex gap-2">
+          <ButtonStyled intent="primary"> Shuffle </ButtonStyled>
+          <ButtonStyled>Follow</ButtonStyled>
+        </div>
+      </div>
+    </header>
+    <TrackList :skeleton-count="10" :show-skeleton="pending">
+      <TrackItem v-for="track in tracks" :key="track.id || 0" :track="track" />
+    </TrackList>
   </div>
 </template>

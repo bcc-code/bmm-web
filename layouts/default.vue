@@ -1,56 +1,23 @@
-<script setup lang="ts">
-import { AUTH0_INJECTION_KEY } from "@auth0/auth0-vue";
-
-// logout
-const { isLoading, loginWithRedirect, isAuthenticated } =
-  inject(AUTH0_INJECTION_KEY)!;
-watch(isLoading, async (loading) => {
-  if (loading) return;
-  if (!isAuthenticated.value) {
-    await loginWithRedirect();
-  }
-});
-
-const navLinks: Ref<{ to: string; name: string }[]> = ref([]);
-const { locale, t } = useI18n();
-watch(
-  locale,
-  () => {
-    navLinks.value = [
-      { to: "/", name: t("nav.home") },
-      { to: "/browse", name: t("nav.browse") },
-      { to: "/search", name: t("nav.search") },
-    ];
-  },
-  { immediate: true }
-);
+<script lang="ts" setup>
+const onError = (error: any) => {
+  console.error(error);
+};
 </script>
 
 <template>
-  <div class="flex">
-    <nav
-      class="bg-gray-50 border-r border-gray-100 p-4 sticky top-0 h-screen min-w-[200px]"
-    >
-      <change-locale />
-      <nuxt-link
-        v-for="link in navLinks"
-        :key="link.name"
-        :to="link.to"
-        class="p-2 rounded-lg flex"
-        active-class="bg-lime-400"
-      >
-        {{ link.name }}
-      </nuxt-link>
-      <private-playlist v-if="isAuthenticated" />
-    </nav>
-    <div class="grow">
-      <app-toolbar />
-      <main class="p-5 grow">
-        <router-view v-if="isAuthenticated" />
-      </main>
-    </div>
+  <div class="flex h-full">
+    <SidebarElement />
+    <main class="flex-grow overflow-y-auto relative">
+      <AppToolbar />
+      <NuxtErrorBoundary @error="onError">
+        <slot />
+        <template #error="{ error }">
+          <ErrorMsg :error="error.value" />
+        </template>
+      </NuxtErrorBoundary>
+    </main>
     <footer>
-      <media-player v-if="isAuthenticated" />
+      <MediaPlayer />
     </footer>
   </div>
 </template>

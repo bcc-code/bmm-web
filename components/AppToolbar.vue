@@ -1,24 +1,9 @@
-<script lang="ts" setup>
-// TODO: Replace placeholder by profile menu #8
-const showMenu = ref(false);
-function toggleMenu() {
-  showMenu.value = !showMenu.value;
-}
-</script>
-
 <template>
   <header
-    class="py-4 px-5 sticky top-0 bg-white/80 backdrop-blur-lg border-b border-gray-100 leading-none flex justify-between align-center"
+    class="py-4 px-6 border-b border-slate-100 bg-white/80 backdrop-blur-md sticky top-0"
   >
-    <strong>{{ toolbarTitleStore().toolbarTitle }}</strong>
-    <div class="relative">
-      <button @click="toggleMenu">{{ $t("nav.profile") }}</button>
-      <div
-        v-if="showMenu"
-        class="p-2 rounded-lg border border-gray-100 bg-white absolute"
-      >
-        test
-      </div>
-    </div>
+    <strong v-if="toolbarTitleStore().toolbarTitle">
+      {{ toolbarTitleStore().toolbarTitle }}
+    </strong>
   </header>
 </template>

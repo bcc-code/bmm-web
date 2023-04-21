@@ -57,7 +57,7 @@
       }
     },
     {
-      "files": ["stores/**/*.ts"],
+      "files": ["stores/**/*.ts", "composables/**/*.ts"],
       "rules": {
         "import/prefer-default-export": "off"
       }
