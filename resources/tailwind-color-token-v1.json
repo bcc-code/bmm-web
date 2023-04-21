@@ -1,0 +1,196 @@
+{
+  "Light": {
+    "Tint": {
+      "value": "#a4e16a",
+      "type": "color"
+    },
+    "Label": {
+      "Label 1": {
+        "value": "#0d131a",
+        "type": "color"
+      },
+      "Label 2": {
+        "value": "#46494d",
+        "type": "color"
+      },
+      "Label 3": {
+        "value": "#757b80",
+        "type": "color"
+      },
+      "Label 4": {
+        "value": "#abafb2",
+        "type": "color"
+      },
+      "Separator": {
+        "value": "#81888f1a",
+        "type": "color"
+      }
+    },
+    "Background": {
+      "Background 1": {
+        "value": "#ffffff",
+        "type": "color"
+      },
+      "Background 2": {
+        "value": "#f5f6f7",
+        "type": "color"
+      },
+      "Background 3": {
+        "value": "#ffffff",
+        "type": "color"
+      },
+      "Background 4": {
+        "value": "#0d131a",
+        "type": "color"
+      }
+    },
+    "On Color": {
+      "On Color 1": {
+        "value": "#ffffff",
+        "type": "color"
+      },
+      "On Color 2": {
+        "value": "#ffffff80",
+        "type": "color"
+      },
+      "On Color 3": {
+        "value": "#ffffff33",
+        "type": "color"
+      },
+      "On Color 4": {
+        "value": "#ffffff14",
+        "type": "color"
+      }
+    },
+    "Utility": {
+      "Utility Radio": {
+        "value": "#e12d59",
+        "type": "color"
+      },
+      "Utility Notification": {
+        "value": "#1c8ff8",
+        "type": "color"
+      }
+    }
+  },
+  "Dark": {
+    "Tint": {
+      "value": "#c4ee9b",
+      "type": "color"
+    },
+    "Label": {
+      "Label 1": {
+        "value": "#e9f0f7",
+        "type": "color"
+      },
+      "Label 2": {
+        "value": "#c7ced4",
+        "type": "color"
+      },
+      "Label 3": {
+        "value": "#979ca1",
+        "type": "color"
+      },
+      "Label 4": {
+        "value": "#666c73",
+        "type": "color"
+      },
+      "Separator": {
+        "value": "#81888e1f",
+        "type": "color"
+      }
+    },
+    "Background": {
+      "Background 1": {
+        "value": "#171b1f",
+        "type": "color"
+      },
+      "Background 2": {
+        "value": "#22272b",
+        "type": "color"
+      },
+      "Background 3": {
+        "value": "#30353b",
+        "type": "color"
+      },
+      "Background 4": {
+        "value": "#e8f0f7",
+        "type": "color"
+      }
+    },
+    "On Color": {
+      "On Color 1": {
+        "value": "#0d131a",
+        "type": "color"
+      },
+      "On Color 2": {
+        "value": "#444a50",
+        "type": "color"
+      },
+      "On Color 3": {
+        "value": "#666c73",
+        "type": "color"
+      },
+      "On Color 4": {
+        "value": "#c7ced4",
+        "type": "color"
+      }
+    },
+    "Utility": {
+      "Utility Radio": {
+        "value": "#e3446b",
+        "type": "color"
+      },
+      "Utility Notification": {
+        "value": "#349af8",
+        "type": "color"
+      }
+    }
+  },
+  "Global": {
+    "White": {
+      "White Seperator": {
+        "value": "#ffffff0d",
+        "type": "color"
+      },
+      "White 1": {
+        "value": "#ffffff",
+        "type": "color"
+      },
+      "White 2": {
+        "value": "#ffffff80",
+        "type": "color"
+      },
+      "White 3": {
+        "value": "#ffffff33",
+        "type": "color"
+      },
+      "White 4": {
+        "value": "#ffffff14",
+        "type": "color"
+      }
+    },
+    "Black": {
+      "Black Seperator": {
+        "value": "#0d131a1a",
+        "type": "color"
+      },
+      "Black 1": {
+        "value": "#0d131a",
+        "type": "color"
+      },
+      "Black 2": {
+        "value": "#0d131ab3",
+        "type": "color"
+      },
+      "Black 3": {
+        "value": "#0d131a80",
+        "type": "color"
+      },
+      "Black 4": {
+        "value": "#0d131a4d",
+        "type": "color"
+      }
+    }
+  }
+}
