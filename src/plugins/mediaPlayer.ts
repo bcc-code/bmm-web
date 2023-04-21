@@ -1,6 +1,12 @@
 import { App, computed, ComputedRef, InjectionKey, Ref, ref, watch } from "vue";
 import filters from "@/utils/filters";
 
+export enum MediaPlayerStatus {
+  Paused = "PAUSED",
+  Playing = "PLAYING",
+  Stopped = "STOPPED",
+}
+
 export interface MediaPlayer {
   status: ComputedRef<MediaPlayerStatus>;
   play: () => void;
@@ -20,12 +26,6 @@ export const MediaPlayerInjectionKey: InjectionKey<MediaPlayer> = Symbol(
 export const MediaPlaylistInjectionKey: InjectionKey<MediaPlaylist> = Symbol(
   "Vue InjectionKey MediaPlaylist"
 );
-
-export enum MediaPlayerStatus {
-  Paused = "PAUSED",
-  Playing = "PLAYING",
-  Stopped = "STOPPED",
-}
 
 export default (app: App) => {
   const { getAccessTokenSilently, isAuthenticated } =
