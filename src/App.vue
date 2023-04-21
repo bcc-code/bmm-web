@@ -4,7 +4,7 @@ import { Ref, inject, ref, watch } from "vue";
 import { useI18n } from "vue-i18n";
 import privatePlaylist from "@/components/privatePlaylist.vue";
 import ChangeLocale from "./components/ChangeLocale.vue";
-import Toolbar from "./components/AppToolbar.vue";
+import AppToolbar from "./components/AppToolbar.vue";
 import MediaPlayer from "./components/MediaPlayer.vue";
 
 // logout
@@ -50,7 +50,7 @@ watch(
       <privatePlaylist v-if="isAuthenticated" />
     </nav>
     <div class="grow">
-      <Toolbar />
+      <app-toolbar />
       <main class="p-5 grow">
         <router-view v-if="isAuthenticated" />
       </main>
