@@ -21,7 +21,7 @@ new PlaylistApi()
       :key="playlist.id || 0"
       :to="{
         name: 'CuratedPlaylistDetails',
-        params: { playlistId: playlist.id },
+        params: { id: playlist.id },
       }"
       class="m-4 text-ellipsis overflow-hidden w-52"
     >

@@ -9,7 +9,7 @@ import ProtectedImage from "@/components/ProtectedImage.vue";
 import { MediaPlaylistInjectionKey } from "@/plugins/mediaPlayer";
 
 const props = defineProps<{
-  playlistId: string;
+  id: string;
 }>();
 const playlist: Ref<PlaylistModel> = ref({});
 const tracks: Ref<TrackModel[]> = ref([]);
@@ -17,9 +17,9 @@ const tracks: Ref<TrackModel[]> = ref([]);
 const { setCurrentSong } = inject(MediaPlaylistInjectionKey)!;
 
 watch(
-  () => props.playlistId,
+  () => props.id,
   () => {
-    const playlistId = Number(props.playlistId);
+    const playlistId = Number(props.id);
     new PlaylistApi()
       .playlistIdGet({ id: playlistId })
       .then((result) => {

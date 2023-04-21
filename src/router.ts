@@ -45,8 +45,8 @@ const router = createRouter({
     },
     {
       name: "CuratedPlaylistDetails",
-      path: "/playlist/curated/:playlistId",
-      component: () => import("@/pages/playlist/[id].vue"),
+      path: "/playlist/curated/:id",
+      component: () => import("@/pages/playlist/curated/[id].vue"),
       props: true,
       meta: {
         toolbarTitle: reactiveTranslation(() => t("nav.playlist")),
