@@ -16,12 +16,10 @@
     {
       "files": ["*.ts", "*.js", "*.vue"],
       "extends": [
-        "eslint:recommended",
         "airbnb-base",
         "airbnb-typescript/base",
-        "plugin:vue/vue3-recommended",
+        "@nuxtjs/eslint-config-typescript",
         "plugin:promise/recommended",
-        "plugin:@typescript-eslint/strict",
         "plugin:@intlify/vue-i18n/recommended",
         "prettier"
       ],
@@ -57,14 +55,19 @@
           { "devDependencies": true }
         ]
       }
+    },
+    {
+      "files": ["stores/**/*.ts", "composables/**/*.ts"],
+      "rules": {
+        "import/prefer-default-export": "off"
+      }
     }
   ],
   "parser": "vue-eslint-parser",
   "parserOptions": {
     "parser": "@typescript-eslint/parser",
-    "project": ["**/tsconfig.json", "**/tsconfig.*.json"],
     "ecmaVersion": "latest",
-    "sourceType": "module",
+    "project": ["tsconfig.json"],
     "extraFileExtensions": [".vue"]
   },
   "plugins": ["vue", "@typescript-eslint"],
@@ -76,12 +79,6 @@
     ]
   },
   "settings": {
-    "import/resolver": {
-      "alias": {
-        "map": [["@", "./src/"]],
-        "extensions": [".js", ".ts", ".vue"]
-      }
-    },
     "vue-i18n": {
       "localeDir": "./src/locales/*.{json,json5,yaml,yml}"
     }
