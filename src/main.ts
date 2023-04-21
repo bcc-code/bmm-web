@@ -1,8 +1,8 @@
 import { createApp } from "vue";
+import { createPinia } from "pinia";
 import "./style.css";
 import App from "./App.vue";
 import router from "./router";
-import Store from "./store";
 import mediaPlayer from "./plugins/mediaPlayer";
 import auth0 from "./plugins/auth0";
 import bmmApi from "./plugins/bmm-api";
@@ -20,13 +20,6 @@ app.use(i18n);
 
 app.use(mediaPlayer);
 
-app.provide(
-  "store",
-  new Store({
-    loading: true,
-    authenticated: false,
-    token: null,
-  })
-);
+app.use(createPinia());
 
 app.mount("#app");
