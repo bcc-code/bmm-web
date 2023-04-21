@@ -1,7 +1,7 @@
-import auth0 from "@/auth0";
+import { App } from "vue";
 import { Configuration, DefaultConfig } from "@bcc-code/bmm-sdk-fetch";
 
-export default () => {
+export default (app: App) => {
   DefaultConfig.config = new Configuration({
     basePath: import.meta.env.VITE_API_URL,
     headers: {
@@ -10,7 +10,8 @@ export default () => {
     middleware: [
       {
         pre: async (ctx) => {
-          const { getAccessTokenSilently, isAuthenticated } = auth0;
+          const { getAccessTokenSilently, isAuthenticated } =
+            app.config.globalProperties.$auth0;
           const token = isAuthenticated.value
             ? await getAccessTokenSilently()
             : null;

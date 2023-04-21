@@ -1,16 +1,5 @@
 import { App, computed, ComputedRef, InjectionKey, Ref, ref, watch } from "vue";
-import auth0 from "@/auth0";
 import filters from "@/utils/filters";
-
-const { getAccessTokenSilently, isAuthenticated } = auth0;
-const authToken: Ref<string | undefined> = ref();
-watch(
-  isAuthenticated,
-  async () => {
-    authToken.value = await getAccessTokenSilently();
-  },
-  { immediate: true }
-);
 
 export interface MediaPlayer {
   status: ComputedRef<MediaPlayerStatus>;
@@ -39,6 +28,17 @@ export enum MediaPlayerStatus {
 }
 
 export default (app: App) => {
+  const { getAccessTokenSilently, isAuthenticated } =
+    app.config.globalProperties.$auth0;
+  const authToken: Ref<string | undefined> = ref();
+  watch(
+    isAuthenticated,
+    async () => {
+      authToken.value = await getAccessTokenSilently();
+    },
+    { immediate: true }
+  );
+
   // Good to know when writing tests: https://github.com/jsdom/jsdom/issues/2155#issuecomment-366703395
   let activeMedia: HTMLAudioElement | undefined;
 

@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { useAuth0 } from "@auth0/auth0-vue";
-import { Ref, ref, watch } from "vue";
+import { AUTH0_INJECTION_KEY } from "@auth0/auth0-vue";
+import { Ref, inject, ref, watch } from "vue";
 import { useI18n } from "vue-i18n";
 import privatePlaylist from "@/components/privatePlaylist.vue";
 import ChangeLocale from "./components/ChangeLocale.vue";
@@ -8,7 +8,8 @@ import Toolbar from "./components/AppToolbar.vue";
 import MediaPlayer from "./components/MediaPlayer.vue";
 
 // logout
-const { isLoading, loginWithRedirect, isAuthenticated } = useAuth0();
+const { isLoading, loginWithRedirect, isAuthenticated } =
+  inject(AUTH0_INJECTION_KEY)!;
 watch(isLoading, async (loading) => {
   if (loading) return;
   if (!isAuthenticated.value) {
