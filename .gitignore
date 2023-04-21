@@ -1,21 +1,11 @@
-.eslintcache
-.stylelintcache
-tsconfig.*.tsbuildinfo
-
-# Logs
-logs
-*.log
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-lerna-debug.log*
-
 node_modules
-coverage
+*.log*
+.nuxt
+.nitro
+.cache
+.output
+.env
 dist
-dist-ssr
-*.local
 
 cypress.env.json
 cypress/videos/*

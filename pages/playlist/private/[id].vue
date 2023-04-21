@@ -1,0 +1,53 @@
+<script lang="ts" setup>
+import {
+  GetTrackCollectionModel,
+  TrackCollectionApi,
+} from "@bcc-code/bmm-sdk-fetch";
+
+const { t } = useI18n();
+toolbarTitleStore().setReactiveToolbarTitle(() => t("nav.playlist"));
+
+const { params } = useRoute();
+
+const trackCollection = ref<GetTrackCollectionModel>({});
+
+watch(
+  () => params.id,
+  () => {
+    new TrackCollectionApi()
+      .trackCollectionIdGet({ id: Number(params.id) })
+      .then((collection) => {
+        trackCollection.value = collection;
+      })
+      .catch(() => {});
+  },
+  { immediate: true }
+);
+</script>
+
+<template>
+  <div>
+    <h2>{{ trackCollection?.name }}</h2>
+    <ol class="list-decimal list-inside">
+      <li v-for="track in trackCollection.tracks" :key="`track-${track.id}`">
+        {{ track.title }}
+      </li>
+    </ol>
+  </div>
+</template>
+
+<style scoped>
+h2 {
+  width: 1368px;
+  height: 32px;
+  font-style: normal;
+  font-weight: 800;
+  font-size: 28px;
+  line-height: 32px;
+  letter-spacing: -0.3px;
+  color: #0d131a;
+  flex: none;
+  order: 0;
+  flex-grow: 1;
+}
+</style>
