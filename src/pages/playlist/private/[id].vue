@@ -4,6 +4,11 @@ import {
   TrackCollectionApi,
 } from "@bcc-code/bmm-sdk-fetch";
 import { ref, watch } from "vue";
+import { useI18n } from "vue-i18n";
+import toolbarTitleStore from "@/stores/toolbarTitle";
+
+const { t } = useI18n();
+toolbarTitleStore().setReactiveToolbarTitle(() => t("nav.playlist"));
 
 const props = defineProps<{
   id: string;

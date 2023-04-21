@@ -1,8 +1,6 @@
 <script lang="ts" setup>
 import { ref } from "vue";
-import { useRoute } from "vue-router";
-
-const route = useRoute();
+import toolbarTitleStore from "@/stores/toolbarTitle";
 
 // TODO: Replace placeholder by profile menu #8
 const showMenu = ref(false);
@@ -15,7 +13,7 @@ function toggleMenu() {
   <header
     class="py-4 px-5 sticky top-0 bg-white/80 backdrop-blur-lg border-b border-gray-100 leading-none flex justify-between align-center"
   >
-    <strong>{{ route.meta.toolbarTitle?.value }}</strong>
+    <strong>{{ toolbarTitleStore().toolbarTitle }}</strong>
     <div class="relative">
       <button @click="toggleMenu">{{ $t("nav.profile") }}</button>
       <div
