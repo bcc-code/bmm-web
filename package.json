@@ -4,7 +4,7 @@
   "scripts": {
     "build": "nuxt build",
     "coverage": "vitest run --coverage",
-    "dev": "nuxt dev",
+    "dev": "nuxt --port 9001 dev",
     "e2e": "cypress open",
     "generate": "nuxt generate",
     "lint": "stylelint '**/*.{vue,scss}' && prettier . --check && eslint --ext ts,js,vue,json . && nuxi typecheck",
