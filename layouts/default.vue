@@ -5,7 +5,7 @@ const onError = (error: any) => {
 </script>
 
 <template>
-  <div class="flex h-full">
+  <div class="flex h-full overflow-y-hidden max-h-[100vh]">
     <SidebarElement />
     <main class="flex-grow overflow-y-auto relative">
       <AppToolbar />
