@@ -19,14 +19,25 @@ new TrackCollectionApi()
   <div>
     <h3>{{ $t("nav.playlist") }}</h3>
     <ul>
-      <li v-for="collection in collections" :key="collection.id || 0">
+      <li
+        v-for="collection in collections"
+        :key="collection.id || 0"
+        class="flex"
+      >
         <RouterLink
           :to="{
             name: 'PrivatePlaylist',
             params: { id: collection.id },
           }"
         >
-          {{ collection.name }}
+          <span class="flex">
+            <img
+              src=".././assets/Icons/icon.category.playlist.svg"
+              alt="playlist"
+              class="pr-1"
+            />
+            {{ collection.name }}
+          </span>
         </RouterLink>
       </li>
     </ul>
