@@ -22,13 +22,11 @@ useHead({
       </template>
       <div v-else class="h-12 bg-slate-100 w-1/3 rounded-lg mb-6"></div>
     </header>
-    <TrackList :skeleton-count="5" :show-skeleton="pending">
-      <TrackItem
-        v-for="track in collection?.tracks"
-        :key="track.id || 0"
-        :track="track"
-        show-thumbnail
-      />
+    <TrackList
+      :skeleton-count="5"
+      :show-skeleton="pending"
+      :tracks="collection?.tracks || null"
+    >
     </TrackList>
   </div>
 </template>
