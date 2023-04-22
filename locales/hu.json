@@ -2,6 +2,14 @@
   "nav": {
     "home": "Főoldal",
     "browse": "Böngész",
+    "playlist": "Lejátszási lista",
+    "profile": "Profil",
     "search": "Keresés"
+  },
+  "error": {
+    "page-not-found": {
+      "headline": "Error",
+      "text": "Sorry. We can't find the page \"{path}\"."
+    }
   }
 }
