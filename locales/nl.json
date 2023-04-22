@@ -1,7 +1,15 @@
 {
   "nav": {
     "home": "Home",
-    "browse": "Browse",
+    "browse": "Bladeren",
+    "playlist": "Afspeellijst",
+    "profile": "Profiel",
     "search": "Zoeken"
+  },
+  "error": {
+    "page-not-found": {
+      "headline": "Error",
+      "text": "Sorry. We can't find the page \"{path}\"."
+    }
   }
 }

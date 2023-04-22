@@ -2,6 +2,14 @@
   "nav": {
     "home": "Hjem",
     "browse": "Browse",
+    "playlist": "Spilleliste",
+    "profile": "Min profil",
     "search": "Søk"
+  },
+  "error": {
+    "page-not-found": {
+      "headline": "Error",
+      "text": "Sorry. We can't find the page \"{path}\"."
+    }
   }
 }
