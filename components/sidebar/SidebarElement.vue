@@ -10,7 +10,7 @@ const { data: collections } = useTrackCollections();
 
 <template>
   <aside
-    class="min-w-[300px] max-h-[100vh] border-r border-slate-200 flex flex-col"
+    class="min-w-[300px] max-h-screen border-r border-slate-200 flex flex-col"
   >
     <div class="p-3">
       <SiteLogo size="small" />
