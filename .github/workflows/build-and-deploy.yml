@@ -38,6 +38,7 @@ jobs:
           CYPRESS_LOGIN_PASSWORD: ${{ secrets.CYPRESS_LOGIN_PASSWORD }}
         with:
           start: pnpm preview
+          wait-on: "http://localhost:9001"
 
       - uses: actions/upload-artifact@v3
         if: always()
