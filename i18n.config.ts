@@ -1,4 +1,4 @@
-import { I18nOptions } from "@nuxtjs/i18n";
+// import { I18nOptions } from "@nuxtjs/i18n";
 
 import af from "./locales/af.json";
 import bg from "./locales/bg.json";
@@ -26,7 +26,7 @@ import tr from "./locales/tr.json";
 import uk from "./locales/uk.json";
 import zh from "./locales/zh.json";
 
-const i18nConfig: I18nOptions = {
+const i18nConfig = {
   legacy: false,
   locale: "en",
   messages: {
@@ -58,4 +58,5 @@ const i18nConfig: I18nOptions = {
   },
 };
 
-export default defineI18nConfig(() => i18nConfig);
+// export default defineI18nConfig(() => i18nConfig);
+export default i18nConfig;
