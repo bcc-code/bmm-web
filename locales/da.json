@@ -2,6 +2,14 @@
   "nav": {
     "home": "Hjem",
     "browse": "Gennemse",
+    "playlist": "Spilleliste",
+    "profile": "Profil",
     "search": "Søg"
+  },
+  "error": {
+    "page-not-found": {
+      "headline": "Error",
+      "text": "Sorry. We can't find the page \"{path}\"."
+    }
   }
 }
