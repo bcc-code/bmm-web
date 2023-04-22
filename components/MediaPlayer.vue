@@ -18,7 +18,8 @@ const { currentTrack } = inject(MediaPlaylistInjectionKey)!;
     <a href="">🔀</a>
     <a href="">🔁</a>
 
-  <span style="max-width: 100px; overflow: hidden; display: inline-block"
-    >Current track: {{ currentTrack }}</span
-  >
+    <span style="max-width: 100px; overflow: hidden; display: inline-block"
+      >Current track: {{ currentTrack }}</span
+    >
+  </div>
 </template>
