@@ -26,7 +26,7 @@ defineProps<{
           <div
             class="absolute inset-0 rounded-md bg-black opacity-50 w-full h-full"
           ></div>
-          <Icon
+          <IconComponent
             name="play"
             filled
             class="absolute inset-0 text-white text-2xl flex justify-center items-center"
@@ -50,17 +50,17 @@ defineProps<{
         <span class="text-slate-400">{{ track.meta?.time }}</span>
       </div>
       <div class="ml-auto flex justify-center items-center gap-3">
-        <Icon
+        <IconComponent
           name="download"
           filled
           class="opacity-0 group-hover:opacity-100 text-2xl"
         />
-        <Icon
+        <IconComponent
           name="queue"
           filled
           class="opacity-0 group-hover:opacity-100 text-2xl"
         />
-        <Icon name="options" filled class="text-2xl" />
+        <IconComponent name="options" filled class="text-2xl" />
       </div>
     </div>
   </li>
