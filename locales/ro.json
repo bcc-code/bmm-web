@@ -2,6 +2,14 @@
   "nav": {
     "home": "Acasă",
     "browse": "Explorează",
+    "playlist": "Play-list",
+    "profile": "Profil",
     "search": "Caută"
+  },
+  "error": {
+    "page-not-found": {
+      "headline": "Error",
+      "text": "Sorry. We can't find the page \"{path}\"."
+    }
   }
 }
