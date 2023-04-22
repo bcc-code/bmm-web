@@ -1,13 +1,18 @@
 <script lang="ts" setup>
+import { TrackModel } from "@bcc-code/bmm-sdk-fetch";
+import { MediaPlaylistInjectionKey } from "~/plugins/3.mediaPlayer";
+
 withDefaults(
   defineProps<{
     showSkeleton?: boolean;
     skeletonCount?: number;
+    tracks: TrackModel[] | null;
   }>(),
   {
     skeletonCount: 5,
   }
 );
+const { setCurrentSong } = inject(MediaPlaylistInjectionKey)!;
 </script>
 
 <template>
@@ -20,7 +25,13 @@ withDefaults(
       ></li>
     </template>
     <template v-else>
-      <slot />
+      <TrackItem
+        v-for="track in tracks"
+        :key="track.id || 0"
+        :track="track"
+        show-thumbnail
+        @click="setCurrentSong(track.media?.[0]?.files?.[0]?.url || '')"
+      />
     </template>
   </ol>
 </template>

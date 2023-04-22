@@ -35,8 +35,7 @@ onBeforeMount(() => {
         </div>
       </div>
     </header>
-    <TrackList :skeleton-count="10" :show-skeleton="pending">
-      <TrackItem v-for="track in tracks" :key="track.id || 0" :track="track" />
+    <TrackList :skeleton-count="10" :show-skeleton="pending" :tracks="tracks">
     </TrackList>
   </div>
 </template>
