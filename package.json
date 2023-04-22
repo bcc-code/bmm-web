@@ -10,7 +10,10 @@
     "lint": "stylelint '**/*.{vue,scss}' && prettier . --check && eslint --ext ts,js,vue,json . && nuxi typecheck",
     "test": "vitest",
     "preview": "PORT=9001 nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "tokens:build-color": "token-transformer assets/design-tokens/raw/Bmm_Color_Tokens_v1.1.json assets/design-tokens/color.json global,light,dark global",
+    "tokens:build-type": "token-transformer assets/design-tokens/raw/Bmm_Type_Tokens_v1.1.json assets/design-tokens/type.json",
+    "tokens:build": "pnpm tokens:build-color"
   },
   "dependencies": {
     "@auth0/auth0-vue": "^2.0.2",
@@ -48,6 +51,7 @@
     "stylelint": "^15.1.0",
     "stylelint-config-recommended-scss": "^9.0.1",
     "stylelint-config-recommended-vue": "^1.4.0",
+    "token-transformer": "^0.0.32",
     "typescript": "^4.9.3",
     "vite": "^4.0.0",
     "vitest": "^0.30.1",
