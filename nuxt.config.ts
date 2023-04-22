@@ -33,9 +33,9 @@ const modules: (string | any)[] = [
   "@nuxtjs/tailwindcss",
   "@nuxtjs/i18n",
   ["@pinia/nuxt", { autoImports: ["defineStore"] }],
-]
+];
 
-if (process.env.ELECTRON) modules.push(["nuxt-electron"])
+if (process.env.ELECTRON) modules.push(["nuxt-electron"]);
 
 export default defineNuxtConfig({
   modules,
