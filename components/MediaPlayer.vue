@@ -9,15 +9,17 @@ const { status, play, pause } = inject(MediaPlayerInjectionKey)!;
 const { currentSong } = inject(MediaPlaylistInjectionKey)!;
 </script>
 <template>
-  <a href="">⏪</a>
-  <a v-if="status !== MediaPlayerStatus.Playing" @click="play()">⏵</a>
-  <a v-if="status === MediaPlayerStatus.Playing" @click="pause()">⏸</a>
-  <a href="">⏩</a>
+  <div class="fixed bottom-3 right-3 w-[316px] height-5">
+    <a href="">⏪</a>
+    <a v-if="status !== MediaPlayerStatus.Playing" @click="play()">⏵</a>
+    <a v-if="status === MediaPlayerStatus.Playing" @click="pause()">⏸</a>
+    <a href="">⏩</a>
 
-  <a href="">🔀</a>
-  <a href="">🔁</a>
+    <a href="">🔀</a>
+    <a href="">🔁</a>
 
-  <span style="max-width: 100px; overflow: hidden; display: inline-block"
-    >Current track: {{ currentSong }}</span
-  >
+    <span style="max-width: 100px; overflow: hidden; display: inline-block"
+      >Current track: {{ currentSong }}</span
+    >
+  </div>
 </template>
