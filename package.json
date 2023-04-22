@@ -1,15 +1,21 @@
 {
   "name": "bmm-web",
+  "version": "0.0.1",
+  "author": "BCC",
+  "description": "BCC audio player",
   "license": "AGPL-3.0",
+  "main": "dist-electron/main.js",
   "scripts": {
-    "build": "nuxt build",
-    "coverage": "vitest run --coverage",
     "dev": "nuxt --port 9001 dev",
-    "e2e": "cypress open",
+    "build": "nuxt build",
+    "dev:electron": "ELECTRON=true nuxt --port 9001 dev",
+    "build:electron": "ELECTRON=true nuxt generate && electron-builder",
     "generate": "nuxt generate",
+    "preview": "PORT=9001 nuxt preview",
+    "coverage": "vitest run --coverage",
+    "e2e": "cypress open",
     "lint": "stylelint '**/*.{vue,scss}' && prettier . --check && eslint --ext ts,js,vue,json . && nuxi typecheck",
     "test": "vitest",
-    "preview": "PORT=9001 nuxt preview",
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
@@ -27,16 +33,21 @@
     "@nuxtjs/tailwindcss": "^6.6.6",
     "@vue/test-utils": "^2.3.2",
     "cypress": "^12.10.0",
+    "electron": "^24.1.2",
+    "electron-builder": "^23.6.0",
     "eslint": "^8.39.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-airbnb-typescript": "^17.0.0",
     "eslint-config-prettier": "^8.8.0",
     "happy-dom": "^9.9.2",
     "nuxt": "^3.4.1",
+    "nuxt-electron": "^0.4.5",
     "prettier": "^2.8.7",
     "stylelint": "^15.5.0",
     "stylelint-config-recommended-scss": "^10.0.0",
     "stylelint-config-recommended-vue": "^1.4.0",
+    "vite-electron-plugin": "^0.8.2",
+    "vite-plugin-electron-renderer": "^0.14.1",
     "vitest": "^0.30.1"
   }
 }

@@ -28,13 +28,17 @@ import tr from "./locales/tr.json";
 import uk from "./locales/uk.json";
 import zh from "./locales/zh.json";
 
+const modules: (string | any)[] = [
+  "@nuxt/devtools",
+  "@nuxtjs/tailwindcss",
+  "@nuxtjs/i18n",
+  ["@pinia/nuxt", { autoImports: ["defineStore"] }],
+];
+
+if (process.env.ELECTRON) modules.push(["nuxt-electron"]);
+
 export default defineNuxtConfig({
-  modules: [
-    "@nuxt/devtools",
-    "@nuxtjs/tailwindcss",
-    "@nuxtjs/i18n",
-    ["@pinia/nuxt", { autoImports: ["defineStore"] }],
-  ],
+  modules,
   runtimeConfig: {
     public: {
       apiUrl: "https://bmm-api.brunstad.org",

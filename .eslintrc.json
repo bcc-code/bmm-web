@@ -61,6 +61,12 @@
       "rules": {
         "import/prefer-default-export": "off"
       }
+    },
+    {
+      "files": ["electron/**/*.ts"],
+      "rules": {
+        "import/no-extraneous-dependencies": "off"
+      }
     }
   ],
   "parser": "vue-eslint-parser",
