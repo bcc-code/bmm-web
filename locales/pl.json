@@ -2,6 +2,14 @@
   "nav": {
     "home": "Home",
     "browse": "Przeglądaj",
+    "playlist": "Playlista",
+    "profile": "Profil",
     "search": "Szukaj"
+  },
+  "error": {
+    "page-not-found": {
+      "headline": "Error",
+      "text": "Sorry. We can't find the page \"{path}\"."
+    }
   }
 }
