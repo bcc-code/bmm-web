@@ -1,5 +1,3 @@
-import { computed, ComputedRef, InjectionKey, Ref, ref, watch } from "vue";
-
 const authToken: Ref<string | undefined> = ref();
 
 export enum MediaPlayerStatus {
