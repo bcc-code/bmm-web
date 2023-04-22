@@ -11,9 +11,7 @@
     "test": "vitest",
     "preview": "PORT=9001 nuxt preview",
     "postinstall": "nuxt prepare",
-    "tokens:build-color": "token-transformer assets/design-tokens/raw/Bmm_Color_Tokens_v1.1.json assets/design-tokens/color.json global,light,dark global",
-    "tokens:build-type": "token-transformer assets/design-tokens/raw/Bmm_Type_Tokens_v1.1.json assets/design-tokens/type.json",
-    "tokens:build": "pnpm tokens:build-color"
+    "tokens:build": "token-transformer assets/design-tokens/tokens.json assets/design-tokens/tokens-transformed.json"
   },
   "dependencies": {
     "@auth0/auth0-vue": "^2.0.2",
