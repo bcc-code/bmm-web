@@ -4,19 +4,19 @@ toolbarTitleStore().setReactiveToolbarTitle(() => t("nav.home"));
 
 // Playlists
 const { data: playlists, pending: playlistsPending } = usePlaylists();
-const newestPlaylists = computed(() => playlists.value?.splice(0, 4));
+const newestPlaylists = computed(() => playlists.value?.splice(0, 4) || null);
 
 // Speeches
 const { data: speeches, pending: speechesPending } = useTracks({
   contentType2: ["speech"],
 });
-const newestSpeeches = computed(() => speeches.value?.splice(0, 5));
+const newestSpeeches = computed(() => speeches.value?.splice(0, 5) || null);
 
 // Audiobooks
 const { data: audiobooks, pending: audiobooksPending } = useTracks({
   contentType2: ["audiobook"],
 });
-const newestAudiobooks = computed(() => audiobooks.value?.splice(0, 5));
+const newestAudiobooks = computed(() => audiobooks.value?.splice(0, 5) || null);
 </script>
 
 <template>
@@ -35,23 +35,19 @@ const newestAudiobooks = computed(() => audiobooks.value?.splice(0, 5));
       />
     </ContentSection>
     <ContentSection title="Speeches" :link="{ to: '/messages' }">
-      <TrackList :skeleton-count="5" :show-skeleton="speechesPending">
-        <TrackItem
-          v-for="speech in newestSpeeches"
-          :key="speech.id || 0"
-          :track="speech"
-          show-thumbnail
-        />
+      <TrackList
+        :skeleton-count="5"
+        :show-skeleton="speechesPending"
+        :tracks="newestSpeeches"
+      >
       </TrackList>
     </ContentSection>
     <ContentSection title="Audiobooks" :link="{ to: '/audiobooks' }">
-      <TrackList :skeleton-count="5" :show-skeleton="audiobooksPending">
-        <TrackItem
-          v-for="audiobook in newestAudiobooks"
-          :key="audiobook.id || 0"
-          :track="audiobook"
-          show-thumbnail
-        />
+      <TrackList
+        :skeleton-count="5"
+        :show-skeleton="audiobooksPending"
+        :tracks="newestAudiobooks"
+      >
       </TrackList>
     </ContentSection>
   </div>
