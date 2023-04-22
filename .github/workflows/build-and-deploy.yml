@@ -50,11 +50,11 @@ jobs:
           name: cypress-screenshots
           path: cypress/screenshots
 
-      # - name: Archive production artifacts
-      #   uses: actions/upload-artifact@v3
-      #   with:
-      #     name: dist
-      #     path: dist
+      - name: Archive production artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: dist
+          path: .output/public
       # - name: Archive code coverage results
       #   uses: actions/upload-artifact@v3
       #   with:
