@@ -2,6 +2,14 @@
   "nav": {
     "home": "Domov",
     "browse": "Razišči",
+    "playlist": "Seznam predvajanja",
+    "profile": "Profil",
     "search": "Išči"
+  },
+  "error": {
+    "page-not-found": {
+      "headline": "Error",
+      "text": "Sorry. We can't find the page \"{path}\"."
+    }
   }
 }
