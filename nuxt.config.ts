@@ -5,6 +5,7 @@ export default defineNuxtConfig({
     "@nuxtjs/tailwindcss",
     "@nuxtjs/i18n",
     ["@pinia/nuxt", { autoImports: ["defineStore"] }],
+    "nuxt-icons"
   ],
   runtimeConfig: {
     public: {
