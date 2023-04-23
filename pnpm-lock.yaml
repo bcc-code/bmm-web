@@ -81,9 +81,6 @@ devDependencies:
   stylelint-config-recommended-vue:
     specifier: ^1.4.0
     version: 1.4.0(postcss-html@1.5.0)(stylelint@15.5.0)
-  token-transformer:
-    specifier: ^0.0.32
-    version: 0.0.32
   vite-electron-plugin:
     specifier: ^0.8.2
     version: 0.8.2(acorn@8.8.2)(esbuild@0.17.17)
@@ -10070,13 +10067,6 @@ packages:
   /toidentifier@1.0.1:
     resolution: {integrity: sha512-o5sSPKEkg/DIQNmH43V0/uerLrpzVedkUh8tGNvaeXpfpuwjKenlSox/2O/BTlZUtEe+JG7s5YhEz608PlAHRA==}
     engines: {node: '>=0.6'}
-    dev: true
-
-  /token-transformer@0.0.32:
-    resolution: {integrity: sha512-JRhLcztUCYIi4kHF/o7/askCqXPUef98821CfrVJOQjDmPm09+9vTDJqXDyOYLRa29eBkqLqWg/35H2InnsFpg==}
-    hasBin: true
-    dependencies:
-      yargs: 17.7.1
     dev: true
 
   /totalist@3.0.1:

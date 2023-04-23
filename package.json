@@ -48,7 +48,6 @@
     "stylelint": "^15.5.0",
     "stylelint-config-recommended-scss": "^10.0.0",
     "stylelint-config-recommended-vue": "^1.4.0",
-    "token-transformer": "^0.0.32",
     "vite-electron-plugin": "^0.8.2",
     "vite-plugin-electron-renderer": "^0.14.1",
     "vitest": "^0.30.1"
