@@ -10,10 +10,14 @@ const props = defineProps<{
 const source = ref<string>();
 const { getAccessTokenSilently } = useAuth0();
 
-onMounted(async () => {
-  const token = await getAccessTokenSilently();
-  source.value = authorizedUrl(props.src, token);
-});
+watch(
+  () => props.src,
+  async () => {
+    const token = await getAccessTokenSilently();
+    source.value = authorizedUrl(props.src, token);
+  },
+  { immediate: true }
+);
 </script>
 <template>
   <img :src="source || ''" :alt="alt || ''" loading="lazy" v-bind="$attrs" />
