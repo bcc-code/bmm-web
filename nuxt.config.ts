@@ -29,6 +29,7 @@ import uk from "./locales/uk.json";
 import zh from "./locales/zh.json";
 
 const modules: (string | any)[] = [
+  ["nuxt-typed-router", { strict: true }],
   "@nuxt/devtools",
   "@nuxtjs/tailwindcss",
   "@nuxtjs/i18n",

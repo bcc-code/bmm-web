@@ -23,6 +23,7 @@ specifiers:
   happy-dom: ^9.9.2
   nuxt: ^3.4.1
   nuxt-electron: ^0.4.5
+  nuxt-typed-router: ^3.1.5
   prettier: ^2.8.7
   stylelint: ^15.5.0
   stylelint-config-recommended-scss: ^10.0.0
@@ -56,6 +57,7 @@ devDependencies:
   happy-dom: 9.9.2
   nuxt: 3.4.2_k235phww2butyrhgjydn2t6wyy
   nuxt-electron: 0.4.5_4dhlpmyce5l64ndh6xu7axy5fm
+  nuxt-typed-router: 3.1.5
   prettier: 2.8.7
   stylelint: 15.5.0
   stylelint-config-recommended-scss: 10.0.0_jlozeh364m7zi74vsez2z35nzi
@@ -6892,6 +6894,10 @@ packages:
       p-locate: 5.0.0
     dev: true
 
+  /lodash-es/4.17.21:
+    resolution: {integrity: sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw==}
+    dev: true
+
   /lodash._reinterpolate/3.0.0:
     resolution: {integrity: sha512-xYHt68QRoYGjeeM/XOE1uJtvXQAgvszfBhjV4yvsQH0u2i9I6cI6c6/eG4Hh3UAOVn0y/xAXwmTzEay49Q//HA==}
 
@@ -7394,6 +7400,12 @@ packages:
     engines: {node: '>=10'}
     hasBin: true
 
+  /mkdirp/3.0.0:
+    resolution: {integrity: sha512-7+JDnNsyCvZXoUJdkMR0oUE2AmAdsNXGTmRbiOjYIwQ6q+bL6NwrozGQdPcmYaNcrhH37F50HHBUzoaBV6FITQ==}
+    engines: {node: '>=10'}
+    hasBin: true
+    dev: true
+
   /mlly/1.2.0:
     resolution: {integrity: sha512-+c7A3CV0KGdKcylsI6khWyts/CYrGTrRVo4R/I7u/cUsy0Conxa6LUhiEzVKIw14lc2L5aiO4+SeVe4TeGRKww==}
     dependencies:
@@ -7801,6 +7813,23 @@ packages:
       esbuild: 0.17.17
       vite-electron-plugin: 0.8.2_dl4nqpxfzjuspf2jhezfok4ije
       vite-plugin-electron-renderer: 0.14.1
+    dev: true
+
+  /nuxt-typed-router/3.1.5:
+    resolution: {integrity: sha512-wnI66Or/4bTYZVKpKpQwH5ffeqJuC+sBEc3Bco18iXLb7U1ywh+A7iSMnPDyxoz3BW1QXh4ErlRVXBYU87ORzg==}
+    dependencies:
+      '@nuxt/kit': 3.4.2
+      chalk: 5.2.0
+      defu: 6.1.2
+      lodash-es: 4.17.21
+      log-symbols: 5.1.0
+      mkdirp: 3.0.0
+      nanoid: 4.0.2
+      pathe: 1.1.0
+      prettier: 2.8.7
+    transitivePeerDependencies:
+      - rollup
+      - supports-color
     dev: true
 
   /nuxt/3.4.2_k235phww2butyrhgjydn2t6wyy:
