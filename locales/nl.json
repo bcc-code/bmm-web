@@ -11,5 +11,12 @@
       "headline": "Fout",
       "text": "Sorry. We can't find the page \"{path}\"."
     }
+  },
+  "track": {
+    "a11y": {
+      "download": "Download",
+      "queue": "Toevoegen aan wachtrij",
+      "options": "Show options"
+    }
   }
 }
