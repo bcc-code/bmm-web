@@ -9,25 +9,17 @@ const { status, play, pause } = inject(MediaPlayerInjectionKey)!;
 const { currentTrack } = inject(MediaPlaylistInjectionKey)!;
 </script>
 <template>
-  <div
-    class="fixed bottom-3 right-3 flex w-[400px] p-3 rounded-2xl shadow-xl bg-white"
-  >
+  <div class="fixed bottom-3 right-3 flex w-[400px] p-3 rounded-2xl shadow-xl bg-white-1">
     <div class="flex flex-1 gap-3 min-w-0">
       <div class="flex flex-1 gap-3 min-w-0">
-        <div class="rounded-xl bg-slate-100 w-[48px] overflow-hidden">
-          <ProtectedImage
-            v-if="currentTrack?.meta?.attachedPicture"
-            :src="currentTrack?.meta?.attachedPicture"
-          />
+        <div class="rounded-xl bg-background-2 w-[48px] overflow-hidden">
+          <ProtectedImage v-if="currentTrack?.meta?.attachedPicture" :src="currentTrack?.meta?.attachedPicture" />
         </div>
         <div class="flex flex-col min-w-0">
           <h3 class="font-semibold text-lg truncate">
             {{ currentTrack?.title }}
           </h3>
-          <span
-            class="text-slate-700 text-base truncate"
-            v-if="currentTrack?.meta?.artist"
-          >
+          <span v-if="currentTrack?.meta?.artist" class="text-label-2 text-base truncate">
             {{ currentTrack.meta?.artist }}
           </span>
         </div>
