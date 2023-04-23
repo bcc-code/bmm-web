@@ -11,5 +11,12 @@
       "headline": "Fehler",
       "text": "Die Seite \"{path}\" gibt es nicht"
     }
+  },
+  "track": {
+    "a11y": {
+      "download": "Herunterladen",
+      "queue": "Zur Warteschlange hinzufügen",
+      "options": "Show options"
+    }
   }
 }
