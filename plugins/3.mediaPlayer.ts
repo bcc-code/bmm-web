@@ -102,7 +102,7 @@ export default defineNuxtPlugin((nuxtApp) => {
     },
     addTrackToQueue(track) {
       // TODO
-      this.setCurrentTrack(track);
+      return track;
     },
   });
 });

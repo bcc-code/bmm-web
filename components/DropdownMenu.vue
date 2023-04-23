@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 export interface DropdownMenuItem {
   text: string;
+  icon?: string;
   link?: string;
   clickFunction?: Function;
 }
@@ -16,31 +17,49 @@ function close(event: Event) {
   emit("close");
 }
 
-const dropdownMenuItemClasses =
-  "py-2 px-3 rounded-lg hover:bg-lime-400 hover:text-black cursor-pointer block";
+function menuItemClick(event: Event, item: DropdownMenuItem) {
+  close(event);
+
+  if (item.clickFunction) {
+    item.clickFunction();
+  }
+}
 </script>
 
 <template>
   <div>
     <ul
-      class="absolute z-20 top-10 right-0 p-2 bg-white shadow-md z-10 rounded-lg divide-y divide-slate-100 w-52"
+      class="absolute z-20 top-10 right-0 p-2 bg-white shadow-md rounded-lg divide-y divide-slate-100 w-52"
     >
-      <li v-for="item in items" :key="item.text">
+      <li
+        v-for="item in items"
+        :key="item.text"
+        class="block rounded-lg hover:bg-slate-100 hover:text-black cursor-pointer w-full"
+      >
         <NuxtLink
           v-if="item.link"
           :to="`${item.link}`"
-          :class="dropdownMenuItemClasses"
+          class="flex justify-start items-center gap-1 py-2 px-3"
         >
+          <IconComponent v-if="item.icon" :name="item.icon" />
           <span>{{ item.text }}</span>
         </NuxtLink>
         <p
           v-else-if="item.clickFunction"
-          :class="dropdownMenuItemClasses"
-          @click="item.clickFunction"
+          class="flex justify-start items-center gap-1 py-2 px-3"
+          @click="(event) => menuItemClick(event, item)"
         >
-          {{ item.text }}
+          <IconComponent v-if="item.icon" :name="item.icon" />
+          <span>{{ item.text }}</span>
         </p>
-        <p v-else :class="dropdownMenuItemClasses">{{ item.text }}</p>
+        <p
+          v-else
+          @click="(event) => event.stopPropagation()"
+          class="flex justify-start items-center gap-1 py-2 px-3"
+        >
+          <IconComponent v-if="item.icon" :name="item.icon" />
+          <span>{{ item.text }}</span>
+        </p>
       </li>
     </ul>
     <div @click="close" class="fixed inset-0 z-10"></div>

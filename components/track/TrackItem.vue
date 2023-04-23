@@ -76,9 +76,9 @@ function playTrack() {
           <IconComponent name="queue" filled class="text-2xl" />
         </button>
         <button
+          :aria-label="t('track.a11y.options')"
           @click="openOptions"
           class="py-0 px-2 rounded-lg focus:bg-lime-400"
-          :aria-label="t('track.a11y.options')"
         >
           <IconComponent name="options" filled class="text-2xl" />
         </button>
