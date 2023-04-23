@@ -6,7 +6,6 @@
     "esModuleInterop": true,
     "lib": ["ESNext", "DOM"],
     "noUncheckedIndexedAccess": true,
-    "exactOptionalPropertyTypes": true,
-    "sourceMap": true
+    "exactOptionalPropertyTypes": true
   }
 }
