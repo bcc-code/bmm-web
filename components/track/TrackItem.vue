@@ -22,7 +22,7 @@ function playTrack() {
 
 <template>
   <li class="group relative py-3 mr-3 cursor-pointer" @click="playTrack">
-    <div class="opacity-0 group-hover:opacity-100 absolute -inset-y-1 -inset-x-3 rounded-xl bg-background-2"></div>
+    <div class="opacity-0 group-hover:opacity-100 absolute -inset-y-0 -inset-x-4 rounded-xl bg-background-2"></div>
     <div class="relative flex gap-3 items-center justify-between">
       <div v-if="track.meta?.attachedPicture && showThumbnail" class="relative w-10">
         <ProtectedImage :src="track.meta?.attachedPicture" alt="" class="rounded-md w-10 aspect-square bg-background-2" />
@@ -33,8 +33,10 @@ function playTrack() {
         </div>
       </div>
       <div class="mr-auto w-1/3">
-        <h4 class="font-semibold">{{ track.meta?.title }}</h4>
-        <span v-if="track.meta?.artist" class="text-label-1">
+        <h4 class="font-semibold text-ellipsis overflow-hidden whitespace-nowrap" :title="track.meta?.title || ''">{{
+          track.meta?.title }}</h4>
+        <span v-if="track.meta?.artist" :title="track.meta?.artist"
+          class="text-label-1 block text-ellipsis overflow-hidden whitespace-nowrap">
           {{ track.meta?.artist }}
         </span>
       </div>

@@ -71,7 +71,7 @@ const dropdownMenuItemsForTrack = (track: TrackModel): DropdownMenuItem[] => {
 <template>
   <ol class="divide-y divide-label-separator w-full">
     <template v-if="showSkeleton">
-      <li v-for="skeleton in skeletonCount" :key="skeleton" class="w-full h-11 bg-slate-100 rounded-lg my-6 animate-pulse"
+      <li v-for="skeleton in skeletonCount" :key="skeleton"
         class="w-full h-11 bg-background-2 rounded-lg my-6 animate-pulse"></li>
     </template>
     <template v-else>
