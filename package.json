@@ -17,7 +17,7 @@
     "lint": "stylelint '**/*.{vue,scss}' && prettier . --check && eslint --ext ts,js,vue,json . && nuxi typecheck",
     "test": "vitest",
     "postinstall": "nuxt prepare",
-    "tokens:build": "token-transformer assets/design-tokens/tokens.json temp/tokens-transformed.json"
+    "tokens:build": "node ./scripts/convertToTailwind.cjs"
   },
   "dependencies": {
     "@auth0/auth0-vue": "^2.2.0",

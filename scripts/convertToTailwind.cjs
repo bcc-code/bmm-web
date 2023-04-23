@@ -1,5 +1,7 @@
 const fs = require('fs').promises;
 
+const shouldNotHaveSuffix = theme => ['light', 'global'].includes(theme)
+
 async function writeTailwindConfig(file, content) {
 	// Simplifies class names so bg-info-default becomes bg-info
 	content = content.replaceAll("default", "DEFAULT");
@@ -8,39 +10,32 @@ async function writeTailwindConfig(file, content) {
 }
 
 async function writeColors(figmaInput) {
-	const { colors } = figmaInput;
+	const { color } = figmaInput;
+	const transformedColors = {}
 
-	for (const [colorKey] of Object.entries(colors)) {
-		for (const [colorWeightKey, colorWeightToken] of Object.entries(colors[colorKey])) {
-			colors[colorKey][colorWeightKey] = colorWeightToken.value;
+	for (const [theme, themeValue] of Object.entries(color)) {
+		for (const [colorKey, colorValue] of Object.entries(themeValue)) {
+			const suffixedKey = shouldNotHaveSuffix(theme) ? colorKey : `${colorKey}-${theme}`
+
+			if (!colorValue.value) {
+				transformedColors[suffixedKey] ||= {}
+
+				for (const [innerColorWeight, innerColorValue] of Object.entries(colorValue)) {
+					transformedColors[suffixedKey][innerColorWeight] = innerColorValue.value
+				}
+			} else {
+				transformedColors[suffixedKey] = colorValue.value
+			}
 		}
 	}
 
-	const content = `export const colors = ${JSON.stringify(colors, null, 2)};`
 
-	await writeTailwindConfig('./src/tailwind/colors.ts', content);
-}
-
-async function writeTypography(figmaInput) {
-	const globalTextColor = figmaInput.global.foreground;
-
-	for (const [tokenKey, tokenValue] of Object.entries(globalTextColor)) {
-		globalTextColor[tokenKey] = tokenValue.value;
-	}
-
-	const buttonForegroundColors = getButtonColors(figmaInput.button, 'foreground');
-
-	const textColor = {
-		...globalTextColor,
-	}
-
-	const content = `export const textColor = ${JSON.stringify(textColor, null, 2)};`
-
-	await writeTailwindConfig('./src/tailwind/textColor.ts', content);
+	const content = `export const colors = ${JSON.stringify(transformedColors, null, 2)};`
+	await writeTailwindConfig('./tailwind/colors.ts', content);
 }
 
 async function getFigmaInput() {
-	let content = await fs.readFile('./temp/figma-transformed.json', 'utf-8');
+	let content = await fs.readFile('./assets/design-tokens/tokens.json', 'utf-8');
 	content = JSON.parse(content);
 	return content;
 }
@@ -51,7 +46,6 @@ async function main() {
 	const figmaInput = await getFigmaInput();
 
 	await writeColors(figmaInput);
-	await writeTypography(figmaInput);
 
 	return console.log("Finished building Tailwind config")
 }
