@@ -11,25 +11,29 @@ const { data: collections } = useTrackCollections();
 
 <template>
   <aside
-    class="min-w-[300px] border-r border-slate-200 bg-slate-100 p-6 sticky flex flex-col gap-8"
+    class="min-w-[300px] max-h-screen border-r border-slate-200 flex flex-col"
   >
-    <SiteLogo size="small" />
-    <ChangeLocale />
-    <SidebarGroup>
-      <SidebarItem
-        v-for="(link, i) in links"
-        :key="`${link.url}_${i}`"
-        v-bind="link"
-      />
-    </SidebarGroup>
+    <div class="p-3">
+      <SiteLogo size="small" />
+    </div>
+    <div class="flex-grow overflow-y-auto">
+      <ChangeLocale />
+      <SidebarGroup>
+        <SidebarItem
+          v-for="(link, i) in links"
+          :key="`${link.url}_${i}`"
+          v-bind="link"
+        />
+      </SidebarGroup>
 
-    <SidebarGroup title="Playlists">
-      <SidebarItem
-        v-for="collection in collections"
-        :key="collection.id || 0"
-        :title="collection.name || ''"
-        :url="`/playlist/private/${collection.id}`"
-      />
-    </SidebarGroup>
+      <SidebarGroup title="Playlists">
+        <SidebarItem
+          v-for="collection in collections"
+          :key="collection.id || 0"
+          :title="collection.name || ''"
+          :url="`/playlist/private/${collection.id}`"
+        />
+      </SidebarGroup>
+    </div>
   </aside>
 </template>

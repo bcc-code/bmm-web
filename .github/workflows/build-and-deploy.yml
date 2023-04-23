@@ -30,7 +30,7 @@ jobs:
       # - name: Upload coverage reports to Codecov
       #   uses: codecov/codecov-action@v3
       - name: Build for production
-        run: pnpm build
+        run: pnpm generate
       - name: E2E testing
         uses: cypress-io/github-action@v5
         env:
@@ -38,6 +38,7 @@ jobs:
           CYPRESS_LOGIN_PASSWORD: ${{ secrets.CYPRESS_LOGIN_PASSWORD }}
         with:
           start: pnpm preview
+          wait-on: "http://localhost:9001"
 
       - uses: actions/upload-artifact@v3
         if: always()
@@ -50,11 +51,11 @@ jobs:
           name: cypress-screenshots
           path: cypress/screenshots
 
-      # - name: Archive production artifacts
-      #   uses: actions/upload-artifact@v3
-      #   with:
-      #     name: dist
-      #     path: dist
+      - name: Archive production artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: dist
+          path: .output/public
       # - name: Archive code coverage results
       #   uses: actions/upload-artifact@v3
       #   with:
