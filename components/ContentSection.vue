@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { NuxtLinkProps } from "#app";
+import type { NuxtLinkProps } from "#app";
 
 withDefaults(
   defineProps<{
@@ -19,9 +19,9 @@ withDefaults(
     <header class="flex gap-4 justify-between align-center mb-4">
       <PageHeading :level="3">{{ title }}</PageHeading>
       <NuxtLink
-        v-if="link"
+        v-if="link" 
         v-bind="link"
-        class="bg-slate-100 rounded-full leading-none inline-block px-3 py-2 hover:bg-slate-200 text-sm"
+        class="bg-background-2 rounded-full leading-none inline-block px-3 py-2 text-sm"
       >
         {{ linkLabel }}
       </NuxtLink>

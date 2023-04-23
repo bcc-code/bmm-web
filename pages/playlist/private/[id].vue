@@ -20,7 +20,7 @@ useHead({
           <p>{{ collection?.tracks?.length }} tracks</p>
         </div>
       </template>
-      <div v-else class="h-12 bg-slate-100 w-1/3 rounded-lg mb-6"></div>
+      <div v-else class="h-12 bg-background-2 w-1/3 rounded-lg mb-6"></div>
     </header>
     <TrackList
       :skeleton-count="5"

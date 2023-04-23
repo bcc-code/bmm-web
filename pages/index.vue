@@ -26,7 +26,7 @@ const newestAudiobooks = computed(() => audiobooks.value?.splice(0, 5) || null);
         <div
           v-for="i in 4"
           :key="i"
-          class="bg-slate-100 rounded-xl aspect-square h-full"
+          class="bg-background-2 rounded-xl aspect-square h-full"
         ></div>
       </div>
       <PlaylistCarousel

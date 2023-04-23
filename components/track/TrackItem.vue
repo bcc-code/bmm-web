@@ -10,7 +10,7 @@ defineProps<{
 <template>
   <li class="group relative py-3 cursor-pointer">
     <div
-      class="opacity-0 group-hover:opacity-100 absolute -inset-y-2 -inset-x-4 rounded-xl bg-slate-100"
+      class="opacity-0 group-hover:opacity-100 absolute -inset-y-2 -inset-x-4 rounded-xl bg-background-2"
     ></div>
     <div class="relative flex gap-3 items-center justify-between">
       <div
@@ -20,22 +20,22 @@ defineProps<{
         <ProtectedImage
           :src="track.meta?.attachedPicture"
           alt=""
-          class="rounded-md w-10 aspect-square bg-slate-100"
+          class="rounded-md w-10 aspect-square bg-background-2"
         />
         <div class="opacity-0 group-hover:opacity-100 absolute inset-0">
           <div
-            class="absolute inset-0 rounded-md bg-black opacity-50 w-full h-full"
+            class="absolute inset-0 rounded-md bg-black-1 opacity-50 w-full h-full"
           ></div>
           <IconComponent
             name="play"
             filled
-            class="absolute inset-0 text-white text-2xl flex justify-center items-center"
+            class="absolute inset-0 text-white-1 text-2xl flex justify-center items-center"
           />
         </div>
       </div>
       <div class="mr-auto w-1/3">
         <h4 class="font-semibold">{{ track.meta?.title }}</h4>
-        <span class="text-slate-700" v-if="track.meta?.artist">
+        <span v-if="track.meta?.artist" class="text-label-1">
           {{ track.meta?.artist }}
         </span>
       </div>

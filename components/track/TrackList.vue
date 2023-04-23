@@ -16,12 +16,12 @@ const { setCurrentSong } = inject(MediaPlaylistInjectionKey)!;
 </script>
 
 <template>
-  <ol class="divide-y divide-slate-100 w-full">
+  <ol class="divide-y divide-label-separator w-full">
     <template v-if="showSkeleton">
       <li
-        class="w-full h-11 bg-slate-100 rounded-lg my-6 animate-pulse"
         v-for="skeleton in skeletonCount"
         :key="skeleton"
+        class="w-full h-11 bg-background-2 rounded-lg my-6 animate-pulse"
       ></li>
     </template>
     <template v-else>
