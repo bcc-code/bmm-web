@@ -18,6 +18,7 @@ export interface MediaPlaylist {
   currentTrack: ComputedRef<TrackModel | undefined>;
   setCurrentTrack: (src: TrackModel) => void;
   clearCurrentTrack: (src: string) => void;
+  addTrackToQueue: (track: TrackModel) => void;
 }
 
 export const MediaPlayerInjectionKey: InjectionKey<MediaPlayer> = Symbol(
@@ -98,6 +99,10 @@ export default defineNuxtPlugin((nuxtApp) => {
       activeMedia.addEventListener("ended", () => {
         ended.value = true;
       });
+    },
+    addTrackToQueue(track) {
+      // TODO
+      return track;
     },
   });
 });

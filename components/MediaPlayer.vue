@@ -12,7 +12,7 @@ const { currentTrack } = inject(MediaPlaylistInjectionKey)!;
   <div class="fixed bottom-3 right-3 flex w-[400px] p-3 rounded-2xl shadow-xl bg-white-1">
     <div class="flex flex-1 gap-3 min-w-0">
       <div class="flex flex-1 gap-3 min-w-0">
-        <div class="rounded-xl bg-background-2 w-[48px] overflow-hidden">
+        <div class="shrink-0 rounded-xl bg-background-2 w-[48px] overflow-hidden">
           <ProtectedImage v-if="currentTrack?.meta?.attachedPicture" :src="currentTrack?.meta?.attachedPicture" />
         </div>
         <div class="flex flex-col min-w-0">
