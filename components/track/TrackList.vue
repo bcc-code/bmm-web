@@ -12,7 +12,7 @@ withDefaults(
     skeletonCount: 5,
   }
 );
-const { setCurrentSong } = inject(MediaPlaylistInjectionKey)!;
+const { setCurrentTrack } = inject(MediaPlaylistInjectionKey)!;
 </script>
 
 <template>
@@ -30,7 +30,7 @@ const { setCurrentSong } = inject(MediaPlaylistInjectionKey)!;
         :key="track.id || 0"
         :track="track"
         show-thumbnail
-        @click="setCurrentSong(track.media?.[0]?.files?.[0]?.url || '')"
+        @click="setCurrentTrack(track)"
       />
     </template>
   </ol>
