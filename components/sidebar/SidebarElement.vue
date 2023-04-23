@@ -3,6 +3,7 @@ const links: Record<"title" | "url", string>[] = [
   { title: "Home", url: "/" },
   { title: "Browse", url: "/browse" },
   { title: "Search", url: "/search" },
+  { title: "Album", url: "/album/91530" },
 ];
 
 const { data: collections } = useTrackCollections();
