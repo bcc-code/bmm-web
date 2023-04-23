@@ -16,9 +16,9 @@ export interface MediaPlayer {
 
 export interface MediaPlaylist {
   currentSong: ComputedRef<string | undefined>;
-  setCurrentSong: (src: string) => void;
+  setCurrentTrack: (track: TrackModel) => void;
   clearCurrentSong: (src: string) => void;
-  addSongToQueue: (src: string) => void;
+  addTrackToQueue: (track: TrackModel) => void;
 }
 
 export const MediaPlayerInjectionKey: InjectionKey<MediaPlayer> = Symbol(
@@ -100,9 +100,9 @@ export default defineNuxtPlugin((nuxtApp) => {
         ended.value = true;
       });
     },
-    addSongToQueue(src) {
+    addTrackToQueue(track) {
       // TODO
-      this.setCurrentSong(src);
+      this.setCurrentTrack(track);
     },
   });
 });

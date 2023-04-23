@@ -13,14 +13,14 @@ withDefaults(
     skeletonCount: 5,
   }
 );
-const { setCurrentSong, addSongToQueue } = inject(MediaPlaylistInjectionKey)!;
-const showDropDownForTrackId = ref(0);
+const { setCurrentTrack, addTrackToQueue } = inject(MediaPlaylistInjectionKey)!;
+const showDropDownForTrack: Ref<null | string> = ref(null);
 
-const toggleDropdownForTrack = (trackId: number) => {
-  if (showDropDownForTrackId.value === trackId) {
-    showDropDownForTrackId.value = 0;
+const toggleDropdownForTrack = (trackReference: string) => {
+  if (showDropDownForTrack.value === trackReference) {
+    showDropDownForTrack.value = null;
   } else {
-    showDropDownForTrackId.value = trackId;
+    showDropDownForTrack.value = trackReference;
   }
 };
 
@@ -33,7 +33,7 @@ const dropdownMenuItemsForTrack = (track: TrackModel): DropdownMenuItem[] => {
 
   items.push({
     text: "Add to Queue",
-    function: () => addSongToQueue(track.media?.[0]?.files?.[0]?.url || ""),
+    function: () => addTrackToQueue(track),
   });
 
   // TODO: change links
@@ -50,24 +50,24 @@ const dropdownMenuItemsForTrack = (track: TrackModel): DropdownMenuItem[] => {
   <ol class="divide-y divide-slate-100 w-full">
     <template v-if="showSkeleton">
       <li
-        class="w-full h-11 bg-slate-100 rounded-lg my-6 animate-pulse"
         v-for="skeleton in skeletonCount"
         :key="skeleton"
+        class="w-full h-11 bg-slate-100 rounded-lg my-6 animate-pulse"
       ></li>
     </template>
     <template v-else>
       <TrackItem
-        v-for="track in tracks"
+        v-for="(track, i) in tracks"
         :key="track.id || 0"
         :track="track"
         show-thumbnail
-        @play-track="setCurrentSong(track.media?.[0]?.files?.[0]?.url || '')"
-        @open-options="toggleDropdownForTrack(track.id || 0)"
+        @play-track="setCurrentTrack(track)"
+        @open-options="toggleDropdownForTrack(`${track.id}-${i}`)"
       >
         <DropdownMenu
-          v-if="showDropDownForTrackId === track.id"
+          v-if="showDropDownForTrack === `${track.id}-${i}`"
           :items="dropdownMenuItemsForTrack(track)"
-          @close="toggleDropdownForTrack(track.id || 0)"
+          @close="toggleDropdownForTrack(`${track.id}-${i}`)"
         ></DropdownMenu>
       </TrackItem>
     </template>
