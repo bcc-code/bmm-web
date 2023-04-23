@@ -52,10 +52,13 @@ watchEffect(getIcon);
 </template>
 
 <style>
+.nuxt-icon {
+  display: flex;
+  align-items: center;
+}
 .nuxt-icon svg {
   width: 1em;
   height: 1em;
-  margin-bottom: 0.125em;
   vertical-align: middle;
 }
 .nuxt-icon.nuxt-icon--fill,
