@@ -2,7 +2,7 @@
 const { t } = useI18n();
 toolbarTitleStore().setReactiveToolbarTitle(() => t("nav.playlist"));
 
-const { id } = useRoute().params;
+const { id } = useRoute<"playlist-curated-id">().params;
 const playlistId = Number(id);
 
 const { data: playlist } = usePlaylist({ id: playlistId });

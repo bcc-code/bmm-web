@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const { params } = useRoute();
+const { params } = useRoute<"error">();
 </script>
 
 <template>
