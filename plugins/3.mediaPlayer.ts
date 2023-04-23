@@ -15,9 +15,9 @@ export interface MediaPlayer {
 }
 
 export interface MediaPlaylist {
-  currentSong: ComputedRef<string | undefined>;
-  setCurrentTrack: (track: TrackModel) => void;
-  clearCurrentSong: (src: string) => void;
+  currentTrack: ComputedRef<TrackModel | undefined>;
+  setCurrentTrack: (src: TrackModel) => void;
+  clearCurrentTrack: (src: string) => void;
   addTrackToQueue: (track: TrackModel) => void;
 }
 
