@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 const props = defineProps<{
   id?: number;
+  active: boolean;
 }>();
 
 if (!props.id) {
@@ -8,24 +9,28 @@ if (!props.id) {
 }
 
 const { data: album } = useAlbum({ id: props.id });
-const active = ref(false);
-
-const toggleItem = () => {
-  active.value = !active.value;
-};
+// const active = ref(false);
 </script>
 
 <template>
   <section
-    class="gap-4 py-4 hover:bg-slate-100"
+    class="group gap-2 relative mr-3 my-4"
     :class="
-      active ? 'p-10 border-2 rounded-3xl active:scale-110 duration-150' : ''
+      active
+        ? 'p-5 border-2 rounded-3xl active:scale-110 duration-150 shadow-lg'
+        : ''
     "
   >
+    <div
+      :class="
+        !active
+          ? 'opacity-0 group-hover:opacity-100 absolute -inset-y-2 -inset-x-3 rounded-xl bg-slate-100'
+          : ''
+      "
+    ></div>
     <section
       v-if="album"
-      class="flex gap-4 py-4 items-center justify-between"
-      @click="toggleItem"
+      class="flex gap-2 items-center justify-between relative"
     >
       <ProtectedImage
         v-if="album.cover"
@@ -36,9 +41,11 @@ const toggleItem = () => {
       <p class="text-2xl font-bold">{{ album.title }}</p>
       <p class="ml-auto">{{ album?.children?.length }} tracks</p>
     </section>
-    <section :class="active ? 'active max-h-fit' : 'h-0 overflow-hidden'">
+    <section
+      :class="active ? 'active max-h-fit relative' : 'h-0 overflow-hidden'"
+    >
       <div v-for="(track, i) in album?.children" :key="i">
-        <p class="p-2">
+        <p class="p-2 hover:bg-slate-100 rounded-md">
           {{ track.id }}
         </p>
       </div>

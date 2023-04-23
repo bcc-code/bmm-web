@@ -6,6 +6,7 @@ const { id } = useRoute().params;
 const albumId = Number(id);
 
 const { data: album } = useAlbum({ id: albumId });
+const active = ref(false);
 // const { data: albums } = useAlbums();
 
 // onBeforeMount(() => {
@@ -16,6 +17,10 @@ const { data: album } = useAlbum({ id: albumId });
 //   console.log("albums", albums);
 //   console.log("album", album);
 // });
+
+const toggleItem = () => {
+  active.value = !active.value;
+};
 </script>
 
 <template>
@@ -36,9 +41,13 @@ const { data: album } = useAlbum({ id: albumId });
         </div>
       </div>
     </header>
-    <p v-if="album.children">{{ album.children.length }} albums</p>
+    <p v-if="album.children" class="p-2">{{ album.children.length }} albums</p>
     <div v-for="(child, index) in album?.children" :key="index">
-      <AlbumSubAlbum :id="child.id"></AlbumSubAlbum>
+      <AlbumSubAlbum
+        :id="child.id"
+        :active="active"
+        :toggleItem="() => toggleItem()"
+      ></AlbumSubAlbum>
     </div>
   </div>
 </template>
