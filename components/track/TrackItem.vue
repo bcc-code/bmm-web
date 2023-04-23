@@ -8,9 +8,9 @@ defineProps<{
 </script>
 
 <template>
-  <li class="group relative py-3 cursor-pointer">
+  <li class="group relative py-3 block cursor-pointer">
     <div
-      class="opacity-0 group-hover:opacity-100 absolute -inset-y-2 -inset-x-4 rounded-xl bg-background-2"
+      class="opacity-0 group-hover:opacity-100 absolute -inset-y-0 -inset-x-4 rounded-xl bg-background-2"
     ></div>
     <div class="relative flex gap-3 items-center justify-between">
       <div
@@ -44,10 +44,10 @@ defineProps<{
         class="block w-10 h-1"
       ></div>
       <div>
-        <span class="text-slate-400">{{ track.subtype }}</span>
+        <span class="text-label-2">{{ track.subtype }}</span>
       </div>
       <div class="ml-auto">
-        <span class="text-slate-400">{{ track.meta?.time }}</span>
+        <span class="text-label-2">{{ track.meta?.time }}</span>
       </div>
       <div class="ml-auto flex justify-center items-center gap-3">
         <IconComponent
