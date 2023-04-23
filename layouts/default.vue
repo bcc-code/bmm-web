@@ -1,7 +1,11 @@
 <script lang="ts" setup>
+import { MediaPlaylistInjectionKey } from "~/plugins/3.mediaPlayer";
+
 const onError = (error: any) => {
   console.error(error);
 };
+
+const { currentTrack } = inject(MediaPlaylistInjectionKey)!;
 </script>
 
 <template>
@@ -17,7 +21,7 @@ const onError = (error: any) => {
       </NuxtErrorBoundary>
     </main>
     <footer>
-      <MediaPlayer />
+      <MediaPlayer v-if="currentTrack !== undefined" />
     </footer>
   </div>
 </template>
