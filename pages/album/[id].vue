@@ -6,20 +6,15 @@ const { id } = useRoute().params;
 const albumId = Number(id);
 
 const { data: album } = useAlbum({ id: albumId });
-const active = ref(false);
-// const { data: albums } = useAlbums();
 
-// onBeforeMount(() => {
-//   useHead({
-//     title: album.value?.title || "",
-//   });
+const expandedAlbum: Ref<null | string> = ref(null);
 
-//   console.log("albums", albums);
-//   console.log("album", album);
-// });
-
-const toggleItem = () => {
-  active.value = !active.value;
+const toggleExpandedAlbum = (albumReference: string) => {
+  if (expandedAlbum.value === albumReference) {
+    expandedAlbum.value = null;
+  } else {
+    expandedAlbum.value = albumReference;
+  }
 };
 </script>
 
@@ -42,11 +37,11 @@ const toggleItem = () => {
       </div>
     </header>
     <p v-if="album.children" class="p-2">{{ album.children.length }} albums</p>
-    <div v-for="(child, index) in album?.children" :key="index">
+    <div v-for="(child, i) in album?.children" :key="`${child.id}-${i}`">
       <AlbumSubAlbum
-        :id="child.id"
-        :active="active"
-        :toggleItem="() => toggleItem()"
+        :id="child.id || 0"
+        :active="expandedAlbum === `${child.id}-${i}`"
+        @expand="toggleExpandedAlbum(`${child.id}-${i}`)"
       ></AlbumSubAlbum>
     </div>
   </div>

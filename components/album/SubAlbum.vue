@@ -9,23 +9,29 @@ if (!props.id) {
 }
 
 const { data: album } = useAlbum({ id: props.id });
-// const active = ref(false);
+
+const emit = defineEmits(["expand"]);
+
+function expand() {
+  emit("expand");
+}
 </script>
 
 <template>
   <section
-    class="group gap-2 relative mr-3 my-4"
+    class="group gap-2 relative mr-3 my-4 cursor-pointer"
     :class="
       active
         ? 'p-5 border-2 rounded-3xl active:scale-110 duration-150 shadow-lg'
         : ''
     "
+    @click="expand"
   >
     <div
       :class="
-        !active
-          ? 'opacity-0 group-hover:opacity-100 absolute -inset-y-2 -inset-x-3 rounded-xl bg-slate-100'
-          : ''
+        active
+          ? ''
+          : 'opacity-0 group-hover:opacity-100 absolute -inset-y-2 -inset-x-3 rounded-xl bg-slate-100'
       "
     ></div>
     <section
