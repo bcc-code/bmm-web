@@ -15,7 +15,7 @@ withDefaults(
 <template>
   <NuxtLink
     :to="url"
-    active-class="bg-tint dark:bg-tint-dark"
+    active-class="bg-tint"
     class="py-2 px-4 rounded-xl group flex gap-2"
   >
     <ProtectedImage
