@@ -9,7 +9,14 @@
   "error": {
     "page-not-found": {
       "headline": "Fout",
-      "text": "Sorry. We can't find the page \"{path}\"."
+      "text": "Sorry, we kunnen de pagina \"{path}\" niet vinden."
+    }
+  },
+  "track": {
+    "a11y": {
+      "download": "Download",
+      "queue": "Toevoegen aan wachtrij",
+      "options": "Toon opties"
     }
   }
 }

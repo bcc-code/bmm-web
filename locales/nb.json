@@ -15,8 +15,8 @@
   "track": {
     "a11y": {
       "download": "Last ned",
-      "queue": "Legg til i kø",
-      "options": "Vis alternativer"
+      "queue": "Legg til i køen",
+      "options": "Show options"
     }
   }
 }
