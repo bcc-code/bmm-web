@@ -19,7 +19,7 @@ withDefaults(
     <header class="flex gap-4 justify-between align-center mb-4">
       <PageHeading :level="3">{{ title }}</PageHeading>
       <NuxtLink
-        v-if="link" 
+        v-if="link"
         v-bind="link"
         class="bg-background-2 rounded-full leading-none inline-block px-3 py-2 text-sm"
       >

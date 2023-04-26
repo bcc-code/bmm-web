@@ -71,14 +71,26 @@ const dropdownMenuItemsForTrack = (track: TrackModel): DropdownMenuItem[] => {
 <template>
   <ol class="divide-y divide-label-separator w-full">
     <template v-if="showSkeleton">
-      <li v-for="skeleton in skeletonCount" :key="skeleton"
-        class="w-full h-11 bg-background-2 rounded-lg my-6 animate-pulse"></li>
+      <li
+        v-for="skeleton in skeletonCount"
+        :key="skeleton"
+        class="w-full h-11 bg-background-2 rounded-lg my-6 animate-pulse"
+      ></li>
     </template>
     <template v-else>
-      <TrackItem v-for="(track, i) in tracks" :key="track.id || 0" :track="track" show-thumbnail
-        @play-track="setCurrentTrack(track)" @open-options="toggleDropdownForTrack(`${track.id}-${i}`)">
-        <DropdownMenu v-if="showDropDownForTrack === `${track.id}-${i}`" :items="dropdownMenuItemsForTrack(track)"
-          @close="toggleDropdownForTrack(`${track.id}-${i}`)"></DropdownMenu>
+      <TrackItem
+        v-for="(track, i) in tracks"
+        :key="track.id || 0"
+        :track="track"
+        show-thumbnail
+        @play-track="setCurrentTrack(track)"
+        @open-options="toggleDropdownForTrack(`${track.id}-${i}`)"
+      >
+        <DropdownMenu
+          v-if="showDropDownForTrack === `${track.id}-${i}`"
+          :items="dropdownMenuItemsForTrack(track)"
+          @close="toggleDropdownForTrack(`${track.id}-${i}`)"
+        ></DropdownMenu>
       </TrackItem>
     </template>
   </ol>
