@@ -1,3 +1,5 @@
+import { TrackModel } from "@bcc-code/bmm-sdk-fetch";
+
 const authToken: Ref<string | undefined> = ref();
 
 export enum MediaPlayerStatus {
@@ -13,9 +15,10 @@ export interface MediaPlayer {
 }
 
 export interface MediaPlaylist {
-  currentSong: ComputedRef<string | undefined>;
-  setCurrentSong: (src: string) => void;
-  clearCurrentSong: (src: string) => void;
+  currentTrack: ComputedRef<TrackModel | undefined>;
+  setCurrentTrack: (src: TrackModel) => void;
+  clearCurrentTrack: (src: string) => void;
+  addTrackToQueue: (track: TrackModel) => void;
 }
 
 export const MediaPlayerInjectionKey: InjectionKey<MediaPlayer> = Symbol(
@@ -43,7 +46,7 @@ export default defineNuxtPlugin((nuxtApp) => {
 
   const paused = ref(true);
   const ended = ref(false);
-  const currentSong: Ref<string | undefined> = ref(undefined);
+  const currentTrack: Ref<TrackModel | undefined> = ref(undefined);
 
   const playerStatus = computed(() => {
     if (paused.value) return MediaPlayerStatus.Paused;
@@ -58,20 +61,22 @@ export default defineNuxtPlugin((nuxtApp) => {
   });
 
   nuxtApp.vueApp.provide(MediaPlaylistInjectionKey, {
-    currentSong: computed(() => currentSong.value),
-    clearCurrentSong() {
+    currentTrack: computed(() => currentTrack.value),
+    clearCurrentTrack() {
       activeMedia?.pause();
       activeMedia = undefined;
-      currentSong.value = "";
+      currentTrack.value = undefined;
       paused.value = true;
       ended.value = false;
     },
-    setCurrentSong(src) {
+    setCurrentTrack(track) {
       activeMedia?.pause();
 
-      activeMedia = new Audio(authorizedUrl(src, authToken.value));
+      activeMedia = new Audio(
+        authorizedUrl(track.media?.[0]?.files?.[0]?.url || "", authToken.value)
+      );
       activeMedia.autoplay = true;
-      currentSong.value = src;
+      currentTrack.value = track;
       paused.value = true;
       ended.value = false;
 
@@ -94,6 +99,10 @@ export default defineNuxtPlugin((nuxtApp) => {
       activeMedia.addEventListener("ended", () => {
         ended.value = true;
       });
+    },
+    addTrackToQueue(track) {
+      // TODO
+      return track;
     },
   });
 });

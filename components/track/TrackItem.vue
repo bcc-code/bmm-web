@@ -1,16 +1,29 @@
 <script lang="ts" setup>
 import { TrackModel } from "@bcc-code/bmm-sdk-fetch";
 
+const { t } = useI18n();
+
 defineProps<{
   track: TrackModel;
   showThumbnail?: boolean;
 }>();
+
+const emit = defineEmits(["open-options", "play-track"]);
+
+function openOptions(event: Event) {
+  event.stopPropagation();
+  emit("open-options");
+}
+
+function playTrack() {
+  emit("play-track");
+}
 </script>
 
 <template>
-  <li class="group relative py-3 cursor-pointer">
+  <li class="group relative py-3 mr-3 cursor-pointer" @click="playTrack">
     <div
-      class="opacity-0 group-hover:opacity-100 absolute -inset-y-2 -inset-x-4 rounded-xl bg-slate-100"
+      class="opacity-0 group-hover:opacity-100 absolute -inset-y-1 -inset-x-3 rounded-xl bg-slate-100"
     ></div>
     <div class="relative flex gap-3 items-center justify-between">
       <div
@@ -49,19 +62,28 @@ defineProps<{
       <div class="ml-auto">
         <span class="text-slate-400">{{ track.meta?.time }}</span>
       </div>
-      <div class="ml-auto flex justify-center items-center gap-3">
-        <IconComponent
-          name="download"
-          filled
-          class="opacity-0 group-hover:opacity-100 text-2xl"
-        />
-        <IconComponent
-          name="queue"
-          filled
-          class="opacity-0 group-hover:opacity-100 text-2xl"
-        />
-        <IconComponent name="options" filled class="text-2xl" />
+      <div class="ml-auto flex justify-center items-center gap-1">
+        <button
+          class="py-0 px-2 opacity-0 group-hover:opacity-100 group-focus:opacity-100 hover:opacity-100 focus:opacity-100"
+          :aria-label="t('track.a11y.download')"
+        >
+          <IconComponent name="download" filled class="text-2xl" />
+        </button>
+        <button
+          class="py-0 px-2 opacity-0 group-hover:opacity-100 group-focus:opacity-100 hover:opacity-100 focus:opacity-100"
+          :aria-label="t('track.a11y.queue')"
+        >
+          <IconComponent name="queue" filled class="text-2xl" />
+        </button>
+        <button
+          :aria-label="t('track.a11y.options')"
+          @click="openOptions"
+          class="py-0 px-2 rounded-lg focus:bg-lime-400"
+        >
+          <IconComponent name="options" filled class="text-2xl" />
+        </button>
       </div>
     </div>
+    <slot />
   </li>
 </template>

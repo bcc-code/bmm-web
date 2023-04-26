@@ -8,8 +8,15 @@
   },
   "error": {
     "page-not-found": {
-      "headline": "Error",
-      "text": "Sorry. We can't find the page \"{path}\"."
+      "headline": "Fout",
+      "text": "Sorry, we kunnen de pagina \"{path}\" niet vinden."
+    }
+  },
+  "track": {
+    "a11y": {
+      "download": "Download",
+      "queue": "Toevoegen aan wachtrij",
+      "options": "Toon opties"
     }
   }
 }
