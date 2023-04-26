@@ -57,5 +57,4 @@ function expand() {
       </div>
     </section>
   </section>
-  <!-- <TrackList :tracks="album.chldren" /> -->
 </template>
