@@ -43,7 +43,7 @@
     "happy-dom": "^9.9.2",
     "nuxt": "^3.4.1",
     "nuxt-electron": "^0.4.5",
-    "nuxt-typed-router": "^3.1.5",
+    "nuxt-typed-router": "^3.2.0",
     "prettier": "^2.8.7",
     "stylelint": "^15.5.0",
     "stylelint-config-recommended-scss": "^10.0.0",
