@@ -2,7 +2,7 @@
 const { t } = useI18n();
 toolbarTitleStore().setReactiveToolbarTitle(() => t("nav.playlist"));
 
-const { id } = useRoute().params;
+const { id } = useRoute<"playlist-private-id">().params;
 const collectionId = Number(id);
 const { data: collection, pending } = useTrackCollection({ id: collectionId });
 
