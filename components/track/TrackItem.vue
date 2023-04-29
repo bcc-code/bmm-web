@@ -48,7 +48,7 @@ function playTrack() {
       </div>
       <div class="mr-auto w-1/3">
         <h4 class="font-semibold">{{ track.meta?.title }}</h4>
-        <span class="text-slate-700" v-if="track.meta?.artist">
+        <span v-if="track.meta?.artist" class="text-slate-700">
           {{ track.meta?.artist }}
         </span>
       </div>
@@ -77,8 +77,8 @@ function playTrack() {
         </button>
         <button
           :aria-label="t('track.a11y.options')"
-          @click="openOptions"
           class="py-0 px-2 rounded-lg focus:bg-lime-400"
+          @click="openOptions"
         >
           <IconComponent name="options" filled class="text-2xl" />
         </button>

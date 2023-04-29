@@ -25,8 +25,8 @@ const { currentTrack } = inject(MediaPlaylistInjectionKey)!;
             {{ currentTrack?.title }}
           </h3>
           <span
-            class="text-slate-700 text-base truncate"
             v-if="currentTrack?.meta?.artist"
+            class="text-slate-700 text-base truncate"
           >
             {{ currentTrack.meta?.artist }}
           </span>

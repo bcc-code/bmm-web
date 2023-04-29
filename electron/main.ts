@@ -9,6 +9,6 @@ app
         `file://${__dirname}/../.output/public/index.html`
     );
   })
-  .catch((error) => {
-    console.error(error);
+  .catch(() => {
+    /* Error handling to be set */
   });
