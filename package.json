@@ -21,6 +21,7 @@
   "dependencies": {
     "@auth0/auth0-vue": "^2.2.0",
     "@bcc-code/bmm-sdk-fetch": "^4.0.0",
+    "@headlessui/vue": "^1.7.13",
     "@pinia/nuxt": "^0.4.9",
     "class-variance-authority": "^0.5.2"
   },

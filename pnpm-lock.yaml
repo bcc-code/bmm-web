@@ -3,6 +3,7 @@ lockfileVersion: 5.4
 specifiers:
   '@auth0/auth0-vue': ^2.2.0
   '@bcc-code/bmm-sdk-fetch': ^4.0.0
+  '@headlessui/vue': ^1.7.13
   '@intlify/eslint-plugin-vue-i18n': ^2.0.0
   '@nuxt/devtools': ^0.4.1
   '@nuxt/test-utils': ^3.4.2
@@ -36,6 +37,7 @@ specifiers:
 dependencies:
   '@auth0/auth0-vue': 2.2.0
   '@bcc-code/bmm-sdk-fetch': 4.0.0
+  '@headlessui/vue': 1.7.13_vue@3.2.47
   '@pinia/nuxt': 0.4.9_hmuptsblhheur2tugfgucj7gc4
   class-variance-authority: 0.5.2_typescript@4.9.5
 
@@ -821,6 +823,15 @@ packages:
     dependencies:
       '@hapi/hoek': 9.3.0
     dev: true
+
+  /@headlessui/vue/1.7.13_vue@3.2.47:
+    resolution: {integrity: sha512-obG5TdPdBDfs+jiA1mY29LPFqyJl93Q90EL86ontfRe1B6XvbjPkx+x1aAC5DA18bXbb0Juni1ayDbXo0w1u0A==}
+    engines: {node: '>=10'}
+    peerDependencies:
+      vue: ^3.2.0
+    dependencies:
+      vue: 3.2.47
+    dev: false
 
   /@humanwhocodes/config-array/0.11.8:
     resolution: {integrity: sha512-UybHIJzJnR5Qc/MsD9Kr+RpO2h+/P1GhOwdiLPXK5TWk5sgTdu88bTD9UP+CKbPPh5Rni1u0GjAdYQLemG8g+g==}
