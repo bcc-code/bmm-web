@@ -24,8 +24,8 @@ const toggleDropdownForTrack = (trackReference: string) => {
   }
 };
 
-const dropdownMenuItemsForTrack = (track: TrackModel): DropdownMenuItem[] => {
-  const items = [];
+const dropdownMenuItemsForTrack = (track: TrackModel) => {
+  const items: DropdownMenuItem[] = [];
 
   items.push({
     icon: "icon.play",
@@ -37,7 +37,7 @@ const dropdownMenuItemsForTrack = (track: TrackModel): DropdownMenuItem[] => {
     items.push({
       icon: "icon.category.album",
       text: "Go to album",
-      link: `/album/${track.meta.parent.id}`,
+      link: { name: "browse" }, // TODO: change link
     });
   }
 
@@ -47,21 +47,25 @@ const dropdownMenuItemsForTrack = (track: TrackModel): DropdownMenuItem[] => {
     clickFunction: () => addTrackToQueue(track),
   });
 
-  // TODO: change links
+  // TODO: add link
   items.push({
     icon: "icon.category.playlist",
     text: "Add to Playlist",
   });
-  items.push({ icon: "icon.share", text: "Share track", link: "/browse" });
+  items.push({
+    icon: "icon.share",
+    text: "Share track",
+    link: { name: "browse" }, // TODO: change link
+  });
   items.push({
     icon: "icon.person",
     text: "Go to contributors",
-    link: "/browse",
+    link: { name: "browse" }, // TODO: change link
   });
   items.push({
     icon: "icon.information",
     text: "More information",
-    link: "/browse",
+    link: { name: "browse" }, // TODO: change link
   });
 
   return items;

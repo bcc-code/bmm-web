@@ -1,8 +1,10 @@
 <script lang="ts" setup>
+import { RoutesNamedLocations } from "~/.nuxt/typed-router/__routes";
+
 export interface DropdownMenuItem {
   text: string;
   icon?: string;
-  link?: string;
+  link?: RoutesNamedLocations;
   clickFunction?: Function;
 }
 
@@ -38,7 +40,7 @@ function menuItemClick(event: Event, item: DropdownMenuItem) {
       >
         <NuxtLink
           v-if="item.link"
-          :to="`${item.link}`"
+          :to="item.link"
           class="flex justify-start items-center gap-1 py-2 px-3"
         >
           <IconComponent v-if="item.icon" :name="item.icon" />
@@ -47,14 +49,14 @@ function menuItemClick(event: Event, item: DropdownMenuItem) {
         <p
           v-else-if="item.clickFunction"
           class="flex justify-start items-center gap-1 py-2 px-3"
-          @click="(event) => menuItemClick(event, item)"
+          @click="(event: MouseEvent) => menuItemClick(event, item)"
         >
           <IconComponent v-if="item.icon" :name="item.icon" />
           <span>{{ item.text }}</span>
         </p>
         <p
           v-else
-          @click="(event) => event.stopPropagation()"
+          @click="(event: MouseEvent) => event.stopPropagation()"
           class="flex justify-start items-center gap-1 py-2 px-3"
         >
           <IconComponent v-if="item.icon" :name="item.icon" />

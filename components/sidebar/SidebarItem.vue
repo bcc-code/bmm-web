@@ -1,20 +1,23 @@
 <script lang="ts" setup>
+import { RoutesNamedLocations } from "~/.nuxt/typed-router/__routes";
+
 withDefaults(
   defineProps<{
     type?: "page" | "playlist" | "private-playlist";
     title: string;
-    url: string;
+    link: RoutesNamedLocations;
     image?: string;
   }>(),
   {
     type: "page",
+    image: "",
   }
 );
 </script>
 
 <template>
   <NuxtLink
-    :to="url"
+    :to="link"
     active-class="bg-lime-400"
     class="py-2 px-4 rounded-xl group flex gap-2"
   >

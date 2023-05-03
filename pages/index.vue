@@ -34,7 +34,7 @@ const newestAudiobooks = computed(() => audiobooks.value?.splice(0, 5) || null);
         :playlists="newestPlaylists"
       />
     </ContentSection>
-    <ContentSection title="Speeches" :link="{ to: '/messages' }">
+    <ContentSection title="Speeches" :link="{ name: 'messages' }">
       <TrackList
         :skeleton-count="5"
         :show-skeleton="speechesPending"
@@ -42,7 +42,7 @@ const newestAudiobooks = computed(() => audiobooks.value?.splice(0, 5) || null);
       >
       </TrackList>
     </ContentSection>
-    <ContentSection title="Audiobooks" :link="{ to: '/audiobooks' }">
+    <ContentSection title="Audiobooks" :link="{ name: 'audiobooks' }">
       <TrackList
         :skeleton-count="5"
         :show-skeleton="audiobooksPending"
