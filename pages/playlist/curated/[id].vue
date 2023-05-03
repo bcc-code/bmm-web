@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { MediaPlaylistInjectionKey } from '~/plugins/3.mediaPlayer';
+import { MediaPlaylistInjectionKey } from "~/plugins/3.mediaPlayer";
 
 const { t } = useI18n();
 toolbarTitleStore().setReactiveToolbarTitle(() => t("nav.playlist"));
@@ -33,20 +33,30 @@ onBeforeMount(() => {
   <div class="grid grid-cols-12" v-if="playlist">
     <div class="col-start-3 col-span-8">
       <header class="flex gap-6 mb-12">
-        <ProtectedImage v-if="playlist.cover" :src="playlist.cover" alt=""
-          class="aspect-square rounded-2xl bg-slate-100 w-[300px]" />
+        <ProtectedImage
+          v-if="playlist.cover"
+          :src="playlist.cover"
+          alt=""
+          class="aspect-square rounded-2xl bg-slate-100 w-[300px]"
+        />
         <div class="p-6 flex flex-col justify-between">
           <div>
             <PageHeading>{{ playlist.title }}</PageHeading>
             <p v-if="tracks">{{ tracks.length }} tracks</p>
           </div>
           <div class="flex gap-2">
-            <ButtonStyled intent="primary" @click="shuffle"> Shuffle </ButtonStyled>
+            <ButtonStyled intent="primary" @click="shuffle">
+              Shuffle
+            </ButtonStyled>
             <ButtonStyled>Follow</ButtonStyled>
           </div>
         </div>
       </header>
-      <TrackList :skeleton-count="10" :show-skeleton="pending" :tracks="tracks" />
+      <TrackList
+        :skeleton-count="10"
+        :show-skeleton="pending"
+        :tracks="tracks"
+      />
     </div>
   </div>
 </template>
