@@ -9,14 +9,14 @@ const newestPlaylists = computed(() => playlists.value?.splice(0, 4) || null);
 // Speeches
 const { data: speeches, pending: speechesPending } = useTracks({
   contentType2: ["speech"],
+  size: 5,
 });
-const newestSpeeches = computed(() => speeches.value?.splice(0, 5) || null);
 
 // Audiobooks
 const { data: audiobooks, pending: audiobooksPending } = useTracks({
   contentType2: ["audiobook"],
+  size: 5,
 });
-const newestAudiobooks = computed(() => audiobooks.value?.splice(0, 5) || null);
 </script>
 
 <template>
@@ -38,7 +38,7 @@ const newestAudiobooks = computed(() => audiobooks.value?.splice(0, 5) || null);
       <TrackList
         :skeleton-count="5"
         :show-skeleton="speechesPending"
-        :tracks="newestSpeeches"
+        :tracks="speeches"
       >
       </TrackList>
     </ContentSection>
@@ -46,7 +46,7 @@ const newestAudiobooks = computed(() => audiobooks.value?.splice(0, 5) || null);
       <TrackList
         :skeleton-count="5"
         :show-skeleton="audiobooksPending"
-        :tracks="newestAudiobooks"
+        :tracks="audiobooks"
       >
       </TrackList>
     </ContentSection>
