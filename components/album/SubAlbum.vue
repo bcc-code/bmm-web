@@ -1,12 +1,8 @@
 <script lang="ts" setup>
 const props = defineProps<{
-  id?: number;
+  id: number;
   active: boolean;
 }>();
-
-if (!props.id) {
-  throw new Error("The sub-album needs an id");
-}
 
 const { data: album } = useAlbum({ id: props.id });
 
