@@ -1,6 +1,5 @@
 {
   "name": "bmm-web",
-  "version": "0.0.1",
   "author": "BCC",
   "description": "BCC audio player",
   "license": "AGPL-3.0",
@@ -14,13 +13,13 @@
     "preview": "PORT=9001 nuxt preview",
     "coverage": "vitest run --coverage",
     "e2e": "cypress open",
-    "lint": "stylelint '**/*.{vue,scss}' && prettier . --check && eslint --ext ts,js,vue,json . && nuxi typecheck",
+    "lint": "stylelint \"**/*.{vue,scss}\" && prettier . --check && eslint --ext ts,js,vue,json . && nuxi typecheck",
     "test": "vitest",
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
     "@auth0/auth0-vue": "^2.2.0",
-    "@bcc-code/bmm-sdk-fetch": "^4.0.0",
+    "@bcc-code/bmm-sdk-fetch": "^5.0.0",
     "@pinia/nuxt": "^0.4.9",
     "class-variance-authority": "^0.5.2"
   },
