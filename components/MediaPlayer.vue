@@ -32,15 +32,18 @@ const { currentTrack } = inject(MediaPlaylistInjectionKey)!;
           </span>
         </div>
       </div>
-      <div>
+      <div class="group">
         <a v-if="status === MediaPlayerStatus.Playing" @click="pause()">
           <span class="flex aspect-square w-[48px] justify-center align-middle">
-            <IconComponent name="icon.pause.large" class="text-3xl" />
+            <IconComponent
+              name="icon.pause.large"
+              class="text-3xl group-hover:text-4xl"
+            />
           </span>
         </a>
         <a v-if="status !== MediaPlayerStatus.Playing" @click="play()">
           <span class="flex aspect-square w-[48px] justify-center align-middle">
-            <IconComponent name="play" class="text-3xl" />
+            <IconComponent name="play" class="text-3xl group-hover:text-4xl" />
           </span>
         </a>
       </div>
