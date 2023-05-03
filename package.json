@@ -13,7 +13,7 @@
     "preview": "PORT=9001 nuxt preview",
     "coverage": "vitest run --coverage",
     "e2e": "cypress open",
-    "lint": "stylelint '**/*.{vue,scss}' && prettier . --check && eslint --ext ts,js,vue,json . && nuxi typecheck",
+    "lint": "stylelint \"**/*.{vue,scss}\" && prettier . --check && eslint --ext ts,js,vue,json . && nuxi typecheck",
     "test": "vitest",
     "postinstall": "nuxt prepare"
   },
