@@ -37,7 +37,7 @@ const dropdownMenuItemsForTrack = (track: TrackModel) => {
     items.push({
       icon: "icon.category.album",
       text: "Go to album",
-      link: { name: "browse" }, // TODO: change link
+      link: { name: "album-id", params: { id: track.meta.parent.id } },
     });
   }
 

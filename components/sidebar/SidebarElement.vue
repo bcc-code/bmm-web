@@ -8,7 +8,6 @@ const links: {
   { title: "Home", link: { name: "index" } },
   { title: "Browse", link: { name: "browse" } },
   { title: "Search", link: { name: "search" } },
-  { title: "Album", link: { name: "album-id", params: { id: 91530 } } },
 ];
 
 const { data: collections } = useTrackCollections();
