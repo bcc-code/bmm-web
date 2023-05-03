@@ -2,7 +2,7 @@
 const { t } = useI18n();
 toolbarTitleStore().setReactiveToolbarTitle(() => t("nav.album"));
 
-const { id } = useRoute().params;
+const { id } = useRoute<"album-id">().params;
 const albumId = Number(id);
 
 const { data: album } = useAlbum({ id: albumId });
