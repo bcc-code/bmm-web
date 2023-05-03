@@ -60,6 +60,18 @@ export default defineNuxtPlugin((nuxtApp) => {
     return MediaPlayerStatus.Playing;
   });
 
+  function next() {
+    if (queue.value.length > currentQueueIndex.value + 1) {
+      setCurrentTrack(queue.value[currentQueueIndex.value + 1]);
+    }
+  }
+
+  function previous() {
+    if (currentQueueIndex.value > 0) {
+      setCurrentTrack(queue.value[currentQueueIndex.value - 1]);
+    }
+  }
+
   function clearCurrentTrack() {
     activeMedia?.pause();
     activeMedia = undefined;
@@ -68,7 +80,9 @@ export default defineNuxtPlugin((nuxtApp) => {
     ended.value = false;
   }
 
-  function setCurrentTrack(track: TrackModel) {
+  function setCurrentTrack(track?: TrackModel) {
+    if (!track) return;
+
     activeMedia?.pause();
 
     activeMedia = new Audio(
@@ -109,11 +123,8 @@ export default defineNuxtPlugin((nuxtApp) => {
     });
     activeMedia.addEventListener("ended", () => {
       ended.value = true;
-      console.log("ended")
       // Play next track if there is one
-      if (queue.value.length > currentQueueIndex.value + 1) {
-        setCurrentTrack(queue.value[currentQueueIndex.value + 1] as TrackModel);
-      }
+      next();
     });
   }
 
@@ -140,16 +151,8 @@ export default defineNuxtPlugin((nuxtApp) => {
     status: playerStatus,
     play: () => activeMedia?.play(),
     pause: () => activeMedia?.pause(),
-    next: () => {
-      if (queue.value.length > currentQueueIndex.value + 1) {
-        setCurrentTrack(queue.value[currentQueueIndex.value + 1] as TrackModel);
-      }
-    },
-    previous: () => {
-      if (currentQueueIndex.value > 0) {
-        setCurrentTrack(queue.value[currentQueueIndex.value - 1] as TrackModel);
-      }
-    }
+    next,
+    previous,
   });
 
   nuxtApp.vueApp.provide(MediaPlaylistInjectionKey, {
