@@ -1,5 +1,6 @@
 <script lang="ts" setup>
-toolbarTitleStore().setReactiveToolbarTitle(() => "Speeches");
+const { t } = useI18n();
+toolbarTitleStore().setReactiveToolbarTitle(() => t("nav.messages"));
 
 const { data: speeches, pending } = useTracks({
   contentType2: ["speech"],
@@ -8,11 +9,8 @@ const { data: speeches, pending } = useTracks({
 
 <template>
   <div>
-    <PageHeading class="mb-6">Speeches</PageHeading>
-    <TrackList
-      :skeleton-count="10"
-      :show-skeleton="pending"
-      :tracks="speeches"
-    />
+    <PageHeading class="mb-6">{{ $t("nav.messages") }}</PageHeading>
+    <TrackList :skeleton-count="10" :show-skeleton="pending" :tracks="speeches">
+    </TrackList>
   </div>
 </template>
