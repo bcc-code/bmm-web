@@ -9,7 +9,10 @@ const { data: speeches, pending } = useTracks({
 <template>
   <div>
     <PageHeading class="mb-6">Speeches</PageHeading>
-    <TrackList :skeleton-count="10" :show-skeleton="pending" :tracks="speeches">
-    </TrackList>
+    <TrackList
+      :skeleton-count="10"
+      :show-skeleton="pending"
+      :tracks="speeches"
+    />
   </div>
 </template>
