@@ -8,3 +8,6 @@ node_modules
 dist
 coverage
 pnpm-lock.yaml
+
+# Generated files
+tailwind.config.ts
