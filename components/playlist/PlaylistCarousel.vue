@@ -11,7 +11,7 @@ defineProps<{
     <NuxtLink
       v-for="playlist in playlists"
       :key="playlist.id || 0"
-      :to="`/playlist/curated/${playlist.id}`"
+      :to="{ name: 'playlist-curated-id', params: { id: playlist.id || 0 } }"
       class="h-full aspect-square"
     >
       <ProtectedImage

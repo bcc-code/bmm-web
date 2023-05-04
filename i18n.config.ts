@@ -28,7 +28,6 @@ import zh from "./locales/zh.json";
 
 const i18nConfig = {
   legacy: false,
-  locale: "en",
   messages: {
     af,
     bg,

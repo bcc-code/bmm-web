@@ -1,8 +1,13 @@
 <script lang="ts" setup>
-const links: Record<"title" | "url", string>[] = [
-  { title: "Home", url: "/" },
-  { title: "Browse", url: "/browse" },
-  { title: "Search", url: "/search" },
+import { RoutesNamedLocations } from "~/.nuxt/typed-router/__routes";
+
+const links: {
+  title: string;
+  link: RoutesNamedLocations;
+}[] = [
+  { title: "Home", link: { name: "index" } },
+  { title: "Browse", link: { name: "browse" } },
+  { title: "Search", link: { name: "search" } },
 ];
 
 const { data: collections } = useTrackCollections();
@@ -20,7 +25,7 @@ const { data: collections } = useTrackCollections();
       <SidebarGroup>
         <SidebarItem
           v-for="(link, i) in links"
-          :key="`${link.url}_${i}`"
+          :key="`${link.link}_${i}`"
           v-bind="link"
         />
       </SidebarGroup>
@@ -30,7 +35,10 @@ const { data: collections } = useTrackCollections();
           v-for="collection in collections"
           :key="collection.id || 0"
           :title="collection.name || ''"
-          :url="`/playlist/private/${collection.id}`"
+          :link="{
+            name: 'playlist-private-id',
+            params: { id: collection.id || 0 },
+          }"
         />
       </SidebarGroup>
     </div>

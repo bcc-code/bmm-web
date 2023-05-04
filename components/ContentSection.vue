@@ -1,11 +1,10 @@
 <script lang="ts" setup>
-// eslint-disable-next-line import/no-extraneous-dependencies
-import type { NuxtLinkProps } from "#app";
+import { RoutesNamedLocations } from "~/.nuxt/typed-router/__routes";
 
 withDefaults(
   defineProps<{
     title: string;
-    link?: Partial<NuxtLinkProps>;
+    link?: RoutesNamedLocations;
     linkLabel?: string;
   }>(),
   {
@@ -20,8 +19,8 @@ withDefaults(
       <PageHeading :level="3">{{ title }}</PageHeading>
       <NuxtLink
         v-if="link"
-        v-bind="link"
-        class="bg-background-2 rounded-full leading-none inline-block px-3 py-2 text-sm"
+        :to="link"
+        class="bg-slate-100 rounded-full leading-none inline-block px-3 py-2 hover:bg-slate-200 text-sm"
       >
         {{ linkLabel }}
       </NuxtLink>
