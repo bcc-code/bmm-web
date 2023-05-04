@@ -34,7 +34,7 @@ const { data: audiobooks, pending: audiobooksPending } = useTracks({
         :playlists="newestPlaylists"
       />
     </ContentSection>
-    <ContentSection title="Speeches" :link="{ name: 'messages' }">
+    <ContentSection :title="$t('nav.messages')" :link="{ name: 'messages' }">
       <TrackList
         :skeleton-count="5"
         :show-skeleton="speechesPending"
@@ -42,7 +42,10 @@ const { data: audiobooks, pending: audiobooksPending } = useTracks({
       >
       </TrackList>
     </ContentSection>
-    <ContentSection title="Audiobooks" :link="{ name: 'audiobooks' }">
+    <ContentSection
+      :title="$t('nav.audiobooks')"
+      :link="{ name: 'audiobooks' }"
+    >
       <TrackList
         :skeleton-count="5"
         :show-skeleton="audiobooksPending"
