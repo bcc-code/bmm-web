@@ -56,8 +56,8 @@ function menuItemClick(event: Event, item: DropdownMenuItem) {
         </p>
         <p
           v-else
-          @click="(event: MouseEvent) => event.stopPropagation()"
           class="flex justify-start items-center gap-1 py-2 px-3"
+          @click="(event: MouseEvent) => event.stopPropagation()"
         >
           <IconComponent v-if="item.icon" :name="item.icon" />
           <span>{{ item.text }}</span>

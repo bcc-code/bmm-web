@@ -17,7 +17,7 @@ defineProps<{
       <ProtectedImage
         :src="playlist.cover || ''"
         alt=""
-        class="h-full rounded-xl bg-slate-100"
+        class="h-full rounded-xl bg-background-2"
       />
     </NuxtLink>
   </div>

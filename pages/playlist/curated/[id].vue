@@ -16,14 +16,14 @@ onBeforeMount(() => {
 </script>
 
 <template>
-  <div class="grid grid-cols-12" v-if="playlist">
+  <div v-if="playlist" class="grid grid-cols-12">
     <div class="col-start-3 col-span-8">
       <header class="flex gap-6 mb-12">
         <ProtectedImage
           v-if="playlist.cover"
           :src="playlist.cover"
           alt=""
-          class="aspect-square rounded-2xl bg-slate-100 w-[300px]"
+          class="aspect-square rounded-2xl bg-background-2 w-[300px]"
         />
         <div class="p-6 flex flex-col justify-between">
           <div>

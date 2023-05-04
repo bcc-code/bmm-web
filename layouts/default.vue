@@ -20,8 +20,13 @@ const { currentTrack } = inject(MediaPlaylistInjectionKey)!;
         </template>
       </NuxtErrorBoundary>
     </main>
-    <footer>
+    <transition
+      enter-active-class="transition-all duration-200 ease-out"
+      enter-from-class="opacity-0 translate-y-2"
+      leave-active-class="transition-all duration-200 ease-out"
+      leave-to-class="opacity-0 translate-y-2"
+    >
       <MediaPlayer v-if="currentTrack !== undefined" />
-    </footer>
+    </transition>
   </div>
 </template>
