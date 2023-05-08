@@ -13,8 +13,8 @@ withDefaults(
 const className = cva("py-3 px-6 rounded-full flex gap-3 items-center", {
   variants: {
     intent: {
-      primary: "bg-slate-900 text-slate-100 hover:bg-slate-700",
-      secondary: "bg-slate-100 text-slate-900 hover:bg-slate-200",
+      primary: "bg-background-4 text-on-color-1",
+      secondary: "bg-background-2 text-label-1",
     },
   },
 });

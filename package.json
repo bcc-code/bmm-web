@@ -1,6 +1,5 @@
 {
   "name": "bmm-web",
-  "version": "0.0.1",
   "author": "BCC",
   "description": "BCC audio player",
   "license": "AGPL-3.0",
@@ -14,20 +13,25 @@
     "preview": "PORT=9001 nuxt preview",
     "coverage": "vitest run --coverage",
     "e2e": "cypress open",
-    "lint": "stylelint '**/*.{vue,scss}' && prettier . --check && eslint --ext ts,js,vue,json . && nuxi typecheck",
+    "lint": "stylelint \"**/*.{vue,scss}\" && prettier . --check && eslint --ext ts,js,vue,json . && nuxi typecheck",
     "test": "vitest",
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
     "@auth0/auth0-vue": "^2.2.0",
+<<<<<<< HEAD
     "@bcc-code/bmm-sdk-fetch": "^4.0.0",
     "@headlessui/vue": "^1.7.13",
+=======
+    "@bcc-code/bmm-sdk-fetch": "^5.0.0",
+>>>>>>> 2c08e59d77c387bd87589049d9b8667897eac875
     "@pinia/nuxt": "^0.4.9",
     "class-variance-authority": "^0.5.2"
   },
   "devDependencies": {
     "@intlify/eslint-plugin-vue-i18n": "^2.0.0",
     "@nuxt/devtools": "^0.4.1",
+    "@nuxt/kit": "^3.4.3",
     "@nuxt/test-utils": "^3.4.2",
     "@nuxtjs/eslint-config-typescript": "^12.0.0",
     "@nuxtjs/i18n": "8.0.0-beta.10",
@@ -42,6 +46,7 @@
     "eslint-config-airbnb-typescript": "^17.0.0",
     "eslint-config-prettier": "^8.8.0",
     "happy-dom": "^9.9.2",
+    "log-symbols": "^5.1.0",
     "nuxt": "^3.4.1",
     "nuxt-electron": "^0.4.5",
     "nuxt-typed-router": "^3.2.0",

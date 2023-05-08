@@ -9,14 +9,14 @@ const newestPlaylists = computed(() => playlists.value?.splice(0, 4) || null);
 // Speeches
 const { data: speeches, pending: speechesPending } = useTracks({
   contentType2: ["speech"],
+  size: 5,
 });
-const newestSpeeches = computed(() => speeches.value?.splice(0, 5) || null);
 
 // Audiobooks
 const { data: audiobooks, pending: audiobooksPending } = useTracks({
   contentType2: ["audiobook"],
+  size: 5,
 });
-const newestAudiobooks = computed(() => audiobooks.value?.splice(0, 5) || null);
 </script>
 
 <template>
@@ -26,7 +26,7 @@ const newestAudiobooks = computed(() => audiobooks.value?.splice(0, 5) || null);
         <div
           v-for="i in 4"
           :key="i"
-          class="bg-slate-100 rounded-xl aspect-square h-full"
+          class="bg-background-2 rounded-xl aspect-square h-full"
         ></div>
       </div>
       <PlaylistCarousel
@@ -34,19 +34,22 @@ const newestAudiobooks = computed(() => audiobooks.value?.splice(0, 5) || null);
         :playlists="newestPlaylists"
       />
     </ContentSection>
-    <ContentSection title="Speeches" :link="{ name: 'messages' }">
+    <ContentSection :title="$t('nav.messages')" :link="{ name: 'messages' }">
       <TrackList
         :skeleton-count="5"
         :show-skeleton="speechesPending"
-        :tracks="newestSpeeches"
+        :tracks="speeches"
       >
       </TrackList>
     </ContentSection>
-    <ContentSection title="Audiobooks" :link="{ name: 'audiobooks' }">
+    <ContentSection
+      :title="$t('nav.audiobooks')"
+      :link="{ name: 'audiobooks' }"
+    >
       <TrackList
         :skeleton-count="5"
         :show-skeleton="audiobooksPending"
-        :tracks="newestAudiobooks"
+        :tracks="audiobooks"
       >
       </TrackList>
     </ContentSection>

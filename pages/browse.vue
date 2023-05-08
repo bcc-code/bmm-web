@@ -7,7 +7,7 @@ const { data: playlists } = usePlaylists();
 
 <template>
   <div>
-    <PageHeading class="mb-6">Browse</PageHeading>
+    <PageHeading class="mb-6">{{ $t("nav.browse") }}</PageHeading>
     <PlaylistOverview v-if="playlists" :playlists="playlists" />
   </div>
 </template>
