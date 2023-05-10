@@ -14,8 +14,9 @@ interface UseTrackCollectionOptions {
 export function useTrackCollection(options: UseTrackCollectionOptions) {
   const { id } = options;
 
-  return useAsyncData<GetTrackCollectionModel>(`track-collection-${id}`, () =>
-    new TrackCollectionApi().trackCollectionIdGet({ id })
+  return useLazyAsyncData<GetTrackCollectionModel>(
+    `track-collection-${id}`,
+    () => new TrackCollectionApi().trackCollectionIdGet({ id })
   );
 }
 
@@ -23,7 +24,7 @@ export function useTrackCollection(options: UseTrackCollectionOptions) {
  * Get all track collections
  */
 export function useTrackCollections() {
-  return useAsyncData<TrackCollectionDetails[]>("track-collections", () =>
+  return useLazyAsyncData<TrackCollectionDetails[]>("track-collections", () =>
     new TrackCollectionApi().trackCollectionGet()
   );
 }
