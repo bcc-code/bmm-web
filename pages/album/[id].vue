@@ -20,14 +20,14 @@ const toggleExpandedAlbum = (albumReference: string) => {
 
 <template>
   <div v-if="album">
-    <header class="flex gap-6 mb-12">
+    <header class="mb-12 flex gap-6">
       <ProtectedImage
         v-if="album.cover"
         :src="album.cover"
         alt=""
-        class="aspect-square rounded-2xl bg-slate-100 w-[300px]"
+        class="bg-slate-100 aspect-square w-[300px] rounded-2xl"
       />
-      <div class="p-6 flex flex-col justify-between">
+      <div class="flex flex-col justify-between p-6">
         <div>
           <PageHeading>{{ album.title }}</PageHeading>
         </div>

@@ -15,10 +15,10 @@ function expand() {
 
 <template>
   <section
-    class="group gap-2 relative mr-3 my-4 cursor-pointer"
+    class="group relative my-4 mr-3 cursor-pointer gap-2"
     :class="
       active
-        ? 'p-5 border-2 rounded-3xl active:scale-110 duration-150 shadow-lg'
+        ? 'rounded-3xl border-2 p-5 shadow-lg duration-150 active:scale-110'
         : ''
     "
     @click="expand"
@@ -27,27 +27,27 @@ function expand() {
       :class="
         active
           ? ''
-          : 'opacity-0 group-hover:opacity-100 absolute -inset-y-2 -inset-x-3 rounded-xl bg-slate-100'
+          : 'bg-slate-100 absolute -inset-x-3 -inset-y-2 rounded-xl opacity-0 group-hover:opacity-100'
       "
     ></div>
     <section
       v-if="album"
-      class="flex gap-2 items-center justify-between relative"
+      class="relative flex items-center justify-between gap-2"
     >
       <ProtectedImage
         v-if="album.cover"
         :src="album.cover"
         alt=""
-        class="rounded-md w-20 aspect-square bg-slate-100"
+        class="bg-slate-100 aspect-square w-20 rounded-md"
       />
       <p class="text-2xl font-bold">{{ album.title }}</p>
       <p class="ml-auto">{{ album?.children?.length }} tracks</p>
     </section>
     <section
-      :class="active ? 'active max-h-fit relative' : 'h-0 overflow-hidden'"
+      :class="active ? 'active relative max-h-fit' : 'h-0 overflow-hidden'"
     >
       <div v-for="(track, i) in album?.children" :key="i">
-        <p class="p-2 hover:bg-slate-100 rounded-md">
+        <p class="hover:bg-slate-100 rounded-md p-2">
           {{ track.id }}
         </p>
       </div>

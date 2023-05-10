@@ -9,9 +9,9 @@ const { currentTrack } = inject(MediaPlaylistInjectionKey)!;
 </script>
 
 <template>
-  <div class="flex h-full overflow-y-hidden max-h-[100vh]">
+  <div class="flex h-full max-h-[100vh] overflow-y-hidden">
     <SidebarElement />
-    <main class="flex-grow overflow-y-auto relative">
+    <main class="relative flex-grow overflow-y-auto">
       <AppToolbar />
       <NuxtErrorBoundary @error="onError">
         <slot />

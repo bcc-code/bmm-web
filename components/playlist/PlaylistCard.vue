@@ -12,9 +12,9 @@ defineProps<{
       v-if="playlist.cover"
       :src="playlist.cover"
       alt=""
-      class="rounded-2xl aspect-square w-full bg-background-2"
+      class="aspect-square w-full rounded-2xl bg-background-2"
     />
-    <span class="text-ellipsis whitespace-nowrap overflow-hidden text-center">
+    <span class="overflow-hidden text-ellipsis whitespace-nowrap text-center">
       {{ playlist.title }}
     </span>
   </div>

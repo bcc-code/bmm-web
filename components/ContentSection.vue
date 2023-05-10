@@ -15,12 +15,12 @@ withDefaults(
 
 <template>
   <section v-bind="$attrs">
-    <header class="flex gap-4 justify-between align-center mb-4">
+    <header class="align-center mb-4 flex justify-between gap-4">
       <PageHeading :level="3">{{ title }}</PageHeading>
       <NuxtLink
         v-if="link"
         :to="link"
-        class="bg-slate-100 rounded-full leading-none inline-block px-3 py-2 hover:bg-slate-200 text-sm"
+        class="bg-slate-100 hover:bg-slate-200 inline-block rounded-full px-3 py-2 text-sm leading-none"
       >
         {{ linkLabel }}
       </NuxtLink>
