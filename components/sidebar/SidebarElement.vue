@@ -15,7 +15,7 @@ const { data: collections } = useTrackCollections();
 
 <template>
   <aside
-    class="min-w-[300px] max-h-screen border-r border-label-separator flex flex-col"
+    class="flex max-h-screen min-w-[300px] flex-col border-r border-label-separator"
   >
     <div class="p-3">
       <SiteLogo size="small" />

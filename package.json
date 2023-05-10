@@ -46,6 +46,7 @@
     "nuxt-electron": "^0.4.5",
     "nuxt-typed-router": "^3.2.0",
     "prettier": "^2.8.7",
+    "prettier-plugin-tailwindcss": "^0.2.7",
     "stylelint": "^15.5.0",
     "stylelint-config-recommended-scss": "^10.0.0",
     "stylelint-config-recommended-vue": "^1.4.0",

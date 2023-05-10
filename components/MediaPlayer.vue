@@ -11,28 +11,28 @@ const { currentTrack } = inject(MediaPlaylistInjectionKey)!;
 
 <template>
   <div
-    class="fixed bottom-4 right-4 flex w-[400px] p-3 rounded-2xl shadow-xl bg-white-1 border border-black-1/10"
+    class="fixed bottom-4 right-4 flex w-[400px] rounded-2xl border border-black-1/10 bg-white-1 p-3 shadow-xl"
   >
-    <div class="flex flex-1 gap-3 min-w-0">
-      <div class="flex flex-1 gap-3 min-w-0">
+    <div class="flex min-w-0 flex-1 gap-3">
+      <div class="flex min-w-0 flex-1 gap-3">
         <div
-          class="shrink-0 rounded-md bg-background-2 h-[48px] aspect-square overflow-hidden"
+          class="aspect-square h-[48px] shrink-0 overflow-hidden rounded-md bg-background-2"
         >
           <ProtectedImage
             v-if="currentTrack?.meta?.attachedPicture"
             :src="currentTrack?.meta?.attachedPicture"
           />
         </div>
-        <div class="flex flex-col min-w-0">
+        <div class="flex min-w-0 flex-col">
           <h3
-            class="font-semibold text-lg truncate leading-tight"
+            class="truncate text-lg font-semibold leading-tight"
             :title="currentTrack?.title || ''"
           >
             {{ currentTrack?.title }}
           </h3>
           <span
             v-if="currentTrack?.meta?.artist"
-            class="text-label-2 text-base truncate leading-snug"
+            class="truncate text-base leading-snug text-label-2"
             :title="currentTrack?.meta?.artist"
           >
             {{ currentTrack.meta?.artist }}

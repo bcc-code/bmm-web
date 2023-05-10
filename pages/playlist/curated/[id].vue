@@ -17,15 +17,15 @@ onBeforeMount(() => {
 
 <template>
   <div v-if="playlist" class="grid grid-cols-12">
-    <div class="col-start-3 col-span-8">
-      <header class="flex gap-6 mb-12">
+    <div class="col-span-8 col-start-3">
+      <header class="mb-12 flex gap-6">
         <ProtectedImage
           v-if="playlist.cover"
           :src="playlist.cover"
           alt=""
-          class="aspect-square rounded-2xl bg-background-2 w-[300px]"
+          class="aspect-square w-[300px] rounded-2xl bg-background-2"
         />
-        <div class="p-6 flex flex-col justify-between">
+        <div class="flex flex-col justify-between p-6">
           <div>
             <PageHeading>{{ playlist.title }}</PageHeading>
             <p v-if="tracks">{{ tracks.length }} tracks</p>

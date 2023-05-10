@@ -7,7 +7,7 @@ const errorComp = computed(() => props.error);
 </script>
 
 <template>
-  <pre class="bg-red-100 p-6 text-red-700">
+  <pre class="bg-red-100 text-red-700 p-6">
     {{ errorComp }}
   </pre>
 </template>

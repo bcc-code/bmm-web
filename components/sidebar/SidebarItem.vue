@@ -19,14 +19,14 @@ withDefaults(
   <NuxtLink
     :to="link"
     active-class="bg-tint"
-    class="py-2 px-4 rounded-xl group flex gap-2"
+    class="group flex gap-2 rounded-xl px-4 py-2"
   >
     <ProtectedImage
       v-if="image"
       :src="image"
-      class="h-full aspect-square rounded bg-background-2"
+      class="aspect-square h-full rounded bg-background-2"
     />
-    <span class="group-hover:translate-x-2 transition-transform">
+    <span class="transition-transform group-hover:translate-x-2">
       {{ title }}
     </span>
   </NuxtLink>

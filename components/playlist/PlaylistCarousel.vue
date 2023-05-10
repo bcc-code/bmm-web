@@ -7,12 +7,12 @@ defineProps<{
 </script>
 
 <template>
-  <div class="flex gap-6 w-full overflow-x-auto h-64">
+  <div class="flex h-64 w-full gap-6 overflow-x-auto">
     <NuxtLink
       v-for="playlist in playlists"
       :key="playlist.id || 0"
       :to="{ name: 'playlist-curated-id', params: { id: playlist.id || 0 } }"
-      class="h-full aspect-square"
+      class="aspect-square h-full"
     >
       <ProtectedImage
         :src="playlist.cover || ''"

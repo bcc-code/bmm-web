@@ -13,14 +13,14 @@ useHead({
 
 <template>
   <div>
-    <header class="flex gap-6 mb-8">
+    <header class="mb-8 flex gap-6">
       <template v-if="collection">
         <div>
           <PageHeading>{{ collection?.name }}</PageHeading>
           <p>{{ collection?.tracks?.length }} tracks</p>
         </div>
       </template>
-      <div v-else class="h-12 bg-background-2 w-1/3 rounded-lg mb-6"></div>
+      <div v-else class="mb-6 h-12 w-1/3 rounded-lg bg-background-2"></div>
     </header>
     <TrackList
       :skeleton-count="5"

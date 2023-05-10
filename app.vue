@@ -21,7 +21,7 @@ useHead({
 
 <template>
   <NuxtLayout v-if="isAuthenticated">
-    <div class="p-2 lg:p-5 container mx-auto">
+    <div class="container mx-auto p-2 lg:p-5">
       <NuxtPage />
     </div>
   </NuxtLayout>
