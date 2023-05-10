@@ -7,7 +7,7 @@ const props = defineProps<{
   alt?: string;
 }>();
 
-const source = ref<string>();
+const source = ref<string>("");
 const { getAccessTokenSilently } = useAuth0();
 
 watch(
@@ -20,5 +20,5 @@ watch(
 );
 </script>
 <template>
-  <img :src="source || ''" :alt="alt || ''" loading="lazy" v-bind="$attrs" />
+  <img :src="source" :alt="alt || ''" loading="lazy" v-bind="$attrs" />
 </template>

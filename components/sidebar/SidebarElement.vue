@@ -33,11 +33,11 @@ const { data: collections } = useTrackCollections();
       <SidebarGroup title="Playlists">
         <SidebarItem
           v-for="collection in collections"
-          :key="collection.id || 0"
+          :key="collection.id"
           :title="collection.name || ''"
           :link="{
             name: 'playlist-private-id',
-            params: { id: collection.id || 0 },
+            params: { id: collection.id },
           }"
         />
       </SidebarGroup>

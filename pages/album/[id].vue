@@ -39,7 +39,7 @@ const toggleExpandedAlbum = (albumReference: string) => {
     <p v-if="album.children" class="p-2">{{ album.children.length }} albums</p>
     <div v-for="(child, i) in album?.children" :key="`${child.id}-${i}`">
       <AlbumSubAlbum
-        :id="child.id || 0"
+        :id="child.id"
         :active="expandedAlbum === `${child.id}-${i}`"
         @expand="toggleExpandedAlbum(`${child.id}-${i}`)"
       ></AlbumSubAlbum>
