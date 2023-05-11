@@ -19,14 +19,17 @@ describe("component PlaylistOverview", async () => {
       Promise.resolve([
         {
           id: 10,
+          type: "playlist",
           title: "TestSamplePlaylist1",
         },
         {
           id: 12,
+          type: "playlist",
           title: "TestSamplePlaylist2",
         },
         {
           id: 11,
+          type: "playlist",
           title: "TestSamplePlaylist3",
         },
       ])

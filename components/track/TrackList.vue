@@ -84,7 +84,7 @@ const dropdownMenuItemsForTrack = (track: TrackModel) => {
     <template v-else>
       <TrackItem
         v-for="(track, i) in tracks"
-        :key="track.id || 0"
+        :key="track.id"
         :track="track"
         show-thumbnail
         @play-track="setCurrentTrack(track)"
