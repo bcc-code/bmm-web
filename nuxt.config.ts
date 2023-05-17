@@ -1,7 +1,8 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+import { NuxtConfig } from "nuxt/config";
 import vueI18n from "./i18n.config";
 
-const modules: (string | any)[] = [
+const modules: NuxtConfig["modules"] = [
   ["nuxt-typed-router", { strict: true }],
   "@nuxt/devtools",
   // Use TS-path as workaround (See https://github.com/nuxt/nuxt/issues/20912)
@@ -11,7 +12,7 @@ const modules: (string | any)[] = [
   ["@pinia/nuxt", { autoImports: ["defineStore"] }],
 ];
 
-if (process.env.ELECTRON) modules.push(["nuxt-electron"]);
+if (process.env.ELECTRON) modules.push("nuxt-electron");
 
 export default defineNuxtConfig({
   modules,
