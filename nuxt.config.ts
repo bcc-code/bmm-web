@@ -7,6 +7,7 @@ const modules: (string | any)[] = [
   "./modules/figma2tailwind", // Must be placed before "@nuxtjs/tailwindcss"
   "@nuxtjs/tailwindcss",
   "@nuxtjs/i18n",
+  "nuxt-vitest",
   ["@pinia/nuxt", { autoImports: ["defineStore"] }],
 ];
 
