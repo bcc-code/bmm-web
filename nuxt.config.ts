@@ -4,7 +4,8 @@ import vueI18n from "./i18n.config";
 const modules: (string | any)[] = [
   ["nuxt-typed-router", { strict: true }],
   "@nuxt/devtools",
-  "./modules/figma2tailwind", // Must be placed before "@nuxtjs/tailwindcss"
+  // Use TS-path as workaround (See https://github.com/nuxt/nuxt/issues/20912)
+  "~/modules/figma2tailwind/index.ts", // Must be placed before "@nuxtjs/tailwindcss"
   "@nuxtjs/tailwindcss",
   "@nuxtjs/i18n",
   ["@pinia/nuxt", { autoImports: ["defineStore"] }],
