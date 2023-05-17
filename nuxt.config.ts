@@ -1,4 +1,5 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+// eslint-disable-next-line import/no-extraneous-dependencies
 import { NuxtConfig } from "nuxt/config";
 import vueI18n from "./i18n.config";
 
