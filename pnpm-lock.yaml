@@ -7,6 +7,9 @@ dependencies:
   '@bcc-code/bmm-sdk-fetch':
     specifier: ^5.0.0
     version: 5.0.0
+  '@headlessui/vue':
+    specifier: ^1.7.13
+    version: 1.7.13(vue@3.2.47)
   '@pinia/nuxt':
     specifier: ^0.4.9
     version: 0.4.9(typescript@4.9.5)(vue@3.2.47)
@@ -857,8 +860,7 @@ packages:
       '@hapi/hoek': 9.3.0
     dev: true
 
-<<<<<<< HEAD
-  /@headlessui/vue/1.7.13_vue@3.2.47:
+  /@headlessui/vue@1.7.13(vue@3.2.47):
     resolution: {integrity: sha512-obG5TdPdBDfs+jiA1mY29LPFqyJl93Q90EL86ontfRe1B6XvbjPkx+x1aAC5DA18bXbb0Juni1ayDbXo0w1u0A==}
     engines: {node: '>=10'}
     peerDependencies:
@@ -867,10 +869,7 @@ packages:
       vue: 3.2.47
     dev: false
 
-  /@humanwhocodes/config-array/0.11.8:
-=======
   /@humanwhocodes/config-array@0.11.8:
->>>>>>> 2c08e59d77c387bd87589049d9b8667897eac875
     resolution: {integrity: sha512-UybHIJzJnR5Qc/MsD9Kr+RpO2h+/P1GhOwdiLPXK5TWk5sgTdu88bTD9UP+CKbPPh5Rni1u0GjAdYQLemG8g+g==}
     engines: {node: '>=10.10.0'}
     dependencies:

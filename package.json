@@ -19,12 +19,8 @@
   },
   "dependencies": {
     "@auth0/auth0-vue": "^2.2.0",
-<<<<<<< HEAD
-    "@bcc-code/bmm-sdk-fetch": "^4.0.0",
-    "@headlessui/vue": "^1.7.13",
-=======
     "@bcc-code/bmm-sdk-fetch": "^5.0.0",
->>>>>>> 2c08e59d77c387bd87589049d9b8667897eac875
+    "@headlessui/vue": "^1.7.13",
     "@pinia/nuxt": "^0.4.9",
     "class-variance-authority": "^0.5.2"
   },
