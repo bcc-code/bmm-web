@@ -11,6 +11,10 @@ const props = withDefaults(
   }
 );
 
+defineSlots<{
+  default: (props: {}) => any;
+}>();
+
 const component = computed(() => `h${props.level}`);
 
 const className = cva("font-bold leading-tight text-label-1", {

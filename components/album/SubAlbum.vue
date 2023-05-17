@@ -6,7 +6,7 @@ const props = defineProps<{
 
 const { data: album } = useAlbum({ id: props.id });
 
-const emit = defineEmits(["expand"]);
+const emit = defineEmits<{ expand: [] }>();
 
 function expand() {
   emit("expand");
