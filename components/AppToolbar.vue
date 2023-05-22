@@ -6,5 +6,6 @@
       {{ toolbarTitleStore().toolbarTitle }}
     </strong>
     <ChangeLocale class="mx-4" />
+    <ProfileMenu />
   </header>
 </template>
