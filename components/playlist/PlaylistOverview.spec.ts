@@ -1,43 +1,37 @@
 // @vitest-environment happy-dom
 
-import { PlaylistApi } from "@bcc-code/bmm-sdk-fetch";
-import { describe, it, expect, vi, afterEach } from "vitest";
+import { PlaylistModel } from "@bcc-code/bmm-sdk-fetch";
+import { describe, it, expect } from "vitest";
 import { RouterLinkStub, flushPromises, mount } from "@vue/test-utils";
-import { setup } from "@nuxt/test-utils";
 import PlaylistOverview from "./PlaylistOverview.vue";
 
-describe("component PlaylistOverview", async () => {
-  await setup({});
-
-  afterEach(() => {
-    vi.clearAllMocks();
-  });
-
+describe("component PlaylistOverview", () => {
   it("should list the playlists in the order given by the api", async () => {
     // Arrange
-    vi.spyOn(PlaylistApi.prototype, "playlistGet").mockReturnValueOnce(
-      Promise.resolve([
-        {
-          id: 10,
-          type: "playlist",
-          title: "TestSamplePlaylist1",
-        },
-        {
-          id: 12,
-          type: "playlist",
-          title: "TestSamplePlaylist2",
-        },
-        {
-          id: 11,
-          type: "playlist",
-          title: "TestSamplePlaylist3",
-        },
-      ])
-    );
+    const playlists: PlaylistModel[] = [
+      {
+        id: 10,
+        type: "playlist",
+        title: "TestSamplePlaylist1",
+      },
+      {
+        id: 12,
+        type: "playlist",
+        title: "TestSamplePlaylist2",
+      },
+      {
+        id: 11,
+        type: "playlist",
+        title: "TestSamplePlaylist3",
+      },
+    ];
 
     // Act
     const wrapper = mount(PlaylistOverview, {
-      global: { stubs: { RouterLink: RouterLinkStub } },
+      props: {
+        playlists,
+      },
+      global: { stubs: { NuxtLink: RouterLinkStub } },
     });
     await flushPromises();
 

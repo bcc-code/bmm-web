@@ -25,10 +25,10 @@ jobs:
         run: pnpm install
       - name: Run linters
         run: pnpm lint
-      # - name: Test and create coverage
-      #   run: pnpm coverage
-      # - name: Upload coverage reports to Codecov
-      #   uses: codecov/codecov-action@v3
+      - name: Test and create coverage
+        run: pnpm coverage
+      - name: Upload coverage reports to Codecov
+        uses: codecov/codecov-action@v3
       - name: Build for production
         run: pnpm generate
       - name: E2E testing
@@ -56,11 +56,11 @@ jobs:
         with:
           name: dist
           path: .output/public
-      # - name: Archive code coverage results
-      #   uses: actions/upload-artifact@v3
-      #   with:
-      #     name: code-coverage-report
-      #     path: coverage
+      - name: Archive code coverage results
+        uses: actions/upload-artifact@v3
+        with:
+          name: code-coverage-report
+          path: coverage
 
   deploy_azure_static_web_apps:
     runs-on: ubuntu-latest

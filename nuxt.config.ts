@@ -10,6 +10,7 @@ const modules: NuxtConfig["modules"] = [
   "~/modules/figma2tailwind/index.ts", // Must be placed before "@nuxtjs/tailwindcss"
   "@nuxtjs/tailwindcss",
   "@nuxtjs/i18n",
+  "nuxt-vitest",
   ["@pinia/nuxt", { autoImports: ["defineStore"] }],
 ];
 
