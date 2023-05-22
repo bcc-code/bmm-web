@@ -10,6 +10,10 @@ withDefaults(
   }
 );
 
+defineSlots<{
+  default: (props: {}) => any;
+}>();
+
 const className = cva("py-3 px-6 rounded-full flex gap-3 items-center", {
   variants: {
     intent: {

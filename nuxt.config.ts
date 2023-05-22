@@ -1,17 +1,20 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { NuxtConfig } from "nuxt/config";
 import vueI18n from "./i18n.config";
 
-const modules: (string | any)[] = [
+const modules: NuxtConfig["modules"] = [
   ["nuxt-typed-router", { strict: true }],
   "@nuxt/devtools",
-  "./modules/figma2tailwind", // Must be placed before "@nuxtjs/tailwindcss"
+  // Use TS-path as workaround (See https://github.com/nuxt/nuxt/issues/20912)
+  "~/modules/figma2tailwind/index.ts", // Must be placed before "@nuxtjs/tailwindcss"
   "@nuxtjs/tailwindcss",
   "@nuxtjs/i18n",
   "nuxt-vitest",
   ["@pinia/nuxt", { autoImports: ["defineStore"] }],
 ];
 
-if (process.env.ELECTRON) modules.push(["nuxt-electron"]);
+if (process.env.ELECTRON) modules.push("nuxt-electron");
 
 export default defineNuxtConfig({
   modules,

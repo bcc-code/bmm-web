@@ -12,7 +12,7 @@ defineProps<{
   items: DropdownMenuItem[];
 }>();
 
-const emit = defineEmits(["close"]);
+const emit = defineEmits<{ close: [] }>();
 
 function close(event: Event) {
   event.stopPropagation();

@@ -8,7 +8,11 @@ defineProps<{
   showThumbnail?: boolean;
 }>();
 
-const emit = defineEmits(["open-options", "play-track"]);
+defineSlots<{
+  default: (props: {}) => any;
+}>();
+
+const emit = defineEmits<{ "open-options": []; "play-track": [] }>();
 
 function openOptions(event: Event) {
   event.stopPropagation();

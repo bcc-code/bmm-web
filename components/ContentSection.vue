@@ -11,6 +11,10 @@ withDefaults(
     linkLabel: "See all",
   }
 );
+
+defineSlots<{
+  default: (props: {}) => any;
+}>();
 </script>
 
 <template>
