@@ -5,8 +5,8 @@ toolbarTitleStore().setReactiveToolbarTitle(() => t("nav.playlist"));
 const { id } = useRoute<"playlist-curated-id">().params;
 const playlistId = Number(id);
 
-const { data: playlist } = usePlaylist({ id: playlistId });
-const { data: tracks, pending } = usePlaylistTracks({ id: playlistId });
+const { data: playlist } = useCuratedPlaylist({ id: playlistId });
+const { data: tracks, pending } = useCuratedPlaylistTracks({ id: playlistId });
 
 onBeforeMount(() => {
   useHead({

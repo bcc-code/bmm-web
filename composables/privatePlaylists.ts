@@ -4,10 +4,7 @@ interface UseTrackCollectionOptions {
   id: number;
 }
 
-/**
- * Get specific track collection
- */
-export function useTrackCollection(options: UseTrackCollectionOptions) {
+export function usePrivatePlaylist(options: UseTrackCollectionOptions) {
   const { id } = options;
 
   return useLazyAsyncData(`track-collection-${id}`, () =>
@@ -15,10 +12,7 @@ export function useTrackCollection(options: UseTrackCollectionOptions) {
   );
 }
 
-/**
- * Get all track collections
- */
-export function useTrackCollections() {
+export function usePrivatePlaylists() {
   return useLazyAsyncData("track-collections", () =>
     new TrackCollectionApi().trackCollectionGet()
   );

@@ -4,9 +4,6 @@ interface UseAlbumOptions {
   id: number;
 }
 
-/**
- * Get playlist with the specified id
- */
 export function useAlbum(options: UseAlbumOptions) {
   const { id } = options;
 
@@ -15,9 +12,6 @@ export function useAlbum(options: UseAlbumOptions) {
   );
 }
 
-/**
- * Get all albums
- */
 export function useAlbums() {
   return useLazyAsyncData("albums", () => new AlbumApi().albumGet());
 }

@@ -2,7 +2,7 @@
 const { t } = useI18n();
 toolbarTitleStore().setReactiveToolbarTitle(() => t("nav.browse"));
 
-const { data: playlists } = usePlaylists();
+const { data: playlists } = useCuratedPlaylists();
 </script>
 
 <template>
