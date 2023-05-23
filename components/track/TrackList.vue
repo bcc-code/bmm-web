@@ -73,18 +73,18 @@ const dropdownMenuItemsForTrack = (track: TrackModel) => {
 </script>
 
 <template>
-  <ol class="divide-y divide-slate-100 w-full">
+  <ol class="w-full divide-y divide-label-separator">
     <template v-if="showSkeleton">
       <li
         v-for="skeleton in skeletonCount"
         :key="skeleton"
-        class="w-full h-11 bg-slate-100 rounded-lg my-6 animate-pulse"
+        class="my-6 h-11 w-full animate-pulse rounded-lg bg-background-2"
       ></li>
     </template>
     <template v-else>
       <TrackItem
         v-for="(track, i) in tracks"
-        :key="track.id || 0"
+        :key="track.id"
         :track="track"
         show-thumbnail
         @play-track="setCurrentTrack(track)"

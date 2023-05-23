@@ -10,7 +10,7 @@ interface UseAlbumOptions {
 export function useAlbum(options: UseAlbumOptions) {
   const { id } = options;
 
-  return useAsyncData<AlbumModel>(`album-${id}`, () =>
+  return useLazyAsyncData<AlbumModel>(`album-${id}`, () =>
     new AlbumApi().albumIdGet({ id })
   );
 }
@@ -19,5 +19,7 @@ export function useAlbum(options: UseAlbumOptions) {
  * Get all albums
  */
 export function useAlbums() {
-  return useAsyncData<AlbumModel[]>("albums", () => new AlbumApi().albumGet());
+  return useLazyAsyncData<AlbumModel[]>("albums", () =>
+    new AlbumApi().albumGet()
+  );
 }

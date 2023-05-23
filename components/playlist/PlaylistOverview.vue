@@ -11,8 +11,8 @@ defineProps<{
   <div class="grid grid-cols-4 gap-8">
     <NuxtLink
       v-for="playlist in playlists"
-      :key="playlist.id || 0"
-      :to="{ name: 'playlist-curated-id', params: { id: playlist.id || 0 } }"
+      :key="playlist.id"
+      :to="{ name: 'playlist-curated-id', params: { id: playlist.id } }"
     >
       <PlaylistCard :playlist="playlist" />
     </NuxtLink>

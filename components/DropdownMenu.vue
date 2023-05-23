@@ -12,13 +12,14 @@ defineProps<{
   items: DropdownMenuItem[];
 }>();
 
-const emit = defineEmits(["close"]);
+const emit = defineEmits<{ close: [] }>();
 
 function close(event: Event) {
   event.stopPropagation();
   emit("close");
 }
 
+// menu items
 function menuItemClick(event: Event, item: DropdownMenuItem) {
   close(event);
 
@@ -26,44 +27,44 @@ function menuItemClick(event: Event, item: DropdownMenuItem) {
     item.clickFunction();
   }
 }
+
+function menuItemComponent(item: DropdownMenuItem) {
+  if (item.link) return resolveComponent("NuxtLink");
+  return "button";
+}
+
+function menuItemListeners(item: DropdownMenuItem) {
+  const click = item.clickFunction
+    ? (event: MouseEvent) => menuItemClick(event, item)
+    : (event: MouseEvent) => event.stopPropagation();
+
+  return {
+    click,
+  };
+}
 </script>
 
 <template>
   <div>
     <ul
-      class="absolute z-20 top-10 right-0 p-2 bg-white shadow-md rounded-lg divide-y divide-slate-100 w-52"
+      class="absolute right-0 top-10 z-20 w-52 rounded-xl bg-white-1 p-1 shadow-md"
     >
       <li
         v-for="item in items"
         :key="item.text"
-        class="block rounded-lg hover:bg-slate-100 hover:text-black cursor-pointer w-full"
+        class="hover:text-black block w-full cursor-pointer rounded-lg hover:bg-background-2"
       >
-        <NuxtLink
-          v-if="item.link"
-          :to="item.link"
-          class="flex justify-start items-center gap-1 py-2 px-3"
+        <component
+          :is="menuItemComponent(item)"
+          :to="item.link ? item.link : null"
+          class="flex items-center justify-start gap-2 px-3 py-2"
+          v-on="menuItemListeners(item)"
         >
           <IconComponent v-if="item.icon" :name="item.icon" />
           <span>{{ item.text }}</span>
-        </NuxtLink>
-        <p
-          v-else-if="item.clickFunction"
-          class="flex justify-start items-center gap-1 py-2 px-3"
-          @click="(event: MouseEvent) => menuItemClick(event, item)"
-        >
-          <IconComponent v-if="item.icon" :name="item.icon" />
-          <span>{{ item.text }}</span>
-        </p>
-        <p
-          v-else
-          @click="(event: MouseEvent) => event.stopPropagation()"
-          class="flex justify-start items-center gap-1 py-2 px-3"
-        >
-          <IconComponent v-if="item.icon" :name="item.icon" />
-          <span>{{ item.text }}</span>
-        </p>
+        </component>
       </li>
     </ul>
-    <div @click="close" class="fixed inset-0 z-10"></div>
+    <div class="fixed inset-0 z-10" @click="close"></div>
   </div>
 </template>

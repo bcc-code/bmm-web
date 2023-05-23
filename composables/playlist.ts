@@ -14,7 +14,7 @@ interface UsePlaylistOptions {
 export function usePlaylist(options: UsePlaylistOptions) {
   const { id } = options;
 
-  return useAsyncData<PlaylistModel>(`playlist-${id}`, () =>
+  return useLazyAsyncData<PlaylistModel>(`playlist-${id}`, () =>
     new PlaylistApi().playlistIdGet({ id })
   );
 }
@@ -29,7 +29,7 @@ interface UsePlaylistTracksOptions {
 export function usePlaylistTracks(options: UsePlaylistTracksOptions) {
   const { id } = options;
 
-  return useAsyncData<TrackModel[]>(`playlist-tracks-${id}`, () =>
+  return useLazyAsyncData<TrackModel[]>(`playlist-tracks-${id}`, () =>
     new PlaylistApi().playlistIdTrackGet({ id })
   );
 }
@@ -38,7 +38,7 @@ export function usePlaylistTracks(options: UsePlaylistTracksOptions) {
  * Get all curated playlists
  */
 export function usePlaylists() {
-  return useAsyncData<PlaylistModel[]>("playlists", () =>
+  return useLazyAsyncData<PlaylistModel[]>("playlists", () =>
     new PlaylistApi().playlistGet()
   );
 }

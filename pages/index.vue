@@ -22,11 +22,11 @@ const { data: audiobooks, pending: audiobooksPending } = useTracks({
 <template>
   <div class="flex flex-col gap-16">
     <ContentSection title="Playlists">
-      <div v-if="playlistsPending" class="flex gap-6 h-64">
+      <div v-if="playlistsPending" class="flex h-64 gap-6">
         <div
           v-for="i in 4"
           :key="i"
-          class="bg-slate-100 rounded-xl aspect-square h-full"
+          class="aspect-square h-full rounded-xl bg-background-2"
         ></div>
       </div>
       <PlaylistCarousel
@@ -34,7 +34,7 @@ const { data: audiobooks, pending: audiobooksPending } = useTracks({
         :playlists="newestPlaylists"
       />
     </ContentSection>
-    <ContentSection title="Speeches" :link="{ name: 'messages' }">
+    <ContentSection :title="$t('nav.messages')" :link="{ name: 'messages' }">
       <TrackList
         :skeleton-count="5"
         :show-skeleton="speechesPending"
@@ -42,7 +42,10 @@ const { data: audiobooks, pending: audiobooksPending } = useTracks({
       >
       </TrackList>
     </ContentSection>
-    <ContentSection title="Audiobooks" :link="{ name: 'audiobooks' }">
+    <ContentSection
+      :title="$t('nav.audiobooks')"
+      :link="{ name: 'audiobooks' }"
+    >
       <TrackList
         :skeleton-count="5"
         :show-skeleton="audiobooksPending"

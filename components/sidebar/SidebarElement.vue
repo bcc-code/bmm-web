@@ -15,7 +15,7 @@ const { data: collections } = useTrackCollections();
 
 <template>
   <aside
-    class="min-w-[300px] max-h-screen border-r border-slate-200 flex flex-col"
+    class="flex max-h-screen min-w-[300px] flex-col border-r border-label-separator"
   >
     <div class="p-3">
       <SiteLogo size="small" />
@@ -33,11 +33,11 @@ const { data: collections } = useTrackCollections();
       <SidebarGroup title="Playlists">
         <SidebarItem
           v-for="collection in collections"
-          :key="collection.id || 0"
+          :key="collection.id"
           :title="collection.name || ''"
           :link="{
             name: 'playlist-private-id',
-            params: { id: collection.id || 0 },
+            params: { id: collection.id },
           }"
         />
       </SidebarGroup>

@@ -4,5 +4,5 @@ toolbarTitleStore().setReactiveToolbarTitle(() => t("nav.search"));
 </script>
 
 <template>
-  <PageHeading class="mb-6">Search</PageHeading>
+  <PageHeading class="mb-6">{{ $t("nav.search") }}</PageHeading>
 </template>
