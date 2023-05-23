@@ -1,4 +1,4 @@
-import { app, BrowserWindow } from "electron";
+import { app, dialog, BrowserWindow } from "electron";
 
 app
   .whenReady()
@@ -10,5 +10,5 @@ app
     );
   })
   .catch((error) => {
-    console.error(error);
+    dialog.showErrorBox("Error:", error);
   });
