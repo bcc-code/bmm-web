@@ -21,6 +21,7 @@
         "@nuxtjs/eslint-config-typescript",
         "plugin:promise/recommended",
         "plugin:@intlify/vue-i18n/recommended",
+        "plugin:vitest/recommended",
         "prettier"
       ],
       "rules": {
@@ -48,8 +49,9 @@
       }
     },
     {
-      "files": ["cypress.config.ts", "cypress/**/*.ts"],
+      "files": ["vitest.config.ts", "cypress.config.ts", "cypress/**/*.ts"],
       "rules": {
+        "vitest/expect-expect": "off",
         "import/no-extraneous-dependencies": [
           "error",
           { "devDependencies": true }
@@ -76,7 +78,7 @@
     "project": ["tsconfig.json"],
     "extraFileExtensions": [".vue"]
   },
-  "plugins": ["vue", "@typescript-eslint"],
+  "plugins": ["vue", "@typescript-eslint", "vitest"],
   "rules": {
     "@intlify/vue-i18n/no-missing-keys-in-other-locales": "warn",
     "@intlify/vue-i18n/no-unused-keys": [
