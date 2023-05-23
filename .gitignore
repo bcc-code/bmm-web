@@ -3,7 +3,6 @@ node_modules
 .nuxt
 .nitro
 .cache
-.eslintcache
 .output
 .env
 dist

@@ -62,22 +62,9 @@ export default defineNuxtPlugin((nuxtApp) => {
 
   function next() {
     if (queue.value.length > currentQueueIndex.value + 1) {
+      // eslint-disable-next-line @typescript-eslint/no-use-before-define
       setCurrentTrack(queue.value[currentQueueIndex.value + 1]);
     }
-  }
-
-  function previous() {
-    if (currentQueueIndex.value > 0) {
-      setCurrentTrack(queue.value[currentQueueIndex.value - 1]);
-    }
-  }
-
-  function clearCurrentTrack() {
-    activeMedia?.pause();
-    activeMedia = undefined;
-    currentTrack.value = undefined;
-    paused.value = true;
-    ended.value = false;
   }
 
   function setCurrentTrack(track?: TrackModel) {
@@ -126,6 +113,20 @@ export default defineNuxtPlugin((nuxtApp) => {
       // Play next track if there is one
       next();
     });
+  }
+
+  function previous() {
+    if (currentQueueIndex.value > 0) {
+      setCurrentTrack(queue.value[currentQueueIndex.value - 1]);
+    }
+  }
+
+  function clearCurrentTrack() {
+    activeMedia?.pause();
+    activeMedia = undefined;
+    currentTrack.value = undefined;
+    paused.value = true;
+    ended.value = false;
   }
 
   function addTrackToQueue(track: TrackModel) {

@@ -14,7 +14,7 @@ const { setCurrentTrack, addTrackToQueue } = inject(MediaPlaylistInjectionKey)!;
 
 function shuffle() {
   // shuffle tracks and add them to the queue
-  const shuffledTracks = tracks.value?.filter((track) => true);
+  const shuffledTracks = tracks.value?.filter((_) => true);
   if (shuffledTracks && shuffledTracks.length > 0) {
     shuffledTracks?.sort(() => Math.random() - 0.5);
     setCurrentTrack(shuffledTracks.pop()!);
