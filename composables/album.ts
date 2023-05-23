@@ -1,4 +1,4 @@
-import { AlbumApi, AlbumModel } from "@bcc-code/bmm-sdk-fetch";
+import { AlbumApi } from "@bcc-code/bmm-sdk-fetch";
 
 interface UseAlbumOptions {
   id: number;
@@ -10,7 +10,7 @@ interface UseAlbumOptions {
 export function useAlbum(options: UseAlbumOptions) {
   const { id } = options;
 
-  return useLazyAsyncData<AlbumModel>(`album-${id}`, () =>
+  return useLazyAsyncData(`album-${id}`, () =>
     new AlbumApi().albumIdGet({ id })
   );
 }
@@ -19,7 +19,5 @@ export function useAlbum(options: UseAlbumOptions) {
  * Get all albums
  */
 export function useAlbums() {
-  return useLazyAsyncData<AlbumModel[]>("albums", () =>
-    new AlbumApi().albumGet()
-  );
+  return useLazyAsyncData("albums", () => new AlbumApi().albumGet());
 }

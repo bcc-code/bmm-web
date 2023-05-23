@@ -1,7 +1,5 @@
-import { TrackApi, TrackGetRequest, TrackModel } from "@bcc-code/bmm-sdk-fetch";
+import { TrackApi, TrackGetRequest } from "@bcc-code/bmm-sdk-fetch";
 
 export function useTracks(options: TrackGetRequest = {}) {
-  return useLazyAsyncData<TrackModel[]>("tracks", () =>
-    new TrackApi().trackGet(options)
-  );
+  return useLazyAsyncData("tracks", () => new TrackApi().trackGet(options));
 }

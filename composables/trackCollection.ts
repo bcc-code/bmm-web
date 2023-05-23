@@ -1,8 +1,4 @@
-import {
-  GetTrackCollectionModel,
-  TrackCollectionApi,
-  TrackCollectionDetails,
-} from "@bcc-code/bmm-sdk-fetch";
+import { TrackCollectionApi } from "@bcc-code/bmm-sdk-fetch";
 
 interface UseTrackCollectionOptions {
   id: number;
@@ -14,9 +10,8 @@ interface UseTrackCollectionOptions {
 export function useTrackCollection(options: UseTrackCollectionOptions) {
   const { id } = options;
 
-  return useLazyAsyncData<GetTrackCollectionModel>(
-    `track-collection-${id}`,
-    () => new TrackCollectionApi().trackCollectionIdGet({ id })
+  return useLazyAsyncData(`track-collection-${id}`, () =>
+    new TrackCollectionApi().trackCollectionIdGet({ id })
   );
 }
 
@@ -24,7 +19,7 @@ export function useTrackCollection(options: UseTrackCollectionOptions) {
  * Get all track collections
  */
 export function useTrackCollections() {
-  return useLazyAsyncData<TrackCollectionDetails[]>("track-collections", () =>
+  return useLazyAsyncData("track-collections", () =>
     new TrackCollectionApi().trackCollectionGet()
   );
 }

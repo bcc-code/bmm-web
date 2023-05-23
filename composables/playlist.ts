@@ -1,8 +1,4 @@
-import {
-  PlaylistApi,
-  PlaylistModel,
-  TrackModel,
-} from "@bcc-code/bmm-sdk-fetch";
+import { PlaylistApi } from "@bcc-code/bmm-sdk-fetch";
 
 interface UsePlaylistOptions {
   id: number;
@@ -14,7 +10,7 @@ interface UsePlaylistOptions {
 export function usePlaylist(options: UsePlaylistOptions) {
   const { id } = options;
 
-  return useLazyAsyncData<PlaylistModel>(`playlist-${id}`, () =>
+  return useLazyAsyncData(`playlist-${id}`, () =>
     new PlaylistApi().playlistIdGet({ id })
   );
 }
@@ -29,7 +25,7 @@ interface UsePlaylistTracksOptions {
 export function usePlaylistTracks(options: UsePlaylistTracksOptions) {
   const { id } = options;
 
-  return useLazyAsyncData<TrackModel[]>(`playlist-tracks-${id}`, () =>
+  return useLazyAsyncData(`playlist-tracks-${id}`, () =>
     new PlaylistApi().playlistIdTrackGet({ id })
   );
 }
@@ -38,7 +34,5 @@ export function usePlaylistTracks(options: UsePlaylistTracksOptions) {
  * Get all curated playlists
  */
 export function usePlaylists() {
-  return useLazyAsyncData<PlaylistModel[]>("playlists", () =>
-    new PlaylistApi().playlistGet()
-  );
+  return useLazyAsyncData("playlists", () => new PlaylistApi().playlistGet());
 }
