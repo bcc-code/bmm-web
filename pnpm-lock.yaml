@@ -5,8 +5,8 @@ dependencies:
     specifier: ^2.2.0
     version: 2.2.0(vue-router@4.2.0)
   '@bcc-code/bmm-sdk-fetch':
-    specifier: ^6.1.1
-    version: 6.1.1
+    specifier: ^7.0.0
+    version: 7.0.0
   '@pinia/nuxt':
     specifier: ^0.4.9
     version: 0.4.9(typescript@4.9.5)(vue@3.3.2)
@@ -444,8 +444,8 @@ packages:
       '@babel/helper-validator-identifier': 7.19.1
       to-fast-properties: 2.0.0
 
-  /@bcc-code/bmm-sdk-fetch@6.1.1:
-    resolution: {integrity: sha512-0u7wWrTt8LOXgYlW0jVg4ln4zmAyrTKocMElf/CikoL58+7hizlQsIEs7oW2p/oxplGYOLX8lZEb57zP28xV7w==}
+  /@bcc-code/bmm-sdk-fetch@7.0.0:
+    resolution: {integrity: sha512-kSQ6+qOhMIJsG+9ibU0OnIrW9IbBH3SB17cpSj8rb6g22/OFY6cKteA/kv38j8DDUhV8N/q9t4KvCBf0u9SAmg==}
     dev: false
 
   /@bcoe/v8-coverage@0.2.3:
