@@ -7,10 +7,9 @@
   "main": "dist-electron/main.js",
   "scripts": {
     "dev": "nuxt --port 9001 dev",
-    "build": "nuxt build",
+    "build": "nuxt generate",
     "dev:electron": "cross-env ELECTRON=true nuxt --port 9001 dev",
-    "build:electron": "cross-env ELECTRON=true nuxt generate && electron-builder",
-    "generate": "nuxt generate",
+    "build:electron": "cross-env ELECTRON=true nuxt generate",
     "preview": "cross-env PORT=9001 nuxt preview",
     "coverage": "vitest run --coverage",
     "e2e": "cypress open",

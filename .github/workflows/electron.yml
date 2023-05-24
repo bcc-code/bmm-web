@@ -1,0 +1,41 @@
+name: Build electron app
+
+on:
+  workflow_dispatch:
+  workflow_call:
+
+jobs:
+  build-electron-app:
+    runs-on: ${{ matrix.os }}
+    env:
+      # GitHub token, automatically provided to the action
+      # (No need to define this secret in the repo settings)
+      GH_TOKEN: ${{ secrets.github_token }}
+
+    strategy:
+      matrix:
+        os: [macos-latest, ubuntu-latest, windows-latest]
+
+    steps:
+      - name: Check out Git repository
+        uses: actions/checkout@v3
+
+      - name: Install Node.js and PNPM
+        uses: pnpm/action-setup@v2
+        with:
+          version: 7
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Build for production
+        run: pnpm build:electron
+
+      - name: Building the Electron app
+        run: npx electron-builder
+
+      - name: Archive production artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: app
+          path: .output/public/bmm-web-*
