@@ -9,7 +9,12 @@ This repository uses Vue 3 `<script setup>` SFCs, check out the [script setup do
 
 ```
 pnpm i
+
+## Website
 pnpm dev
+
+## App
+pnpm dev:electron
 ```
 
 _Note:_ If you had an error in your code and the system still shows you the error but you've already fixed it, consider running `pnpm clean`. If you have this problem often, consider contacting one of the maintainers of the project.
