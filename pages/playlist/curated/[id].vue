@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import { MediaPlaylistInjectionKey } from "~/plugins/3.mediaPlayer";
+
 const { t } = useI18n();
 toolbarTitleStore().setReactiveToolbarTitle(() => t("nav.playlist"));
 
@@ -7,6 +9,18 @@ const playlistId = Number(id);
 
 const { data: playlist } = usePlaylist({ id: playlistId });
 const { data: tracks, pending } = usePlaylistTracks({ id: playlistId });
+
+const { setCurrentTrack, addTrackToQueue } = inject(MediaPlaylistInjectionKey)!;
+
+function shuffle() {
+  // shuffle tracks and add them to the queue
+  const shuffledTracks = tracks.value?.filter((_) => true);
+  if (shuffledTracks && shuffledTracks.length > 0) {
+    shuffledTracks?.sort(() => Math.random() - 0.5);
+    setCurrentTrack(shuffledTracks.pop()!);
+    shuffledTracks.forEach((track) => addTrackToQueue(track));
+  }
+}
 
 onBeforeMount(() => {
   useHead({
@@ -31,7 +45,9 @@ onBeforeMount(() => {
             <p v-if="tracks">{{ tracks.length }} tracks</p>
           </div>
           <div class="flex gap-2">
-            <ButtonStyled intent="primary"> Shuffle </ButtonStyled>
+            <ButtonStyled intent="primary" @click="shuffle">
+              Shuffle
+            </ButtonStyled>
             <ButtonStyled>Follow</ButtonStyled>
           </div>
         </div>
