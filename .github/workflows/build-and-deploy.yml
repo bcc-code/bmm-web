@@ -61,6 +61,13 @@ jobs:
         with:
           name: code-coverage-report
           path: coverage
+      - name: Build app
+        run: pnpm build:electron
+      - name: Archive app
+        uses: actions/upload-artifact@v3
+        with:
+          name: app
+          path: dist/bmm-web*
 
   deploy_azure_static_web_apps:
     runs-on: ubuntu-latest
