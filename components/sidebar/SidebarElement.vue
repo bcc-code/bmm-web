@@ -10,7 +10,7 @@ const links: {
   { title: "Search", link: { name: "search" } },
 ];
 
-const { data: collections } = useTrackCollections();
+const { data: collections } = usePrivatePlaylists();
 </script>
 
 <template>

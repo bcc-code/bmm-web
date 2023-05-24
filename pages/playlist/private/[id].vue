@@ -4,7 +4,7 @@ toolbarTitleStore().setReactiveToolbarTitle(() => t("nav.playlist"));
 
 const { id } = useRoute<"playlist-private-id">().params;
 const collectionId = Number(id);
-const { data: collection, pending } = useTrackCollection({ id: collectionId });
+const { data: collection, pending } = usePrivatePlaylist({ id: collectionId });
 
 useHead({
   title: collection.value?.name || "",

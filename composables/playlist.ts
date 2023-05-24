@@ -1,44 +1,31 @@
-import {
-  PlaylistApi,
-  PlaylistModel,
-  TrackModel,
-} from "@bcc-code/bmm-sdk-fetch";
+import { PlaylistApi } from "@bcc-code/bmm-sdk-fetch";
 
-interface UsePlaylistOptions {
+interface UseCuratedPlaylistOptions {
   id: number;
 }
 
-/**
- * Get playlist with the specified id
- */
-export function usePlaylist(options: UsePlaylistOptions) {
+export function useCuratedPlaylist(options: UseCuratedPlaylistOptions) {
   const { id } = options;
 
-  return useLazyAsyncData<PlaylistModel>(`playlist-${id}`, () =>
+  return useLazyAsyncData(`playlist-${id}`, () =>
     new PlaylistApi().playlistIdGet({ id })
   );
 }
 
-interface UsePlaylistTracksOptions {
+interface UseCuratedPlaylistTracksOptions {
   id: number;
 }
 
-/**
- * Get playlist tracks
- */
-export function usePlaylistTracks(options: UsePlaylistTracksOptions) {
+export function useCuratedPlaylistTracks(
+  options: UseCuratedPlaylistTracksOptions
+) {
   const { id } = options;
 
-  return useLazyAsyncData<TrackModel[]>(`playlist-tracks-${id}`, () =>
+  return useLazyAsyncData(`playlist-tracks-${id}`, () =>
     new PlaylistApi().playlistIdTrackGet({ id })
   );
 }
 
-/**
- * Get all curated playlists
- */
-export function usePlaylists() {
-  return useLazyAsyncData<PlaylistModel[]>("playlists", () =>
-    new PlaylistApi().playlistGet()
-  );
+export function useCuratedPlaylists() {
+  return useLazyAsyncData("playlists", () => new PlaylistApi().playlistGet());
 }

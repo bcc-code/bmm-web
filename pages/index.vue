@@ -3,7 +3,7 @@ const { t } = useI18n();
 toolbarTitleStore().setReactiveToolbarTitle(() => t("nav.home"));
 
 // Playlists
-const { data: playlists, pending: playlistsPending } = usePlaylists();
+const { data: playlists, pending: playlistsPending } = useCuratedPlaylists();
 const newestPlaylists = computed(() => playlists.value?.splice(0, 4) || null);
 
 // Speeches
