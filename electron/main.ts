@@ -20,7 +20,7 @@ app
         const relativePath = path.normalize(new URL(request.url).pathname);
         const absolutePath = path.join(
           PRODUCTION_APP_PATH,
-          relativePath !== "/" ? relativePath : "index.html"
+          relativePath !== path.sep ? relativePath : "index.html"
         );
 
         // eslint-disable-next-line n/no-callback-literal, promise/no-callback-in-promise
