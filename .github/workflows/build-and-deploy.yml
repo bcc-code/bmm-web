@@ -67,7 +67,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: app
-          path: dist/bmm-web*
+          path: .output/public/bmm-web*
 
   deploy_azure_static_web_apps:
     runs-on: ubuntu-latest
