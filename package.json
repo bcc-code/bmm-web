@@ -1,16 +1,16 @@
 {
   "name": "bmm-web",
   "author": "BCC",
+  "version": "0.0.0",
   "description": "BCC audio player",
   "license": "AGPL-3.0",
   "main": "dist-electron/main.js",
   "scripts": {
     "dev": "nuxt --port 9001 dev",
-    "build": "nuxt build",
-    "dev:electron": "ELECTRON=true nuxt --port 9001 dev",
-    "build:electron": "ELECTRON=true nuxt generate && electron-builder",
-    "generate": "nuxt generate",
-    "preview": "PORT=9001 nuxt preview",
+    "build": "nuxt generate",
+    "dev:electron": "cross-env ELECTRON=true nuxt --port 9001 dev",
+    "build:electron": "cross-env ELECTRON=true nuxt generate",
+    "preview": "cross-env PORT=9001 nuxt preview",
     "coverage": "vitest run --coverage",
     "e2e": "cypress open",
     "lint": "stylelint \"**/*.{vue,scss}\" && prettier . --check && eslint --ext ts,js,vue,json . && nuxi typecheck",
@@ -21,7 +21,8 @@
     "@auth0/auth0-vue": "^2.2.0",
     "@bcc-code/bmm-sdk-fetch": "^7.0.0",
     "@pinia/nuxt": "^0.4.9",
-    "class-variance-authority": "^0.5.2"
+    "class-variance-authority": "^0.5.2",
+    "cross-env": "^7.0.3"
   },
   "devDependencies": {
     "@intlify/eslint-plugin-vue-i18n": "^2.0.0",

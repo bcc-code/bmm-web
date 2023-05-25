@@ -30,7 +30,7 @@ jobs:
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v3
       - name: Build for production
-        run: pnpm generate
+        run: pnpm build
       - name: E2E testing
         uses: cypress-io/github-action@v5
         env:
@@ -96,3 +96,6 @@ jobs:
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_SALMON_PEBBLE_009136D03 }}
           action: "close"
+
+  build-electron-app:
+    uses: ./.github/workflows/electron.yml

@@ -5,14 +5,34 @@ In a later stage we want to use the same code to create a desktop app.
 
 This repository uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
 
-## Running
+## Develop
 
 ```
 pnpm i
+
+## Website
 pnpm dev
+
+## App
+pnpm dev:electron
 ```
 
 _Note:_ If you had an error in your code and the system still shows you the error but you've already fixed it, consider running `pnpm clean`. If you have this problem often, consider contacting one of the maintainers of the project.
+
+## Build
+
+```
+pnpm i
+
+## Website
+pnpm build
+
+## App
+pnpm build:electron
+npx electron-builder
+```
+
+_Note:_ The electron-builder will by default only build an app for the current platform and current architecture. If you want to go beyond, please visit https://www.electron.build/multi-platform-build.html.
 
 ## E2E testing
 
