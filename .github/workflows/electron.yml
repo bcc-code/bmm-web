@@ -30,7 +30,9 @@ jobs:
 
       - name: Download certificate file
         run: |
-          echo $APPLE_DEVELOPER_ID_FILE >> src/developer-id.privatekey.p12
+          echo $APPLE_DEVELOPER_ID_FILE
+          echo $APPLE_DEVELOPER_ID_FILE >> developer-id.privatekey.p12
+          cat developer-id.privatekey.p12
         shell: bash
         env:
           APPLE_DEVELOPER_ID_FILE: ${{secrets.APPLE_DEVELOPER_ID_FILE}}
@@ -41,7 +43,7 @@ jobs:
       - name: Building the Electron app
         run: npx electron-builder
         env:
-          CSC_LINK: src/developer-id.privatekey.p12
+          CSC_LINK: developer-id.privatekey.p12
           CSC_KEY_PASSWORD: ${{secrets.APPLE_DEVELOPER_ID_PASSWORD}}
 
       - name: Archive production artifacts
