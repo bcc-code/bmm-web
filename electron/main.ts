@@ -1,4 +1,4 @@
-import { app, protocol, dialog, BrowserWindow } from "electron";
+import { app, protocol, shell, dialog, BrowserWindow } from "electron";
 import * as path from "path";
 
 const PRODUCTION_APP_PROTOCOL = "bmm";
@@ -28,7 +28,19 @@ app
       }
     );
 
-    new BrowserWindow().loadURL(
+    const window = new BrowserWindow();
+    // Forward each URL, which is not on the custom protocol, to the browser. Introduced for login-process.
+    window.webContents.on("will-navigate", (e, url) => {
+      if (!url.startsWith(`${PRODUCTION_APP_PROTOCOL}://`)) {
+        // TODO: Maybe its good to inform the user about what will happen here ...
+        // dialog.showMessageBox(window)
+        e.preventDefault();
+        shell.openExternal(url).catch((error) => {
+          dialog.showErrorBox(url, `${error}`);
+        });
+      }
+    });
+    return window.loadURL(
       process.env.VITE_DEV_SERVER_URL ||
         `${PRODUCTION_APP_PROTOCOL}://bmm.brunstad.org`
     );
