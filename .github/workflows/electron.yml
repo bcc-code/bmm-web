@@ -30,9 +30,7 @@ jobs:
 
       - name: Download certificate file
         run: |
-          echo $APPLE_DEVELOPER_ID_FILE
-          echo $APPLE_DEVELOPER_ID_FILE >> developer-id.privatekey.p12
-          cat developer-id.privatekey.p12
+          echo $APPLE_DEVELOPER_ID_FILE | base64 --decode >> developer-id.privatekey.p12
         shell: bash
         env:
           APPLE_DEVELOPER_ID_FILE: ${{secrets.APPLE_DEVELOPER_ID_FILE}}
