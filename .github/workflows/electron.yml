@@ -28,11 +28,21 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
+      - name: Download certificate file
+        run: |
+          echo $APPLE_DEVELOPER_ID_FILE >> src/developer-id.privatekey.p12
+        shell: bash
+        env:
+          APPLE_DEVELOPER_ID_FILE: ${{secrets.APPLE_DEVELOPER_ID_FILE}}
+
       - name: Build for production
         run: pnpm build:electron
 
       - name: Building the Electron app
         run: npx electron-builder
+        env:
+          CSC_LINK: src/developer-id.privatekey.p12
+          CSC_KEY_PASSWORD: ${{secrets.APPLE_DEVELOPER_ID_PASSWORD}}
 
       - name: Archive production artifacts
         uses: actions/upload-artifact@v3
