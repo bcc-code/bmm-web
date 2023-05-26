@@ -39,7 +39,7 @@ jobs:
         run: pnpm build:electron
 
       - name: Building the Electron app
-        run: npx electron-builder
+        run: npx electron-builder --arm64
         env:
           CSC_LINK: developer-id.privatekey.p12
           CSC_KEY_PASSWORD: ${{secrets.APPLE_DEVELOPER_ID_PASSWORD}}
