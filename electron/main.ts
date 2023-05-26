@@ -46,5 +46,6 @@ app
     );
   })
   .catch((error) => {
-    dialog.showErrorBox("Error:", error);
+    // eslint-disable-next-line promise/catch-or-return
+    import("log-symbols").then((t) => console.error(t.default.error, error));
   });
