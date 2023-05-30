@@ -1,20 +1,48 @@
 <script lang="ts" setup>
-import { LanguageEnum } from "@bcc-code/bmm-sdk-fetch";
+import { IDiscoverable, LanguageEnum } from "@bcc-code/bmm-sdk-fetch";
 
 const { t, locale } = useI18n();
 toolbarTitleStore().setReactiveToolbarTitle(() => t("nav.home"));
 
-const { data: discoveries, pending } = useDiscover({
-  // TODO: Find out how to set the age ...
-  // Compatibility is ensured in i18n.config.ts file
-  lang: locale.value as LanguageEnum,
-});
+const discoveries: Ref<IDiscoverable[] | null> = ref(null);
+const loading: Ref<boolean> = ref(true);
+
+let stopHandles: (() => void)[] = [];
+watch(
+  locale,
+  () => {
+    const { data, pending } = useDiscover({
+      // TODO: Find out how to set the age ...
+      // Compatibility is ensured in i18n.config.ts file
+      lang: locale.value as LanguageEnum,
+    });
+    stopHandles.forEach((el) => el());
+
+    stopHandles = [
+      watch(
+        data,
+        (d) => {
+          discoveries.value = d;
+        },
+        { immediate: true }
+      ),
+      watch(
+        pending,
+        (p) => {
+          loading.value = p;
+        },
+        { immediate: true }
+      ),
+    ];
+  },
+  { immediate: true }
+);
 </script>
 
 <template>
   <div class="flex flex-col gap-16">
     <ul>
-      <template v-if="pending">
+      <template v-if="loading">
         <li
           v-for="index in 5"
           :key="index"
