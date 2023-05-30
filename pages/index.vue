@@ -1,18 +1,75 @@
 <script lang="ts" setup>
-const { t } = useI18n();
+import { LanguageEnum } from "@bcc-code/bmm-sdk-fetch";
+
+const { t, locale } = useI18n();
 toolbarTitleStore().setReactiveToolbarTitle(() => t("nav.home"));
 
-const { data: discoveries } = useDiscover();
+const { data: discoveries, pending } = useDiscover({
+  // TODO: Find out how to set the age ...
+  // Compatibility is ensured in i18n.config.ts file
+  lang: locale.value as LanguageEnum,
+});
 </script>
 
 <template>
   <div class="flex flex-col gap-16">
     <ul>
-      <template v-for="item in discoveries" :key="`${item.type}_${item.id}`">
-        <PageHeading v-if="item.type === 'section_header'" :level="3"
-          >Title</PageHeading
-        >
-        <p v-else>{{ item.type }} {{ item.id }}</p>
+      <template v-if="pending">
+        <li
+          v-for="index in 5"
+          :key="index"
+          class="my-6 h-11 w-full animate-pulse rounded-lg bg-background-2"
+        ></li>
+      </template>
+      <template v-else>
+        <li>
+          <template
+            v-for="item in discoveries"
+            :key="`${item.type}_${item.id}`"
+          >
+            <PageHeading v-if="item.type === 'section_header'" :level="3"
+              ><a v-if="typeof item.link === 'string'" :href="item.link"
+                >{{ item.title }}
+              </a>
+              <span v-else>{{ item.title }}</span></PageHeading
+            >
+            <NuxtLink
+              v-else-if="item.type === 'album'"
+              :to="{ name: 'album-id', params: { id: item.id } }"
+              style="display: inline-block; padding: 0 20px 20px 0"
+            >
+              <ProtectedImage
+                :src="item.cover || ''"
+                style="
+                  max-width: 214px;
+                  border: 1px solid rgba(129, 136, 143, 0.1);
+                  border-radius: 16px;
+                "
+              />
+            </NuxtLink>
+            <NuxtLink
+              v-else-if="item.type === 'playlist'"
+              :to="{ name: 'playlist-curated-id', params: { id: item.id } }"
+              style="display: inline-block; padding: 0 20px 20px 0"
+            >
+              <ProtectedImage
+                :src="item.cover || ''"
+                style="
+                  max-width: 214px;
+                  border: 1px solid rgba(129, 136, 143, 0.1);
+                  border-radius: 16px;
+                "
+              />
+            </NuxtLink>
+            <TrackItem
+              v-else-if="item.type === 'track'"
+              :track="item"
+            ></TrackItem>
+            <p v-else>
+              <span>"{{ item.type }}" is not yet implemented ...</span>
+            </p>
+          </template>
+        </li>
       </template>
     </ul>
   </div>

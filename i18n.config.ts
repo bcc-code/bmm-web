@@ -1,4 +1,6 @@
-// import { I18nOptions } from "@nuxtjs/i18n";
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { NuxtI18nOptions } from "@nuxtjs/i18n";
+import { LanguageEnum } from "@bcc-code/bmm-sdk-fetch";
 
 import af from "./locales/af.json";
 import bg from "./locales/bg.json";
@@ -26,7 +28,9 @@ import tr from "./locales/tr.json";
 import uk from "./locales/uk.json";
 import zh from "./locales/zh.json";
 
-const i18nConfig = {
+const i18nConfig: NuxtI18nOptions["vueI18n"] & {
+  messages: { [key in LanguageEnum]?: any };
+} = {
   legacy: false,
   messages: {
     af,

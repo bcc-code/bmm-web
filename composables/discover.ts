@@ -1,5 +1,7 @@
-import { DiscoverApi } from "@bcc-code/bmm-sdk-fetch";
+import { DiscoverApi, DiscoverGetRequest } from "@bcc-code/bmm-sdk-fetch";
 
-export function useDiscover() {
-  return useAsyncData("discover", () => new DiscoverApi().discoverGet());
+export function useDiscover(requestParameters: DiscoverGetRequest) {
+  return useAsyncData("discover", () =>
+    new DiscoverApi().discoverGet(requestParameters)
+  );
 }
