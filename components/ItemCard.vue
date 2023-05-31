@@ -1,21 +1,25 @@
 <script lang="ts" setup>
-import { PlaylistModel } from "@bcc-code/bmm-sdk-fetch";
+import {
+  AlbumModel,
+  PlaylistModel,
+  PodcastModel,
+} from "@bcc-code/bmm-sdk-fetch";
 
 defineProps<{
-  playlist: PlaylistModel;
+  item: PlaylistModel | AlbumModel | PodcastModel;
 }>();
 </script>
 
 <template>
   <div class="grid gap-4">
     <ProtectedImage
-      v-if="playlist.cover"
-      :src="playlist.cover"
+      v-if="item.cover"
+      :src="item.cover"
       alt=""
       class="aspect-square w-full rounded-2xl bg-background-2"
     />
     <span class="overflow-hidden text-ellipsis whitespace-nowrap text-center">
-      {{ playlist.title }}
+      {{ item.title }}
     </span>
   </div>
 </template>
