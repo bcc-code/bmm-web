@@ -64,29 +64,21 @@ watch(
             <NuxtLink
               v-else-if="item.type === 'album'"
               :to="{ name: 'album-id', params: { id: item.id } }"
-              style="display: inline-block; padding: 0 20px 20px 0"
+              class="inline-block pb-4 pr-4"
             >
               <ProtectedImage
                 :src="item.cover || ''"
-                style="
-                  max-width: 214px;
-                  border: 1px solid rgba(129, 136, 143, 0.1);
-                  border-radius: 16px;
-                "
+                class="aspect-square w-[214px] rounded-2xl"
               />
             </NuxtLink>
             <NuxtLink
               v-else-if="item.type === 'playlist'"
               :to="{ name: 'playlist-curated-id', params: { id: item.id } }"
-              style="display: inline-block; padding: 0 20px 20px 0"
+              class="inline-block pb-4 pr-4"
             >
               <ProtectedImage
                 :src="item.cover || ''"
-                style="
-                  max-width: 214px;
-                  border: 1px solid rgba(129, 136, 143, 0.1);
-                  border-radius: 16px;
-                "
+                class="aspect-square w-[214px] rounded-2xl"
               />
             </NuxtLink>
             <TrackItem
