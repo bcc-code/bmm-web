@@ -1,10 +1,11 @@
 <script lang="ts" setup>
-import { IDiscoverable, LanguageEnum } from "@bcc-code/bmm-sdk-fetch";
+import { LanguageEnum } from "@bcc-code/bmm-sdk-fetch";
+import { IDiscoverableGroup } from "~/composables/discover";
 
 const { t, locale } = useI18n();
 toolbarTitleStore().setReactiveToolbarTitle(() => t("nav.home"));
 
-const discoveries: Ref<IDiscoverable[] | null> = ref(null);
+const discoverGroups: Ref<IDiscoverableGroup[] | null> = ref(null);
 const loading: Ref<boolean> = ref(true);
 
 let stopHandles: (() => void)[] = [];
@@ -22,7 +23,7 @@ watch(
       watch(
         data,
         (d) => {
-          discoveries.value = d;
+          discoverGroups.value = d;
         },
         { immediate: true }
       ),
@@ -52,42 +53,46 @@ watch(
       <template v-else>
         <li>
           <template
-            v-for="item in discoveries"
-            :key="`${item.type}_${item.id}`"
+            v-for="group in discoverGroups"
+            :key="group.header?.id || 0"
           >
-            <PageHeading v-if="item.type === 'section_header'" :level="3"
-              ><a v-if="typeof item.link === 'string'" :href="item.link"
-                >{{ item.title }}
+            <PageHeading v-if="group.header" :level="3"
+              ><a
+                v-if="typeof group.header.link === 'string'"
+                :href="group.header.link"
+                >{{ group.header.title }}
               </a>
-              <span v-else>{{ item.title }}</span></PageHeading
+              <span v-else>{{ group.header.title }}</span></PageHeading
             >
-            <NuxtLink
-              v-else-if="item.type === 'album'"
-              :to="{ name: 'album-id', params: { id: item.id } }"
-              class="inline-block pb-4 pr-4"
-            >
-              <ProtectedImage
-                :src="item.cover || ''"
-                class="aspect-square w-[214px] rounded-2xl"
-              />
-            </NuxtLink>
-            <NuxtLink
-              v-else-if="item.type === 'playlist'"
-              :to="{ name: 'playlist-curated-id', params: { id: item.id } }"
-              class="inline-block pb-4 pr-4"
-            >
-              <ProtectedImage
-                :src="item.cover || ''"
-                class="aspect-square w-[214px] rounded-2xl"
-              />
-            </NuxtLink>
-            <TrackItem
-              v-else-if="item.type === 'track'"
-              :track="item"
-            ></TrackItem>
-            <p v-else>
-              <span>"{{ item.type }}" is not yet implemented ...</span>
-            </p>
+            <template v-for="item in group.items" :key="item.id">
+              <NuxtLink
+                v-if="item.type === 'album'"
+                :to="{ name: 'album-id', params: { id: item.id } }"
+                class="inline-block pb-4 pr-4"
+              >
+                <ProtectedImage
+                  :src="item.cover || ''"
+                  class="aspect-square w-[214px] rounded-2xl"
+                />
+              </NuxtLink>
+              <NuxtLink
+                v-else-if="item.type === 'playlist'"
+                :to="{ name: 'playlist-curated-id', params: { id: item.id } }"
+                class="inline-block pb-4 pr-4"
+              >
+                <ProtectedImage
+                  :src="item.cover || ''"
+                  class="aspect-square w-[214px] rounded-2xl"
+                />
+              </NuxtLink>
+              <TrackItem
+                v-else-if="item.type === 'track'"
+                :track="item"
+              ></TrackItem>
+              <p v-else>
+                <span>"{{ item.type }}" is not yet implemented ...</span>
+              </p>
+            </template>
           </template>
         </li>
       </template>
