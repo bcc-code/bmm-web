@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import { PlaylistModel } from "@bcc-code/bmm-sdk-fetch";
-import PlaylistCard from "./PlaylistCard.vue";
 
 defineProps<{
   playlists: PlaylistModel[];
@@ -14,7 +13,7 @@ defineProps<{
       :key="playlist.id"
       :to="{ name: 'playlist-curated-id', params: { id: playlist.id } }"
     >
-      <PlaylistCard :playlist="playlist" />
+      <ItemCard :item="playlist" />
     </NuxtLink>
   </div>
 </template>
