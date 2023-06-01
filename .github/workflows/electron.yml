@@ -13,6 +13,7 @@ jobs:
       GH_TOKEN: ${{ secrets.github_token }}
 
     strategy:
+      fail-fast: false
       matrix:
         os: [macos-latest, ubuntu-latest, windows-latest]
 
