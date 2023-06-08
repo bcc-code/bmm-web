@@ -52,7 +52,4 @@ jobs:
         with:
           name: app
           path: |
-            dist
-            dist/bmm*
-            .output/public
-            .output
+            .output/public/BMM*

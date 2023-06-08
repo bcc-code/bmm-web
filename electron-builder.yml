@@ -7,5 +7,7 @@ mac:
   icon: resources/app.icns
   hardenedRuntime: true
   target:
-    - pkg
-    - dmg
+    - target: default
+      arch: x64
+    - target: default
+      arch: arm64
