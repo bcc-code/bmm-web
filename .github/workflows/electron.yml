@@ -51,4 +51,4 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: app
-          path: .output/public/bmm*
+          path: dist/bmm*
