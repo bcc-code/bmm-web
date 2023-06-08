@@ -13,4 +13,5 @@ mac:
       arch: arm64
 win:
   target:
+    - msi
     - zip
