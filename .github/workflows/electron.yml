@@ -39,7 +39,7 @@ jobs:
         run: pnpm build:electron
 
       - name: Building the Electron app
-        run: npx electron-builder --arm64
+        run: npx electron-builder --arm64 --publish always
         env:
           CSC_LINK: developer-id.privatekey.p12
           CSC_KEY_PASSWORD: ${{secrets.APPLE_DEVELOPER_ID_PASSWORD}}
@@ -51,4 +51,4 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: app
-          path: dist/bmm*
+          path: *
