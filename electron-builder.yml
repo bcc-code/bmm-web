@@ -1,0 +1,11 @@
+appId: org.brunstad.bmm
+productName: BMM alpha
+afterSign: "electron-builder-notarize"
+mac:
+  category: public.app-category.music
+  entitlements: build/entitlements.mac.plist
+  icon: resources/app.icns
+  hardenedRuntime: true
+  target:
+    - pkg
+    - dmg
