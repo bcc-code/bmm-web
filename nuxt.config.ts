@@ -27,6 +27,7 @@ export default defineNuxtConfig({
   },
   i18n: {
     strategy: "no_prefix",
+    skipSettingLocaleOnNavigate: true,
     defaultLocale: "en",
     // Due to a bug in @nuxtjs/i18n@8.0.0-beta.11 we have to use beta.10 with inline configuration. See: https://github.com/nuxt-modules/i18n/issues/1990
     vueI18n,
