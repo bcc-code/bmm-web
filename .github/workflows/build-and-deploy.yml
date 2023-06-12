@@ -6,7 +6,6 @@ permissions:
   actions: read
   checks: read
   contents: read
-  id-token: read
   issues: read
   discussions: read
   pages: read
