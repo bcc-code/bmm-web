@@ -1,0 +1,20 @@
+appId: org.brunstad.bmm
+productName: BMM alpha
+afterSign: "electron-builder-notarize"
+protocols:
+  - name: Custom BMM
+    schemes: ["bmm"]
+mac:
+  category: public.app-category.music
+  entitlements: build/entitlements.mac.plist
+  icon: resources/app.icns
+  hardenedRuntime: true
+  target:
+    - target: dmg
+      arch: x64
+    - target: dmg
+      arch: arm64
+win:
+  target:
+    - msi
+    - zip
