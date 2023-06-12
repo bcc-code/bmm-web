@@ -1,13 +1,18 @@
 name: Build and deploy
 
-permissions: read-all
+permissions:
+  deployments: write
+  packages: write
+  contents: write
+  actions: read
+  checks: read
+  pull-requests: read
+  statuses: read
 
 on:
   push:
     branches:
       - main
-    tags:
-      - v0.**
   pull_request:
     types: [opened, synchronize, reopened, closed]
     branches:
