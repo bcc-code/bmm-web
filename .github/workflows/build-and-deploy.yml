@@ -102,3 +102,4 @@ jobs:
 
   build-electron-app:
     uses: ./.github/workflows/electron.yml
+    secrets: inherit
