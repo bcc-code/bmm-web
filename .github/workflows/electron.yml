@@ -11,6 +11,7 @@ jobs:
       # GitHub token, automatically provided to the action
       # (No need to define this secret in the repo settings)
       GH_TOKEN: ${{ secrets.github_token }}
+      PUBLISH_FOR_PULL_REQUEST: true # temporary while working with the publish pipeline
 
     strategy:
       fail-fast: false
@@ -20,6 +21,11 @@ jobs:
     steps:
       - name: Check out Git repository
         uses: actions/checkout@v3
+
+      - name: fetch-latest-release
+        uses: thebritican/fetch-latest-release@v1
+        with:
+          github_token: ${{ github.token }}
 
       - name: Install Node.js and PNPM
         uses: pnpm/action-setup@v2
