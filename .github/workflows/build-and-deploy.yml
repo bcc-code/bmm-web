@@ -6,14 +6,8 @@ permissions:
   contents: read
   deployments: read
   id-token: write
-  issues: none
-  discussions: none
   packages: read
-  pages: none
   pull-requests: read
-  repository-projects: none
-  security-events: none
-  statuses: none
 
 on:
   push:
