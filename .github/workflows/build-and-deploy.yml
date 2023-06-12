@@ -1,7 +1,7 @@
 name: Build and deploy
 
 permissions:
-  actions: write
+  actions: read
   checks: read
   contents: read
   deployments: read
