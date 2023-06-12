@@ -11,6 +11,11 @@ protocol.registerSchemesAsPrivileged([
   },
 ]);
 
+const navigateToUri = (window: BrowserWindow, url: string) => {
+  window.loadURL(url);
+  // TODO: Use vue-router to redirect to bmm://* link
+};
+
 app
   .whenReady()
   .then(() => {
@@ -60,6 +65,11 @@ app
         });
       }
     });
+
+    app.on("open-url", (_, url) => {
+      navigateToUri(window, url);
+    });
+
     return window.loadURL(`${PRODUCTION_APP_PROTOCOL}://bmm.brunstad.org`);
   })
   .catch((error) => {
