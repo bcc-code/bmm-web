@@ -1,7 +1,5 @@
 name: Build and deploy
 
-permissions: read-all
-
 on:
   push:
     branches:
