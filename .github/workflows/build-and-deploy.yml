@@ -106,5 +106,6 @@ jobs:
           action: "close"
 
   build-electron-app:
+    if: github.event.action != 'closed'
     uses: ./.github/workflows/electron.yml
     secrets: inherit
