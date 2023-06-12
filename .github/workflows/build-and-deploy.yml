@@ -1,6 +1,19 @@
 name: Build and deploy
 
-permissions: write-all
+permissions:
+  actions: write
+  checks: write
+  contents: write
+  deployments: write
+  id-token: write
+  issues: none
+  discussions: none
+  packages: write
+  pages: none
+  pull-requests: write
+  repository-projects: none
+  security-events: none
+  statuses: none
 
 on:
   push:
