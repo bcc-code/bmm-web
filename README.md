@@ -56,3 +56,9 @@ If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has a
 ## Creating a new electron build
 
 Please see the [Electron documentation on the GitHub Release Workflow](https://www.electron.build/configuration/publish.html#recommended-github-releases-workflow).
+
+- The new release in Github should be called the same as version in package.json (e.g. 0.0.5)
+- The tag of the release should be 'v0.0.5' and 'Create new tag: v0.0.5 on publish' needs to be set
+- Save Release as draft
+
+That way every new build will update the binaries of the release above. Once the version is ready, it will create the correct tag in git.
