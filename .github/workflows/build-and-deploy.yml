@@ -1,12 +1,6 @@
 name: Build and deploy
 
-permissions:
-  actions: read
-  checks: read
-  contents: read
-  deployments: read
-  packages: read
-  pull-requests: read
+permissions: read-all
 
 on:
   push:
