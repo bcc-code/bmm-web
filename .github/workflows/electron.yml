@@ -41,7 +41,7 @@ jobs:
         run: pnpm build:electron
 
       - name: Building the Electron app for Mac
-        run: npx electron-builder
+        run: npx electron-builder --publish always
         if: matrix.os == 'macos-latest'
         env:
           CSC_LINK: developer-id.privatekey.p12
@@ -50,8 +50,8 @@ jobs:
           APPLE_ID_PASSWORD: ${{secrets.APPLE_ID_PASSWORD}}
           APPLE_TEAM_ID: KJ6LCYQ3A8
 
-      - name: Building the Electron app for Windows and Linux
-        run: npx electron-builder
+      - name: Building the Electron app for Windows or Linux
+        run: npx electron-builder --publish always
         if: matrix.os != 'macos-latest'
 
       - name: Archive production artifacts
