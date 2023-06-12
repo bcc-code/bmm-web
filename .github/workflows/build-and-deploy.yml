@@ -5,7 +5,6 @@ permissions:
   checks: read
   contents: read
   deployments: read
-  id-token: write
   packages: read
   pull-requests: read
 
