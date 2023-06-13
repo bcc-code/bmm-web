@@ -17,5 +17,10 @@ const className = cva(null, {
 </script>
 
 <template>
-  <img src="/logo.svg" alt="BMM logo" :class="className({ size })" />
+  <img
+    src="/logo.svg"
+    alt="BMM logo"
+    class="inline-block"
+    :class="className({ size })"
+  />
 </template>
