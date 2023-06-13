@@ -70,7 +70,7 @@ watch(
                   (i: IDiscoverableGroup['items'][0]) => !['album', 'playlist', 'podcast'].includes(i.type)
                 ) === undefined
               "
-              class="grid grid-cols-4 gap-8"
+              class="flex space-x-8 overflow-x-auto"
             >
               <template v-for="item in group.items" :key="item.id">
                 <NuxtLink
