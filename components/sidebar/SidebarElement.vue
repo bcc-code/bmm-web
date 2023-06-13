@@ -4,6 +4,7 @@ import { RoutesNamedLocations } from "~/.nuxt/typed-router/__routes";
 const links: {
   title: string;
   link: RoutesNamedLocations;
+  icon: string;
 }[] = [
   { title: "Home", link: { name: "index" }, icon: "nav.home" },
   { title: "Browse", link: { name: "browse" }, icon: "nav.browse" },
