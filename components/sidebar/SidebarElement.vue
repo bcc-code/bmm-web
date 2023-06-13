@@ -5,9 +5,9 @@ const links: {
   title: string;
   link: RoutesNamedLocations;
 }[] = [
-  { title: "Home", link: { name: "index" } },
-  { title: "Browse", link: { name: "browse" } },
-  { title: "Search", link: { name: "search" } },
+  { title: "Home", link: { name: "index" }, icon: "nav.home" },
+  { title: "Browse", link: { name: "browse" }, icon: "nav.browse" },
+  { title: "Search", link: { name: "search" }, icon: "nav.search.fill" },
 ];
 
 const { data: collections } = usePrivatePlaylists();
@@ -19,7 +19,7 @@ const { data: collections } = usePrivatePlaylists();
   >
     <div class="p-3">
       <SiteLogo size="small" />
-      <span class="m-2 rounded-xl bg-tint px-2 py-1 text-sm">Alpha v0.0.1</span>
+      <span class="m-2 rounded-xl bg-tint px-2 py-1 text-sm">Alpha v0.0.2</span>
     </div>
     <div class="flex-grow overflow-y-auto">
       <ChangeLocale />
@@ -41,6 +41,7 @@ const { data: collections } = usePrivatePlaylists();
             name: 'playlist-private-id',
             params: { id: collection.id },
           }"
+          :icon="'icon.category.playlist'"
         />
       </SidebarGroup>
     </div>
