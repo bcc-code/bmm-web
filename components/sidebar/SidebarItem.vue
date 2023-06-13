@@ -26,7 +26,10 @@ withDefaults(
       :src="image"
       class="aspect-square h-full rounded bg-background-2"
     />
-    <span class="transition-transform group-hover:translate-x-2">
+    <span
+      class="transition-transform group-hover:translate-x-2"
+      :class="{ 'font-semibold': type == 'page', 'text-lg': type == 'page' }"
+    >
       {{ title }}
     </span>
   </NuxtLink>

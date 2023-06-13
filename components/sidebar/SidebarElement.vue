@@ -15,10 +15,11 @@ const { data: collections } = usePrivatePlaylists();
 
 <template>
   <aside
-    class="flex max-h-screen min-w-[300px] flex-col border-r border-label-separator"
+    class="flex max-h-screen min-w-[300px] flex-col border-r border-label-separator bg-background-2"
   >
     <div class="p-3">
       <SiteLogo size="small" />
+      <span class="m-2 rounded-xl bg-tint px-2 py-1 text-sm">Alpha v0.0.1</span>
     </div>
     <div class="flex-grow overflow-y-auto">
       <ChangeLocale />
@@ -34,6 +35,7 @@ const { data: collections } = usePrivatePlaylists();
         <SidebarItem
           v-for="collection in collections"
           :key="collection.id"
+          :type="'playlist'"
           :title="collection.name || ''"
           :link="{
             name: 'playlist-private-id',
