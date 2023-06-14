@@ -23,6 +23,7 @@ const config: Partial<Config> = {
   theme: {
     colors,
   },
+  plugins: [require('tailwind-scrollbar-hide')]
 };
 
 export default config;

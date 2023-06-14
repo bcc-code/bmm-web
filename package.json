@@ -22,7 +22,8 @@
     "@bcc-code/bmm-sdk-fetch": "^7.0.0",
     "@pinia/nuxt": "^0.4.9",
     "class-variance-authority": "^0.5.2",
-    "cross-env": "^7.0.3"
+    "cross-env": "^7.0.3",
+    "tailwind-scrollbar-hide": "^1.1.7"
   },
   "devDependencies": {
     "@intlify/eslint-plugin-vue-i18n": "^2.0.0",

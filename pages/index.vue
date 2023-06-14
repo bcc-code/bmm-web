@@ -56,21 +56,22 @@ watch(
             v-for="group in discoverGroups"
             :key="group.header?.id || 0"
           >
-            <PageHeading v-if="group.header" :level="3"
-              ><a
+            <PageHeading v-if="group.header" :level="3">
+              <a
                 v-if="typeof group.header.link === 'string'"
                 :href="group.header.link"
-                >{{ group.header.title }}
+              >
+                {{ group.header.title }}
               </a>
-              <span v-else>{{ group.header.title }}</span></PageHeading
-            >
+              <span v-else>{{ group.header.title }}</span>
+            </PageHeading>
             <div
               v-if="
                 group.items.find(
                   (i: IDiscoverableGroup['items'][0]) => !['album', 'playlist', 'podcast'].includes(i.type)
                 ) === undefined
               "
-              class="flex space-x-8 overflow-x-auto"
+              class="flex space-x-8 overflow-x-auto scrollbar-hide"
             >
               <template v-for="item in group.items" :key="item.id">
                 <NuxtLink
