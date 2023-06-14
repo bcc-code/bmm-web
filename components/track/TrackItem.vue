@@ -6,6 +6,7 @@ const { t } = useI18n();
 defineProps<{
   track: TrackModel;
   showThumbnail?: boolean;
+  isTrackTypeKnown: boolean;
 }>();
 
 defineSlots<{
@@ -21,6 +22,13 @@ function openOptions(event: Event) {
 
 function playTrack() {
   emit("play-track");
+}
+
+function secondsToTime(totalSeconds: number | undefined) {
+  if (totalSeconds === undefined) return "";
+  const minutes = Math.ceil(totalSeconds / 60);
+  const seconds = totalSeconds % 60;
+  return `${minutes}:${seconds.toString().padStart(2, "0")}`;
 }
 </script>
 
@@ -69,11 +77,16 @@ function playTrack() {
         v-if="!(track.meta?.attachedPicture && showThumbnail)"
         class="block h-1 w-10"
       ></div>
-      <div>
+      <div v-if="!isTrackTypeKnown">
         <span class="text-label-2">{{ track.subtype }}</span>
       </div>
+      <div v-if="isTrackTypeKnown">
+        <span class="text-label-2">{{ track.meta?.album }}</span>
+      </div>
       <div class="ml-auto">
-        <span class="text-label-2">{{ track.meta?.time }}</span>
+        <span class="text-label-2">{{
+          secondsToTime(track.media?.[0]?.files?.[0]?.duration)
+        }}</span>
       </div>
       <div class="ml-auto flex items-center justify-center gap-1">
         <button
