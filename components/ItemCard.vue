@@ -11,7 +11,7 @@ defineProps<{
 </script>
 
 <template>
-  <div class="grid gap-4">
+  <div class="grid w-52 flex-shrink-0 basis-52 gap-4">
     <ProtectedImage
       v-if="item.cover"
       :src="item.cover"

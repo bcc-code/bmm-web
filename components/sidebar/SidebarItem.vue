@@ -7,10 +7,12 @@ withDefaults(
     title: string;
     link: RoutesNamedLocations;
     image?: string;
+    icon?: string;
   }>(),
   {
     type: "page",
     image: "",
+    icon: "",
   }
 );
 </script>
@@ -26,7 +28,11 @@ withDefaults(
       :src="image"
       class="aspect-square h-full rounded bg-background-2"
     />
-    <span class="transition-transform group-hover:translate-x-2">
+    <IconComponent v-if="icon" :name="icon" class="text-xl" />
+    <span
+      class="transition-transform group-hover:translate-x-2"
+      :class="{ 'font-semibold': type == 'page', 'text-lg': type == 'page' }"
+    >
       {{ title }}
     </span>
   </NuxtLink>
