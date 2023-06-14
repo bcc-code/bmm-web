@@ -18,12 +18,14 @@ const { data: collections } = usePrivatePlaylists();
   <aside
     class="flex max-h-screen min-w-[300px] flex-col border-r border-label-separator bg-background-2"
   >
-    <div class="p-3">
+    <div class="flex items-center p-3">
       <SiteLogo size="small" />
-      <span class="m-2 rounded-xl bg-tint px-2 py-1 text-sm">Alpha v0.0.2</span>
+      <span
+        class="mx-2 mt-1 inline-block rounded-xl bg-tint px-[5px] text-[13px] leading-5"
+        >Alpha v0.0.2</span
+      >
     </div>
     <div class="flex-grow overflow-y-auto">
-      <ChangeLocale />
       <SidebarGroup>
         <SidebarItem
           v-for="(link, i) in links"
