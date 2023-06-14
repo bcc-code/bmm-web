@@ -17,9 +17,5 @@ const className = cva("inline-block", {
 </script>
 
 <template>
-  <img
-    src="/logo.svg"
-    alt="BMM logo"
-    :class="className({ size })"
-  />
+  <img src="/logo.svg" alt="BMM logo" :class="className({ size })" />
 </template>
