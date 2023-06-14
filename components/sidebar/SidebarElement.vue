@@ -38,13 +38,13 @@ const { data: collections } = usePrivatePlaylists();
         <SidebarItem
           v-for="collection in collections"
           :key="collection.id"
-          :type="'playlist'"
+          type="playlist"
           :title="collection.name || ''"
           :link="{
             name: 'playlist-private-id',
             params: { id: collection.id },
           }"
-          :icon="'icon.category.playlist'"
+          icon="icon.category.playlist"
         />
       </SidebarGroup>
     </div>
