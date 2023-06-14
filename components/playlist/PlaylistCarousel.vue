@@ -7,7 +7,7 @@ defineProps<{
 </script>
 
 <template>
-  <div class="flex h-64 w-full gap-6 overflow-x-auto scrollbar-hide">
+  <div class="scrollbar-hide flex h-64 w-full gap-6 overflow-x-auto">
     <NuxtLink
       v-for="playlist in playlists"
       :key="playlist.id"
