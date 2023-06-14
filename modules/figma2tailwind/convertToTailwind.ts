@@ -23,6 +23,7 @@ const config: Partial<Config> = {
   theme: {
     colors,
   },
+  // eslint-disable-next-line import/no-extraneous-dependencies, global-require
   plugins: [require('tailwind-scrollbar-hide')]
 };
 
