@@ -5,7 +5,7 @@ defineProps<{
   size: "small" | "medium" | "large";
 }>();
 
-const className = cva(null, {
+const className = cva("inline-block", {
   variants: {
     size: {
       small: "w-12",
@@ -20,7 +20,6 @@ const className = cva(null, {
   <img
     src="/logo.svg"
     alt="BMM logo"
-    class="inline-block"
     :class="className({ size })"
   />
 </template>
