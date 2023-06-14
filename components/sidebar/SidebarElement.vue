@@ -8,7 +8,7 @@ const links: {
 }[] = [
   { title: "Home", link: { name: "index" }, icon: "nav.home" },
   { title: "Browse", link: { name: "browse" }, icon: "nav.browse" },
-  { title: "Search", link: { name: "search" }, icon: "nav.search.fill" },
+  { title: "Search", link: { name: "search" }, icon: "nav.search" },
 ];
 
 const { data: collections } = usePrivatePlaylists();
