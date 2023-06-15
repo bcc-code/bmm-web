@@ -20,9 +20,11 @@ useHead({
 </script>
 
 <template>
-  <div class="container mx-auto p-2 lg:p-5">
+  <div>
     <NuxtLayout v-if="isAuthenticated">
-      <NuxtPage />
+      <div class="container mx-auto p-2 lg:p-5">
+        <NuxtPage />
+      </div>
     </NuxtLayout>
     <div v-if="!isAuthenticated">
       You will be redirected to the login page. Please wait or
