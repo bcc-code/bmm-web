@@ -37,8 +37,10 @@ export default defineNuxtPlugin((nuxtApp) => {
 
   watch(
     isAuthenticated,
-    async () => {
-      authToken.value = await getAccessTokenSilently();
+    async (authenticated) => {
+      authToken.value = authenticated
+        ? await getAccessTokenSilently()
+        : undefined;
     },
     { immediate: true }
   );
