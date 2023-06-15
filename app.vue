@@ -25,7 +25,7 @@ useHead({
       <NuxtPage />
     </NuxtLayout>
     <div v-if="!isAuthenticated">
-      You are redirected to the login page. Please wait or
+      You will be redirected to the login page. Please wait or
       <a href="#" @click="loginWithRedirect()">try again</a>.
     </div>
   </div>
