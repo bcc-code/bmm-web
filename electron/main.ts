@@ -76,8 +76,6 @@ app
 
       // Introduced to handle login-process in the default browser. A user usually has his login credentials already saved there.
       if (!url.startsWith(`${PRODUCTION_APP_PROTOCOL}://`)) {
-        // TODO: Maybe its good to inform the user about what will happen here ...
-        // dialog.showMessageBox(window)
         e.preventDefault();
         shell.openExternal(url).catch((error) => {
           dialog.showErrorBox(url, `${error}`);
