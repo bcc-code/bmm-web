@@ -20,11 +20,15 @@ useHead({
 </script>
 
 <template>
-  <NuxtLayout v-if="isAuthenticated">
-    <div class="container mx-auto p-2 lg:p-5">
+  <div class="container mx-auto p-2 lg:p-5">
+    <NuxtLayout v-if="isAuthenticated">
       <NuxtPage />
+    </NuxtLayout>
+    <div v-if="!isAuthenticated">
+      You will be redirected to the login page. Please wait or
+      <a href="#" @click="loginWithRedirect()">try again</a>.
     </div>
-  </NuxtLayout>
+  </div>
 </template>
 
 <style>

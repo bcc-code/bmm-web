@@ -12,8 +12,16 @@ protocol.registerSchemesAsPrivileged([
 ]);
 
 const navigateToUri = (window: BrowserWindow, url: string) => {
-  window.loadURL(url);
-  // TODO: Use vue-router to redirect to bmm://* link
+  window.webContents.send("route-changed", url);
+};
+
+const removeUrlOrigin = (_url: string) => {
+  const url = new URL(
+    /^https?:\/\//.test(_url)
+      ? _url
+      : `http${_url.substring(_url.indexOf("://"))}`
+  );
+  return url.href.substring(url.origin.length);
 };
 
 app
@@ -26,10 +34,9 @@ app
           net
             .request({
               method: request.method,
-              url: request.url.replace(
-                `${PRODUCTION_APP_PROTOCOL}://bmm.brunstad.org`,
-                process.env.VITE_DEV_SERVER_URL || ""
-              ),
+              url: `${process.env.VITE_DEV_SERVER_URL}${removeUrlOrigin(
+                request.url
+              )}`,
             })
             .on("response", (response) => {
               callback(response);
@@ -53,12 +60,22 @@ app
       );
     }
 
-    const window = new BrowserWindow();
-    // Forward each URL, which is not on the custom protocol, to the browser. Introduced for login-process.
+    const window = new BrowserWindow({
+      webPreferences: {
+        preload: path.join(__dirname, "preload.js"),
+      },
+    });
+
     window.webContents.on("will-navigate", (e, url) => {
+      // Some links from the API have the fixed domain `bmm.brunstad.org` on the `http(s)` protocol. Use our router instead of navigating (which means reloading the "app").
+      if (/^https?:\/\/bmm\.brunstad\.org\//.test(url)) {
+        e.preventDefault();
+        navigateToUri(window, removeUrlOrigin(url));
+        return;
+      }
+
+      // Introduced to handle login-process in the default browser. A user usually has his login credentials already saved there.
       if (!url.startsWith(`${PRODUCTION_APP_PROTOCOL}://`)) {
-        // TODO: Maybe its good to inform the user about what will happen here ...
-        // dialog.showMessageBox(window)
         e.preventDefault();
         shell.openExternal(url).catch((error) => {
           dialog.showErrorBox(url, `${error}`);
@@ -66,8 +83,13 @@ app
       }
     });
 
+    // Event is triggered when another program opens a `bmm://` link.
     app.on("open-url", (_, url) => {
-      navigateToUri(window, url);
+      if (/^bmm:\/\//.test(url)) {
+        navigateToUri(window, removeUrlOrigin(url));
+      } else {
+        window.loadURL(url);
+      }
     });
 
     return window.loadURL(`${PRODUCTION_APP_PROTOCOL}://bmm.brunstad.org`);
