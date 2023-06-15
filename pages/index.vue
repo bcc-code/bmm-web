@@ -69,11 +69,7 @@ watch(
               <span v-else>{{ group.header.title }}</span>
             </PageHeading>
             <div
-              v-if="
-                group.items.find(
-                  (i: IDiscoverableGroup['items'][0]) => !['album', 'playlist', 'podcast'].includes(i.type)
-                ) === undefined
-              "
+              v-if="group.header?.useCoverCarousel"
               class="flex space-x-8 overflow-x-auto scrollbar-hide"
             >
               <template v-for="item in group.items" :key="item.id">
