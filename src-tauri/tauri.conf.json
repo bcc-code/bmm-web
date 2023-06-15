@@ -1,7 +1,7 @@
 {
   "$schema": "../node_modules/@tauri-apps/cli/schema.json",
   "build": {
-    "beforeBuildCommand": "node_modules/.bin/nuxt generate",
+    "beforeBuildCommand": "nuxt generate",
     "beforeDevCommand": "pnpm dev",
     "devPath": "http://localhost:9001",
     "distDir": "../.output/public"
@@ -12,6 +12,9 @@
   },
   "tauri": {
     "allowlist": {
+      "shell": {
+        "open": "^https://login.bcc.no/"
+      },
       "all": false
     },
     "bundle": {
