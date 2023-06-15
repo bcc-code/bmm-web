@@ -85,30 +85,12 @@ watch(
                 >
                   <ItemCard :item="item" />
                 </NuxtLink>
-                <div
+                <NuxtLink
                   v-else-if="item.type === 'podcast'"
-                  style="position: relative"
+                  :to="{ name: 'playlist-podcast-id', params: { id: item.id } }"
                 >
                   <ItemCard :item="item" />
-                  <div
-                    style="
-                      position: absolute;
-                      bottom: 0;
-                      top: 0;
-                      left: 0;
-                      right: 0;
-                      background-color: rgba(255, 0, 0, 0.4);
-                      color: red;
-                      display: flex;
-                      justify-content: center;
-                      align-content: center;
-                      flex-direction: column;
-                      text-align: center;
-                    "
-                  >
-                    A page for podcasts is not yet implemented
-                  </div>
-                </div>
+                </NuxtLink>
               </template>
             </div>
             <ol v-else class="w-full divide-y divide-label-separator">
