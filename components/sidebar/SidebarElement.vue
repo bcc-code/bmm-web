@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { useAuth0 } from "@auth0/auth0-vue";
 import { RoutesNamedLocations } from "~/.nuxt/typed-router/__routes";
 
 const links: {
@@ -12,6 +13,14 @@ const links: {
 ];
 
 const { data: collections } = usePrivatePlaylists();
+const auth0 = useAuth0();
+const logout = async () => {
+  try {
+    await auth0.logout({ openUrl: false });
+  } catch (e) {
+    console.error(e);
+  }
+};
 </script>
 
 <template>
@@ -32,6 +41,15 @@ const { data: collections } = usePrivatePlaylists();
           :key="`${link.link}_${i}`"
           v-bind="link"
         />
+        <a
+          @click="logout()"
+          href="#"
+          class="group flex gap-2 rounded-xl px-4 py-2"
+        >
+          <span class="transition-transform group-hover:translate-x-2">
+            Logout
+          </span>
+        </a>
       </SidebarGroup>
 
       <SidebarGroup title="Playlists">
