@@ -3,7 +3,7 @@ import { TrackModel } from "@bcc-code/bmm-sdk-fetch";
 import { MediaPlaylistInjectionKey } from "~/plugins/3.mediaPlayer";
 import { DropdownMenuItem } from "../DropdownMenu.vue";
 
-withDefaults(
+const props = withDefaults(
   defineProps<{
     showSkeleton?: boolean;
     skeletonCount?: number;
@@ -13,8 +13,19 @@ withDefaults(
     skeletonCount: 5,
   }
 );
+
 const { setCurrentTrack, addTrackToQueue } = inject(MediaPlaylistInjectionKey)!;
 const showDropDownForTrack: Ref<null | string> = ref(null);
+
+const isTrackTypeKnown = () => {
+  const firstType = props.tracks?.[0]?.subtype;
+  return props.tracks?.every(
+    (track: TrackModel) =>
+      track.subtype === firstType ||
+      (track.subtype === "song" && firstType === "singsong") ||
+      (track.subtype === "singsong" && firstType === "song")
+  );
+};
 
 const toggleDropdownForTrack = (trackReference: string) => {
   if (showDropDownForTrack.value === trackReference) {
@@ -86,6 +97,7 @@ const dropdownMenuItemsForTrack = (track: TrackModel) => {
         v-for="(track, i) in tracks"
         :key="track.id"
         :track="track"
+        :is-track-type-known="isTrackTypeKnown()"
         show-thumbnail
         @play-track="setCurrentTrack(track)"
         @open-options="toggleDropdownForTrack(`${track.id}-${i}`)"

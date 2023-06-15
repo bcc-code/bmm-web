@@ -1,6 +1,9 @@
 <script lang="ts" setup>
 import { LanguageEnum } from "@bcc-code/bmm-sdk-fetch";
 import { IDiscoverableGroup } from "~/composables/discover";
+import { MediaPlaylistInjectionKey } from "~/plugins/3.mediaPlayer";
+
+const { setCurrentTrack } = inject(MediaPlaylistInjectionKey)!;
 
 const { t, locale } = useI18n();
 toolbarTitleStore().setReactiveToolbarTitle(() => t("nav.home"));
@@ -117,6 +120,9 @@ watch(
                 <TrackItem
                   v-if="item.type === 'track'"
                   :track="item"
+                  :is-track-type-known="true"
+                  show-thumbnail
+                  @play-track="setCurrentTrack(item)"
                 ></TrackItem>
                 <li v-else>
                   <div
