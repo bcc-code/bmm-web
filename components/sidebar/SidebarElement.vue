@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { useAuth0 } from "@auth0/auth0-vue";
 import { RoutesNamedLocations } from "~/.nuxt/typed-router/__routes";
+import { version } from "~/package.json";
 
 const links: {
   title: string;
@@ -31,7 +32,7 @@ const logout = async () => {
       <SiteLogo size="small" />
       <span
         class="mx-2 mt-1 inline-block rounded-xl bg-tint px-[5px] text-[13px] leading-5"
-        >Alpha v0.0.2</span
+        >Alpha v{{ version }}</span
       >
     </div>
     <div class="flex-grow overflow-y-auto">
