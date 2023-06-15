@@ -51,7 +51,7 @@ function secondsToTime(totalSeconds: number | undefined) {
           <div
             class="absolute inset-0 h-full w-full rounded-md bg-black-1 opacity-50"
           ></div>
-          <IconComponent
+          <NuxtIcon
             name="play"
             filled
             class="absolute inset-0 flex items-center justify-center text-2xl text-white-1"
@@ -93,20 +93,20 @@ function secondsToTime(totalSeconds: number | undefined) {
           class="px-2 py-0 opacity-0 hover:opacity-100 focus:opacity-100 group-hover:opacity-100 group-focus:opacity-100"
           :aria-label="t('track.a11y.download')"
         >
-          <IconComponent name="download" filled class="text-2xl" />
+          <NuxtIcon name="download" filled class="text-2xl" />
         </button>
         <button
           class="px-2 py-0 opacity-0 hover:opacity-100 focus:opacity-100 group-hover:opacity-100 group-focus:opacity-100"
           :aria-label="t('track.a11y.queue')"
         >
-          <IconComponent name="queue" filled class="text-2xl" />
+          <NuxtIcon name="queue" filled class="text-2xl" />
         </button>
         <button
           :aria-label="t('track.a11y.options')"
           class="focus:bg-lime-400 rounded-lg px-2 py-0"
           @click="openOptions"
         >
-          <IconComponent name="options" filled class="text-2xl" />
+          <NuxtIcon name="options" filled class="text-2xl" />
         </button>
       </div>
     </div>
