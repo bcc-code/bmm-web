@@ -108,13 +108,9 @@ app
 
       // What else would be the first argument ..?
       const url = commandLine.pop() || "";
-      dialog.showErrorBox("Welcome Back", `You arrived from: ${url}`);
 
-      if (/^bmm:\/\//.test(url)) {
-        navigateToUri(window, removeUrlOrigin(url));
-      } else {
-        window.loadURL(url);
-      }
+      // Reuse the callback we have in place for MacOS
+      app.emit("open-url", url);
     });
 
     return window.loadURL(`${PRODUCTION_APP_PROTOCOL}://bmm.brunstad.org`);
