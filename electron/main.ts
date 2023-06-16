@@ -4,6 +4,7 @@ import * as path from "path";
 const PRODUCTION_APP_PROTOCOL = "bmm";
 const PRODUCTION_APP_PATH = path.join(__dirname, "..", ".output", "public");
 
+app.setAsDefaultProtocolClient(PRODUCTION_APP_PROTOCOL);
 protocol.registerSchemesAsPrivileged([
   {
     scheme: PRODUCTION_APP_PROTOCOL,
