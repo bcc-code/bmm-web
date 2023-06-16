@@ -25,6 +25,12 @@ const removeUrlOrigin = (_url: string) => {
   return url.href.substring(url.origin.length);
 };
 
+// Limit the app to a single instance and pass on arguments to the second instance (calls the "second-instance" event)
+const gotTheLock = app.requestSingleInstanceLock();
+if (!gotTheLock) {
+  app.quit();
+}
+
 app
   .whenReady()
   .then(() => {
@@ -86,6 +92,24 @@ app
 
     // Event is triggered when another program opens a `bmm://` link.
     app.on("open-url", (_, url) => {
+      if (/^bmm:\/\//.test(url)) {
+        navigateToUri(window, removeUrlOrigin(url));
+      } else {
+        window.loadURL(url);
+      }
+    });
+
+    app.on("second-instance", (_, commandLine) => {
+      // Someone tried to run a second instance, we should focus our window.
+      if (window) {
+        if (window.isMinimized()) window.restore();
+        window.focus();
+      }
+
+      // What else would be the first argument ..?
+      const url = commandLine.pop() || "";
+      dialog.showErrorBox("Welcome Back", `You arrived from: ${url}`);
+
       if (/^bmm:\/\//.test(url)) {
         navigateToUri(window, removeUrlOrigin(url));
       } else {
