@@ -109,8 +109,11 @@ app
       // What else would be the first argument ..?
       const url = commandLine.pop() || "";
 
-      // Reuse the callback we have in place for MacOS
-      app.emit("open-url", url);
+      if (/^bmm:\/\//.test(url)) {
+        navigateToUri(window, removeUrlOrigin(url));
+      } else {
+        window.loadURL(url);
+      }
     });
 
     return window.loadURL(`${PRODUCTION_APP_PROTOCOL}://bmm.brunstad.org`);
