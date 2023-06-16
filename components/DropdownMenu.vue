@@ -1,9 +1,10 @@
 <script lang="ts" setup>
+import { NuxtIconName } from "#app";
 import { RoutesNamedLocations } from "~/.nuxt/typed-router/__routes";
 
 export interface DropdownMenuItem {
   text: string;
-  icon?: string;
+  icon?: NuxtIconName;
   link?: RoutesNamedLocations;
   clickFunction?: Function;
 }
@@ -60,7 +61,7 @@ function menuItemListeners(item: DropdownMenuItem) {
           class="flex items-center justify-start gap-2 px-3 py-2"
           v-on="menuItemListeners(item)"
         >
-          <IconComponent v-if="item.icon" :name="item.icon" />
+          <NuxtIcon v-if="item.icon" :name="item.icon" />
           <span>{{ item.text }}</span>
         </component>
       </li>

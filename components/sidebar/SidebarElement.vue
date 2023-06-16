@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { NuxtIconName } from "#app";
 import { useAuth0 } from "@auth0/auth0-vue";
 import { RoutesNamedLocations } from "~/.nuxt/typed-router/__routes";
 import { version } from "~/package.json";
@@ -6,7 +7,7 @@ import { version } from "~/package.json";
 const links: {
   title: string;
   link: RoutesNamedLocations;
-  icon: string;
+  icon: NuxtIconName;
 }[] = [
   { title: "Home", link: { name: "index" }, icon: "nav.home" },
   { title: "Browse", link: { name: "browse" }, icon: "nav.browse" },

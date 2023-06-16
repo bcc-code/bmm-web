@@ -8,6 +8,7 @@ const modules: NuxtConfig["modules"] = [
   "@nuxt/devtools",
   // Use TS-path as workaround (See https://github.com/nuxt/nuxt/issues/20912)
   "~/modules/figma2tailwind/index.ts", // Must be placed before "@nuxtjs/tailwindcss"
+  "~/modules/icons/module.ts",
   "@nuxtjs/tailwindcss",
   "@nuxtjs/i18n",
   "nuxt-vitest",

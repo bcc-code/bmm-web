@@ -1,11 +1,10 @@
 <script setup lang="ts">
-// This component is a copy of the nuxt-icon component from nuxt-icons (https://nuxt.com/modules/icons)
-// with some modifications to help with Typescript support.
+import { NuxtIconName } from "#app";
 import { ref, watchEffect } from "#imports";
 
 const props = withDefaults(
   defineProps<{
-    name: string;
+    name: NuxtIconName;
     filled?: boolean;
   }>(),
   { filled: false }

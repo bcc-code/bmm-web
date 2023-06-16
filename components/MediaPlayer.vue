@@ -42,7 +42,7 @@ const { currentTrack } = inject(MediaPlaylistInjectionKey)!;
       <div class="group select-none">
         <button v-if="status === MediaPlayerStatus.Playing" @click="pause()">
           <span class="flex aspect-square w-12 justify-center align-middle">
-            <IconComponent
+            <NuxtIcon
               name="icon.pause.large"
               class="text-3xl group-hover:text-4xl"
             />
@@ -50,7 +50,7 @@ const { currentTrack } = inject(MediaPlaylistInjectionKey)!;
         </button>
         <button v-if="status !== MediaPlayerStatus.Playing" @click="play()">
           <span class="flex aspect-square w-12 justify-center align-middle">
-            <IconComponent name="play" class="text-3xl group-hover:text-4xl" />
+            <NuxtIcon name="play" class="text-3xl group-hover:text-4xl" />
           </span>
         </button>
       </div>
