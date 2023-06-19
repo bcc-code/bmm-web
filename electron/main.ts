@@ -8,14 +8,6 @@ const defaultUrl = `${PRODUCTION_APP_PROTOCOL}://bmm.brunstad.org`;
 let initUrl = defaultUrl;
 let appReadyHasRun = false;
 
-app.setAsDefaultProtocolClient(PRODUCTION_APP_PROTOCOL);
-protocol.registerSchemesAsPrivileged([
-  {
-    scheme: PRODUCTION_APP_PROTOCOL,
-    privileges: { secure: true, standard: true, supportFetchAPI: true },
-  },
-]);
-
 const navigateToUri = (window: BrowserWindow, url: string) => {
   window.webContents.send("route-changed", url);
 };
@@ -28,12 +20,6 @@ const removeUrlOrigin = (_url: string) => {
   );
   return url.href.substring(url.origin.length);
 };
-
-// Limit the app to a single instance and pass on arguments to the second instance (calls the "second-instance" event)
-const gotTheLock = app.requestSingleInstanceLock();
-if (!gotTheLock) {
-  app.quit();
-}
 
 let window: BrowserWindow | undefined;
 const openWindow = (url: string) => {
@@ -74,99 +60,124 @@ const openWindow = (url: string) => {
   });
 };
 
-// eslint-disable-next-line promise/catch-or-return
-app.whenReady().then(() => {
-  if (process.env.VITE_DEV_SERVER_URL) {
-    protocol.registerStreamProtocol(
-      PRODUCTION_APP_PROTOCOL,
-      (request, callback) => {
-        net
-          .request({
-            method: request.method,
-            url: `${process.env.VITE_DEV_SERVER_URL}${removeUrlOrigin(
-              request.url
-            )}`,
-          })
-          .on("response", (response) => {
-            callback(response);
-          })
-          .end();
-      }
-    );
+// Limit the app to a single instance and pass on arguments to the second instance (calls the "second-instance" event)
+const gotTheLock = app.requestSingleInstanceLock();
+if (!gotTheLock) {
+  app.quit();
+} else {
+  if (process.defaultApp) {
+    if (process.argv.length >= 2) {
+      app.setAsDefaultProtocolClient(
+        PRODUCTION_APP_PROTOCOL,
+        process.execPath,
+        [process.argv[1]!]
+      );
+    }
   } else {
-    protocol.registerFileProtocol(
-      PRODUCTION_APP_PROTOCOL,
-      (request, callback) => {
-        const relativePath = path.normalize(new URL(request.url).pathname);
-        const absolutePath = path.join(
-          PRODUCTION_APP_PATH,
-          relativePath !== path.sep ? relativePath : "index.html"
-        );
+    app.setAsDefaultProtocolClient(PRODUCTION_APP_PROTOCOL);
+  }
 
-        // Can the file be accessed? If yes, serve it. If not, it's most likely a route which we should resolve by opening index.html.
-        fs.access(absolutePath)
-          .then(() => fs.lstat(absolutePath))
-          .then((stat) => {
-            if (stat.isFile()) {
+  protocol.registerSchemesAsPrivileged([
+    {
+      scheme: PRODUCTION_APP_PROTOCOL,
+      privileges: { secure: true, standard: true, supportFetchAPI: true },
+    },
+  ]);
+
+  // eslint-disable-next-line promise/catch-or-return
+  app.whenReady().then(() => {
+    if (process.env.VITE_DEV_SERVER_URL) {
+      protocol.registerStreamProtocol(
+        PRODUCTION_APP_PROTOCOL,
+        (request, callback) => {
+          net
+            .request({
+              method: request.method,
+              url: `${process.env.VITE_DEV_SERVER_URL}${removeUrlOrigin(
+                request.url
+              )}`,
+            })
+            .on("response", (response) => {
+              callback(response);
+            })
+            .end();
+        }
+      );
+    } else {
+      protocol.registerFileProtocol(
+        PRODUCTION_APP_PROTOCOL,
+        (request, callback) => {
+          const relativePath = path.normalize(new URL(request.url).pathname);
+          const absolutePath = path.join(
+            PRODUCTION_APP_PATH,
+            relativePath !== path.sep ? relativePath : "index.html"
+          );
+
+          // Can the file be accessed? If yes, serve it. If not, it's most likely a route which we should resolve by opening index.html.
+          fs.access(absolutePath)
+            .then(() => fs.lstat(absolutePath))
+            .then((stat) => {
+              if (stat.isFile()) {
+                // eslint-disable-next-line n/no-callback-literal
+                callback({ path: absolutePath });
+              } else {
+                // eslint-disable-next-line no-throw-literal, @typescript-eslint/no-throw-literal
+                throw undefined;
+              }
+            })
+            .catch(() => {
               // eslint-disable-next-line n/no-callback-literal
-              callback({ path: absolutePath });
-            } else {
-              // eslint-disable-next-line no-throw-literal, @typescript-eslint/no-throw-literal
-              throw undefined;
-            }
-          })
-          .catch(() => {
-            // eslint-disable-next-line n/no-callback-literal
-            callback({ path: path.join(PRODUCTION_APP_PATH, "index.html") });
-          });
-      }
-    );
-  }
+              callback({ path: path.join(PRODUCTION_APP_PATH, "index.html") });
+            });
+        }
+      );
+    }
 
-  appReadyHasRun = true;
-  openWindow(initUrl);
-});
+    appReadyHasRun = true;
+    openWindow(initUrl);
+  });
 
-// Event is triggered when another program opens a `bmm://` link.
-app.on("open-url", (_, url) => {
-  if (!window) {
-    openWindow(url);
-  } else if (/^bmm:\/\//.test(url)) {
-    navigateToUri(window, removeUrlOrigin(url));
-  } else {
-    window.loadURL(url);
-  }
-});
-
-app.on("second-instance", (_, commandLine) => {
-  // What else would be the first argument ..?
-  const url = commandLine.pop() || "";
-
-  // Someone tried to run a second instance, we should focus our window.
-  if (window) {
-    if (window.isMinimized()) window.restore();
-    window.focus();
-
-    if (/^bmm:\/\//.test(url)) {
+  // Event is triggered when another program opens a `bmm://` link.
+  app.on("open-url", (_, url) => {
+    if (!window) {
+      openWindow(url);
+    } else if (/^bmm:\/\//.test(url)) {
       navigateToUri(window, removeUrlOrigin(url));
     } else {
       window.loadURL(url);
     }
-  } else {
-    openWindow(url);
-  }
-});
+  });
 
-// Quit when all windows are closed, except on macOS. There, it's common
-// for applications and their menu bar to stay active until the user quits
-// explicitly with Cmd + Q.
-app.on("window-all-closed", () => {
-  if (process.platform !== "darwin") app.quit();
-});
+  app.on("second-instance", (_, commandLine) => {
+    // What else would be the first argument ..?
+    const url = commandLine.pop() || "";
 
-// On MacOS, if the icon in the dock is tapped ...
-app.on("activate", () => {
-  if (BrowserWindow.getAllWindows().length === 0) {
-    openWindow(defaultUrl);
-  }
-});
+    // Someone tried to run a second instance, we should focus our window.
+    if (window) {
+      if (window.isMinimized()) window.restore();
+      window.focus();
+
+      if (/^bmm:\/\//.test(url)) {
+        navigateToUri(window, removeUrlOrigin(url));
+      } else {
+        window.loadURL(url);
+      }
+    } else {
+      openWindow(url);
+    }
+  });
+
+  // Quit when all windows are closed, except on macOS. There, it's common
+  // for applications and their menu bar to stay active until the user quits
+  // explicitly with Cmd + Q.
+  app.on("window-all-closed", () => {
+    if (process.platform !== "darwin") app.quit();
+  });
+
+  // On MacOS, if the icon in the dock is tapped ...
+  app.on("activate", () => {
+    if (BrowserWindow.getAllWindows().length === 0) {
+      openWindow(defaultUrl);
+    }
+  });
+}
