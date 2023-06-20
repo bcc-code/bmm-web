@@ -14,6 +14,8 @@ export interface MediaPlayer {
   pause: () => void;
   next: () => void;
   previous: () => void;
+  hasNext: ComputedRef<Boolean>;
+  hasPrevious: ComputedRef<Boolean>;
 }
 
 export interface MediaPlaylist {
@@ -62,11 +64,14 @@ export default defineNuxtPlugin((nuxtApp) => {
     return MediaPlayerStatus.Playing;
   });
 
+  const hasNext = computed(
+    () => queue.value.length > currentQueueIndex.value + 1
+  );
+
   function next() {
-    if (queue.value.length > currentQueueIndex.value + 1) {
-      // eslint-disable-next-line @typescript-eslint/no-use-before-define
-      setCurrentTrack(queue.value[currentQueueIndex.value + 1]);
-    }
+    if (!hasNext.value) return;
+    // eslint-disable-next-line @typescript-eslint/no-use-before-define
+    setCurrentTrack(queue.value[currentQueueIndex.value + 1]);
   }
 
   function setCurrentTrack(track?: TrackModel) {
@@ -117,10 +122,11 @@ export default defineNuxtPlugin((nuxtApp) => {
     });
   }
 
+  const hasPrevious = computed(() => currentQueueIndex.value > 0);
+
   function previous() {
-    if (currentQueueIndex.value > 0) {
-      setCurrentTrack(queue.value[currentQueueIndex.value - 1]);
-    }
+    if (!hasPrevious.value) return;
+    setCurrentTrack(queue.value[currentQueueIndex.value - 1]);
   }
 
   function clearCurrentTrack() {
@@ -156,6 +162,8 @@ export default defineNuxtPlugin((nuxtApp) => {
     pause: () => activeMedia?.pause(),
     next,
     previous,
+    hasNext,
+    hasPrevious,
   });
 
   nuxtApp.vueApp.provide(MediaPlaylistInjectionKey, {
