@@ -65,17 +65,21 @@ const gotTheLock = app.requestSingleInstanceLock();
 if (!gotTheLock) {
   app.quit();
 } else {
+  const [, ...args] = [...process.argv];
   if (process.defaultApp) {
-    if (process.argv.length >= 2) {
+    if (args.length >= 1) {
       app.setAsDefaultProtocolClient(
         PRODUCTION_APP_PROTOCOL,
         process.execPath,
-        [process.argv[1]!]
+        [path.resolve(args.shift()!)]
       );
     }
   } else {
     app.setAsDefaultProtocolClient(PRODUCTION_APP_PROTOCOL);
   }
+
+  // Expect the next parameter to be a URL
+  if (args.length >= 1 && /^bmm:\/\//.test(args[0]!)) openWindow(args.shift()!);
 
   protocol.registerSchemesAsPrivileged([
     {
