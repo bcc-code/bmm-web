@@ -23,5 +23,6 @@ linux:
   desktop:
     Keywords: audio;bcc;bmm;brunstad;christian;church;edification;faith;media;music;sermon
     SingleMainWindow: true
+    StartupWMClass: bmm-web
   target:
     - AppImage
