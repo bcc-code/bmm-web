@@ -7,13 +7,19 @@ This repository uses Vue 3 `<script setup>` SFCs, check out the [script setup do
 
 ## Develop
 
-```
+```sh
 pnpm i
+```
 
-## Website
+### Website
+
+```sh
 pnpm dev
+```
 
-## App
+### App
+
+```sh
 pnpm dev:electron
 ```
 
@@ -21,18 +27,32 @@ _Note:_ If you had an error in your code and the system still shows you the erro
 
 ## Build
 
-```
+To build, first install all packages
+
+```sh
 pnpm i
-
-## Website
-pnpm build
-
-## App
-pnpm build:electron
-npx electron-builder
 ```
 
-_Note:_ The electron-builder will by default only build an app for the current platform and current architecture. If you want to go beyond, please visit https://www.electron.build/multi-platform-build.html.
+You may have to install `pnpm` first:
+
+```sh
+npm -g i pnpm
+```
+
+### Website
+
+```sh
+pnpm build
+```
+
+### App
+
+```sh
+pnpm build:electron
+pnpm package:electron
+```
+
+_Note:_ Target `package:electron` will by default only build an app for the current platform and current architecture. If you want to go beyond, please visit https://www.electron.build/multi-platform-build.html.
 
 ## E2E testing
 
