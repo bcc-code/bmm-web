@@ -20,6 +20,7 @@ import type { Config } from "tailwindcss";
 ${content}
 
 const config: Partial<Config> = {
+  darkMode: "class",
   theme: {
     colors,
   },
