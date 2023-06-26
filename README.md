@@ -34,6 +34,8 @@ npx electron-builder
 
 _Note:_ The electron-builder will by default only build an app for the current platform and current architecture. If you want to go beyond, please visit https://www.electron.build/multi-platform-build.html.
 
+_Note:_ Electron registers a handler for the url-scheme `bmm` on start, which means that after starting the electron-app in dev-mode or a new build, the system will always use this instance for opening links with the scheme `bmm`. This might be desirable while testing. Keep in mind to start your installed version of the bmm-electron app when you're done, so it can re-register as handler of the `bmm` scheme and deep-links will open with the installed version of the app.
+
 ## E2E testing
 
 Prepare by having a version of this project running. You may use `pnpm preview` to run the tests against a build locally or `pnpm dev`. The command `pnpm e2e` will start an interactive version of cypress.
