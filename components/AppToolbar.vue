@@ -5,6 +5,17 @@
     <strong v-if="toolbarTitleStore().toolbarTitle" class="text-label-1">
       {{ toolbarTitleStore().toolbarTitle }}
     </strong>
-    <ChangeLocale class="mx-4" />
+
+    <div class="flex flex-row">
+      <select v-model="$colorMode.preference" class="mx-4">
+        <option
+          v-for="(mode, $index) in ['system', 'light', 'dark']"
+          :key="$index"
+        >
+          {{ mode }}
+        </option>
+      </select>
+      <ChangeLocale class="mx-4" />
+    </div>
   </header>
 </template>
