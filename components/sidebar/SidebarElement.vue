@@ -32,7 +32,7 @@ const logout = async () => {
     <div class="flex items-center p-3">
       <SiteLogo size="small" />
       <span
-        class="mx-2 mt-1 inline-block rounded-xl bg-tint px-[5px] text-[13px] leading-5 text-black-1"
+        class="mx-2 mt-1 inline-block rounded-xl bg-tint px-[5px] text-[13px] leading-5 text-black-1 dark:bg-tint-dark"
         >Alpha v{{ version }}</span
       >
     </div>
