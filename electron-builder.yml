@@ -19,5 +19,10 @@ win:
     - msi
     - zip
 linux:
+  category: Audio;Player
+  desktop:
+    Keywords: audio;bcc;bmm;brunstad;christian;church;edification;faith;media;music;sermon
+    SingleMainWindow: true
+    StartupWMClass: bmm-web
   target:
     - AppImage
