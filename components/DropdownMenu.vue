@@ -48,12 +48,12 @@ function menuItemListeners(item: DropdownMenuItem) {
 <template>
   <div>
     <ul
-      class="absolute right-0 top-10 z-20 w-52 rounded-xl bg-white-1 p-1 shadow-md"
+      class="absolute right-0 top-10 z-20 w-52 rounded-xl bg-white-1 p-1 shadow-md dark:bg-black-1"
     >
       <li
         v-for="item in items"
         :key="item.text"
-        class="hover:text-black block w-full cursor-pointer rounded-lg hover:bg-background-2"
+        class="hover:text-black block w-full cursor-pointer rounded-lg hover:bg-background-2 hover:dark:bg-background-dark-2"
       >
         <component
           :is="menuItemComponent(item)"

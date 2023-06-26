@@ -16,7 +16,7 @@ defineProps<{
       v-if="item.cover"
       :src="item.cover"
       alt=""
-      class="aspect-square w-full rounded-2xl bg-background-2"
+      class="aspect-square w-full rounded-2xl bg-background-2 dark:bg-background-dark-2"
     />
     <span class="overflow-hidden text-ellipsis whitespace-nowrap text-center">
       {{ item.title }}
