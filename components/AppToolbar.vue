@@ -10,7 +10,10 @@
     </strong>
 
     <div class="flex flex-row">
-      <select v-model="$colorMode.preference" class="mx-4">
+      <select
+        v-model="$colorMode.preference"
+        class="mx-4 bg-white-1 text-black-1 dark:bg-white-1 dark:text-black-1"
+      >
         <option
           v-for="(mode, $index) in ['system', 'light', 'dark']"
           :key="$index"
