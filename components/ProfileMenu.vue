@@ -36,13 +36,13 @@ const enabled = ref(false);
               </button>
               <Switch
                 v-model="enabled"
-                :class="enabled ? 'bg-teal-[500]' : 'bg-teal-[500]'"
-                class="border-transparent focus-visible:ring-white relative inline-flex h-[38px] w-[74px] shrink-0 cursor-pointer rounded-full border-2 transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2 focus-visible:ring-opacity-75"
+                :class="enabled ? 'bg-tint' : 'bg-background-2'"
+                class="relative inline-flex h-[24px] w-[40px] shrink-0 cursor-pointer rounded-full p-[4px] transition-colors duration-200 ease-in-out focus:outline-none"
               >
                 <span
                   aria-hidden="true"
-                  :class="enabled ? 'translate-x-9' : 'translate-x-0'"
-                  class="bg-white pointer-events-none inline-block h-[34px] w-[34px] transform rounded-full shadow-lg ring-0 transition duration-200 ease-in-out"
+                  :class="enabled ? 'translate-x-[100%]' : 'translate-x-0'"
+                  class="pointer-events-none inline-block h-[16px] w-[16px] transform rounded-full bg-white-1 shadow-lg ring-0 transition duration-200 ease-in-out"
                 />
               </Switch>
             </MenuItem>
