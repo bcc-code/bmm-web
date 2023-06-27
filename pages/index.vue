@@ -44,80 +44,73 @@ watch(
 </script>
 
 <template>
-  <div class="flex flex-col gap-16">
-    <ul>
-      <template v-if="loading">
+  <div>
+    <template v-if="loading">
+      <ul>
         <li
           v-for="index in 5"
           :key="index"
           class="my-6 h-11 w-full animate-pulse rounded-lg bg-background-2"
         ></li>
-      </template>
-      <template v-else>
-        <li>
-          <template
-            v-for="group in discoverGroups"
-            :key="group.header?.id || 0"
+      </ul>
+    </template>
+    <template v-else>
+      <template v-for="group in discoverGroups" :key="group.header?.id || 0">
+        <PageHeading v-if="group.header" :level="3">
+          <a
+            v-if="typeof group.header.link === 'string'"
+            :href="group.header.link"
           >
-            <PageHeading v-if="group.header" :level="3">
-              <a
-                v-if="typeof group.header.link === 'string'"
-                :href="group.header.link"
-              >
-                {{ group.header.title }}
-              </a>
-              <span v-else>{{ group.header.title }}</span>
-            </PageHeading>
-            <div
-              v-if="group.header?.useCoverCarousel"
-              class="flex space-x-8 overflow-x-auto scrollbar-hide"
+            {{ group.header.title }}
+          </a>
+          <span v-else>{{ group.header.title }}</span>
+        </PageHeading>
+        <div
+          v-if="group.header?.useCoverCarousel"
+          class="flex space-x-8 overflow-x-auto scrollbar-hide"
+        >
+          <template v-for="item in group.items" :key="item.id">
+            <NuxtLink
+              v-if="item.type === 'album'"
+              :to="{ name: 'album-id', params: { id: item.id } }"
             >
-              <template v-for="item in group.items" :key="item.id">
-                <NuxtLink
-                  v-if="item.type === 'album'"
-                  :to="{ name: 'album-id', params: { id: item.id } }"
-                >
-                  <ItemCard :item="item" />
-                </NuxtLink>
-                <NuxtLink
-                  v-else-if="item.type === 'playlist'"
-                  :to="{ name: 'playlist-curated-id', params: { id: item.id } }"
-                >
-                  <ItemCard :item="item" />
-                </NuxtLink>
-                <NuxtLink
-                  v-else-if="item.type === 'podcast'"
-                  :to="{ name: 'playlist-podcast-id', params: { id: item.id } }"
-                >
-                  <ItemCard :item="item" />
-                </NuxtLink>
-              </template>
-            </div>
-            <ol v-else class="w-full divide-y divide-label-separator">
-              <template v-for="item in group.items" :key="item.id">
-                <TrackItem
-                  v-if="item.type === 'track'"
-                  :track="item"
-                  :is-track-type-known="true"
-                  show-thumbnail
-                  @play-track="setCurrentTrack(item)"
-                ></TrackItem>
-                <ContributorListItem
-                  v-else-if="item.type === 'contributor'"
-                  :contributor="item"
-                ></ContributorListItem>
-                <li v-else>
-                  <div
-                    style="background-color: rgba(255, 0, 0, 0.4); color: red"
-                  >
-                    "{{ item.type }}" is not yet implemented ...
-                  </div>
-                </li>
-              </template>
-            </ol>
+              <ItemCard :item="item" />
+            </NuxtLink>
+            <NuxtLink
+              v-else-if="item.type === 'playlist'"
+              :to="{ name: 'playlist-curated-id', params: { id: item.id } }"
+            >
+              <ItemCard :item="item" />
+            </NuxtLink>
+            <NuxtLink
+              v-else-if="item.type === 'podcast'"
+              :to="{ name: 'playlist-podcast-id', params: { id: item.id } }"
+            >
+              <ItemCard :item="item" />
+            </NuxtLink>
           </template>
-        </li>
+        </div>
+        <ol v-else class="w-full divide-y divide-label-separator">
+          <template v-for="item in group.items" :key="item.id">
+            <TrackItem
+              v-if="item.type === 'track'"
+              :track="item"
+              :is-track-type-known="true"
+              show-thumbnail
+              @play-track="setCurrentTrack(item)"
+            ></TrackItem>
+            <ContributorListItem
+              v-else-if="item.type === 'contributor'"
+              :contributor="item"
+            ></ContributorListItem>
+            <li v-else>
+              <div style="background-color: rgba(255, 0, 0, 0.4); color: red">
+                "{{ item.type }}" is not yet implemented ...
+              </div>
+            </li>
+          </template>
+        </ol>
       </template>
-    </ul>
+    </template>
   </div>
 </template>
