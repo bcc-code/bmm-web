@@ -42,7 +42,7 @@ const logout = async () => {
                 :class="active ? 'bg-violet-500 text-white' : 'text-gray-900'"
                 class="w-full px-2 py-2 text-left hover:bg-[red]"
                 @click="
-                  (e) => {
+                  (e: MouseEvent) => {
                     autoPlayEnabled = !autoPlayEnabled;
                     e.preventDefault();
                   }
@@ -69,7 +69,7 @@ const logout = async () => {
                 :class="active ? 'bg-violet-500 text-white' : 'text-gray-900'"
                 class="w-full px-2 py-2 text-left hover:bg-[red]"
                 @click="
-                  (e) => {
+                  (e: MouseEvent) => {
                     e.preventDefault();
                   }
                 "
@@ -82,7 +82,7 @@ const logout = async () => {
                 :class="active ? 'bg-violet-500 text-white' : 'text-gray-900'"
                 class="w-full px-2 py-2 text-left hover:bg-[red]"
                 @click="
-                  (e) => {
+                  (e: MouseEvent) => {
                     e.preventDefault();
                   }
                 "
@@ -95,7 +95,7 @@ const logout = async () => {
                 :class="active ? 'bg-violet-500 text-white' : 'text-gray-900'"
                 class="w-full px-2 py-2 text-left hover:bg-[red]"
                 @click="
-                  (e) => {
+                  (e: MouseEvent) => {
                     e.preventDefault();
                   }
                 "
@@ -110,7 +110,7 @@ const logout = async () => {
                 :class="active ? 'bg-violet-500 text-white' : 'text-gray-900'"
                 class="w-full px-2 py-2 text-left hover:bg-[red]"
                 @click="
-                  (e) => {
+                  (e: MouseEvent) => {
                     e.preventDefault();
                   }
                 "
@@ -123,7 +123,7 @@ const logout = async () => {
                 :class="active ? 'bg-violet-500 text-white' : 'text-gray-900'"
                 class="w-full px-2 py-2 text-left hover:bg-[red]"
                 @click="
-                  (e) => {
+                  (e: MouseEvent) => {
                     e.preventDefault();
                   }
                 "
@@ -136,7 +136,7 @@ const logout = async () => {
                 :class="active ? 'bg-violet-500 text-white' : 'text-gray-900'"
                 class="w-full px-2 py-2 text-left hover:bg-[red]"
                 @click="
-                  (e) => {
+                  (e: MouseEvent) => {
                     e.preventDefault();
                   }
                 "
