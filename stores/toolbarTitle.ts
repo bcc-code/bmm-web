@@ -1,8 +1,7 @@
-export const toolbarTitleStore = defineStore("filterStore", () => {
+export const toolbarTitleStore = defineStore("toolbarTitle", () => {
   const toolbarTitle = ref("");
 
   function setReactiveToolbarTitle(translate: () => string) {
-    const translation: Ref<string> = ref(translate());
     watch(
       useI18n().locale,
       () => {
@@ -10,7 +9,6 @@ export const toolbarTitleStore = defineStore("filterStore", () => {
       },
       { immediate: true }
     );
-    return translation;
   }
 
   return { setReactiveToolbarTitle, toolbarTitle };

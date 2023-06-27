@@ -11,6 +11,7 @@ const modules: NuxtConfig["modules"] = [
   "~/modules/icons/module.ts",
   "@nuxtjs/tailwindcss",
   "@nuxtjs/i18n",
+  "@nuxtjs/color-mode",
   "nuxt-vitest",
   ["@pinia/nuxt", { autoImports: ["defineStore"] }],
 ];
@@ -51,5 +52,8 @@ export default defineNuxtConfig({
       // Setting app.head.base changes the default for "hashMode" to "true" ...
       hashMode: false,
     },
+  },
+  colorMode: {
+    classSuffix: "",
   },
 });

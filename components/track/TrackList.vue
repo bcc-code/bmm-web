@@ -89,7 +89,7 @@ const dropdownMenuItemsForTrack = (track: TrackModel) => {
       <li
         v-for="skeleton in skeletonCount"
         :key="skeleton"
-        class="my-6 h-11 w-full animate-pulse rounded-lg bg-background-2"
+        class="my-6 h-11 w-full animate-pulse rounded-lg bg-background-2 dark:bg-background-dark-2"
       ></li>
     </template>
     <template v-else>
