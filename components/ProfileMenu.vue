@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { Menu, MenuButton, MenuItems, MenuItem, Switch } from "@headlessui/vue";
 
-const enabled = ref(false);
+const autoPlayEnabled = ref(false);
 </script>
 <template>
   <div>
@@ -31,17 +31,23 @@ const enabled = ref(false);
               <button
                 :class="active ? 'bg-violet-500 text-white' : 'text-gray-900'"
                 class="w-full px-2 py-2 text-left"
+                @click="
+                  (e) => {
+                    autoPlayEnabled = !autoPlayEnabled;
+                    e.preventDefault();
+                  }
+                "
               >
                 Auto Play
               </button>
               <Switch
-                v-model="enabled"
-                :class="enabled ? 'bg-tint' : 'bg-background-2'"
+                v-model="autoPlayEnabled"
+                :class="autoPlayEnabled ? 'bg-tint' : 'bg-background-2'"
                 class="relative inline-flex h-[24px] w-[40px] shrink-0 cursor-pointer rounded-full p-[4px] transition-colors duration-200 ease-in-out focus:outline-none"
               >
                 <span
                   aria-hidden="true"
-                  :class="enabled ? 'translate-x-[100%]' : 'translate-x-0'"
+                  :class="autoPlayEnabled ? 'translate-x-[100%]' : 'translate-x-0'"
                   class="pointer-events-none inline-block h-[16px] w-[16px] transform rounded-full bg-white-1 shadow-lg ring-0 transition duration-200 ease-in-out"
                 />
               </Switch>
@@ -50,6 +56,11 @@ const enabled = ref(false);
               <button
                 :class="active ? 'bg-violet-500 text-white' : 'text-gray-900'"
                 class="w-full px-2 py-2 text-left"
+                @click="
+                  (e) => {
+                    e.preventDefault();
+                  }
+                "
               >
                 Theme
               </button>
@@ -58,6 +69,11 @@ const enabled = ref(false);
               <button
                 :class="active ? 'bg-violet-500 text-white' : 'text-gray-900'"
                 class="w-full px-2 py-2 text-left"
+                @click="
+                  (e) => {
+                    e.preventDefault();
+                  }
+                "
               >
                 Language
               </button>
@@ -66,6 +82,11 @@ const enabled = ref(false);
               <button
                 :class="active ? 'bg-violet-500 text-white' : 'text-gray-900'"
                 class="w-full px-2 py-2 text-left"
+                @click="
+                  (e) => {
+                    e.preventDefault();
+                  }
+                "
               >
                 Content Language
               </button>
@@ -76,6 +97,11 @@ const enabled = ref(false);
               <button
                 :class="active ? 'bg-violet-500 text-white' : 'text-gray-900'"
                 class="w-full px-2 py-2 text-left"
+                @click="
+                  (e) => {
+                    e.preventDefault();
+                  }
+                "
               >
                 Feedback
               </button>
@@ -84,6 +110,11 @@ const enabled = ref(false);
               <button
                 :class="active ? 'bg-violet-500 text-white' : 'text-gray-900'"
                 class="w-full px-2 py-2 text-left"
+                @click="
+                  (e) => {
+                    e.preventDefault();
+                  }
+                "
               >
                 Contact
               </button>
@@ -92,6 +123,11 @@ const enabled = ref(false);
               <button
                 :class="active ? 'bg-violet-500 text-white' : 'text-gray-900'"
                 class="w-full px-2 py-2 text-left"
+                @click="
+                  (e) => {
+                    e.preventDefault();
+                  }
+                "
               >
                 About BMM
               </button>
@@ -102,6 +138,11 @@ const enabled = ref(false);
               <button
                 :class="active ? 'bg-violet-500 text-white' : 'text-gray-900'"
                 class="w-full px-2 py-2 text-left"
+                @click="
+                  (e) => {
+                    e.preventDefault();
+                  }
+                "
               >
                 Sign Out
               </button>
