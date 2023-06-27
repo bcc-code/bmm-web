@@ -88,6 +88,13 @@ watch(
             >
               <ItemCard :item="item" />
             </NuxtLink>
+            <div
+              v-else
+              class="grid w-52 flex-shrink-0 basis-52 gap-4"
+              style="background-color: rgba(255, 0, 0, 0.4); color: red"
+            >
+              "{{ item.type }}" is not yet implemented ...
+            </div>
           </template>
         </div>
         <ol v-else class="w-full divide-y divide-label-separator">
