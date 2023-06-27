@@ -131,19 +131,6 @@ const logout = async () => {
                 Contact
               </button>
             </MenuItem>
-            <MenuItem v-slot="{ active }" as="div">
-              <button
-                :class="active ? 'bg-violet-500 text-white' : 'text-gray-900'"
-                class="w-full px-2 py-2 text-left hover:bg-[red]"
-                @click="
-                  (e: MouseEvent) => {
-                    e.preventDefault();
-                  }
-                "
-              >
-                About BMM
-              </button>
-            </MenuItem>
           </div>
           <div class="px-1 py-1">
             <MenuItem v-slot="{ active }" as="div">
