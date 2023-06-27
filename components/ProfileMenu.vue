@@ -30,7 +30,7 @@ const autoPlayEnabled = ref(false);
             <MenuItem v-slot="{ active }" as="div" class="flex items-center">
               <button
                 :class="active ? 'bg-violet-500 text-white' : 'text-gray-900'"
-                class="w-full px-2 py-2 text-left"
+                class="w-full px-2 py-2 text-left hover:bg-[red]"
                 @click="
                   (e) => {
                     autoPlayEnabled = !autoPlayEnabled;
@@ -55,7 +55,7 @@ const autoPlayEnabled = ref(false);
             <MenuItem v-slot="{ active }" as="div">
               <button
                 :class="active ? 'bg-violet-500 text-white' : 'text-gray-900'"
-                class="w-full px-2 py-2 text-left"
+                class="w-full px-2 py-2 text-left hover:bg-[red]"
                 @click="
                   (e) => {
                     e.preventDefault();
@@ -68,7 +68,7 @@ const autoPlayEnabled = ref(false);
             <MenuItem v-slot="{ active }" as="div">
               <button
                 :class="active ? 'bg-violet-500 text-white' : 'text-gray-900'"
-                class="w-full px-2 py-2 text-left"
+                class="w-full px-2 py-2 text-left hover:bg-[red]"
                 @click="
                   (e) => {
                     e.preventDefault();
@@ -81,7 +81,7 @@ const autoPlayEnabled = ref(false);
             <MenuItem v-slot="{ active }" as="div">
               <button
                 :class="active ? 'bg-violet-500 text-white' : 'text-gray-900'"
-                class="w-full px-2 py-2 text-left"
+                class="w-full px-2 py-2 text-left hover:bg-[red]"
                 @click="
                   (e) => {
                     e.preventDefault();
@@ -96,7 +96,7 @@ const autoPlayEnabled = ref(false);
             <MenuItem v-slot="{ active }" as="div">
               <button
                 :class="active ? 'bg-violet-500 text-white' : 'text-gray-900'"
-                class="w-full px-2 py-2 text-left"
+                class="w-full px-2 py-2 text-left hover:bg-[red]"
                 @click="
                   (e) => {
                     e.preventDefault();
@@ -109,7 +109,7 @@ const autoPlayEnabled = ref(false);
             <MenuItem v-slot="{ active }" as="div">
               <button
                 :class="active ? 'bg-violet-500 text-white' : 'text-gray-900'"
-                class="w-full px-2 py-2 text-left"
+                class="w-full px-2 py-2 text-left hover:bg-[red]"
                 @click="
                   (e) => {
                     e.preventDefault();
@@ -122,7 +122,7 @@ const autoPlayEnabled = ref(false);
             <MenuItem v-slot="{ active }" as="div">
               <button
                 :class="active ? 'bg-violet-500 text-white' : 'text-gray-900'"
-                class="w-full px-2 py-2 text-left"
+                class="w-full px-2 py-2 text-left hover:bg-[red]"
                 @click="
                   (e) => {
                     e.preventDefault();
@@ -137,7 +137,7 @@ const autoPlayEnabled = ref(false);
             <MenuItem v-slot="{ active }" as="div">
               <button
                 :class="active ? 'bg-violet-500 text-white' : 'text-gray-900'"
-                class="w-full px-2 py-2 text-left"
+                class="w-full px-2 py-2 text-left hover:bg-[red]"
                 @click="
                   (e) => {
                     e.preventDefault();
