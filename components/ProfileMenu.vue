@@ -1,7 +1,17 @@
 <script setup lang="ts">
 import { Menu, MenuButton, MenuItems, MenuItem, Switch } from "@headlessui/vue";
+import { useAuth0 } from "@auth0/auth0-vue";
 
 const autoPlayEnabled = ref(false);
+
+const auth0 = useAuth0();
+const logout = async () => {
+  try {
+    await auth0.logout({ openUrl: false });
+  } catch (e) {
+    console.error(e);
+  }
+};
 </script>
 <template>
   <div>
@@ -47,7 +57,9 @@ const autoPlayEnabled = ref(false);
               >
                 <span
                   aria-hidden="true"
-                  :class="autoPlayEnabled ? 'translate-x-[100%]' : 'translate-x-0'"
+                  :class="
+                    autoPlayEnabled ? 'translate-x-[100%]' : 'translate-x-0'
+                  "
                   class="pointer-events-none inline-block h-[16px] w-[16px] transform rounded-full bg-white-1 shadow-lg ring-0 transition duration-200 ease-in-out"
                 />
               </Switch>
@@ -137,12 +149,8 @@ const autoPlayEnabled = ref(false);
             <MenuItem v-slot="{ active }" as="div">
               <button
                 :class="active ? 'bg-violet-500 text-white' : 'text-gray-900'"
-                class="w-full px-2 py-2 text-left hover:bg-[red]"
-                @click="
-                  (e) => {
-                    e.preventDefault();
-                  }
-                "
+                class="w-full px-2 py-2 text-left"
+                @click="logout()"
               >
                 Sign Out
               </button>
