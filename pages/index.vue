@@ -102,6 +102,10 @@ watch(
                   show-thumbnail
                   @play-track="setCurrentTrack(item)"
                 ></TrackItem>
+                <ContributorListItem
+                  v-else-if="item.type === 'contributor'"
+                  :contributor="item"
+                ></ContributorListItem>
                 <li v-else>
                   <div
                     style="background-color: rgba(255, 0, 0, 0.4); color: red"
