@@ -9,6 +9,7 @@ dist
 dist-electron
 coverage
 pnpm-lock.yaml
+.vscode
 
 # Generated files
 tailwind.config.ts

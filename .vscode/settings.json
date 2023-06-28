@@ -13,7 +13,7 @@
     "editor.formatOnSaveMode": "file",
     "editor.tabSize": 2,
     "editor.insertSpaces": true,
-    "editor.detectIndentation": false,
+    "editor.detectIndentation": false
   },
   "[terraform-vars]": {
     "editor.defaultFormatter": "hashicorp.terraform",
@@ -21,6 +21,6 @@
     "editor.formatOnSaveMode": "file",
     "editor.tabSize": 2,
     "editor.insertSpaces": true,
-    "editor.detectIndentation": false,
+    "editor.detectIndentation": false
   }
 }
