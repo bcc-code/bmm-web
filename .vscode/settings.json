@@ -4,5 +4,6 @@
   "stylelint.validate": ["css", "less", "postcss", "vue"],
   "tailwindCSS.experimental.classRegex": [
     ["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"]
-  ]
+  ],
+  "typescript.tsdk": "node_modules/typescript/lib"
 }
