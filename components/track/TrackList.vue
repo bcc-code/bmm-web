@@ -19,11 +19,13 @@ const showDropDownForTrack: Ref<null | string> = ref(null);
 
 const isTrackTypeKnown = () => {
   const firstType = props.tracks?.[0]?.subtype;
-  return props.tracks?.every(
-    (track: TrackModel) =>
-      track.subtype === firstType ||
-      (track.subtype === "song" && firstType === "singsong") ||
-      (track.subtype === "singsong" && firstType === "song")
+  return (
+    props.tracks?.every(
+      (track: TrackModel) =>
+        track.subtype === firstType ||
+        (track.subtype === "song" && firstType === "singsong") ||
+        (track.subtype === "singsong" && firstType === "song")
+    ) || false
   );
 };
 
