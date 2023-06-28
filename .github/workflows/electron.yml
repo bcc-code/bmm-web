@@ -60,3 +60,11 @@ jobs:
           name: app
           path: |
             .output/public/BMM*
+
+      - name: Archive Debian packages
+        uses: actions/upload-artifact@v3
+        if: matrix.os == 'ubuntu-latest'
+        with:
+          name: app
+          path: |
+            .output/public/bmm-web*.deb
