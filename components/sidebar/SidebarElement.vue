@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import { NuxtIconName } from "#app";
+import { NuxtIconName } from "#build/nuxt-icons";
 import { useAuth0 } from "@auth0/auth0-vue";
-import { RoutesNamedLocations } from "~/.nuxt/typed-router/__routes";
+import { RoutesNamedLocations } from "@typed-router";
 import { version } from "~/package.json";
 
 const links: {

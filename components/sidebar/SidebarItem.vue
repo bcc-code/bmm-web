@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { NuxtIconName } from "#app";
-import { RoutesNamedLocations } from "~/.nuxt/typed-router/__routes";
+import { NuxtIconName } from "#build/nuxt-icons";
+import { RoutesNamedLocations } from "@typed-router";
 
 withDefaults(
   defineProps<{
