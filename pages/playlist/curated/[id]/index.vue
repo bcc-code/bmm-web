@@ -37,7 +37,7 @@ onBeforeMount(() => {
           v-if="playlist.cover"
           :src="playlist.cover"
           alt=""
-          class="aspect-square w-[300px] rounded-2xl bg-background-2"
+          class="aspect-square w-[300px] rounded-2xl bg-background-2 dark:bg-background-dark-2"
         />
         <div class="flex flex-col justify-between p-6">
           <div>

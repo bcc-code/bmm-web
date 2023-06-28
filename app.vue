@@ -34,6 +34,15 @@ useHead({
 </template>
 
 <style>
+html {
+  color-scheme: light dark;
+}
+html.dark {
+  color-scheme: dark;
+}
+html.light {
+  color-scheme: light;
+}
 .page-enter-active,
 .page-leave-active {
   transition: all 200ms ease-out;
