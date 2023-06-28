@@ -1,0 +1,7 @@
+{
+    "trailingSlash": "auto",
+    "navigationFallback": {
+        "rewrite": "/index.html",
+        "exclude": ["/_nuxt/*.{png,jpg,jpeg,gif,svg,webp}", "/_nuxt/*.css", "/_nuxt/*.{js,js.map,mjs}"]
+    }
+}
