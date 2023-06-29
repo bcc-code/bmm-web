@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { RoutesNamedLocations } from "~/.nuxt/typed-router/__routes";
+import { RoutesNamedLocations } from "@typed-router";
 
 withDefaults(
   defineProps<{
