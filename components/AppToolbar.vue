@@ -22,6 +22,7 @@
         </option>
       </select>
       <ChangeLocale class="mx-4" />
+      <ProfileMenu />
     </div>
   </header>
 </template>
