@@ -2,8 +2,8 @@ resource "azurerm_static_site" "main" {
   name                = "swa-${local.props.project_name}-frontend-${local.props.app_environment}"
   location            = data.azurerm_resource_group.main.location
   resource_group_name = data.azurerm_resource_group.main.name
-  sku_tier            = "Free" # local.props.app_environment == "prod" ? "Standard" : "Free"
-  sku_size            = "Free" # local.props.app_environment == "prod" ? "Standard" : "Free"
+  sku_tier            = local.props.app_environment == "prod" ? "Standard" : "Free"
+  sku_size            = local.props.app_environment == "prod" ? "Standard" : "Free"
 }
 
 # resource "azurerm_static_site_custom_domain" "main" {
