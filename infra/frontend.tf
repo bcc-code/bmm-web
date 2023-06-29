@@ -6,21 +6,21 @@ resource "azurerm_static_site" "main" {
   sku_size            = local.props.app_environment == "prod" ? "Standard" : "Free"
 }
 
-# resource "azurerm_static_site_custom_domain" "main" {
-#   static_site_id  = azurerm_static_site.main.id
-#   domain_name     = local.props.app_environment == "prod" ? "bmm-web.brunstad.org" : "bmm-web-int.brunstad.org"
-#   validation_type = "cname-delegation"
+resource "azurerm_static_site_custom_domain" "main" {
+  static_site_id  = azurerm_static_site.main.id
+  domain_name     = local.props.app_environment == "prod" ? "bmm-web.brunstad.org" : "int-bmm-web.brunstad.org"
+  validation_type = "cname-delegation"
 
-#   lifecycle {
-#     ignore_changes = [
-#       validation_type
-#     ]
-#   }
+  lifecycle {
+    ignore_changes = [
+      validation_type
+    ]
+  }
 
-#   timeouts {
-#     create = "15m"
-#     update = "15m"
-#     delete = "30m"
-#     read   = "5m"
-#   }
-# }
+  timeouts {
+    create = "15m"
+    update = "15m"
+    delete = "30m"
+    read   = "5m"
+  }
+}
