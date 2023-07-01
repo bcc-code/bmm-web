@@ -18,9 +18,9 @@ const logout = async () => {
     <Menu as="div" class="relative">
       <div>
         <MenuButton
-          class="flex items-center font-bold text-label-1 focus:outline-none"
+          class="flex items-center font-bold text-label-1 focus:outline-none dark:text-label-dark-1"
         >
-          Profile
+          {{ $t("nav.profile") }}
           <NuxtIcon name="nav.profile" class="ml-1 text-xl" />
         </MenuButton>
       </div>
@@ -34,13 +34,13 @@ const logout = async () => {
         leave-to-class="transform scale-95 opacity-0"
       >
         <MenuItems
-          class="absolute right-0 mt-2 w-56 origin-top-right divide-y divide-label-separator rounded-md bg-white-1 text-sm shadow-lg ring-1 ring-opacity-5 focus:outline-none dark:divide-label-dark-separator"
+          class="absolute right-0 mt-2 w-56 origin-top-right divide-y divide-label-separator rounded-xl bg-white-1 text-sm shadow-lg ring-1 ring-label-separator focus-visible:outline-none dark:divide-label-dark-separator dark:bg-background-dark-3"
         >
-          <div class="px-1 py-1">
-            <MenuItem v-slot="{ active }" as="div" class="flex items-center">
+          <div class="p-1">
+            <MenuItem v-slot="{ active }">
               <button
-                :class="active ? 'bg-violet-500 text-white' : 'text-gray-900'"
-                class="w-full px-2 py-2 text-left hover:bg-[red]"
+                :class="{ 'bg-background-2 dark:bg-background-dark-2': active }"
+                class="flex w-full items-center justify-between rounded-lg px-3 py-2"
                 @click="
                   (e: MouseEvent) => {
                     autoPlayEnabled = !autoPlayEnabled;
@@ -48,26 +48,30 @@ const logout = async () => {
                   }
                 "
               >
-                Auto Play
-              </button>
-              <Switch
-                v-model="autoPlayEnabled"
-                :class="autoPlayEnabled ? 'bg-tint' : 'bg-background-2'"
-                class="relative inline-flex h-[24px] w-[40px] shrink-0 cursor-pointer rounded-full p-[4px] transition-colors duration-200 ease-in-out focus:outline-none"
-              >
-                <span
-                  aria-hidden="true"
+                <span>Auto Play</span>
+                <Switch
+                  v-model="autoPlayEnabled"
                   :class="
-                    autoPlayEnabled ? 'translate-x-[100%]' : 'translate-x-0'
+                    autoPlayEnabled
+                      ? 'bg-tint dark:bg-tint-dark'
+                      : 'bg-background-2 dark:bg-background-dark-2'
                   "
-                  class="pointer-events-none inline-block h-[16px] w-[16px] transform rounded-full bg-white-1 shadow-lg ring-0 transition duration-200 ease-in-out"
-                />
-              </Switch>
+                  class="relative inline-flex h-6 w-10 shrink-0 cursor-pointer rounded-full p-1 transition-colors duration-200 ease-in-out focus:outline-none"
+                >
+                  <span
+                    aria-hidden="true"
+                    :class="
+                      autoPlayEnabled ? 'translate-x-full' : 'translate-x-0'
+                    "
+                    class="pointer-events-none inline-block aspect-square w-4 transform rounded-full bg-white-1 shadow-lg ring-1 ring-black-separator transition duration-200 ease-in-out"
+                  />
+                </Switch>
+              </button>
             </MenuItem>
-            <MenuItem v-slot="{ active }" as="div">
+            <MenuItem v-slot="{ active }">
               <button
-                :class="active ? 'bg-violet-500 text-white' : 'text-gray-900'"
-                class="w-full px-2 py-2 text-left hover:bg-[red]"
+                :class="{ 'bg-background-2 dark:bg-background-dark-2': active }"
+                class="w-full rounded-lg px-3 py-2 text-left"
                 @click="
                   (e: MouseEvent) => {
                     e.preventDefault();
@@ -79,8 +83,8 @@ const logout = async () => {
             </MenuItem>
             <MenuItem v-slot="{ active }" as="div">
               <button
-                :class="active ? 'bg-violet-500 text-white' : 'text-gray-900'"
-                class="w-full px-2 py-2 text-left hover:bg-[red]"
+                :class="{ 'bg-background-2 dark:bg-background-dark-2': active }"
+                class="w-full rounded-lg px-3 py-2 text-left"
                 @click="
                   (e: MouseEvent) => {
                     e.preventDefault();
@@ -92,8 +96,8 @@ const logout = async () => {
             </MenuItem>
             <MenuItem v-slot="{ active }" as="div">
               <button
-                :class="active ? 'bg-violet-500 text-white' : 'text-gray-900'"
-                class="w-full px-2 py-2 text-left hover:bg-[red]"
+                :class="{ 'bg-background-2 dark:bg-background-dark-2': active }"
+                class="w-full rounded-lg px-3 py-2 text-left"
                 @click="
                   (e: MouseEvent) => {
                     e.preventDefault();
@@ -104,11 +108,11 @@ const logout = async () => {
               </button>
             </MenuItem>
           </div>
-          <div class="px-1 py-1">
+          <div class="p-1">
             <MenuItem v-slot="{ active }" as="div">
               <a
-                :class="active ? 'bg-violet-500 text-white' : 'text-gray-900'"
-                class="flex w-full px-2 py-2"
+                :class="{ 'bg-background-2 dark:bg-background-dark-2': active }"
+                class="flex w-full rounded-lg px-3 py-2"
                 href="https://uservoice.bcc.no/?tags=bmm"
                 target="_blank"
               >
@@ -117,8 +121,8 @@ const logout = async () => {
             </MenuItem>
             <MenuItem v-slot="{ active }" as="div">
               <a
-                :class="active ? 'bg-violet-500 text-white' : 'text-gray-900'"
-                class="flex w-full px-2 py-2"
+                :class="{ 'bg-background-2 dark:bg-background-dark-2': active }"
+                class="flex w-full rounded-lg px-3 py-2"
                 href="mailto:bmm-support@bcc.no"
                 target="_blank"
               >
@@ -126,11 +130,11 @@ const logout = async () => {
               </a>
             </MenuItem>
           </div>
-          <div class="px-1 py-1">
+          <div class="p-1">
             <MenuItem v-slot="{ active }" as="div">
               <button
-                :class="active ? 'bg-violet-500 text-white' : 'text-gray-900'"
-                class="w-full px-2 py-2 text-left"
+                :class="{ 'bg-background-2 dark:bg-background-dark-2': active }"
+                class="w-full rounded-lg px-3 py-2 text-left"
                 @click="logout()"
               >
                 Sign Out
