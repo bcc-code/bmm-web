@@ -27,6 +27,7 @@ export default defineNuxtConfig({
       clientId: "L9891KdcqtoKmHg4r65lT7zbSjv55dNN",
     },
   },
+  css: ["assets/main.css"],
   i18n: {
     strategy: "no_prefix",
     skipSettingLocaleOnNavigate: true,
