@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { Menu, MenuButton, MenuItems, MenuItem, Switch } from "@headlessui/vue";
 import { useAuth0 } from "@auth0/auth0-vue";
+import { useLocalStorage } from "@vueuse/core";
 
-const autoPlayEnabled = ref(false);
+const autoPlayEnabled = useLocalStorage("auto-play", false);
 
 const auth0 = useAuth0();
 const logout = async () => {
@@ -45,8 +46,8 @@ const logout = async () => {
                 class="flex w-full items-center justify-between rounded-lg px-3 py-2"
                 @click="
                   (e: MouseEvent) => {
-                    autoPlayEnabled = !autoPlayEnabled;
                     e.preventDefault();
+                    autoPlayEnabled = !autoPlayEnabled;
                   }
                 "
               >
@@ -72,7 +73,9 @@ const logout = async () => {
             </MenuItem>
             <MenuItem v-slot="{ active }">
               <button
-                :class="{ 'bg-label-separator dark:bg-label-dark-separator': active }"
+                :class="{
+                  'bg-label-separator dark:bg-label-dark-separator': active,
+                }"
                 class="w-full rounded-lg px-3 py-2 text-left"
                 @click="
                   (e: MouseEvent) => {
@@ -85,7 +88,9 @@ const logout = async () => {
             </MenuItem>
             <MenuItem v-slot="{ active }" as="div">
               <button
-                :class="{ 'bg-label-separator dark:bg-label-dark-separator': active }"
+                :class="{
+                  'bg-label-separator dark:bg-label-dark-separator': active,
+                }"
                 class="w-full rounded-lg px-3 py-2 text-left"
                 @click="
                   (e: MouseEvent) => {
@@ -98,7 +103,9 @@ const logout = async () => {
             </MenuItem>
             <MenuItem v-slot="{ active }" as="div">
               <button
-                :class="{ 'bg-label-separator dark:bg-label-dark-separator': active }"
+                :class="{
+                  'bg-label-separator dark:bg-label-dark-separator': active,
+                }"
                 class="w-full rounded-lg px-3 py-2 text-left"
                 @click="
                   (e: MouseEvent) => {
@@ -113,7 +120,9 @@ const logout = async () => {
           <div class="p-1">
             <MenuItem v-slot="{ active }" as="div">
               <a
-                :class="{ 'bg-label-separator dark:bg-label-dark-separator': active }"
+                :class="{
+                  'bg-label-separator dark:bg-label-dark-separator': active,
+                }"
                 class="flex w-full rounded-lg px-3 py-2"
                 href="https://uservoice.bcc.no/?tags=bmm"
                 target="_blank"
@@ -123,7 +132,9 @@ const logout = async () => {
             </MenuItem>
             <MenuItem v-slot="{ active }" as="div">
               <a
-                :class="{ 'bg-label-separator dark:bg-label-dark-separator': active }"
+                :class="{
+                  'bg-label-separator dark:bg-label-dark-separator': active,
+                }"
                 class="flex w-full rounded-lg px-3 py-2"
                 href="mailto:bmm-support@bcc.no"
                 target="_blank"
@@ -135,7 +146,9 @@ const logout = async () => {
           <div class="p-1">
             <MenuItem v-slot="{ active }" as="div">
               <button
-                :class="{ 'bg-label-separator dark:bg-label-dark-separator': active }"
+                :class="{
+                  'bg-label-separator dark:bg-label-dark-separator': active,
+                }"
                 class="w-full rounded-lg px-3 py-2 text-left"
                 @click="logout()"
               >
