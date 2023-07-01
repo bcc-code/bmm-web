@@ -39,7 +39,9 @@ const logout = async () => {
           <div class="p-1">
             <MenuItem v-slot="{ active }">
               <button
-                :class="{ 'bg-background-2 dark:bg-background-dark-2': active }"
+                :class="{
+                  'bg-label-separator dark:bg-label-dark-separator': active,
+                }"
                 class="flex w-full items-center justify-between rounded-lg px-3 py-2"
                 @click="
                   (e: MouseEvent) => {
@@ -70,7 +72,7 @@ const logout = async () => {
             </MenuItem>
             <MenuItem v-slot="{ active }">
               <button
-                :class="{ 'bg-background-2 dark:bg-background-dark-2': active }"
+                :class="{ 'bg-label-separator dark:bg-label-dark-separator': active }"
                 class="w-full rounded-lg px-3 py-2 text-left"
                 @click="
                   (e: MouseEvent) => {
@@ -83,7 +85,7 @@ const logout = async () => {
             </MenuItem>
             <MenuItem v-slot="{ active }" as="div">
               <button
-                :class="{ 'bg-background-2 dark:bg-background-dark-2': active }"
+                :class="{ 'bg-label-separator dark:bg-label-dark-separator': active }"
                 class="w-full rounded-lg px-3 py-2 text-left"
                 @click="
                   (e: MouseEvent) => {
@@ -96,7 +98,7 @@ const logout = async () => {
             </MenuItem>
             <MenuItem v-slot="{ active }" as="div">
               <button
-                :class="{ 'bg-background-2 dark:bg-background-dark-2': active }"
+                :class="{ 'bg-label-separator dark:bg-label-dark-separator': active }"
                 class="w-full rounded-lg px-3 py-2 text-left"
                 @click="
                   (e: MouseEvent) => {
@@ -111,7 +113,7 @@ const logout = async () => {
           <div class="p-1">
             <MenuItem v-slot="{ active }" as="div">
               <a
-                :class="{ 'bg-background-2 dark:bg-background-dark-2': active }"
+                :class="{ 'bg-label-separator dark:bg-label-dark-separator': active }"
                 class="flex w-full rounded-lg px-3 py-2"
                 href="https://uservoice.bcc.no/?tags=bmm"
                 target="_blank"
@@ -121,7 +123,7 @@ const logout = async () => {
             </MenuItem>
             <MenuItem v-slot="{ active }" as="div">
               <a
-                :class="{ 'bg-background-2 dark:bg-background-dark-2': active }"
+                :class="{ 'bg-label-separator dark:bg-label-dark-separator': active }"
                 class="flex w-full rounded-lg px-3 py-2"
                 href="mailto:bmm-support@bcc.no"
                 target="_blank"
@@ -133,7 +135,7 @@ const logout = async () => {
           <div class="p-1">
             <MenuItem v-slot="{ active }" as="div">
               <button
-                :class="{ 'bg-background-2 dark:bg-background-dark-2': active }"
+                :class="{ 'bg-label-separator dark:bg-label-dark-separator': active }"
                 class="w-full rounded-lg px-3 py-2 text-left"
                 @click="logout()"
               >
