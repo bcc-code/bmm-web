@@ -25,6 +25,7 @@ linux:
     Keywords: audio;bcc;bmm;brunstad;christian;church;edification;faith;media;music;sermon
     SingleMainWindow: true
     StartupWMClass: bmm-web
+    MimeType: x-scheme-handler/bmm
   target:
     - AppImage
     - deb
