@@ -8,6 +8,7 @@ mac:
   entitlements: build/entitlements.mac.plist
   icon: resources/app.icns
   hardenedRuntime: true
+  darkModeSupport: true
   target:
     - target: dmg
       arch: x64
