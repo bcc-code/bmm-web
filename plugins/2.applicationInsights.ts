@@ -69,14 +69,21 @@ export default defineNuxtPlugin((nuxtApp) => {
     });
   };
 
+  const connectionString = runtimeConfig.public.applicationInsights;
+
   const appInsights = new ApplicationInsights({
     config: {
-      connectionString: runtimeConfig.public.applicationInsights,
+      connectionString,
     },
   });
-  appInsights.loadAppInsights();
-  const { user } = useAuth0();
 
+  if (!connectionString) {
+    console.warn("No instrumentation key provided!");
+  } else {
+    appInsights.loadAppInsights();
+  }
+
+  const { user } = useAuth0();
   watch(
     user,
     () => {
