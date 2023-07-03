@@ -56,4 +56,11 @@ export default defineNuxtConfig({
   colorMode: {
     classSuffix: "",
   },
+  electron: {
+    build: [
+      {
+        entry: "electron/main.ts",
+      },
+    ],
+  },
 });
