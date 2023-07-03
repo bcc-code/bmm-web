@@ -157,6 +157,7 @@ jobs:
         with:
           azure_static_web_apps_api_token: ${{ steps.swa_token.outputs.token }}
           repo_token: ${{ secrets.GITHUB_TOKEN }}
+          app_location: "/"
           action: "close"
 
       - name: Rotate Static Web App Token
