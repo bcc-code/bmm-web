@@ -9,6 +9,7 @@ mac:
   icon: resources/app.icns
   hardenedRuntime: true
   darkModeSupport: true
+  gatekeeperAssess: true
   target:
     - target: dmg
       arch: x64
