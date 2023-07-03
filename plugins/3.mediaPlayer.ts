@@ -87,7 +87,7 @@ export default defineNuxtPlugin((nuxtApp) => {
     currentTrack.value = track;
     paused.value = true;
     ended.value = false;
-    nuxtApp.$appInsights.trackEvent({
+    useNuxtApp().$appInsights.trackEvent({
       name: "track playback started",
       properties: {
         trackId: track.id,
@@ -123,7 +123,7 @@ export default defineNuxtPlugin((nuxtApp) => {
     });
     activeMedia.addEventListener("ended", () => {
       ended.value = true;
-      nuxtApp.$appInsights.trackEvent({
+      useNuxtApp().$appInsights.trackEvent({
         name: "track completed",
         properties: {
           trackId: track.id,
