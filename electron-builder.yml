@@ -1,6 +1,5 @@
 appId: org.brunstad.bmm
 productName: BMM alpha
-afterSign: "electron-builder-notarize"
 protocols:
   - name: Custom BMM
     schemes: ["bmm"]
