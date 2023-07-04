@@ -7,13 +7,17 @@ interface UseTrackCollectionOptions {
 export function usePrivatePlaylist(options: UseTrackCollectionOptions) {
   const { id } = options;
 
-  return useLazyAsyncData(`track-collection-${id}`, () =>
-    new TrackCollectionApi().trackCollectionIdGet({ id })
+  return reactiveApi(
+    useLazyAsyncData(`track-collection-${id}`, () =>
+      new TrackCollectionApi().trackCollectionIdGet({ id })
+    )
   );
 }
 
 export function usePrivatePlaylists() {
-  return useLazyAsyncData("track-collections", () =>
-    new TrackCollectionApi().trackCollectionGet()
+  return reactiveApi(
+    useLazyAsyncData("track-collections", () =>
+      new TrackCollectionApi().trackCollectionGet()
+    )
   );
 }

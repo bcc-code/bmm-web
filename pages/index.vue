@@ -30,10 +30,11 @@ watch(
     };
     const age = calculateAge(user.value.birthdate);
     if (age) parameters.age = age;
-    const { data, pending } = useDiscover(parameters);
+    const { data, pending, stopHandler } = useDiscover(parameters);
     stopHandles.forEach((el) => el());
 
     stopHandles = [
+      stopHandler,
       watch(
         data,
         (d) => {
