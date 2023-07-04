@@ -15,8 +15,7 @@ defineSlots<{
 
 const emit = defineEmits<{ "open-options": []; "play-track": [] }>();
 
-function openOptions(event: Event) {
-  event.stopPropagation();
+function openOptions() {
   emit("open-options");
 }
 
@@ -108,7 +107,7 @@ function secondsToTime(totalSeconds: number | undefined) {
         <button
           :aria-label="t('track.a11y.options')"
           class="focus:bg-lime-400 rounded-lg px-2 py-0"
-          @click="openOptions"
+          @click.stop="openOptions"
         >
           <NuxtIcon name="options" filled class="text-2xl" />
         </button>
