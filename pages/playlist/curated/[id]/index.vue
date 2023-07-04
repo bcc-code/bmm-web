@@ -45,7 +45,7 @@ onBeforeMount(() => {
             <p v-if="tracks">{{ tracks.length }} tracks</p>
           </div>
           <div class="flex gap-2">
-            <ButtonStyled intent="primary" @click="shuffle">
+            <ButtonStyled intent="primary" @click.stop="shuffle">
               Shuffle
             </ButtonStyled>
             <ButtonStyled>Follow</ButtonStyled>

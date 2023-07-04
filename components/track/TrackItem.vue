@@ -32,7 +32,7 @@ function secondsToTime(totalSeconds: number | undefined) {
 </script>
 
 <template>
-  <li class="group relative mr-3 cursor-pointer py-3" @click="playTrack">
+  <li class="group relative mr-3 cursor-pointer py-3" @click.stop="playTrack">
     <div
       class="absolute -inset-x-4 -inset-y-0 rounded-xl bg-background-2 opacity-0 group-hover:opacity-100 dark:bg-background-dark-2"
     ></div>
