@@ -74,7 +74,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: build_and_test
     name: Deploy to Azure Static Web Apps
-    environment: "prod"
+    environment: prod
     env:
       swa_id: /subscriptions/${{ vars.AZURE_SUBSCRIPTION_ID }}/resourceGroups/${{ vars.APP_SLUG }}-${{ vars.APP_ENV }}/providers/Microsoft.Web/staticSites/swa-${{ vars.APP_SLUG }}-frontend-${{ vars.APP_ENV }}
 
@@ -129,6 +129,10 @@ jobs:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
     runs-on: ubuntu-latest
     name: Remove Azure Static Web App
+    environment: prod
+    env:
+      swa_id: /subscriptions/${{ vars.AZURE_SUBSCRIPTION_ID }}/resourceGroups/${{ vars.APP_SLUG }}-${{ vars.APP_ENV }}/providers/Microsoft.Web/staticSites/swa-${{ vars.APP_SLUG }}-frontend-${{ vars.APP_ENV }}
+
     steps:
       - name: Azure Login
         uses: azure/login@v1
@@ -153,6 +157,7 @@ jobs:
         with:
           azure_static_web_apps_api_token: ${{ steps.swa_token.outputs.token }}
           repo_token: ${{ secrets.GITHUB_TOKEN }}
+          app_location: "/"
           action: "close"
 
       - name: Rotate Static Web App Token
