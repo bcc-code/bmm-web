@@ -87,6 +87,12 @@ export default defineNuxtPlugin((nuxtApp) => {
     currentTrack.value = track;
     paused.value = true;
     ended.value = false;
+    useNuxtApp().$appInsights.trackEvent({
+      name: "track playback started",
+      properties: {
+        trackId: track.id,
+      },
+    });
 
     // Update queue index if track is in queue
     // else clear queue and index
@@ -117,6 +123,12 @@ export default defineNuxtPlugin((nuxtApp) => {
     });
     activeMedia.addEventListener("ended", () => {
       ended.value = true;
+      useNuxtApp().$appInsights.trackEvent({
+        name: "track completed",
+        properties: {
+          trackId: track.id,
+        },
+      });
       // Play next track if there is one
       next();
     });

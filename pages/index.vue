@@ -1,7 +1,8 @@
 <script lang="ts" setup>
-import { LanguageEnum } from "@bcc-code/bmm-sdk-fetch";
+import { LanguageEnum, DiscoverGetRequest } from "@bcc-code/bmm-sdk-fetch";
 import { IDiscoverableGroup } from "~/composables/discover";
 import { MediaPlaylistInjectionKey } from "~/plugins/3.mediaPlayer";
+import { useAuth0 } from "@auth0/auth0-vue";
 
 const { setCurrentTrack } = inject(MediaPlaylistInjectionKey)!;
 
@@ -10,16 +11,26 @@ toolbarTitleStore().setReactiveToolbarTitle(() => t("nav.home"));
 
 const discoverGroups: Ref<IDiscoverableGroup[] | null> = ref(null);
 const loading: Ref<boolean> = ref(true);
+const { user } = useAuth0();
+
+function calculateAge(birthdate: string | undefined) {
+  if (birthdate === undefined) return undefined;
+  const date = new Date(birthdate);
+  // We don't want the current age, just the age at the beginning of the year.
+  return new Date().getFullYear() - date.getFullYear();
+}
 
 let stopHandles: (() => void)[] = [];
 watch(
   locale,
   () => {
-    const { data, pending } = useDiscover({
-      // TODO: Find out how to set the age ...
+    const parameters: DiscoverGetRequest = {
       // Compatibility is ensured in i18n.config.ts file
       lang: locale.value as LanguageEnum,
-    });
+    };
+    const age = calculateAge(user.value.birthdate);
+    if (age) parameters.age = age;
+    const { data, pending } = useDiscover(parameters);
     stopHandles.forEach((el) => el());
 
     stopHandles = [
