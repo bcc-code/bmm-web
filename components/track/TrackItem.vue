@@ -15,8 +15,7 @@ defineSlots<{
 
 const emit = defineEmits<{ "open-options": []; "play-track": [] }>();
 
-function openOptions(event: Event) {
-  event.stopPropagation();
+function openOptions() {
   emit("open-options");
 }
 
@@ -33,7 +32,7 @@ function secondsToTime(totalSeconds: number | undefined) {
 </script>
 
 <template>
-  <li class="group relative mr-3 cursor-pointer py-3" @click="playTrack">
+  <li class="group relative mr-3 cursor-pointer py-3" @click.stop="playTrack">
     <div
       class="absolute -inset-x-4 -inset-y-0 rounded-xl bg-background-2 opacity-0 group-hover:opacity-100 dark:bg-background-dark-2"
     ></div>
@@ -94,21 +93,23 @@ function secondsToTime(totalSeconds: number | undefined) {
       </div>
       <div class="ml-auto flex items-center justify-center gap-1">
         <button
-          class="px-2 py-0 opacity-0 hover:opacity-100 focus:opacity-100 group-hover:opacity-100 group-focus:opacity-100"
+          class="px-2 py-0 opacity-0 hover:bg-[red] hover:opacity-100 focus:opacity-100 group-hover:opacity-100 group-focus:opacity-100"
           :aria-label="t('track.a11y.download')"
+          @click.stop
         >
           <NuxtIcon name="download" filled class="text-2xl" />
         </button>
         <button
-          class="px-2 py-0 opacity-0 hover:opacity-100 focus:opacity-100 group-hover:opacity-100 group-focus:opacity-100"
+          class="px-2 py-0 opacity-0 hover:bg-[red] hover:opacity-100 focus:opacity-100 group-hover:opacity-100 group-focus:opacity-100"
           :aria-label="t('track.a11y.queue')"
+          @click.stop
         >
           <NuxtIcon name="queue" filled class="text-2xl" />
         </button>
         <button
           :aria-label="t('track.a11y.options')"
           class="focus:bg-lime-400 rounded-lg px-2 py-0"
-          @click="openOptions"
+          @click.stop="openOptions"
         >
           <NuxtIcon name="options" filled class="text-2xl" />
         </button>
