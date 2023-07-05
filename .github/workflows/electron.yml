@@ -39,6 +39,8 @@ jobs:
 
       - name: Build for production
         run: pnpm build:electron
+        env:
+          NUXT_PUBLIC_APPLICATION_INSIGHTS: ${{ vars.NUXT_PUBLIC_APPLICATION_INSIGHTS }}
 
       - name: Building the Electron app for Mac
         run: pnpm package:electron
