@@ -168,7 +168,7 @@ export default defineNuxtPlugin((nuxtApp) => {
     return track;
   }
 
-  nuxtApp.vueApp.provide(MediaPlayerInjectionKey, {
+  const mediaPlayer: MediaPlayer = {
     status: playerStatus,
     play: () => activeMedia?.play(),
     pause: () => activeMedia?.pause(),
@@ -176,12 +176,21 @@ export default defineNuxtPlugin((nuxtApp) => {
     previous,
     hasNext,
     hasPrevious,
-  });
+  };
+  nuxtApp.vueApp.provide(MediaPlayerInjectionKey, mediaPlayer);
 
-  nuxtApp.vueApp.provide(MediaPlaylistInjectionKey, {
+  const mediaPlaylist: MediaPlaylist = {
     currentTrack: computed(() => currentTrack.value),
     setCurrentTrack,
     clearCurrentTrack,
     addTrackToQueue,
-  });
+  };
+  nuxtApp.vueApp.provide(MediaPlaylistInjectionKey, mediaPlaylist);
+
+  return {
+    provide: {
+      mediaPlayer,
+      mediaPlaylist,
+    },
+  };
 });
