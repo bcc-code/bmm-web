@@ -39,6 +39,8 @@ jobs:
         uses: codecov/codecov-action@v3
       - name: Build for production
         run: pnpm build
+        env:
+          NUXT_PUBLIC_APPLICATION_INSIGHTS: ${{ vars.NUXT_PUBLIC_APPLICATION_INSIGHTS }}
       - name: E2E testing
         uses: cypress-io/github-action@v5
         env:
