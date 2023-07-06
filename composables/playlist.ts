@@ -7,8 +7,10 @@ interface UseCuratedPlaylistOptions {
 export function useCuratedPlaylist(options: UseCuratedPlaylistOptions) {
   const { id } = options;
 
-  return useLazyAsyncData(`playlist-${id}`, () =>
-    new PlaylistApi().playlistIdGet({ id })
+  return reactiveApi(
+    useLazyAsyncData(`playlist-${id}`, () =>
+      new PlaylistApi().playlistIdGet({ id })
+    )
   );
 }
 
@@ -21,11 +23,15 @@ export function useCuratedPlaylistTracks(
 ) {
   const { id } = options;
 
-  return useLazyAsyncData(`playlist-tracks-${id}`, () =>
-    new PlaylistApi().playlistIdTrackGet({ id })
+  return reactiveApi(
+    useLazyAsyncData(`playlist-tracks-${id}`, () =>
+      new PlaylistApi().playlistIdTrackGet({ id })
+    )
   );
 }
 
 export function useCuratedPlaylists() {
-  return useLazyAsyncData("playlists", () => new PlaylistApi().playlistGet());
+  return reactiveApi(
+    useLazyAsyncData("playlists", () => new PlaylistApi().playlistGet())
+  );
 }

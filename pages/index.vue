@@ -31,10 +31,11 @@ watch(
     // TODO: `user` can also be undefined. The type provided here is incorrect. https://github.com/auth0/auth0-vue/issues/237
     const age = calculateAge(user.value?.birthdate);
     if (age) parameters.age = age;
-    const { data, pending } = useDiscover(parameters);
+    const { data, pending, stopHandler } = useDiscover(parameters);
     stopHandles.forEach((el) => el());
 
     stopHandles = [
+      stopHandler,
       watch(
         data,
         (d) => {

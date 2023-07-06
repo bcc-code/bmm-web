@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-import authorizedUrl from "@/utils/authorizedUrl";
 import { useAuth0 } from "@auth0/auth0-vue";
 
 const props = defineProps<{
