@@ -1,9 +1,13 @@
 <script lang="ts" setup>
-import { LanguageEnum, DiscoverGetRequest } from "@bcc-code/bmm-sdk-fetch";
+import {
+  LanguageEnum,
+  DiscoverGetRequest,
+  TrackModel,
+} from "@bcc-code/bmm-sdk-fetch";
 import { IDiscoverableGroup } from "~/composables/discover";
 import { useAuth0 } from "@auth0/auth0-vue";
 
-const { setCurrentTrack } = useNuxtApp().$mediaPlayer;
+const { setQueue } = useNuxtApp().$mediaPlayer;
 
 const { t, locale } = useI18n();
 toolbarTitleStore().setReactiveToolbarTitle(() => t("nav.home"));
@@ -116,7 +120,7 @@ watch(
               :track="item"
               :is-track-type-known="true"
               show-thumbnail
-              @play-track="setCurrentTrack(item)"
+              @play-track="() => { const items = group.items.filter((c) : c is TrackModel => c.type === 'track'); setQueue(items, items.findIndex(track => track.id === item.id)) }"
             ></TrackItem>
             <ContributorListItem
               v-else-if="item.type === 'contributor'"

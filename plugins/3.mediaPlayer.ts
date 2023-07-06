@@ -18,9 +18,9 @@ export interface MediaPlayer {
   hasPrevious: ComputedRef<Boolean>;
   queue: Ref<TrackModel[]>;
   currentTrack: ComputedRef<TrackModel | undefined>;
-  setCurrentTrack: (src: TrackModel) => void;
-  clearCurrentTrack: () => void;
-  addTrackToQueue: (track: TrackModel) => void;
+  setQueue: (queue: TrackModel[], index?: number) => void;
+  addToQueue: (track: TrackModel) => void;
+  playNext: (track: TrackModel) => void;
 }
 
 export default defineNuxtPlugin((nuxtApp) => {
@@ -131,21 +131,25 @@ export default defineNuxtPlugin((nuxtApp) => {
     setCurrentTrack(queue.value[currentQueueIndex.value - 1]);
   }
 
-  function clearCurrentTrack() {
-    activeMedia?.pause();
-    activeMedia = undefined;
-    currentTrack.value = undefined;
-    paused.value = true;
-    ended.value = false;
+  function continuePlayingIfEnded() {
+    if (ended.value) {
+      setCurrentTrack(queue.value[currentQueueIndex.value]);
+    }
   }
 
-  function addTrackToQueue(track: TrackModel) {
+  function addToQueue(track: TrackModel) {
     queue.value.push(track);
+    continuePlayingIfEnded();
+  }
 
-    // Play if currently paused and no track is playing
-    if (!loading.value && (paused.value || ended.value)) {
-      setCurrentTrack(track);
-    }
+  function setQueue(_queue: TrackModel[], index = 0): void {
+    queue.value = [..._queue];
+    currentQueueIndex.value = index;
+  }
+
+  function playNext(track: TrackModel): void {
+    queue.value.splice(currentQueueIndex.value + 1, 0, track);
+    continuePlayingIfEnded();
   }
 
   const mediaPlayer: MediaPlayer = {
@@ -158,9 +162,9 @@ export default defineNuxtPlugin((nuxtApp) => {
     hasPrevious,
     currentTrack: computed(() => currentTrack.value),
     queue,
-    setCurrentTrack,
-    clearCurrentTrack,
-    addTrackToQueue,
+    setQueue,
+    addToQueue,
+    playNext,
   };
 
   return {
