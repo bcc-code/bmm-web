@@ -143,22 +143,12 @@ export default defineNuxtPlugin((nuxtApp) => {
   }
 
   function addTrackToQueue(track: TrackModel) {
-    // Add track if not already in queue
-    // else move track to end of queue only if it is before the current track
-    const index = queue.value.findIndex((t) => t.id === track.id);
-    if (index === -1) {
-      queue.value.push(track);
-    } else if (index < currentQueueIndex.value) {
-      queue.value.splice(index, 1);
-      queue.value.push(track);
-    }
+    queue.value.push(track);
 
     // Play if currently paused and no track is playing
     if (!loading.value && (paused.value || ended.value)) {
       setCurrentTrack(track);
     }
-
-    return track;
   }
 
   const mediaPlayer: MediaPlayer = {
