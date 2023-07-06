@@ -21,7 +21,7 @@ function expand() {
         ? 'rounded-3xl border-2 p-5 shadow-lg duration-150 active:scale-110'
         : ''
     "
-    @click="expand"
+    @click.stop="expand"
   >
     <div
       :class="

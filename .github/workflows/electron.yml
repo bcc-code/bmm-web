@@ -39,6 +39,8 @@ jobs:
 
       - name: Build for production
         run: pnpm build:electron
+        env:
+          NUXT_PUBLIC_APPLICATION_INSIGHTS: ${{ vars.NUXT_PUBLIC_APPLICATION_INSIGHTS }}
 
       - name: Building the Electron app for Mac
         run: pnpm package:electron
@@ -46,6 +48,7 @@ jobs:
         env:
           CSC_LINK: developer-id.privatekey.p12
           CSC_KEY_PASSWORD: ${{secrets.APPLE_DEVELOPER_ID_PASSWORD}}
+          APPLE_APP_SPECIFIC_PASSWORD: ${{secrets.APPLE_APP_SPECIFIC_PASSWORD}}
           APPLE_ID: ${{secrets.APPLE_ID}}
           APPLE_ID_PASSWORD: ${{secrets.APPLE_ID_PASSWORD}}
           APPLE_TEAM_ID: KJ6LCYQ3A8

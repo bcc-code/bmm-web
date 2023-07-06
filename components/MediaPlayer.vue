@@ -17,7 +17,7 @@ const { currentTrack } = inject(MediaPlaylistInjectionKey)!;
   >
     <div class="flex min-w-0 flex-1 gap-3">
       <div class="group select-none">
-        <button v-if="hasPrevious" @click="previous()">
+        <button v-if="hasPrevious" @click.stop="previous()">
           <span class="flex aspect-square w-12 justify-center align-middle">
             <NuxtIcon
               name="icon.previous.track.large"
@@ -52,7 +52,10 @@ const { currentTrack } = inject(MediaPlaylistInjectionKey)!;
         </div>
       </div>
       <div class="group select-none">
-        <button v-if="status === MediaPlayerStatus.Playing" @click="pause()">
+        <button
+          v-if="status === MediaPlayerStatus.Playing"
+          @click.stop="pause()"
+        >
           <span class="flex aspect-square w-12 justify-center align-middle">
             <NuxtIcon
               name="icon.pause.large"
@@ -60,14 +63,17 @@ const { currentTrack } = inject(MediaPlaylistInjectionKey)!;
             />
           </span>
         </button>
-        <button v-if="status !== MediaPlayerStatus.Playing" @click="play()">
+        <button
+          v-if="status !== MediaPlayerStatus.Playing"
+          @click.stop="play()"
+        >
           <span class="flex aspect-square w-12 justify-center align-middle">
             <NuxtIcon name="play" class="text-3xl group-hover:text-4xl" />
           </span>
         </button>
       </div>
       <div class="group select-none">
-        <button v-if="hasNext" @click="next()">
+        <button v-if="hasNext" @click.stop="next()">
           <span class="flex aspect-square w-12 justify-center align-middle">
             <NuxtIcon
               name="icon.next.track.large"

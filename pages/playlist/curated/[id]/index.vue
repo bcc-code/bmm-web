@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { MediaPlaylistInjectionKey } from "~/plugins/3.mediaPlayer";
 
+const { $appInsights } = useNuxtApp();
 const { t } = useI18n();
 toolbarTitleStore().setReactiveToolbarTitle(() => t("nav.playlist"));
 
@@ -19,6 +20,10 @@ function shuffle() {
     shuffledTracks?.sort(() => Math.random() - 0.5);
     setCurrentTrack(shuffledTracks.pop()!);
     shuffledTracks.forEach((track) => addTrackToQueue(track));
+    $appInsights.trackEvent({
+      name: "Shuffle Playlist",
+      properties: { playlistId },
+    });
   }
 }
 
@@ -45,10 +50,9 @@ onBeforeMount(() => {
             <p v-if="tracks">{{ tracks.length }} tracks</p>
           </div>
           <div class="flex gap-2">
-            <ButtonStyled intent="primary" @click="shuffle">
+            <ButtonStyled intent="primary" @click.stop="shuffle">
               Shuffle
             </ButtonStyled>
-            <ButtonStyled>Follow</ButtonStyled>
           </div>
         </div>
       </header>

@@ -41,12 +41,7 @@ const logout = async () => {
               <button
                 :class="active ? 'bg-violet-500 text-white' : 'text-gray-900'"
                 class="w-full px-2 py-2 text-left hover:bg-[red]"
-                @click="
-                  (e: MouseEvent) => {
-                    autoPlayEnabled = !autoPlayEnabled;
-                    e.preventDefault();
-                  }
-                "
+                @click.stop="autoPlayEnabled = !autoPlayEnabled"
               >
                 Auto Play
               </button>
@@ -68,11 +63,7 @@ const logout = async () => {
               <button
                 :class="active ? 'bg-violet-500 text-white' : 'text-gray-900'"
                 class="w-full px-2 py-2 text-left hover:bg-[red]"
-                @click="
-                  (e: MouseEvent) => {
-                    e.preventDefault();
-                  }
-                "
+                @click.stop
               >
                 Theme
               </button>
@@ -81,11 +72,7 @@ const logout = async () => {
               <button
                 :class="active ? 'bg-violet-500 text-white' : 'text-gray-900'"
                 class="w-full px-2 py-2 text-left hover:bg-[red]"
-                @click="
-                  (e: MouseEvent) => {
-                    e.preventDefault();
-                  }
-                "
+                @click.stop
               >
                 Language
               </button>
@@ -94,11 +81,7 @@ const logout = async () => {
               <button
                 :class="active ? 'bg-violet-500 text-white' : 'text-gray-900'"
                 class="w-full px-2 py-2 text-left hover:bg-[red]"
-                @click="
-                  (e: MouseEvent) => {
-                    e.preventDefault();
-                  }
-                "
+                @click.stop
               >
                 Content Language
               </button>

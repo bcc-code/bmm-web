@@ -87,6 +87,12 @@ export default defineNuxtPlugin((nuxtApp) => {
     currentTrack.value = track;
     paused.value = true;
     ended.value = false;
+    useNuxtApp().$appInsights.trackEvent({
+      name: "track playback started",
+      properties: {
+        trackId: track.id,
+      },
+    });
 
     // Update queue index if track is in queue
     // else clear queue and index
@@ -117,6 +123,12 @@ export default defineNuxtPlugin((nuxtApp) => {
     });
     activeMedia.addEventListener("ended", () => {
       ended.value = true;
+      useNuxtApp().$appInsights.trackEvent({
+        name: "track completed",
+        properties: {
+          trackId: track.id,
+        },
+      });
       // Play next track if there is one
       next();
     });
@@ -156,7 +168,7 @@ export default defineNuxtPlugin((nuxtApp) => {
     return track;
   }
 
-  nuxtApp.vueApp.provide(MediaPlayerInjectionKey, {
+  const mediaPlayer: MediaPlayer = {
     status: playerStatus,
     play: () => activeMedia?.play(),
     pause: () => activeMedia?.pause(),
@@ -164,12 +176,21 @@ export default defineNuxtPlugin((nuxtApp) => {
     previous,
     hasNext,
     hasPrevious,
-  });
+  };
+  nuxtApp.vueApp.provide(MediaPlayerInjectionKey, mediaPlayer);
 
-  nuxtApp.vueApp.provide(MediaPlaylistInjectionKey, {
+  const mediaPlaylist: MediaPlaylist = {
     currentTrack: computed(() => currentTrack.value),
     setCurrentTrack,
     clearCurrentTrack,
     addTrackToQueue,
-  });
+  };
+  nuxtApp.vueApp.provide(MediaPlaylistInjectionKey, mediaPlaylist);
+
+  return {
+    provide: {
+      mediaPlayer,
+      mediaPlaylist,
+    },
+  };
 });
