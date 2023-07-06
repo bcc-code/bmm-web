@@ -1,14 +1,9 @@
 <script setup lang="ts">
-import {
-  MediaPlayerInjectionKey,
-  MediaPlaylistInjectionKey,
-  MediaPlayerStatus,
-} from "~/plugins/3.mediaPlayer";
+import { MediaPlayerStatus } from "~/plugins/3.mediaPlayer";
 
-const { status, play, pause, hasNext, next, previous, hasPrevious } = inject(
-  MediaPlayerInjectionKey
-)!;
-const { currentTrack } = inject(MediaPlaylistInjectionKey)!;
+const { status, play, pause, hasNext, next, previous, hasPrevious } =
+  useNuxtApp().$mediaPlayer;
+const { currentTrack } = useNuxtApp().$mediaPlaylist;
 </script>
 
 <template>

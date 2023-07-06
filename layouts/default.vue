@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import { MediaPlaylistInjectionKey } from "~/plugins/3.mediaPlayer";
-
 defineSlots<{
   default: (props: {}) => any;
 }>();
@@ -9,7 +7,7 @@ const onError = (error: any) => {
   console.error(error);
 };
 
-const { currentTrack } = inject(MediaPlaylistInjectionKey)!;
+const { currentTrack } = useNuxtApp().$mediaPlaylist;
 </script>
 
 <template>

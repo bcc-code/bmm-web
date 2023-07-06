@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import { TrackModel } from "@bcc-code/bmm-sdk-fetch";
-import { MediaPlaylistInjectionKey } from "~/plugins/3.mediaPlayer";
 import { DropdownMenuItem } from "../DropdownMenu.vue";
 
 const props = withDefaults(
@@ -14,7 +13,7 @@ const props = withDefaults(
   }
 );
 
-const { setCurrentTrack, addTrackToQueue } = inject(MediaPlaylistInjectionKey)!;
+const { setCurrentTrack, addTrackToQueue } = useNuxtApp().$mediaPlaylist;
 const showDropDownForTrack: Ref<null | string> = ref(null);
 
 const isTrackTypeKnown = () => {

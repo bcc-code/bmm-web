@@ -25,14 +25,6 @@ export interface MediaPlaylist {
   addTrackToQueue: (track: TrackModel) => void;
 }
 
-export const MediaPlayerInjectionKey: InjectionKey<MediaPlayer> = Symbol(
-  "Vue InjectionKey MediaPlayer"
-);
-
-export const MediaPlaylistInjectionKey: InjectionKey<MediaPlaylist> = Symbol(
-  "Vue InjectionKey MediaPlaylist"
-);
-
 export default defineNuxtPlugin((nuxtApp) => {
   const { getAccessTokenSilently, isAuthenticated } =
     nuxtApp.vueApp.config.globalProperties.$auth0;
@@ -177,7 +169,6 @@ export default defineNuxtPlugin((nuxtApp) => {
     hasNext,
     hasPrevious,
   };
-  nuxtApp.vueApp.provide(MediaPlayerInjectionKey, mediaPlayer);
 
   const mediaPlaylist: MediaPlaylist = {
     currentTrack: computed(() => currentTrack.value),
@@ -185,7 +176,6 @@ export default defineNuxtPlugin((nuxtApp) => {
     clearCurrentTrack,
     addTrackToQueue,
   };
-  nuxtApp.vueApp.provide(MediaPlaylistInjectionKey, mediaPlaylist);
 
   return {
     provide: {
