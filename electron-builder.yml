@@ -1,6 +1,5 @@
 appId: org.brunstad.bmm
 productName: BMM alpha
-afterSign: "electron-builder-notarize"
 protocols:
   - name: Custom BMM
     schemes: ["bmm"]
@@ -9,6 +8,8 @@ mac:
   entitlements: build/entitlements.mac.plist
   icon: resources/app.icns
   hardenedRuntime: true
+  darkModeSupport: true
+  gatekeeperAssess: true
   target:
     - target: dmg
       arch: x64
@@ -24,6 +25,7 @@ linux:
     Keywords: audio;bcc;bmm;brunstad;christian;church;edification;faith;media;music;sermon
     SingleMainWindow: true
     StartupWMClass: bmm-web
+    MimeType: x-scheme-handler/bmm
   target:
     - AppImage
     - deb
