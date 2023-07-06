@@ -63,6 +63,9 @@ export default defineNuxtConfig({
       {
         entry: "electron/main.ts",
       },
+      {
+        entry: "electron/preload.ts",
+      },
     ],
   },
 });

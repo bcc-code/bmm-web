@@ -28,7 +28,8 @@ watch(
       // Compatibility is ensured in i18n.config.ts file
       lang: locale.value as LanguageEnum,
     };
-    const age = calculateAge(user.value.birthdate);
+    // TODO: `user` can also be undefined. The type provided here is incorrect. https://github.com/auth0/auth0-vue/issues/237
+    const age = calculateAge(user.value?.birthdate);
     if (age) parameters.age = age;
     const { data, pending } = useDiscover(parameters);
     stopHandles.forEach((el) => el());
