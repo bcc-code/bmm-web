@@ -13,7 +13,7 @@ const props = withDefaults(
   }
 );
 
-const { setCurrentTrack, addTrackToQueue } = useNuxtApp().$mediaPlaylist;
+const { setCurrentTrack, addTrackToQueue } = useNuxtApp().$mediaPlayer;
 const showDropDownForTrack: Ref<null | string> = ref(null);
 
 const isTrackTypeKnown = () => {

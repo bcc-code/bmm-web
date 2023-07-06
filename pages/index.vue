@@ -3,7 +3,7 @@ import { LanguageEnum, DiscoverGetRequest } from "@bcc-code/bmm-sdk-fetch";
 import { IDiscoverableGroup } from "~/composables/discover";
 import { useAuth0 } from "@auth0/auth0-vue";
 
-const { setCurrentTrack } = useNuxtApp().$mediaPlaylist;
+const { setCurrentTrack } = useNuxtApp().$mediaPlayer;
 
 const { t, locale } = useI18n();
 toolbarTitleStore().setReactiveToolbarTitle(() => t("nav.home"));

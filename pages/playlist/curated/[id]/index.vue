@@ -9,7 +9,7 @@ const playlistId = Number(id);
 const { data: playlist } = useCuratedPlaylist({ id: playlistId });
 const { data: tracks, pending } = useCuratedPlaylistTracks({ id: playlistId });
 
-const { setCurrentTrack, addTrackToQueue } = useNuxtApp().$mediaPlaylist;
+const { setCurrentTrack, addTrackToQueue } = useNuxtApp().$mediaPlayer;
 
 function shuffle() {
   // shuffle tracks and add them to the queue

@@ -2,12 +2,12 @@ import { defineNuxtPlugin, useNuxtApp } from "#app";
 import { MediaPlayerStatus } from "./3.mediaPlayer";
 
 export default defineNuxtPlugin(() => {
-  const { $mediaPlayer, $mediaPlaylist } = useNuxtApp();
+  const { $mediaPlayer } = useNuxtApp();
 
   // Register DOM Media Session, if available
   if ("mediaSession" in navigator) {
     watch(
-      $mediaPlaylist.currentTrack,
+      $mediaPlayer.currentTrack,
       (track) => {
         if (!track) {
           navigator.mediaSession.metadata = null;

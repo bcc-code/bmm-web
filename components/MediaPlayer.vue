@@ -1,9 +1,17 @@
 <script setup lang="ts">
 import { MediaPlayerStatus } from "~/plugins/3.mediaPlayer";
 
-const { status, play, pause, hasNext, next, previous, hasPrevious } =
-  useNuxtApp().$mediaPlayer;
-const { currentTrack, queue } = useNuxtApp().$mediaPlaylist;
+const {
+  status,
+  play,
+  pause,
+  hasNext,
+  next,
+  previous,
+  hasPrevious,
+  currentTrack,
+  queue,
+} = useNuxtApp().$mediaPlayer;
 </script>
 
 <template>

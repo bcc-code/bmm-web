@@ -7,7 +7,7 @@ const onError = (error: any) => {
   console.error(error);
 };
 
-const { currentTrack } = useNuxtApp().$mediaPlaylist;
+const { currentTrack } = useNuxtApp().$mediaPlayer;
 </script>
 
 <template>

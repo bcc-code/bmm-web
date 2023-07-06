@@ -16,9 +16,6 @@ export interface MediaPlayer {
   previous: () => void;
   hasNext: ComputedRef<Boolean>;
   hasPrevious: ComputedRef<Boolean>;
-}
-
-export interface MediaPlaylist {
   queue: Ref<TrackModel[]>;
   currentTrack: ComputedRef<TrackModel | undefined>;
   setCurrentTrack: (src: TrackModel) => void;
@@ -159,9 +156,6 @@ export default defineNuxtPlugin((nuxtApp) => {
     previous,
     hasNext,
     hasPrevious,
-  };
-
-  const mediaPlaylist: MediaPlaylist = {
     currentTrack: computed(() => currentTrack.value),
     queue,
     setCurrentTrack,
@@ -172,7 +166,6 @@ export default defineNuxtPlugin((nuxtApp) => {
   return {
     provide: {
       mediaPlayer,
-      mediaPlaylist,
     },
   };
 });
