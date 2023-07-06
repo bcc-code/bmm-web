@@ -3,12 +3,12 @@ import { MediaPlayerStatus } from "~/plugins/3.mediaPlayer";
 
 const { status, play, pause, hasNext, next, previous, hasPrevious } =
   useNuxtApp().$mediaPlayer;
-const { currentTrack } = useNuxtApp().$mediaPlaylist;
+const { currentTrack, queue } = useNuxtApp().$mediaPlaylist;
 </script>
 
 <template>
   <div
-    class="fixed bottom-4 right-4 flex w-[400px] rounded-2xl border border-black-1/10 bg-white-1 p-3 shadow-xl dark:border-white-1/10 dark:bg-black-1"
+    class="fixed bottom-4 right-4 flex w-[400px] flex-col rounded-2xl border border-black-1/10 bg-white-1 p-3 shadow-xl dark:border-white-1/10 dark:bg-black-1"
   >
     <div class="flex min-w-0 flex-1 gap-3">
       <div class="group select-none">
@@ -78,5 +78,10 @@ const { currentTrack } = useNuxtApp().$mediaPlaylist;
         </button>
       </div>
     </div>
+    <ul class="max-h-20 overflow-y-scroll">
+      <li v-for="(item, i) in queue" :key="i">
+        {{ item.meta?.title || item.title }}
+      </li>
+    </ul>
   </div>
 </template>

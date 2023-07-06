@@ -19,6 +19,7 @@ export interface MediaPlayer {
 }
 
 export interface MediaPlaylist {
+  queue: Ref<TrackModel[]>;
   currentTrack: ComputedRef<TrackModel | undefined>;
   setCurrentTrack: (src: TrackModel) => void;
   clearCurrentTrack: () => void;
@@ -172,6 +173,7 @@ export default defineNuxtPlugin((nuxtApp) => {
 
   const mediaPlaylist: MediaPlaylist = {
     currentTrack: computed(() => currentTrack.value),
+    queue,
     setCurrentTrack,
     clearCurrentTrack,
     addTrackToQueue,
