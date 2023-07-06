@@ -60,8 +60,7 @@ export default defineNuxtPlugin((nuxtApp) => {
 
   function next() {
     if (!hasNext.value) return;
-    // eslint-disable-next-line @typescript-eslint/no-use-before-define
-    setCurrentTrack(queue.value[currentQueueIndex.value + 1]);
+    currentQueueIndex.value += 1;
   }
 
   function setCurrentTrack(track?: TrackModel) {
@@ -83,16 +82,6 @@ export default defineNuxtPlugin((nuxtApp) => {
         trackId: track.id,
       },
     });
-
-    // Update queue index if track is in queue
-    // else clear queue and index
-    const index = queue.value.findIndex((t) => t.id === track.id);
-    if (index !== -1) {
-      currentQueueIndex.value = index;
-    } else {
-      queue.value = [];
-      currentQueueIndex.value = 0;
-    }
 
     activeMedia.addEventListener("pause", () => {
       paused.value = true;
@@ -124,11 +113,18 @@ export default defineNuxtPlugin((nuxtApp) => {
     });
   }
 
+  watch(
+    () => [currentQueueIndex.value, queue.value],
+    () => {
+      setCurrentTrack(queue.value[currentQueueIndex.value]);
+    }
+  );
+
   const hasPrevious = computed(() => currentQueueIndex.value > 0);
 
   function previous() {
     if (!hasPrevious.value) return;
-    setCurrentTrack(queue.value[currentQueueIndex.value - 1]);
+    currentQueueIndex.value -= 1;
   }
 
   function continuePlayingIfEnded() {
