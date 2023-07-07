@@ -12,7 +12,6 @@ const {
   currentTrack,
   currentPosition,
   currentTrackDuration,
-  currentQueueIndex,
   queue,
 } = useNuxtApp().$mediaPlayer;
 </script>
@@ -101,12 +100,29 @@ const {
     | {{ (currentTrackDuration / 60).toFixed(0).padStart(2, "0") }}:{{
       (currentTrackDuration % 60).toFixed(0).padStart(2, "0")
     }}
+    <div>
+      <button
+        v-if="queue.isShuffled"
+        class="rounded-full bg-background-4 px-2 py-2 text-background-3 hover:bg-background-3 hover:text-background-4 dark:bg-background-dark-4 dark:text-background-dark-3 dark:hover:bg-background-dark-3 dark:hover:text-background-dark-4"
+        @click.stop="queue.unshuffle()"
+      >
+        <NuxtIcon name="icon.shuffle" class="text-2xl" />
+      </button>
+      <button
+        v-else
+        class="rounded-full bg-background-3 px-2 py-2 text-background-4 hover:bg-background-4 hover:text-background-3 dark:bg-background-dark-3 dark:text-background-dark-4 dark:hover:bg-background-dark-4 dark:hover:text-background-dark-3"
+        @click.stop="queue.shuffle()"
+      >
+        <NuxtIcon name="icon.shuffle" class="text-2xl" />
+      </button>
+    </div>
+
     <ul class="max-h-20 overflow-y-scroll">
       <li
         v-for="(item, i) in queue"
         :key="i"
-        :class="currentQueueIndex === i ? 'bg-tint' : ''"
-        @click="currentQueueIndex = i"
+        :class="queue.index === i ? 'bg-tint' : ''"
+        @click="queue.index = i"
       >
         {{ item.meta?.title || item.title }}
       </li>

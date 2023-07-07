@@ -9,34 +9,59 @@ export enum MediaPlayerStatus {
 }
 
 export class Queue extends Array<TrackModel> {
-  public isShuffled = computed(() => !!this.sortedArray);
+  public isShuffled = false;
+
+  i = 0;
+
+  get index() {
+    return this.i;
+  }
+
+  set index(v) {
+    this.i = v;
+    this.currentTrack = this[v];
+  }
+
+  public currentTrack: TrackModel | undefined;
 
   sortedArray: Array<TrackModel> | undefined;
 
-  constructor(data: number | TrackModel[] = []) {
-    if (typeof data === "number") {
-      super(data);
-    } else {
-      super();
-      data.forEach((el, i) => {
-        this[i] = el;
-      });
-    }
+  constructor(data: TrackModel[] = [], index = 0) {
+    super();
+
+    if (!Array.isArray(data)) return;
+
+    data.forEach((el, i) => {
+      this[i] = el;
+    });
+
+    this.index = index;
   }
 
   public shuffle() {
     if (this.sortedArray) return;
 
+    const playingTrack = this.currentTrack;
     this.sortedArray = [...this];
-    this.sort(() => Math.random() - 0.5);
+    this.sort((a, b) => {
+      if (a === this.currentTrack) return -1;
+      if (b === this.currentTrack) return 1;
+      return Math.random() - 0.5;
+    });
+    this.isShuffled = true;
+    this.i = this.findIndex((v) => v === playingTrack) || 0;
   }
 
   public unshuffle() {
     if (!this.sortedArray) return;
 
+    const playingTrack = this.currentTrack;
     this.sortedArray.forEach((el, i) => {
       this[i] = el;
     });
+    this.sortedArray = undefined;
+    this.isShuffled = false;
+    this.i = this.findIndex((v) => v === playingTrack) || 0;
   }
 }
 
@@ -53,7 +78,6 @@ export interface MediaPlayer {
   currentTrack: ComputedRef<TrackModel | undefined>;
   currentPosition: Ref<number>;
   currentTrackDuration: Ref<number>;
-  currentQueueIndex: Ref<number>;
   setQueue: (queue: TrackModel[], index?: number) => void;
   addToQueue: (track: TrackModel) => void;
   playNext: (track: TrackModel) => void;
@@ -79,12 +103,10 @@ export default defineNuxtPlugin((nuxtApp) => {
   const loading = ref(false);
   const paused = ref(true);
   const ended = ref(false);
-  const currentTrack: Ref<TrackModel | undefined> = ref(undefined);
   const currentPosition = ref(0);
   const currentTrackDuration = ref(0);
 
-  const queue: Ref<Queue> = ref(new Queue());
-  const currentQueueIndex: Ref<number> = ref(0);
+  const queue: Ref<Queue> = ref(new Queue([], 0));
 
   const playerStatus = computed(() => {
     if (ended.value) return MediaPlayerStatus.Stopped;
@@ -92,17 +114,15 @@ export default defineNuxtPlugin((nuxtApp) => {
     return MediaPlayerStatus.Playing;
   });
 
-  const hasNext = computed(
-    () => queue.value.length > currentQueueIndex.value + 1
-  );
+  const hasNext = computed(() => queue.value.length > queue.value.index + 1);
 
   function next() {
     if (!hasNext.value) return;
-    currentQueueIndex.value += 1;
+    queue.value.index += 1;
   }
 
   function initCurrentTrack() {
-    const track = queue.value[currentQueueIndex.value];
+    const track = queue.value[queue.value.index];
     if (!track) return;
 
     activeMedia?.pause();
@@ -112,7 +132,6 @@ export default defineNuxtPlugin((nuxtApp) => {
     );
     activeMedia.autoplay = true;
     loading.value = true;
-    currentTrack.value = track;
     paused.value = true;
     ended.value = false;
     currentPosition.value = 0;
@@ -162,17 +181,17 @@ export default defineNuxtPlugin((nuxtApp) => {
   }
 
   watch(
-    () => [currentQueueIndex.value, queue.value],
+    () => [queue.value.currentTrack, queue.value],
     () => {
       initCurrentTrack();
     }
   );
 
-  const hasPrevious = computed(() => currentQueueIndex.value > 0);
+  const hasPrevious = computed(() => queue.value.index > 0);
 
   function previous() {
     if (!hasPrevious.value) return;
-    currentQueueIndex.value -= 1;
+    queue.value.index -= 1;
   }
 
   function continuePlayingIfEnded() {
@@ -187,12 +206,11 @@ export default defineNuxtPlugin((nuxtApp) => {
   }
 
   function setQueue(_queue: TrackModel[], index = 0): void {
-    queue.value = new Queue(_queue);
-    currentQueueIndex.value = index;
+    queue.value = new Queue(_queue, index);
   }
 
   function playNext(track: TrackModel): void {
-    queue.value.splice(currentQueueIndex.value + 1, 0, track);
+    queue.value.splice(queue.value.index + 1, 0, track);
     continuePlayingIfEnded();
   }
 
@@ -221,7 +239,7 @@ export default defineNuxtPlugin((nuxtApp) => {
     previous,
     hasNext,
     hasPrevious,
-    currentTrack: computed(() => currentTrack.value),
+    currentTrack: computed(() => queue.value.currentTrack),
     currentPosition: computed({
       get: () => currentPosition.value,
       set: (value) => {
@@ -231,7 +249,6 @@ export default defineNuxtPlugin((nuxtApp) => {
       },
     }),
     currentTrackDuration,
-    currentQueueIndex,
     queue,
     setQueue,
     addToQueue,
