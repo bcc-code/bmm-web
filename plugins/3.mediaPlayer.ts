@@ -51,6 +51,8 @@ export interface MediaPlayer {
   hasPrevious: ComputedRef<Boolean>;
   queue: Readonly<Ref<Queue>>;
   currentTrack: ComputedRef<TrackModel | undefined>;
+  currentPosition: Ref<number>;
+  currentTrackDuration: Ref<number>;
   setQueue: (queue: TrackModel[], index?: number) => void;
   addToQueue: (track: TrackModel) => void;
   playNext: (track: TrackModel) => void;
@@ -77,6 +79,8 @@ export default defineNuxtPlugin((nuxtApp) => {
   const paused = ref(true);
   const ended = ref(false);
   const currentTrack: Ref<TrackModel | undefined> = ref(undefined);
+  const currentPosition = ref(0);
+  const currentTrackDuration = ref(0);
 
   const queue: Ref<Queue> = ref(new Queue());
   const currentQueueIndex: Ref<number> = ref(0);
@@ -110,6 +114,9 @@ export default defineNuxtPlugin((nuxtApp) => {
     currentTrack.value = track;
     paused.value = true;
     ended.value = false;
+    currentPosition.value = 0;
+    currentTrackDuration.value = 0;
+
     useNuxtApp().$appInsights.trackEvent({
       name: "track playback started",
       properties: {
@@ -117,6 +124,12 @@ export default defineNuxtPlugin((nuxtApp) => {
       },
     });
 
+    activeMedia.addEventListener("loadedmetadata", () => {
+      currentTrackDuration.value = activeMedia!.duration;
+    });
+    activeMedia.addEventListener("timeupdate", () => {
+      currentPosition.value = activeMedia!.currentTime;
+    });
     activeMedia.addEventListener("pause", () => {
       paused.value = true;
     });
@@ -209,6 +222,15 @@ export default defineNuxtPlugin((nuxtApp) => {
     hasNext,
     hasPrevious,
     currentTrack: computed(() => currentTrack.value),
+    currentPosition: computed({
+      get: () => currentPosition.value,
+      set: (value) => {
+        if (activeMedia) {
+          activeMedia.currentTime = value;
+        }
+      },
+    }),
+    currentTrackDuration,
     queue,
     setQueue,
     addToQueue,

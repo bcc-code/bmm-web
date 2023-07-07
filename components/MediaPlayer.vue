@@ -10,6 +10,8 @@ const {
   previous,
   hasPrevious,
   currentTrack,
+  currentPosition,
+  currentTrackDuration,
   queue,
 } = useNuxtApp().$mediaPlayer;
 </script>
@@ -86,6 +88,18 @@ const {
         </button>
       </div>
     </div>
+    <input
+      v-model="currentPosition"
+      type="range"
+      :min="0"
+      :max="currentTrackDuration"
+    />
+    {{ (currentPosition / 60).toFixed(0).padStart(2, "0") }}:{{
+      (currentPosition % 60).toFixed(0).padStart(2, "0")
+    }}
+    | {{ (currentTrackDuration / 60).toFixed(0).padStart(2, "0") }}:{{
+      (currentTrackDuration % 60).toFixed(0).padStart(2, "0")
+    }}
     <ul class="max-h-20 overflow-y-scroll">
       <li v-for="(item, i) in queue" :key="i">
         {{ item.meta?.title || item.title }}
