@@ -83,20 +83,9 @@ export interface MediaPlayer {
   playNext: (track: TrackModel) => void;
 }
 
-export default defineNuxtPlugin((nuxtApp) => {
-  const { getAccessTokenSilently, isAuthenticated } =
-    nuxtApp.vueApp.config.globalProperties.$auth0;
-
-  watch(
-    isAuthenticated,
-    async (authenticated) => {
-      authToken.value = authenticated
-        ? await getAccessTokenSilently()
-        : undefined;
-    },
-    { immediate: true }
-  );
-
+export const initMediaPlayer = (
+  createMedia: (src: string) => HTMLAudioElement
+): MediaPlayer => {
   // Good to know when writing tests: https://github.com/jsdom/jsdom/issues/2155#issuecomment-366703395
   let activeMedia: HTMLAudioElement | undefined;
 
@@ -127,7 +116,7 @@ export default defineNuxtPlugin((nuxtApp) => {
 
     activeMedia?.pause();
 
-    activeMedia = new Audio(
+    activeMedia = createMedia(
       authorizedUrl(track.media?.[0]?.files?.[0]?.url || "", authToken.value)
     );
     activeMedia.autoplay = true;
@@ -214,7 +203,7 @@ export default defineNuxtPlugin((nuxtApp) => {
     continuePlayingIfEnded();
   }
 
-  const mediaPlayer: MediaPlayer = {
+  return {
     status: playerStatus,
     play: () => {
       if (activeMedia) {
@@ -254,10 +243,25 @@ export default defineNuxtPlugin((nuxtApp) => {
     addToQueue,
     playNext,
   };
+};
+
+export default defineNuxtPlugin((nuxtApp) => {
+  const { getAccessTokenSilently, isAuthenticated } =
+    nuxtApp.vueApp.config.globalProperties.$auth0;
+
+  watch(
+    isAuthenticated,
+    async (authenticated) => {
+      authToken.value = authenticated
+        ? await getAccessTokenSilently()
+        : undefined;
+    },
+    { immediate: true }
+  );
 
   return {
     provide: {
-      mediaPlayer,
+      mediaPlayer: initMediaPlayer((src) => new Audio(src)),
     },
   };
 });
