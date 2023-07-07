@@ -134,10 +134,9 @@ export default defineNuxtPlugin((nuxtApp) => {
       paused.value = true;
     });
     activeMedia.addEventListener("loadstart", () => {
-      if (activeMedia?.autoplay) {
-        paused.value = false;
-        ended.value = false;
-      }
+      loading.value = true;
+    });
+    activeMedia.addEventListener("loadeddata", () => {
       loading.value = false;
     });
     activeMedia.addEventListener("play", () => {
