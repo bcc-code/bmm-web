@@ -8,6 +8,38 @@ export enum MediaPlayerStatus {
   Stopped = "STOPPED",
 }
 
+export class Queue extends Array<TrackModel> {
+  public isShuffled = computed(() => !!this.sortedArray);
+
+  sortedArray: Array<TrackModel> | undefined;
+
+  constructor(data: number | TrackModel[] = []) {
+    if (typeof data === "number") {
+      super(data);
+    } else {
+      super();
+      data.forEach((el, i) => {
+        this[i] = el;
+      });
+    }
+  }
+
+  public shuffle() {
+    if (this.sortedArray) return;
+
+    this.sortedArray = [...this];
+    this.sort(() => Math.random() - 0.5);
+  }
+
+  public unshuffle() {
+    if (!this.sortedArray) return;
+
+    this.sortedArray.forEach((el, i) => {
+      this[i] = el;
+    });
+  }
+}
+
 export interface MediaPlayer {
   status: ComputedRef<MediaPlayerStatus>;
   play: () => void;
@@ -17,7 +49,7 @@ export interface MediaPlayer {
   previous: () => void;
   hasNext: ComputedRef<Boolean>;
   hasPrevious: ComputedRef<Boolean>;
-  queue: Ref<TrackModel[]>;
+  queue: Readonly<Ref<Queue>>;
   currentTrack: ComputedRef<TrackModel | undefined>;
   setQueue: (queue: TrackModel[], index?: number) => void;
   addToQueue: (track: TrackModel) => void;
@@ -46,7 +78,7 @@ export default defineNuxtPlugin((nuxtApp) => {
   const ended = ref(false);
   const currentTrack: Ref<TrackModel | undefined> = ref(undefined);
 
-  const queue: Ref<TrackModel[]> = ref([]);
+  const queue: Ref<Queue> = ref(new Queue());
   const currentQueueIndex: Ref<number> = ref(0);
 
   const playerStatus = computed(() => {
@@ -142,7 +174,7 @@ export default defineNuxtPlugin((nuxtApp) => {
   }
 
   function setQueue(_queue: TrackModel[], index = 0): void {
-    queue.value = [..._queue];
+    queue.value = new Queue(_queue);
     currentQueueIndex.value = index;
   }
 

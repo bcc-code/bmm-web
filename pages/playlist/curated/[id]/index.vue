@@ -9,13 +9,12 @@ const playlistId = Number(id);
 const { data: playlist } = useCuratedPlaylist({ id: playlistId });
 const { data: tracks, pending } = useCuratedPlaylistTracks({ id: playlistId });
 
-const { setQueue } = useNuxtApp().$mediaPlayer;
+const { setQueue, queue } = useNuxtApp().$mediaPlayer;
 
 function shuffle() {
   if (tracks.value) {
-    const shuffledTracks = [...tracks.value];
-    shuffledTracks.sort(() => Math.random() - 0.5);
-    setQueue(shuffledTracks);
+    setQueue(tracks.value);
+    queue.value.shuffle();
 
     $appInsights.trackEvent({
       name: "Shuffle Playlist",
