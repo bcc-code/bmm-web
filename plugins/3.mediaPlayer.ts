@@ -12,6 +12,7 @@ export interface MediaPlayer {
   status: ComputedRef<MediaPlayerStatus>;
   play: () => void;
   pause: () => void;
+  stop: () => void;
   next: () => void;
   previous: () => void;
   hasNext: ComputedRef<Boolean>;
@@ -49,8 +50,8 @@ export default defineNuxtPlugin((nuxtApp) => {
   const currentQueueIndex: Ref<number> = ref(0);
 
   const playerStatus = computed(() => {
-    if (paused.value) return MediaPlayerStatus.Paused;
     if (ended.value) return MediaPlayerStatus.Stopped;
+    if (paused.value) return MediaPlayerStatus.Paused;
     return MediaPlayerStatus.Playing;
   });
 
@@ -63,7 +64,8 @@ export default defineNuxtPlugin((nuxtApp) => {
     currentQueueIndex.value += 1;
   }
 
-  function setCurrentTrack(track?: TrackModel) {
+  function initCurrentTrack() {
+    const track = queue.value[currentQueueIndex.value];
     if (!track) return;
 
     activeMedia?.pause();
@@ -101,6 +103,7 @@ export default defineNuxtPlugin((nuxtApp) => {
       paused.value = false;
     });
     activeMedia.addEventListener("ended", () => {
+      paused.value = true;
       ended.value = true;
       useNuxtApp().$appInsights.trackEvent({
         name: "track completed",
@@ -116,7 +119,7 @@ export default defineNuxtPlugin((nuxtApp) => {
   watch(
     () => [currentQueueIndex.value, queue.value],
     () => {
-      setCurrentTrack(queue.value[currentQueueIndex.value]);
+      initCurrentTrack();
     }
   );
 
@@ -129,7 +132,7 @@ export default defineNuxtPlugin((nuxtApp) => {
 
   function continuePlayingIfEnded() {
     if (ended.value) {
-      setCurrentTrack(queue.value[currentQueueIndex.value]);
+      initCurrentTrack();
     }
   }
 
@@ -150,8 +153,25 @@ export default defineNuxtPlugin((nuxtApp) => {
 
   const mediaPlayer: MediaPlayer = {
     status: playerStatus,
-    play: () => activeMedia?.play(),
-    pause: () => activeMedia?.pause(),
+    play: () => {
+      if (activeMedia) {
+        activeMedia.play();
+      } else {
+        initCurrentTrack();
+      }
+    },
+    pause: () => {
+      activeMedia?.pause();
+    },
+    stop: () => {
+      // https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Client-side_web_APIs/Video_and_audio_APIs#stopping_the_video, https://html.spec.whatwg.org/multipage/media.html#best-practices-for-authors-using-media-elements
+      if (activeMedia) {
+        activeMedia.pause();
+        activeMedia.srcObject = null;
+        activeMedia = undefined;
+        ended.value = true;
+      }
+    },
     next,
     previous,
     hasNext,

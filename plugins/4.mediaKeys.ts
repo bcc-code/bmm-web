@@ -58,7 +58,7 @@ export default defineNuxtPlugin(() => {
       $mediaPlayer.pause();
     });
     navigator.mediaSession.setActionHandler("stop", () => {
-      $mediaPlayer.pause();
+      $mediaPlayer.stop();
     });
     navigator.mediaSession.setActionHandler("seekbackward", (_) => {
       console.error("The event `seekbackward` is not implemented yet");
