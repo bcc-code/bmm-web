@@ -12,6 +12,7 @@ const {
   currentTrack,
   currentPosition,
   currentTrackDuration,
+  currentQueueIndex,
   queue,
 } = useNuxtApp().$mediaPlayer;
 </script>
@@ -101,7 +102,12 @@ const {
       (currentTrackDuration % 60).toFixed(0).padStart(2, "0")
     }}
     <ul class="max-h-20 overflow-y-scroll">
-      <li v-for="(item, i) in queue" :key="i">
+      <li
+        v-for="(item, i) in queue"
+        :key="i"
+        :class="currentQueueIndex === i ? 'bg-tint' : ''"
+        @click="currentQueueIndex = i"
+      >
         {{ item.meta?.title || item.title }}
       </li>
     </ul>

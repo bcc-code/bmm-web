@@ -53,6 +53,7 @@ export interface MediaPlayer {
   currentTrack: ComputedRef<TrackModel | undefined>;
   currentPosition: Ref<number>;
   currentTrackDuration: Ref<number>;
+  currentQueueIndex: Ref<number>;
   setQueue: (queue: TrackModel[], index?: number) => void;
   addToQueue: (track: TrackModel) => void;
   playNext: (track: TrackModel) => void;
@@ -230,6 +231,7 @@ export default defineNuxtPlugin((nuxtApp) => {
       },
     }),
     currentTrackDuration,
+    currentQueueIndex,
     queue,
     setQueue,
     addToQueue,
