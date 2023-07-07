@@ -102,7 +102,7 @@ export default defineNuxtPlugin((nuxtApp) => {
 
   const loading = ref(false);
   const paused = ref(true);
-  const ended = ref(false);
+  const ended = ref(true);
   const currentPosition = ref(0);
   const currentTrackDuration = ref(0);
 
