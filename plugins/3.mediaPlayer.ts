@@ -26,16 +26,16 @@ export class Queue extends Array<TrackModel> {
 
   sortedArray: Array<TrackModel> | undefined;
 
-  constructor(data: TrackModel[] = [], index = 0) {
+  constructor(data: TrackModel[] = [], index = -1) {
     super();
 
-    if (!Array.isArray(data)) return;
-
-    data.forEach((el, i) => {
-      this[i] = el;
-    });
-
     this.index = index;
+
+    if (Array.isArray(data)) {
+      data.forEach((el, i) => {
+        this[i] = el;
+      });
+    }
   }
 
   public shuffle() {
@@ -95,7 +95,7 @@ export const initMediaPlayer = (
   const currentPosition = ref(0);
   const currentTrackDuration = ref(0);
 
-  const queue: Ref<Queue> = ref(new Queue([], 0));
+  const queue: Ref<Queue> = ref(new Queue([]));
 
   const playerStatus = computed(() => {
     if (ended.value) return MediaPlayerStatus.Stopped;
@@ -111,7 +111,7 @@ export const initMediaPlayer = (
   }
 
   function initCurrentTrack() {
-    const track = queue.value[queue.value.index];
+    const track = queue.value.currentTrack;
     if (!track) return;
 
     activeMedia?.pause();
@@ -183,15 +183,15 @@ export const initMediaPlayer = (
     queue.value.index -= 1;
   }
 
-  function continuePlayingIfEnded() {
+  function continuePlayingNextIfEnded() {
     if (ended.value) {
-      initCurrentTrack();
+      next();
     }
   }
 
   function addToQueue(track: TrackModel) {
     queue.value.push(track);
-    continuePlayingIfEnded();
+    continuePlayingNextIfEnded();
   }
 
   function setQueue(_queue: TrackModel[], index = 0): void {
@@ -200,7 +200,7 @@ export const initMediaPlayer = (
 
   function playNext(track: TrackModel): void {
     queue.value.splice(queue.value.index + 1, 0, track);
-    continuePlayingIfEnded();
+    continuePlayingNextIfEnded();
   }
 
   return {
