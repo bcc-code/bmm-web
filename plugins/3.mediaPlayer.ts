@@ -190,7 +190,7 @@ export const initMediaPlayer = (
   }
 
   function addToQueue(track: TrackModel) {
-    queue.value.push(track);
+    queue.value.push({ ...track });
     continuePlayingNextIfEnded();
   }
 
@@ -199,7 +199,7 @@ export const initMediaPlayer = (
   }
 
   function playNext(track: TrackModel): void {
-    queue.value.splice(queue.value.index + 1, 0, track);
+    queue.value.splice(queue.value.index + 1, 0, { ...track });
     continuePlayingNextIfEnded();
   }
 
