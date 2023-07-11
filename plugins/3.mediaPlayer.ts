@@ -29,13 +29,13 @@ export class Queue extends Array<TrackModel> {
   constructor(data: TrackModel[] = [], index = -1) {
     super();
 
-    this.index = index;
-
     if (Array.isArray(data)) {
       data.forEach((el, i) => {
         this[i] = el;
       });
     }
+
+    this.index = index;
   }
 
   public shuffle() {
