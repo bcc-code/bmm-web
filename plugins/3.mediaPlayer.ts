@@ -121,7 +121,7 @@ export const initMediaPlayer = (
     );
     activeMedia.autoplay = true;
     loading.value = true;
-    paused.value = true;
+    paused.value = false;
     ended.value = false;
     currentPosition.value = 0;
     currentTrackDuration.value = 0;
