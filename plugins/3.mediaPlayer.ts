@@ -110,9 +110,22 @@ export const initMediaPlayer = (
     queue.value.index += 1;
   }
 
+  function stop() {
+    // https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Client-side_web_APIs/Video_and_audio_APIs#stopping_the_video, https://html.spec.whatwg.org/multipage/media.html#best-practices-for-authors-using-media-elements
+    if (activeMedia) {
+      activeMedia.pause();
+      activeMedia.srcObject = null;
+      activeMedia = undefined;
+      ended.value = true;
+    }
+  }
+
   function initCurrentTrack() {
     const track = queue.value.currentTrack;
-    if (!track) return;
+    if (!track) {
+      stop();
+      return;
+    }
 
     activeMedia?.pause();
 
@@ -195,7 +208,8 @@ export const initMediaPlayer = (
   }
 
   function setQueue(_queue: TrackModel[], index = 0): void {
-    queue.value = new Queue(_queue, index);
+    const i = _queue.length > 0 ? index : -1;
+    queue.value = new Queue(_queue, i);
   }
 
   function playNext(track: TrackModel): void {
@@ -215,15 +229,7 @@ export const initMediaPlayer = (
     pause: () => {
       activeMedia?.pause();
     },
-    stop: () => {
-      // https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Client-side_web_APIs/Video_and_audio_APIs#stopping_the_video, https://html.spec.whatwg.org/multipage/media.html#best-practices-for-authors-using-media-elements
-      if (activeMedia) {
-        activeMedia.pause();
-        activeMedia.srcObject = null;
-        activeMedia = undefined;
-        ended.value = true;
-      }
-    },
+    stop,
     next,
     previous,
     hasNext,
