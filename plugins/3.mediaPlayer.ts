@@ -1,4 +1,5 @@
 import { TrackModel } from "@bcc-code/bmm-sdk-fetch";
+import { ApplicationInsights } from "@microsoft/applicationinsights-web";
 
 const authToken: Ref<string | undefined> = ref();
 
@@ -84,7 +85,8 @@ export interface MediaPlayer {
 }
 
 export const initMediaPlayer = (
-  createMedia: (src: string) => HTMLAudioElement
+  createMedia: (src: string) => HTMLAudioElement,
+  appInsights: ApplicationInsights
 ): MediaPlayer => {
   // Good to know when writing tests: https://github.com/jsdom/jsdom/issues/2155#issuecomment-366703395
   let activeMedia: HTMLAudioElement | undefined;
@@ -139,7 +141,7 @@ export const initMediaPlayer = (
     currentPosition.value = 0;
     currentTrackDuration.value = 0;
 
-    useNuxtApp().$appInsights.trackEvent({
+    appInsights.trackEvent({
       name: "track playback started",
       properties: {
         trackId: track.id,
@@ -171,7 +173,7 @@ export const initMediaPlayer = (
     activeMedia.addEventListener("ended", () => {
       paused.value = true;
       ended.value = true;
-      useNuxtApp().$appInsights.trackEvent({
+      appInsights.trackEvent({
         name: "track completed",
         properties: {
           trackId: track.id,
@@ -265,9 +267,11 @@ export default defineNuxtPlugin((nuxtApp) => {
     { immediate: true }
   );
 
+  const appInsights: ApplicationInsights = useNuxtApp().$appInsights;
+
   return {
     provide: {
-      mediaPlayer: initMediaPlayer((src) => new Audio(src)),
+      mediaPlayer: initMediaPlayer((src) => new Audio(src), appInsights),
     },
   };
 });
