@@ -178,9 +178,6 @@ export const initMediaPlayer = (
       paused.value = false;
       ended.value = false;
     });
-    activeMedia.addEventListener("playing", () => {
-      paused.value = false;
-    });
     activeMedia.addEventListener("ended", () => {
       paused.value = true;
       ended.value = true;
