@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { MediaPlayerStatus } from "~/plugins/3.mediaPlayer";
+import { MediaPlayerStatus } from "~/plugins/mediaPlayer/mediaPlayer";
 
 const {
   status,

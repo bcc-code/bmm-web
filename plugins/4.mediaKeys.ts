@@ -1,5 +1,5 @@
 import { defineNuxtPlugin, useNuxtApp } from "#app";
-import { MediaPlayerStatus } from "./3.mediaPlayer";
+import { MediaPlayerStatus } from "./mediaPlayer/mediaPlayer";
 
 export default defineNuxtPlugin(() => {
   const { $mediaPlayer } = useNuxtApp();

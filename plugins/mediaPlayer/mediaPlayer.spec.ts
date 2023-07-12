@@ -5,8 +5,9 @@ import { flushPromises } from "@vue/test-utils";
 import { HTMLAudioElement, Event } from "happy-dom";
 import { TrackModel } from "@bcc-code/bmm-sdk-fetch";
 import { ApplicationInsights } from "@microsoft/applicationinsights-web";
-import { MediaPlayerStatus, initMediaPlayer } from "./3.mediaPlayer";
+import { MediaPlayerStatus, initMediaPlayer } from "./mediaPlayer";
 
+// TODO: Split into tests for the individual separate instances...
 describe("plugin mediaPlayer", () => {
   const appInsights = {
     trackEvent: vi.fn(),
