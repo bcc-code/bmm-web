@@ -154,6 +154,7 @@ export interface MediaPlayer {
   stop: () => void;
   next: () => void;
   previous: () => void;
+  isLoading: ComputedRef<Boolean>;
   hasNext: ComputedRef<Boolean>;
   hasPrevious: ComputedRef<Boolean>;
   queue: Ref<UnwrapRef<Queue>>;
@@ -292,6 +293,7 @@ export const initMediaPlayer = (
     stop,
     next,
     previous,
+    isLoading: computed(() => activeMedia.value?.loading || false),
     hasNext,
     hasPrevious,
     currentTrack: computed(() => queue.value.currentTrack),
