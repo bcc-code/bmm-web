@@ -9,8 +9,8 @@ const { setCurrentTrack } = inject(MediaPlaylistInjectionKey)!;
 const { t, locale } = useI18n();
 toolbarTitleStore().setReactiveToolbarTitle(() => t("nav.home"));
 
-const discoverGroups: Ref<IDiscoverableGroup[] | null> = ref(null);
-const loading: Ref<boolean> = ref(true);
+const discoverGroups = ref<IDiscoverableGroup[] | null>(null);
+const loading = ref(true);
 const { user } = useAuth0();
 
 function calculateAge(birthdate: string | undefined) {
