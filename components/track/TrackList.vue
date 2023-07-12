@@ -15,7 +15,7 @@ const props = withDefaults(
 );
 
 const { setCurrentTrack, addTrackToQueue } = inject(MediaPlaylistInjectionKey)!;
-const showDropDownForTrack: Ref<null | string> = ref(null);
+const showDropDownForTrack = ref<string | null>(null);
 
 const isTrackTypeKnown = () => {
   const firstType = props.tracks?.[0]?.subtype;
