@@ -10,7 +10,7 @@
   },
   "error": {
     "page-not-found": {
-      "headline": "Error",
+      "headline": "Feil",
       "text": "Sorry. We can't find the page \"{path}\"."
     }
   },
