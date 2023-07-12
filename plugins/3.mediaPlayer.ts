@@ -1,7 +1,8 @@
 import { TrackModel } from "@bcc-code/bmm-sdk-fetch";
 import { ApplicationInsights } from "@microsoft/applicationinsights-web";
+import type { UnwrapRef } from "nuxt/dist/app/compat/capi";
 
-const authToken: Ref<string | undefined> = ref();
+const authToken = ref<string | undefined>();
 
 export enum MediaPlayerStatus {
   Paused = "PAUSED",
@@ -9,10 +10,10 @@ export enum MediaPlayerStatus {
   Stopped = "STOPPED",
 }
 
-export class Queue extends Array<TrackModel> {
+class Queue extends Array<TrackModel> {
   public isShuffled = false;
 
-  i = 0;
+  private i = 0;
 
   get index() {
     return this.i;
@@ -25,7 +26,7 @@ export class Queue extends Array<TrackModel> {
 
   public currentTrack: TrackModel | undefined;
 
-  sortedArray: Array<TrackModel> | undefined;
+  private sortedArray: Array<TrackModel> | undefined;
 
   constructor(data: TrackModel[] = [], index = -1) {
     super();
@@ -75,7 +76,7 @@ export interface MediaPlayer {
   previous: () => void;
   hasNext: ComputedRef<Boolean>;
   hasPrevious: ComputedRef<Boolean>;
-  queue: Readonly<Ref<Queue>>;
+  queue: Ref<UnwrapRef<Queue>>;
   currentTrack: ComputedRef<TrackModel | undefined>;
   currentPosition: Ref<number>;
   currentTrackDuration: Ref<number>;
@@ -97,7 +98,7 @@ export const initMediaPlayer = (
   const currentPosition = ref(0);
   const currentTrackDuration = ref(0);
 
-  const queue: Ref<Queue> = ref(new Queue([]));
+  const queue = ref(new Queue([]));
 
   const playerStatus = computed(() => {
     if (ended.value) return MediaPlayerStatus.Stopped;
