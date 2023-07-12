@@ -20,8 +20,18 @@ class Queue extends Array<TrackModel> {
   }
 
   set index(v) {
-    this.i = v;
-    this.currentTrack = this[v];
+    if (v >= this.length) {
+      this.i = this.length - 1;
+    } else if (v < 0) {
+      if (this.length === 0) {
+        this.i = -1;
+      } else {
+        this.i = 0;
+      }
+    } else {
+      this.i = v;
+    }
+    this.currentTrack = this[this.i];
   }
 
   public currentTrack: TrackModel | undefined;
