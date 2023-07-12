@@ -190,8 +190,13 @@ export const initMediaPlayer = (
           trackId: track.id,
         },
       });
-      // Play next track if there is one
-      next();
+
+      if (hasNext.value) {
+        // Play next track if there is one
+        next();
+      } else {
+        stop();
+      }
     });
   }
 
