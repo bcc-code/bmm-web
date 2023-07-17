@@ -14,7 +14,7 @@ const props = withDefaults(
 );
 
 const { setQueue, addNext, addToQueue } = useNuxtApp().$mediaPlayer;
-const showDropDownForTrack: Ref<null | string> = ref(null);
+const showDropDownForTrack = ref<string | null>(null);
 
 const isTrackTypeKnown = () => {
   const firstType = props.tracks?.[0]?.subtype;
