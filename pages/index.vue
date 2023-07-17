@@ -57,6 +57,14 @@ watch(
   },
   { immediate: true }
 );
+
+const playItem = (item: TrackModel, group: IDiscoverableGroup) => {
+  const items = group.items.filter((c): c is TrackModel => c.type === "track");
+  setQueue(
+    items,
+    items.findIndex((track) => track.id === item.id)
+  );
+};
 </script>
 
 <template>
@@ -120,7 +128,7 @@ watch(
               :track="item"
               :is-track-type-known="true"
               show-thumbnail
-              @play-track="() => { const items = group.items.filter((c) : c is TrackModel => c.type === 'track'); setQueue(items, items.findIndex(track => track.id === item.id)) }"
+              @play-track="playItem(item, group)"
             ></TrackItem>
             <ContributorListItem
               v-else-if="item.type === 'contributor'"
