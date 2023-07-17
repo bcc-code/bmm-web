@@ -101,6 +101,26 @@ describe("plugin mediaPlayer MediaTrack", () => {
       expect(MockedMediaTrack.mock.results[0]!.value.obj!.position).eq(100);
     });
 
+    it("parses the position to number before passing it on to the current element", async () => {
+      // Arrange
+      const mediaPlayer = initMediaPlayer(
+        () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
+        {
+          trackEvent() {},
+        } as unknown as ApplicationInsights
+      );
+      await flushPromises();
+      mediaPlayer.setQueue([{ id: 1, type: "track" }]);
+      await flushPromises();
+
+      // Act
+      mediaPlayer.currentPosition.value = "100" as any; // When used as v-model, the setter must be able to take in anything
+      await flushPromises();
+
+      // Assert
+      expect(MockedMediaTrack.mock.results[0]!.value.obj!.position).eq(100);
+    });
+
     it("ignores the given position if there is no current element", async () => {
       // Arrange
       const mediaPlayer = initMediaPlayer(

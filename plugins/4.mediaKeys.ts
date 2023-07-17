@@ -60,14 +60,21 @@ export default defineNuxtPlugin(() => {
     navigator.mediaSession.setActionHandler("stop", () => {
       $mediaPlayer.stop();
     });
-    navigator.mediaSession.setActionHandler("seekbackward", (_) => {
-      console.error("The event `seekbackward` is not implemented yet");
+    navigator.mediaSession.setActionHandler("seekbackward", (e) => {
+      const offset = e.seekOffset ?? 10;
+      $mediaPlayer.currentPosition.value -= offset;
     });
-    navigator.mediaSession.setActionHandler("seekforward", (_) => {
-      console.error("The event `seekforward` is not implemented yet");
+    navigator.mediaSession.setActionHandler("seekforward", (e) => {
+      const offset = e.seekOffset ?? 10;
+      $mediaPlayer.currentPosition.value += offset;
     });
-    navigator.mediaSession.setActionHandler("seekto", (_) => {
-      console.error("The event `seekto` is not implemented yet");
+    navigator.mediaSession.setActionHandler("seekto", (e) => {
+      if (e.fastSeek !== true) {
+        // Option `seekTime` MUST be present for `seekto` action according to documentation (https://developer.mozilla.org/en-US/docs/Web/API/MediaSession/setActionHandler#seektime)
+        $mediaPlayer.currentPosition.value = e.seekTime!;
+      } else {
+        // TODO: What should we do ..? The next seek-operation will follow soon.
+      }
     });
     navigator.mediaSession.setActionHandler("previoustrack", () => {
       $mediaPlayer.previous();

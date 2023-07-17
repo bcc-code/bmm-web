@@ -160,9 +160,9 @@ export const initMediaPlayer = (
     currentTrack: computed(() => queue.value.currentTrack),
     currentPosition: computed({
       get: () => (activeMedia.value ? activeMedia.value.position : NaN),
-      set: (value) => {
+      set: (value: any) => {
         if (activeMedia.value) {
-          activeMedia.value.position = value;
+          activeMedia.value.position = Number(value);
         }
       },
     }),
