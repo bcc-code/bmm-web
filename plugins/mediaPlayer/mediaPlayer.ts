@@ -1,6 +1,6 @@
 import { ApplicationInsights } from "@microsoft/applicationinsights-web";
 import { TrackModel } from "@bcc-code/bmm-sdk-fetch";
-import type { UnwrapRef } from "nuxt/dist/app/compat/capi";
+import type { UnwrapRef } from "vue";
 import MediaTrack from "./MediaTrack";
 import Queue from "./Queue";
 
@@ -20,10 +20,10 @@ export interface MediaPlayer {
   isLoading: ComputedRef<Boolean>;
   hasNext: ComputedRef<Boolean>;
   hasPrevious: ComputedRef<Boolean>;
-  queue: Ref<UnwrapRef<Queue>>;
-  currentTrack: ComputedRef<TrackModel | undefined>;
+  queue: ComputedRef<UnwrapRef<Queue>>;
+  currentTrack: ComputedRef<UnwrapRef<TrackModel> | undefined>;
   currentPosition: Ref<number>;
-  currentTrackDuration: Ref<number>;
+  currentTrackDuration: ComputedRef<number>;
   setQueue: (queue: TrackModel[], index?: number) => void;
   addToQueue: (track: TrackModel) => void;
   playNext: (track: TrackModel) => void;
@@ -38,13 +38,6 @@ export const initMediaPlayer = (
   const activeMedia = ref<MediaTrack | undefined>();
 
   const queue = ref(new Queue([]));
-
-  const playerStatus = computed(() => {
-    if (!activeMedia.value || activeMedia.value.ended)
-      return MediaPlayerStatus.Stopped;
-    if (activeMedia.value.paused) return MediaPlayerStatus.Paused;
-    return MediaPlayerStatus.Playing;
-  });
 
   const hasNext = computed(() => queue.value.length > queue.value.index + 1);
 
@@ -67,14 +60,13 @@ export const initMediaPlayer = (
       return;
     }
 
-    activeMedia.value?.pause();
+    activeMedia.value?.destroy();
 
     activeMedia.value = new MediaTrack(
       createMedia(
         authorizedUrl(track.media?.[0]?.files?.[0]?.url || "", authToken.value)
       )
     );
-    // Events must be registerd after marking the object as reactive, otherwise `this` is not the proxy created for reactivity where events are registered.
     activeMedia.value.registerEvents();
   }
 
@@ -91,6 +83,8 @@ export const initMediaPlayer = (
 
         if (hasNext.value) {
           next();
+        } else {
+          stop();
         }
       }
     }
@@ -133,8 +127,7 @@ export const initMediaPlayer = (
   }
 
   function setQueue(_queue: TrackModel[], index = 0): void {
-    const i = _queue.length > 0 ? index : -1;
-    queue.value = new Queue(_queue, i);
+    queue.value = new Queue(_queue, index);
   }
 
   function playNext(track: TrackModel): void {
@@ -143,7 +136,11 @@ export const initMediaPlayer = (
   }
 
   return {
-    status: playerStatus,
+    status: computed(() => {
+      if (!activeMedia.value) return MediaPlayerStatus.Stopped;
+      if (activeMedia.value.paused) return MediaPlayerStatus.Paused;
+      return MediaPlayerStatus.Playing;
+    }),
     play: () => {
       if (activeMedia.value) {
         activeMedia.value.play();
@@ -162,15 +159,17 @@ export const initMediaPlayer = (
     hasPrevious,
     currentTrack: computed(() => queue.value.currentTrack),
     currentPosition: computed({
-      get: () => activeMedia.value?.position || 0,
+      get: () => (activeMedia.value ? activeMedia.value.position : NaN),
       set: (value) => {
         if (activeMedia.value) {
           activeMedia.value.position = value;
         }
       },
     }),
-    currentTrackDuration: computed(() => activeMedia.value?.duration || 0),
-    queue,
+    currentTrackDuration: computed(() =>
+      activeMedia.value ? activeMedia.value.duration : NaN
+    ),
+    queue: computed(() => queue.value),
     setQueue,
     addToQueue,
     playNext,

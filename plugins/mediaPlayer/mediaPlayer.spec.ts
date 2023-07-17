@@ -1,749 +1,1710 @@
-// @vitest-environment happy-dom
-
-import { describe, it, expect, vi, SpyInstance } from "vitest";
-import { flushPromises } from "@vue/test-utils";
-import { HTMLAudioElement, Event } from "happy-dom";
-import { TrackModel } from "@bcc-code/bmm-sdk-fetch";
+import { describe, it, expect, vi, afterEach, Mock } from "vitest";
 import { ApplicationInsights } from "@microsoft/applicationinsights-web";
-import { MediaPlayerStatus, initMediaPlayer } from "./mediaPlayer";
+import { TrackModel } from "@bcc-code/bmm-sdk-fetch";
+import { flushPromises } from "@vue/test-utils";
+import type { UnwrapRef } from "vue";
+import Queue from "./Queue";
+import MediaTrack from "./MediaTrack";
+import { initMediaPlayer, MediaPlayerStatus } from "./mediaPlayer";
 
-// TODO: Split into tests for the individual separate instances...
-describe("plugin mediaPlayer", () => {
-  const appInsights = {
-    trackEvent: vi.fn(),
-  } as unknown as ApplicationInsights;
+vi.mock("./Queue", async (importOriginal) => {
+  const { default: Mod } = (await importOriginal()) as any;
+  return {
+    default: vi.fn().mockImplementation((...args: any[]) => new Mod(...args)),
+  };
+});
 
-  it("inits stopped with an empty queue", () => {
-    // Arrange
-    const mediaPlayer = initMediaPlayer(
-      () => new HTMLAudioElement() as unknown as globalThis.HTMLAudioElement,
-      appInsights
-    );
+let playMocks: Mock[] = vi.hoisted(() => []);
+let pauseMocks: Mock[] = vi.hoisted(() => []);
+let destroyMocks: Mock[] = vi.hoisted(() => []);
+vi.mock("./MediaTrack", async (importOriginal) => {
+  const { default: Mod } = (await importOriginal()) as any;
+  return {
+    default: vi.fn().mockImplementation((...args: any[]) => {
+      const obj = new Mod(...args);
 
-    // Assert
-    expect(mediaPlayer.queue.value).length(0);
-    expect(mediaPlayer.queue.value.currentTrack).equals(undefined);
-    expect(mediaPlayer.currentTrack.value).equals(undefined);
-    expect(mediaPlayer.status.value).equals(MediaPlayerStatus.Stopped);
+      // We need this because we're working with proxies :)
+      obj.registerEvents = function registerEvents() {
+        if (isProxy(this)) {
+          toRaw(this).obj = this;
+        }
+      };
+      const playMock = vi.fn();
+      const pauseMock = vi.fn();
+      const destroyMock = vi.fn();
+      playMocks.push(playMock);
+      pauseMocks.push(pauseMock);
+      destroyMocks.push(destroyMock);
+
+      obj.play = playMock;
+      obj.pause = pauseMock;
+      obj.destroy = destroyMock;
+
+      return obj;
+    }),
+  };
+});
+
+describe("plugin mediaPlayer MediaTrack", () => {
+  const MockedQueue = vi.mocked(Queue);
+  const MockedMediaTrack = vi.mocked(MediaTrack);
+
+  afterEach(() => {
+    MockedQueue.mockClear();
+    MockedMediaTrack.mockClear();
+    playMocks = [];
+    pauseMocks = [];
+    destroyMocks = [];
   });
 
-  it("sets a queue with tracks and starts playing from the start", async () => {
-    // Arrange
-    const audioElements: HTMLAudioElement[] = [];
-    const mediaPlayer = initMediaPlayer(() => {
-      const el = new HTMLAudioElement();
+  describe("init", () => {
+    it("starts playing from the start without init-loading", async () => {
+      // Act
+      const mediaPlayer = initMediaPlayer(
+        () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
+        undefined as unknown as ApplicationInsights
+      );
+      await flushPromises();
 
-      audioElements.push(el);
-      return el as unknown as globalThis.HTMLAudioElement;
-    }, appInsights);
-
-    // Act
-    mediaPlayer.setQueue([
-      {
-        id: 5,
-        type: "track",
-      },
-      {
-        id: 2,
-        type: "track",
-      },
-      {
-        id: 9,
-        type: "track",
-      },
-    ]);
-    await flushPromises();
-
-    // Assert
-    expect(mediaPlayer.currentPosition.value).equals(0);
-    expect(mediaPlayer.queue.value).length(3);
-    expect(mediaPlayer.queue.value[0]?.id).equals(5);
-    expect(mediaPlayer.queue.value.currentTrack?.id).equals(5);
-    expect(mediaPlayer.currentTrack.value?.id).equals(5);
-    expect(audioElements).length(1);
-    expect(audioElements[0]?.autoplay).equals(true);
-    expect(mediaPlayer.status.value).equals(MediaPlayerStatus.Playing);
-  });
-
-  it("clones the list set as queue", async () => {
-    // Arrange
-    const mediaPlayer = initMediaPlayer(
-      () => new HTMLAudioElement() as unknown as globalThis.HTMLAudioElement,
-      appInsights
-    );
-
-    // Act
-    const queue: TrackModel[] = [
-      {
-        id: 5,
-        type: "track",
-      },
-      {
-        id: 2,
-        type: "track",
-      },
-      {
-        id: 9,
-        type: "track",
-      },
-    ];
-    mediaPlayer.setQueue(queue);
-    await flushPromises();
-    queue.pop();
-    await flushPromises();
-
-    // Assert
-    expect(mediaPlayer.queue.value).length(3);
-  });
-
-  it("adds tracks in the right order and clones them before adding - needed for shuffling when currently playing item is in the list twice", async () => {
-    // Arrange
-    const mediaPlayer = initMediaPlayer(
-      () => new HTMLAudioElement() as unknown as globalThis.HTMLAudioElement,
-      appInsights
-    );
-
-    // Act
-    const track1: TrackModel = {
-      id: 5,
-      type: "track",
-    };
-    const track2: TrackModel = {
-      id: 2,
-      type: "track",
-    };
-    mediaPlayer.addToQueue(track1);
-    await flushPromises();
-    mediaPlayer.addToQueue(track1);
-    await flushPromises();
-    mediaPlayer.playNext(track2);
-    await flushPromises();
-    mediaPlayer.playNext(track2);
-    await flushPromises();
-
-    /* The list we should have is:
-     * Track 5 (playing)
-     * Track 2
-     * Track 2
-     * Track 5
-     */ //
-
-    // Assert
-    expect(mediaPlayer.queue.value).length(4);
-    expect(mediaPlayer.queue.value[0]?.id).eq(5);
-    expect(mediaPlayer.queue.value[0]).not.eq(mediaPlayer.queue.value[3]);
-    expect(mediaPlayer.queue.value[1]?.id).eq(2);
-    expect(mediaPlayer.queue.value[1]).not.eq(mediaPlayer.queue.value[2]);
-  });
-
-  it("continues to the next track if ended", async () => {
-    // Arrange
-    const audioElements: HTMLAudioElement[] = [];
-    const mediaPlayer = initMediaPlayer(() => {
-      const el = new HTMLAudioElement();
-
-      audioElements.push(el);
-      return el as unknown as globalThis.HTMLAudioElement;
-    }, appInsights);
-
-    // Act
-    mediaPlayer.setQueue([
-      {
-        id: 5,
-        type: "track",
-      },
-      {
-        id: 2,
-        type: "track",
-      },
-      {
-        id: 9,
-        type: "track",
-      },
-    ]);
-    await flushPromises();
-    audioElements[0]?.dispatchEvent(
-      new Event("ended", { bubbles: false, cancelable: false })
-    );
-    await flushPromises();
-
-    // Assert
-    expect(mediaPlayer.queue.value.currentTrack?.id).equals(2);
-    expect(mediaPlayer.currentTrack.value?.id).equals(2);
-    expect(audioElements).length(2);
-    expect(audioElements[1]?.autoplay).equals(true);
-    expect(mediaPlayer.status.value).equals(MediaPlayerStatus.Playing);
-  });
-
-  it("jumps to next track if `next` action is called", async () => {
-    const audioElements: HTMLAudioElement[] = [];
-    const mediaPlayer = initMediaPlayer(() => {
-      const el = new HTMLAudioElement();
-
-      audioElements.push(el);
-      return el as unknown as globalThis.HTMLAudioElement;
-    }, appInsights);
-
-    // Act
-    mediaPlayer.setQueue([
-      {
-        id: 5,
-        type: "track",
-      },
-      {
-        id: 2,
-        type: "track",
-      },
-    ]);
-    await flushPromises();
-    mediaPlayer.next();
-    await flushPromises();
-
-    // Assert
-    expect(mediaPlayer.queue.value.currentTrack?.id).equals(2);
-    expect(mediaPlayer.currentTrack.value?.id).equals(2);
-    expect(audioElements).length(2);
-    expect(audioElements[1]?.autoplay).equals(true);
-    expect(mediaPlayer.status.value).equals(MediaPlayerStatus.Playing);
-  });
-
-  it("ignores the `next` action if there is no next track", async () => {
-    const audioElements: HTMLAudioElement[] = [];
-    const mediaPlayer = initMediaPlayer(() => {
-      const el = new HTMLAudioElement();
-
-      audioElements.push(el);
-      return el as unknown as globalThis.HTMLAudioElement;
-    }, appInsights);
-
-    // Act
-    mediaPlayer.setQueue([
-      {
-        id: 5,
-        type: "track",
-      },
-    ]);
-    await flushPromises();
-    mediaPlayer.next();
-    await flushPromises();
-
-    // Assert
-    expect(mediaPlayer.queue.value.currentTrack?.id).equals(5);
-    expect(mediaPlayer.currentTrack.value?.id).equals(5);
-    expect(audioElements).length(1);
-    expect(mediaPlayer.status.value).equals(MediaPlayerStatus.Playing);
-  });
-
-  it("jumps to previous track if `previous` action is called", async () => {
-    const audioElements: HTMLAudioElement[] = [];
-    const mediaPlayer = initMediaPlayer(() => {
-      const el = new HTMLAudioElement();
-
-      audioElements.push(el);
-      return el as unknown as globalThis.HTMLAudioElement;
-    }, appInsights);
-
-    // Act
-    mediaPlayer.setQueue(
-      [
-        {
-          id: 5,
-          type: "track",
-        },
-        {
-          id: 2,
-          type: "track",
-        },
-      ],
-      1
-    );
-    await flushPromises();
-    mediaPlayer.previous();
-    await flushPromises();
-
-    // Assert
-    expect(mediaPlayer.queue.value.currentTrack?.id).equals(5);
-    expect(mediaPlayer.currentTrack.value?.id).equals(5);
-    expect(audioElements).length(2);
-    expect(audioElements[1]?.autoplay).equals(true);
-    expect(mediaPlayer.status.value).equals(MediaPlayerStatus.Playing);
-  });
-
-  it("ignores the `previous` action if there is no previous track", async () => {
-    const audioElements: HTMLAudioElement[] = [];
-    const mediaPlayer = initMediaPlayer(() => {
-      const el = new HTMLAudioElement();
-
-      audioElements.push(el);
-      return el as unknown as globalThis.HTMLAudioElement;
-    }, appInsights);
-
-    // Act
-    mediaPlayer.setQueue(
-      [
-        {
-          id: 5,
-          type: "track",
-        },
-      ],
-      0
-    );
-    await flushPromises();
-    mediaPlayer.previous();
-    await flushPromises();
-
-    // Assert
-    expect(mediaPlayer.queue.value.currentTrack?.id).equals(5);
-    expect(mediaPlayer.currentTrack.value?.id).equals(5);
-    expect(audioElements).length(1);
-    expect(mediaPlayer.status.value).equals(MediaPlayerStatus.Playing);
-  });
-
-  it("sets index on setQueue to maximum-value if greater than queue", async () => {
-    const audioElements: HTMLAudioElement[] = [];
-    const mediaPlayer = initMediaPlayer(() => {
-      const el = new HTMLAudioElement();
-
-      audioElements.push(el);
-      return el as unknown as globalThis.HTMLAudioElement;
-    }, appInsights);
-
-    // Act
-    mediaPlayer.setQueue(
-      [
-        {
-          id: 5,
-          type: "track",
-        },
-      ],
-      999 // Index is way too large!
-    );
-    await flushPromises();
-
-    // Assert
-    expect(mediaPlayer.queue.value.currentTrack?.id).equals(5);
-    expect(mediaPlayer.currentTrack.value?.id).equals(5);
-  });
-
-  it("sets index on queue to maximum-value if greater than queue", async () => {
-    const audioElements: HTMLAudioElement[] = [];
-    const mediaPlayer = initMediaPlayer(() => {
-      const el = new HTMLAudioElement();
-
-      audioElements.push(el);
-      return el as unknown as globalThis.HTMLAudioElement;
-    }, appInsights);
-
-    // Act
-    mediaPlayer.setQueue(
-      [
-        {
-          id: 5,
-          type: "track",
-        },
-      ],
-      0
-    );
-    await flushPromises();
-    mediaPlayer.queue.value.index = 999; // Index is way too large!
-    await flushPromises();
-
-    // Assert
-    expect(mediaPlayer.queue.value.currentTrack?.id).equals(5);
-    expect(mediaPlayer.currentTrack.value?.id).equals(5);
-  });
-
-  it("sets index on queue to 0 if negative", async () => {
-    const audioElements: HTMLAudioElement[] = [];
-    const mediaPlayer = initMediaPlayer(() => {
-      const el = new HTMLAudioElement();
-
-      audioElements.push(el);
-      return el as unknown as globalThis.HTMLAudioElement;
-    }, appInsights);
-
-    // Act
-    mediaPlayer.setQueue(
-      [
-        {
-          id: 5,
-          type: "track",
-        },
-        {
-          id: 2,
-          type: "track",
-        },
-      ],
-      1
-    );
-    await flushPromises();
-    mediaPlayer.queue.value.index = -999; // Index is negative!
-    await flushPromises();
-
-    // Assert
-    expect(mediaPlayer.queue.value.currentTrack?.id).equals(5);
-    expect(mediaPlayer.currentTrack.value?.id).equals(5);
-  });
-
-  it("adds a track to queue and starts playing", async () => {
-    // Arrange
-    const audioElements: HTMLAudioElement[] = [];
-    const mediaPlayer = initMediaPlayer(() => {
-      const el = new HTMLAudioElement();
-
-      audioElements.push(el);
-      return el as unknown as globalThis.HTMLAudioElement;
-    }, appInsights);
-
-    // Act
-    mediaPlayer.addToQueue({
-      id: 5,
-      type: "track",
+      // Assert
+      expect(mediaPlayer.status.value).eq(MediaPlayerStatus.Stopped);
+      expect(mediaPlayer.isLoading.value).eq(false);
+      expect(mediaPlayer.hasNext.value).eq(false);
+      expect(mediaPlayer.hasPrevious.value).eq(false);
+      expect(mediaPlayer.queue.value.length).eq(0);
+      expect(mediaPlayer.currentTrack.value).eq(undefined);
+      expect(mediaPlayer.currentPosition.value).toBeNaN();
+      expect(mediaPlayer.currentTrackDuration.value).toBeNaN();
     });
-    await flushPromises();
-
-    // Assert
-    expect(mediaPlayer.currentPosition.value).equals(0);
-    expect(mediaPlayer.queue.value).length(1);
-    expect(mediaPlayer.queue.value[0]?.id).equals(5);
-    expect(mediaPlayer.queue.value.currentTrack?.id).equals(5);
-    expect(mediaPlayer.queue.value.index).equals(0);
-    expect(mediaPlayer.currentTrack.value?.id).equals(5);
-    expect(audioElements).length(1);
-    expect(audioElements[0]?.autoplay).equals(true);
-    expect(mediaPlayer.status.value).equals(MediaPlayerStatus.Playing);
   });
 
-  it("remains stopped with an empty queue when queue is set to an empty array", async () => {
-    // Arrange
-    const mediaPlayer = initMediaPlayer(
-      () => new HTMLAudioElement() as unknown as globalThis.HTMLAudioElement,
-      appInsights
-    );
+  /// Outside method/setter calls
 
-    // Act
-    mediaPlayer.addToQueue({
-      id: 5,
-      type: "track",
-    });
-    await flushPromises();
-    mediaPlayer.setQueue([]);
-    await flushPromises();
-
-    // Assert
-    expect(mediaPlayer.queue.value).length(0);
-    expect(mediaPlayer.queue.value.index).equals(-1);
-    expect(mediaPlayer.queue.value.currentTrack).equals(undefined);
-    expect(mediaPlayer.currentTrack.value).equals(undefined);
-    expect(mediaPlayer.status.value).equals(MediaPlayerStatus.Stopped);
-  });
-
-  it("pauses the playing media and updates status if pause-action is triggered.", async () => {
-    // Arrange
-    const audioElements: HTMLAudioElement[] = [];
-    let spy: SpyInstance<[], void> | undefined;
-    const mediaPlayer = initMediaPlayer(() => {
-      const el = new HTMLAudioElement();
-      spy = vi.spyOn(el, "pause");
-
-      audioElements.push(el);
-      return el as unknown as globalThis.HTMLAudioElement;
-    }, appInsights);
-
-    // Act
-    mediaPlayer.setQueue([
-      {
-        id: 5,
-        type: "track",
-      },
-    ]);
-    await flushPromises();
-    mediaPlayer.pause();
-
-    // Assert
-    expect(mediaPlayer.status.value).equals(MediaPlayerStatus.Paused);
-    expect(spy).toHaveBeenCalledTimes(1);
-  });
-
-  it("resumes the playing media and updates status if play-action is triggered on paused track", async () => {
-    // Arrange
-    const audioElements: HTMLAudioElement[] = [];
-    let spy: SpyInstance<[], Promise<void>> | undefined;
-    const mediaPlayer = initMediaPlayer(() => {
-      const el = new HTMLAudioElement();
-      spy = vi.spyOn(el, "play");
-
-      audioElements.push(el);
-      return el as unknown as globalThis.HTMLAudioElement;
-    }, appInsights);
-
-    // Act
-    mediaPlayer.addToQueue({
-      id: 5,
-      type: "track",
-    });
-    await flushPromises();
-    mediaPlayer.pause();
-    await flushPromises();
-    mediaPlayer.play();
-    audioElements[0]?.dispatchEvent(
-      new Event("play", { bubbles: false, cancelable: false })
-    );
-    await flushPromises();
-
-    // Assert
-    expect(mediaPlayer.status.value).equals(MediaPlayerStatus.Playing);
-    expect(spy).toHaveBeenCalledTimes(1);
-  });
-
-  it("starts playing the track on index if index is changed and playing is paused", async () => {
-    // Arrange
-    const audioElements: HTMLAudioElement[] = [];
-    let spy: SpyInstance<[], Promise<void>> | undefined;
-    const mediaPlayer = initMediaPlayer(() => {
-      const el = new HTMLAudioElement();
-      spy = vi.spyOn(el, "play");
-
-      audioElements.push(el);
-      return el as unknown as globalThis.HTMLAudioElement;
-    }, appInsights);
-
-    // Act
-    mediaPlayer.setQueue([
-      {
-        id: 5,
-        type: "track",
-      },
-      {
-        id: 2,
-        type: "track",
-      },
-      {
-        id: 9,
-        type: "track",
-      },
-    ]);
-    await flushPromises();
-    mediaPlayer.pause();
-    await flushPromises();
-    mediaPlayer.queue.value.index = 1;
-    await flushPromises();
-
-    // Assert
-    expect(mediaPlayer.status.value).equals(MediaPlayerStatus.Playing);
-    expect(spy).toHaveBeenCalledTimes(0);
-  });
-
-  it(
-    "shuffles the elements on the queue if method is called",
-    () => {
+  describe("seeking", () => {
+    it("sets the position on the current element", async () => {
       // Arrange
       const mediaPlayer = initMediaPlayer(
-        () => new HTMLAudioElement() as unknown as globalThis.HTMLAudioElement,
-        appInsights
+        () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
+        {
+          trackEvent() {},
+        } as unknown as ApplicationInsights
+      );
+      await flushPromises();
+      mediaPlayer.setQueue([{ id: 1, type: "track" }]);
+      await flushPromises();
+
+      // Act
+      mediaPlayer.currentPosition.value = 100;
+      await flushPromises();
+
+      // Assert
+      expect(MockedMediaTrack.mock.results[0]!.value.obj!.position).eq(100);
+    });
+
+    it("ignores the given position if there is no current element", async () => {
+      // Arrange
+      const mediaPlayer = initMediaPlayer(
+        () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
+        {
+          trackEvent() {},
+        } as unknown as ApplicationInsights
       );
 
       // Act
-      mediaPlayer.setQueue(
-        new Array(50).fill(0).map((_, i) => ({
-          id: i,
-          type: "track",
-        }))
-      );
-      mediaPlayer.queue.value.shuffle();
+      mediaPlayer.currentPosition.value = 100;
+      await flushPromises();
 
       // Assert
-      expect(mediaPlayer.queue.value[2]?.id).not.eq(2);
-    },
-    { retry: 100 }
-  );
+      expect(MediaTrack).not.toHaveBeenCalled();
+      expect(mediaPlayer.currentPosition.value).toBeNaN();
+    });
+  });
 
-  it(
-    "unshuffles the elements on the queue if method is called after shuffling",
-    () => {
+  describe("play()", () => {
+    it("calls `play` function on the current element", async () => {
       // Arrange
-      const mediaPlayer = initMediaPlayer(
-        () => new HTMLAudioElement() as unknown as globalThis.HTMLAudioElement,
-        appInsights
+      const mediaPlayer = ref(
+        initMediaPlayer(
+          () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
+          {
+            trackEvent() {},
+          } as unknown as ApplicationInsights
+        )
+      );
+
+      mediaPlayer.value.setQueue([{ id: 1, type: "track" }]);
+      await flushPromises();
+      mediaPlayer.value.pause();
+      playMocks[0]!.mockClear();
+
+      // Act
+      mediaPlayer.value.play();
+      await flushPromises();
+
+      // Assert
+      expect(playMocks).length(1);
+      expect(playMocks[0]).toHaveBeenCalledOnce();
+    });
+
+    it("inits a new current element if no current element having a non-empty queue", async () => {
+      // Arrange
+      const mediaPlayer = ref(
+        initMediaPlayer(
+          () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
+          {
+            trackEvent() {},
+          } as unknown as ApplicationInsights
+        )
+      );
+      mediaPlayer.value.setQueue([{ id: 1, type: "track" }]);
+      await flushPromises();
+      mediaPlayer.value.stop();
+      await flushPromises();
+      MockedMediaTrack.mockClear();
+
+      // Act
+      mediaPlayer.value.play();
+      await flushPromises();
+
+      // Assert
+      expect(MockedMediaTrack).toHaveBeenCalledOnce();
+    });
+
+    it("ignores the action if there is no current element and an empty queue", async () => {
+      // Arrange
+      const mediaPlayer = ref(
+        initMediaPlayer(
+          () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
+          {
+            trackEvent() {},
+          } as unknown as ApplicationInsights
+        )
       );
 
       // Act
-      mediaPlayer.setQueue(
-        new Array(50).fill(0).map((_, i) => ({
-          id: i,
-          type: "track",
-        }))
-      );
-      mediaPlayer.queue.value.shuffle();
-      mediaPlayer.queue.value.unshuffle();
+      mediaPlayer.value.play();
+      await flushPromises();
 
       // Assert
-      expect(mediaPlayer.queue.value[2]?.id).eq(2);
-    },
-    { repeats: 100 }
-  );
-
-  it("changes index on shuffling without triggering a new track to play", async () => {
-    // Arrange
-    const returnValue = vi.fn(
-      () => new HTMLAudioElement() as unknown as globalThis.HTMLAudioElement
-    );
-    const mediaPlayer = initMediaPlayer(() => returnValue(), appInsights);
-
-    // Act
-    mediaPlayer.setQueue(
-      new Array(50).fill(0).map((_, i) => ({
-        id: i,
-        type: "track",
-      })),
-      20
-    );
-    await flushPromises();
-
-    // Assert
-    mediaPlayer.queue.value.shuffle();
-    await flushPromises();
-    mediaPlayer.queue.value.unshuffle();
-    await flushPromises();
-
-    expect(returnValue).toHaveBeenCalledOnce();
+      expect(playMocks).length(0);
+    });
   });
 
-  it("updates the the current position if media triggers `timeupdate`", async () => {
-    const audioElements: HTMLAudioElement[] = [];
-    const mediaPlayer = initMediaPlayer(() => {
-      const el = new HTMLAudioElement();
+  describe("pause()", () => {
+    it("calls `pause` function on the current element", async () => {
+      // Arrange
+      const mediaPlayer = ref(
+        initMediaPlayer(
+          () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
+          {
+            trackEvent() {},
+          } as unknown as ApplicationInsights
+        )
+      );
 
-      audioElements.push(el);
-      return el as unknown as globalThis.HTMLAudioElement;
-    }, appInsights);
+      mediaPlayer.value.setQueue([{ id: 1, type: "track" }]);
+      await flushPromises();
+      pauseMocks[0]!.mockClear();
 
-    // Act
-    mediaPlayer.setQueue([
-      {
-        id: 5,
-        type: "track",
-      },
-      {
-        id: 2,
-        type: "track",
-      },
-      {
-        id: 9,
-        type: "track",
-      },
-    ]);
-    await flushPromises();
-    audioElements[0]!.currentTime = 500;
-    audioElements[0]!.dispatchEvent(
-      new Event("timeupdate", { bubbles: false, cancelable: false })
-    );
-    await flushPromises();
+      // Act
+      mediaPlayer.value.pause();
+      await flushPromises();
 
-    // Assert
-    expect(mediaPlayer.currentPosition.value).equals(500);
+      // Assert
+      expect(pauseMocks).length(1);
+      expect(pauseMocks[0]).toHaveBeenCalledOnce();
+    });
+
+    it("ignores the action if there is no current element", async () => {
+      // Arrange
+      const mediaPlayer = ref(
+        initMediaPlayer(
+          () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
+          {
+            trackEvent() {},
+          } as unknown as ApplicationInsights
+        )
+      );
+
+      // Act
+      mediaPlayer.value.pause();
+      await flushPromises();
+
+      // Assert
+      expect(pauseMocks).length(0);
+    });
   });
 
-  it("updates the media item when the user seeks", async () => {
-    const audioElements: HTMLAudioElement[] = [];
-    const mediaPlayer = initMediaPlayer(() => {
-      const el = new HTMLAudioElement();
+  describe("stop()", () => {
+    it("clears the current element which resets all properties", async () => {
+      // Arrange
+      const mediaPlayer = ref(
+        initMediaPlayer(
+          () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
+          {
+            trackEvent() {},
+          } as unknown as ApplicationInsights
+        )
+      );
 
-      audioElements.push(el);
-      return el as unknown as globalThis.HTMLAudioElement;
-    }, appInsights);
+      mediaPlayer.value.setQueue([{ id: 1, type: "track" }]);
+      await flushPromises();
+      const statusChanges: MediaPlayerStatus[] = [];
+      watch(
+        () => mediaPlayer.value.status,
+        (v) => {
+          statusChanges.push(v);
+        }
+      );
 
-    // Act
-    mediaPlayer.setQueue([
-      {
-        id: 5,
-        type: "track",
-      },
-      {
-        id: 2,
-        type: "track",
-      },
-      {
-        id: 9,
-        type: "track",
-      },
-    ]);
-    await flushPromises();
-    mediaPlayer.currentPosition.value = 500;
-    await flushPromises();
+      // Act
+      mediaPlayer.value.stop();
+      await flushPromises();
 
-    // Assert
-    expect(audioElements[0]!.currentTime).equals(500);
+      // Assert
+      expect(mediaPlayer.value.status).eq(MediaPlayerStatus.Stopped);
+      expect(statusChanges).eql([MediaPlayerStatus.Stopped]);
+      expect(mediaPlayer.value.isLoading).eq(false);
+      expect(mediaPlayer.value.hasNext).eq(false);
+      expect(mediaPlayer.value.hasPrevious).eq(false);
+      expect(mediaPlayer.value.queue.length).eq(1);
+      expect(mediaPlayer.value.currentTrack).eql({ id: 1, type: "track" });
+      expect(mediaPlayer.value.currentPosition).toBeNaN();
+      expect(mediaPlayer.value.currentTrackDuration).toBeNaN();
+    });
   });
 
-  it("resets all values when calling `stop`", async () => {
-    const audioElements: HTMLAudioElement[] = [];
-    const mediaPlayer = initMediaPlayer(() => {
-      const el = new HTMLAudioElement();
+  describe("next()", () => {
+    it("inits the next track as current element", async () => {
+      // Arrange
+      const mediaPlayer = ref(
+        initMediaPlayer(
+          () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
+          {
+            trackEvent() {},
+          } as unknown as ApplicationInsights
+        )
+      );
 
-      audioElements.push(el);
-      return el as unknown as globalThis.HTMLAudioElement;
-    }, appInsights);
+      mediaPlayer.value.setQueue([
+        { id: 1, type: "track" },
+        { id: 2, type: "track" },
+      ]);
+      await flushPromises();
+      MockedMediaTrack.mockClear();
 
-    // Act
-    mediaPlayer.setQueue(
-      [
-        {
-          id: 5,
-          type: "track",
-        },
-        {
-          id: 2,
-          type: "track",
-        },
-      ],
-      1
-    );
-    await flushPromises();
-    mediaPlayer.stop();
-    await flushPromises();
+      const currentTracks: (TrackModel | undefined)[] = [];
+      watch(
+        () => mediaPlayer.value.currentTrack,
+        (v) => {
+          currentTracks.push(v);
+        }
+      );
 
-    // Assert
-    expect(mediaPlayer.queue.value).length(2);
-    expect(mediaPlayer.queue.value.currentTrack?.id).equals(2);
-    expect(mediaPlayer.currentTrack.value?.id).equals(2);
-    expect(mediaPlayer.status.value).equals(MediaPlayerStatus.Stopped);
+      // Act
+      mediaPlayer.value.next();
+      await flushPromises();
+
+      // Assert
+      expect(MockedMediaTrack).toHaveBeenCalledOnce();
+      expect(currentTracks).eql([{ id: 2, type: "track" }]);
+    });
+
+    it("skips the action if there is no next element", async () => {
+      // Arrange
+      const mediaPlayer = ref(
+        initMediaPlayer(
+          () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
+          {
+            trackEvent() {},
+          } as unknown as ApplicationInsights
+        )
+      );
+
+      mediaPlayer.value.setQueue([{ id: 1, type: "track" }]);
+      await flushPromises();
+      MockedMediaTrack.mockClear();
+
+      const currentTracks: (TrackModel | undefined)[] = [];
+      watch(
+        () => mediaPlayer.value.currentTrack,
+        (v) => {
+          currentTracks.push(v);
+        }
+      );
+
+      // Act
+      mediaPlayer.value.next();
+      await flushPromises();
+
+      // Assert
+      expect(MockedMediaTrack).toHaveBeenCalledTimes(0);
+      expect(currentTracks).eql([]);
+    });
+
+    it("destroys the old element when initializing the new", async () => {
+      // Arrange
+      const mediaPlayer = ref(
+        initMediaPlayer(
+          () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
+          {
+            trackEvent() {},
+          } as unknown as ApplicationInsights
+        )
+      );
+
+      mediaPlayer.value.setQueue([
+        { id: 1, type: "track" },
+        { id: 2, type: "track" },
+      ]);
+      await flushPromises();
+
+      // Act
+      mediaPlayer.value.next();
+      await flushPromises();
+
+      // Assert
+      expect(destroyMocks).length(2);
+      expect(destroyMocks[0]).toHaveBeenCalledOnce();
+      expect(destroyMocks[1]).toHaveBeenCalledTimes(0);
+    });
   });
 
-  it("start playing when calling `play` after `stop`", async () => {
-    const audioElements: HTMLAudioElement[] = [];
-    const mediaPlayer = initMediaPlayer(() => {
-      const el = new HTMLAudioElement();
+  describe("previous()", () => {
+    it("inits the previous track as current element", async () => {
+      // Arrange
+      const mediaPlayer = ref(
+        initMediaPlayer(
+          () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
+          {
+            trackEvent() {},
+          } as unknown as ApplicationInsights
+        )
+      );
 
-      audioElements.push(el);
-      return el as unknown as globalThis.HTMLAudioElement;
-    }, appInsights);
+      mediaPlayer.value.setQueue(
+        [
+          { id: 1, type: "track" },
+          { id: 2, type: "track" },
+        ],
+        1
+      );
+      await flushPromises();
+      MockedMediaTrack.mockClear();
 
-    // Act
-    mediaPlayer.setQueue(
-      [
-        {
-          id: 5,
-          type: "track",
-        },
-        {
-          id: 2,
-          type: "track",
-        },
-      ],
-      1
-    );
-    await flushPromises();
-    mediaPlayer.stop();
-    await flushPromises();
-    mediaPlayer.play();
-    await flushPromises();
+      const currentTracks: (TrackModel | undefined)[] = [];
+      watch(
+        () => mediaPlayer.value.currentTrack,
+        (v) => {
+          currentTracks.push(v);
+        }
+      );
 
-    // Assert
-    expect(mediaPlayer.queue.value).length(2);
-    expect(mediaPlayer.queue.value.currentTrack?.id).equals(2);
-    expect(mediaPlayer.currentTrack.value?.id).equals(2);
-    expect(mediaPlayer.status.value).equals(MediaPlayerStatus.Playing);
-    expect(audioElements).length(2);
+      // Act
+      mediaPlayer.value.previous();
+      await flushPromises();
+
+      // Assert
+      expect(MockedMediaTrack).toHaveBeenCalledOnce();
+      expect(currentTracks).eql([{ id: 1, type: "track" }]);
+    });
+
+    it("skips the action if there is no previous element", async () => {
+      // Arrange
+      const mediaPlayer = ref(
+        initMediaPlayer(
+          () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
+          {
+            trackEvent() {},
+          } as unknown as ApplicationInsights
+        )
+      );
+
+      mediaPlayer.value.setQueue(
+        [
+          { id: 1, type: "track" },
+          { id: 2, type: "track" },
+        ],
+        0
+      );
+      await flushPromises();
+      MockedMediaTrack.mockClear();
+
+      const currentTracks: (TrackModel | undefined)[] = [];
+      watch(
+        () => mediaPlayer.value.currentTrack,
+        (v) => {
+          currentTracks.push(v);
+        }
+      );
+
+      // Act
+      mediaPlayer.value.previous();
+      await flushPromises();
+
+      // Assert
+      expect(MockedMediaTrack).toHaveBeenCalledTimes(0);
+      expect(currentTracks).eql([]);
+    });
+
+    it("destroys the old element when initializing the new", async () => {
+      // Arrange
+      const mediaPlayer = ref(
+        initMediaPlayer(
+          () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
+          {
+            trackEvent() {},
+          } as unknown as ApplicationInsights
+        )
+      );
+
+      mediaPlayer.value.setQueue(
+        [
+          { id: 1, type: "track" },
+          { id: 2, type: "track" },
+        ],
+        1
+      );
+      await flushPromises();
+
+      // Act
+      mediaPlayer.value.previous();
+      await flushPromises();
+
+      // Assert
+      expect(destroyMocks).length(2);
+      expect(destroyMocks[0]).toHaveBeenCalledOnce();
+      expect(destroyMocks[1]).toHaveBeenCalledTimes(0);
+    });
+  });
+
+  describe("setQueue()", () => {
+    it("replaces the current queue by a new one with an index of 0 if not provided", async () => {
+      // Arrange
+      const mediaPlayer = ref(
+        initMediaPlayer(
+          () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
+          {
+            trackEvent() {},
+          } as unknown as ApplicationInsights
+        )
+      );
+
+      MockedQueue.mockClear();
+      const oldQueue = mediaPlayer.value.queue;
+
+      const queues: TrackModel[][] = [];
+      watch(
+        () => mediaPlayer.value.queue,
+        (v) => {
+          queues.push(v);
+        }
+      );
+
+      // Act
+      mediaPlayer.value.setQueue([
+        { id: 1, type: "track" },
+        { id: 2, type: "track" },
+      ]);
+      await flushPromises();
+
+      // Assert
+      expect(MockedQueue).toHaveBeenCalledOnce();
+      expect(mediaPlayer.value.queue).length(2);
+      expect(mediaPlayer.value.queue).not.eq(oldQueue);
+      expect(mediaPlayer.value.queue.index).eq(0);
+      expect(queues.length).eq(1);
+    });
+
+    it("sets the index on the queue if provided", async () => {
+      // Arrange
+      const mediaPlayer = ref(
+        initMediaPlayer(
+          () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
+          {
+            trackEvent() {},
+          } as unknown as ApplicationInsights
+        )
+      );
+
+      // Act
+      mediaPlayer.value.setQueue(
+        [
+          { id: 1, type: "track" },
+          { id: 2, type: "track" },
+        ],
+        1
+      );
+      await flushPromises();
+
+      // Assert
+      expect(mediaPlayer.value.queue.index).eq(1);
+    });
+
+    it("initializes the current element", async () => {
+      // Arrange
+      const mediaPlayer = ref(
+        initMediaPlayer(
+          () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
+          {
+            trackEvent() {},
+          } as unknown as ApplicationInsights
+        )
+      );
+
+      const currentTracks: (TrackModel | undefined)[] = [];
+      watch(
+        () => mediaPlayer.value.currentTrack,
+        (v) => {
+          currentTracks.push(v);
+        }
+      );
+      MockedMediaTrack.mockClear();
+
+      // Act
+      mediaPlayer.value.setQueue(
+        [
+          { id: 1, type: "track" },
+          { id: 2, type: "track" },
+        ],
+        1
+      );
+      await flushPromises();
+
+      // Assert
+      expect(MockedMediaTrack).toHaveBeenCalledOnce();
+      expect(currentTracks).eql([{ id: 2, type: "track" }]);
+    });
+  });
+
+  describe("addToQueue()", () => {
+    it("adds an element to the end of the queue if current element is set", async () => {
+      // Arrange
+      const mediaPlayer = ref(
+        initMediaPlayer(
+          () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
+          {
+            trackEvent() {},
+          } as unknown as ApplicationInsights
+        )
+      );
+
+      mediaPlayer.value.setQueue([
+        { id: 1, type: "track" },
+        { id: 2, type: "track" },
+      ]);
+      await flushPromises();
+
+      const currentTracks: (TrackModel | undefined)[] = [];
+      watch(
+        () => mediaPlayer.value.currentTrack,
+        (v) => {
+          currentTracks.push(v);
+        }
+      );
+      MockedMediaTrack.mockClear();
+
+      // Act
+      mediaPlayer.value.addToQueue({ id: 3, type: "track" });
+      await flushPromises();
+
+      // Assert
+      expect(MockedMediaTrack).toHaveBeenCalledTimes(0);
+      expect(currentTracks).eql([]);
+      expect(mediaPlayer.value.queue).eql([
+        { id: 1, type: "track" },
+        { id: 2, type: "track" },
+        { id: 3, type: "track" },
+      ]);
+    });
+
+    it("adds an element to the queue and start playing if queue is empty", async () => {
+      // Arrange
+      const mediaPlayer = ref(
+        initMediaPlayer(
+          () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
+          {
+            trackEvent() {},
+          } as unknown as ApplicationInsights
+        )
+      );
+
+      const currentTracks: (TrackModel | undefined)[] = [];
+      watch(
+        () => mediaPlayer.value.currentTrack,
+        (v) => {
+          currentTracks.push(v);
+        }
+      );
+      MockedMediaTrack.mockClear();
+
+      // Act
+      mediaPlayer.value.addToQueue({ id: 3, type: "track" });
+      await flushPromises();
+
+      // Assert
+      expect(MockedMediaTrack).toHaveBeenCalledTimes(1);
+      expect(currentTracks).eql([{ id: 3, type: "track" }]);
+      expect(mediaPlayer.value.queue).eql([{ id: 3, type: "track" }]);
+    });
+
+    it("adds an element to the queue and start playing if queue has finished playing", async () => {
+      // Arrange
+      const mediaPlayer = ref(
+        initMediaPlayer(
+          () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
+          {
+            trackEvent() {},
+          } as unknown as ApplicationInsights
+        )
+      );
+
+      mediaPlayer.value.setQueue(
+        [
+          { id: 1, type: "track" },
+          { id: 2, type: "track" },
+        ],
+        1
+      );
+      await flushPromises();
+
+      MockedMediaTrack.mock.results[0]!.value.obj!.paused = true;
+      MockedMediaTrack.mock.results[0]!.value.obj!.ended = true;
+      await flushPromises();
+
+      const currentTracks: (TrackModel | undefined)[] = [];
+      watch(
+        () => mediaPlayer.value.currentTrack,
+        (v) => {
+          currentTracks.push(v);
+        }
+      );
+      MockedMediaTrack.mockClear();
+
+      // Act
+      mediaPlayer.value.addToQueue({ id: 3, type: "track" });
+      await flushPromises();
+
+      // Assert
+      expect(MockedMediaTrack).toHaveBeenCalledTimes(1);
+      expect(currentTracks).eql([{ id: 3, type: "track" }]);
+      expect(mediaPlayer.value.queue).eql([
+        { id: 1, type: "track" },
+        { id: 2, type: "track" },
+        { id: 3, type: "track" },
+      ]);
+    });
+  });
+
+  describe("playNext()", () => {
+    it("adds an element to the queue next to the current element if current element is set", async () => {
+      // Arrange
+      const mediaPlayer = ref(
+        initMediaPlayer(
+          () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
+          {
+            trackEvent() {},
+          } as unknown as ApplicationInsights
+        )
+      );
+
+      mediaPlayer.value.setQueue([
+        { id: 1, type: "track" },
+        { id: 3, type: "track" },
+      ]);
+      await flushPromises();
+
+      const currentTracks: (TrackModel | undefined)[] = [];
+      watch(
+        () => mediaPlayer.value.currentTrack,
+        (v) => {
+          currentTracks.push(v);
+        }
+      );
+      MockedMediaTrack.mockClear();
+
+      // Act
+      mediaPlayer.value.playNext({ id: 2, type: "track" });
+      await flushPromises();
+
+      // Assert
+      expect(MockedMediaTrack).toHaveBeenCalledTimes(0);
+      expect(currentTracks).eql([]);
+      expect(mediaPlayer.value.queue).eql([
+        { id: 1, type: "track" },
+        { id: 2, type: "track" },
+        { id: 3, type: "track" },
+      ]);
+    });
+
+    it("adds an element to the queue next to the current element if another track has been added and current element is set", async () => {
+      // Arrange
+      const mediaPlayer = ref(
+        initMediaPlayer(
+          () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
+          {
+            trackEvent() {},
+          } as unknown as ApplicationInsights
+        )
+      );
+
+      mediaPlayer.value.setQueue([
+        { id: 1, type: "track" },
+        { id: 4, type: "track" },
+      ]);
+      await flushPromises();
+
+      // Act
+      mediaPlayer.value.playNext({ id: 3, type: "track" });
+      mediaPlayer.value.playNext({ id: 2, type: "track" });
+      await flushPromises();
+
+      // Assert
+      expect(mediaPlayer.value.queue).eql([
+        { id: 1, type: "track" },
+        { id: 2, type: "track" },
+        { id: 3, type: "track" },
+        { id: 4, type: "track" },
+      ]);
+    });
+
+    it("adds an element to the queue and start playing if queue is empty", async () => {
+      // Arrange
+      const mediaPlayer = ref(
+        initMediaPlayer(
+          () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
+          {
+            trackEvent() {},
+          } as unknown as ApplicationInsights
+        )
+      );
+
+      const currentTracks: (TrackModel | undefined)[] = [];
+      watch(
+        () => mediaPlayer.value.currentTrack,
+        (v) => {
+          currentTracks.push(v);
+        }
+      );
+      MockedMediaTrack.mockClear();
+
+      // Act
+      mediaPlayer.value.playNext({ id: 3, type: "track" });
+      await flushPromises();
+
+      // Assert
+      expect(MockedMediaTrack).toHaveBeenCalledTimes(1);
+      expect(currentTracks).eql([{ id: 3, type: "track" }]);
+      expect(mediaPlayer.value.queue).eql([{ id: 3, type: "track" }]);
+    });
+
+    it("adds an element to the queue next to the current element and start playing if queue has finished playing", async () => {
+      // Arrange
+      const mediaPlayer = ref(
+        initMediaPlayer(
+          () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
+          {
+            trackEvent() {},
+          } as unknown as ApplicationInsights
+        )
+      );
+
+      mediaPlayer.value.setQueue(
+        [
+          { id: 1, type: "track" },
+          { id: 2, type: "track" },
+        ],
+        1
+      );
+      await flushPromises();
+
+      MockedMediaTrack.mock.results[0]!.value.obj!.paused = true;
+      MockedMediaTrack.mock.results[0]!.value.obj!.ended = true;
+      await flushPromises();
+
+      const currentTracks: (TrackModel | undefined)[] = [];
+      watch(
+        () => mediaPlayer.value.currentTrack,
+        (v) => {
+          currentTracks.push(v);
+        }
+      );
+      MockedMediaTrack.mockClear();
+
+      // Act
+      mediaPlayer.value.playNext({ id: 3, type: "track" });
+      await flushPromises();
+
+      // Assert
+      expect(MockedMediaTrack).toHaveBeenCalledTimes(1);
+      expect(currentTracks).eql([{ id: 3, type: "track" }]);
+      expect(mediaPlayer.value.queue).eql([
+        { id: 1, type: "track" },
+        { id: 2, type: "track" },
+        { id: 3, type: "track" },
+      ]);
+    });
+  });
+
+  /// Inside updates
+
+  describe("while playing a track", () => {
+    describe("currentPosition", () => {
+      it("updates the position of the current element as it changes", async () => {
+        // Arrange
+        const mediaPlayer = ref(
+          initMediaPlayer(
+            () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
+            {
+              trackEvent() {},
+            } as unknown as ApplicationInsights
+          )
+        );
+
+        const positions: number[] = [];
+        watch(
+          () => mediaPlayer.value.currentPosition,
+          (v) => {
+            positions.push(v);
+          }
+        );
+
+        // Act
+        mediaPlayer.value.setQueue([{ id: 1, type: "track" }]);
+        await flushPromises();
+        MockedMediaTrack.mock.results[0]!.value.obj!.position = 100;
+        await flushPromises();
+        MockedMediaTrack.mock.results[0]!.value.obj!.position = 105;
+        await flushPromises();
+
+        // Assert
+        expect(MediaTrack).toHaveBeenCalledOnce();
+        expect(positions).eql([0, 100, 105]);
+        expect(mediaPlayer.value.currentPosition).eq(105);
+      });
+
+      it("updates to the initial position of the new current element", async () => {
+        // Arrange
+        const mediaPlayer = ref(
+          initMediaPlayer(
+            () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
+            {
+              trackEvent() {},
+            } as unknown as ApplicationInsights
+          )
+        );
+
+        mediaPlayer.value.setQueue([{ id: 1, type: "track" }]);
+        await flushPromises();
+
+        MockedMediaTrack.mock.results[0]!.value.obj!.position = 100;
+        await flushPromises();
+
+        const positions: number[] = [];
+        watch(
+          () => mediaPlayer.value.currentPosition,
+          (v) => {
+            positions.push(v);
+          }
+        );
+
+        // Act
+        mediaPlayer.value.setQueue([{ id: 1, type: "track" }]);
+        await flushPromises();
+
+        // Assert
+        expect(MediaTrack).toHaveBeenCalledTimes(2);
+        expect(MockedMediaTrack.mock.results[1]!.value.p).eq(0);
+        expect(positions).eql([0]);
+        expect(mediaPlayer.value.currentPosition).eq(0);
+      });
+
+      it("updates to the NaN if player is stopped", async () => {
+        // Arrange
+        const mediaPlayer = ref(
+          initMediaPlayer(
+            () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
+            {
+              trackEvent() {},
+            } as unknown as ApplicationInsights
+          )
+        );
+
+        mediaPlayer.value.setQueue([{ id: 1, type: "track" }]);
+        await flushPromises();
+
+        MockedMediaTrack.mock.results[0]!.value.obj!.position = 100;
+        await flushPromises();
+
+        const positions: number[] = [];
+        watch(
+          () => mediaPlayer.value.currentPosition,
+          (v) => {
+            positions.push(v);
+          }
+        );
+
+        // Act
+        mediaPlayer.value.stop();
+        await flushPromises();
+
+        // Assert
+        expect(MediaTrack).toHaveBeenCalledOnce();
+        expect(positions).eql([NaN]);
+        expect(mediaPlayer.value.currentPosition).toBeNaN();
+      });
+    });
+
+    describe("play/pause", () => {
+      it("shows the the player as paused when the MediaTrack responds", async () => {
+        // Arrange
+        const mediaPlayer = ref(
+          initMediaPlayer(
+            () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
+            {
+              trackEvent() {},
+            } as unknown as ApplicationInsights
+          )
+        );
+
+        mediaPlayer.value.setQueue([{ id: 1, type: "track" }]);
+        await flushPromises();
+
+        const statusValues: MediaPlayerStatus[] = [];
+        watch(
+          () => mediaPlayer.value.status,
+          (v) => {
+            statusValues.push(v);
+          }
+        );
+
+        // Act
+        MockedMediaTrack.mock.results[0]!.value.obj!.paused = true;
+        await flushPromises();
+
+        // Assert
+        expect(statusValues).eql([MediaPlayerStatus.Paused]);
+      });
+
+      it("shows the the player as resuming when the MediaTrack responds", async () => {
+        // Arrange
+        const mediaPlayer = ref(
+          initMediaPlayer(
+            () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
+            {
+              trackEvent() {},
+            } as unknown as ApplicationInsights
+          )
+        );
+
+        mediaPlayer.value.setQueue([{ id: 1, type: "track" }]);
+        await flushPromises();
+        MockedMediaTrack.mock.results[0]!.value.obj!.paused = true;
+        await flushPromises();
+
+        const statusValues: MediaPlayerStatus[] = [];
+        watch(
+          () => mediaPlayer.value.status,
+          (v) => {
+            statusValues.push(v);
+          }
+        );
+
+        // Act
+        MockedMediaTrack.mock.results[0]!.value.obj!.paused = false;
+        await flushPromises();
+
+        // Assert
+        expect(statusValues).eql([MediaPlayerStatus.Playing]);
+      });
+    });
+
+    describe("isLoading", () => {
+      it("shows the the player as loading when the MediaTrack responds", async () => {
+        // Arrange
+        const mediaPlayer = ref(
+          initMediaPlayer(
+            () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
+            {
+              trackEvent() {},
+            } as unknown as ApplicationInsights
+          )
+        );
+
+        mediaPlayer.value.setQueue([{ id: 1, type: "track" }]);
+        await flushPromises();
+
+        const isLoadingValues: Boolean[] = [];
+        watch(
+          () => mediaPlayer.value.isLoading,
+          (v) => {
+            isLoadingValues.push(v);
+          }
+        );
+
+        // Act
+        MockedMediaTrack.mock.results[0]!.value.obj!.loading = true;
+        await flushPromises();
+
+        // Assert
+        expect(isLoadingValues).eql([true]);
+      });
+
+      it("shows the the player as done loading when the MediaTrack responds", async () => {
+        // Arrange
+        const mediaPlayer = ref(
+          initMediaPlayer(
+            () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
+            {
+              trackEvent() {},
+            } as unknown as ApplicationInsights
+          )
+        );
+
+        mediaPlayer.value.setQueue([{ id: 1, type: "track" }]);
+        await flushPromises();
+        MockedMediaTrack.mock.results[0]!.value.obj!.loading = true;
+        await flushPromises();
+
+        const isLoadingValues: Boolean[] = [];
+        watch(
+          () => mediaPlayer.value.isLoading,
+          (v) => {
+            isLoadingValues.push(v);
+          }
+        );
+
+        // Act
+        MockedMediaTrack.mock.results[0]!.value.obj!.loading = false;
+        await flushPromises();
+
+        // Assert
+        expect(isLoadingValues).eql([false]);
+      });
+    });
+  });
+
+  describe("Queue integration", () => {
+    describe("hasNext", () => {
+      it("changes to true if tracks are added to the queue", async () => {
+        // Arrange
+        const mediaPlayer = ref(
+          initMediaPlayer(
+            () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
+            {
+              trackEvent() {},
+            } as unknown as ApplicationInsights
+          )
+        );
+
+        const hasNextValues: Boolean[] = [];
+        watch(
+          () => mediaPlayer.value.hasNext,
+          (v) => {
+            hasNextValues.push(v);
+          }
+        );
+
+        // Act
+        mediaPlayer.value.setQueue([
+          { id: 1, type: "track" },
+          { id: 2, type: "track" },
+        ]);
+        await flushPromises();
+
+        // Assert
+        expect(hasNextValues).eql([true]);
+      });
+
+      it("doesn't update again when switching to pre-previous track", async () => {
+        // Arrange
+        const mediaPlayer = ref(
+          initMediaPlayer(
+            () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
+            {
+              trackEvent() {},
+            } as unknown as ApplicationInsights
+          )
+        );
+
+        mediaPlayer.value.setQueue([
+          { id: 1, type: "track" },
+          { id: 2, type: "track" },
+          { id: 3, type: "track" },
+        ]);
+        await flushPromises();
+
+        const hasNextValues: Boolean[] = [];
+        watch(
+          () => mediaPlayer.value.hasNext,
+          (v) => {
+            hasNextValues.push(v);
+          }
+        );
+
+        // Act
+        mediaPlayer.value.next();
+        await flushPromises();
+
+        // Assert
+        expect(hasNextValues).eql([]);
+      });
+
+      it("changes to false if end of queue is reached", async () => {
+        // Arrange
+        const mediaPlayer = ref(
+          initMediaPlayer(
+            () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
+            {
+              trackEvent() {},
+            } as unknown as ApplicationInsights
+          )
+        );
+
+        mediaPlayer.value.setQueue([
+          { id: 1, type: "track" },
+          { id: 2, type: "track" },
+        ]);
+        await flushPromises();
+
+        const hasNextValues: Boolean[] = [];
+        watch(
+          () => mediaPlayer.value.hasNext,
+          (v) => {
+            hasNextValues.push(v);
+          }
+        );
+
+        // Act
+        mediaPlayer.value.next();
+        await flushPromises();
+
+        // Assert
+        expect(hasNextValues).eql([false]);
+      });
+
+      it("changes to true again if tracks are added after latest playing", async () => {
+        // Arrange
+        const mediaPlayer = ref(
+          initMediaPlayer(
+            () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
+            {
+              trackEvent() {},
+            } as unknown as ApplicationInsights
+          )
+        );
+
+        mediaPlayer.value.setQueue(
+          [
+            { id: 1, type: "track" },
+            { id: 2, type: "track" },
+          ],
+          1
+        );
+        await flushPromises();
+
+        const hasNextValues: Boolean[] = [];
+        watch(
+          () => mediaPlayer.value.hasNext,
+          (v) => {
+            hasNextValues.push(v);
+          }
+        );
+
+        // Act
+        mediaPlayer.value.addToQueue({ id: 3, type: "track" });
+        await flushPromises();
+
+        // Assert
+        expect(hasNextValues).eql([true]);
+      });
+
+      it("changes to false if the new queue is empty", async () => {
+        // Arrange
+        const mediaPlayer = ref(
+          initMediaPlayer(
+            () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
+            {
+              trackEvent() {},
+            } as unknown as ApplicationInsights
+          )
+        );
+
+        mediaPlayer.value.setQueue([
+          { id: 1, type: "track" },
+          { id: 2, type: "track" },
+        ]);
+        await flushPromises();
+
+        const hasNextValues: Boolean[] = [];
+        watch(
+          () => mediaPlayer.value.hasNext,
+          (v) => {
+            hasNextValues.push(v);
+          }
+        );
+
+        // Act
+        mediaPlayer.value.setQueue([]);
+        await flushPromises();
+
+        // Assert
+        expect(hasNextValues).eql([false]);
+      });
+    });
+
+    describe("hasPrevious", () => {
+      it("changes to true when switching to second track", async () => {
+        // Arrange
+        const mediaPlayer = ref(
+          initMediaPlayer(
+            () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
+            {
+              trackEvent() {},
+            } as unknown as ApplicationInsights
+          )
+        );
+
+        mediaPlayer.value.setQueue([
+          { id: 1, type: "track" },
+          { id: 2, type: "track" },
+        ]);
+        await flushPromises();
+
+        const hasPreviousValues: Boolean[] = [];
+        watch(
+          () => mediaPlayer.value.hasPrevious,
+          (v) => {
+            hasPreviousValues.push(v);
+          }
+        );
+
+        // Act
+        mediaPlayer.value.next();
+        await flushPromises();
+
+        // Assert
+        expect(hasPreviousValues).eql([true]);
+      });
+
+      it("doesn't update again when switching to third track", async () => {
+        // Arrange
+        const mediaPlayer = ref(
+          initMediaPlayer(
+            () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
+            {
+              trackEvent() {},
+            } as unknown as ApplicationInsights
+          )
+        );
+
+        mediaPlayer.value.setQueue([
+          { id: 1, type: "track" },
+          { id: 2, type: "track" },
+          { id: 3, type: "track" },
+        ]);
+        await flushPromises();
+        mediaPlayer.value.next();
+        await flushPromises();
+
+        const hasPreviousValues: Boolean[] = [];
+        watch(
+          () => mediaPlayer.value.hasPrevious,
+          (v) => {
+            hasPreviousValues.push(v);
+          }
+        );
+
+        // Act
+        mediaPlayer.value.next();
+        await flushPromises();
+
+        // Assert
+        expect(hasPreviousValues).eql([]);
+      });
+
+      it("changes to false if the index is changed to the beginning of the queue", async () => {
+        // Arrange
+        const mediaPlayer = ref(
+          initMediaPlayer(
+            () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
+            {
+              trackEvent() {},
+            } as unknown as ApplicationInsights
+          )
+        );
+
+        mediaPlayer.value.setQueue(
+          [
+            { id: 1, type: "track" },
+            { id: 2, type: "track" },
+          ],
+          1
+        );
+        await flushPromises();
+
+        const hasPreviousValues: Boolean[] = [];
+        watch(
+          () => mediaPlayer.value.hasPrevious,
+          (v) => {
+            hasPreviousValues.push(v);
+          }
+        );
+
+        // Act
+        mediaPlayer.value.previous();
+        await flushPromises();
+
+        // Assert
+        expect(hasPreviousValues).eql([false]);
+      });
+
+      it("changes to false if the new queue is empty", async () => {
+        // Arrange
+        const mediaPlayer = ref(
+          initMediaPlayer(
+            () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
+            {
+              trackEvent() {},
+            } as unknown as ApplicationInsights
+          )
+        );
+
+        mediaPlayer.value.setQueue(
+          [
+            { id: 1, type: "track" },
+            { id: 2, type: "track" },
+          ],
+          1
+        );
+        await flushPromises();
+
+        const hasPreviousValues: Boolean[] = [];
+        watch(
+          () => mediaPlayer.value.hasPrevious,
+          (v) => {
+            hasPreviousValues.push(v);
+          }
+        );
+
+        // Act
+        mediaPlayer.value.setQueue([]);
+        await flushPromises();
+
+        // Assert
+        expect(hasPreviousValues).eql([false]);
+      });
+    });
+
+    describe("queue", () => {
+      it("changes if queue is replaced", async () => {
+        // Arrange
+        const mediaPlayer = ref(
+          initMediaPlayer(
+            () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
+            {
+              trackEvent() {},
+            } as unknown as ApplicationInsights
+          )
+        );
+
+        const queueValue: ComputedRef<UnwrapRef<Queue>>[] = [];
+        watch(
+          () => mediaPlayer.value.queue,
+          (v) => {
+            queueValue.push(v as any);
+          }
+        );
+
+        // Act
+        mediaPlayer.value.setQueue([
+          { id: 1, type: "track" },
+          { id: 2, type: "track" },
+        ]);
+        await flushPromises();
+        mediaPlayer.value.setQueue([
+          { id: 3, type: "track" },
+          { id: 4, type: "track" },
+        ]);
+        await flushPromises();
+
+        // Assert
+        expect(queueValue).length(2);
+        expect(queueValue[0]).not.eq(queueValue[1]);
+        expect(mediaPlayer.value.queue.currentTrack?.id).not.eq(4);
+      });
+
+      it("stopps playing after replacing the queue with an empty queue while playing", async () => {
+        // Arrange
+        const mediaPlayer = ref(
+          initMediaPlayer(
+            () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
+            {
+              trackEvent() {},
+            } as unknown as ApplicationInsights
+          )
+        );
+
+        mediaPlayer.value.setQueue(
+          [
+            { id: 1, type: "track" },
+            { id: 2, type: "track" },
+          ],
+          1
+        );
+        await flushPromises();
+        MockedMediaTrack.mockClear();
+
+        const currentTracks: (TrackModel | undefined)[] = [];
+        watch(
+          () => mediaPlayer.value.currentTrack,
+          (v) => {
+            currentTracks.push(v);
+          }
+        );
+
+        const statusChanges: MediaPlayerStatus[] = [];
+        watch(
+          () => mediaPlayer.value.status,
+          (v) => {
+            statusChanges.push(v);
+          }
+        );
+
+        // Act
+        mediaPlayer.value.setQueue([]);
+        await flushPromises();
+
+        // Assert
+        expect(destroyMocks).length(1);
+        expect(destroyMocks[0]).toHaveBeenCalledOnce();
+        expect(MockedMediaTrack).toHaveBeenCalledTimes(0);
+        expect(mediaPlayer.value.status).eq(MediaPlayerStatus.Stopped);
+        expect(currentTracks).eql([undefined]);
+        expect(statusChanges).eql([MediaPlayerStatus.Stopped]);
+        expect(mediaPlayer.value.isLoading).eq(false);
+        expect(mediaPlayer.value.hasNext).eq(false);
+        expect(mediaPlayer.value.hasPrevious).eq(false);
+        expect(mediaPlayer.value.queue.length).eq(0);
+        expect(mediaPlayer.value.currentTrack).eql(undefined);
+        expect(mediaPlayer.value.currentPosition).toBeNaN();
+        expect(mediaPlayer.value.currentTrackDuration).toBeNaN();
+      });
+    });
+  });
+
+  describe("inits a new track", () => {
+    it("inits a new track start playing a new queue and updates all variables", async () => {
+      // Arrange
+      const mediaPlayer = ref(
+        initMediaPlayer(
+          () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
+          {
+            trackEvent() {},
+          } as unknown as ApplicationInsights
+        )
+      );
+
+      const currentTracks: (TrackModel | undefined)[] = [];
+      watch(
+        () => mediaPlayer.value.currentTrack,
+        (v) => {
+          currentTracks.push(v);
+        }
+      );
+
+      const currentPositions: number[] = [];
+      watch(
+        () => mediaPlayer.value.currentPosition,
+        (v) => {
+          currentPositions.push(v);
+        }
+      );
+
+      const currentTrackDurations: number[] = [];
+      watch(
+        () => mediaPlayer.value.currentTrackDuration,
+        (v) => {
+          currentTrackDurations.push(v);
+        }
+      );
+
+      const statusValues: MediaPlayerStatus[] = [];
+      watch(
+        () => mediaPlayer.value.status,
+        (v) => {
+          statusValues.push(v);
+        }
+      );
+
+      // Act
+      mediaPlayer.value.setQueue([{ id: 1, type: "track" }]);
+      await flushPromises();
+
+      // Assert
+      expect(currentTracks).eql([{ id: 1, type: "track" }]);
+      expect(currentPositions).eql([0]);
+      expect(currentTrackDurations).eql([]); // Value remains NaN
+      expect(statusValues).eql([MediaPlayerStatus.Playing]);
+    });
+
+    it("updates the length of the track if updated", async () => {
+      // Arrange
+      const mediaPlayer = ref(
+        initMediaPlayer(
+          () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
+          {
+            trackEvent() {},
+          } as unknown as ApplicationInsights
+        )
+      );
+
+      mediaPlayer.value.setQueue([{ id: 1, type: "track" }]);
+      await flushPromises();
+
+      const currentTrackDurations: number[] = [];
+      watch(
+        () => mediaPlayer.value.currentTrackDuration,
+        (v) => {
+          currentTrackDurations.push(v);
+        }
+      );
+
+      // Act
+      MockedMediaTrack.mock.results[0]!.value.obj!.d = 100;
+      await flushPromises();
+      MockedMediaTrack.mock.results[0]!.value.obj!.d = 102; // Late update
+      await flushPromises();
+
+      // Assert
+      expect(currentTrackDurations).eql([100, 102]);
+    });
+  });
+
+  describe("finish playing a track", () => {
+    it("inits a new track when finished playing and updates all variables", async () => {
+      // Arrange
+      const mediaPlayer = ref(
+        initMediaPlayer(
+          () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
+          {
+            trackEvent() {},
+          } as unknown as ApplicationInsights
+        )
+      );
+
+      mediaPlayer.value.setQueue([
+        { id: 1, type: "track" },
+        { id: 2, type: "track" },
+      ]);
+      await flushPromises();
+
+      MockedMediaTrack.mock.results[0]!.value.obj!.position = 100;
+      MockedMediaTrack.mock.results[0]!.value.obj!.d = 100;
+      await flushPromises();
+
+      const currentTracks: (TrackModel | undefined)[] = [];
+      watch(
+        () => mediaPlayer.value.currentTrack,
+        (v) => {
+          currentTracks.push(v);
+        }
+      );
+
+      const currentPositions: number[] = [];
+      watch(
+        () => mediaPlayer.value.currentPosition,
+        (v) => {
+          currentPositions.push(v);
+        }
+      );
+
+      const currentTrackDurations: number[] = [];
+      watch(
+        () => mediaPlayer.value.currentTrackDuration,
+        (v) => {
+          currentTrackDurations.push(v);
+        }
+      );
+
+      const statusValues: MediaPlayerStatus[] = [];
+      watch(
+        () => mediaPlayer.value.status,
+        (v) => {
+          statusValues.push(v);
+        }
+      );
+
+      // Act
+      MockedMediaTrack.mock.results[0]!.value.obj!.ended = true;
+      await flushPromises();
+
+      // Assert
+      expect(currentTracks).eql([{ id: 2, type: "track" }]);
+      expect(currentPositions).eql([0]);
+      expect(currentTrackDurations).eql([NaN]);
+      expect(statusValues).eql([]); // Status doesn't change because we remain playing
+    });
+
+    it("stopps when finished playing without having a next track and updates all variables", async () => {
+      // Arrange
+      const mediaPlayer = ref(
+        initMediaPlayer(
+          () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
+          {
+            trackEvent() {},
+          } as unknown as ApplicationInsights
+        )
+      );
+
+      mediaPlayer.value.setQueue([{ id: 1, type: "track" }]);
+      await flushPromises();
+
+      MockedMediaTrack.mock.results[0]!.value.obj!.position = 100;
+      MockedMediaTrack.mock.results[0]!.value.obj!.d = 100;
+      await flushPromises();
+
+      const currentTracks: (TrackModel | undefined)[] = [];
+      watch(
+        () => mediaPlayer.value.currentTrack,
+        (v) => {
+          currentTracks.push(v);
+        }
+      );
+
+      const currentPositions: number[] = [];
+      watch(
+        () => mediaPlayer.value.currentPosition,
+        (v) => {
+          currentPositions.push(v);
+        }
+      );
+
+      const currentTrackDurations: number[] = [];
+      watch(
+        () => mediaPlayer.value.currentTrackDuration,
+        (v) => {
+          currentTrackDurations.push(v);
+        }
+      );
+
+      const statusValues: MediaPlayerStatus[] = [];
+      watch(
+        () => mediaPlayer.value.status,
+        (v) => {
+          statusValues.push(v);
+        }
+      );
+
+      // Act
+      MockedMediaTrack.mock.results[0]!.value.obj!.ended = true;
+      await flushPromises();
+
+      // Assert
+      expect(currentTracks).eql([]); // Doesn't reset but still has this as current
+      expect(currentPositions).eql([NaN]);
+      expect(currentTrackDurations).eql([NaN]);
+      expect(statusValues).eql([MediaPlayerStatus.Stopped]);
+    });
   });
 });

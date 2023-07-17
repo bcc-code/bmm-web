@@ -5,26 +5,30 @@ export default class Queue extends Array<TrackModel> {
 
   private i = 0;
 
-  get index() {
+  public get index() {
     return this.i;
   }
 
-  set index(v) {
+  public set index(v) {
     if (v >= this.length) {
       this.i = this.length - 1;
     } else if (v < 0) {
-      if (this.length === 0) {
-        this.i = -1;
-      } else {
+      if (this.length > 0) {
         this.i = 0;
+      } else {
+        this.i = -1;
       }
     } else {
       this.i = v;
     }
-    this.currentTrack = this[this.i];
+    this.cT = this[this.i];
   }
 
-  public currentTrack: TrackModel | undefined;
+  private cT: TrackModel | undefined;
+
+  public get currentTrack() {
+    return this.cT;
+  }
 
   private sortedArray: Array<TrackModel> | undefined;
 
