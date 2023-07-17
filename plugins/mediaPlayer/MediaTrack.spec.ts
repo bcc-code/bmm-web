@@ -1,4 +1,4 @@
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, vi } from "vitest";
 import { HTMLAudioElement, Event } from "happy-dom";
 import { flushPromises } from "@vue/test-utils";
 import MediaTrack from "./MediaTrack";
@@ -219,6 +219,50 @@ describe("plugin mediaPlayer MediaTrack", () => {
       expect(mT.value.position).equal(100);
       expect(audio.currentTime).equal(100);
       expect(positions).eql([100]);
+    });
+  });
+
+  describe("destroy", () => {
+    it("resets the option `srcObject` to `null` (best practice)", () => {
+      // Arrange
+      const audio: HTMLAudioElement & { srcObject?: {} | null } =
+        new HTMLAudioElement();
+      audio.srcObject = {};
+      const mT = new MediaTrack(
+        audio as unknown as globalThis.HTMLAudioElement
+      );
+      // Act
+      mT.destroy();
+
+      // Assert
+      expect(audio.srcObject).eq(null);
+    });
+
+    it("calls `pause()` on the media-element (best practice)", () => {
+      // Arrange
+      const audio = new HTMLAudioElement();
+      const pauseSpy = vi.spyOn(audio, "pause");
+      const mT = new MediaTrack(
+        audio as unknown as globalThis.HTMLAudioElement
+      );
+      // Act
+      mT.destroy();
+
+      // Assert
+      expect(pauseSpy).toHaveBeenCalledOnce();
+    });
+
+    it("sets `autoplay` to `false` (Chrome would restart playback if `srcObject` is set to `null`)", () => {
+      // Arrange
+      const audio = new HTMLAudioElement();
+      const mT = new MediaTrack(
+        audio as unknown as globalThis.HTMLAudioElement
+      );
+      // Act
+      mT.destroy();
+
+      // Assert
+      expect(audio.autoplay).eq(false);
     });
   });
 });

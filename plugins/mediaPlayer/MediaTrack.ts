@@ -173,6 +173,7 @@ export default class MediaTrack {
 
   destroy() {
     // https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Client-side_web_APIs/Video_and_audio_APIs#stopping_the_video, https://html.spec.whatwg.org/multipage/media.html#best-practices-for-authors-using-media-elements
+    this.audioElement.autoplay = false;
     this.audioElement.pause();
     this.audioElement.srcObject = null;
   }
