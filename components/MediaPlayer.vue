@@ -119,12 +119,8 @@ const {
       :min="0"
       :max="currentTrackDuration"
     />
-    {{ (currentPosition / 60).toFixed(0).padStart(2, "0") }}:{{
-      (currentPosition % 60).toFixed(0).padStart(2, "0")
-    }}
-    | {{ (currentTrackDuration / 60).toFixed(0).padStart(2, "0") }}:{{
-      (currentTrackDuration % 60).toFixed(0).padStart(2, "0")
-    }}
+    <TimeDuration :duration="currentPosition"></TimeDuration>
+    | <TimeDuration :duration="currentTrackDuration"></TimeDuration>
     <div>
       <button
         v-if="queue.isShuffled"
