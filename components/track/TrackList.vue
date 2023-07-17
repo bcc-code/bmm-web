@@ -13,7 +13,7 @@ const props = withDefaults(
   }
 );
 
-const { setQueue, playNext, addToQueue } = useNuxtApp().$mediaPlayer;
+const { setQueue, addNext, addToQueue } = useNuxtApp().$mediaPlayer;
 const showDropDownForTrack: Ref<null | string> = ref(null);
 
 const isTrackTypeKnown = () => {
@@ -42,7 +42,7 @@ const dropdownMenuItemsForTrack = (track: TrackModel) => {
   items.push({
     icon: "icon.play",
     text: "Play next",
-    clickFunction: () => playNext(track),
+    clickFunction: () => addNext(track),
   });
 
   if (track?.meta?.parent?.id) {

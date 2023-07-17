@@ -696,7 +696,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
     });
   });
 
-  describe("playNext()", () => {
+  describe("addNext()", () => {
     it("adds an element to the queue next to the current element if current element is set", async () => {
       // Arrange
       const mediaPlayer = ref(
@@ -724,7 +724,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
       MockedMediaTrack.mockClear();
 
       // Act
-      mediaPlayer.value.playNext({ id: 2, type: "track" });
+      mediaPlayer.value.addNext({ id: 2, type: "track" });
       await flushPromises();
 
       // Assert
@@ -755,8 +755,8 @@ describe("plugin mediaPlayer MediaTrack", () => {
       await flushPromises();
 
       // Act
-      mediaPlayer.value.playNext({ id: 3, type: "track" });
-      mediaPlayer.value.playNext({ id: 2, type: "track" });
+      mediaPlayer.value.addNext({ id: 3, type: "track" });
+      mediaPlayer.value.addNext({ id: 2, type: "track" });
       await flushPromises();
 
       // Assert
@@ -789,7 +789,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
       MockedMediaTrack.mockClear();
 
       // Act
-      mediaPlayer.value.playNext({ id: 3, type: "track" });
+      mediaPlayer.value.addNext({ id: 3, type: "track" });
       await flushPromises();
 
       // Assert
@@ -832,7 +832,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
       MockedMediaTrack.mockClear();
 
       // Act
-      mediaPlayer.value.playNext({ id: 3, type: "track" });
+      mediaPlayer.value.addNext({ id: 3, type: "track" });
       await flushPromises();
 
       // Assert

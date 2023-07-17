@@ -26,7 +26,7 @@ export interface MediaPlayer {
   currentTrackDuration: ComputedRef<number>;
   setQueue: (queue: TrackModel[], index?: number) => void;
   addToQueue: (track: TrackModel) => void;
-  playNext: (track: TrackModel) => void;
+  addNext: (track: TrackModel) => void;
 }
 
 export const authToken = ref<string | undefined>();
@@ -130,7 +130,7 @@ export const initMediaPlayer = (
     queue.value = new Queue(_queue, index);
   }
 
-  function playNext(track: TrackModel): void {
+  function addNext(track: TrackModel): void {
     queue.value.splice(queue.value.index + 1, 0, { ...track });
     continuePlayingNextIfEnded();
   }
@@ -172,6 +172,6 @@ export const initMediaPlayer = (
     queue: computed(() => queue.value),
     setQueue,
     addToQueue,
-    playNext,
+    addNext,
   };
 };
