@@ -1,3 +1,5 @@
+// @vitest-environment happy-dom
+
 import { describe, it, expect, vi } from "vitest";
 import { HTMLAudioElement, Event } from "happy-dom";
 import { flushPromises } from "@vue/test-utils";

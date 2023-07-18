@@ -1,3 +1,5 @@
+// @vitest-environment happy-dom
+
 import { describe, it, expect, vi, afterEach, Mock } from "vitest";
 import { ApplicationInsights } from "@microsoft/applicationinsights-web";
 import { TrackModel } from "@bcc-code/bmm-sdk-fetch";

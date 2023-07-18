@@ -1,3 +1,5 @@
+// @vitest-environment happy-dom
+
 import { describe, it, expect } from "vitest";
 import { flushPromises } from "@vue/test-utils";
 import { TrackModel } from "@bcc-code/bmm-sdk-fetch";
