@@ -55,6 +55,7 @@ export default class MediaTrack {
     this.audioElement = audioElement;
     this.audioElement.autoplay = true;
 
+    /* c8 ignore start */
     if (debug) {
       // Log all events an audio-element has according to https://html.spec.whatwg.org/multipage/media.html#mediaevents
       // This can be done without a separate method because it doesn't use `this`
@@ -123,6 +124,7 @@ export default class MediaTrack {
         console.log("volumechange", e)
       );
     }
+    /* c8 ignore stop */
   }
 
   /**
