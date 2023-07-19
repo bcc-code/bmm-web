@@ -1,17 +1,5 @@
 <script lang="ts" setup>
-import { NuxtIconName } from "#build/nuxt-icons";
-import { RoutesNamedLocations } from "~/.nuxt/typed-router/__routes";
 import { version } from "~/package.json";
-
-const links: {
-  title: string;
-  link: RoutesNamedLocations;
-  icon: NuxtIconName;
-}[] = [
-  { title: "Home", link: { name: "index" }, icon: "nav.home" },
-  { title: "Browse", link: { name: "browse" }, icon: "nav.browse" },
-  { title: "Search", link: { name: "search" }, icon: "nav.search" },
-];
 
 const { data: collections } = usePrivatePlaylists();
 </script>
@@ -30,9 +18,19 @@ const { data: collections } = usePrivatePlaylists();
     <div class="flex-grow overflow-y-auto">
       <SidebarGroup>
         <SidebarItem
-          v-for="(link, i) in links"
-          :key="`${link.link}_${i}`"
-          v-bind="link"
+          :title="$t('nav.home')"
+          :link="{ name: 'index' }"
+          icon="nav.home"
+        />
+        <SidebarItem
+          :title="$t('nav.browse')"
+          :link="{ name: 'browse' }"
+          icon="nav.browse"
+        />
+        <SidebarItem
+          :title="$t('nav.search')"
+          :link="{ name: 'search' }"
+          icon="nav.search"
         />
       </SidebarGroup>
 
