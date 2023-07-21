@@ -34,7 +34,7 @@ const { data: collections } = usePrivatePlaylists();
         />
       </SidebarGroup>
 
-      <SidebarGroup title="Playlists">
+      <SidebarGroup :title="$t('sidebar.playlists.title')">
         <SidebarItem
           v-for="collection in collections"
           :key="collection.id"

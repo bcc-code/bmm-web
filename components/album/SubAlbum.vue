@@ -6,6 +6,7 @@ const props = defineProps<{
   active: boolean;
 }>();
 
+const { t } = useI18n();
 const { data: album } = useAlbum({ id: props.id });
 
 const emit = defineEmits<{ expand: [] }>();
@@ -39,7 +40,9 @@ function expand() {
         class="bg-slate-100 aspect-square w-20 rounded-md"
       />
       <p class="text-2xl font-bold">{{ album.title }}</p>
-      <p class="ml-auto">{{ album?.children?.length }} tracks</p>
+      <p v-if="album?.children" class="ml-auto">
+        {{ t("collection.track-count", album?.children.length) }}
+      </p>
     </section>
     <section
       :class="active ? 'active relative max-h-fit' : 'h-0 overflow-hidden'"

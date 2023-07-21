@@ -47,12 +47,14 @@ onBeforeMount(() => {
         <div class="flex flex-col justify-between p-6">
           <div>
             <PageHeading>{{ playlist.title }}</PageHeading>
-            <p v-if="tracks">{{ tracks.length }} tracks</p>
+            <p v-if="tracks">
+              {{ t("collection.track-count", tracks.length) }}
+            </p>
           </div>
           <div class="flex gap-2">
-            <ButtonStyled intent="primary" @click.stop="shuffle">
-              Shuffle
-            </ButtonStyled>
+            <ButtonStyled intent="primary" @click.stop="shuffle">{{
+              t("playlist.action.shuffle")
+            }}</ButtonStyled>
           </div>
         </div>
       </header>

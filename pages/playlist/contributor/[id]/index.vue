@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+const { t } = useI18n();
 const { id } = useRoute<"playlist-contributor-id">().params;
 const contributorId = Number(id);
 const { data: contributor } = useContributor({ id: contributorId });
@@ -27,7 +28,9 @@ useHead({
       <div class="flex flex-col justify-between p-6">
         <div>
           <PageHeading>{{ contributor?.name }}</PageHeading>
-          <p>{{ tracks?.length }} tracks</p>
+          <p v-if="tracks">
+            {{ t("collection.track-count", tracks.length) }}
+          </p>
         </div>
         <div class="flex gap-2">
           <ButtonStyled>F</ButtonStyled>

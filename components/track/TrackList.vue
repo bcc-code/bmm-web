@@ -14,6 +14,8 @@ const props = withDefaults(
   }
 );
 
+const { t } = useI18n();
+
 const { setCurrentTrack, addTrackToQueue } = inject(MediaPlaylistInjectionKey)!;
 const showDropDownForTrack = ref<string | null>(null);
 
@@ -42,42 +44,41 @@ const dropdownMenuItemsForTrack = (track: TrackModel) => {
 
   items.push({
     icon: "icon.play",
-    text: "Play next",
+    text: t("track.dropdown.play-next"),
     clickFunction: () => setCurrentTrack(track),
   });
 
   if (track?.meta?.parent?.id) {
     items.push({
       icon: "icon.category.album",
-      text: "Go to album",
+      text: t("track.dropdown.go-to-album"),
       link: { name: "album-id", params: { id: track.meta.parent.id } },
     });
   }
 
   items.push({
     icon: "icon.queue",
-    text: "Add to Queue",
+    text: t("track.dropdown.add-to-queue"),
     clickFunction: () => addTrackToQueue(track),
   });
-
-  // TODO: add link
   items.push({
     icon: "icon.category.playlist",
-    text: "Add to Playlist",
+    text: t("track.dropdown.add-to-playlist"),
+    link: { name: "browse" }, // TODO: change link
   });
   items.push({
     icon: "icon.share",
-    text: "Share track",
+    text: t("track.dropdown.share"),
     link: { name: "browse" }, // TODO: change link
   });
   items.push({
     icon: "icon.person",
-    text: "Go to contributors",
+    text: t("track.dropdown.go-to-contributors"),
     link: { name: "browse" }, // TODO: change link
   });
   items.push({
     icon: "icon.information",
-    text: "More information",
+    text: t("track.dropdown.more-info"),
     link: { name: "browse" }, // TODO: change link
   });
 

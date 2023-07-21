@@ -8,13 +8,42 @@
     "audiobooks": "Audiobooks",
     "search": "Search"
   },
+  "sidebar": {
+    "playlists": {
+      "title": "Playlists"
+    }
+  },
+  "profile": {
+    "title": "Profile",
+    "autoplay": { "title": "Auto Play" },
+    "theme": { "title": "Theme" },
+    "app-language": { "title": "Language" },
+    "content-language": { "title": "Content Language" },
+    "uservoice": { "title": "User Voice" },
+    "contact": { "title": "Contact" },
+    "logout": { "title": "Sign out" }
+  },
   "error": {
     "page-not-found": {
       "headline": "Error",
       "text": "Sorry. We can't find the page \"{path}\"."
     }
   },
+  "collection": {
+    "track-count": "{count} tracks",
+    "album-count": "{count} albums"
+  },
+  "playlist": { "action": { "shuffle": "Shuffle" } },
   "track": {
+    "dropdown": {
+      "play-next": "Play next",
+      "go-to-album": "Go to album",
+      "add-to-queue": "Add to queue",
+      "add-to-playlist": "Add to playlist",
+      "share": "Share track",
+      "go-to-contributors": "Go to contributors",
+      "more-info": "More information"
+    },
     "a11y": {
       "download": "Download",
       "queue": "Add to queue",
