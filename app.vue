@@ -26,9 +26,20 @@ useHead({
         <NuxtPage />
       </div>
     </NuxtLayout>
-    <div v-if="!isAuthenticated">
-      You will be redirected to the login page. Please wait or
-      <a href="#" @click="loginWithRedirect()">try again</a>.
+    <div v-if="!isAuthenticated" class="flex h-screen text-center">
+      <div class="m-auto">
+        <SiteLogo size="medium"></SiteLogo>
+        <div>{{ $t("login.redirect-message.1") }}</div>
+        <div>
+          {{ $t("login.redirect-message.2")
+          }}<span
+            class="cursor-pointer underline"
+            href="#"
+            @click="loginWithRedirect()"
+            >{{ $t("login.redirect-message.3") }}</span
+          >{{ $t("login.redirect-message.4") }}
+        </div>
+      </div>
     </div>
   </div>
 </template>

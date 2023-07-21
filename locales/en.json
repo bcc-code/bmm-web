@@ -33,6 +33,14 @@
     "track-count": "{count} tracks",
     "album-count": "{count} albums"
   },
+  "login": {
+    "redirect-message": {
+      "1": "You will be redirected to the login page.",
+      "2": "Please wait or ",
+      "3": "click to try again",
+      "4": "."
+    }
+  },
   "playlist": { "action": { "shuffle": "Shuffle" } },
   "track": {
     "dropdown": {
