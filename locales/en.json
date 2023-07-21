@@ -30,8 +30,8 @@
     }
   },
   "collection": {
-    "track-count": "{count} tracks",
-    "album-count": "{count} albums"
+    "track-count": "{count} track | {count} tracks",
+    "album-count": "{count} album | {count} albums"
   },
   "login": {
     "redirect-message": {
