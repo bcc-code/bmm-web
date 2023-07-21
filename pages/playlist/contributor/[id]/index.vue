@@ -32,9 +32,6 @@ useHead({
             {{ t("collection.track-count", tracks.length) }}
           </p>
         </div>
-        <div class="flex gap-2">
-          <ButtonStyled>F</ButtonStyled>
-        </div>
       </div>
     </header>
     <TrackList

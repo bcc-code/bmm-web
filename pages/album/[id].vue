@@ -31,9 +31,6 @@ const toggleExpandedAlbum = (albumReference: string) => {
         <div>
           <PageHeading>{{ album.title }}</PageHeading>
         </div>
-        <div class="flex gap-2">
-          <ButtonStyled>F</ButtonStyled>
-        </div>
       </div>
     </header>
     <p v-if="album.children" class="p-2">
