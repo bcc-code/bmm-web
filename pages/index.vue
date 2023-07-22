@@ -82,8 +82,8 @@ watch(
           v-if="group.header?.useCoverCarousel"
           class="flex space-x-8 overflow-x-auto scrollbar-hide"
           style="
-            padding: 0 calc( ( 100vw - 100% ) / 2 ) 0 calc( ( 100vw - 100% ) / 2 );
-            margin: 0 calc( ( 100vw - 100% ) / -2 ) 0 calc( ( 100vw - 100% ) / -2 );
+            padding: 0 calc((100vw - 100%) / 2) 0 calc((100vw - 100%) / 2);
+            margin: 0 calc((100vw - 100%) / -2) 0 calc((100vw - 100%) / -2);
           "
         >
           <template v-for="item in group.items" :key="item.id">
