@@ -35,10 +35,9 @@
   },
   "login": {
     "redirect-message": {
-      "1": "You will be redirected to the login page.",
-      "2": "Please wait or ",
-      "3": "click to try again",
-      "4": "."
+      "redirect-info": "You will be redirected to the login page.",
+      "manual-redirect-info": "Please wait or {0}.",
+      "redirect-link": "click to try again"
     }
   },
   "playlist": { "action": { "shuffle": "Shuffle" } },

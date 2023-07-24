@@ -29,16 +29,15 @@ useHead({
     <div v-if="!isAuthenticated" class="flex h-screen text-center">
       <div class="m-auto">
         <SiteLogo size="medium"></SiteLogo>
-        <div>{{ $t("login.redirect-message.1") }}</div>
-        <div>
-          {{ $t("login.redirect-message.2")
-          }}<span
+        <div>{{ $t("login.redirect-message.redirect-info") }}</div>
+        <i18n-t tag="div" keypath="login.redirect-message.manual-redirect-info">
+          <span
             class="cursor-pointer underline"
             href="#"
             @click="loginWithRedirect()"
-            >{{ $t("login.redirect-message.3") }}</span
-          >{{ $t("login.redirect-message.4") }}
-        </div>
+            >{{ $t("login.redirect-message.redirect-link") }}</span
+          >
+        </i18n-t>
       </div>
     </div>
   </div>
