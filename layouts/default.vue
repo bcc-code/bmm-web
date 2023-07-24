@@ -17,7 +17,7 @@ const { currentTrack } = inject(MediaPlaylistInjectionKey)!;
     class="flex h-full max-h-[100vh] overflow-y-hidden bg-background-1 text-black-1 dark:bg-background-dark-1 dark:text-white-1"
   >
     <SidebarElement />
-    <main class="relative flex-grow overflow-y-auto" style="overflow-x: hidden">
+    <main class="relative flex-grow overflow-y-auto overflow-x-hidden">
       <AppToolbar />
       <NuxtErrorBoundary @error="onError">
         <slot />
