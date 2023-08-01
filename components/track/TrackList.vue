@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import { TrackModel } from "@bcc-code/bmm-sdk-fetch";
-import { MediaPlaylistInjectionKey } from "~/plugins/3.mediaPlayer";
 import { DropdownMenuItem } from "../DropdownMenu.vue";
 
 const props = withDefaults(
@@ -14,7 +13,7 @@ const props = withDefaults(
   }
 );
 
-const { setCurrentTrack, addTrackToQueue } = inject(MediaPlaylistInjectionKey)!;
+const { setQueue, addNext, addToQueue } = useNuxtApp().$mediaPlayer;
 const showDropDownForTrack = ref<string | null>(null);
 
 const isTrackTypeKnown = () => {
@@ -43,7 +42,7 @@ const dropdownMenuItemsForTrack = (track: TrackModel) => {
   items.push({
     icon: "icon.play",
     text: "Play next",
-    clickFunction: () => setCurrentTrack(track),
+    clickFunction: () => addNext(track),
   });
 
   if (track?.meta?.parent?.id) {
@@ -57,7 +56,7 @@ const dropdownMenuItemsForTrack = (track: TrackModel) => {
   items.push({
     icon: "icon.queue",
     text: "Add to Queue",
-    clickFunction: () => addTrackToQueue(track),
+    clickFunction: () => addToQueue(track),
   });
 
   // TODO: add link
@@ -94,14 +93,14 @@ const dropdownMenuItemsForTrack = (track: TrackModel) => {
         class="my-6 h-11 w-full animate-pulse rounded-lg bg-background-2 dark:bg-background-dark-2"
       ></li>
     </template>
-    <template v-else>
+    <template v-else-if="tracks">
       <TrackItem
         v-for="(track, i) in tracks"
         :key="track.id"
         :track="track"
         :is-track-type-known="isTrackTypeKnown()"
         show-thumbnail
-        @play-track="setCurrentTrack(track)"
+        @play-track="setQueue(tracks, i)"
         @open-options="toggleDropdownForTrack(`${track.id}-${i}`)"
       >
         <DropdownMenu

@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import { MediaPlaylistInjectionKey } from "~/plugins/3.mediaPlayer";
-
 defineSlots<{
   default: (props: {}) => any;
 }>();
@@ -9,7 +7,7 @@ const onError = (error: any) => {
   console.error(error);
 };
 
-const { currentTrack } = inject(MediaPlaylistInjectionKey)!;
+const { queue } = useNuxtApp().$mediaPlayer;
 </script>
 
 <template>
@@ -32,7 +30,7 @@ const { currentTrack } = inject(MediaPlaylistInjectionKey)!;
       leave-active-class="transition-all duration-200 ease-out"
       leave-to-class="opacity-0 translate-y-2"
     >
-      <MediaPlayer v-if="currentTrack !== undefined" />
+      <MediaPlayer v-if="queue.length > 0" />
     </transition>
   </div>
 </template>
