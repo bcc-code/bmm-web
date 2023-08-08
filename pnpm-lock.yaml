@@ -104,8 +104,8 @@ devDependencies:
     specifier: ^0.5.0
     version: 0.5.0(vite-plugin-electron-renderer@0.14.5)(vite-plugin-electron@0.12.0)
   nuxt-typed-router:
-    specifier: ^3.2.3
-    version: 3.2.3
+    specifier: ^3.2.5
+    version: 3.2.5
   nuxt-vitest:
     specifier: ^0.8.6
     version: 0.8.6(@vitejs/plugin-vue-jsx@3.0.1)(@vitejs/plugin-vue@4.2.3)(vite@4.3.9)(vitest@0.32.2)(vue-router@4.2.2)(vue@3.3.4)
@@ -1900,7 +1900,7 @@ packages:
     hasBin: true
     dependencies:
       '@nuxt/kit': 3.6.1
-      chalk: 5.2.0
+      chalk: 5.3.0
       ci-info: 3.8.0
       consola: 3.2.2
       create-require: 1.1.1
@@ -3635,7 +3635,7 @@ packages:
     dependencies:
       ansi-align: 3.0.1
       camelcase: 7.0.1
-      chalk: 5.2.0
+      chalk: 5.3.0
       cli-boxes: 3.0.0
       string-width: 5.1.2
       type-fest: 2.19.0
@@ -3931,6 +3931,11 @@ packages:
 
   /chalk@5.2.0:
     resolution: {integrity: sha512-ree3Gqw/nazQAPuJJEy+avdl7QfZMcUvmHIKgEZkGL+xOBzRvup5Hxo6LHuMceSxOabuJLJm5Yp/92R9eMmMvA==}
+    engines: {node: ^12.17.0 || ^14.13 || >=16.0.0}
+    dev: true
+
+  /chalk@5.3.0:
+    resolution: {integrity: sha512-dLitG79d+GV1Nb/VYcCDFivJeK1hiukt9QjRNVOsUtTy1rR1YJsmpGGTZ3qJos+uw7WmWF4wUwBd9jxjocFC2w==}
     engines: {node: ^12.17.0 || ^14.13 || >=16.0.0}
     dev: true
 
@@ -6782,7 +6787,7 @@ packages:
     engines: {node: '>=14.18.0'}
     dependencies:
       ansi-escapes: 4.3.2
-      chalk: 5.2.0
+      chalk: 5.3.0
       cli-cursor: 3.1.0
       cli-width: 4.0.0
       external-editor: 3.1.0
@@ -8146,7 +8151,7 @@ packages:
       '@vercel/nft': 0.22.6
       archiver: 5.3.1
       c12: 1.4.2
-      chalk: 5.2.0
+      chalk: 5.3.0
       chokidar: 3.5.3
       citty: 0.1.1
       consola: 3.2.2
@@ -8471,18 +8476,17 @@ packages:
       vite-plugin-electron-renderer: 0.14.5
     dev: true
 
-  /nuxt-typed-router@3.2.3:
-    resolution: {integrity: sha512-6NAo+eOXcYokUNJdQxOjGF9E/FAL016IU0T5OtMR9hehF8Y5/OQoH18RecUU4boxqyt705x2G1kVucQnKBnZCw==}
+  /nuxt-typed-router@3.2.5:
+    resolution: {integrity: sha512-E2CPfEioyzeISaVSlDottH1sV41wog952nfoChAj9tGLAc76NUHpbKeZ2SCGma3HUjozwehiiqffmGq/LTCEJA==}
     dependencies:
       '@nuxt/kit': 3.6.1
-      chalk: 5.2.0
+      chalk: 5.3.0
       defu: 6.1.2
       lodash-es: 4.17.21
       log-symbols: 5.1.0
       mkdirp: 3.0.1
       nanoid: 4.0.2
       pathe: 1.1.0
-      prettier: 2.8.8
     transitivePeerDependencies:
       - rollup
       - supports-color

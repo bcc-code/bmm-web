@@ -54,7 +54,7 @@
     "log-symbols": "^5.1.0",
     "nuxt": "^3.6.1",
     "nuxt-electron": "^0.5.0",
-    "nuxt-typed-router": "^3.2.3",
+    "nuxt-typed-router": "^3.2.5",
     "nuxt-vitest": "^0.8.6",
     "prettier": "^2.8.8",
     "prettier-plugin-tailwindcss": "^0.3.0",
