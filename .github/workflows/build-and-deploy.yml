@@ -31,6 +31,8 @@ jobs:
 
       - name: Install dependencies
         run: pnpm install
+      - name: Calculate package version
+        run: git fetch --unshallow && pnpm update:version
       - name: Run linters
         run: pnpm lint
       - name: Test and create coverage

@@ -17,7 +17,8 @@
     "e2e": "cypress open",
     "lint": "stylelint \"**/*.{vue,scss}\" && prettier . --check && eslint --ext ts,js,vue,json . && ELECTRON=true nuxi typecheck",
     "test": "vitest",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "update:version": "node update-package-version.js"
   },
   "dependencies": {
     "@auth0/auth0-vue": "^2.2.0",

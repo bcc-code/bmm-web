@@ -29,6 +29,9 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
+      - name: Calculate package version
+        run: git fetch --unshallow && pnpm update:version
+
       - name: Download certificate file
         run: |
           echo $APPLE_DEVELOPER_ID_FILE | base64 --decode >> developer-id.privatekey.p12
