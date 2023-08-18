@@ -1,7 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { NuxtConfig } from "nuxt/config";
-import vueI18n from "./i18n.config";
 
 const modules: NuxtConfig["modules"] = [
   ["nuxt-typed-router", { strict: true }],
@@ -33,8 +32,6 @@ export default defineNuxtConfig({
     strategy: "no_prefix",
     skipSettingLocaleOnNavigate: true,
     defaultLocale: "en",
-    // Due to a bug in @nuxtjs/i18n@8.0.0-beta.11 we have to use beta.10 with inline configuration. See: https://github.com/nuxt-modules/i18n/issues/1990
-    vueI18n,
   },
   imports: {
     dirs: ["stores"],

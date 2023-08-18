@@ -31,7 +31,7 @@ function close() {
       >
         <NuxtLink
           v-if="'link' in item"
-          class="flex items-center justify-start gap-2 px-3 py-2"
+          class="flex w-full items-center justify-start gap-2 px-3 py-2"
           :to="item.link"
         >
           <NuxtIcon v-if="item.icon" :name="item.icon" />
@@ -39,7 +39,7 @@ function close() {
         </NuxtLink>
         <button
           v-else
-          class="flex items-center justify-start gap-2 px-3 py-2"
+          class="flex w-full items-center justify-start gap-2 px-3 py-2"
           @click="item.clickFunction?.()"
         >
           <NuxtIcon v-if="item.icon" :name="item.icon" />

@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import { MediaPlaylistInjectionKey } from "~/plugins/3.mediaPlayer";
-
 const { $appInsights } = useNuxtApp();
 const { t } = useI18n();
 toolbarTitleStore().setReactiveToolbarTitle(() => t("nav.playlist"));
@@ -11,15 +9,13 @@ const playlistId = Number(id);
 const { data: playlist } = useCuratedPlaylist({ id: playlistId });
 const { data: tracks, pending } = useCuratedPlaylistTracks({ id: playlistId });
 
-const { setCurrentTrack, addTrackToQueue } = inject(MediaPlaylistInjectionKey)!;
+const { setQueue, queue } = useNuxtApp().$mediaPlayer;
 
 function shuffle() {
-  // shuffle tracks and add them to the queue
-  const shuffledTracks = tracks.value?.filter((_) => true);
-  if (shuffledTracks && shuffledTracks.length > 0) {
-    shuffledTracks?.sort(() => Math.random() - 0.5);
-    setCurrentTrack(shuffledTracks.pop()!);
-    shuffledTracks.forEach((track) => addTrackToQueue(track));
+  if (tracks.value) {
+    setQueue(tracks.value);
+    queue.value.shuffle();
+
     $appInsights.trackEvent({
       name: "Shuffle Playlist",
       properties: { playlistId },
