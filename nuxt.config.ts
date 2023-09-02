@@ -1,7 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { NuxtConfig } from "nuxt/config";
-import vueI18n from "./i18n.config";
 
 const modules: NuxtConfig["modules"] = [
   ["nuxt-typed-router", { strict: true }],
@@ -25,15 +24,14 @@ export default defineNuxtConfig({
       apiUrl: "https://bmm-api.brunstad.org",
       authUrl: "https://login.bcc.no",
       clientId: "L9891KdcqtoKmHg4r65lT7zbSjv55dNN",
+      applicationInsights: "",
     },
   },
-  css: ["assets/main.css"],
+  spaLoadingTemplate: "spa-loading-template.html",
   i18n: {
     strategy: "no_prefix",
     skipSettingLocaleOnNavigate: true,
     defaultLocale: "en",
-    // Due to a bug in @nuxtjs/i18n@8.0.0-beta.11 we have to use beta.10 with inline configuration. See: https://github.com/nuxt-modules/i18n/issues/1990
-    vueI18n,
   },
   imports: {
     dirs: ["stores"],
@@ -56,5 +54,16 @@ export default defineNuxtConfig({
   },
   colorMode: {
     classSuffix: "",
+  },
+  // TODO: Option is marked as invalid if env ELECTRON is not enabled, because this enables the module which allows the configuration.
+  electron: {
+    build: [
+      {
+        entry: "electron/main.ts",
+      },
+      {
+        entry: "electron/preload.ts",
+      },
+    ],
   },
 });

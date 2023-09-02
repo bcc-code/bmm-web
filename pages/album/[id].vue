@@ -7,7 +7,7 @@ const albumId = Number(id);
 
 const { data: album } = useAlbum({ id: albumId });
 
-const expandedAlbum: Ref<null | string> = ref(null);
+const expandedAlbum = ref<string | null>(null);
 
 const toggleExpandedAlbum = (albumReference: string) => {
   if (expandedAlbum.value === albumReference) {

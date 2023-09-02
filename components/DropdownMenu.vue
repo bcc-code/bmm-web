@@ -15,33 +15,8 @@ defineProps<{
 
 const emit = defineEmits<{ close: [] }>();
 
-function close(event: Event) {
-  event.stopPropagation();
+function close() {
   emit("close");
-}
-
-// menu items
-function menuItemClick(event: Event, item: DropdownMenuItem) {
-  close(event);
-
-  if (item.clickFunction) {
-    item.clickFunction();
-  }
-}
-
-function menuItemComponent(item: DropdownMenuItem) {
-  if (item.link) return resolveComponent("NuxtLink");
-  return "button";
-}
-
-function menuItemListeners(item: DropdownMenuItem) {
-  const click = item.clickFunction
-    ? (event: MouseEvent) => menuItemClick(event, item)
-    : (event: MouseEvent) => event.stopPropagation();
-
-  return {
-    click,
-  };
 }
 </script>
 
@@ -54,18 +29,26 @@ function menuItemListeners(item: DropdownMenuItem) {
         v-for="item in items"
         :key="item.text"
         class="hover:text-black block w-full cursor-pointer rounded-lg hover:bg-background-2 hover:dark:bg-background-dark-2"
+        @click.stop="close"
       >
-        <component
-          :is="menuItemComponent(item)"
-          :to="item.link ? item.link : null"
-          class="flex items-center justify-start gap-2 px-3 py-2"
-          v-on="menuItemListeners(item)"
+        <NuxtLink
+          v-if="item.link"
+          class="flex w-full items-center justify-start gap-2 px-3 py-2"
+          :to="item.link"
         >
           <NuxtIcon v-if="item.icon" :name="item.icon" />
           <span>{{ item.text }}</span>
-        </component>
+        </NuxtLink>
+        <button
+          v-else
+          class="flex w-full items-center justify-start gap-2 px-3 py-2"
+          @click="item.clickFunction?.()"
+        >
+          <NuxtIcon v-if="item.icon" :name="item.icon" />
+          <span>{{ item.text }}</span>
+        </button>
       </li>
     </ul>
-    <div class="fixed inset-0 z-10" @click="close"></div>
+    <div class="fixed inset-0 z-10" @click.stop="close"></div>
   </div>
 </template>

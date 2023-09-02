@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import { AlbumModel, TrackModel } from "@bcc-code/bmm-sdk-fetch";
+
 const props = defineProps<{
   id: number;
   active: boolean;
@@ -15,19 +17,15 @@ function expand() {
 
 <template>
   <section
-    class="group relative my-4 mr-3 cursor-pointer gap-2"
-    :class="
-      active
-        ? 'rounded-3xl border-2 p-5 shadow-lg duration-150 active:scale-110'
-        : ''
-    "
-    @click="expand"
+    class="relative my-4 mr-3 cursor-pointer gap-2 duration-150"
+    :class="active ? 'rounded-3xl border-2 p-5 shadow-lg' : ''"
+    @click.stop="expand"
   >
     <div
       :class="
         active
           ? ''
-          : 'bg-slate-100 absolute -inset-x-3 -inset-y-2 rounded-xl opacity-0 group-hover:opacity-100'
+          : 'bg-slate-100 absolute -inset-x-3 -inset-y-2 rounded-xl opacity-0'
       "
     ></div>
     <section
@@ -46,11 +44,17 @@ function expand() {
     <section
       :class="active ? 'active relative max-h-fit' : 'h-0 overflow-hidden'"
     >
-      <div v-for="(track, i) in album?.children" :key="i">
-        <p class="hover:bg-slate-100 rounded-md p-2">
-          {{ track.id }}
-        </p>
-      </div>
+      <TrackList
+        :tracks="(album?.children?.filter((c) : c is TrackModel => c.type === 'track') || [])"
+      >
+      </TrackList>
+      <SubAlbum
+        v-for="a in album?.children?.filter((c) : c is AlbumModel => c.type === 'album')"
+        :id="a.id"
+        :key="a.id"
+        :active="false"
+      >
+      </SubAlbum>
     </section>
   </section>
 </template>

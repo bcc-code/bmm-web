@@ -8,9 +8,6 @@ export default defineNuxtPlugin((nuxtApp) => {
 
   DefaultConfig.config = new Configuration({
     basePath: runtimeConfig.public.apiUrl,
-    headers: {
-      "Accept-Language": "nb,en,zxx",
-    },
     middleware: [
       {
         pre: async (ctx) => {
@@ -22,6 +19,11 @@ export default defineNuxtPlugin((nuxtApp) => {
           if (token) {
             headers.set("Authorization", `Bearer ${token}`);
           }
+
+          headers.set(
+            "Accept-Language",
+            contentLanguageStore(useNuxtApp().$pinia).contentLanguages.join(",")
+          );
 
           ctx.init.headers = headers;
 
