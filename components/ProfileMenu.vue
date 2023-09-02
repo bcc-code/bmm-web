@@ -39,10 +39,10 @@ const logout = async () => {
   autoplay = !autoplay;
 }
   ">
-              <span>Auto Play</span>
+              <span>{{ $t('profile.autoplay') }}</span>
               <Switch v-model="autoplay" :class="autoplay
-                  ? 'bg-tint dark:bg-tint-dark'
-                  : 'bg-background-2 dark:bg-background-dark-2'
+                ? 'bg-tint dark:bg-tint-dark'
+                : 'bg-background-2 dark:bg-background-dark-2'
                 "
                 class="relative inline-flex h-6 w-10 shrink-0 cursor-pointer rounded-full p-1 transition-colors duration-200 ease-in-out focus:outline-none">
                 <span aria-hidden="true" :class="autoplay ? 'translate-x-full' : 'translate-x-0'"
@@ -57,7 +57,7 @@ const logout = async () => {
   e.preventDefault();
 }
   ">
-              Theme
+              {{ $t('profile.theme') }}
             </button>
             </MenuItem>
             <MenuItem v-slot="{ active }" as="div">
@@ -67,7 +67,7 @@ const logout = async () => {
   e.preventDefault();
 }
   ">
-              Language
+              {{ $t('profile.language') }}
             </button>
             </MenuItem>
             <MenuItem v-slot="{ active }" as="div">
@@ -77,7 +77,7 @@ const logout = async () => {
   e.preventDefault();
 }
   ">
-              Content Language
+              {{ $t('profile.content-language') }}
             </button>
             </MenuItem>
           </div>
@@ -86,14 +86,14 @@ const logout = async () => {
             <a :class="{
               'bg-label-separator dark:bg-label-dark-separator': active,
             }" class="flex w-full rounded-lg px-3 py-2" href="https://uservoice.bcc.no/?tags=bmm" target="_blank">
-              User Voice
+              {{ $t('profile.user-voice') }}
             </a>
             </MenuItem>
             <MenuItem v-slot="{ active }" as="div">
             <a :class="{
               'bg-label-separator dark:bg-label-dark-separator': active,
             }" class="flex w-full rounded-lg px-3 py-2" href="mailto:bmm-support@bcc.no" target="_blank">
-              Contact
+              {{ $t('profile.contact') }}
             </a>
             </MenuItem>
           </div>
@@ -102,7 +102,7 @@ const logout = async () => {
             <button :class="{
               'bg-label-separator dark:bg-label-dark-separator': active,
             }" class="w-full rounded-lg px-3 py-2 text-left" @click="logout()">
-              Sign Out
+              {{ $t('profile.sign-out') }}
             </button>
             </MenuItem>
           </div>

@@ -20,5 +20,14 @@
       "queue": "Add to queue",
       "options": "Show options"
     }
+  },
+  "profile": {
+    "autoplay": "Auto Play",
+    "theme": "Theme",
+    "language": "Language",
+    "content-language": "Content Language",
+    "user-voice": "User Voice",
+    "contact": "Contact",
+    "sign-out": "Sign Out"
   }
 }

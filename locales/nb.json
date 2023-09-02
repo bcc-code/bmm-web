@@ -20,5 +20,14 @@
       "queue": "Legg til i køen",
       "options": "Show options"
     }
+  },
+  "profile": {
+    "autoplay": "Automatisk avspilling",
+    "theme": "Tema",
+    "language": "Språk",
+    "content-language": "Innholdsspråk",
+    "user-voice": "User Voice",
+    "contact": "Kontakt",
+    "sign-out": "Logg ut"
   }
 }
