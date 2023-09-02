@@ -19,9 +19,11 @@ const logout = async () => {
     <Menu as="div" class="relative">
       <div>
         <MenuButton
-          class="flex items-center font-bold text-label-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-label-1 dark:text-label-dark-1">
-          {{ $t("nav.profile") }}
-          <NuxtIcon name="nav.profile" class="ml-1 text-xl" />
+          class="flex gap-2 items-center font-bold text-label-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-label-1 dark:text-label-dark-1">
+          <span>{{ $t("nav.profile") }}</span>
+          <img v-if="auth0.user.value.picture" :src="auth0.user.value.picture" :alt="auth0.user.value.name || ''"
+            class="w-6 aspect-square rounded-full object-cover">
+          <NuxtIcon v-else name="nav.profile" class="ml-1 text-xl" />
         </MenuButton>
       </div>
 
