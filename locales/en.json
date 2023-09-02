@@ -24,6 +24,9 @@
   "profile": {
     "autoplay": "Auto Play",
     "theme": "Theme",
+    "theme-light": "Light",
+    "theme-dark": "Dark",
+    "theme-system": "System",
     "language": "Language",
     "content-language": "Content Language",
     "user-voice": "User Voice",

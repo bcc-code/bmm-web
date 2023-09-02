@@ -57,7 +57,10 @@ const logout = async () => {
   e.preventDefault();
 }
   ">
-              {{ $t('profile.theme') }}
+              <p>{{ $t('profile.theme') }}</p>
+              <span class="text-label-2 dark:text-label-dark-2">
+                {{ $t(`profile.theme-${$colorMode.value}`) }}
+              </span>
             </button>
             </MenuItem>
             <MenuItem v-slot="{ active }" as="div">
@@ -67,7 +70,8 @@ const logout = async () => {
   e.preventDefault();
 }
   ">
-              {{ $t('profile.language') }}
+              <p>{{ $t('profile.language') }}</p>
+              <span class="text-label-2 dark:text-label-dark-2">{{ $i18n.locale }}</span>
             </button>
             </MenuItem>
             <MenuItem v-slot="{ active }" as="div">
@@ -77,7 +81,8 @@ const logout = async () => {
   e.preventDefault();
 }
   ">
-              {{ $t('profile.content-language') }}
+              <p>{{ $t('profile.content-language') }}</p>
+              <span class="text-label-2 dark:text-label-dark-2">{{ $i18n.locale }}</span>
             </button>
             </MenuItem>
           </div>
