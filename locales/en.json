@@ -18,7 +18,8 @@
     "a11y": {
       "download": "Download",
       "queue": "Add to queue",
-      "options": "Show options"
+      "options": "Show options",
+      "see-all": "See all"
     }
   }
 }
