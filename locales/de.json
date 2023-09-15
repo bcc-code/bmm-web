@@ -8,13 +8,53 @@
     "audiobooks": "Hörbücher",
     "search": "Suche"
   },
+  "sidebar": {
+    "playlists": {
+      "title": "Playlisten"
+    }
+  },
+  "profile": {
+    "title": "Profil",
+    "autoplay": "Auto Play",
+    "theme": "Theme",
+    "app-language": "Language",
+    "content-language": "Content Language",
+    "uservoice": "User Voice",
+    "contact": "Kontakt",
+    "logout": "Sign out"
+  },
   "error": {
     "page-not-found": {
       "headline": "Fehler",
       "text": "Die Seite \"{path}\" gibt es nicht"
     }
   },
+  "collection": {
+    "track-count": "{count} track | {count} tracks",
+    "album-count": "{count} album | {count} albums"
+  },
+  "login": {
+    "redirect-message": {
+      "redirect-info": "You will be redirected to the login page.",
+      "manual-redirect-info": "Please wait or {0}.",
+      "redirect-link": "click to try again"
+    }
+  },
+  "playlist": {
+    "action": {
+      "shuffle": "Shuffle"
+    }
+  },
   "track": {
+    "dropdown": {
+      "play-next": "Als nächstes abspielen",
+      "go-to-album": "Album öffnen",
+      "add-to-queue": "Zur Warteschlange hinzufügen",
+      "add-to-playlist": "Zur Playliste hinzufügen",
+      "share": "Titel teilen",
+      "go-to-contributors": "Zur Person",
+      "more-info": "Mehr Informationen"
+    },
     "a11y": {
       "download": "Herunterladen",
       "queue": "Zur Warteschlange hinzufügen",
