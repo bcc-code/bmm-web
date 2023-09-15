@@ -17,7 +17,9 @@ useHead({
       <template v-if="collection">
         <div>
           <PageHeading>{{ collection?.name }}</PageHeading>
-          <p>{{ collection?.tracks?.length }} tracks</p>
+          <p v-if="collection?.tracks">
+            {{ t("collection.track-count", collection.tracks.length) }}
+          </p>
         </div>
       </template>
       <div

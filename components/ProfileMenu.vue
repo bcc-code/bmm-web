@@ -20,7 +20,7 @@ const logout = async () => {
         <MenuButton
           class="flex items-center font-bold text-label-1 focus:outline-none"
         >
-          Profile
+          {{ $t("profile.title") }}
           <NuxtIcon name="nav.profile" class="ml-1 text-xl" />
         </MenuButton>
       </div>
@@ -43,7 +43,7 @@ const logout = async () => {
                 class="w-full px-2 py-2 text-left hover:bg-[red]"
                 @click.stop="autoPlayEnabled = !autoPlayEnabled"
               >
-                Auto Play
+                {{ $t("profile.autoplay") }}
               </button>
               <Switch
                 v-model="autoPlayEnabled"
@@ -65,7 +65,7 @@ const logout = async () => {
                 class="w-full px-2 py-2 text-left hover:bg-[red]"
                 @click.stop
               >
-                Theme
+                {{ $t("profile.theme") }}
               </button>
             </MenuItem>
             <MenuItem v-slot="{ active }" as="div">
@@ -74,7 +74,7 @@ const logout = async () => {
                 class="w-full px-2 py-2 text-left hover:bg-[red]"
                 @click.stop
               >
-                Language
+                {{ $t("profile.app-language") }}
               </button>
             </MenuItem>
             <MenuItem v-slot="{ active }" as="div">
@@ -83,7 +83,7 @@ const logout = async () => {
                 class="w-full px-2 py-2 text-left hover:bg-[red]"
                 @click.stop
               >
-                Content Language
+                {{ $t("profile.content-language") }}
               </button>
             </MenuItem>
           </div>
@@ -95,7 +95,7 @@ const logout = async () => {
                 href="https://uservoice.bcc.no/?tags=bmm"
                 target="_blank"
               >
-                User Voice
+                {{ $t("profile.uservoice") }}
               </a>
             </MenuItem>
             <MenuItem v-slot="{ active }" as="div">
@@ -105,7 +105,7 @@ const logout = async () => {
                 href="mailto:bmm-support@bcc.no"
                 target="_blank"
               >
-                Contact
+                {{ $t("profile.contact") }}
               </a>
             </MenuItem>
           </div>
@@ -116,7 +116,7 @@ const logout = async () => {
                 class="w-full px-2 py-2 text-left"
                 @click="logout()"
               >
-                Sign Out
+                {{ $t("profile.logout") }}
               </button>
             </MenuItem>
           </div>
