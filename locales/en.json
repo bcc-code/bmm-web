@@ -15,13 +15,13 @@
   },
   "profile": {
     "title": "Profile",
-    "autoplay": { "title": "Auto Play" },
-    "theme": { "title": "Theme" },
-    "app-language": { "title": "Language" },
-    "content-language": { "title": "Content Language" },
-    "uservoice": { "title": "User Voice" },
-    "contact": { "title": "Contact" },
-    "logout": { "title": "Sign out" }
+    "autoplay": "Auto Play",
+    "theme": "Theme",
+    "app-language": "Language",
+    "content-language": "Content Language",
+    "uservoice": "User Voice",
+    "contact": "Contact",
+    "logout": "Sign out"
   },
   "error": {
     "page-not-found": {

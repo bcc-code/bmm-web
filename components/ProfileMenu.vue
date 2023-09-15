@@ -43,7 +43,7 @@ const logout = async () => {
                 class="w-full px-2 py-2 text-left hover:bg-[red]"
                 @click.stop="autoPlayEnabled = !autoPlayEnabled"
               >
-                {{ $t("profile.autoplay.title") }}
+                {{ $t("profile.autoplay") }}
               </button>
               <Switch
                 v-model="autoPlayEnabled"
@@ -65,7 +65,7 @@ const logout = async () => {
                 class="w-full px-2 py-2 text-left hover:bg-[red]"
                 @click.stop
               >
-                {{ $t("profile.theme.title") }}
+                {{ $t("profile.theme") }}
               </button>
             </MenuItem>
             <MenuItem v-slot="{ active }" as="div">
@@ -74,7 +74,7 @@ const logout = async () => {
                 class="w-full px-2 py-2 text-left hover:bg-[red]"
                 @click.stop
               >
-                {{ $t("profile.app-language.title") }}
+                {{ $t("profile.app-language") }}
               </button>
             </MenuItem>
             <MenuItem v-slot="{ active }" as="div">
@@ -83,7 +83,7 @@ const logout = async () => {
                 class="w-full px-2 py-2 text-left hover:bg-[red]"
                 @click.stop
               >
-                {{ $t("profile.content-language.title") }}
+                {{ $t("profile.content-language") }}
               </button>
             </MenuItem>
           </div>
@@ -95,7 +95,7 @@ const logout = async () => {
                 href="https://uservoice.bcc.no/?tags=bmm"
                 target="_blank"
               >
-                {{ $t("profile.uservoice.title") }}
+                {{ $t("profile.uservoice") }}
               </a>
             </MenuItem>
             <MenuItem v-slot="{ active }" as="div">
@@ -105,7 +105,7 @@ const logout = async () => {
                 href="mailto:bmm-support@bcc.no"
                 target="_blank"
               >
-                {{ $t("profile.contact.title") }}
+                {{ $t("profile.contact") }}
               </a>
             </MenuItem>
           </div>
@@ -116,7 +116,7 @@ const logout = async () => {
                 class="w-full px-2 py-2 text-left"
                 @click="logout()"
               >
-                {{ $t("profile.logout.title") }}
+                {{ $t("profile.logout") }}
               </button>
             </MenuItem>
           </div>
