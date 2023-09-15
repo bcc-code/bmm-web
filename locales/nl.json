@@ -8,13 +8,53 @@
     "audiobooks": "Audioboeken",
     "search": "Zoeken"
   },
+  "sidebar": {
+    "playlists": {
+      "title": "Afspeellijsten"
+    }
+  },
+  "profile": {
+    "title": "Profiel",
+    "autoplay": "Auto Play",
+    "theme": "Theme",
+    "app-language": "Language",
+    "content-language": "Content Language",
+    "uservoice": "User Voice",
+    "contact": "Contact",
+    "logout": "Sign out"
+  },
   "error": {
     "page-not-found": {
       "headline": "Fout",
       "text": "Sorry, we kunnen de pagina \"{path}\" niet vinden."
     }
   },
+  "collection": {
+    "track-count": "{count} track | {count} tracks",
+    "album-count": "{count} album | {count} albums"
+  },
+  "login": {
+    "redirect-message": {
+      "redirect-info": "You will be redirected to the login page.",
+      "manual-redirect-info": "Please wait or {0}.",
+      "redirect-link": "click to try again"
+    }
+  },
+  "playlist": {
+    "action": {
+      "shuffle": "Shuffle"
+    }
+  },
   "track": {
+    "dropdown": {
+      "play-next": "Volgende afspelen",
+      "go-to-album": "Ga naar album",
+      "add-to-queue": "Toevoegen aan wachtrij",
+      "add-to-playlist": "Toevoegen aan afspeellijst",
+      "share": "Deel nummer",
+      "go-to-contributors": "Ga naar bijdragers",
+      "more-info": "Meer informatie"
+    },
     "a11y": {
       "download": "Download",
       "queue": "Toevoegen aan wachtrij",
