@@ -25,6 +25,7 @@
         "prettier"
       ],
       "rules": {
+        "no-param-reassign": ["error", { "props": false }],
         "@typescript-eslint/consistent-type-assertions": [
           "warn",
           { "assertionStyle": "never" }
