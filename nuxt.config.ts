@@ -13,6 +13,7 @@ const modules: NuxtConfig["modules"] = [
   "@nuxtjs/color-mode",
   "nuxt-vitest",
   ["@pinia/nuxt", { autoImports: ["defineStore"] }],
+  "@vueuse/nuxt",
 ];
 
 if (process.env.ELECTRON) modules.push("nuxt-electron");

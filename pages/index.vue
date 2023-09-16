@@ -6,6 +6,7 @@ import {
 } from "@bcc-code/bmm-sdk-fetch";
 import { IDiscoverableGroup } from "~/composables/discover";
 import { useAuth0 } from "@auth0/auth0-vue";
+import { breakpointsTailwind, useBreakpoints } from "@vueuse/core";
 
 const { setQueue } = useNuxtApp().$mediaPlayer;
 
@@ -65,6 +66,10 @@ const playItem = (item: TrackModel, group: IDiscoverableGroup) => {
     items.findIndex((track) => track.id === item.id)
   );
 };
+
+const breakpoints = useBreakpoints(breakpointsTailwind);
+
+const isSmallScreen = breakpoints.smallerOrEqual("lg");
 </script>
 
 <template>
@@ -81,19 +86,33 @@ const playItem = (item: TrackModel, group: IDiscoverableGroup) => {
     <template v-else>
       <template v-for="group in discoverGroups" :key="group.header?.id || 0">
         <PageHeading v-if="group.header" :level="3">
-          <a
-            v-if="typeof group.header.link === 'string'"
-            :href="group.header.link"
-          >
-            {{ group.header.title }}
-          </a>
-          <span v-else>{{ group.header.title }}</span>
+          <div class="flex items-center justify-between">
+            <div>
+              <a
+                v-if="typeof group.header.link === 'string'"
+                :href="group.header.link"
+              >
+                {{ group.header.title }}
+              </a>
+              <span v-else>{{ group.header.title }}</span>
+            </div>
+            <a v-if="group.header.link" :href="group.header.link">
+              <ButtonStyled intent="secondary" size="small">
+                <span class="whitespace-nowrap">{{
+                  t("home.list.see-all")
+                }}</span></ButtonStyled
+              >
+            </a>
+          </div>
         </PageHeading>
         <div
           v-if="group.header?.useCoverCarousel"
-          class="flex space-x-8 overflow-x-auto scrollbar-hide"
+          class="flex flex-row flex-wrap gap-6"
         >
-          <template v-for="item in group.items" :key="item.id">
+          <template
+            v-for="item in group.items.slice(0, isSmallScreen ? 4 : 6)"
+            :key="item.id"
+          >
             <NuxtLink
               v-if="item.type === 'album'"
               :to="{ name: 'album-id', params: { id: item.id } }"
