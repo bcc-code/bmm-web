@@ -1,13 +1,16 @@
 <script setup lang="ts">
-defineProps<{
+const props = defineProps<{
   duration: number;
 }>();
+
+const timeAsText = computed(() =>
+  !Number.isFinite(props.duration)
+    ? "--:--"
+    : `${`${Math.floor(props.duration / 60)}`.padStart(2, "0")}:${`${Math.floor(
+        props.duration % 60
+      )}`.padStart(2, "0")}`
+);
 </script>
 <template>
-  <template v-if="!Number.isFinite(duration)">--:--</template>
-  <template v-else>
-    {{ (duration / 60).toFixed(0).padStart(2, "0") }}:{{
-      (duration % 60).toFixed(0).padStart(2, "0")
-    }}
-  </template>
+  {{ timeAsText }}
 </template>
