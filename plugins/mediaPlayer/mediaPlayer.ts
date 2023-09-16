@@ -33,6 +33,8 @@ export interface MediaPlayer {
 
 export const authToken = ref<string | undefined>();
 
+export const seekOffset = 15;
+
 export const initMediaPlayer = (
   createMedia: (src: string) => HTMLAudioElement,
   appInsights: ApplicationInsights
@@ -139,13 +141,13 @@ export const initMediaPlayer = (
 
   function rewind() {
     if (activeMedia.value) {
-      activeMedia.value.position -= 15;
+      activeMedia.value.position -= seekOffset;
     }
   }
 
   function fastForward() {
     if (activeMedia.value) {
-      activeMedia.value.position += 15;
+      activeMedia.value.position += seekOffset;
     }
   }
 
