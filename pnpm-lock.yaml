@@ -32,9 +32,6 @@ dependencies:
   pinia:
     specifier: ^2.1.4
     version: 2.1.4(typescript@5.0.4)(vue@3.3.4)
-  tailwind-scrollbar-hide:
-    specifier: ^1.1.7
-    version: 1.1.7
 
 devDependencies:
   '@intlify/eslint-plugin-vue-i18n':
@@ -1481,8 +1478,8 @@ packages:
     engines: {node: '>= 16'}
     dev: true
 
-  /@intlify/shared@9.4.0:
-    resolution: {integrity: sha512-AFqymip2kToqA0B6KZPg5jSrdcVHoli9t/VhGKE2iiMq9utFuMoGdDC/JOCIZgwxo6aXAk86QyU2XtzEoMuZ6A==}
+  /@intlify/shared@9.4.1:
+    resolution: {integrity: sha512-A51elBmZWf1FS80inf/32diO9DeXoqg9GR9aUDHFcfHoNDuT46Q+fpPOdj8jiJnSHSBh8E1E+6qWRhAZXdK3Ng==}
     engines: {node: '>= 16'}
     dev: true
 
@@ -11154,10 +11151,6 @@ packages:
       - supports-color
     dev: true
 
-  /tailwind-scrollbar-hide@1.1.7:
-    resolution: {integrity: sha512-X324n9OtpTmOMqEgDUEA/RgLrNfBF/jwJdctaPZDzB3mppxJk7TLIDmOreEDm1Bq4R9LSPu4Epf8VSdovNU+iA==}
-    dev: false
-
   /tailwindcss@3.3.2:
     resolution: {integrity: sha512-9jPkMiIBXvPc2KywkraqsUfbfj+dHDb+JPWtSJa9MLFdrPyazI7q6WX2sUrm7R9eVR7qqv3Pas7EvQFzxKnI6w==}
     engines: {node: '>=14.0.0'}
@@ -12251,7 +12244,7 @@ packages:
       vue-router:
         optional: true
     dependencies:
-      '@intlify/shared': 9.4.0
+      '@intlify/shared': 9.4.1
       '@intlify/vue-i18n-bridge': 0.8.0(vue-i18n@9.3.0-beta.22)
       '@intlify/vue-router-bridge': 0.8.0(vue-router@4.2.2)(vue@3.3.4)
       ufo: 1.1.2

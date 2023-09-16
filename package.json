@@ -15,7 +15,8 @@
     "preview": "cross-env PORT=9001 nuxt preview",
     "coverage": "vitest run --coverage",
     "e2e": "cypress open",
-    "lint": "stylelint \"**/*.{vue,scss}\" && prettier . --check && eslint --ext ts,js,vue,json . && ELECTRON=true nuxi typecheck",
+    "lint": "stylelint \"**/*.{vue,scss}\" && prettier . --check && eslint --ext ts,js,vue,json .",
+    "lint:fix": "stylelint --fix \"**/*.{vue,scss}\" && prettier . --check --write && eslint --fix --ext ts,js,vue,json .",
     "test": "vitest",
     "postinstall": "nuxt prepare"
   },
@@ -28,8 +29,7 @@
     "@vueuse/core": "^10.4.1",
     "class-variance-authority": "^0.6.1",
     "cross-env": "^7.0.3",
-    "pinia": "^2.1.4",
-    "tailwind-scrollbar-hide": "^1.1.7"
+    "pinia": "^2.1.4"
   },
   "devDependencies": {
     "@intlify/eslint-plugin-vue-i18n": "^2.0.0",
