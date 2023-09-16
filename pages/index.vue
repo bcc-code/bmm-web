@@ -96,14 +96,13 @@ const isSmallScreen = breakpoints.smallerOrEqual("lg");
               </a>
               <span v-else>{{ group.header.title }}</span>
             </div>
-            <NuxtLink v-if="group.header.link" :to="group.header.link">
+            <a v-if="group.header.link" :href="group.header.link">
               <ButtonStyled intent="secondary" size="small">
-                <span
-                  class="overflow-hidden text-ellipsis whitespace-nowrap text-center"
-                  >{{ t("track.a11y.see-all") }}</span
-                ></ButtonStyled
+                <span class="whitespace-nowrap">{{
+                  t("home.list.see-all")
+                }}</span></ButtonStyled
               >
-            </NuxtLink>
+            </a>
           </div>
         </PageHeading>
         <div
