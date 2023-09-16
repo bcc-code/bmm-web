@@ -16,7 +16,7 @@
     "coverage": "vitest run --coverage",
     "e2e": "cypress open",
     "lint": "stylelint \"**/*.{vue,scss}\" && prettier . --check && eslint --ext ts,js,vue,json . && ELECTRON=true nuxi typecheck",
-    "lint:fix": "stylelint --fix \"**/*.{vue,scss}\" && prettier . --check --write && eslint --fix --ext ts,js,vue,json .",
+    "lint:fix": "stylelint --fix \"**/*.{vue,scss}\" && prettier . --write && eslint --fix --ext ts,js,vue,json .",
     "test": "vitest",
     "postinstall": "nuxt prepare"
   },
