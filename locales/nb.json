@@ -60,5 +60,10 @@
       "queue": "Legg til i køen",
       "options": "Show options"
     }
+  },
+  "home": {
+    "list": {
+      "see-all": "See all"
+    }
   }
 }
