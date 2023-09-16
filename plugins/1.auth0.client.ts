@@ -11,6 +11,7 @@ export default defineNuxtPlugin((nuxtApp) => {
       redirect_uri: window.location.origin,
       audience: runtimeConfig.public.apiUrl,
     },
+    useRefreshTokens: true,
   });
 
   nuxtApp.vueApp.use(auth0);
