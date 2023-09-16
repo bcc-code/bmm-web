@@ -1,5 +1,6 @@
 import { ApplicationInsights } from "@microsoft/applicationinsights-web";
 import { authToken, initMediaPlayer } from "./mediaPlayer/mediaPlayer";
+import { AppInsights } from "./2.applicationInsights";
 
 export default defineNuxtPlugin((nuxtApp) => {
   const { getAccessTokenSilently, isAuthenticated } =
@@ -15,7 +16,7 @@ export default defineNuxtPlugin((nuxtApp) => {
     { immediate: true }
   );
 
-  const appInsights: ApplicationInsights = useNuxtApp().$appInsights;
+  const appInsights: AppInsights = useNuxtApp().$appInsights;
 
   return {
     provide: {

@@ -6,6 +6,10 @@
 import { ApplicationInsights } from "@microsoft/applicationinsights-web";
 import { useAuth0 } from "@auth0/auth0-vue";
 
+export interface AppInsights {
+  event: (event: any, customProperties: any) => void;
+}
+
 export default defineNuxtPlugin((nuxtApp) => {
   const runtimeConfig = useRuntimeConfig();
 
@@ -71,7 +75,7 @@ export default defineNuxtPlugin((nuxtApp) => {
 
   const connectionString = runtimeConfig.public.applicationInsights;
 
-  const appInsights = new ApplicationInsights({
+  const applicationInsights = new ApplicationInsights({
     config: {
       connectionString,
     },
@@ -80,24 +84,35 @@ export default defineNuxtPlugin((nuxtApp) => {
   if (!connectionString) {
     console.warn("No instrumentation key provided!");
   } else {
-    appInsights.loadAppInsights();
+    applicationInsights.loadAppInsights();
+    console.log("connection string", connectionString);
   }
+
+  var personId: string;
+
+  var appInsights: AppInsights = {
+    event: (event: string, customProperties: any) => {
+      customProperties.personId = personId;
+      customProperties.age = 1;
+      applicationInsights.trackEvent({
+        name: event,
+        properties: customProperties,
+      });
+    },
+  };
 
   const { user } = useAuth0();
   watch(
     user,
     () => {
       // TODO: `user` can also be undefined. The type provided here is incorrect. https://github.com/auth0/auth0-vue/issues/237
-      const personId = user.value?.["https://login.bcc.no/claims/personId"];
-      if (personId) {
-        appInsights.setAuthenticatedUserContext(personId);
-      }
+      personId = user.value?.["https://login.bcc.no/claims/personId"];
     },
     { immediate: true }
   );
 
-  setupVueErrorHandling(nuxtApp.vueApp, appInsights);
-  setupPageTracking(nuxtApp.$router, appInsights);
+  setupVueErrorHandling(nuxtApp.vueApp, applicationInsights);
+  setupPageTracking(nuxtApp.$router, applicationInsights);
 
   return {
     provide: {
