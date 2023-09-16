@@ -17,6 +17,8 @@ export interface MediaPlayer {
   stop: () => void;
   next: () => void;
   previous: () => void;
+  rewind: () => void;
+  fastForward: () => void;
   isLoading: ComputedRef<Boolean>;
   hasNext: ComputedRef<Boolean>;
   hasPrevious: ComputedRef<Boolean>;
@@ -135,6 +137,18 @@ export const initMediaPlayer = (
     continuePlayingNextIfEnded();
   }
 
+  function rewind() {
+    if (activeMedia.value) {
+      activeMedia.value.position -= 15;
+    }
+  }
+
+  function fastForward() {
+    if (activeMedia.value) {
+      activeMedia.value.position += 15;
+    }
+  }
+
   return {
     status: computed(() => {
       if (!activeMedia.value) return MediaPlayerStatus.Stopped;
@@ -154,6 +168,8 @@ export const initMediaPlayer = (
     stop,
     next,
     previous,
+    rewind,
+    fastForward,
     isLoading: computed(() => activeMedia.value?.loading || false),
     hasNext,
     hasPrevious,
