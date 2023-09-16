@@ -60,5 +60,10 @@
       "queue": "Zur Warteschlange hinzufügen",
       "options": "Show options"
     }
+  },
+  "home": {
+    "list": {
+      "see-all": "See all"
+    }
   }
 }
