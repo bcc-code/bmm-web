@@ -18,7 +18,7 @@ const logout = async () => {
     <Menu as="div" class="relative">
       <div>
         <MenuButton
-          class="flex items-center font-bold text-label-1 focus:outline-none"
+          class="flex items-center font-bold text-label-1 focus:outline-none dark:text-label-dark-1"
         >
           {{ $t("profile.title") }}
           <NuxtIcon name="nav.profile" class="ml-1 text-xl" />
