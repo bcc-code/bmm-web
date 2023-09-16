@@ -15,13 +15,13 @@
   },
   "profile": {
     "title": "Profiel",
-    "autoplay": "Auto Play",
-    "theme": "Theme",
-    "app-language": "Language",
-    "content-language": "Content Language",
+    "autoplay": "Automatisch afspelen",
+    "theme": "Thema",
+    "app-language": "Taal",
+    "content-language": "Taal van de content ",
     "uservoice": "User Voice",
     "contact": "Contact",
-    "logout": "Sign out"
+    "logout": "Uitloggen"
   },
   "error": {
     "page-not-found": {
@@ -30,14 +30,14 @@
     }
   },
   "collection": {
-    "track-count": "{count} track | {count} tracks",
+    "track-count": "{count} nummer | {count} nummers",
     "album-count": "{count} album | {count} albums"
   },
   "login": {
     "redirect-message": {
-      "redirect-info": "You will be redirected to the login page.",
-      "manual-redirect-info": "Please wait or {0}.",
-      "redirect-link": "click to try again"
+      "redirect-info": "Je wordt doorgestuurd naar de login pagina.",
+      "manual-redirect-info": "Wacht of {0}.",
+      "redirect-link": "Klik om opnieuw te proberen"
     }
   },
   "playlist": {
