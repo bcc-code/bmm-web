@@ -60,5 +60,10 @@
       "queue": "Toevoegen aan wachtrij",
       "options": "Toon opties"
     }
+  },
+  "home": {
+    "list": {
+      "see-all": "See all"
+    }
   }
 }
