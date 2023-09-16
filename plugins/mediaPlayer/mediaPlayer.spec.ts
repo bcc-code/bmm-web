@@ -142,6 +142,90 @@ describe("plugin mediaPlayer MediaTrack", () => {
     });
   });
 
+  describe("rewind", () => {
+    it("subtracts 15 seconds to the position on the current element", async () => {
+      // Arrange
+      const mediaPlayer = initMediaPlayer(
+        () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
+        {
+          trackEvent() {},
+        } as unknown as ApplicationInsights
+      );
+      await flushPromises();
+      mediaPlayer.setQueue([{ id: 1, type: "track" }]);
+      await flushPromises();
+      mediaPlayer.currentPosition.value = 100;
+      await flushPromises();
+
+      // Act
+      mediaPlayer.rewind();
+      await flushPromises();
+
+      // Assert
+      expect(MockedMediaTrack.mock.results[0]!.value.obj!.position).eq(85);
+    });
+
+    it("ignores the rewind-action if there is no current element", async () => {
+      // Arrange
+      const mediaPlayer = initMediaPlayer(
+        () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
+        {
+          trackEvent() {},
+        } as unknown as ApplicationInsights
+      );
+
+      // Act
+      mediaPlayer.rewind();
+      await flushPromises();
+
+      // Assert
+      expect(MediaTrack).not.toHaveBeenCalled();
+      expect(mediaPlayer.currentPosition.value).toBeNaN();
+    });
+  });
+
+  describe("fastForward", () => {
+    it("adds 15 seconds to the position on the current element", async () => {
+      // Arrange
+      const mediaPlayer = initMediaPlayer(
+        () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
+        {
+          trackEvent() {},
+        } as unknown as ApplicationInsights
+      );
+      await flushPromises();
+      mediaPlayer.setQueue([{ id: 1, type: "track" }]);
+      await flushPromises();
+      mediaPlayer.currentPosition.value = 100;
+      await flushPromises();
+
+      // Act
+      mediaPlayer.fastForward();
+      await flushPromises();
+
+      // Assert
+      expect(MockedMediaTrack.mock.results[0]!.value.obj!.position).eq(115);
+    });
+
+    it("ignores the fastForward-action if there is no current element", async () => {
+      // Arrange
+      const mediaPlayer = initMediaPlayer(
+        () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
+        {
+          trackEvent() {},
+        } as unknown as ApplicationInsights
+      );
+
+      // Act
+      mediaPlayer.fastForward();
+      await flushPromises();
+
+      // Assert
+      expect(MediaTrack).not.toHaveBeenCalled();
+      expect(mediaPlayer.currentPosition.value).toBeNaN();
+    });
+  });
+
   describe("play()", () => {
     it("calls `play` function on the current element", async () => {
       // Arrange
