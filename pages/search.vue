@@ -1,8 +1,47 @@
 <script lang="ts" setup>
+import { SearchResults } from "@bcc-code/bmm-sdk-fetch";
+import { watchDebounced } from "@vueuse/core";
+
 const { t } = useI18n();
 toolbarTitleStore().setReactiveToolbarTitle(() => t("nav.search"));
 
 const activeTab = ref("All");
+const searchTerm = ref("");
+
+const results = ref<SearchResults | null>(null);
+const loading = ref(true);
+
+let stopHandles: (() => void)[] = [];
+
+watchDebounced(
+  searchTerm,
+  () => {
+    const searchOptions = {
+      term: searchTerm.value,
+    };
+    const { data, pending, stopHandler } = useSearch(searchOptions);
+    stopHandles.forEach((el) => el());
+
+    stopHandles = [
+      stopHandler,
+      watch(
+        data,
+        (d) => {
+          results.value = d;
+        },
+        { immediate: true }
+      ),
+      watch(
+        pending,
+        (p) => {
+          loading.value = p;
+        },
+        { immediate: true }
+      ),
+    ];
+  },
+  { immediate: true, debounce: 1000, maxWait: 5000 }
+);
 
 const tabs = [
   "All",
@@ -22,6 +61,7 @@ const tabs = [
     >
       <NuxtIcon name="nav.search" class="text-gray-500 ml-2 h-6 w-6" />
       <input
+        v-model="searchTerm"
         type="text"
         placeholder="Search..."
         class="w-auto flex-grow bg-background-2 px-2 outline-none"
