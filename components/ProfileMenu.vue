@@ -18,7 +18,7 @@ const logout = async () => {
     <Menu as="div" class="relative">
       <div>
         <MenuButton
-          class="flex items-center font-bold text-label-1 focus:outline-none"
+          class="flex items-center font-bold text-label-1 focus:outline-none dark:text-label-dark-1"
         >
           {{ $t("profile.title") }}
           <NuxtIcon name="nav.profile" class="ml-1 text-xl" />
@@ -34,7 +34,7 @@ const logout = async () => {
         leave-to-class="transform scale-95 opacity-0"
       >
         <MenuItems
-          class="absolute right-0 mt-2 w-56 origin-top-right divide-y divide-label-separator rounded-md bg-white-1 text-sm shadow-lg ring-1 ring-opacity-5 focus:outline-none dark:divide-label-dark-separator"
+          class="absolute right-0 mt-2 w-56 origin-top-right divide-y divide-label-separator rounded-md bg-background-1 text-sm shadow-lg ring-1 ring-opacity-5 focus:outline-none dark:divide-label-dark-separator dark:bg-background-dark-1"
         >
           <div class="px-1 py-1">
             <MenuItem v-slot="{ active }" as="div" class="flex items-center">

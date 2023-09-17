@@ -156,6 +156,7 @@ const {
         <NuxtIcon name="icon.skip.large" filled class="text-2xl" />
       </div>
       <hr />
+      <!-- add forward function -->
       <div class="flex justify-between">
         <div>queue</div>
         <div class="flex">

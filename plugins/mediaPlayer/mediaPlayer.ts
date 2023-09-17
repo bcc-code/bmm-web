@@ -17,6 +17,8 @@ export interface MediaPlayer {
   stop: () => void;
   next: () => void;
   previous: () => void;
+  rewind: () => void;
+  fastForward: () => void;
   isLoading: ComputedRef<Boolean>;
   hasNext: ComputedRef<Boolean>;
   hasPrevious: ComputedRef<Boolean>;
@@ -30,6 +32,8 @@ export interface MediaPlayer {
 }
 
 export const authToken = ref<string | undefined>();
+
+export const seekOffset = 15;
 
 export const initMediaPlayer = (
   createMedia: (src: string) => HTMLAudioElement,
@@ -135,6 +139,18 @@ export const initMediaPlayer = (
     continuePlayingNextIfEnded();
   }
 
+  function rewind() {
+    if (activeMedia.value) {
+      activeMedia.value.position -= seekOffset;
+    }
+  }
+
+  function fastForward() {
+    if (activeMedia.value) {
+      activeMedia.value.position += seekOffset;
+    }
+  }
+
   return {
     status: computed(() => {
       if (!activeMedia.value) return MediaPlayerStatus.Stopped;
@@ -154,6 +170,8 @@ export const initMediaPlayer = (
     stop,
     next,
     previous,
+    rewind,
+    fastForward,
     isLoading: computed(() => activeMedia.value?.loading || false),
     hasNext,
     hasPrevious,
