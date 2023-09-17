@@ -52,6 +52,14 @@ const tabs = [
   "Podcasts",
   "Playlists",
 ];
+
+const playItem = (item: TrackModel, group: IDiscoverableGroup) => {
+  const items = group.items.filter((c): c is TrackModel => c.type === "track");
+  setQueue(
+    items,
+    items.findIndex((track) => track.id === item.id)
+  );
+};
 </script>
 
 <template>
@@ -82,7 +90,28 @@ const tabs = [
         </button>
       </div>
       <div class="border-t border-label-4 p-4">
-        <div v-show="activeTab === 'All'">All Content</div>
+        <div v-show="activeTab === 'All'">
+          <ol class="w-full divide-y divide-label-separator">
+            <template v-for="item in results?.items" :key="item.id">
+              <TrackItem
+                v-if="item.type === 'track'"
+                :track="item"
+                :is-track-type-known="true"
+                show-thumbnail
+                @play-track="playItem(item, [item])"
+              ></TrackItem>
+              <ContributorListItem
+                v-else-if="item.type === 'contributor'"
+                :contributor="item"
+              ></ContributorListItem>
+              <li v-else>
+                <div style="background-color: rgba(255, 0, 0, 0.4); color: red">
+                  "{{ item.type }}" is not yet implemented ...
+                </div>
+              </li>
+            </template>
+          </ol>
+        </div>
         <div v-show="activeTab === 'Speeches'">Speeches Content</div>
         <div v-show="activeTab === 'Music'">Music Content</div>
         <div v-show="activeTab === 'Events'">Events Content</div>
