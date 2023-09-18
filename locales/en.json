@@ -6,7 +6,8 @@
     "profile": "Profile",
     "messages": "Messages",
     "audiobooks": "Audiobooks",
-    "search": "Search"
+    "search": "Search",
+    "album": "Album"
   },
   "sidebar": {
     "playlists": {
