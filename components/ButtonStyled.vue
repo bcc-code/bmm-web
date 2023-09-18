@@ -4,9 +4,11 @@ import { cva } from "class-variance-authority";
 withDefaults(
   defineProps<{
     intent: "primary" | "secondary";
+    size: "large" | "medium" | "small";
   }>(),
   {
     intent: "secondary",
+    size: "medium",
   }
 );
 
@@ -22,12 +24,17 @@ const className = cva("py-3 px-6 rounded-full flex gap-3 items-center", {
       secondary:
         "dark:bg-background-dark-2 bg-background-2 text-label-1 dark:text-label-dark-1",
     },
+    size: {
+      large: "text-lg",
+      medium: "text-base",
+      small: "text-sm",
+    },
   },
 });
 </script>
 
 <template>
-  <button :class="className({ intent })">
+  <button :class="className({ intent, size })">
     <slot />
   </button>
 </template>
