@@ -1,9 +1,8 @@
-import { ApplicationInsights } from "@microsoft/applicationinsights-web";
 import { TrackModel } from "@bcc-code/bmm-sdk-fetch";
 import type { UnwrapRef } from "vue";
+import { AppInsights } from "plugins/2.applicationInsights";
 import MediaTrack from "./MediaTrack";
 import Queue from "./Queue";
-import { AppInsights } from "plugins/2.applicationInsights";
 
 export enum MediaPlayerStatus {
   Paused = "PAUSED",

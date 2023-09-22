@@ -1,4 +1,3 @@
-import { ApplicationInsights } from "@microsoft/applicationinsights-web";
 import { authToken, initMediaPlayer } from "./mediaPlayer/mediaPlayer";
 import { AppInsights } from "./2.applicationInsights";
 

@@ -16,7 +16,7 @@ export default defineNuxtPlugin((nuxtApp) => {
   const classify = (str: string) =>
     str.replace(/(?:^|[-_])(\w)/g, (c) => c.toUpperCase()).replace(/[-_]/g, "");
 
-  var loadedUser: User;
+  let loadedUser: User;
 
   const addUserInfo = (properties: any) => {
     if (loadedUser) {
@@ -56,7 +56,7 @@ export default defineNuxtPlugin((nuxtApp) => {
       context: { $options: { propsData: any } },
       info: any
     ) => {
-      var properties = {
+      let properties = {
         errorInfo: info,
         component: context ? formatComponentName(context, true) : undefined,
         props: context ? context.$options.propsData : undefined,
@@ -64,7 +64,7 @@ export default defineNuxtPlugin((nuxtApp) => {
       addUserInfo(properties);
       appInsights.trackException({
         exception: err,
-        properties: properties,
+        properties,
       });
       appInsights.flush();
       if (typeof oldErrorHandler === "function") {
@@ -98,7 +98,7 @@ export default defineNuxtPlugin((nuxtApp) => {
     applicationInsights.loadAppInsights();
   }
 
-  var appInsights: AppInsights = {
+  let appInsights: AppInsights = {
     event: (event: string, customProperties: any) => {
       addUserInfo(customProperties);
       applicationInsights.trackEvent({
