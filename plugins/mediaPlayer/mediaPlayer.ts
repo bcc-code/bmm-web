@@ -93,9 +93,11 @@ export const initMediaPlayer = (
 
   watch(activeMedia, () => {
     if (activeMedia.value) {
-      appInsights.event("track playback started", {
-        trackId: queue.value.currentTrack?.id,
-      });
+      if (appInsights.event) {
+        appInsights.event("track playback started", {
+          trackId: queue.value.currentTrack?.id,
+        });
+      }
     }
   });
 
