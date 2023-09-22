@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import { TrackModel } from "@bcc-code/bmm-sdk-fetch";
-import { DropdownMenuItem } from "../DropdownMenu.vue";
 
 const props = withDefaults(
   defineProps<{
@@ -13,9 +12,7 @@ const props = withDefaults(
   }
 );
 
-const { t } = useI18n();
-
-const { setQueue, addNext, addToQueue } = useNuxtApp().$mediaPlayer;
+const { setQueue } = useNuxtApp().$mediaPlayer;
 const showDropDownForTrack = ref<string | null>(null);
 
 const isTrackTypeKnown = () => {
@@ -36,52 +33,6 @@ const toggleDropdownForTrack = (trackReference: string) => {
   } else {
     showDropDownForTrack.value = trackReference;
   }
-};
-
-const dropdownMenuItemsForTrack = (track: TrackModel) => {
-  const items: DropdownMenuItem[] = [];
-
-  items.push({
-    icon: "icon.play",
-    text: t("track.dropdown.play-next"),
-    clickFunction: () => addNext(track),
-  });
-
-  if (track?.meta?.parent?.id) {
-    items.push({
-      icon: "icon.category.album",
-      text: t("track.dropdown.go-to-album"),
-      link: { name: "album-id", params: { id: track.meta.parent.id } },
-    });
-  }
-
-  items.push({
-    icon: "icon.queue",
-    text: t("track.dropdown.add-to-queue"),
-    clickFunction: () => addToQueue(track),
-  });
-  items.push({
-    icon: "icon.category.playlist",
-    text: t("track.dropdown.add-to-playlist"),
-    link: { name: "browse" }, // TODO: change link
-  });
-  items.push({
-    icon: "icon.share",
-    text: t("track.dropdown.share"),
-    link: { name: "browse" }, // TODO: change link
-  });
-  items.push({
-    icon: "icon.person",
-    text: t("track.dropdown.go-to-contributors"),
-    link: { name: "browse" }, // TODO: change link
-  });
-  items.push({
-    icon: "icon.information",
-    text: t("track.dropdown.more-info"),
-    link: { name: "browse" }, // TODO: change link
-  });
-
-  return items;
 };
 </script>
 
@@ -104,11 +55,6 @@ const dropdownMenuItemsForTrack = (track: TrackModel) => {
         @play-track="setQueue(tracks, i)"
         @open-options="toggleDropdownForTrack(`${track.id}-${i}`)"
       >
-        <DropdownMenu
-          v-if="showDropDownForTrack === `${track.id}-${i}`"
-          :items="dropdownMenuItemsForTrack(track)"
-          @close="toggleDropdownForTrack(`${track.id}-${i}`)"
-        ></DropdownMenu>
       </TrackItem>
     </template>
   </ol>
