@@ -56,7 +56,7 @@ export default defineNuxtPlugin((nuxtApp) => {
       context: { $options: { propsData: any } },
       info: any
     ) => {
-      let properties = {
+      const properties = {
         errorInfo: info,
         component: context ? formatComponentName(context, true) : undefined,
         props: context ? context.$options.propsData : undefined,
@@ -98,7 +98,7 @@ export default defineNuxtPlugin((nuxtApp) => {
     applicationInsights.loadAppInsights();
   }
 
-  let appInsights: AppInsights = {
+  const appInsights: AppInsights = {
     event: (event: string, customProperties: any) => {
       addUserInfo(customProperties);
       applicationInsights.trackEvent({
