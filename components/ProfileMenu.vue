@@ -1,9 +1,8 @@
 <script setup lang="ts">
 import { Menu, MenuButton, MenuItems, MenuItem, Switch } from "@headlessui/vue";
 import { useAuth0 } from "@auth0/auth0-vue";
-import { useLocalStorage } from "@vueuse/core";
 
-const autoplay = useLocalStorage("settings:autoplay", false);
+const profileStore = useProfileStore()
 
 const auth0 = useAuth0();
 const logout = async () => {
@@ -20,7 +19,7 @@ const logout = async () => {
       <div>
         <MenuButton
           class="flex gap-2 items-center font-bold text-label-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-label-1 dark:text-label-dark-1">
-          <span>{{ $t("nav.profile") }}</span>
+          <span>{{ $t("profile.title") }}</span>
           <img v-if="auth0.user.value.picture" :src="auth0.user.value.picture" :alt="auth0.user.value.name || ''"
             class="w-6 aspect-square rounded-full object-cover">
           <NuxtIcon v-else name="nav.profile" class="ml-1 text-xl" />
@@ -42,12 +41,12 @@ const logout = async () => {
 }
   ">
               <span>{{ $t('profile.autoplay') }}</span>
-              <Switch v-model="autoplay" :class="autoplay
+              <Switch v-model="profileStore.autoplay" :class="profileStore.autoplay
                 ? 'bg-tint dark:bg-tint-dark'
                 : 'bg-background-2 dark:bg-background-dark-2'
                 "
                 class="relative inline-flex h-6 w-10 shrink-0 cursor-pointer rounded-full p-1 transition-colors duration-200 ease-in-out focus:outline-none">
-                <span aria-hidden="true" :class="autoplay ? 'translate-x-full' : 'translate-x-0'"
+                <span aria-hidden="true" :class="profileStore.autoplay ? 'translate-x-full' : 'translate-x-0'"
                   class="pointer-events-none inline-block aspect-square w-4 transform rounded-full bg-white-1 shadow-lg ring-1 ring-black-separator transition duration-200 ease-in-out" />
               </Switch>
             </button>
@@ -72,7 +71,7 @@ const logout = async () => {
   e.preventDefault();
 }
   ">
-              <p>{{ $t('profile.language') }}</p>
+              <p>{{ $t('profile.app-language') }}</p>
               <span class="text-label-2 dark:text-label-dark-2">{{ $i18n.locale }}</span>
             </button>
             </MenuItem>
@@ -93,7 +92,7 @@ const logout = async () => {
             <a :class="{
               'bg-label-separator dark:bg-label-dark-separator': active,
             }" class="flex w-full rounded-lg px-3 py-2" href="https://uservoice.bcc.no/?tags=bmm" target="_blank">
-              {{ $t('profile.user-voice') }}
+              {{ $t('profile.uservoice') }}
             </a>
             </MenuItem>
             <MenuItem v-slot="{ active }" as="div">
@@ -109,7 +108,7 @@ const logout = async () => {
             <button :class="{
               'bg-label-separator dark:bg-label-dark-separator': active,
             }" class="w-full rounded-lg px-3 py-2 text-left" @click="logout()">
-              {{ $t('profile.sign-out') }}
+              {{ $t('profile.logout') }}
             </button>
             </MenuItem>
           </div>

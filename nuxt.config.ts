@@ -13,7 +13,8 @@ const modules: NuxtConfig["modules"] = [
   "@nuxtjs/i18n",
   "@nuxtjs/color-mode",
   "nuxt-vitest",
-  ["@pinia/nuxt", { autoImports: ["defineStore"] }],
+  ["@pinia/nuxt", { autoImports: ["defineStore"], }],
+  "@pinia-plugin-persistedstate/nuxt",
   "@vueuse/nuxt",
 ];
 
