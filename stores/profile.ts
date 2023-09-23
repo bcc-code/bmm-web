@@ -1,11 +1,13 @@
+export const useProfileStore = defineStore(
+  "profile",
+  () => {
+    const autoplay = ref(false);
 
-
-export const useProfileStore = defineStore('profile', () => {
-  const autoplay = ref(false)
-
-  return {
-    autoplay
+    return {
+      autoplay,
+    };
+  },
+  {
+    persist: true,
   }
-}, {
-  persist: true
-})
+);
