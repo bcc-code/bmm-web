@@ -9,6 +9,8 @@ const {
   next,
   previous,
   hasPrevious,
+  rewind,
+  fastForward,
   currentTrack,
   currentPosition,
   currentTrackDuration,
@@ -23,7 +25,17 @@ const {
   >
     <div class="flex min-w-0 flex-1 gap-3">
       <div class="group select-none">
-        <button v-if="hasPrevious" @click.stop="previous()">
+        <button @click.stop="rewind()">
+          <span class="flex aspect-square w-12 justify-center align-middle">
+            <NuxtIcon
+              name="icon.rewind.large"
+              class="text-3xl group-hover:text-4xl"
+            />
+          </span>
+        </button>
+      </div>
+      <div v-if="hasPrevious" class="group select-none">
+        <button @click.stop="previous()">
           <span class="flex aspect-square w-12 justify-center align-middle">
             <NuxtIcon
               name="icon.previous.track.large"
@@ -102,11 +114,21 @@ const {
           </span>
         </button>
       </div>
-      <div class="group select-none">
-        <button v-if="hasNext" @click.stop="next()">
+      <div v-if="hasNext" class="group select-none">
+        <button @click.stop="next()">
           <span class="flex aspect-square w-12 justify-center align-middle">
             <NuxtIcon
               name="icon.next.track.large"
+              class="text-3xl group-hover:text-4xl"
+            />
+          </span>
+        </button>
+      </div>
+      <div class="group select-none">
+        <button @click.stop="fastForward()">
+          <span class="flex aspect-square w-12 justify-center align-middle">
+            <NuxtIcon
+              name="icon.skip.large"
               class="text-3xl group-hover:text-4xl"
             />
           </span>

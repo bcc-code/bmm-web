@@ -4,7 +4,6 @@
   "version": "0.0.4",
   "description": "BCC audio player",
   "license": "AGPL-3.0",
-  "type": "module",
   "main": "dist-electron/main.js",
   "scripts": {
     "dev": "nuxt --port 9001 dev",
@@ -16,6 +15,7 @@
     "coverage": "vitest run --coverage",
     "e2e": "cypress open",
     "lint": "stylelint \"**/*.{vue,scss}\" && prettier . --check && eslint --ext ts,js,vue,json . && ELECTRON=true nuxi typecheck",
+    "lint:fix": "stylelint --fix \"**/*.{vue,scss}\" && prettier . --write && eslint --fix --ext ts,js,vue,json .",
     "test": "vitest",
     "postinstall": "nuxt prepare"
   },
@@ -25,11 +25,10 @@
     "@headlessui/vue": "^1.7.14",
     "@microsoft/applicationinsights-web": "^3.0.2",
     "@pinia/nuxt": "^0.4.11",
+    "@vueuse/core": "^10.4.1",
     "class-variance-authority": "^0.6.1",
     "cross-env": "^7.0.3",
-    "pinia": "^2.1.4",
-    "tailwind-scrollbar-hide": "^1.1.7",
-    "@vueuse/core": "^10.2.1"
+    "pinia": "^2.1.4"
   },
   "devDependencies": {
     "@intlify/eslint-plugin-vue-i18n": "^2.0.0",
@@ -37,13 +36,14 @@
     "@nuxt/kit": "^3.6.1",
     "@nuxtjs/color-mode": "^3.3.0",
     "@nuxtjs/eslint-config-typescript": "^12.0.0",
-    "@nuxtjs/i18n": "8.0.0-beta.13",
+    "@nuxtjs/i18n": "8.0.0-beta.10",
     "@nuxtjs/tailwindcss": "^6.8.0",
     "@vitest/coverage-v8": "^0.32.3",
     "@vue/test-utils": "^2.4.0",
+    "@vueuse/nuxt": "^10.4.1",
     "chalk": "^5.2.0",
     "cypress": "^12.16.0",
-    "electron": "^25.2.0",
+    "electron": "^25.5.0",
     "electron-builder": "^24.4.0",
     "eslint": "^8.43.0",
     "eslint-config-airbnb-base": "^15.0.0",

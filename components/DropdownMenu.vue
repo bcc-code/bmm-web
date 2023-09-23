@@ -2,12 +2,10 @@
 import { NuxtIconName } from "#build/nuxt-icons";
 import { RoutesNamedLocations } from "@typed-router";
 
-export interface DropdownMenuItem {
+export type DropdownMenuItem = {
   text: string;
   icon?: NuxtIconName;
-  link?: RoutesNamedLocations;
-  clickFunction?: Function;
-}
+} & ({ link: RoutesNamedLocations } | { clickFunction: Function });
 
 defineProps<{
   items: DropdownMenuItem[];
@@ -32,7 +30,7 @@ function close() {
         @click.stop="close"
       >
         <NuxtLink
-          v-if="item.link"
+          v-if="'link' in item"
           class="flex w-full items-center justify-start gap-2 px-3 py-2"
           :to="item.link"
         >

@@ -87,10 +87,11 @@ export default defineNuxtPlugin((nuxtApp) => {
   watch(
     user,
     () => {
-      appInsights.setAuthenticatedUserContext(
-        // TODO: `user` can also be undefined. The type provided here is incorrect. https://github.com/auth0/auth0-vue/issues/237
-        user.value?.["https://login.bcc.no/claims/personId"] ?? "unknown"
-      );
+      // TODO: `user` can also be undefined. The type provided here is incorrect. https://github.com/auth0/auth0-vue/issues/237
+      const personId = user.value?.["https://login.bcc.no/claims/personId"];
+      if (personId) {
+        appInsights.setAuthenticatedUserContext(personId);
+      }
     },
     { immediate: true }
   );
