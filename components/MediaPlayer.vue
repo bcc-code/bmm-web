@@ -2,6 +2,7 @@
 import { MediaPlayerStatus } from "~/plugins/mediaPlayer/mediaPlayer";
 
 const open = ref(false);
+const hover = ref(false);
 
 const {
   status,
@@ -22,13 +23,29 @@ const {
     leave-to-class="opacity-0 translate-y-2"
   >
     <div
-      class="absolute bottom-5 right-5 flex flex-col bg-white-1"
+      class="absolute bottom-5 right-5 flex flex-col rounded-2xl border bg-white-1 p-3"
       v-if="!open"
       @click.stop="open = !open"
+      @mouseover="hover = true"
+      @mouseleave="hover = false"
     >
+      <svg
+        v-if="hover"
+        class="absolute -left-1 -top-1"
+        xmlns="http://www.w3.org/2000/svg"
+        width="11"
+        height="11"
+        viewBox="0 0 11 11"
+        fill="none"
+      >
+        <path
+          d="M0 1.5C0 0.671573 0.671573 0 1.5 0H7.37868C8.71504 0 9.38429 1.61571 8.43934 2.56066L2.56066 8.43934C1.61572 9.38428 0 8.71504 0 7.37868V1.5Z"
+          fill="#0D131A"
+        />
+      </svg>
       <div class="flex">
         <div
-          class="aspect-square h-[48px] shrink-0 overflow-hidden rounded-md bg-background-2 dark:bg-background-dark-2"
+          class="mr-3 aspect-square h-[48px] shrink-0 overflow-hidden rounded-md bg-background-2 dark:bg-background-dark-2"
         >
           <ProtectedImage
             v-if="currentTrack?.meta?.attachedPicture"
@@ -42,13 +59,27 @@ const {
           >
             {{ currentTrack?.title }}
           </h3>
-          <span
-            v-if="currentTrack?.meta?.artist"
-            class="truncate text-base leading-snug text-label-2 dark:text-label-dark-2"
-            :title="currentTrack?.meta?.artist"
-          >
-            {{ currentTrack.meta?.artist }}
-          </span>
+          <div>
+            <span
+              v-if="currentTrack?.meta?.artist"
+              class="truncate text-base leading-snug text-label-2 dark:text-label-dark-2"
+              :title="currentTrack?.meta?.artist"
+            >
+              {{ currentTrack.meta?.artist }}
+            </span>
+            <span
+              v-if="currentTrack?.meta?.artist && currentTrack?.meta?.album"
+            >
+              -
+            </span>
+            <span
+              v-if="currentTrack?.meta?.album"
+              class="truncate text-base leading-snug text-label-2 dark:text-label-dark-2"
+              :title="currentTrack?.meta?.album"
+            >
+              {{ currentTrack.meta?.album }}
+            </span>
+          </div>
         </div>
         <button
           v-if="status === MediaPlayerStatus.Playing"
@@ -70,11 +101,13 @@ const {
           </span>
         </button>
       </div>
+      <!-- TODO: replace background color with proper colors -->
       <input
         v-model="currentPosition"
         type="range"
         :min="0"
         :max="currentTrackDuration"
+        @click.stop
       />
     </div>
   </transition>
@@ -87,7 +120,7 @@ const {
   >
     <div
       v-if="open"
-      class="h-100 absolute bottom-5 right-5 flex flex-col bg-white-1"
+      class="h-100 absolute bottom-5 right-5 flex flex-col rounded-2xl border bg-white-1"
       @click.stop="open = !open"
     >
       <div class="flex justify-between">
@@ -95,13 +128,15 @@ const {
         <div>(LANGUAGE)</div>
         <NuxtIcon name="options" filled class="text-2xl" />
       </div>
-      <div
-        class="aspect-square h-[48px] shrink-0 overflow-hidden rounded-md bg-background-2 dark:bg-background-dark-2"
-      >
-        <ProtectedImage
-          v-if="currentTrack?.meta?.attachedPicture"
-          :src="currentTrack?.meta?.attachedPicture"
-        />
+      <div class="flex justify-around">
+        <div
+          class="aspect-square w-40 overflow-hidden rounded-md bg-background-2 dark:bg-background-dark-2"
+        >
+          <ProtectedImage
+            v-if="currentTrack?.meta?.attachedPicture"
+            :src="currentTrack?.meta?.attachedPicture"
+          />
+        </div>
       </div>
       <div class="flex min-w-0 flex-col">
         <h3
@@ -110,19 +145,32 @@ const {
         >
           {{ currentTrack?.title }}
         </h3>
-        <span
-          v-if="currentTrack?.meta?.artist"
-          class="truncate text-center text-base leading-snug text-label-2 dark:text-label-dark-2"
-          :title="currentTrack?.meta?.artist"
-        >
-          {{ currentTrack.meta?.artist }}
-        </span>
+        <div class="text-center">
+          <span
+            v-if="currentTrack?.meta?.artist"
+            class="truncate text-base leading-snug text-label-2 dark:text-label-dark-2"
+            :title="currentTrack?.meta?.artist"
+          >
+            {{ currentTrack.meta?.artist }}
+          </span>
+          <span v-if="currentTrack?.meta?.artist && currentTrack?.meta?.album">
+            -
+          </span>
+          <span
+            v-if="currentTrack?.meta?.album"
+            class="truncate text-base leading-snug text-label-2 dark:text-label-dark-2"
+            :title="currentTrack?.meta?.album"
+          >
+            {{ currentTrack.meta?.album }}
+          </span>
+        </div>
       </div>
       <input
         v-model="currentPosition"
         type="range"
         :min="0"
         :max="currentTrackDuration"
+        @click.stop
       />
       <div class="flex justify-between">
         <span> <TimeDuration :duration="currentPosition"></TimeDuration></span>
