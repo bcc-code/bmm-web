@@ -9,8 +9,8 @@ dependencies:
     specifier: ^2.2.0
     version: 2.2.0(vue-router@4.2.2)
   '@bcc-code/bmm-sdk-fetch':
-    specifier: ^7.0.0
-    version: 7.0.0
+    specifier: ^7.1.0
+    version: 7.1.0
   '@headlessui/vue':
     specifier: ^1.7.14
     version: 1.7.14(vue@3.3.4)
@@ -647,8 +647,8 @@ packages:
       '@babel/helper-validator-identifier': 7.22.5
       to-fast-properties: 2.0.0
 
-  /@bcc-code/bmm-sdk-fetch@7.0.0:
-    resolution: {integrity: sha512-kSQ6+qOhMIJsG+9ibU0OnIrW9IbBH3SB17cpSj8rb6g22/OFY6cKteA/kv38j8DDUhV8N/q9t4KvCBf0u9SAmg==}
+  /@bcc-code/bmm-sdk-fetch@7.1.0:
+    resolution: {integrity: sha512-vIKu9KD7ZyYoBHJjnYNs3WKQO4W4vPHsNET4510AQSTVcja82sM2wMNNnDmv9b99KbHqvmaT06y/MVEy7Dt6Yg==}
     dev: false
 
   /@bcoe/v8-coverage@0.2.3:

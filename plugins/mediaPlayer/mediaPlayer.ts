@@ -1,6 +1,7 @@
-import { TrackModel } from "@bcc-code/bmm-sdk-fetch";
+import { TrackModel, StatisticsApi } from "@bcc-code/bmm-sdk-fetch";
 import type { UnwrapRef } from "vue";
 import { AppInsights } from "plugins/2.applicationInsights";
+import { useAuth0 } from "@auth0/auth0-vue";
 import MediaTrack from "./MediaTrack";
 import Queue from "./Queue";
 
@@ -44,6 +45,9 @@ export const initMediaPlayer = (
   const queue = ref(new Queue([]));
 
   const hasNext = computed(() => queue.value.length > queue.value.index + 1);
+  let trackTimestampStart: Date;
+  const runtimeConfig = useRuntimeConfig();
+  const { user } = useAuth0();
 
   function next() {
     if (!hasNext.value) return;
@@ -78,9 +82,27 @@ export const initMediaPlayer = (
     () => activeMedia.value?.ended,
     (ended) => {
       if (ended) {
-        appInsights.event("track completed", {
-          trackId: queue.value.currentTrack?.id,
-        });
+        const track = queue.value.currentTrack;
+        if (track !== undefined) {
+          new StatisticsApi().statisticsListeningPost({
+            listeningEvent: [
+              {
+                personId: user.value["https://login.bcc.no/claims/personId"],
+                trackId: track.id,
+                timestampStart: trackTimestampStart,
+                language: track.language ?? "zxx",
+                playbackOrigin: null,
+                lastPosition: activeMedia.value?.position ?? 0,
+                adjustedPlaybackSpeed: 1,
+                os: runtimeConfig.public.systemName,
+              },
+            ],
+          });
+
+          appInsights.event("track completed", {
+            trackId: queue.value.currentTrack?.id,
+          });
+        }
 
         if (hasNext.value) {
           next();
@@ -93,6 +115,7 @@ export const initMediaPlayer = (
 
   watch(activeMedia, () => {
     if (activeMedia.value) {
+      trackTimestampStart = new Date();
       if (appInsights.event) {
         appInsights.event("track playback started", {
           trackId: queue.value.currentTrack?.id,
