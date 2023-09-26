@@ -17,11 +17,11 @@
     "title": "Profil",
     "autoplay": "Auto Play",
     "theme": "Theme",
-    "app-language": "Language",
-    "content-language": "Content Language",
+    "app-language": "Sprache",
+    "content-language": "Sprache für Audioinhalte",
     "uservoice": "User Voice",
     "contact": "Kontakt",
-    "logout": "Sign out"
+    "logout": "Ausloggen"
   },
   "error": {
     "page-not-found": {
@@ -35,7 +35,7 @@
   },
   "login": {
     "redirect-message": {
-      "redirect-info": "You will be redirected to the login page.",
+      "redirect-info": "Du wirst zur Anmeldeseite weitergeleitet.",
       "manual-redirect-info": "Please wait or {0}.",
       "redirect-link": "click to try again"
     }
