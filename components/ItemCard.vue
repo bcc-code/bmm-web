@@ -18,8 +18,5 @@ defineProps<{
       alt=""
       class="aspect-square w-full rounded-2xl bg-background-2 dark:bg-background-dark-2"
     />
-    <span class="overflow-hidden text-ellipsis whitespace-nowrap text-center">
-      {{ item.title }}
-    </span>
   </div>
 </template>

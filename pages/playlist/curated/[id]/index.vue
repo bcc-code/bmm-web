@@ -16,10 +16,7 @@ function shuffle() {
     setQueue(tracks.value);
     queue.value.shuffle();
 
-    $appInsights.trackEvent({
-      name: "Shuffle Playlist",
-      properties: { playlistId },
-    });
+    $appInsights.event("Shuffle Playlist", { playlistId });
   }
 }
 
