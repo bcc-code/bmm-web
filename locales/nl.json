@@ -8,17 +8,62 @@
     "audiobooks": "Audioboeken",
     "search": "Zoeken"
   },
+  "sidebar": {
+    "playlists": {
+      "title": "Afspeellijsten"
+    }
+  },
+  "profile": {
+    "title": "Profiel",
+    "autoplay": "Automatisch afspelen",
+    "theme": "Thema",
+    "app-language": "Taal",
+    "content-language": "Taal van de content ",
+    "uservoice": "User Voice",
+    "contact": "Contact",
+    "logout": "Uitloggen"
+  },
   "error": {
     "page-not-found": {
       "headline": "Fout",
       "text": "Sorry, we kunnen de pagina \"{path}\" niet vinden."
     }
   },
+  "collection": {
+    "track-count": "{count} nummer | {count} nummers",
+    "album-count": "{count} album | {count} albums"
+  },
+  "login": {
+    "redirect-message": {
+      "redirect-info": "Je wordt doorgestuurd naar de login pagina.",
+      "manual-redirect-info": "Wacht of {0}.",
+      "redirect-link": "Klik om opnieuw te proberen"
+    }
+  },
+  "playlist": {
+    "action": {
+      "shuffle": "Shuffle"
+    }
+  },
   "track": {
+    "dropdown": {
+      "play-next": "Volgende afspelen",
+      "go-to-album": "Ga naar album",
+      "add-to-queue": "Toevoegen aan wachtrij",
+      "add-to-playlist": "Toevoegen aan afspeellijst",
+      "share": "Deel nummer",
+      "go-to-contributors": "Ga naar bijdragers",
+      "more-info": "Meer informatie"
+    },
     "a11y": {
       "download": "Download",
       "queue": "Toevoegen aan wachtrij",
       "options": "Toon opties"
+    }
+  },
+  "home": {
+    "list": {
+      "see-all": "Toon alles"
     }
   }
 }
