@@ -1,6 +1,6 @@
 import { TrackModel, StatisticsApi } from "@bcc-code/bmm-sdk-fetch";
 import type { UnwrapRef } from "vue";
-import { IUserData } from "utils/userData";
+import { IUserData } from "plugins/2.userData";
 import { AppInsights } from "plugins/3.applicationInsights";
 import MediaTrack from "./MediaTrack";
 import Queue from "./Queue";
@@ -100,6 +100,7 @@ export const initMediaPlayer = (
 
           appInsights.event("track completed", {
             trackId: queue.value.currentTrack?.id,
+            duration: activeMedia.value?.position,
           });
         }
 
@@ -116,7 +117,6 @@ export const initMediaPlayer = (
     if (activeMedia.value) {
       trackTimestampStart = new Date();
       if (appInsights.event) {
-        console.log("started", user);
         appInsights.event("track playback started", {
           trackId: queue.value.currentTrack?.id,
         });

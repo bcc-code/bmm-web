@@ -4,7 +4,6 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable no-nested-ternary */
 import { ApplicationInsights } from "@microsoft/applicationinsights-web";
-import { User, useAuth0 } from "@auth0/auth0-vue";
 import { IUserData } from "./2.userData";
 
 export interface AppInsights {
