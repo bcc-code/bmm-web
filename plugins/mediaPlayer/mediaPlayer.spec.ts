@@ -17,9 +17,7 @@ vi.mock("./Queue", async (importOriginal) => {
 });
 
 const appInsights = {
-  event: (x:string, y:any)=> {
-    console.log("call event\n\n");
-  },
+  event: (_: string, _2: any) => {},
 } as unknown as AppInsights;
 let playMocks: Mock[] = vi.hoisted(() => []);
 let pauseMocks: Mock[] = vi.hoisted(() => []);
