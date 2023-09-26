@@ -15,8 +15,8 @@
   },
   "profile": {
     "title": "Profil",
-    "autoplay": "Auto Play",
-    "theme": "Theme",
+    "autoplay": "Automatische Wiedergabe",
+    "theme": "Thema",
     "app-language": "Sprache",
     "content-language": "Sprache für Audioinhalte",
     "uservoice": "User Voice",
@@ -30,14 +30,14 @@
     }
   },
   "collection": {
-    "track-count": "{count} track | {count} tracks",
-    "album-count": "{count} album | {count} albums"
+    "track-count": "Titel",
+    "album-count": "Album | Alben"
   },
   "login": {
     "redirect-message": {
       "redirect-info": "Du wirst zur Anmeldeseite weitergeleitet.",
-      "manual-redirect-info": "Please wait or {0}.",
-      "redirect-link": "click to try again"
+      "manual-redirect-info": "Bitte warten oder ",
+      "redirect-link": "Klicken, um es erneut zu versuchen"
     }
   },
   "playlist": {
@@ -58,12 +58,12 @@
     "a11y": {
       "download": "Herunterladen",
       "queue": "Zur Warteschlange hinzufügen",
-      "options": "Show options"
+      "options": "Zeige Optionen"
     }
   },
   "home": {
     "list": {
-      "see-all": "See all"
+      "see-all": "Alle sehen"
     }
   }
 }
