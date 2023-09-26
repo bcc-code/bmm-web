@@ -4,7 +4,7 @@ import { describe, it, expect, vi, afterEach, Mock } from "vitest";
 import { TrackModel } from "@bcc-code/bmm-sdk-fetch";
 import { flushPromises } from "@vue/test-utils";
 import type { UnwrapRef } from "vue";
-import { AppInsights } from "../2.applicationInsights";
+import { AppInsights } from "../3.applicationInsights";
 import Queue from "./Queue";
 import MediaTrack from "./MediaTrack";
 import { initMediaPlayer, MediaPlayerStatus } from "./mediaPlayer";
@@ -67,7 +67,8 @@ describe("plugin mediaPlayer MediaTrack", () => {
       // Act
       const mediaPlayer = initMediaPlayer(
         () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
-        undefined as unknown as AppInsights
+        undefined as unknown as AppInsights,
+        "Test"
       );
       await flushPromises();
 
@@ -90,7 +91,8 @@ describe("plugin mediaPlayer MediaTrack", () => {
       // Arrange
       const mediaPlayer = initMediaPlayer(
         () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
-        appInsights
+        appInsights,
+        "Test"
       );
       await flushPromises();
       mediaPlayer.setQueue([{ id: 1, type: "track" }]);
@@ -108,7 +110,8 @@ describe("plugin mediaPlayer MediaTrack", () => {
       // Arrange
       const mediaPlayer = initMediaPlayer(
         () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
-        appInsights
+        appInsights,
+        "Test"
       );
       await flushPromises();
       mediaPlayer.setQueue([{ id: 1, type: "track" }]);
@@ -126,7 +129,8 @@ describe("plugin mediaPlayer MediaTrack", () => {
       // Arrange
       const mediaPlayer = initMediaPlayer(
         () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
-        appInsights
+        appInsights,
+        "Test"
       );
 
       // Act
@@ -146,7 +150,8 @@ describe("plugin mediaPlayer MediaTrack", () => {
         () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
         {
           trackEvent() {},
-        } as unknown as AppInsights
+        } as unknown as AppInsights,
+        "Test"
       );
       await flushPromises();
       mediaPlayer.setQueue([{ id: 1, type: "track" }]);
@@ -166,7 +171,8 @@ describe("plugin mediaPlayer MediaTrack", () => {
       // Arrange
       const mediaPlayer = initMediaPlayer(
         () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
-        appInsights
+        appInsights,
+        "Test"
       );
 
       // Act
@@ -184,7 +190,8 @@ describe("plugin mediaPlayer MediaTrack", () => {
       // Arrange
       const mediaPlayer = initMediaPlayer(
         () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
-        appInsights
+        appInsights,
+        "Test"
       );
       await flushPromises();
       mediaPlayer.setQueue([{ id: 1, type: "track" }]);
@@ -204,7 +211,8 @@ describe("plugin mediaPlayer MediaTrack", () => {
       // Arrange
       const mediaPlayer = initMediaPlayer(
         () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
-        appInsights
+        appInsights,
+        "Test"
       );
 
       // Act
@@ -223,7 +231,8 @@ describe("plugin mediaPlayer MediaTrack", () => {
       const mediaPlayer = ref(
         initMediaPlayer(
           () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
-          appInsights
+          appInsights,
+          "Test"
         )
       );
 
@@ -246,7 +255,8 @@ describe("plugin mediaPlayer MediaTrack", () => {
       const mediaPlayer = ref(
         initMediaPlayer(
           () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
-          appInsights
+          appInsights,
+          "Test"
         )
       );
       mediaPlayer.value.setQueue([{ id: 1, type: "track" }]);
@@ -268,7 +278,8 @@ describe("plugin mediaPlayer MediaTrack", () => {
       const mediaPlayer = ref(
         initMediaPlayer(
           () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
-          appInsights
+          appInsights,
+          "Test"
         )
       );
 
@@ -287,7 +298,8 @@ describe("plugin mediaPlayer MediaTrack", () => {
       const mediaPlayer = ref(
         initMediaPlayer(
           () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
-          appInsights
+          appInsights,
+          "Test"
         )
       );
 
@@ -309,7 +321,8 @@ describe("plugin mediaPlayer MediaTrack", () => {
       const mediaPlayer = ref(
         initMediaPlayer(
           () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
-          appInsights
+          appInsights,
+          "Test"
         )
       );
 
@@ -328,7 +341,8 @@ describe("plugin mediaPlayer MediaTrack", () => {
       const mediaPlayer = ref(
         initMediaPlayer(
           () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
-          appInsights
+          appInsights,
+          "Test"
         )
       );
 
@@ -365,7 +379,8 @@ describe("plugin mediaPlayer MediaTrack", () => {
       const mediaPlayer = ref(
         initMediaPlayer(
           () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
-          appInsights
+          appInsights,
+          "Test"
         )
       );
 
@@ -398,7 +413,8 @@ describe("plugin mediaPlayer MediaTrack", () => {
       const mediaPlayer = ref(
         initMediaPlayer(
           () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
-          appInsights
+          appInsights,
+          "Test"
         )
       );
 
@@ -428,7 +444,8 @@ describe("plugin mediaPlayer MediaTrack", () => {
       const mediaPlayer = ref(
         initMediaPlayer(
           () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
-          appInsights
+          appInsights,
+          "Test"
         )
       );
 
@@ -455,7 +472,8 @@ describe("plugin mediaPlayer MediaTrack", () => {
       const mediaPlayer = ref(
         initMediaPlayer(
           () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
-          appInsights
+          appInsights,
+          "Test"
         )
       );
 
@@ -491,7 +509,8 @@ describe("plugin mediaPlayer MediaTrack", () => {
       const mediaPlayer = ref(
         initMediaPlayer(
           () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
-          appInsights
+          appInsights,
+          "Test"
         )
       );
 
@@ -527,7 +546,8 @@ describe("plugin mediaPlayer MediaTrack", () => {
       const mediaPlayer = ref(
         initMediaPlayer(
           () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
-          appInsights
+          appInsights,
+          "Test"
         )
       );
 
@@ -557,7 +577,8 @@ describe("plugin mediaPlayer MediaTrack", () => {
       const mediaPlayer = ref(
         initMediaPlayer(
           () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
-          appInsights
+          appInsights,
+          "Test"
         )
       );
 
@@ -592,7 +613,8 @@ describe("plugin mediaPlayer MediaTrack", () => {
       const mediaPlayer = ref(
         initMediaPlayer(
           () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
-          appInsights
+          appInsights,
+          "Test"
         )
       );
 
@@ -615,7 +637,8 @@ describe("plugin mediaPlayer MediaTrack", () => {
       const mediaPlayer = ref(
         initMediaPlayer(
           () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
-          appInsights
+          appInsights,
+          "Test"
         )
       );
 
@@ -650,7 +673,8 @@ describe("plugin mediaPlayer MediaTrack", () => {
       const mediaPlayer = ref(
         initMediaPlayer(
           () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
-          appInsights
+          appInsights,
+          "Test"
         )
       );
 
@@ -688,7 +712,8 @@ describe("plugin mediaPlayer MediaTrack", () => {
       const mediaPlayer = ref(
         initMediaPlayer(
           () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
-          appInsights
+          appInsights,
+          "Test"
         )
       );
 
@@ -716,7 +741,8 @@ describe("plugin mediaPlayer MediaTrack", () => {
       const mediaPlayer = ref(
         initMediaPlayer(
           () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
-          appInsights
+          appInsights,
+          "Test"
         )
       );
 
@@ -763,7 +789,8 @@ describe("plugin mediaPlayer MediaTrack", () => {
       const mediaPlayer = ref(
         initMediaPlayer(
           () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
-          appInsights
+          appInsights,
+          "Test"
         )
       );
 
@@ -801,7 +828,8 @@ describe("plugin mediaPlayer MediaTrack", () => {
       const mediaPlayer = ref(
         initMediaPlayer(
           () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
-          appInsights
+          appInsights,
+          "Test"
         )
       );
 
@@ -830,7 +858,8 @@ describe("plugin mediaPlayer MediaTrack", () => {
       const mediaPlayer = ref(
         initMediaPlayer(
           () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
-          appInsights
+          appInsights,
+          "Test"
         )
       );
 
@@ -858,7 +887,8 @@ describe("plugin mediaPlayer MediaTrack", () => {
       const mediaPlayer = ref(
         initMediaPlayer(
           () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
-          appInsights
+          appInsights,
+          "Test"
         )
       );
 
@@ -908,7 +938,8 @@ describe("plugin mediaPlayer MediaTrack", () => {
         const mediaPlayer = ref(
           initMediaPlayer(
             () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
-            appInsights
+            appInsights,
+            "Test"
           )
         );
 
@@ -939,7 +970,8 @@ describe("plugin mediaPlayer MediaTrack", () => {
         const mediaPlayer = ref(
           initMediaPlayer(
             () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
-            appInsights
+            appInsights,
+            "Test"
           )
         );
 
@@ -973,7 +1005,8 @@ describe("plugin mediaPlayer MediaTrack", () => {
         const mediaPlayer = ref(
           initMediaPlayer(
             () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
-            appInsights
+            appInsights,
+            "Test"
           )
         );
 
@@ -1008,7 +1041,8 @@ describe("plugin mediaPlayer MediaTrack", () => {
         const mediaPlayer = ref(
           initMediaPlayer(
             () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
-            appInsights
+            appInsights,
+            "Test"
           )
         );
 
@@ -1036,7 +1070,8 @@ describe("plugin mediaPlayer MediaTrack", () => {
         const mediaPlayer = ref(
           initMediaPlayer(
             () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
-            appInsights
+            appInsights,
+            "Test"
           )
         );
 
@@ -1068,7 +1103,8 @@ describe("plugin mediaPlayer MediaTrack", () => {
         const mediaPlayer = ref(
           initMediaPlayer(
             () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
-            appInsights
+            appInsights,
+            "Test"
           )
         );
 
@@ -1096,7 +1132,8 @@ describe("plugin mediaPlayer MediaTrack", () => {
         const mediaPlayer = ref(
           initMediaPlayer(
             () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
-            appInsights
+            appInsights,
+            "Test"
           )
         );
 
@@ -1130,7 +1167,8 @@ describe("plugin mediaPlayer MediaTrack", () => {
         const mediaPlayer = ref(
           initMediaPlayer(
             () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
-            appInsights
+            appInsights,
+            "Test"
           )
         );
 
@@ -1158,7 +1196,8 @@ describe("plugin mediaPlayer MediaTrack", () => {
         const mediaPlayer = ref(
           initMediaPlayer(
             () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
-            appInsights
+            appInsights,
+            "Test"
           )
         );
 
@@ -1190,7 +1229,8 @@ describe("plugin mediaPlayer MediaTrack", () => {
         const mediaPlayer = ref(
           initMediaPlayer(
             () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
-            appInsights
+            appInsights,
+            "Test"
           )
         );
 
@@ -1221,7 +1261,8 @@ describe("plugin mediaPlayer MediaTrack", () => {
         const mediaPlayer = ref(
           initMediaPlayer(
             () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
-            appInsights
+            appInsights,
+            "Test"
           )
         );
 
@@ -1255,7 +1296,8 @@ describe("plugin mediaPlayer MediaTrack", () => {
         const mediaPlayer = ref(
           initMediaPlayer(
             () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
-            appInsights
+            appInsights,
+            "Test"
           )
         );
 
@@ -1288,7 +1330,8 @@ describe("plugin mediaPlayer MediaTrack", () => {
         const mediaPlayer = ref(
           initMediaPlayer(
             () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
-            appInsights
+            appInsights,
+            "Test"
           )
         );
 
@@ -1319,7 +1362,8 @@ describe("plugin mediaPlayer MediaTrack", () => {
         const mediaPlayer = ref(
           initMediaPlayer(
             () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
-            appInsights
+            appInsights,
+            "Test"
           )
         );
 
@@ -1353,7 +1397,8 @@ describe("plugin mediaPlayer MediaTrack", () => {
         const mediaPlayer = ref(
           initMediaPlayer(
             () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
-            appInsights
+            appInsights,
+            "Test"
           )
         );
 
@@ -1387,7 +1432,8 @@ describe("plugin mediaPlayer MediaTrack", () => {
         const mediaPlayer = ref(
           initMediaPlayer(
             () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
-            appInsights
+            appInsights,
+            "Test"
           )
         );
 
@@ -1423,7 +1469,8 @@ describe("plugin mediaPlayer MediaTrack", () => {
         const mediaPlayer = ref(
           initMediaPlayer(
             () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
-            appInsights
+            appInsights,
+            "Test"
           )
         );
 
@@ -1458,7 +1505,8 @@ describe("plugin mediaPlayer MediaTrack", () => {
         const mediaPlayer = ref(
           initMediaPlayer(
             () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
-            appInsights
+            appInsights,
+            "Test"
           )
         );
 
@@ -1516,7 +1564,8 @@ describe("plugin mediaPlayer MediaTrack", () => {
       const mediaPlayer = ref(
         initMediaPlayer(
           () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
-          appInsights
+          appInsights,
+          "Test"
         )
       );
 
@@ -1568,7 +1617,8 @@ describe("plugin mediaPlayer MediaTrack", () => {
       const mediaPlayer = ref(
         initMediaPlayer(
           () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
-          appInsights
+          appInsights,
+          "Test"
         )
       );
 
@@ -1600,7 +1650,8 @@ describe("plugin mediaPlayer MediaTrack", () => {
       const mediaPlayer = ref(
         initMediaPlayer(
           () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
-          appInsights
+          appInsights,
+          "Test"
         )
       );
 
@@ -1662,7 +1713,8 @@ describe("plugin mediaPlayer MediaTrack", () => {
       const mediaPlayer = ref(
         initMediaPlayer(
           () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
-          appInsights
+          appInsights,
+          "Test"
         )
       );
 

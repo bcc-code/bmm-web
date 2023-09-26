@@ -1,7 +1,7 @@
 import { TrackModel, StatisticsApi } from "@bcc-code/bmm-sdk-fetch";
 import type { UnwrapRef } from "vue";
-import { AppInsights } from "plugins/2.applicationInsights";
-import { useAuth0 } from "@auth0/auth0-vue";
+import { IUserData } from "utils/userData";
+import { AppInsights } from "plugins/3.applicationInsights";
 import MediaTrack from "./MediaTrack";
 import Queue from "./Queue";
 
@@ -38,7 +38,8 @@ export const seekOffset = 15;
 
 export const initMediaPlayer = (
   createMedia: (src: string) => HTMLAudioElement,
-  appInsights: AppInsights
+  appInsights: AppInsights,
+  user: IUserData
 ): MediaPlayer => {
   const activeMedia = ref<MediaTrack | undefined>();
 
@@ -46,8 +47,6 @@ export const initMediaPlayer = (
 
   const hasNext = computed(() => queue.value.length > queue.value.index + 1);
   let trackTimestampStart: Date;
-  const runtimeConfig = useRuntimeConfig();
-  const { user } = useAuth0();
 
   function next() {
     if (!hasNext.value) return;
@@ -83,18 +82,18 @@ export const initMediaPlayer = (
     (ended) => {
       if (ended) {
         const track = queue.value.currentTrack;
-        if (track !== undefined) {
+        if (track !== undefined && user.personId != null) {
           new StatisticsApi().statisticsListeningPost({
             listeningEvent: [
               {
-                personId: user.value["https://login.bcc.no/claims/personId"],
+                personId: user.personId,
                 trackId: track.id,
                 timestampStart: trackTimestampStart,
                 language: track.language ?? "zxx",
                 playbackOrigin: null,
                 lastPosition: activeMedia.value?.position ?? 0,
                 adjustedPlaybackSpeed: 1,
-                os: runtimeConfig.public.systemName,
+                os: user.os,
               },
             ],
           });
@@ -117,6 +116,7 @@ export const initMediaPlayer = (
     if (activeMedia.value) {
       trackTimestampStart = new Date();
       if (appInsights.event) {
+        console.log("started", user);
         appInsights.event("track playback started", {
           trackId: queue.value.currentTrack?.id,
         });
