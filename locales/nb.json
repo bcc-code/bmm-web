@@ -8,17 +8,62 @@
     "audiobooks": "Lydbøker",
     "search": "Søk"
   },
+  "sidebar": {
+    "playlists": {
+      "title": "Spillelister"
+    }
+  },
+  "profile": {
+    "title": "Min profil",
+    "autoplay": "Auto Play",
+    "theme": "Theme",
+    "app-language": "Language",
+    "content-language": "Content Language",
+    "uservoice": "User Voice",
+    "contact": "Kontakt",
+    "logout": "Sign out"
+  },
   "error": {
     "page-not-found": {
       "headline": "Feil",
       "text": "Sorry. We can't find the page \"{path}\"."
     }
   },
+  "collection": {
+    "track-count": "{count} track | {count} tracks",
+    "album-count": "{count} album | {count} albums"
+  },
+  "login": {
+    "redirect-message": {
+      "redirect-info": "You will be redirected to the login page.",
+      "manual-redirect-info": "Please wait or {0}.",
+      "redirect-link": "click to try again"
+    }
+  },
+  "playlist": {
+    "action": {
+      "shuffle": "Shuffle"
+    }
+  },
   "track": {
+    "dropdown": {
+      "play-next": "Spill av som neste",
+      "go-to-album": "Gå til albumet",
+      "add-to-queue": "Legg til i køen",
+      "add-to-playlist": "Legg til i spilleliste",
+      "share": "Del spor",
+      "go-to-contributors": "Vis bidragsytere",
+      "more-info": "Mer informasjon"
+    },
     "a11y": {
       "download": "Last ned",
       "queue": "Legg til i køen",
       "options": "Show options"
+    }
+  },
+  "home": {
+    "list": {
+      "see-all": "See all"
     }
   }
 }

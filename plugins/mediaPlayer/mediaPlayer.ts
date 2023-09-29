@@ -1,6 +1,6 @@
-import { ApplicationInsights } from "@microsoft/applicationinsights-web";
 import { TrackModel } from "@bcc-code/bmm-sdk-fetch";
 import type { UnwrapRef } from "vue";
+import { AppInsights } from "plugins/2.applicationInsights";
 import MediaTrack from "./MediaTrack";
 import Queue from "./Queue";
 
@@ -37,7 +37,7 @@ export const seekOffset = 15;
 
 export const initMediaPlayer = (
   createMedia: (src: string) => HTMLAudioElement,
-  appInsights: ApplicationInsights
+  appInsights: AppInsights
 ): MediaPlayer => {
   const activeMedia = ref<MediaTrack | undefined>();
 
@@ -78,11 +78,8 @@ export const initMediaPlayer = (
     () => activeMedia.value?.ended,
     (ended) => {
       if (ended) {
-        appInsights.trackEvent({
-          name: "track completed",
-          properties: {
-            trackId: queue.value.currentTrack?.id,
-          },
+        appInsights.event("track completed", {
+          trackId: queue.value.currentTrack?.id,
         });
 
         if (hasNext.value) {
@@ -96,12 +93,11 @@ export const initMediaPlayer = (
 
   watch(activeMedia, () => {
     if (activeMedia.value) {
-      appInsights.trackEvent({
-        name: "track playback started",
-        properties: {
+      if (appInsights.event) {
+        appInsights.event("track playback started", {
           trackId: queue.value.currentTrack?.id,
-        },
-      });
+        });
+      }
     }
   });
 
