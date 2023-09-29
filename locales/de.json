@@ -2,7 +2,7 @@
   "nav": {
     "home": "Start",
     "browse": "Stöbern",
-    "playlist": "Playliste",
+    "playlist": "Playlist",
     "profile": "Profil",
     "messages": "Reden",
     "audiobooks": "Hörbücher",
@@ -10,7 +10,7 @@
   },
   "sidebar": {
     "playlists": {
-      "title": "Playlisten"
+      "title": "Playlists"
     }
   },
   "profile": {
@@ -42,7 +42,7 @@
   },
   "playlist": {
     "action": {
-      "shuffle": "Shuffle"
+      "shuffle": "Zufällige Wiedergabe"
     }
   },
   "track": {
@@ -50,7 +50,7 @@
       "play-next": "Als nächstes abspielen",
       "go-to-album": "Album öffnen",
       "add-to-queue": "Zur Warteschlange hinzufügen",
-      "add-to-playlist": "Zur Playliste hinzufügen",
+      "add-to-playlist": "Zur Playlist hinzufügen",
       "share": "Titel teilen",
       "go-to-contributors": "Zur Person",
       "more-info": "Mehr Informationen"
