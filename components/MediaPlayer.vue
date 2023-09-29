@@ -23,7 +23,7 @@ const {
     leave-to-class="opacity-0 translate-y-2"
   >
     <div
-      class="absolute bottom-5 right-5 flex flex-col rounded-2xl border bg-white-1 p-3"
+      class="absolute bottom-5 right-5 flex flex-col rounded-2xl bg-white-1 p-3"
       v-if="!open"
       @click.stop="open = !open"
       @mouseover="hover = true"
@@ -124,9 +124,14 @@ const {
       @click.stop="open = !open"
     >
       <div class="flex justify-between">
-        <NuxtIcon name="icon.minify" filled class="text-2xl" />
-        <div>(LANGUAGE)</div>
-        <NuxtIcon name="options" filled class="text-2xl" />
+        <div class="rounded-2xl border">
+          <NuxtIcon name="icon.minify" filled class="text-2xl" />
+        </div>
+        <!-- TODO: REPLACE WITH CURRENT Content language -->
+        <div class="rounded-2xl border">NORSK</div>
+        <div class="rounded-2xl border">
+          <NuxtIcon name="options" filled class="text-2xl" />
+        </div>
       </div>
       <div class="flex justify-around">
         <div
@@ -203,10 +208,10 @@ const {
         <NuxtIcon name="icon.next.track.large" filled class="text-2xl" />
         <NuxtIcon name="icon.skip.large" filled class="text-2xl" />
       </div>
-      <hr />
+      <hr class="border-label-separator" />
       <!-- add forward function -->
       <div class="flex justify-between">
-        <div>queue</div>
+        <div class="text-label-3">queue</div>
         <div class="flex">
           <NuxtIcon name="icon.shuffle" filled class="text-2xl" />
           <NuxtIcon name="icon.repeat" filled class="text-2xl" />
@@ -219,7 +224,14 @@ const {
           :class="queue.index === i ? 'bg-tint' : ''"
           @click="queue.index = i"
         >
-          {{ item.meta?.title || item.title }}
+          <div class="flex justify-between">
+            <div>{{ item.meta?.title || item.title }}</div>
+            <NuxtIcon name="options" filled class="text-2xl" />
+            <!-- TODO: add animation of playing icon if active in queue -->
+            <!-- <NuxtIcon name="playing" filled class="text-2xl" /> -->
+          </div>
+
+          <hr class="border-label-separator" />
         </li>
       </ul>
     </div>
