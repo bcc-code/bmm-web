@@ -23,7 +23,7 @@ const {
     leave-to-class="opacity-0 translate-y-2"
   >
     <div
-      class="absolute bottom-5 right-5 flex flex-col rounded-2xl bg-white-1 p-3"
+      class="shadow-player absolute bottom-5 right-5 flex flex-col rounded-2xl bg-white-1 p-3"
       v-if="!open"
       @click.stop="open = !open"
       @mouseover="hover = true"
@@ -237,3 +237,9 @@ const {
     </div>
   </transition>
 </template>
+<style>
+.shadow-player {
+  box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.05),
+    0px 1px 4px 0px rgba(0, 0, 0, 0.05), 0px 0px 0px 1px rgba(0, 0, 0, 0.05);
+}
+</style>
