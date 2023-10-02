@@ -5,24 +5,16 @@ import {
   TrackModel,
 } from "@bcc-code/bmm-sdk-fetch";
 import { IDiscoverableGroup } from "~/composables/discover";
-import { useAuth0 } from "@auth0/auth0-vue";
 import { breakpointsTailwind, useBreakpoints } from "@vueuse/core";
 
 const { setQueue } = useNuxtApp().$mediaPlayer;
+const userData = useNuxtApp().$userData;
 
 const { t, locale } = useI18n();
 toolbarTitleStore().setReactiveToolbarTitle(() => t("nav.home"));
 
 const discoverGroups = ref<IDiscoverableGroup[] | null>(null);
 const loading = ref(true);
-const { user } = useAuth0();
-
-function calculateAge(birthdate: string | undefined) {
-  if (birthdate === undefined) return undefined;
-  const date = new Date(birthdate);
-  // We don't want the current age, just the age at the beginning of the year.
-  return new Date().getFullYear() - date.getFullYear();
-}
 
 let stopHandles: (() => void)[] = [];
 watch(
@@ -32,9 +24,7 @@ watch(
       // Compatibility is ensured in i18n.config.ts file
       lang: locale.value as LanguageEnum,
     };
-    // TODO: `user` can also be undefined. The type provided here is incorrect. https://github.com/auth0/auth0-vue/issues/237
-    const age = calculateAge(user.value?.birthdate);
-    if (age) parameters.age = age;
+    if (userData.age) parameters.age = userData.age;
     const { data, pending, stopHandler } = useDiscover(parameters);
     stopHandles.forEach((el) => el());
 
