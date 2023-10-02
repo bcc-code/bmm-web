@@ -101,14 +101,22 @@ const {
           </span>
         </button>
       </div>
-      <!-- TODO: replace background color with proper colors -->
-      <input
-        v-model="currentPosition"
-        type="range"
-        :min="0"
-        :max="currentTrackDuration"
-        @click.stop
-      />
+      <svg
+        width="100%"
+        height="28"
+        viewBox="0 0 100% 28"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        class="width-full"
+      >
+        <rect y="10" width="100%" height="8" rx="4" fill="#F5F6F7" />
+        <rect
+          :width="(currentPosition / currentTrackDuration) * 100 + '%'"
+          height="8"
+          transform="translate(0 10)"
+          fill="#0D131A"
+        />
+      </svg>
     </div>
   </transition>
 
