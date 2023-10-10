@@ -9,15 +9,15 @@ export function usePrivatePlaylist(options: UseTrackCollectionOptions) {
 
   return reactiveApi(
     useLazyAsyncData(`track-collection-${id}`, () =>
-      new TrackCollectionApi().trackCollectionIdGet({ id })
-    )
+      new TrackCollectionApi().trackCollectionIdGet({ id }),
+    ),
   );
 }
 
 export function usePrivatePlaylists() {
   return reactiveApi(
     useLazyAsyncData("track-collections", () =>
-      new TrackCollectionApi().trackCollectionGet()
-    )
+      new TrackCollectionApi().trackCollectionGet(),
+    ),
   );
 }

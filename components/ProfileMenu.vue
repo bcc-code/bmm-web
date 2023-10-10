@@ -49,11 +49,12 @@ const logout = async () => {
                   'bg-label-separator dark:bg-label-dark-separator': active,
                 }"
                 class="flex w-full items-center justify-between rounded-lg px-3 py-2"
-                @click="(e: MouseEvent) => {
-  e.preventDefault();
-  profileStore.autoplay = !profileStore.autoplay;
-}
-  "
+                @click="
+                  (e: MouseEvent) => {
+                    e.preventDefault();
+                    profileStore.autoplay = !profileStore.autoplay;
+                  }
+                "
               >
                 <span>{{ $t("profile.autoplay") }}</span>
                 <Switch
