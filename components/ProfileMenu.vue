@@ -51,7 +51,7 @@ const logout = async () => {
                 class="flex w-full items-center justify-between rounded-lg px-3 py-2"
                 @click="(e: MouseEvent) => {
   e.preventDefault();
-  autoplay = !autoplay;
+  profileStore.autoplay = !profileStore.autoplay;
 }
   "
               >
@@ -83,10 +83,7 @@ const logout = async () => {
                   'bg-label-separator dark:bg-label-dark-separator': active,
                 }"
                 class="w-full rounded-lg px-3 py-2 text-left"
-                @click="(e: MouseEvent) => {
-  e.preventDefault();
-}
-  "
+                @click.stop
               >
                 <p>{{ $t("profile.theme") }}</p>
                 <span class="text-label-2 dark:text-label-dark-2">
@@ -100,10 +97,7 @@ const logout = async () => {
                   'bg-label-separator dark:bg-label-dark-separator': active,
                 }"
                 class="w-full rounded-lg px-3 py-2 text-left"
-                @click="(e: MouseEvent) => {
-  e.preventDefault();
-}
-  "
+                @click.stop
               >
                 <p>{{ $t("profile.app-language") }}</p>
                 <span class="text-label-2 dark:text-label-dark-2">{{
@@ -117,10 +111,7 @@ const logout = async () => {
                   'bg-label-separator dark:bg-label-dark-separator': active,
                 }"
                 class="w-full rounded-lg px-3 py-2 text-left"
-                @click="(e: MouseEvent) => {
-  e.preventDefault();
-}
-  "
+                @click.stop
               >
                 <p>{{ $t("profile.content-language") }}</p>
                 <span class="text-label-2 dark:text-label-dark-2">{{
