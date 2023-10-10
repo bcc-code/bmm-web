@@ -4,13 +4,26 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable no-nested-ternary */
 import { ApplicationInsights } from "@microsoft/applicationinsights-web";
-import { useAuth0 } from "@auth0/auth0-vue";
+import { IUserData } from "./2.userData";
+
+export interface AppInsights {
+  event: (event: any, customProperties: any) => void;
+}
 
 export default defineNuxtPlugin((nuxtApp) => {
   const runtimeConfig = useRuntimeConfig();
 
   const classify = (str: string) =>
     str.replace(/(?:^|[-_])(\w)/g, (c) => c.toUpperCase()).replace(/[-_]/g, "");
+
+  const userData: IUserData = useNuxtApp().$userData;
+
+  const addUserInfo = (properties: any) => {
+    if (userData.personId) {
+      properties.personId = userData.personId;
+      properties.age = userData.age;
+    }
+  };
 
   const formatComponentName = (vm: any, includeFile: boolean) => {
     if (vm.$root === vm) {
@@ -43,13 +56,15 @@ export default defineNuxtPlugin((nuxtApp) => {
       context: { $options: { propsData: any } },
       info: any
     ) => {
+      const properties = {
+        errorInfo: info,
+        component: context ? formatComponentName(context, true) : undefined,
+        props: context ? context.$options.propsData : undefined,
+      };
+      addUserInfo(properties);
       appInsights.trackException({
         exception: err,
-        properties: {
-          errorInfo: info,
-          component: context ? formatComponentName(context, true) : undefined,
-          props: context ? context.$options.propsData : undefined,
-        },
+        properties,
       });
       appInsights.flush();
       if (typeof oldErrorHandler === "function") {
@@ -71,7 +86,7 @@ export default defineNuxtPlugin((nuxtApp) => {
 
   const connectionString = runtimeConfig.public.applicationInsights;
 
-  const appInsights = new ApplicationInsights({
+  const applicationInsights = new ApplicationInsights({
     config: {
       connectionString,
     },
@@ -80,24 +95,21 @@ export default defineNuxtPlugin((nuxtApp) => {
   if (!connectionString) {
     console.warn("No instrumentation key provided!");
   } else {
-    appInsights.loadAppInsights();
+    applicationInsights.loadAppInsights();
   }
 
-  const { user } = useAuth0();
-  watch(
-    user,
-    () => {
-      // TODO: `user` can also be undefined. The type provided here is incorrect. https://github.com/auth0/auth0-vue/issues/237
-      const personId = user.value?.["https://login.bcc.no/claims/personId"];
-      if (personId) {
-        appInsights.setAuthenticatedUserContext(personId);
-      }
+  const appInsights: AppInsights = {
+    event: (event: string, customProperties: any) => {
+      addUserInfo(customProperties);
+      applicationInsights.trackEvent({
+        name: event,
+        properties: customProperties,
+      });
     },
-    { immediate: true }
-  );
+  };
 
-  setupVueErrorHandling(nuxtApp.vueApp, appInsights);
-  setupPageTracking(nuxtApp.$router, appInsights);
+  setupVueErrorHandling(nuxtApp.vueApp, applicationInsights);
+  setupPageTracking(nuxtApp.$router, applicationInsights);
 
   return {
     provide: {

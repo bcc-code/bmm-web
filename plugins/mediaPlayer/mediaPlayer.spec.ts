@@ -1,10 +1,11 @@
 // @vitest-environment happy-dom
 
 import { describe, it, expect, vi, afterEach, Mock } from "vitest";
-import { ApplicationInsights } from "@microsoft/applicationinsights-web";
 import { TrackModel } from "@bcc-code/bmm-sdk-fetch";
 import { flushPromises } from "@vue/test-utils";
 import type { UnwrapRef } from "vue";
+import { IUserData } from "plugins/2.userData";
+import { AppInsights } from "../3.applicationInsights";
 import Queue from "./Queue";
 import MediaTrack from "./MediaTrack";
 import { initMediaPlayer, MediaPlayerStatus } from "./mediaPlayer";
@@ -15,6 +16,18 @@ vi.mock("./Queue", async (importOriginal) => {
     default: vi.fn().mockImplementation((...args: any[]) => new Mod(...args)),
   };
 });
+
+const appInsights = {
+  event: (_: string, _2: any) => {},
+} as unknown as AppInsights;
+
+const userData: IUserData = { personId: null, age: null, os: "Test" };
+const setupPlayer = () =>
+  initMediaPlayer(
+    () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
+    appInsights as unknown as AppInsights,
+    userData
+  );
 
 let playMocks: Mock[] = vi.hoisted(() => []);
 let pauseMocks: Mock[] = vi.hoisted(() => []);
@@ -62,10 +75,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
   describe("init", () => {
     it("starts playing from the start without init-loading", async () => {
       // Act
-      const mediaPlayer = initMediaPlayer(
-        () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
-        undefined as unknown as ApplicationInsights
-      );
+      const mediaPlayer = setupPlayer();
       await flushPromises();
 
       // Assert
@@ -85,12 +95,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
   describe("seeking", () => {
     it("sets the position on the current element", async () => {
       // Arrange
-      const mediaPlayer = initMediaPlayer(
-        () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
-        {
-          trackEvent() {},
-        } as unknown as ApplicationInsights
-      );
+      const mediaPlayer = setupPlayer();
       await flushPromises();
       mediaPlayer.setQueue([{ id: 1, type: "track" }]);
       await flushPromises();
@@ -105,12 +110,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
 
     it("parses the position to number before passing it on to the current element", async () => {
       // Arrange
-      const mediaPlayer = initMediaPlayer(
-        () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
-        {
-          trackEvent() {},
-        } as unknown as ApplicationInsights
-      );
+      const mediaPlayer = setupPlayer();
       await flushPromises();
       mediaPlayer.setQueue([{ id: 1, type: "track" }]);
       await flushPromises();
@@ -125,12 +125,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
 
     it("ignores the given position if there is no current element", async () => {
       // Arrange
-      const mediaPlayer = initMediaPlayer(
-        () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
-        {
-          trackEvent() {},
-        } as unknown as ApplicationInsights
-      );
+      const mediaPlayer = setupPlayer();
 
       // Act
       mediaPlayer.currentPosition.value = 100;
@@ -145,12 +140,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
   describe("rewind", () => {
     it("subtracts 15 seconds to the position on the current element", async () => {
       // Arrange
-      const mediaPlayer = initMediaPlayer(
-        () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
-        {
-          trackEvent() {},
-        } as unknown as ApplicationInsights
-      );
+      const mediaPlayer = setupPlayer();
       await flushPromises();
       mediaPlayer.setQueue([{ id: 1, type: "track" }]);
       await flushPromises();
@@ -167,12 +157,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
 
     it("ignores the rewind-action if there is no current element", async () => {
       // Arrange
-      const mediaPlayer = initMediaPlayer(
-        () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
-        {
-          trackEvent() {},
-        } as unknown as ApplicationInsights
-      );
+      const mediaPlayer = setupPlayer();
 
       // Act
       mediaPlayer.rewind();
@@ -187,12 +172,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
   describe("fastForward", () => {
     it("adds 15 seconds to the position on the current element", async () => {
       // Arrange
-      const mediaPlayer = initMediaPlayer(
-        () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
-        {
-          trackEvent() {},
-        } as unknown as ApplicationInsights
-      );
+      const mediaPlayer = setupPlayer();
       await flushPromises();
       mediaPlayer.setQueue([{ id: 1, type: "track" }]);
       await flushPromises();
@@ -209,12 +189,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
 
     it("ignores the fastForward-action if there is no current element", async () => {
       // Arrange
-      const mediaPlayer = initMediaPlayer(
-        () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
-        {
-          trackEvent() {},
-        } as unknown as ApplicationInsights
-      );
+      const mediaPlayer = setupPlayer();
 
       // Act
       mediaPlayer.fastForward();
@@ -229,14 +204,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
   describe("play()", () => {
     it("calls `play` function on the current element", async () => {
       // Arrange
-      const mediaPlayer = ref(
-        initMediaPlayer(
-          () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
-          {
-            trackEvent() {},
-          } as unknown as ApplicationInsights
-        )
-      );
+      const mediaPlayer = ref(setupPlayer());
 
       mediaPlayer.value.setQueue([{ id: 1, type: "track" }]);
       await flushPromises();
@@ -254,14 +222,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
 
     it("inits a new current element if no current element having a non-empty queue", async () => {
       // Arrange
-      const mediaPlayer = ref(
-        initMediaPlayer(
-          () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
-          {
-            trackEvent() {},
-          } as unknown as ApplicationInsights
-        )
-      );
+      const mediaPlayer = ref(setupPlayer());
       mediaPlayer.value.setQueue([{ id: 1, type: "track" }]);
       await flushPromises();
       mediaPlayer.value.stop();
@@ -278,14 +239,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
 
     it("ignores the action if there is no current element and an empty queue", async () => {
       // Arrange
-      const mediaPlayer = ref(
-        initMediaPlayer(
-          () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
-          {
-            trackEvent() {},
-          } as unknown as ApplicationInsights
-        )
-      );
+      const mediaPlayer = ref(setupPlayer());
 
       // Act
       mediaPlayer.value.play();
@@ -299,14 +253,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
   describe("pause()", () => {
     it("calls `pause` function on the current element", async () => {
       // Arrange
-      const mediaPlayer = ref(
-        initMediaPlayer(
-          () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
-          {
-            trackEvent() {},
-          } as unknown as ApplicationInsights
-        )
-      );
+      const mediaPlayer = ref(setupPlayer());
 
       mediaPlayer.value.setQueue([{ id: 1, type: "track" }]);
       await flushPromises();
@@ -323,14 +270,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
 
     it("ignores the action if there is no current element", async () => {
       // Arrange
-      const mediaPlayer = ref(
-        initMediaPlayer(
-          () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
-          {
-            trackEvent() {},
-          } as unknown as ApplicationInsights
-        )
-      );
+      const mediaPlayer = ref(setupPlayer());
 
       // Act
       mediaPlayer.value.pause();
@@ -344,14 +284,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
   describe("stop()", () => {
     it("clears the current element which resets all properties", async () => {
       // Arrange
-      const mediaPlayer = ref(
-        initMediaPlayer(
-          () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
-          {
-            trackEvent() {},
-          } as unknown as ApplicationInsights
-        )
-      );
+      const mediaPlayer = ref(setupPlayer());
 
       mediaPlayer.value.setQueue([{ id: 1, type: "track" }]);
       await flushPromises();
@@ -383,14 +316,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
   describe("next()", () => {
     it("inits the next track as current element", async () => {
       // Arrange
-      const mediaPlayer = ref(
-        initMediaPlayer(
-          () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
-          {
-            trackEvent() {},
-          } as unknown as ApplicationInsights
-        )
-      );
+      const mediaPlayer = ref(setupPlayer());
 
       mediaPlayer.value.setQueue([
         { id: 1, type: "track" },
@@ -418,14 +344,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
 
     it("skips the action if there is no next element", async () => {
       // Arrange
-      const mediaPlayer = ref(
-        initMediaPlayer(
-          () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
-          {
-            trackEvent() {},
-          } as unknown as ApplicationInsights
-        )
-      );
+      const mediaPlayer = ref(setupPlayer());
 
       mediaPlayer.value.setQueue([{ id: 1, type: "track" }]);
       await flushPromises();
@@ -450,14 +369,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
 
     it("destroys the old element when initializing the new", async () => {
       // Arrange
-      const mediaPlayer = ref(
-        initMediaPlayer(
-          () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
-          {
-            trackEvent() {},
-          } as unknown as ApplicationInsights
-        )
-      );
+      const mediaPlayer = ref(setupPlayer());
 
       mediaPlayer.value.setQueue([
         { id: 1, type: "track" },
@@ -479,14 +391,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
   describe("previous()", () => {
     it("inits the previous track as current element", async () => {
       // Arrange
-      const mediaPlayer = ref(
-        initMediaPlayer(
-          () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
-          {
-            trackEvent() {},
-          } as unknown as ApplicationInsights
-        )
-      );
+      const mediaPlayer = ref(setupPlayer());
 
       mediaPlayer.value.setQueue(
         [
@@ -517,14 +422,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
 
     it("skips the action if there is no previous element", async () => {
       // Arrange
-      const mediaPlayer = ref(
-        initMediaPlayer(
-          () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
-          {
-            trackEvent() {},
-          } as unknown as ApplicationInsights
-        )
-      );
+      const mediaPlayer = ref(setupPlayer());
 
       mediaPlayer.value.setQueue(
         [
@@ -555,14 +453,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
 
     it("destroys the old element when initializing the new", async () => {
       // Arrange
-      const mediaPlayer = ref(
-        initMediaPlayer(
-          () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
-          {
-            trackEvent() {},
-          } as unknown as ApplicationInsights
-        )
-      );
+      const mediaPlayer = ref(setupPlayer());
 
       mediaPlayer.value.setQueue(
         [
@@ -587,14 +478,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
   describe("setQueue()", () => {
     it("replaces the current queue by a new one with an index of 0 if not provided", async () => {
       // Arrange
-      const mediaPlayer = ref(
-        initMediaPlayer(
-          () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
-          {
-            trackEvent() {},
-          } as unknown as ApplicationInsights
-        )
-      );
+      const mediaPlayer = ref(setupPlayer());
 
       MockedQueue.mockClear();
       const oldQueue = mediaPlayer.value.queue;
@@ -624,14 +508,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
 
     it("sets the index on the queue if provided", async () => {
       // Arrange
-      const mediaPlayer = ref(
-        initMediaPlayer(
-          () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
-          {
-            trackEvent() {},
-          } as unknown as ApplicationInsights
-        )
-      );
+      const mediaPlayer = ref(setupPlayer());
 
       // Act
       mediaPlayer.value.setQueue(
@@ -649,14 +526,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
 
     it("initializes the current element", async () => {
       // Arrange
-      const mediaPlayer = ref(
-        initMediaPlayer(
-          () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
-          {
-            trackEvent() {},
-          } as unknown as ApplicationInsights
-        )
-      );
+      const mediaPlayer = ref(setupPlayer());
 
       const currentTracks: (TrackModel | undefined)[] = [];
       watch(
@@ -686,14 +556,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
   describe("addToQueue()", () => {
     it("adds an element to the end of the queue if current element is set", async () => {
       // Arrange
-      const mediaPlayer = ref(
-        initMediaPlayer(
-          () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
-          {
-            trackEvent() {},
-          } as unknown as ApplicationInsights
-        )
-      );
+      const mediaPlayer = ref(setupPlayer());
 
       mediaPlayer.value.setQueue([
         { id: 1, type: "track" },
@@ -726,14 +589,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
 
     it("adds an element to the queue and start playing if queue is empty", async () => {
       // Arrange
-      const mediaPlayer = ref(
-        initMediaPlayer(
-          () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
-          {
-            trackEvent() {},
-          } as unknown as ApplicationInsights
-        )
-      );
+      const mediaPlayer = ref(setupPlayer());
 
       const currentTracks: (TrackModel | undefined)[] = [];
       watch(
@@ -756,14 +612,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
 
     it("adds an element to the queue and start playing if queue has finished playing", async () => {
       // Arrange
-      const mediaPlayer = ref(
-        initMediaPlayer(
-          () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
-          {
-            trackEvent() {},
-          } as unknown as ApplicationInsights
-        )
-      );
+      const mediaPlayer = ref(setupPlayer());
 
       mediaPlayer.value.setQueue(
         [
@@ -805,14 +654,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
   describe("addNext()", () => {
     it("adds an element to the queue next to the current element if current element is set", async () => {
       // Arrange
-      const mediaPlayer = ref(
-        initMediaPlayer(
-          () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
-          {
-            trackEvent() {},
-          } as unknown as ApplicationInsights
-        )
-      );
+      const mediaPlayer = ref(setupPlayer());
 
       mediaPlayer.value.setQueue([
         { id: 1, type: "track" },
@@ -845,14 +687,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
 
     it("adds an element to the queue next to the current element if another track has been added and current element is set", async () => {
       // Arrange
-      const mediaPlayer = ref(
-        initMediaPlayer(
-          () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
-          {
-            trackEvent() {},
-          } as unknown as ApplicationInsights
-        )
-      );
+      const mediaPlayer = ref(setupPlayer());
 
       mediaPlayer.value.setQueue([
         { id: 1, type: "track" },
@@ -876,14 +711,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
 
     it("adds an element to the queue and start playing if queue is empty", async () => {
       // Arrange
-      const mediaPlayer = ref(
-        initMediaPlayer(
-          () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
-          {
-            trackEvent() {},
-          } as unknown as ApplicationInsights
-        )
-      );
+      const mediaPlayer = ref(setupPlayer());
 
       const currentTracks: (TrackModel | undefined)[] = [];
       watch(
@@ -906,14 +734,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
 
     it("adds an element to the queue next to the current element and start playing if queue has finished playing", async () => {
       // Arrange
-      const mediaPlayer = ref(
-        initMediaPlayer(
-          () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
-          {
-            trackEvent() {},
-          } as unknown as ApplicationInsights
-        )
-      );
+      const mediaPlayer = ref(setupPlayer());
 
       mediaPlayer.value.setQueue(
         [
@@ -958,14 +779,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
     describe("currentPosition", () => {
       it("updates the position of the current element as it changes", async () => {
         // Arrange
-        const mediaPlayer = ref(
-          initMediaPlayer(
-            () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
-            {
-              trackEvent() {},
-            } as unknown as ApplicationInsights
-          )
-        );
+        const mediaPlayer = ref(setupPlayer());
 
         const positions: number[] = [];
         watch(
@@ -991,14 +805,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
 
       it("updates to the initial position of the new current element", async () => {
         // Arrange
-        const mediaPlayer = ref(
-          initMediaPlayer(
-            () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
-            {
-              trackEvent() {},
-            } as unknown as ApplicationInsights
-          )
-        );
+        const mediaPlayer = ref(setupPlayer());
 
         mediaPlayer.value.setQueue([{ id: 1, type: "track" }]);
         await flushPromises();
@@ -1027,14 +834,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
 
       it("updates to the NaN if player is stopped", async () => {
         // Arrange
-        const mediaPlayer = ref(
-          initMediaPlayer(
-            () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
-            {
-              trackEvent() {},
-            } as unknown as ApplicationInsights
-          )
-        );
+        const mediaPlayer = ref(setupPlayer());
 
         mediaPlayer.value.setQueue([{ id: 1, type: "track" }]);
         await flushPromises();
@@ -1064,14 +864,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
     describe("play/pause", () => {
       it("shows the the player as paused when the MediaTrack responds", async () => {
         // Arrange
-        const mediaPlayer = ref(
-          initMediaPlayer(
-            () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
-            {
-              trackEvent() {},
-            } as unknown as ApplicationInsights
-          )
-        );
+        const mediaPlayer = ref(setupPlayer());
 
         mediaPlayer.value.setQueue([{ id: 1, type: "track" }]);
         await flushPromises();
@@ -1094,14 +887,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
 
       it("shows the the player as resuming when the MediaTrack responds", async () => {
         // Arrange
-        const mediaPlayer = ref(
-          initMediaPlayer(
-            () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
-            {
-              trackEvent() {},
-            } as unknown as ApplicationInsights
-          )
-        );
+        const mediaPlayer = ref(setupPlayer());
 
         mediaPlayer.value.setQueue([{ id: 1, type: "track" }]);
         await flushPromises();
@@ -1128,14 +914,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
     describe("isLoading", () => {
       it("shows the the player as loading when the MediaTrack responds", async () => {
         // Arrange
-        const mediaPlayer = ref(
-          initMediaPlayer(
-            () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
-            {
-              trackEvent() {},
-            } as unknown as ApplicationInsights
-          )
-        );
+        const mediaPlayer = ref(setupPlayer());
 
         mediaPlayer.value.setQueue([{ id: 1, type: "track" }]);
         await flushPromises();
@@ -1158,14 +937,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
 
       it("shows the the player as done loading when the MediaTrack responds", async () => {
         // Arrange
-        const mediaPlayer = ref(
-          initMediaPlayer(
-            () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
-            {
-              trackEvent() {},
-            } as unknown as ApplicationInsights
-          )
-        );
+        const mediaPlayer = ref(setupPlayer());
 
         mediaPlayer.value.setQueue([{ id: 1, type: "track" }]);
         await flushPromises();
@@ -1194,14 +966,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
     describe("hasNext", () => {
       it("changes to true if tracks are added to the queue", async () => {
         // Arrange
-        const mediaPlayer = ref(
-          initMediaPlayer(
-            () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
-            {
-              trackEvent() {},
-            } as unknown as ApplicationInsights
-          )
-        );
+        const mediaPlayer = ref(setupPlayer());
 
         const hasNextValues: Boolean[] = [];
         watch(
@@ -1224,14 +989,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
 
       it("doesn't update again when switching to pre-previous track", async () => {
         // Arrange
-        const mediaPlayer = ref(
-          initMediaPlayer(
-            () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
-            {
-              trackEvent() {},
-            } as unknown as ApplicationInsights
-          )
-        );
+        const mediaPlayer = ref(setupPlayer());
 
         mediaPlayer.value.setQueue([
           { id: 1, type: "track" },
@@ -1258,14 +1016,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
 
       it("changes to false if end of queue is reached", async () => {
         // Arrange
-        const mediaPlayer = ref(
-          initMediaPlayer(
-            () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
-            {
-              trackEvent() {},
-            } as unknown as ApplicationInsights
-          )
-        );
+        const mediaPlayer = ref(setupPlayer());
 
         mediaPlayer.value.setQueue([
           { id: 1, type: "track" },
@@ -1291,14 +1042,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
 
       it("changes to true again if tracks are added after latest playing", async () => {
         // Arrange
-        const mediaPlayer = ref(
-          initMediaPlayer(
-            () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
-            {
-              trackEvent() {},
-            } as unknown as ApplicationInsights
-          )
-        );
+        const mediaPlayer = ref(setupPlayer());
 
         mediaPlayer.value.setQueue(
           [
@@ -1327,14 +1071,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
 
       it("changes to false if the new queue is empty", async () => {
         // Arrange
-        const mediaPlayer = ref(
-          initMediaPlayer(
-            () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
-            {
-              trackEvent() {},
-            } as unknown as ApplicationInsights
-          )
-        );
+        const mediaPlayer = ref(setupPlayer());
 
         mediaPlayer.value.setQueue([
           { id: 1, type: "track" },
@@ -1362,14 +1099,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
     describe("hasPrevious", () => {
       it("changes to true when switching to second track", async () => {
         // Arrange
-        const mediaPlayer = ref(
-          initMediaPlayer(
-            () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
-            {
-              trackEvent() {},
-            } as unknown as ApplicationInsights
-          )
-        );
+        const mediaPlayer = ref(setupPlayer());
 
         mediaPlayer.value.setQueue([
           { id: 1, type: "track" },
@@ -1395,14 +1125,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
 
       it("doesn't update again when switching to third track", async () => {
         // Arrange
-        const mediaPlayer = ref(
-          initMediaPlayer(
-            () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
-            {
-              trackEvent() {},
-            } as unknown as ApplicationInsights
-          )
-        );
+        const mediaPlayer = ref(setupPlayer());
 
         mediaPlayer.value.setQueue([
           { id: 1, type: "track" },
@@ -1431,14 +1154,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
 
       it("changes to false if the index is changed to the beginning of the queue", async () => {
         // Arrange
-        const mediaPlayer = ref(
-          initMediaPlayer(
-            () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
-            {
-              trackEvent() {},
-            } as unknown as ApplicationInsights
-          )
-        );
+        const mediaPlayer = ref(setupPlayer());
 
         mediaPlayer.value.setQueue(
           [
@@ -1467,14 +1183,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
 
       it("changes to false if the new queue is empty", async () => {
         // Arrange
-        const mediaPlayer = ref(
-          initMediaPlayer(
-            () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
-            {
-              trackEvent() {},
-            } as unknown as ApplicationInsights
-          )
-        );
+        const mediaPlayer = ref(setupPlayer());
 
         mediaPlayer.value.setQueue(
           [
@@ -1505,14 +1214,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
     describe("queue", () => {
       it("changes if queue is replaced", async () => {
         // Arrange
-        const mediaPlayer = ref(
-          initMediaPlayer(
-            () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
-            {
-              trackEvent() {},
-            } as unknown as ApplicationInsights
-          )
-        );
+        const mediaPlayer = ref(setupPlayer());
 
         const queueValue: ComputedRef<UnwrapRef<Queue>>[] = [];
         watch(
@@ -1542,14 +1244,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
 
       it("stopps playing after replacing the queue with an empty queue while playing", async () => {
         // Arrange
-        const mediaPlayer = ref(
-          initMediaPlayer(
-            () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
-            {
-              trackEvent() {},
-            } as unknown as ApplicationInsights
-          )
-        );
+        const mediaPlayer = ref(setupPlayer());
 
         mediaPlayer.value.setQueue(
           [
@@ -1602,14 +1297,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
   describe("inits a new track", () => {
     it("inits a new track start playing a new queue and updates all variables", async () => {
       // Arrange
-      const mediaPlayer = ref(
-        initMediaPlayer(
-          () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
-          {
-            trackEvent() {},
-          } as unknown as ApplicationInsights
-        )
-      );
+      const mediaPlayer = ref(setupPlayer());
 
       const currentTracks: (TrackModel | undefined)[] = [];
       watch(
@@ -1656,14 +1344,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
 
     it("updates the length of the track if updated", async () => {
       // Arrange
-      const mediaPlayer = ref(
-        initMediaPlayer(
-          () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
-          {
-            trackEvent() {},
-          } as unknown as ApplicationInsights
-        )
-      );
+      const mediaPlayer = ref(setupPlayer());
 
       mediaPlayer.value.setQueue([{ id: 1, type: "track" }]);
       await flushPromises();
@@ -1690,14 +1371,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
   describe("finish playing a track", () => {
     it("inits a new track when finished playing and updates all variables", async () => {
       // Arrange
-      const mediaPlayer = ref(
-        initMediaPlayer(
-          () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
-          {
-            trackEvent() {},
-          } as unknown as ApplicationInsights
-        )
-      );
+      const mediaPlayer = ref(setupPlayer());
 
       mediaPlayer.value.setQueue([
         { id: 1, type: "track" },
@@ -1754,14 +1428,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
 
     it("stopps when finished playing without having a next track and updates all variables", async () => {
       // Arrange
-      const mediaPlayer = ref(
-        initMediaPlayer(
-          () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
-          {
-            trackEvent() {},
-          } as unknown as ApplicationInsights
-        )
-      );
+      const mediaPlayer = ref(setupPlayer());
 
       mediaPlayer.value.setQueue([{ id: 1, type: "track" }]);
       await flushPromises();
