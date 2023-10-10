@@ -13,7 +13,7 @@ export default defineNuxtPlugin((nuxtApp) => {
         ? await getAccessTokenSilently()
         : undefined;
     },
-    { immediate: true },
+    { immediate: true }
   );
 
   const appInsights: AppInsights = useNuxtApp().$appInsights;
@@ -24,7 +24,7 @@ export default defineNuxtPlugin((nuxtApp) => {
       mediaPlayer: initMediaPlayer(
         (src) => new Audio(src),
         appInsights,
-        userData,
+        userData
       ),
     },
   };

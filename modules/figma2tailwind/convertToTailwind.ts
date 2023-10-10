@@ -28,7 +28,7 @@ const config: Partial<Config> = {
 
 export default config;
 `,
-    "utf8",
+    "utf8"
   );
 }
 
@@ -49,7 +49,7 @@ async function writeColors(figmaInput) {
           ([innerColorWeight, innerColorValue]) => {
             transformedColors[suffixedKey][innerColorWeight] =
               innerColorValue.value;
-          },
+          }
         );
       } else {
         transformedColors[suffixedKey] = colorValue.value;
@@ -60,7 +60,7 @@ async function writeColors(figmaInput) {
   const content = `const colors = ${JSON.stringify(
     transformedColors,
     null,
-    2,
+    2
   )};`;
   await writeTailwindConfig(content);
 }
@@ -68,7 +68,7 @@ async function writeColors(figmaInput) {
 async function getFigmaInput() {
   const content = await fs.readFile(
     "./assets/design-tokens/tokens.json",
-    "utf-8",
+    "utf-8"
   );
   return JSON.parse(content);
 }

@@ -11,7 +11,7 @@ withDefaults(
   }>(),
   {
     type: "page",
-  },
+  }
 );
 </script>
 

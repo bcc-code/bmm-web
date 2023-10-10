@@ -11,7 +11,7 @@ watch(
       await loginWithRedirect();
     }
   },
-  { immediate: true },
+  { immediate: true }
 );
 
 useHead({

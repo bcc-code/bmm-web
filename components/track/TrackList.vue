@@ -10,7 +10,7 @@ const props = withDefaults(
   }>(),
   {
     skeletonCount: 5,
-  },
+  }
 );
 
 const { t } = useI18n();
@@ -25,7 +25,7 @@ const isTrackTypeKnown = () => {
       (track: TrackModel) =>
         track.subtype === firstType ||
         (track.subtype === "song" && firstType === "singsong") ||
-        (track.subtype === "singsong" && firstType === "song"),
+        (track.subtype === "singsong" && firstType === "song")
     ) || false
   );
 };

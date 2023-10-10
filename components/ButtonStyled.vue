@@ -9,7 +9,7 @@ withDefaults(
   {
     intent: "secondary",
     size: "medium",
-  },
+  }
 );
 
 defineSlots<{

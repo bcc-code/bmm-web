@@ -9,7 +9,7 @@ withDefaults(
   }>(),
   {
     linkLabel: "See all",
-  },
+  }
 );
 
 defineSlots<{

@@ -11,7 +11,7 @@ export default defineNuxtPlugin((nuxtApp) => {
       auth0 as unknown as Auth0Plugin;
     nuxtApp.vueApp.provide(
       AUTH0_INJECTION_KEY,
-      auth0 as unknown as Auth0Plugin,
+      auth0 as unknown as Auth0Plugin
     );
   };
 

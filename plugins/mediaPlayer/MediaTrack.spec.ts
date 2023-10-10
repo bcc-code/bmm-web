@@ -27,7 +27,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
       // Arrange
       const audio = new HTMLAudioElement();
       const mT = ref(
-        new MediaTrack(audio as unknown as globalThis.HTMLAudioElement),
+        new MediaTrack(audio as unknown as globalThis.HTMLAudioElement)
       );
 
       const durations: number[] = [];
@@ -35,7 +35,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
         () => mT.value.duration,
         (v) => {
           durations.push(v);
-        },
+        }
       );
       mT.value.registerEvents();
 
@@ -43,12 +43,12 @@ describe("plugin mediaPlayer MediaTrack", () => {
       await flushPromises();
       (audio as any).duration = 500;
       audio.dispatchEvent(
-        new Event("durationchange", { bubbles: false, cancelable: false }),
+        new Event("durationchange", { bubbles: false, cancelable: false })
       );
       await flushPromises();
       (audio as any).duration = 800;
       audio.dispatchEvent(
-        new Event("durationchange", { bubbles: false, cancelable: false }),
+        new Event("durationchange", { bubbles: false, cancelable: false })
       );
       await flushPromises();
 
@@ -61,7 +61,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
       // Arrange
       const audio = new HTMLAudioElement();
       const mT = ref(
-        new MediaTrack(audio as unknown as globalThis.HTMLAudioElement),
+        new MediaTrack(audio as unknown as globalThis.HTMLAudioElement)
       );
 
       const durations: number[] = [];
@@ -69,7 +69,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
         () => mT.value.duration,
         (v) => {
           durations.push(v);
-        },
+        }
       );
       mT.value.registerEvents();
 
@@ -77,12 +77,12 @@ describe("plugin mediaPlayer MediaTrack", () => {
       await flushPromises();
       (audio as any).duration = 500;
       audio.dispatchEvent(
-        new Event("durationchange", { bubbles: false, cancelable: false }),
+        new Event("durationchange", { bubbles: false, cancelable: false })
       );
       await flushPromises();
       (audio as any).duration = +Infinity;
       audio.dispatchEvent(
-        new Event("durationchange", { bubbles: false, cancelable: false }),
+        new Event("durationchange", { bubbles: false, cancelable: false })
       );
       await flushPromises();
 
@@ -97,7 +97,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
       // Arrange
       const audio = new HTMLAudioElement();
       const mT = ref(
-        new MediaTrack(audio as unknown as globalThis.HTMLAudioElement),
+        new MediaTrack(audio as unknown as globalThis.HTMLAudioElement)
       );
 
       const positions: number[] = [];
@@ -105,7 +105,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
         () => mT.value.position,
         (v) => {
           positions.push(v);
-        },
+        }
       );
       mT.value.registerEvents();
 
@@ -113,12 +113,12 @@ describe("plugin mediaPlayer MediaTrack", () => {
       await flushPromises();
       (audio as any).currentTime = 500;
       audio.dispatchEvent(
-        new Event("timeupdate", { bubbles: false, cancelable: false }),
+        new Event("timeupdate", { bubbles: false, cancelable: false })
       );
       await flushPromises();
       (audio as any).currentTime = 501;
       audio.dispatchEvent(
-        new Event("timeupdate", { bubbles: false, cancelable: false }),
+        new Event("timeupdate", { bubbles: false, cancelable: false })
       );
       await flushPromises();
 
@@ -131,7 +131,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
       // Arrange
       const audio = new HTMLAudioElement();
       const mT = ref(
-        new MediaTrack(audio as unknown as globalThis.HTMLAudioElement),
+        new MediaTrack(audio as unknown as globalThis.HTMLAudioElement)
       );
 
       const positions: number[] = [];
@@ -139,7 +139,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
         () => mT.value.position,
         (v) => {
           positions.push(v);
-        },
+        }
       );
       mT.value.registerEvents();
 
@@ -147,22 +147,22 @@ describe("plugin mediaPlayer MediaTrack", () => {
       await flushPromises();
       (audio as any).currentTime = 500;
       audio.dispatchEvent(
-        new Event("timeupdate", { bubbles: false, cancelable: false }),
+        new Event("timeupdate", { bubbles: false, cancelable: false })
       );
       await flushPromises();
       (audio as any).currentTime = 500;
       audio.dispatchEvent(
-        new Event("timeupdate", { bubbles: false, cancelable: false }),
+        new Event("timeupdate", { bubbles: false, cancelable: false })
       );
       await flushPromises();
       (audio as any).currentTime = 500;
       audio.dispatchEvent(
-        new Event("timeupdate", { bubbles: false, cancelable: false }),
+        new Event("timeupdate", { bubbles: false, cancelable: false })
       );
       await flushPromises();
       (audio as any).currentTime = 500;
       audio.dispatchEvent(
-        new Event("timeupdate", { bubbles: false, cancelable: false }),
+        new Event("timeupdate", { bubbles: false, cancelable: false })
       );
       await flushPromises();
 
@@ -175,7 +175,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
       // Arrange
       const audio = new HTMLAudioElement();
       const mT = ref(
-        new MediaTrack(audio as unknown as globalThis.HTMLAudioElement),
+        new MediaTrack(audio as unknown as globalThis.HTMLAudioElement)
       );
 
       const positions: number[] = [];
@@ -183,7 +183,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
         () => mT.value.position,
         (v) => {
           positions.push(v);
-        },
+        }
       );
       mT.value.registerEvents();
 
@@ -199,7 +199,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
       // Arrange
       const audio = new HTMLAudioElement();
       const mT = ref(
-        new MediaTrack(audio as unknown as globalThis.HTMLAudioElement),
+        new MediaTrack(audio as unknown as globalThis.HTMLAudioElement)
       );
 
       const positions: number[] = [];
@@ -207,7 +207,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
         () => mT.value.position,
         (v) => {
           positions.push(v);
-        },
+        }
       );
       mT.value.registerEvents();
 
@@ -231,7 +231,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
         new HTMLAudioElement();
       audio.srcObject = {};
       const mT = new MediaTrack(
-        audio as unknown as globalThis.HTMLAudioElement,
+        audio as unknown as globalThis.HTMLAudioElement
       );
       // Act
       mT.destroy();
@@ -245,7 +245,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
       const audio = new HTMLAudioElement();
       const pauseSpy = vi.spyOn(audio, "pause");
       const mT = new MediaTrack(
-        audio as unknown as globalThis.HTMLAudioElement,
+        audio as unknown as globalThis.HTMLAudioElement
       );
       // Act
       mT.destroy();
@@ -258,7 +258,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
       // Arrange
       const audio = new HTMLAudioElement();
       const mT = new MediaTrack(
-        audio as unknown as globalThis.HTMLAudioElement,
+        audio as unknown as globalThis.HTMLAudioElement
       );
       // Act
       mT.destroy();

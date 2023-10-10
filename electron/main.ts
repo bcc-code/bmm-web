@@ -16,7 +16,7 @@ const removeUrlOrigin = (_url: string) => {
   const url = new URL(
     /^https?:\/\//.test(_url)
       ? _url
-      : `http${_url.substring(_url.indexOf("://"))}`,
+      : `http${_url.substring(_url.indexOf("://"))}`
   );
   return url.href.substring(url.origin.length);
 };
@@ -71,7 +71,7 @@ if (!gotTheLock) {
       app.setAsDefaultProtocolClient(
         PRODUCTION_APP_PROTOCOL,
         process.execPath,
-        [path.resolve(args.shift()!)],
+        [path.resolve(args.shift()!)]
       );
     }
   } else {
@@ -98,14 +98,14 @@ if (!gotTheLock) {
             .request({
               method: request.method,
               url: `${process.env.VITE_DEV_SERVER_URL}${removeUrlOrigin(
-                request.url,
+                request.url
               )}`,
             })
             .on("response", (response) => {
               callback(response);
             })
             .end();
-        },
+        }
       );
     } else {
       protocol.registerFileProtocol(
@@ -114,7 +114,7 @@ if (!gotTheLock) {
           const relativePath = path.normalize(new URL(request.url).pathname);
           const absolutePath = path.join(
             PRODUCTION_APP_PATH,
-            relativePath !== path.sep ? relativePath : "index.html",
+            relativePath !== path.sep ? relativePath : "index.html"
           );
 
           // Can the file be accessed? If yes, serve it. If not, it's most likely a route which we should resolve by opening index.html.
@@ -133,7 +133,7 @@ if (!gotTheLock) {
               // eslint-disable-next-line n/no-callback-literal
               callback({ path: path.join(PRODUCTION_APP_PATH, "index.html") });
             });
-        },
+        }
       );
     }
 

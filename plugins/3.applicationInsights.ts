@@ -54,7 +54,7 @@ export default defineNuxtPlugin((nuxtApp) => {
     vm.config.errorHandler = (
       err: any,
       context: { $options: { propsData: any } },
-      info: any,
+      info: any
     ) => {
       const properties = {
         errorInfo: info,

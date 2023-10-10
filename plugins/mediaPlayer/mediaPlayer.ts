@@ -39,7 +39,7 @@ export const seekOffset = 15;
 export const initMediaPlayer = (
   createMedia: (src: string) => HTMLAudioElement,
   appInsights: AppInsights,
-  user: IUserData,
+  user: IUserData
 ): MediaPlayer => {
   const activeMedia = ref<MediaTrack | undefined>();
 
@@ -71,8 +71,8 @@ export const initMediaPlayer = (
 
     activeMedia.value = new MediaTrack(
       createMedia(
-        authorizedUrl(track.media?.[0]?.files?.[0]?.url || "", authToken.value),
-      ),
+        authorizedUrl(track.media?.[0]?.files?.[0]?.url || "", authToken.value)
+      )
     );
     activeMedia.value.registerEvents();
   }
@@ -110,7 +110,7 @@ export const initMediaPlayer = (
           stop();
         }
       }
-    },
+    }
   );
 
   watch(activeMedia, () => {
@@ -128,7 +128,7 @@ export const initMediaPlayer = (
     () => [queue.value.currentTrack, queue.value],
     () => {
       initCurrentTrack();
-    },
+    }
   );
 
   const hasPrevious = computed(() => queue.value.index > 0);
@@ -204,7 +204,7 @@ export const initMediaPlayer = (
       },
     }),
     currentTrackDuration: computed(() =>
-      activeMedia.value ? activeMedia.value.duration : NaN,
+      activeMedia.value ? activeMedia.value.duration : NaN
     ),
     queue: computed(() => queue.value),
     setQueue,

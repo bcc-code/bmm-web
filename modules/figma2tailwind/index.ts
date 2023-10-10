@@ -12,13 +12,13 @@ export default defineNuxtModule({
         await (await import("./convertToTailwind")).default();
         console.log(
           logSymbols.success,
-          `Tailwind classes generated from figma tokens 🎨`,
+          `Tailwind classes generated from figma tokens 🎨`
         );
       } catch (e) {
         console.error(
           logSymbols.error,
           `Failed to generate tailwind classes from figma tokens 🎨`,
-          e,
+          e
         );
       }
     }

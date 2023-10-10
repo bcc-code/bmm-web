@@ -29,7 +29,7 @@ export default defineNuxtPlugin(() => {
         }
       }
     },
-    { immediate: true },
+    { immediate: true }
   );
 
   return {

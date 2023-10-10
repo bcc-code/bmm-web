@@ -7,7 +7,7 @@ const props = withDefaults(
     name: NuxtIconName;
     filled?: boolean;
   }>(),
-  { filled: false },
+  { filled: false }
 );
 
 const icon = ref<string | Record<string, any>>("");
@@ -29,7 +29,7 @@ async function getIcon() {
     }
   } catch {
     throw new Error(
-      `[nuxt-icons] Icon '${props.name}' doesn't exist in 'assets/icons'`,
+      `[nuxt-icons] Icon '${props.name}' doesn't exist in 'assets/icons'`
     );
   }
 }

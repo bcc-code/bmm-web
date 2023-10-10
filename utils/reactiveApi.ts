@@ -5,7 +5,7 @@ export default function reactiveApi<Data, Error>(data: AsyncData<Data, Error>) {
     () => contentLanguageStore().contentLanguages,
     () => {
       data.refresh();
-    },
+    }
   );
 
   return { ...data, stopHandler };
