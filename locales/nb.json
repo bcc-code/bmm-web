@@ -15,13 +15,13 @@
   },
   "profile": {
     "title": "Min profil",
-    "autoplay": "Auto Play",
-    "theme": "Theme",
-    "app-language": "Language",
-    "content-language": "Content Language",
+    "autoplay": "Automatisk avspilling",
+    "theme": "Tema",
+    "app-language": "Språk",
+    "content-language": "Innholdsspråk",
     "uservoice": "User Voice",
     "contact": "Kontakt",
-    "logout": "Sign out"
+    "logout": "Logg ut"
   },
   "error": {
     "page-not-found": {
