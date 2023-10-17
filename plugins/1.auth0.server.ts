@@ -5,7 +5,6 @@ export default defineNuxtPlugin((nuxtApp) => {
     getAccessTokenSilently: () => Promise.resolve(""),
     install: () => {},
   };
-
   auth0.install = () => {
     // eslint-disable-next-line no-param-reassign
     nuxtApp.vueApp.config.globalProperties.$auth0 =
