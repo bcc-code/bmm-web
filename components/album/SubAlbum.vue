@@ -48,11 +48,11 @@ function expand() {
       :class="active ? 'active relative max-h-fit' : 'h-0 overflow-hidden'"
     >
       <TrackList
-        :tracks="(album?.children?.filter((c): c is TrackModel => c.type === 'track') || [])"
+        :tracks="(album?.children?.filter((c) : c is TrackModel => c.type === 'track') || [])"
       >
       </TrackList>
       <SubAlbum
-        v-for="a in album?.children?.filter((c):c is AlbumModel => c.type === 'album')"
+        v-for="a in album?.children?.filter((c) : c is AlbumModel => c.type === 'album')"
         :id="a.id"
         :key="a.id"
         :active="false"
