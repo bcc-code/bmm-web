@@ -128,7 +128,7 @@ const {
   >
     <div
       v-if="open"
-      class="h-100 absolute bottom-5 right-5 flex flex-col rounded-2xl border bg-white-1"
+      class="h-100 absolute bottom-5 right-5 flex flex-col overflow-auto rounded-2xl border bg-white-1"
       @click.stop="open = !open"
     >
       <div class="flex justify-between">
@@ -148,6 +148,12 @@ const {
           <ProtectedImage
             v-if="currentTrack?.meta?.attachedPicture"
             :src="currentTrack?.meta?.attachedPicture"
+            class="relative z-10"
+          />
+          <ProtectedImage
+            v-if="currentTrack?.meta?.attachedPicture"
+            :src="currentTrack?.meta?.attachedPicture"
+            class="absolute top-[26px] z-0 w-[160px] blur-[80px]"
           />
         </div>
       </div>
