@@ -22,7 +22,7 @@ const logout = async () => {
         >
           <span>{{ $t("profile.title") }}</span>
           <img
-            v-if="auth0.user.value.picture"
+            v-if="auth0.user.value?.picture"
             :src="auth0.user.value.picture"
             :alt="auth0.user.value.name || ''"
             class="aspect-square w-6 rounded-full object-cover"
