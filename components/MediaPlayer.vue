@@ -12,6 +12,10 @@ const {
   currentPosition,
   currentTrackDuration,
   queue,
+  next,
+  previous,
+  rewind,
+  fastForward,
 } = useNuxtApp().$mediaPlayer;
 </script>
 
@@ -209,8 +213,21 @@ const {
         ></span>
       </div>
       <div class="flex justify-evenly pb-6">
-        <NuxtIcon name="icon.rewind.large" filled class="text-2xl" />
-        <NuxtIcon name="icon.previous.track.large" filled class="text-2xl" />
+        <button @click.stop="rewind()">
+          <span class="flex aspect-square w-12 justify-center align-middle">
+            <NuxtIcon name="icon.rewind.large" filled class="text-2xl" />
+          </span>
+        </button>
+        <button @click.stop="previous()">
+          <span class="flex aspect-square w-12 justify-center align-middle">
+            <NuxtIcon
+              name="icon.previous.track.large"
+              filled
+              class="text-2xl"
+            />
+          </span>
+        </button>
+
         <button
           v-if="status === MediaPlayerStatus.Playing"
           @click.stop="pause()"
@@ -230,8 +247,17 @@ const {
             <NuxtIcon name="play" class="text-3xl group-hover:text-4xl" />
           </span>
         </button>
-        <NuxtIcon name="icon.next.track.large" filled class="text-2xl" />
-        <NuxtIcon name="icon.skip.large" filled class="text-2xl" />
+        <button @click.stop="next()">
+          <span class="flex aspect-square w-12 justify-center align-middle">
+            <NuxtIcon name="icon.next.track.large" filled class="text-2xl" />
+          </span>
+        </button>
+
+        <button @click.stop="fastForward()">
+          <span class="flex aspect-square w-12 justify-center align-middle">
+            <NuxtIcon name="icon.skip.large" filled class="text-2xl" />
+          </span>
+        </button>
       </div>
       <hr class="border-label-separator pb-4" />
       <!-- add forward function -->
