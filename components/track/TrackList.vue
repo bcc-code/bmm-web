@@ -13,7 +13,6 @@ const props = withDefaults(
 );
 
 const { setQueue } = useNuxtApp().$mediaPlayer;
-const showDropDownForTrack = ref<string | null>(null);
 
 const isTrackTypeKnown = () => {
   const firstType = props.tracks?.[0]?.subtype;
@@ -25,14 +24,6 @@ const isTrackTypeKnown = () => {
         (track.subtype === "singsong" && firstType === "song")
     ) || false
   );
-};
-
-const toggleDropdownForTrack = (trackReference: string) => {
-  if (showDropDownForTrack.value === trackReference) {
-    showDropDownForTrack.value = null;
-  } else {
-    showDropDownForTrack.value = trackReference;
-  }
 };
 </script>
 
@@ -53,7 +44,6 @@ const toggleDropdownForTrack = (trackReference: string) => {
         :is-track-type-known="isTrackTypeKnown()"
         show-thumbnail
         @play-track="setQueue(tracks, i)"
-        @open-options="toggleDropdownForTrack(`${track.id}-${i}`)"
       >
       </TrackItem>
     </template>

@@ -14,7 +14,7 @@ defineProps<{
   isTrackTypeKnown: boolean;
 }>();
 
-export type DropdownMenuItem = {
+type DropdownMenuItem = {
   text: string;
   icon?: NuxtIconName;
 } & ({ link: RoutesNamedLocations } | { clickFunction: Function });
@@ -69,7 +69,7 @@ const dropdownMenuItemsForTrack = (track: TrackModel) => {
   return items;
 };
 
-const emit = defineEmits<{ "open-options": []; "play-track": [] }>();
+const emit = defineEmits<{ "play-track": [] }>();
 
 function playTrack() {
   emit("play-track");
@@ -160,7 +160,7 @@ function secondsToTime(totalSeconds: number | undefined) {
         </button>
         <Menu as="div" class="relative inline-block px-2 py-0 text-left">
           <MenuButton
-          as="button"
+            as="button"
             :aria-label="t('track.a11y.options')"
             class="relative top-0.5 rounded-lg px-2 py-0"
             @click.stop
