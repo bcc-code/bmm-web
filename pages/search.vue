@@ -1,6 +1,7 @@
 <script lang="ts" setup>
-import { SearchResults } from "@bcc-code/bmm-sdk-fetch";
+import type { SearchResults, TrackModel } from "@bcc-code/bmm-sdk-fetch";
 import { watchDebounced } from "@vueuse/core";
+import type { IDiscoverableGroup } from "composables/discover";
 
 const { t } = useI18n();
 toolbarTitleStore().setReactiveToolbarTitle(() => t("nav.search"));
@@ -53,6 +54,7 @@ const tabs = [
   "Playlists",
 ];
 
+const { setQueue } = useNuxtApp().$mediaPlayer;
 const playItem = (item: TrackModel, group: IDiscoverableGroup) => {
   const items = group.items.filter((c): c is TrackModel => c.type === "track");
   setQueue(
@@ -98,7 +100,7 @@ const playItem = (item: TrackModel, group: IDiscoverableGroup) => {
                 :track="item"
                 :is-track-type-known="true"
                 show-thumbnail
-                @play-track="playItem(item, [item])"
+                @play-track="playItem(item, { header: null, items: [item] })"
               ></TrackItem>
               <ContributorListItem
                 v-else-if="item.type === 'contributor'"
