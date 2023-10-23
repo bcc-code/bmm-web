@@ -1,5 +1,5 @@
 import { defineNuxtPlugin, useNuxtApp } from "#app";
-import { MediaPlayerStatus } from "./mediaPlayer/mediaPlayer";
+import { MediaPlayerStatus, seekOffset } from "./mediaPlayer/mediaPlayer";
 
 export default defineNuxtPlugin(() => {
   const { $mediaPlayer } = useNuxtApp();
@@ -61,11 +61,11 @@ export default defineNuxtPlugin(() => {
       $mediaPlayer.stop();
     });
     navigator.mediaSession.setActionHandler("seekbackward", (e) => {
-      const offset = e.seekOffset ?? 10;
+      const offset = e.seekOffset ?? seekOffset;
       $mediaPlayer.currentPosition.value -= offset;
     });
     navigator.mediaSession.setActionHandler("seekforward", (e) => {
-      const offset = e.seekOffset ?? 10;
+      const offset = e.seekOffset ?? seekOffset;
       $mediaPlayer.currentPosition.value += offset;
     });
     navigator.mediaSession.setActionHandler("seekto", (e) => {

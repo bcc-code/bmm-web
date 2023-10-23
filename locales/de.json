@@ -8,17 +8,62 @@
     "audiobooks": "Hörbücher",
     "search": "Suche"
   },
+  "sidebar": {
+    "playlists": {
+      "title": "Playlisten"
+    }
+  },
+  "profile": {
+    "title": "Profil",
+    "autoplay": "Automatische Wiedergabe",
+    "theme": "Thema",
+    "app-language": "Sprache",
+    "content-language": "Sprache für Audioinhalte",
+    "uservoice": "User Voice",
+    "contact": "Kontakt",
+    "logout": "Ausloggen"
+  },
   "error": {
     "page-not-found": {
       "headline": "Fehler",
       "text": "Die Seite \"{path}\" gibt es nicht"
     }
   },
+  "collection": {
+    "track-count": "Titel",
+    "album-count": "Album | Alben"
+  },
+  "login": {
+    "redirect-message": {
+      "redirect-info": "Du wirst zur Anmeldeseite weitergeleitet.",
+      "manual-redirect-info": "Bitte warten oder ",
+      "redirect-link": "Klicken, um es erneut zu versuchen"
+    }
+  },
+  "playlist": {
+    "action": {
+      "shuffle": "Shuffle"
+    }
+  },
   "track": {
+    "dropdown": {
+      "play-next": "Als nächstes abspielen",
+      "go-to-album": "Album öffnen",
+      "add-to-queue": "Zur Warteschlange hinzufügen",
+      "add-to-playlist": "Zur Playliste hinzufügen",
+      "share": "Titel teilen",
+      "go-to-contributors": "Zur Person",
+      "more-info": "Mehr Informationen"
+    },
     "a11y": {
       "download": "Herunterladen",
       "queue": "Zur Warteschlange hinzufügen",
-      "options": "Show options"
+      "options": "Zeige Optionen"
+    }
+  },
+  "home": {
+    "list": {
+      "see-all": "Alle sehen"
     }
   }
 }
