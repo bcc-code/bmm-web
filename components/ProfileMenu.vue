@@ -88,7 +88,11 @@ const logout = async () => {
               >
                 <p>{{ $t("profile.theme") }}</p>
                 <span class="text-label-2 dark:text-label-dark-2">
-                  {{ $t(`profile.theme-${$colorMode.value}`) }}
+                  {{
+                    $colorMode.value === "light"
+                      ? $t("profile.theme-light")
+                      : $t("profile.theme-dark")
+                  }}
                 </span>
               </button>
             </MenuItem>
