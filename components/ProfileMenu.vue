@@ -15,6 +15,7 @@ const logout = async () => {
 
 const { locale } = useI18n();
 const languageName = computed(() => getLocalizedLanguageName(locale));
+const { contentLanguages } = contentLanguageStore();
 </script>
 <template>
   <div>
@@ -123,7 +124,7 @@ const languageName = computed(() => getLocalizedLanguageName(locale));
               >
                 <p>{{ $t("profile.content-language") }}</p>
                 <span class="text-label-2 dark:text-label-dark-2">
-                  {{ languageName }}
+                  {{ contentLanguages.join(", ") }}
                 </span>
               </button>
             </MenuItem>
