@@ -12,6 +12,9 @@ const logout = async () => {
     console.error(e);
   }
 };
+
+const { locale } = useI18n();
+const languageName = computed(() => getLocalizedLanguageName(locale));
 </script>
 <template>
   <div>
@@ -105,9 +108,9 @@ const logout = async () => {
                 @click.stop
               >
                 <p>{{ $t("profile.app-language") }}</p>
-                <span class="text-label-2 dark:text-label-dark-2">{{
-                  $i18n.locale
-                }}</span>
+                <span class="text-label-2 dark:text-label-dark-2">
+                  {{ languageName }}
+                </span>
               </button>
             </MenuItem>
             <MenuItem v-slot="{ active }" as="div">
@@ -119,9 +122,9 @@ const logout = async () => {
                 @click.stop
               >
                 <p>{{ $t("profile.content-language") }}</p>
-                <span class="text-label-2 dark:text-label-dark-2">{{
-                  $i18n.locale
-                }}</span>
+                <span class="text-label-2 dark:text-label-dark-2">
+                  {{ languageName }}
+                </span>
               </button>
             </MenuItem>
           </div>
