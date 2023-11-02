@@ -22,7 +22,10 @@
     "content-language": "Sprache für Audioinhalte",
     "uservoice": "User Voice",
     "contact": "Kontakt",
-    "logout": "Ausloggen"
+    "logout": "Ausloggen",
+    "theme-dark": "Dunkel",
+    "theme-light": "Hell",
+    "theme-system": "System"
   },
   "error": {
     "page-not-found": {
