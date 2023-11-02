@@ -20,7 +20,7 @@ useHead({
 </script>
 
 <template>
-  <div>
+  <div class="h-full">
     <NuxtLayout v-if="isAuthenticated">
       <div class="container mx-auto p-2 lg:p-5">
         <NuxtPage />
