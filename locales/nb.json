@@ -22,7 +22,10 @@
     "content-language": "Innholdsspråk",
     "uservoice": "User Voice",
     "contact": "Kontakt",
-    "logout": "Logg ut"
+    "logout": "Logg ut",
+    "theme-dark": "Dark",
+    "theme-light": "Light",
+    "theme-system": "System"
   },
   "error": {
     "page-not-found": {
