@@ -22,7 +22,10 @@
     "content-language": "Taal van de content ",
     "uservoice": "User Voice",
     "contact": "Contact",
-    "logout": "Uitloggen"
+    "logout": "Uitloggen",
+    "theme-dark": "Dark",
+    "theme-light": "Light",
+    "theme-system": "System"
   },
   "error": {
     "page-not-found": {
