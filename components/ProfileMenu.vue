@@ -1,8 +1,21 @@
 <script setup lang="ts">
-import { Menu, MenuButton, MenuItems, MenuItem, Switch } from "@headlessui/vue";
 import { useAuth0 } from "@auth0/auth0-vue";
+import { Menu, MenuButton, MenuItem, MenuItems, Switch } from "@headlessui/vue";
 
 const profileStore = useProfileStore();
+const { t } = useI18n();
+
+const colorMode = useColorMode();
+const colorTheme = computed(() => {
+  switch (colorMode.preference) {
+    case "system":
+      return t("profile.theme-system");
+    case "dark":
+      return t("profile.theme-dark");
+    default:
+      return t("profile.theme-light");
+  }
+});
 
 const auth0 = useAuth0();
 const logout = async () => {
@@ -95,11 +108,7 @@ const joinedContentLanguages = computed(() =>
               >
                 <p>{{ $t("profile.theme") }}</p>
                 <span class="text-label-2 dark:text-label-dark-2">
-                  {{
-                    $colorMode.value === "light"
-                      ? $t("profile.theme-light")
-                      : $t("profile.theme-dark")
-                  }}
+                  {{ colorTheme }}
                 </span>
               </button>
             </MenuItem>
