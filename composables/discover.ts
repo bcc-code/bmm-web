@@ -28,7 +28,7 @@ export function useDiscover(requestParameters: DiscoverGetRequest) {
           }
         });
         return result;
-      })
-    )
+      }),
+    ),
   );
 }

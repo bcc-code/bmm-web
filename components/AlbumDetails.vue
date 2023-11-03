@@ -40,11 +40,16 @@ const toggleExpandedAlbum = (albumReference: string) => {
       {{ t("collection.album-count", album.children.length) }}
     </p>
     <TrackList
-      :tracks="(album?.children?.filter((c) : c is TrackModel => c.type === 'track') || [])"
+      :tracks="
+        album?.children?.filter((c): c is TrackModel => c.type === 'track') ||
+        []
+      "
     >
     </TrackList>
     <div
-      v-for="(child, i) in album?.children?.filter((c) : c is AlbumModel => c.type === 'album')"
+      v-for="(child, i) in album?.children?.filter(
+        (c): c is AlbumModel => c.type === 'album',
+      )"
       :key="`${child.id}-${i}`"
     >
       <AlbumSubAlbum

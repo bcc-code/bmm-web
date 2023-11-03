@@ -9,7 +9,7 @@ const props = withDefaults(
   }>(),
   {
     skeletonCount: 5,
-  }
+  },
 );
 
 const { setQueue } = useNuxtApp().$mediaPlayer;
@@ -21,7 +21,7 @@ const isTrackTypeKnown = () => {
       (track: TrackModel) =>
         track.subtype === firstType ||
         (track.subtype === "song" && firstType === "singsong") ||
-        (track.subtype === "singsong" && firstType === "song")
+        (track.subtype === "singsong" && firstType === "song"),
     ) || false
   );
 };

@@ -9,5 +9,5 @@ export const useProfileStore = defineStore(
   },
   {
     persist: true,
-  }
+  },
 );

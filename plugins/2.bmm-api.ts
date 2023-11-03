@@ -22,7 +22,9 @@ export default defineNuxtPlugin((nuxtApp) => {
 
           headers.set(
             "Accept-Language",
-            contentLanguageStore(useNuxtApp().$pinia).contentLanguages.join(",")
+            contentLanguageStore(useNuxtApp().$pinia).contentLanguages.join(
+              ",",
+            ),
           );
 
           ctx.init.headers = headers;

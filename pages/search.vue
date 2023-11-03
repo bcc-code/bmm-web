@@ -30,18 +30,18 @@ watchDebounced(
         (d) => {
           results.value = d;
         },
-        { immediate: true }
+        { immediate: true },
       ),
       watch(
         pending,
         (p) => {
           loading.value = p;
         },
-        { immediate: true }
+        { immediate: true },
       ),
     ];
   },
-  { immediate: true, debounce: 1000, maxWait: 5000 }
+  { immediate: true, debounce: 1000, maxWait: 5000 },
 );
 
 const tabs = [
@@ -59,7 +59,7 @@ const playItem = (item: TrackModel, group: IDiscoverableGroup) => {
   const items = group.items.filter((c): c is TrackModel => c.type === "track");
   setQueue(
     items,
-    items.findIndex((track) => track.id === item.id)
+    items.findIndex((track) => track.id === item.id),
   );
 };
 </script>

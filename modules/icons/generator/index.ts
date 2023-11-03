@@ -45,7 +45,7 @@ export async function CreateTypedIcons({
       const iconNames = await constructIconNames(
         nuxt.options.rootDir,
         location,
-        fileExtension
+        fileExtension,
       );
       await saveGeneratedFile(nuxt, iconNames);
     } else {
@@ -54,7 +54,7 @@ export async function CreateTypedIcons({
   } catch (e) {
     console.error(
       chalk.red("Error while generating icons definition model"),
-      `\n${e}`
+      `\n${e}`,
     );
   }
 }
