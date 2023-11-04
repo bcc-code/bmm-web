@@ -38,6 +38,13 @@
     "album-count": "{count} album | {count} albums"
   },
   "login": {
+    "error-message": {
+      "contact-info": "Should this error persist, {0}.",
+      "contact-link": "please get in contact with us",
+      "logout-and-redirect-info": "Something regarding the login went wrong:",
+      "manual-logout-and-redirect-info": "Please {0}.",
+      "logout-and-redirect-link": "try to log in again"
+    },
     "redirect-message": {
       "redirect-info": "You will be redirected to the login page.",
       "manual-redirect-info": "Please wait or {0}.",
