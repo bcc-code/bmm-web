@@ -121,6 +121,13 @@ const {
           fill="#0D131A"
           rx="4"
         />
+        <rect
+          v-if="(currentPosition / currentTrackDuration) * 100 > 0.95"
+          :width="(currentPosition / currentTrackDuration) * 105 + '%'"
+          height="8"
+          transform="translate(1.8 10)"
+          fill="#0D131A"
+        />
       </svg>
     </div>
   </transition>
@@ -205,6 +212,13 @@ const {
           fill="#0D131A"
           rx="4"
         />
+        <rect
+          v-if="(currentPosition / currentTrackDuration) * 100 > 0.95"
+          :width="(currentPosition / currentTrackDuration) * 105 + '%'"
+          height="8"
+          transform="translate(1.8 10)"
+          fill="#0D131A"
+        />
       </svg>
       <div class="flex justify-between">
         <span> <TimeDuration :duration="currentPosition"></TimeDuration></span>
@@ -259,7 +273,9 @@ const {
           </span>
         </button>
       </div>
-      <hr class="border-label-separator pb-4" />
+      <hr
+        class="absolute left-0 right-0 top-[450px] border-label-separator pb-4"
+      />
       <!-- add forward function -->
       <div class="flex justify-between pb-3">
         <div class="text-label-3">queue</div>
