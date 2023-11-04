@@ -6,7 +6,8 @@
     "profile": "Profile",
     "messages": "Messages",
     "audiobooks": "Audiobooks",
-    "search": "Search"
+    "search": "Search",
+    "album": "Album"
   },
   "sidebar": {
     "playlists": {
@@ -21,7 +22,10 @@
     "content-language": "Content Language",
     "uservoice": "User Voice",
     "contact": "Contact",
-    "logout": "Sign out"
+    "logout": "Sign out",
+    "theme-dark": "Dark",
+    "theme-light": "Light",
+    "theme-system": "System"
   },
   "error": {
     "page-not-found": {
