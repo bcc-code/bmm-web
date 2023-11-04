@@ -158,12 +158,15 @@ function secondsToTime(totalSeconds: number | undefined) {
         >
           <NuxtIcon name="queue" filled class="text-2xl" />
         </button>
-        <Menu as="div" class="relative inline-block px-2 py-0 text-left">
+        <Menu
+          as="div"
+          class="relative inline-block px-2 py-0 text-left"
+          @click.stop
+        >
           <MenuButton
             as="button"
             :aria-label="t('track.a11y.options')"
             class="relative top-0.5 rounded-lg px-2 py-0"
-            @click.stop
           >
             <NuxtIcon name="options" filled class="text-2xl" />
           </MenuButton>
