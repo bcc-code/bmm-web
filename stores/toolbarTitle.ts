@@ -7,7 +7,7 @@ export const toolbarTitleStore = defineStore("toolbarTitle", () => {
       () => {
         toolbarTitle.value = translate();
       },
-      { immediate: true }
+      { immediate: true },
     );
   }
 

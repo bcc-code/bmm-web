@@ -26,7 +26,7 @@ const setupPlayer = () =>
   initMediaPlayer(
     () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
     appInsights as unknown as AppInsights,
-    userData
+    userData,
   );
 
 let playMocks: Mock[] = vi.hoisted(() => []);
@@ -293,7 +293,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
         () => mediaPlayer.value.status,
         (v) => {
           statusChanges.push(v);
-        }
+        },
       );
 
       // Act
@@ -330,7 +330,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
         () => mediaPlayer.value.currentTrack,
         (v) => {
           currentTracks.push(v);
-        }
+        },
       );
 
       // Act
@@ -355,7 +355,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
         () => mediaPlayer.value.currentTrack,
         (v) => {
           currentTracks.push(v);
-        }
+        },
       );
 
       // Act
@@ -398,7 +398,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
           { id: 1, type: "track" },
           { id: 2, type: "track" },
         ],
-        1
+        1,
       );
       await flushPromises();
       MockedMediaTrack.mockClear();
@@ -408,7 +408,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
         () => mediaPlayer.value.currentTrack,
         (v) => {
           currentTracks.push(v);
-        }
+        },
       );
 
       // Act
@@ -429,7 +429,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
           { id: 1, type: "track" },
           { id: 2, type: "track" },
         ],
-        0
+        0,
       );
       await flushPromises();
       MockedMediaTrack.mockClear();
@@ -439,7 +439,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
         () => mediaPlayer.value.currentTrack,
         (v) => {
           currentTracks.push(v);
-        }
+        },
       );
 
       // Act
@@ -460,7 +460,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
           { id: 1, type: "track" },
           { id: 2, type: "track" },
         ],
-        1
+        1,
       );
       await flushPromises();
 
@@ -488,7 +488,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
         () => mediaPlayer.value.queue,
         (v) => {
           queues.push(v);
-        }
+        },
       );
 
       // Act
@@ -516,7 +516,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
           { id: 1, type: "track" },
           { id: 2, type: "track" },
         ],
-        1
+        1,
       );
       await flushPromises();
 
@@ -533,7 +533,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
         () => mediaPlayer.value.currentTrack,
         (v) => {
           currentTracks.push(v);
-        }
+        },
       );
       MockedMediaTrack.mockClear();
 
@@ -543,7 +543,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
           { id: 1, type: "track" },
           { id: 2, type: "track" },
         ],
-        1
+        1,
       );
       await flushPromises();
 
@@ -569,7 +569,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
         () => mediaPlayer.value.currentTrack,
         (v) => {
           currentTracks.push(v);
-        }
+        },
       );
       MockedMediaTrack.mockClear();
 
@@ -596,7 +596,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
         () => mediaPlayer.value.currentTrack,
         (v) => {
           currentTracks.push(v);
-        }
+        },
       );
       MockedMediaTrack.mockClear();
 
@@ -619,7 +619,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
           { id: 1, type: "track" },
           { id: 2, type: "track" },
         ],
-        1
+        1,
       );
       await flushPromises();
 
@@ -632,7 +632,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
         () => mediaPlayer.value.currentTrack,
         (v) => {
           currentTracks.push(v);
-        }
+        },
       );
       MockedMediaTrack.mockClear();
 
@@ -667,7 +667,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
         () => mediaPlayer.value.currentTrack,
         (v) => {
           currentTracks.push(v);
-        }
+        },
       );
       MockedMediaTrack.mockClear();
 
@@ -718,7 +718,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
         () => mediaPlayer.value.currentTrack,
         (v) => {
           currentTracks.push(v);
-        }
+        },
       );
       MockedMediaTrack.mockClear();
 
@@ -741,7 +741,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
           { id: 1, type: "track" },
           { id: 2, type: "track" },
         ],
-        1
+        1,
       );
       await flushPromises();
 
@@ -754,7 +754,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
         () => mediaPlayer.value.currentTrack,
         (v) => {
           currentTracks.push(v);
-        }
+        },
       );
       MockedMediaTrack.mockClear();
 
@@ -786,7 +786,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
           () => mediaPlayer.value.currentPosition,
           (v) => {
             positions.push(v);
-          }
+          },
         );
 
         // Act
@@ -818,7 +818,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
           () => mediaPlayer.value.currentPosition,
           (v) => {
             positions.push(v);
-          }
+          },
         );
 
         // Act
@@ -847,7 +847,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
           () => mediaPlayer.value.currentPosition,
           (v) => {
             positions.push(v);
-          }
+          },
         );
 
         // Act
@@ -874,7 +874,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
           () => mediaPlayer.value.status,
           (v) => {
             statusValues.push(v);
-          }
+          },
         );
 
         // Act
@@ -899,7 +899,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
           () => mediaPlayer.value.status,
           (v) => {
             statusValues.push(v);
-          }
+          },
         );
 
         // Act
@@ -924,7 +924,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
           () => mediaPlayer.value.isLoading,
           (v) => {
             isLoadingValues.push(v);
-          }
+          },
         );
 
         // Act
@@ -949,7 +949,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
           () => mediaPlayer.value.isLoading,
           (v) => {
             isLoadingValues.push(v);
-          }
+          },
         );
 
         // Act
@@ -973,7 +973,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
           () => mediaPlayer.value.hasNext,
           (v) => {
             hasNextValues.push(v);
-          }
+          },
         );
 
         // Act
@@ -1003,7 +1003,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
           () => mediaPlayer.value.hasNext,
           (v) => {
             hasNextValues.push(v);
-          }
+          },
         );
 
         // Act
@@ -1029,7 +1029,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
           () => mediaPlayer.value.hasNext,
           (v) => {
             hasNextValues.push(v);
-          }
+          },
         );
 
         // Act
@@ -1049,7 +1049,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
             { id: 1, type: "track" },
             { id: 2, type: "track" },
           ],
-          1
+          1,
         );
         await flushPromises();
 
@@ -1058,7 +1058,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
           () => mediaPlayer.value.hasNext,
           (v) => {
             hasNextValues.push(v);
-          }
+          },
         );
 
         // Act
@@ -1084,7 +1084,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
           () => mediaPlayer.value.hasNext,
           (v) => {
             hasNextValues.push(v);
-          }
+          },
         );
 
         // Act
@@ -1112,7 +1112,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
           () => mediaPlayer.value.hasPrevious,
           (v) => {
             hasPreviousValues.push(v);
-          }
+          },
         );
 
         // Act
@@ -1141,7 +1141,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
           () => mediaPlayer.value.hasPrevious,
           (v) => {
             hasPreviousValues.push(v);
-          }
+          },
         );
 
         // Act
@@ -1161,7 +1161,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
             { id: 1, type: "track" },
             { id: 2, type: "track" },
           ],
-          1
+          1,
         );
         await flushPromises();
 
@@ -1170,7 +1170,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
           () => mediaPlayer.value.hasPrevious,
           (v) => {
             hasPreviousValues.push(v);
-          }
+          },
         );
 
         // Act
@@ -1190,7 +1190,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
             { id: 1, type: "track" },
             { id: 2, type: "track" },
           ],
-          1
+          1,
         );
         await flushPromises();
 
@@ -1199,7 +1199,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
           () => mediaPlayer.value.hasPrevious,
           (v) => {
             hasPreviousValues.push(v);
-          }
+          },
         );
 
         // Act
@@ -1221,7 +1221,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
           () => mediaPlayer.value.queue,
           (v) => {
             queueValue.push(v as any);
-          }
+          },
         );
 
         // Act
@@ -1251,7 +1251,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
             { id: 1, type: "track" },
             { id: 2, type: "track" },
           ],
-          1
+          1,
         );
         await flushPromises();
         MockedMediaTrack.mockClear();
@@ -1261,7 +1261,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
           () => mediaPlayer.value.currentTrack,
           (v) => {
             currentTracks.push(v);
-          }
+          },
         );
 
         const statusChanges: MediaPlayerStatus[] = [];
@@ -1269,7 +1269,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
           () => mediaPlayer.value.status,
           (v) => {
             statusChanges.push(v);
-          }
+          },
         );
 
         // Act
@@ -1304,7 +1304,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
         () => mediaPlayer.value.currentTrack,
         (v) => {
           currentTracks.push(v);
-        }
+        },
       );
 
       const currentPositions: number[] = [];
@@ -1312,7 +1312,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
         () => mediaPlayer.value.currentPosition,
         (v) => {
           currentPositions.push(v);
-        }
+        },
       );
 
       const currentTrackDurations: number[] = [];
@@ -1320,7 +1320,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
         () => mediaPlayer.value.currentTrackDuration,
         (v) => {
           currentTrackDurations.push(v);
-        }
+        },
       );
 
       const statusValues: MediaPlayerStatus[] = [];
@@ -1328,7 +1328,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
         () => mediaPlayer.value.status,
         (v) => {
           statusValues.push(v);
-        }
+        },
       );
 
       // Act
@@ -1354,7 +1354,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
         () => mediaPlayer.value.currentTrackDuration,
         (v) => {
           currentTrackDurations.push(v);
-        }
+        },
       );
 
       // Act
@@ -1388,7 +1388,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
         () => mediaPlayer.value.currentTrack,
         (v) => {
           currentTracks.push(v);
-        }
+        },
       );
 
       const currentPositions: number[] = [];
@@ -1396,7 +1396,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
         () => mediaPlayer.value.currentPosition,
         (v) => {
           currentPositions.push(v);
-        }
+        },
       );
 
       const currentTrackDurations: number[] = [];
@@ -1404,7 +1404,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
         () => mediaPlayer.value.currentTrackDuration,
         (v) => {
           currentTrackDurations.push(v);
-        }
+        },
       );
 
       const statusValues: MediaPlayerStatus[] = [];
@@ -1412,7 +1412,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
         () => mediaPlayer.value.status,
         (v) => {
           statusValues.push(v);
-        }
+        },
       );
 
       // Act
@@ -1442,7 +1442,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
         () => mediaPlayer.value.currentTrack,
         (v) => {
           currentTracks.push(v);
-        }
+        },
       );
 
       const currentPositions: number[] = [];
@@ -1450,7 +1450,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
         () => mediaPlayer.value.currentPosition,
         (v) => {
           currentPositions.push(v);
-        }
+        },
       );
 
       const currentTrackDurations: number[] = [];
@@ -1458,7 +1458,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
         () => mediaPlayer.value.currentTrackDuration,
         (v) => {
           currentTrackDurations.push(v);
-        }
+        },
       );
 
       const statusValues: MediaPlayerStatus[] = [];
@@ -1466,7 +1466,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
         () => mediaPlayer.value.status,
         (v) => {
           statusValues.push(v);
-        }
+        },
       );
 
       // Act
