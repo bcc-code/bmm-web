@@ -42,7 +42,7 @@
       "contact-info": "Als deze fout zich blijft voordoen, {0}.",
       "contact-link": "neem dan contact met ons op",
       "logout-and-redirect-info": "Er is iets misgegaan bij het inloggen:",
-      "manual-logout-and-redirect-info": "Please {0}.",
+      "manual-logout-and-redirect-info": "{0}.",
       "logout-and-redirect-link": "probeer opnieuw in te loggen"
     },
     "redirect-message": {
