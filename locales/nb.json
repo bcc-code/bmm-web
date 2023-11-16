@@ -52,6 +52,7 @@
     }
   },
   "playlist": {
+    "add": "Add playlist",
     "action": {
       "shuffle": "Shuffle"
     }
@@ -76,17 +77,5 @@
     "list": {
       "see-all": "See all"
     }
-  },
-  "profile": {
-    "autoplay": "Automatisk avspilling",
-    "theme": "Tema",
-    "theme-light": "Lys",
-    "theme-dark": "Mørk",
-    "theme-system": "System",
-    "language": "Språk",
-    "content-language": "Innholdsspråk",
-    "user-voice": "User Voice",
-    "contact": "Kontakt",
-    "sign-out": "Logg ut"
   }
 }
