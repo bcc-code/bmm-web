@@ -52,7 +52,7 @@
     }
   },
   "playlist": {
-    "add": "Add playlist",
+    "add": "Afspeellijst toevoegen",
     "action": {
       "shuffle": "Shuffle"
     }
