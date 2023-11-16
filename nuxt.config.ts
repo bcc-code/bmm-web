@@ -14,6 +14,7 @@ const modules: NuxtConfig["modules"] = [
   "@nuxtjs/color-mode",
   "nuxt-vitest",
   ["@pinia/nuxt", { autoImports: ["defineStore"] }],
+  "@pinia-plugin-persistedstate/nuxt",
   "@vueuse/nuxt",
 ];
 
@@ -27,6 +28,7 @@ export default defineNuxtConfig({
       authUrl: "https://login.bcc.no",
       clientId: "L9891KdcqtoKmHg4r65lT7zbSjv55dNN",
       applicationInsights: "",
+      systemName: process.env.ELECTRON ? "Electron" : "Web",
     },
   },
   spaLoadingTemplate: "spa-loading-template.html",

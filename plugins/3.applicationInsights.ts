@@ -4,7 +4,7 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable no-nested-ternary */
 import { ApplicationInsights } from "@microsoft/applicationinsights-web";
-import { User, useAuth0 } from "@auth0/auth0-vue";
+import { IUserData } from "./2.userData";
 
 export interface AppInsights {
   event: (event: any, customProperties: any) => void;
@@ -16,12 +16,12 @@ export default defineNuxtPlugin((nuxtApp) => {
   const classify = (str: string) =>
     str.replace(/(?:^|[-_])(\w)/g, (c) => c.toUpperCase()).replace(/[-_]/g, "");
 
-  let loadedUser: User;
+  const userData: IUserData = useNuxtApp().$userData;
 
   const addUserInfo = (properties: any) => {
-    if (loadedUser) {
-      properties.personId = loadedUser["https://login.bcc.no/claims/personId"];
-      properties.age = calculateAge(loadedUser.birthdate);
+    if (userData.personId) {
+      properties.personId = userData.personId;
+      properties.age = userData.age;
     }
   };
 
@@ -54,7 +54,7 @@ export default defineNuxtPlugin((nuxtApp) => {
     vm.config.errorHandler = (
       err: any,
       context: { $options: { propsData: any } },
-      info: any
+      info: any,
     ) => {
       const properties = {
         errorInfo: info,
@@ -107,15 +107,6 @@ export default defineNuxtPlugin((nuxtApp) => {
       });
     },
   };
-
-  const { user } = useAuth0();
-  watch(
-    user,
-    () => {
-      loadedUser = user.value;
-    },
-    { immediate: true }
-  );
 
   setupVueErrorHandling(nuxtApp.vueApp, applicationInsights);
   setupPageTracking(nuxtApp.$router, applicationInsights);

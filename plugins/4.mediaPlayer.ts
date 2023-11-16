@@ -1,5 +1,6 @@
 import { authToken, initMediaPlayer } from "./mediaPlayer/mediaPlayer";
-import { AppInsights } from "./2.applicationInsights";
+import { AppInsights } from "./3.applicationInsights";
+import { IUserData } from "./2.userData";
 
 export default defineNuxtPlugin((nuxtApp) => {
   const { getAccessTokenSilently, isAuthenticated } =
@@ -12,14 +13,19 @@ export default defineNuxtPlugin((nuxtApp) => {
         ? await getAccessTokenSilently()
         : undefined;
     },
-    { immediate: true }
+    { immediate: true },
   );
 
   const appInsights: AppInsights = useNuxtApp().$appInsights;
+  const userData: IUserData = useNuxtApp().$userData;
 
   return {
     provide: {
-      mediaPlayer: initMediaPlayer((src) => new Audio(src), appInsights),
+      mediaPlayer: initMediaPlayer(
+        (src) => new Audio(src),
+        appInsights,
+        userData,
+      ),
     },
   };
 });

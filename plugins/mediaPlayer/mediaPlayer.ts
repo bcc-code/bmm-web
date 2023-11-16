@@ -1,6 +1,7 @@
-import { TrackModel } from "@bcc-code/bmm-sdk-fetch";
+import { TrackModel, StatisticsApi } from "@bcc-code/bmm-sdk-fetch";
 import type { UnwrapRef } from "vue";
-import { AppInsights } from "plugins/2.applicationInsights";
+import { IUserData } from "plugins/2.userData";
+import { AppInsights } from "plugins/3.applicationInsights";
 import MediaTrack from "./MediaTrack";
 import Queue from "./Queue";
 
@@ -37,13 +38,15 @@ export const seekOffset = 15;
 
 export const initMediaPlayer = (
   createMedia: (src: string) => HTMLAudioElement,
-  appInsights: AppInsights
+  appInsights: AppInsights,
+  user: IUserData,
 ): MediaPlayer => {
   const activeMedia = ref<MediaTrack | undefined>();
 
   const queue = ref(new Queue([]));
 
   const hasNext = computed(() => queue.value.length > queue.value.index + 1);
+  let trackTimestampStart: Date;
 
   function next() {
     if (!hasNext.value) return;
@@ -68,8 +71,8 @@ export const initMediaPlayer = (
 
     activeMedia.value = new MediaTrack(
       createMedia(
-        authorizedUrl(track.media?.[0]?.files?.[0]?.url || "", authToken.value)
-      )
+        authorizedUrl(track.media?.[0]?.files?.[0]?.url || "", authToken.value),
+      ),
     );
     activeMedia.value.registerEvents();
   }
@@ -78,9 +81,28 @@ export const initMediaPlayer = (
     () => activeMedia.value?.ended,
     (ended) => {
       if (ended) {
-        appInsights.event("track completed", {
-          trackId: queue.value.currentTrack?.id,
-        });
+        const track = queue.value.currentTrack;
+        if (track !== undefined && user.personId != null) {
+          new StatisticsApi().statisticsListeningPost({
+            listeningEvent: [
+              {
+                personId: user.personId,
+                trackId: track.id,
+                timestampStart: trackTimestampStart,
+                language: track.language ?? "zxx",
+                playbackOrigin: null,
+                lastPosition: activeMedia.value?.position ?? 0,
+                adjustedPlaybackSpeed: 1,
+                os: user.os,
+              },
+            ],
+          });
+
+          appInsights.event("track completed", {
+            trackId: queue.value.currentTrack?.id,
+            duration: activeMedia.value?.position,
+          });
+        }
 
         if (hasNext.value) {
           next();
@@ -88,11 +110,12 @@ export const initMediaPlayer = (
           stop();
         }
       }
-    }
+    },
   );
 
   watch(activeMedia, () => {
     if (activeMedia.value) {
+      trackTimestampStart = new Date();
       if (appInsights.event) {
         appInsights.event("track playback started", {
           trackId: queue.value.currentTrack?.id,
@@ -105,7 +128,7 @@ export const initMediaPlayer = (
     () => [queue.value.currentTrack, queue.value],
     () => {
       initCurrentTrack();
-    }
+    },
   );
 
   const hasPrevious = computed(() => queue.value.index > 0);
@@ -181,7 +204,7 @@ export const initMediaPlayer = (
       },
     }),
     currentTrackDuration: computed(() =>
-      activeMedia.value ? activeMedia.value.duration : NaN
+      activeMedia.value ? activeMedia.value.duration : NaN,
     ),
     queue: computed(() => queue.value),
     setQueue,

@@ -29,7 +29,7 @@ export default defineNuxtPlugin(() => {
           artwork,
         });
       },
-      { immediate: true }
+      { immediate: true },
     );
     watch(
       $mediaPlayer.status,
@@ -48,7 +48,7 @@ export default defineNuxtPlugin(() => {
             ((_: never) => {})(state);
         }
       },
-      { immediate: true }
+      { immediate: true },
     );
 
     navigator.mediaSession.setActionHandler("play", () => {

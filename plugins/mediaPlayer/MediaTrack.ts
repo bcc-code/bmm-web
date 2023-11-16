@@ -60,68 +60,68 @@ export default class MediaTrack {
       // Log all events an audio-element has according to https://html.spec.whatwg.org/multipage/media.html#mediaevents
       // This can be done without a separate method because it doesn't use `this`
       this.audioElement.addEventListener("loadstart", (e) =>
-        console.log("loadstart", e)
+        console.log("loadstart", e),
       );
       this.audioElement.addEventListener("progress", (e) =>
-        console.log("progress", e)
+        console.log("progress", e),
       );
       this.audioElement.addEventListener("suspend", (e) =>
-        console.log("suspend", e)
+        console.log("suspend", e),
       );
       this.audioElement.addEventListener("abort", (e) =>
-        console.log("abort", e)
+        console.log("abort", e),
       );
       this.audioElement.addEventListener("error", (e) =>
-        console.log("error", e)
+        console.log("error", e),
       );
       this.audioElement.addEventListener("emptied", (e) =>
-        console.log("emptied", e)
+        console.log("emptied", e),
       );
       this.audioElement.addEventListener("stalled", (e) =>
-        console.log("stalled", e)
+        console.log("stalled", e),
       );
       this.audioElement.addEventListener("loadedmetadata", (e) =>
-        console.log("loadedmetadata", e)
+        console.log("loadedmetadata", e),
       );
       this.audioElement.addEventListener("loadeddata", (e) =>
-        console.log("loadeddata", e)
+        console.log("loadeddata", e),
       );
       this.audioElement.addEventListener("canplay", (e) =>
-        console.log("canplay", e)
+        console.log("canplay", e),
       );
       this.audioElement.addEventListener("canplaythrough", (e) =>
-        console.log("canplaythrough", e)
+        console.log("canplaythrough", e),
       );
       this.audioElement.addEventListener("playing", (e) =>
-        console.log("playing", e)
+        console.log("playing", e),
       );
       this.audioElement.addEventListener("waiting", (e) =>
-        console.log("waiting", e)
+        console.log("waiting", e),
       );
       this.audioElement.addEventListener("seeking", (e) =>
-        console.log("seeking", e)
+        console.log("seeking", e),
       );
       this.audioElement.addEventListener("seeked", (e) =>
-        console.log("seeked", e)
+        console.log("seeked", e),
       );
       this.audioElement.addEventListener("ended", (e) =>
-        console.log("ended", e)
+        console.log("ended", e),
       );
       this.audioElement.addEventListener("durationchange", (e) =>
-        console.log("durationchange", e)
+        console.log("durationchange", e),
       );
       this.audioElement.addEventListener("timeupdate", (e) =>
-        console.log("timeupdate", e)
+        console.log("timeupdate", e),
       );
       this.audioElement.addEventListener("play", (e) => console.log("play", e));
       this.audioElement.addEventListener("pause", (e) =>
-        console.log("pause", e)
+        console.log("pause", e),
       );
       this.audioElement.addEventListener("ratechange", (e) =>
-        console.log("ratechange", e)
+        console.log("ratechange", e),
       );
       this.audioElement.addEventListener("volumechange", (e) =>
-        console.log("volumechange", e)
+        console.log("volumechange", e),
       );
     }
     /* c8 ignore stop */

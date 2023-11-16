@@ -1,0 +1,9 @@
+html,
+body,
+#__nuxt {
+  /* 
+	 * To make sure the app always has
+	 * at least the full screen height 
+	 */
+  height: 100%;
+}

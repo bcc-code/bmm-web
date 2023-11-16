@@ -15,7 +15,7 @@ watch(
     const token = await getAccessTokenSilently();
     source.value = authorizedUrl(props.src, token);
   },
-  { immediate: true }
+  { immediate: true },
 );
 </script>
 <template>

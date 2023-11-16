@@ -1,13 +1,13 @@
 import {
   DiscoverApi,
   DiscoverGetRequest,
-  IDiscoverable,
   SectionHeaderModel,
+  IAllDocumentModels,
 } from "@bcc-code/bmm-sdk-fetch";
 
 export type IDiscoverableGroup = {
   header: SectionHeaderModel | null;
-  items: Exclude<IDiscoverable, SectionHeaderModel>[];
+  items: Exclude<IAllDocumentModels, SectionHeaderModel>[];
 };
 
 export function useDiscover(requestParameters: DiscoverGetRequest) {
@@ -28,7 +28,7 @@ export function useDiscover(requestParameters: DiscoverGetRequest) {
           }
         });
         return result;
-      })
-    )
+      }),
+    ),
   );
 }

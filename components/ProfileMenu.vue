@@ -1,8 +1,21 @@
 <script setup lang="ts">
-import { Menu, MenuButton, MenuItems, MenuItem, Switch } from "@headlessui/vue";
 import { useAuth0 } from "@auth0/auth0-vue";
+import { Menu, MenuButton, MenuItem, MenuItems, Switch } from "@headlessui/vue";
 
-const autoPlayEnabled = ref(false);
+const profileStore = useProfileStore();
+const { t } = useI18n();
+
+const colorMode = useColorMode();
+const colorTheme = computed(() => {
+  switch (colorMode.preference) {
+    case "system":
+      return t("profile.theme-system");
+    case "dark":
+      return t("profile.theme-dark");
+    default:
+      return t("profile.theme-light");
+  }
+});
 
 const auth0 = useAuth0();
 const logout = async () => {
@@ -12,16 +25,29 @@ const logout = async () => {
     console.error(e);
   }
 };
+
+const { locale } = useI18n();
+const languageName = computed(() => getLocalizedLanguageName(locale));
+const { contentLanguages } = contentLanguageStore();
+const joinedContentLanguages = computed(() =>
+  getLocalizedList(contentLanguages),
+);
 </script>
 <template>
   <div>
     <Menu as="div" class="relative">
       <div>
         <MenuButton
-          class="flex items-center font-bold text-label-1 focus:outline-none dark:text-label-dark-1"
+          class="flex items-center gap-2 font-bold text-label-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-label-1 dark:text-label-dark-1"
         >
-          {{ $t("profile.title") }}
-          <NuxtIcon name="nav.profile" class="ml-1 text-xl" />
+          <span>{{ $t("profile.title") }}</span>
+          <img
+            v-if="auth0.user.value?.picture"
+            :src="auth0.user.value.picture"
+            :alt="auth0.user.value.name || ''"
+            class="aspect-square w-6 rounded-full object-cover"
+          />
+          <NuxtIcon v-else name="nav.profile" class="ml-1 text-xl" />
         </MenuButton>
       </div>
 
@@ -34,64 +60,94 @@ const logout = async () => {
         leave-to-class="transform scale-95 opacity-0"
       >
         <MenuItems
-          class="absolute right-0 mt-2 w-56 origin-top-right divide-y divide-label-separator rounded-md bg-background-1 text-sm shadow-lg ring-1 ring-opacity-5 focus:outline-none dark:divide-label-dark-separator dark:bg-background-dark-1"
+          class="absolute right-0 mt-2 w-56 origin-top-right divide-y divide-label-separator rounded-xl bg-white-1 text-sm shadow-lg ring-1 ring-label-separator focus-visible:outline-none dark:divide-label-dark-separator dark:bg-background-dark-3"
         >
-          <div class="px-1 py-1">
-            <MenuItem v-slot="{ active }" as="div" class="flex items-center">
+          <div class="p-1">
+            <MenuItem v-slot="{ active }">
               <button
-                :class="active ? 'bg-violet-500 text-white' : 'text-gray-900'"
-                class="w-full px-2 py-2 text-left hover:bg-[red]"
-                @click.stop="autoPlayEnabled = !autoPlayEnabled"
+                :class="{
+                  'bg-label-separator dark:bg-label-dark-separator': active,
+                }"
+                class="flex w-full items-center justify-between rounded-lg px-3 py-2"
+                @click="
+                  (e: MouseEvent) => {
+                    e.preventDefault();
+                    profileStore.autoplay = !profileStore.autoplay;
+                  }
+                "
               >
-                {{ $t("profile.autoplay") }}
-              </button>
-              <Switch
-                v-model="autoPlayEnabled"
-                :class="autoPlayEnabled ? 'bg-tint' : 'bg-background-2'"
-                class="relative inline-flex h-[24px] w-[40px] shrink-0 cursor-pointer rounded-full p-[4px] transition-colors duration-200 ease-in-out focus:outline-none"
-              >
-                <span
-                  aria-hidden="true"
+                <span>{{ $t("profile.autoplay") }}</span>
+                <Switch
+                  v-model="profileStore.autoplay"
                   :class="
-                    autoPlayEnabled ? 'translate-x-[100%]' : 'translate-x-0'
+                    profileStore.autoplay
+                      ? 'bg-tint dark:bg-tint-dark'
+                      : 'bg-background-2 dark:bg-background-dark-2'
                   "
-                  class="pointer-events-none inline-block h-[16px] w-[16px] transform rounded-full bg-white-1 shadow-lg ring-0 transition duration-200 ease-in-out"
-                />
-              </Switch>
+                  class="relative inline-flex h-6 w-10 shrink-0 cursor-pointer rounded-full p-1 transition-colors duration-200 ease-in-out focus:outline-none"
+                >
+                  <span
+                    aria-hidden="true"
+                    :class="
+                      profileStore.autoplay
+                        ? 'translate-x-full'
+                        : 'translate-x-0'
+                    "
+                    class="pointer-events-none inline-block aspect-square w-4 transform rounded-full bg-white-1 shadow-lg ring-1 ring-black-separator transition duration-200 ease-in-out"
+                  />
+                </Switch>
+              </button>
             </MenuItem>
-            <MenuItem v-slot="{ active }" as="div">
+            <MenuItem v-slot="{ active }">
               <button
-                :class="active ? 'bg-violet-500 text-white' : 'text-gray-900'"
-                class="w-full px-2 py-2 text-left hover:bg-[red]"
+                :class="{
+                  'bg-label-separator dark:bg-label-dark-separator': active,
+                }"
+                class="w-full rounded-lg px-3 py-2 text-left"
                 @click.stop
               >
-                {{ $t("profile.theme") }}
+                <p>{{ $t("profile.theme") }}</p>
+                <span class="text-label-2 dark:text-label-dark-2">
+                  {{ colorTheme }}
+                </span>
               </button>
             </MenuItem>
             <MenuItem v-slot="{ active }" as="div">
               <button
-                :class="active ? 'bg-violet-500 text-white' : 'text-gray-900'"
-                class="w-full px-2 py-2 text-left hover:bg-[red]"
+                :class="{
+                  'bg-label-separator dark:bg-label-dark-separator': active,
+                }"
+                class="w-full rounded-lg px-3 py-2 text-left"
                 @click.stop
               >
-                {{ $t("profile.app-language") }}
+                <p>{{ $t("profile.app-language") }}</p>
+                <span class="text-label-2 dark:text-label-dark-2">
+                  {{ languageName }}
+                </span>
               </button>
             </MenuItem>
             <MenuItem v-slot="{ active }" as="div">
               <button
-                :class="active ? 'bg-violet-500 text-white' : 'text-gray-900'"
-                class="w-full px-2 py-2 text-left hover:bg-[red]"
+                :class="{
+                  'bg-label-separator dark:bg-label-dark-separator': active,
+                }"
+                class="w-full rounded-lg px-3 py-2 text-left"
                 @click.stop
               >
-                {{ $t("profile.content-language") }}
+                <p>{{ $t("profile.content-language") }}</p>
+                <span class="text-label-2 dark:text-label-dark-2">
+                  {{ joinedContentLanguages }}
+                </span>
               </button>
             </MenuItem>
           </div>
-          <div class="px-1 py-1">
+          <div class="p-1">
             <MenuItem v-slot="{ active }" as="div">
               <a
-                :class="active ? 'bg-violet-500 text-white' : 'text-gray-900'"
-                class="flex w-full px-2 py-2"
+                :class="{
+                  'bg-label-separator dark:bg-label-dark-separator': active,
+                }"
+                class="flex w-full rounded-lg px-3 py-2"
                 href="https://uservoice.bcc.no/?tags=bmm"
                 target="_blank"
               >
@@ -100,8 +156,10 @@ const logout = async () => {
             </MenuItem>
             <MenuItem v-slot="{ active }" as="div">
               <a
-                :class="active ? 'bg-violet-500 text-white' : 'text-gray-900'"
-                class="flex w-full px-2 py-2"
+                :class="{
+                  'bg-label-separator dark:bg-label-dark-separator': active,
+                }"
+                class="flex w-full rounded-lg px-3 py-2"
                 href="mailto:bmm-support@bcc.no"
                 target="_blank"
               >
@@ -109,11 +167,13 @@ const logout = async () => {
               </a>
             </MenuItem>
           </div>
-          <div class="px-1 py-1">
+          <div class="p-1">
             <MenuItem v-slot="{ active }" as="div">
               <button
-                :class="active ? 'bg-violet-500 text-white' : 'text-gray-900'"
-                class="w-full px-2 py-2 text-left"
+                :class="{
+                  'bg-label-separator dark:bg-label-dark-separator': active,
+                }"
+                class="w-full rounded-lg px-3 py-2 text-left"
                 @click="logout()"
               >
                 {{ $t("profile.logout") }}
