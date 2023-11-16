@@ -52,6 +52,7 @@
     }
   },
   "playlist": {
+    "add": "Add playlist",
     "action": {
       "shuffle": "Shuffle"
     }
