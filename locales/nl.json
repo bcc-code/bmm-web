@@ -6,7 +6,8 @@
     "profile": "Profiel",
     "messages": "Toespraken",
     "audiobooks": "Audioboeken",
-    "search": "Zoeken"
+    "search": "Zoeken",
+    "album": "Album"
   },
   "sidebar": {
     "playlists": {
@@ -21,7 +22,10 @@
     "content-language": "Taal van de content ",
     "uservoice": "User Voice",
     "contact": "Contact",
-    "logout": "Uitloggen"
+    "logout": "Uitloggen",
+    "theme-dark": "Dark",
+    "theme-light": "Light",
+    "theme-system": "Systeem"
   },
   "error": {
     "page-not-found": {
@@ -34,6 +38,13 @@
     "album-count": "{count} album | {count} albums"
   },
   "login": {
+    "error-message": {
+      "contact-info": "Als deze fout zich blijft voordoen, {0}.",
+      "contact-link": "neem dan contact met ons op",
+      "logout-and-redirect-info": "Er is iets misgegaan bij het inloggen:",
+      "manual-logout-and-redirect-info": "{0}.",
+      "logout-and-redirect-link": "probeer opnieuw in te loggen"
+    },
     "redirect-message": {
       "redirect-info": "Je wordt doorgestuurd naar de login pagina.",
       "manual-redirect-info": "Wacht of {0}.",
@@ -41,6 +52,7 @@
     }
   },
   "playlist": {
+    "add": "Afspeellijst toevoegen",
     "action": {
       "shuffle": "Shuffle"
     }
