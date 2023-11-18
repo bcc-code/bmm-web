@@ -94,7 +94,7 @@ const playItem = (item: TrackModel, group: IDiscoverableGroup) => {
       <div class="border-t border-label-4 p-4">
         <div v-show="activeTab === 'All'">
           <ol class="w-full divide-y divide-label-separator">
-            <template v-for="item in results?.items" :key="item.id">
+            <li v-for="item in results?.items" :key="item.id">
               <TrackItem
                 v-if="item.type === 'track'"
                 :track="item"
@@ -106,12 +106,14 @@ const playItem = (item: TrackModel, group: IDiscoverableGroup) => {
                 v-else-if="item.type === 'contributor'"
                 :contributor="item"
               ></ContributorListItem>
+              <AlbumItem v-else-if="item.type === 'album'" :album="item"></AlbumItem>
               <li v-else>
                 <div style="background-color: rgba(255, 0, 0, 0.4); color: red">
                   "{{ item.type }}" is not yet implemented ...
                 </div>
               </li>
-            </template>
+            </li>
+            
           </ol>
         </div>
         <div v-show="activeTab === 'Speeches'">Speeches Content</div>
