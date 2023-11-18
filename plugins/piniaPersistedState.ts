@@ -1,6 +1,7 @@
-import { defineNuxtPlugin } from "nuxt/app";
 import piniaPluginPersistedstate from "pinia-plugin-persistedstate";
+import {Pinia} from "pinia";
 
 export default defineNuxtPlugin((nuxtApp) => {
-  nuxtApp.$pinia.use(piniaPluginPersistedstate);
+  const piniaApp = nuxtApp.$pinia as Pinia;
+  piniaApp.use(piniaPluginPersistedstate);
 });
