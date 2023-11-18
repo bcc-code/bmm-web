@@ -208,9 +208,13 @@ function secondsToTime(totalSeconds: number | undefined) {
         </Menu>
       </div>
     </div>
-    <ModalBase :show="showInfo" title="Track Details" @close="showInfo = false">
+    <DialogBase
+      :show="showInfo"
+      title="Track Details"
+      @close="showInfo = false"
+    >
       <TrackDetails :track="track"></TrackDetails>
-    </ModalBase>
+    </DialogBase>
     <slot />
   </li>
 </template>
