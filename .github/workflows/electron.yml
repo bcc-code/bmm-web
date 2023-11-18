@@ -62,7 +62,7 @@ jobs:
         with:
           name: app
           path: |
-            .output/public/BMM*
+            dist-app/BMM*
 
       - name: Archive Debian packages
         uses: actions/upload-artifact@v3
@@ -70,4 +70,4 @@ jobs:
         with:
           name: app
           path: |
-            .output/public/bmm-web*.deb
+            dist-app/bmm-web*.deb
