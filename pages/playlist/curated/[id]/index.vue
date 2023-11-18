@@ -13,7 +13,9 @@ const { setQueue, queue } = useNuxtApp().$mediaPlayer;
 
 function shuffle() {
   if (tracks.value) {
-    setQueue(tracks.value);
+    // set the first track to a random number based on the current playlist length
+    const trackIndex = Math.floor(Math.random() * tracks.value.length);
+    setQueue(tracks.value, trackIndex);
     queue.value.shuffle();
 
     $appInsights.event("Shuffle Playlist", { playlistId });
