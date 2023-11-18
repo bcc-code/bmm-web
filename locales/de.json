@@ -2,15 +2,16 @@
   "nav": {
     "home": "Start",
     "browse": "Stöbern",
-    "playlist": "Playliste",
+    "playlist": "Playlist",
     "profile": "Profil",
     "messages": "Reden",
     "audiobooks": "Hörbücher",
-    "search": "Suche"
+    "search": "Suche",
+    "album": "Album"
   },
   "sidebar": {
     "playlists": {
-      "title": "Playlisten"
+      "title": "Playlists"
     }
   },
   "profile": {
@@ -21,7 +22,10 @@
     "content-language": "Sprache für Audioinhalte",
     "uservoice": "User Voice",
     "contact": "Kontakt",
-    "logout": "Ausloggen"
+    "logout": "Ausloggen",
+    "theme-dark": "Dunkel",
+    "theme-light": "Hell",
+    "theme-system": "System"
   },
   "error": {
     "page-not-found": {
@@ -34,6 +38,13 @@
     "album-count": "Album | Alben"
   },
   "login": {
+    "error-message": {
+      "contact-info": "Should this error persist, {0}.",
+      "contact-link": "please get in contact with us",
+      "logout-and-redirect-info": "Something regarding the login went wrong:",
+      "manual-logout-and-redirect-info": "Please {0}.",
+      "logout-and-redirect-link": "try to log in again"
+    },
     "redirect-message": {
       "redirect-info": "Du wirst zur Anmeldeseite weitergeleitet.",
       "manual-redirect-info": "Bitte warten oder ",
@@ -41,8 +52,9 @@
     }
   },
   "playlist": {
+    "add": "Add playlist",
     "action": {
-      "shuffle": "Shuffle"
+      "shuffle": "Zufällige Wiedergabe"
     }
   },
   "track": {
@@ -50,7 +62,7 @@
       "play-next": "Als nächstes abspielen",
       "go-to-album": "Album öffnen",
       "add-to-queue": "Zur Warteschlange hinzufügen",
-      "add-to-playlist": "Zur Playliste hinzufügen",
+      "add-to-playlist": "Zur Playlist hinzufügen",
       "share": "Titel teilen",
       "go-to-contributors": "Zur Person",
       "more-info": "Mehr Informationen"

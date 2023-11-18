@@ -1,6 +1,6 @@
 export default function getLocalizedList(
   values: MaybeRef<string[]>,
-  options?: Intl.ListFormatOptions
+  options?: Intl.ListFormatOptions,
 ) {
   const { locale } = useI18n();
   const rawValues = unref(values);

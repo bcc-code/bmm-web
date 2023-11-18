@@ -30,7 +30,7 @@ const { locale } = useI18n();
 const languageName = computed(() => getLocalizedLanguageName(locale));
 const { contentLanguages } = contentLanguageStore();
 const joinedContentLanguages = computed(() =>
-  getLocalizedList(contentLanguages)
+  getLocalizedList(contentLanguages),
 );
 </script>
 <template>
