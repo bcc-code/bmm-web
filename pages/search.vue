@@ -1,5 +1,9 @@
 <script lang="ts" setup>
-import type { SearchFilter, SearchResults, TrackModel } from "@bcc-code/bmm-sdk-fetch";
+import type {
+  SearchFilter,
+  SearchResults,
+  TrackModel,
+} from "@bcc-code/bmm-sdk-fetch";
 import { watchDebounced } from "@vueuse/core";
 import type { IDiscoverableGroup } from "composables/discover";
 
@@ -14,12 +18,12 @@ const loading = ref(true);
 
 let stopHandles: (() => void)[] = [];
 
-watchDebounced( 
+watchDebounced(
   [searchTerm, activeTab],
   () => {
     const searchOptions = {
       term: searchTerm.value,
-      filter: activeTab.value
+      filter: activeTab.value,
     };
     const { data, pending, stopHandler } = useSearch(searchOptions);
     stopHandles.forEach((el) => el());
@@ -107,9 +111,18 @@ const playItem = (item: TrackModel, group: IDiscoverableGroup) => {
                 v-else-if="item.type === 'contributor'"
                 :contributor="item"
               ></ContributorListItem>
-              <AlbumItem v-else-if="item.type === 'album'" :album="item"></AlbumItem>
-              <PlaylistItem v-else-if="item.type ==='playlist'" :playlist="item"></PlaylistItem>
-              <PodcastItem v-else-if="item.type === 'podcast'" :podcast="item"></PodcastItem>
+              <AlbumItem
+                v-else-if="item.type === 'album'"
+                :album="item"
+              ></AlbumItem>
+              <PlaylistItem
+                v-else-if="item.type === 'playlist'"
+                :playlist="item"
+              ></PlaylistItem>
+              <PodcastItem
+                v-else-if="item.type === 'podcast'"
+                :podcast="item"
+              ></PodcastItem>
               <li v-else>
                 <div style="background-color: rgba(255, 0, 0, 0.4); color: red">
                   "{{ item.type }}" is not yet implemented ...
