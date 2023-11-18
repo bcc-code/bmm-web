@@ -23,6 +23,8 @@ defineSlots<{
   default: (props: {}) => any;
 }>();
 
+const showInfo = ref(false);
+
 const dropdownMenuItemsForTrack = (track: TrackModel) => {
   const items: DropdownMenuItem[] = [];
 
@@ -63,7 +65,9 @@ const dropdownMenuItemsForTrack = (track: TrackModel) => {
   items.push({
     icon: "icon.information",
     text: t("track.dropdown.more-info"),
-    link: { name: "browse" }, // TODO: change link
+    clickFunction: () => {
+      showInfo.value = true;
+    },
   });
 
   return items;
@@ -204,6 +208,9 @@ function secondsToTime(totalSeconds: number | undefined) {
         </Menu>
       </div>
     </div>
+    <ModalBase :show="showInfo" title="Track Details" @close="showInfo = false">
+      <TrackDetails :track="track"></TrackDetails>
+    </ModalBase>
     <slot />
   </li>
 </template>
