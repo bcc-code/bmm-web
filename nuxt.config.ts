@@ -32,9 +32,6 @@ export default defineNuxtConfig({
       systemName: process.env.ELECTRON ? "Electron" : "Web",
     },
   },
-  plausible: {
-    domain: "bmm-web.brunstad.org",
-  },
   spaLoadingTemplate: "spa-loading-template.html",
   i18n: {
     strategy: "no_prefix",
