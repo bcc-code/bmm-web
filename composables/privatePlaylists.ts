@@ -21,3 +21,9 @@ export function usePrivatePlaylists() {
     ),
   );
 }
+
+export function addPrivatePlaylist(name: string) {
+  return new TrackCollectionApi().trackCollectionPost({
+    createTrackCollectionCommand: { name },
+  });
+}

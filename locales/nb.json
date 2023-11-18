@@ -6,7 +6,8 @@
     "profile": "Min profil",
     "messages": "Taler",
     "audiobooks": "Lydbøker",
-    "search": "Søk"
+    "search": "Søk",
+    "album": "Album"
   },
   "sidebar": {
     "playlists": {
@@ -15,13 +16,16 @@
   },
   "profile": {
     "title": "Min profil",
-    "autoplay": "Auto Play",
-    "theme": "Theme",
-    "app-language": "Language",
-    "content-language": "Content Language",
+    "autoplay": "Automatisk avspilling",
+    "theme": "Tema",
+    "app-language": "Språk",
+    "content-language": "Innholdsspråk",
     "uservoice": "User Voice",
     "contact": "Kontakt",
-    "logout": "Sign out"
+    "logout": "Logg ut",
+    "theme-dark": "Dark",
+    "theme-light": "Light",
+    "theme-system": "System"
   },
   "error": {
     "page-not-found": {
@@ -34,6 +38,13 @@
     "album-count": "{count} album | {count} albums"
   },
   "login": {
+    "error-message": {
+      "contact-info": "Should this error persist, {0}.",
+      "contact-link": "please get in contact with us",
+      "logout-and-redirect-info": "Something regarding the login went wrong:",
+      "manual-logout-and-redirect-info": "Please {0}.",
+      "logout-and-redirect-link": "try to log in again"
+    },
     "redirect-message": {
       "redirect-info": "You will be redirected to the login page.",
       "manual-redirect-info": "Please wait or {0}.",
@@ -41,6 +52,7 @@
     }
   },
   "playlist": {
+    "add": "Add playlist",
     "action": {
       "shuffle": "Shuffle"
     }
@@ -65,17 +77,5 @@
     "list": {
       "see-all": "See all"
     }
-  },
-  "profile": {
-    "autoplay": "Automatisk avspilling",
-    "theme": "Tema",
-    "theme-light": "Lys",
-    "theme-dark": "Mørk",
-    "theme-system": "System",
-    "language": "Språk",
-    "content-language": "Innholdsspråk",
-    "user-voice": "User Voice",
-    "contact": "Kontakt",
-    "sign-out": "Logg ut"
   }
 }
