@@ -8,7 +8,7 @@ const props = withDefaults(
   }>(),
   {
     level: 1,
-  }
+  },
 );
 
 defineSlots<{
@@ -29,7 +29,7 @@ const className = cva(
         5: "text-base",
       },
     },
-  }
+  },
 );
 </script>
 

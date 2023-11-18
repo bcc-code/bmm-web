@@ -86,7 +86,7 @@ describe("plugin mediaPlayer Queue", () => {
             id: 3,
           },
         ],
-        1
+        1,
       );
 
       // Assert
@@ -113,7 +113,7 @@ describe("plugin mediaPlayer Queue", () => {
             id: 3,
           },
         ],
-        -99
+        -99,
       );
 
       // Assert
@@ -140,7 +140,7 @@ describe("plugin mediaPlayer Queue", () => {
             id: 3,
           },
         ],
-        99
+        99,
       );
 
       // Assert
@@ -160,7 +160,7 @@ describe("plugin mediaPlayer Queue", () => {
           new Array(50).fill(0).map((_, i) => ({
             id: i,
             type: "track",
-          }))
+          })),
         );
 
         // Act
@@ -170,7 +170,7 @@ describe("plugin mediaPlayer Queue", () => {
         expect(q[2]?.id).not.eq(2);
         expect(q.isShuffled).eq(true);
       },
-      { retry: 100 }
+      { retry: 100 },
     );
 
     it(
@@ -181,7 +181,7 @@ describe("plugin mediaPlayer Queue", () => {
           new Array(50).fill(0).map((_, i) => ({
             id: i,
             type: "track",
-          }))
+          })),
         );
 
         // Act
@@ -192,7 +192,7 @@ describe("plugin mediaPlayer Queue", () => {
         expect(q[2]?.id).eq(2);
         expect(q.isShuffled).eq(false);
       },
-      { repeats: 100 }
+      { repeats: 100 },
     );
 
     it("changes index of the current track on shuffling without triggering a change of the track", async () => {
@@ -204,14 +204,14 @@ describe("plugin mediaPlayer Queue", () => {
         () => qObject.value?.index,
         (v) => {
           indexes.push(v);
-        }
+        },
       );
       const tracks: (TrackModel | undefined)[] = [];
       watch(
         () => qObject.value?.currentTrack,
         (v) => {
           tracks.push(v);
-        }
+        },
       );
 
       qObject.value = new Queue(
@@ -219,7 +219,7 @@ describe("plugin mediaPlayer Queue", () => {
           id: i,
           type: "track",
         })),
-        20
+        20,
       );
 
       // Act
@@ -245,14 +245,14 @@ describe("plugin mediaPlayer Queue", () => {
         () => qObject.value?.index,
         (v) => {
           indexes.push(v);
-        }
+        },
       );
       const tracks: (TrackModel | undefined)[] = [];
       watch(
         () => qObject.value?.currentTrack,
         (v) => {
           tracks.push(v);
-        }
+        },
       );
 
       qObject.value = new Queue(
@@ -260,7 +260,7 @@ describe("plugin mediaPlayer Queue", () => {
           id: i,
           type: "track",
         })),
-        20
+        20,
       );
 
       // Act
@@ -285,14 +285,14 @@ describe("plugin mediaPlayer Queue", () => {
         () => qObject.value?.index,
         (v) => {
           indexes.push(v);
-        }
+        },
       );
       const tracks: (TrackModel | undefined)[] = [];
       watch(
         () => qObject.value?.currentTrack,
         (v) => {
           tracks.push(v);
-        }
+        },
       );
 
       qObject.value = new Queue(
@@ -300,7 +300,7 @@ describe("plugin mediaPlayer Queue", () => {
           id: i,
           type: "track",
         })),
-        20
+        20,
       );
 
       // Act
@@ -325,14 +325,14 @@ describe("plugin mediaPlayer Queue", () => {
         () => qObject.value?.index,
         (v) => {
           indexes.push(v);
-        }
+        },
       );
       const tracks: (TrackModel | undefined)[] = [];
       watch(
         () => qObject.value?.currentTrack,
         (v) => {
           tracks.push(v);
-        }
+        },
       );
 
       qObject.value = new Queue(
@@ -340,7 +340,7 @@ describe("plugin mediaPlayer Queue", () => {
           id: i,
           type: "track",
         })),
-        20
+        20,
       );
 
       // Act
@@ -365,14 +365,14 @@ describe("plugin mediaPlayer Queue", () => {
         () => qObject.value?.index,
         (v) => {
           indexes.push(v);
-        }
+        },
       );
       const tracks: (TrackModel | undefined)[] = [];
       watch(
         () => qObject.value?.currentTrack,
         (v) => {
           tracks.push(v);
-        }
+        },
       );
 
       qObject.value = new Queue(
@@ -380,7 +380,7 @@ describe("plugin mediaPlayer Queue", () => {
           id: i,
           type: "track",
         })),
-        0
+        0,
       );
 
       // Act
@@ -402,14 +402,14 @@ describe("plugin mediaPlayer Queue", () => {
         () => qObject.value?.index,
         (v) => {
           indexes.push(v);
-        }
+        },
       );
       const tracks: (TrackModel | undefined)[] = [];
       watch(
         () => qObject.value?.currentTrack,
         (v) => {
           tracks.push(v);
-        }
+        },
       );
 
       qObject.value = new Queue(
@@ -417,7 +417,7 @@ describe("plugin mediaPlayer Queue", () => {
           id: i,
           type: "track",
         })),
-        49
+        49,
       );
 
       // Act
