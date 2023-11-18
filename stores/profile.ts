@@ -1,3 +1,5 @@
+import { PiniaPersistedStateOptions } from "@/utils/persistedState";
+
 export const useProfileStore = defineStore(
   "profile",
   () => {
@@ -8,6 +10,6 @@ export const useProfileStore = defineStore(
     };
   },
   {
-    persist: true,
+    persist: PiniaPersistedStateOptions,
   },
 );
