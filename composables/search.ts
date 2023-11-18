@@ -1,14 +1,15 @@
-import { SearchApi } from "@bcc-code/bmm-sdk-fetch";
+import { SearchApi, SearchFilter } from "@bcc-code/bmm-sdk-fetch";
 
 interface UseSearchOptions {
   term: string;
+  filter?: SearchFilter;
 }
 
 export function useSearch(options: UseSearchOptions) {
-  const { term } = options;
+  const { term, filter } = options;
   return reactiveApi(
-    useLazyAsyncData(`search-${term}`, () =>
-      new SearchApi().searchV2TermGet({ term }),
+    useLazyAsyncData(`search-${term}-${filter}`, () =>
+      new SearchApi().searchV2TermGet(options),
     ),
   );
 }
