@@ -1,18 +1,11 @@
 appId: org.brunstad.bmm
 productName: BMM alpha
-files: [
-    {
-      "from": ".output/public",
-      "to": "dist-electron",
-      "filter": ["**/*"]
-    },
-    {
-      "from": "dist-electron",
-      "to": "dist-electron",
-      "filter": ["**/*"]
-    },
+files:
+  [
+    { "from": ".output/public", "to": "dist-electron", "filter": ["**/*"] },
+    { "from": "dist-electron", "to": "dist-electron", "filter": ["**/*"] },
     "package.json",
-    "!node_modules"
+    "!node_modules",
   ]
 directories:
   output: dist-app
