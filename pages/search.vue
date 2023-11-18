@@ -55,8 +55,6 @@ const tabs = [
   "Playlists",
 ] as const;
 
-// "All" | "Speeches" | "Music" | "Albums" | "Contributors" | "Podcasts" | "Playlists"
-
 const { setQueue } = useNuxtApp().$mediaPlayer;
 const playItem = (item: TrackModel, group: IDiscoverableGroup) => {
   const items = group.items.filter((c): c is TrackModel => c.type === "track");
@@ -97,7 +95,7 @@ const playItem = (item: TrackModel, group: IDiscoverableGroup) => {
       <div class="border-t border-label-4 p-4">
         <div>
           <ol class="w-full divide-y divide-label-separator">
-            <li v-for="item in results?.items" :key="item.id">
+            <template v-for="item in results?.items" :key="item.id">
               <TrackItem
                 v-if="item.type === 'track'"
                 :track="item"
@@ -117,10 +115,8 @@ const playItem = (item: TrackModel, group: IDiscoverableGroup) => {
                   "{{ item.type }}" is not yet implemented ...
                 </div>
               </li>
-            </li>
-            <li v-if="results?.items?.length === 0">
-            No results found
-            </li>
+            </template>
+            <li v-if="results?.items?.length === 0">No results found</li>
           </ol>
         </div>
       </div>
