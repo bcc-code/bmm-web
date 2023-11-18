@@ -124,9 +124,7 @@ const playItem = (item: TrackModel, group: IDiscoverableGroup) => {
                 :podcast="item"
               ></PodcastItem>
               <li v-else>
-                <div style="background-color: rgba(255, 0, 0, 0.4); color: red">
-                  "{{ item.type }}" is not yet implemented ...
-                </div>
+                {{ ((a: never) => {})(item) }}
               </li>
             </template>
             <li v-if="results?.items?.length === 0">No results found</li>
