@@ -1,12 +1,16 @@
 <script lang="ts" setup>
-import type { SearchResults, TrackModel } from "@bcc-code/bmm-sdk-fetch";
+import type {
+  SearchFilter,
+  SearchResults,
+  TrackModel,
+} from "@bcc-code/bmm-sdk-fetch";
 import { watchDebounced } from "@vueuse/core";
 import type { IDiscoverableGroup } from "composables/discover";
 
 const { t } = useI18n();
 toolbarTitleStore().setReactiveToolbarTitle(() => t("nav.search"));
 
-const activeTab = ref("All");
+const activeTab = ref<SearchFilter>("All");
 const searchTerm = ref("");
 
 const results = ref<SearchResults | null>(null);
@@ -15,10 +19,11 @@ const loading = ref(true);
 let stopHandles: (() => void)[] = [];
 
 watchDebounced(
-  searchTerm,
+  [searchTerm, activeTab],
   () => {
     const searchOptions = {
       term: searchTerm.value,
+      filter: activeTab.value,
     };
     const { data, pending, stopHandler } = useSearch(searchOptions);
     stopHandles.forEach((el) => el());
@@ -48,11 +53,11 @@ const tabs = [
   "All",
   "Speeches",
   "Music",
-  "Events",
-  "People",
+  "Albums",
+  "Contributors",
   "Podcasts",
   "Playlists",
-];
+] as const;
 
 const { setQueue } = useNuxtApp().$mediaPlayer;
 const playItem = (item: TrackModel, group: IDiscoverableGroup) => {
@@ -92,7 +97,7 @@ const playItem = (item: TrackModel, group: IDiscoverableGroup) => {
         </button>
       </div>
       <div class="border-t border-label-4 p-4">
-        <div v-show="activeTab === 'All'">
+        <div>
           <ol class="w-full divide-y divide-label-separator">
             <template v-for="item in results?.items" :key="item.id">
               <TrackItem
@@ -106,20 +111,25 @@ const playItem = (item: TrackModel, group: IDiscoverableGroup) => {
                 v-else-if="item.type === 'contributor'"
                 :contributor="item"
               ></ContributorListItem>
+              <AlbumItem
+                v-else-if="item.type === 'album'"
+                :album="item"
+              ></AlbumItem>
+              <PlaylistItem
+                v-else-if="item.type === 'playlist'"
+                :playlist="item"
+              ></PlaylistItem>
+              <PodcastItem
+                v-else-if="item.type === 'podcast'"
+                :podcast="item"
+              ></PodcastItem>
               <li v-else>
-                <div style="background-color: rgba(255, 0, 0, 0.4); color: red">
-                  "{{ item.type }}" is not yet implemented ...
-                </div>
+                {{ ((a: never) => {})(item) }}
               </li>
             </template>
+            <li v-if="results?.items?.length === 0">No results found</li>
           </ol>
         </div>
-        <div v-show="activeTab === 'Speeches'">Speeches Content</div>
-        <div v-show="activeTab === 'Music'">Music Content</div>
-        <div v-show="activeTab === 'Events'">Events Content</div>
-        <div v-show="activeTab === 'People'">People Content</div>
-        <div v-show="activeTab === 'Podcasts'">Podcasts Content</div>
-        <div v-show="activeTab === 'Playlists'">Playlists Content</div>
       </div>
     </div>
   </div>
