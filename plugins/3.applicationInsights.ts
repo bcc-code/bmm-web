@@ -1,7 +1,7 @@
 // This plugin was inspired by https://github.com/nuxt-community/applicationinsights-module
 
 /* eslint-disable no-underscore-dangle */
-/* eslint-disable no-param-reassign */
+ 
 /* eslint-disable no-nested-ternary */
 import { ApplicationInsights } from "@microsoft/applicationinsights-web";
 import { IUserData } from "./2.userData";
