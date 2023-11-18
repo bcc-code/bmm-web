@@ -141,14 +141,12 @@ const {
     <div
       v-if="open"
       class="shadow-player h-100 absolute bottom-5 right-5 flex flex-col overflow-auto rounded-2xl bg-white-1 p-4 pb-0"
-      @click.stop="open = !open"
     >
       <div class="flex justify-between pb-[17px]">
-        <div class="rounded-2xl border">
+        <div class="rounded-2xl border" @click.stop="open = !open">
           <NuxtIcon name="icon.minify" filled class="text-2xl" />
         </div>
-        <!-- TODO: REPLACE WITH CURRENT Content language -->
-        <div class="rounded-2xl border">NORSK</div>
+        <div class="rounded-2xl border">{{ currentTrack?.language }}</div>
         <div class="rounded-2xl border">
           <NuxtIcon name="options" filled class="text-2xl" />
         </div>
@@ -335,8 +333,10 @@ const {
 </template>
 <style>
 .shadow-player {
-  box-shadow: 0px 4px 12px 0px rgba(0, 0, 0, 0.05),
-    0px 1px 4px 0px rgba(0, 0, 0, 0.05), 0px 0px 0px 1px rgba(0, 0, 0, 0.05);
+  box-shadow:
+    0px 4px 12px 0px rgba(0, 0, 0, 0.05),
+    0px 1px 4px 0px rgba(0, 0, 0, 0.05),
+    0px 0px 0px 1px rgba(0, 0, 0, 0.05);
 }
 
 /* For Webkit-based browsers (Chrome, Safari and Opera) */
