@@ -106,7 +106,7 @@ describe("component ProtectedImage", () => {
     // Assert
     expect(wrapper.props().src).toBe("http://localhost/image2.jpg");
     expect(el.src).eq(
-      "http://localhost/image2.jpg?auth=Bearer+MySecretAccessToken"
+      "http://localhost/image2.jpg?auth=Bearer+MySecretAccessToken",
     );
   });
 });
