@@ -15,6 +15,7 @@ const modules: NuxtConfig["modules"] = [
   "nuxt-vitest",
   ["@pinia/nuxt", { autoImports: ["defineStore"] }],
   "@vueuse/nuxt",
+  '@nuxtjs/plausible'
 ];
 
 if (process.env.ELECTRON) modules.push("nuxt-electron");
@@ -29,6 +30,9 @@ export default defineNuxtConfig({
       applicationInsights: "",
       systemName: process.env.ELECTRON ? "Electron" : "Web",
     },
+  },
+  plausible: {
+    domain: 'bmm-web.brunstad.org',
   },
   spaLoadingTemplate: "spa-loading-template.html",
   i18n: {

@@ -52,6 +52,9 @@ devDependencies:
   '@nuxtjs/i18n':
     specifier: 8.0.0-beta.10
     version: 8.0.0-beta.10(vue-router@4.2.2)(vue@3.3.4)
+  '@nuxtjs/plausible':
+    specifier: ^0.2.3
+    version: 0.2.3
   '@nuxtjs/tailwindcss':
     specifier: ^6.8.0
     version: 6.8.0(webpack@5.88.0)
@@ -490,7 +493,7 @@ packages:
     resolution: {integrity: sha512-C/BaXcnnvBCmHTpz/VGZ8jgtE2aYlW4hxDhseJAWZb7gqGM/qtCK6iZUb0TyKFf7BOUsBH7Q7fkRsDRhg1XklQ==}
     engines: {node: '>=6.9.0'}
     dependencies:
-      '@babel/helper-validator-identifier': 7.22.5
+      '@babel/helper-validator-identifier': 7.22.15
       chalk: 2.4.2
       js-tokens: 4.0.0
     dev: true
@@ -2270,6 +2273,18 @@ packages:
       - vue
       - vue-i18n-bridge
       - vue-router
+    dev: true
+
+  /@nuxtjs/plausible@0.2.3:
+    resolution: {integrity: sha512-HGZA70ad6IgaP0bN2N3sEsBxURZfUb8HMMxQ7s/Iqw1U8snBsByAEaIxD0eafWLOvwNckHMTYzCIl+Xs6ZiXSA==}
+    dependencies:
+      '@nuxt/kit': 3.7.1
+      defu: 6.1.2
+      pathe: 1.1.1
+      plausible-tracker: 0.3.8
+    transitivePeerDependencies:
+      - rollup
+      - supports-color
     dev: true
 
   /@nuxtjs/tailwindcss@6.8.0(webpack@5.88.0):
@@ -9334,6 +9349,11 @@ packages:
       mlly: 1.4.0
       pathe: 1.1.1
 
+  /plausible-tracker@0.3.8:
+    resolution: {integrity: sha512-lmOWYQ7s9KOUJ1R+YTOR3HrjdbxIS2Z4de0P/Jx2dQPteznJl2eX3tXxKClpvbfyGP59B5bbhW8ftN59HbbFSg==}
+    engines: {node: '>=10'}
+    dev: true
+
   /plist@3.0.6:
     resolution: {integrity: sha512-WiIVYyrp8TD4w8yCvyeIr+lkmrGRd5u0VbRnU+tP/aRLxP/YadJUYOMZJ/6hIa3oUyVCsycXvtNRgd5XBJIbiA==}
     engines: {node: '>=6'}
@@ -10605,6 +10625,7 @@ packages:
   /slice-ansi@3.0.0:
     resolution: {integrity: sha512-pSyv7bSTC7ig9Dcgbw9AuRNUb5k5V6oDudjZoMBSr13qpLBG7tB+zgCkARjq7xIUgdz5P1Qe8u+rSGdouOOIyQ==}
     engines: {node: '>=8'}
+    requiresBuild: true
     dependencies:
       ansi-styles: 4.3.0
       astral-regex: 2.0.0
@@ -11739,7 +11760,7 @@ packages:
     dependencies:
       '@babel/core': 7.22.17
       '@babel/standalone': 7.22.17
-      '@babel/types': 7.22.5
+      '@babel/types': 7.22.17
       defu: 6.1.2
       jiti: 1.20.0
       mri: 1.2.0
@@ -11996,7 +12017,7 @@ packages:
       vue: ^3.2.45
       vue-router: ^4.0.0
     dependencies:
-      '@nuxt/kit': 3.6.1
+      '@nuxt/kit': 3.7.1
       '@vue/test-utils': 2.4.0(vue@3.3.4)
       defu: 6.1.2
       estree-walker: 3.0.3
