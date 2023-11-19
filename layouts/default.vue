@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import '../assets/main.css';
+
 defineSlots<{
   default: (props: {}) => any;
 }>();
@@ -11,9 +13,7 @@ const { queue } = useNuxtApp().$mediaPlayer;
 </script>
 
 <template>
-  <div
-    class="flex h-screen bg-background-1 text-black-1 dark:bg-background-dark-1 dark:text-white-1"
-  >
+  <div class="flex h-screen bg-background-1 text-black-1 dark:text-white-1">
     <SidebarElement />
     <main class="relative flex-grow overflow-y-auto">
       <AppToolbar />

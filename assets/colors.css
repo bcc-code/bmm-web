@@ -1,0 +1,51 @@
+
+html {
+	--bmm-tint: #a4e16a;
+	--bmm-label-1: #0d131a;
+	--bmm-label-2: #46494d;
+	--bmm-label-3: #757b80;
+	--bmm-label-4: #abafb2;
+	--bmm-label-separator: #81888f1a;
+	--bmm-background-1: #ffffff;
+	--bmm-background-2: #f5f6f7;
+	--bmm-background-3: #ffffff;
+	--bmm-background-4: #0d131a;
+	--bmm-on-color-1: #ffffff;
+	--bmm-on-color-2: #ffffff80;
+	--bmm-on-color-3: #ffffff33;
+	--bmm-on-color-4: #ffffff14;
+	--bmm-utility-radio: #e12d59;
+	--bmm-utility-notification: #1c8ff8;
+	--bmm-utility-auto: #7c5cfe;
+	--bmm-white-1: #ffffff;
+	--bmm-white-2: #ffffff80;
+	--bmm-white-3: #ffffff33;
+	--bmm-white-4: #ffffff14;
+	--bmm-white-separator: #ffffff0d;
+	--bmm-black-1: #0d131a;
+	--bmm-black-2: #0d131ab3;
+	--bmm-black-3: #0d131a80;
+	--bmm-black-4: #0d131a4d;
+	--bmm-black-separator: #0d131a1a;
+}
+
+html.dark {
+	--bmm-tint: #c4ee9b;
+	--bmm-label-1: #e9f0f7;
+	--bmm-label-2: #c7ced4;
+	--bmm-label-3: #979ca1;
+	--bmm-label-4: #666c73;
+	--bmm-label-separator: #81888e1f;
+	--bmm-background-1: #171b1f;
+	--bmm-background-2: #22272b;
+	--bmm-background-3: #30353b;
+	--bmm-background-4: #e8f0f7;
+	--bmm-on-color-1: #0d131a;
+	--bmm-on-color-2: #444a50;
+	--bmm-on-color-3: #666c73;
+	--bmm-on-color-4: #c7ced4;
+	--bmm-utility-radio: #e3446b;
+	--bmm-utility-notification: #349af8;
+	--bmm-utility-auto: #9d84ff;
+}
+  

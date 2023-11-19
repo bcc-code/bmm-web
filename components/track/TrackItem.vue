@@ -90,7 +90,7 @@ function secondsToTime(totalSeconds: number | undefined) {
 <template>
   <li class="group relative mr-3 cursor-pointer py-3" @click.stop="playTrack">
     <div
-      class="absolute -inset-x-4 -inset-y-0 rounded-xl bg-background-2 opacity-0 group-hover:opacity-100 dark:bg-background-dark-2"
+      class="absolute -inset-x-4 -inset-y-0 rounded-xl bg-background-2 opacity-0 group-hover:opacity-100"
     ></div>
     <div class="relative flex items-center justify-between gap-3">
       <div
@@ -100,7 +100,7 @@ function secondsToTime(totalSeconds: number | undefined) {
         <ProtectedImage
           :src="track.meta?.attachedPicture"
           alt=""
-          class="aspect-square w-10 rounded-md bg-background-2 dark:bg-background-dark-2"
+          class="aspect-square w-10 rounded-md bg-background-2"
         />
         <div class="absolute inset-0 opacity-0 group-hover:opacity-100">
           <div
@@ -123,7 +123,7 @@ function secondsToTime(totalSeconds: number | undefined) {
         <span
           v-if="track.meta?.artist"
           :title="track.meta?.artist"
-          class="block overflow-hidden text-ellipsis whitespace-nowrap text-label-1 dark:text-label-dark-1"
+          class="block overflow-hidden text-ellipsis whitespace-nowrap text-label-1"
         >
           {{ track.meta?.artist }}
         </span>
@@ -133,17 +133,13 @@ function secondsToTime(totalSeconds: number | undefined) {
         class="block h-1 w-10"
       ></div>
       <div v-if="!isTrackTypeKnown">
-        <span class="text-label-2 dark:text-label-dark-2">{{
-          track.subtype
-        }}</span>
+        <span class="text-label-2">{{ track.subtype }}</span>
       </div>
       <div v-if="isTrackTypeKnown">
-        <span class="text-label-2 dark:text-label-dark-2">{{
-          track.meta?.album
-        }}</span>
+        <span class="text-label-2">{{ track.meta?.album }}</span>
       </div>
       <div class="ml-auto">
-        <span class="text-label-2 dark:text-label-dark-2">{{
+        <span class="text-label-2">{{
           secondsToTime(track.media?.[0]?.files?.[0]?.duration)
         }}</span>
       </div>
@@ -184,7 +180,7 @@ function secondsToTime(totalSeconds: number | undefined) {
                 v-for="item in dropdownMenuItemsForTrack(track)"
                 :key="item.text"
                 as="li"
-                class="hover:text-black block w-full cursor-pointer rounded-lg hover:bg-background-2 hover:dark:bg-background-dark-2"
+                class="hover:text-black block w-full cursor-pointer rounded-lg hover:bg-background-2 hover:"
               >
                 <NuxtLink
                   v-if="'link' in item"

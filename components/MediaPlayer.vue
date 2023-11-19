@@ -46,7 +46,7 @@ const {
       </div>
       <div class="flex min-w-0 flex-1 gap-3">
         <div
-          class="aspect-square h-[48px] shrink-0 overflow-hidden rounded-md bg-background-2 dark:bg-background-dark-2"
+          class="aspect-square h-[48px] shrink-0 overflow-hidden rounded-md bg-background-2"
         >
           <ProtectedImage
             v-if="currentTrack?.meta?.attachedPicture"
@@ -62,7 +62,7 @@ const {
           </h3>
           <span
             v-if="currentTrack?.meta?.artist"
-            class="truncate text-base leading-snug text-label-2 dark:text-label-dark-2"
+            class="truncate text-base leading-snug text-label-2"
             :title="currentTrack?.meta?.artist"
           >
             {{ currentTrack.meta?.artist }}
@@ -73,7 +73,7 @@ const {
         <div
           v-if="isLoading"
           role="status"
-          class="absolute -z-10 flex h-full w-full justify-center fill-background-4 align-middle dark:fill-background-dark-4"
+          class="absolute -z-10 flex h-full w-full justify-center fill-background-4 align-middle"
         >
           <svg
             aria-hidden="true"
@@ -146,14 +146,14 @@ const {
     <div>
       <button
         v-if="queue.isShuffled"
-        class="rounded-full bg-background-4 px-2 py-2 text-background-3 hover:bg-background-3 hover:text-background-4 dark:bg-background-dark-4 dark:text-background-dark-3 dark:hover:bg-background-dark-3 dark:hover:text-background-dark-4"
+        class="rounded-full bg-background-4 px-2 py-2 text-background-3 hover:bg-background-3 hover:text-background-4"
         @click.stop="queue.unshuffle()"
       >
         <NuxtIcon name="icon.shuffle" class="text-2xl" />
       </button>
       <button
         v-else
-        class="rounded-full bg-background-3 px-2 py-2 text-background-4 hover:bg-background-4 hover:text-background-3 dark:bg-background-dark-3 dark:text-background-dark-4 dark:hover:bg-background-dark-4 dark:hover:text-background-dark-3"
+        class="rounded-full bg-background-3 px-2 py-2 text-background-4 hover:bg-background-4 hover:text-background-3"
         @click.stop="queue.shuffle()"
       >
         <NuxtIcon name="icon.shuffle" class="text-2xl" />

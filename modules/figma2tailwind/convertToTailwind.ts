@@ -1,13 +1,11 @@
 // @ts-nocheck - This script should fail if anything is wrong and someone needs to have a look at it manually anyways.
 
 import { promises as fs } from "fs";
+import generateStylesAndConfig from "./colorsToVariables";
 
 const shouldNotHaveSuffix = (theme) => ["light", "global"].includes(theme);
 
-async function writeTailwindConfig(_content: string) {
-  // Simplifies class names so bg-info-default becomes bg-info
-  const content = _content.replaceAll("default", "DEFAULT");
-
+async function writeTailwindConfig(content: string) {
   await fs.writeFile(
     "./tailwind.config.ts",
     `/**
@@ -30,6 +28,10 @@ export default config;
 `,
     "utf8",
   );
+}
+
+async function writeColorsCss(content: string) {
+  await fs.writeFile("./assets/colors.css", content, "utf8");  
 }
 
 async function writeColors(figmaInput) {
@@ -57,11 +59,19 @@ async function writeColors(figmaInput) {
     });
   });
 
-  const content = `const colors = ${JSON.stringify(
-    transformedColors,
+
+  // Simplifies class names so bg-info-default becomes bg-info
+  const colors = JSON.parse(JSON.stringify(transformedColors).replaceAll("default", "DEFAULT"));
+
+  const { cssString, tailwindColors } = generateStylesAndConfig(colors);
+
+  await writeColorsCss(cssString);
+
+  const content = `const colors = ${JSON.stringify(tailwindColors,
     null,
     2,
   )};`;
+
   await writeTailwindConfig(content);
 }
 
