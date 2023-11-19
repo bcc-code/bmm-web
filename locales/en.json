@@ -30,7 +30,7 @@
     "logout": "Sign out",
     "theme-dark": "Dark",
     "theme-light": "Light",
-    "theme-system": "System"
+    "theme-system": "Same as system"
   },
   "error": {
     "page-not-found": {

@@ -27,7 +27,7 @@ const className = cva("rounded-full flex gap-3 items-center", {
     size: {
       large: "text-lg py-3 px-6",
       medium: "text-base py-3 px-6",
-      small: "text-sm py-[6px] px-[12px]",
+      small: "text-sm py-1.5 px-3",
     },
   },
 });

@@ -19,7 +19,7 @@ const emit = defineEmits<{
         @click="emit('close')"
       >
         <div
-          class="bg-background-1 text-black-1 dark:bg-background-dark-1 dark:text-white-1 rounded-2xl"
+          class="bg-background-1 text-black-1 dark:bg-background-dark-1 dark:text-white-1 rounded-2xl md:w-[500px] lg:w-[600px]"
           @click.stop
         >
           <div class="flex justify-between mx-5">

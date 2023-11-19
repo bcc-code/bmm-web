@@ -7,7 +7,7 @@ const { t } = useI18n();
 
 const showInterfaceLanguageDialog = ref(false);
 const showContentLanguageDialog = ref(false);
-const showThemeDialog = ref(false);
+const showThemeDialog = ref(true);
 
 const colorModes = ["system", "light", "dark"] as const;
 const getColorModeName = (mode: string) => {
@@ -197,20 +197,19 @@ const joinedContentLanguages = computed(() =>
       title="Theme"
       @close="showThemeDialog = false"
     >
-      {{ $t("profile.theme-description") }}
-      <br/><br/>
-      <select
-        v-model="$colorMode.preference"
-        class="mx-4 bg-background-dark-4 text-black-1 dark:bg-white-1 dark:text-black-1"
-      >
-        <option
-          v-for="(mode, $index) in colorModes"
-          :key="$index"
-          :value="mode"
-        >
-          {{ getColorModeName(mode) }}
-        </option>
-      </select>
+      <div>{{ $t("profile.theme-description") }}</div>
+
+      <ul class="bg-background-2 dark:bg-background-dark-2 rounded-2xl mt-4 font-semibold">
+        <li v-for="(mode, $index) in colorModes" @click="colorMode.preference = mode"
+          class="flex justify-between px-4 py-3 cursor-pointer hover:bg-on-color-2 rounded-2xl">
+          <div>{{ getColorModeName(mode) }}</div>
+          <NuxtIcon
+              v-if="mode == colorMode.preference"
+              name="icon.selected"
+              class=" text-2xl group-hover:text-4xl inline-block"
+            />
+        </li>
+      </ul>
     </DialogBase>
 
     <DialogBase
@@ -221,7 +220,7 @@ const joinedContentLanguages = computed(() =>
       {{ $t("profile.interface-language-description") }}
       <br/><br/>
 
-      <div class="flex content-center bg-background-2 dark:bg-background-dark-2 rounded-[16px] p-3 ">
+      <div class="flex content-center bg-background-2 dark:bg-background-dark-2 rounded-2xl p-3">
         <div class="inline-block self-center">{{ $t("profile.select-language") }}</div>
         <ChangeLocale class="mx-4" />
       </div>
