@@ -1,7 +1,7 @@
 import { app, protocol, shell, dialog, BrowserWindow, net } from "electron";
 import * as path from "path";
 import * as fs from "fs/promises";
-import { autoUpdater } from "electron-updater"
+import { autoUpdater } from "electron-updater";
 
 const PRODUCTION_APP_PROTOCOL = "bmm";
 const PRODUCTION_APP_PATH = path.join(__dirname);
