@@ -6,7 +6,7 @@ const profileStore = useProfileStore();
 const { t } = useI18n();
 
 const showInterfaceLanguageDialog = ref(false);
-const showContentLanguageDialog = ref(true);
+const showContentLanguageDialog = ref(false);
 const showThemeDialog = ref(false);
 
 const colorModes = ["system", "light", "dark"] as const;
@@ -212,6 +212,7 @@ const joinedContentLanguages = computed(() =>
         </option>
       </select>
     </DialogBase>
+
     <DialogBase
       :show="showInterfaceLanguageDialog"
       :title="$t('profile.interface-language')"
@@ -219,8 +220,15 @@ const joinedContentLanguages = computed(() =>
       >
       {{ $t("profile.interface-language-description") }}
       <br/><br/>
-      <ChangeLocale class="mx-4" />
+
+      <div class="flex content-center bg-background-2 dark:bg-background-dark-2 rounded-[16px] p-3 ">
+        <div class="inline-block self-center">{{ $t("profile.select-language") }}</div>
+        <ChangeLocale class="mx-4" />
+      </div>
+
+
     </DialogBase>
+
     <DialogBase
       :show="showContentLanguageDialog"
       :title="$t('profile.content-language')"
