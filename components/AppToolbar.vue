@@ -10,7 +10,6 @@
     </strong>
 
     <div class="flex flex-row">
-      <ChangeLocale class="mx-4" />
       <ProfileMenu />
     </div>
   </header>

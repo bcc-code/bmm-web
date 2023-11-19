@@ -5,7 +5,9 @@ import { Menu, MenuButton, MenuItem, MenuItems, Switch } from "@headlessui/vue";
 const profileStore = useProfileStore();
 const { t } = useI18n();
 
-const showThemeDialog = ref(true);
+const showInterfaceLanguageDialog = ref(false);
+const showContentLanguageDialog = ref(true);
+const showThemeDialog = ref(false);
 
 const colorModes = ["system", "light", "dark"] as const;
 const getColorModeName = (mode: string) => {
@@ -110,7 +112,7 @@ const joinedContentLanguages = computed(() =>
                   'bg-label-separator dark:bg-label-dark-separator': active,
                 }"
                 class="w-full rounded-lg px-3 py-2 text-left"
-                @click="showThemeDialog = true;"
+                @click="showThemeDialog = true"
               >
                 <p>{{ $t("profile.theme") }}</p>
                 <span class="text-label-2 dark:text-label-dark-2">
@@ -124,7 +126,7 @@ const joinedContentLanguages = computed(() =>
                   'bg-label-separator dark:bg-label-dark-separator': active,
                 }"
                 class="w-full rounded-lg px-3 py-2 text-left"
-                @click.stop
+                @click="showInterfaceLanguageDialog = true"
               >
                 <p>{{ $t("profile.app-language") }}</p>
                 <span class="text-label-2 dark:text-label-dark-2">
@@ -138,7 +140,7 @@ const joinedContentLanguages = computed(() =>
                   'bg-label-separator dark:bg-label-dark-separator': active,
                 }"
                 class="w-full rounded-lg px-3 py-2 text-left"
-                @click.stop
+                @click="showContentLanguageDialog = true"
               >
                 <p>{{ $t("profile.content-language") }}</p>
                 <span class="text-label-2 dark:text-label-dark-2">
@@ -210,5 +212,24 @@ const joinedContentLanguages = computed(() =>
         </option>
       </select>
     </DialogBase>
+    <DialogBase
+      :show="showInterfaceLanguageDialog"
+      title="Interface Language"
+      @close="showInterfaceLanguageDialog = false"
+      >
+      The language used for the interface.
+      <br/><br/>
+      <ChangeLocale class="mx-4" />
+    </DialogBase>
+    <DialogBase
+      :show="showContentLanguageDialog"
+      title="Content Language"
+      @close="showContentLanguageDialog = false"
+      >
+      The preferred language for the content you are listening to.
+      <br/><br/>
+      <p style="background-color: rgba(255, 0, 0, 0.4);">Not implemented yet.</p>
+    </DialogBase>
+    
   </div>
 </template>
