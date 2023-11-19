@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import '../assets/main.css';
+import "../assets/main.css";
 
 defineSlots<{
   default: (props: {}) => any;

@@ -6,7 +6,6 @@ export default defineNuxtPlugin((nuxtApp) => {
     install: () => {},
   };
   auth0.install = () => {
-     
     nuxtApp.vueApp.config.globalProperties.$auth0 =
       auth0 as unknown as Auth0Plugin;
     nuxtApp.vueApp.provide(

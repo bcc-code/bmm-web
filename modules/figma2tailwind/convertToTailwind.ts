@@ -31,7 +31,7 @@ export default config;
 }
 
 async function writeColorsCss(content: string) {
-  await fs.writeFile("./assets/colors.css", content, "utf8");  
+  await fs.writeFile("./assets/colors.css", content, "utf8");
 }
 
 async function writeColors(figmaInput) {
@@ -59,18 +59,16 @@ async function writeColors(figmaInput) {
     });
   });
 
-
   // Simplifies class names so bg-info-default becomes bg-info
-  const colors = JSON.parse(JSON.stringify(transformedColors).replaceAll("default", "DEFAULT"));
+  const colors = JSON.parse(
+    JSON.stringify(transformedColors).replaceAll("default", "DEFAULT"),
+  );
 
   const { cssString, tailwindColors } = generateStylesAndConfig(colors);
 
   await writeColorsCss(cssString);
 
-  const content = `const colors = ${JSON.stringify(tailwindColors,
-    null,
-    2,
-  )};`;
+  const content = `const colors = ${JSON.stringify(tailwindColors, null, 2)};`;
 
   await writeTailwindConfig(content);
 }
