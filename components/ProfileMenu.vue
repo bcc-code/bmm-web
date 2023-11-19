@@ -197,7 +197,7 @@ const joinedContentLanguages = computed(() =>
       title="Theme"
       @close="showThemeDialog = false"
     >
-      Select the theme used for the interface.
+      {{ $t("profile.theme-description") }}
       <br/><br/>
       <select
         v-model="$colorMode.preference"
@@ -214,19 +214,19 @@ const joinedContentLanguages = computed(() =>
     </DialogBase>
     <DialogBase
       :show="showInterfaceLanguageDialog"
-      title="Interface Language"
+      :title="$t('profile.interface-language')"
       @close="showInterfaceLanguageDialog = false"
       >
-      The language used for the interface.
+      {{ $t("profile.interface-language-description") }}
       <br/><br/>
       <ChangeLocale class="mx-4" />
     </DialogBase>
     <DialogBase
       :show="showContentLanguageDialog"
-      title="Content Language"
+      :title="$t('profile.content-language')"
       @close="showContentLanguageDialog = false"
       >
-      The preferred language for the content you are listening to.
+      {{ $t("profile.content-language-description") }}
       <br/><br/>
       <p style="background-color: rgba(255, 0, 0, 0.4);">Not implemented yet.</p>
     </DialogBase>
