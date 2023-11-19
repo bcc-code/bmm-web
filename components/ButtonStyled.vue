@@ -16,7 +16,7 @@ defineSlots<{
   default: (props: {}) => any;
 }>();
 
-const className = cva("py-3 px-6 rounded-full flex gap-3 items-center", {
+const className = cva("rounded-full flex gap-3 items-center", {
   variants: {
     intent: {
       primary:
@@ -25,9 +25,9 @@ const className = cva("py-3 px-6 rounded-full flex gap-3 items-center", {
         "dark:bg-background-dark-2 bg-background-2 text-label-1 dark:text-label-dark-1",
     },
     size: {
-      large: "text-lg",
-      medium: "text-base",
-      small: "text-sm",
+      large: "text-lg py-3 px-6",
+      medium: "text-base py-3 px-6",
+      small: "text-sm py-[6px] px-[12px]",
     },
   },
 });

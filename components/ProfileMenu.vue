@@ -5,6 +5,19 @@ import { Menu, MenuButton, MenuItem, MenuItems, Switch } from "@headlessui/vue";
 const profileStore = useProfileStore();
 const { t } = useI18n();
 
+const showThemeDialog = ref(true);
+
+const colorModes = ["system", "light", "dark"] as const;
+const getColorModeName = (mode: (typeof colorModes)[number]) => {
+  switch (mode) {
+    case "system":
+      return t("profile.theme-system");
+    case "dark":
+      return t("profile.theme-dark");
+    default:
+      return t("profile.theme-light");
+  }
+};
 const colorMode = useColorMode();
 const colorTheme = computed(() => {
   switch (colorMode.preference) {
@@ -104,7 +117,7 @@ const joinedContentLanguages = computed(() =>
                   'bg-label-separator dark:bg-label-dark-separator': active,
                 }"
                 class="w-full rounded-lg px-3 py-2 text-left"
-                @click.stop
+                @click="showThemeDialog = true;"
               >
                 <p>{{ $t("profile.theme") }}</p>
                 <span class="text-label-2 dark:text-label-dark-2">
@@ -183,5 +196,26 @@ const joinedContentLanguages = computed(() =>
         </MenuItems>
       </transition>
     </Menu>
+
+    <DialogBase
+      :show="showThemeDialog"
+      title="Theme"
+      @close="showThemeDialog = false"
+    >
+      Select the theme used for the interface.
+      <br/><br/>
+      <select
+        v-model="$colorMode.preference"
+        class="mx-4 bg-white-1 text-black-1 dark:bg-white-1 dark:text-black-1"
+      >
+        <option
+          v-for="(mode, $index) in colorModes"
+          :key="$index"
+          :value="mode"
+        >
+          {{ getColorModeName(mode) }}
+        </option>
+      </select>
+    </DialogBase>
   </div>
 </template>
