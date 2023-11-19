@@ -29,7 +29,7 @@ const emit = defineEmits<{
             </div>
           </div>
           <div class="bg-label-1 dark:bg-label-dark-1 h-[1px] opacity-10"></div>
-          <div class="px-5">
+          <div class="p-4">
             <slot></slot>
           </div>
         </div>

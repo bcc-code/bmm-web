@@ -8,7 +8,7 @@ const { t } = useI18n();
 const showThemeDialog = ref(true);
 
 const colorModes = ["system", "light", "dark"] as const;
-const getColorModeName = (mode: (typeof colorModes)[number]) => {
+const getColorModeName = (mode: string) => {
   switch (mode) {
     case "system":
       return t("profile.theme-system");
@@ -19,15 +19,8 @@ const getColorModeName = (mode: (typeof colorModes)[number]) => {
   }
 };
 const colorMode = useColorMode();
-const colorTheme = computed(() => {
-  switch (colorMode.preference) {
-    case "system":
-      return t("profile.theme-system");
-    case "dark":
-      return t("profile.theme-dark");
-    default:
-      return t("profile.theme-light");
-  }
+const currentColorTheme = computed(() => {
+  return getColorModeName(colorMode.preference);
 });
 
 const auth0 = useAuth0();
@@ -121,7 +114,7 @@ const joinedContentLanguages = computed(() =>
               >
                 <p>{{ $t("profile.theme") }}</p>
                 <span class="text-label-2 dark:text-label-dark-2">
-                  {{ colorTheme }}
+                  {{ currentColorTheme }}
                 </span>
               </button>
             </MenuItem>
@@ -206,7 +199,7 @@ const joinedContentLanguages = computed(() =>
       <br/><br/>
       <select
         v-model="$colorMode.preference"
-        class="mx-4 bg-white-1 text-black-1 dark:bg-white-1 dark:text-black-1"
+        class="mx-4 bg-background-dark-4 text-black-1 dark:bg-white-1 dark:text-black-1"
       >
         <option
           v-for="(mode, $index) in colorModes"
