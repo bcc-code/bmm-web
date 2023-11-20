@@ -1,11 +1,11 @@
 <script lang="ts" setup>
 import {
-  LanguageEnum,
   DiscoverGetRequest,
+  LanguageEnum,
   TrackModel,
 } from "@bcc-code/bmm-sdk-fetch";
-import { IDiscoverableGroup } from "~/composables/discover";
 import { breakpointsTailwind, useBreakpoints } from "@vueuse/core";
+import { IDiscoverableGroup } from "~/composables/discover";
 
 const { setQueue } = useNuxtApp().$mediaPlayer;
 const userData = useNuxtApp().$userData;
@@ -69,7 +69,7 @@ const isSmallScreen = breakpoints.smallerOrEqual("lg");
         <li
           v-for="index in 5"
           :key="index"
-          class="my-6 h-11 w-full animate-pulse rounded-lg bg-background-2 dark:bg-background-dark-2"
+          class="my-6 h-11 w-full animate-pulse rounded-lg bg-background-2"
         ></li>
       </ul>
     </template>

@@ -16,6 +16,7 @@ const modules: NuxtConfig["modules"] = [
   ["@pinia/nuxt", { autoImports: ["defineStore"] }],
   "@pinia-plugin-persistedstate/nuxt",
   "@vueuse/nuxt",
+  "@nuxtjs/plausible",
 ];
 
 if (process.env.ELECTRON) modules.push("nuxt-electron");

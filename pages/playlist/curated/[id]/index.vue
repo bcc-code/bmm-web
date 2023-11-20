@@ -13,7 +13,9 @@ const { setQueue, queue } = useNuxtApp().$mediaPlayer;
 
 function shuffle() {
   if (tracks.value) {
-    setQueue(tracks.value);
+    // set the first track to a random number based on the current playlist length
+    const trackIndex = Math.floor(Math.random() * tracks.value.length);
+    setQueue(tracks.value, trackIndex);
     queue.value.shuffle();
 
     $appInsights.event("Shuffle Playlist", { playlistId });
@@ -35,7 +37,7 @@ onBeforeMount(() => {
           v-if="playlist.cover"
           :src="playlist.cover"
           alt=""
-          class="aspect-square w-[300px] rounded-2xl bg-background-2 dark:bg-background-dark-2"
+          class="aspect-square w-[300px] rounded-2xl bg-background-2"
         />
         <div class="flex flex-col justify-between p-6">
           <div>

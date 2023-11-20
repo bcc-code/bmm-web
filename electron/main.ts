@@ -1,9 +1,10 @@
 import { app, protocol, shell, dialog, BrowserWindow, net } from "electron";
 import * as path from "path";
 import * as fs from "fs/promises";
+import { autoUpdater } from "electron-updater";
 
 const PRODUCTION_APP_PROTOCOL = "bmm";
-const PRODUCTION_APP_PATH = path.join(__dirname, "..", ".output", "public");
+const PRODUCTION_APP_PATH = path.join(__dirname);
 const defaultUrl = `${PRODUCTION_APP_PROTOCOL}://bmm.brunstad.org`;
 let initUrl = defaultUrl;
 let appReadyHasRun = false;
@@ -139,6 +140,8 @@ if (!gotTheLock) {
 
     appReadyHasRun = true;
     openWindow(initUrl);
+
+    autoUpdater.checkForUpdatesAndNotify();
   });
 
   // Event is triggered when another program opens a `bmm://` link.
