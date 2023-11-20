@@ -19,11 +19,11 @@ const emit = defineEmits<{
         @click="emit('close')"
       >
         <div
-          class="bg-background-1 text-black-1 dark:bg-background-dark-1 dark:text-white-1 rounded-2xl"
+          class="bg-background-1 text-black-1 dark:text-white-1 rounded-2xl"
           @click.stop
         >
           <div class="px-5 py-3">{{ title }}</div>
-          <div class="bg-label-1 dark:bg-label-dark-1 h-[1px] opacity-10"></div>
+          <div class="bg-label-1 h-[1px] opacity-10"></div>
           <div class="px-5">
             <slot></slot>
           </div>

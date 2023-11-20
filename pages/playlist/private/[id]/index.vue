@@ -22,10 +22,7 @@ useHead({
           </p>
         </div>
       </template>
-      <div
-        v-else
-        class="mb-6 h-12 w-1/3 rounded-lg bg-background-2 dark:bg-background-dark-2"
-      ></div>
+      <div v-else class="mb-6 h-12 w-1/3 rounded-lg bg-background-2"></div>
     </header>
     <TrackList
       :skeleton-count="5"
