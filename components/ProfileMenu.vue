@@ -46,7 +46,7 @@ const joinedContentLanguages = computed(() =>
     <Menu as="div" class="relative">
       <div>
         <MenuButton
-          class="flex items-center gap-2 font-bold text-label-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-label-1 dark:text-label-dark-1"
+          class="flex items-center gap-2 font-bold text-label-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-label-1"
         >
           <span>{{ $t("profile.title") }}</span>
           <img
@@ -68,13 +68,13 @@ const joinedContentLanguages = computed(() =>
         leave-to-class="transform scale-95 opacity-0"
       >
         <MenuItems
-          class="absolute right-0 mt-2 w-56 origin-top-right divide-y divide-label-separator rounded-xl bg-white-1 text-sm shadow-lg ring-1 ring-label-separator focus-visible:outline-none dark:divide-label-dark-separator dark:bg-background-dark-3"
+          class="absolute right-0 mt-2 w-56 origin-top-right divide-y divide-label-separator rounded-xl bg-white-1 text-sm shadow-lg ring-1 ring-label-separator focus-visible:outline-none -separator"
         >
           <div class="p-1">
             <MenuItem v-slot="{ active }">
               <button
                 :class="{
-                  'bg-label-separator dark:bg-label-dark-separator': active,
+                  'bg-label-separator -separator': active,
                 }"
                 class="flex w-full items-center justify-between rounded-lg px-3 py-2"
                 @click="
@@ -88,9 +88,7 @@ const joinedContentLanguages = computed(() =>
                 <Switch
                   v-model="profileStore.autoplay"
                   :class="
-                    profileStore.autoplay
-                      ? 'bg-tint dark:bg-tint-dark'
-                      : 'bg-background-2 dark:bg-background-dark-2'
+                    profileStore.autoplay ? 'bg-tint ' : 'bg-background-2 '
                   "
                   class="relative inline-flex h-6 w-10 shrink-0 cursor-pointer rounded-full p-1 transition-colors duration-200 ease-in-out focus:outline-none"
                 >
@@ -109,13 +107,13 @@ const joinedContentLanguages = computed(() =>
             <MenuItem v-slot="{ active }">
               <button
                 :class="{
-                  'bg-label-separator dark:bg-label-dark-separator': active,
+                  'bg-label-separator -separator': active,
                 }"
                 class="w-full rounded-lg px-3 py-2 text-left"
                 @click="showThemeDialog = true"
               >
                 <p>{{ $t("profile.theme") }}</p>
-                <span class="text-label-2 dark:text-label-dark-2">
+                <span class="text-label-2">
                   {{ currentColorTheme }}
                 </span>
               </button>
@@ -123,13 +121,13 @@ const joinedContentLanguages = computed(() =>
             <MenuItem v-slot="{ active }" as="div">
               <button
                 :class="{
-                  'bg-label-separator dark:bg-label-dark-separator': active,
+                  'bg-label-separator -separator': active,
                 }"
                 class="w-full rounded-lg px-3 py-2 text-left"
                 @click="showInterfaceLanguageDialog = true"
               >
                 <p>{{ $t("profile.app-language") }}</p>
-                <span class="text-label-2 dark:text-label-dark-2">
+                <span class="text-label-2">
                   {{ languageName }}
                 </span>
               </button>
@@ -137,13 +135,13 @@ const joinedContentLanguages = computed(() =>
             <MenuItem v-slot="{ active }" as="div">
               <button
                 :class="{
-                  'bg-label-separator dark:bg-label-dark-separator': active,
+                  'bg-label-separator -separator': active,
                 }"
                 class="w-full rounded-lg px-3 py-2 text-left"
                 @click="showContentLanguageDialog = true"
               >
                 <p>{{ $t("profile.content-language") }}</p>
-                <span class="text-label-2 dark:text-label-dark-2">
+                <span class="text-label-2">
                   {{ joinedContentLanguages }}
                 </span>
               </button>
@@ -153,7 +151,7 @@ const joinedContentLanguages = computed(() =>
             <MenuItem v-slot="{ active }" as="div">
               <a
                 :class="{
-                  'bg-label-separator dark:bg-label-dark-separator': active,
+                  'bg-label-separator -separator': active,
                 }"
                 class="flex w-full rounded-lg px-3 py-2"
                 href="https://uservoice.bcc.no/?tags=bmm"
@@ -165,7 +163,7 @@ const joinedContentLanguages = computed(() =>
             <MenuItem v-slot="{ active }" as="div">
               <a
                 :class="{
-                  'bg-label-separator dark:bg-label-dark-separator': active,
+                  'bg-label-separator -separator': active,
                 }"
                 class="flex w-full rounded-lg px-3 py-2"
                 href="mailto:bmm-support@bcc.no"
@@ -179,7 +177,7 @@ const joinedContentLanguages = computed(() =>
             <MenuItem v-slot="{ active }" as="div">
               <button
                 :class="{
-                  'bg-label-separator dark:bg-label-dark-separator': active,
+                  'bg-label-separator -separator': active,
                 }"
                 class="w-full rounded-lg px-3 py-2 text-left"
                 @click="logout()"
