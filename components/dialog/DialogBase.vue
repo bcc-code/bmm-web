@@ -25,7 +25,12 @@ const emit = defineEmits<{
           <div class="flex justify-between mx-5">
             <div class="py-4 font-semibold">{{ title }}</div>
             <div class="align-middle self-center">
-              <ButtonStyled intent="primary" size="small" @click.stop="emit('close')">Done</ButtonStyled>
+              <ButtonStyled
+                intent="primary"
+                size="small"
+                @click.stop="emit('close')"
+                >Done</ButtonStyled
+              >
             </div>
           </div>
           <div class="bg-label-1 dark:bg-label-dark-1 h-[1px] opacity-10"></div>
