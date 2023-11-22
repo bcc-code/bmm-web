@@ -18,14 +18,19 @@
     "title": "Profiel",
     "autoplay": "Automatisch afspelen",
     "theme": "Thema",
+    "theme-description": "Select the theme used for the interface.",
     "app-language": "Taal",
+    "interface-language": "Interface Language",
+    "interface-language-description": "The language used for the interface.",
+    "select-language": "Select language",
     "content-language": "Taal van de content ",
+    "content-language-description": "The preferred language for the content you are listening to.",
     "uservoice": "User Voice",
     "contact": "Contact",
     "logout": "Uitloggen",
     "theme-dark": "Dark",
     "theme-light": "Light",
-    "theme-system": "Systeem"
+    "theme-system": "Same as system"
   },
   "error": {
     "page-not-found": {
