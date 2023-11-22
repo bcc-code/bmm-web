@@ -5,9 +5,13 @@ import { Menu, MenuButton, MenuItem, MenuItems, Switch } from "@headlessui/vue";
 const profileStore = useProfileStore();
 const { t } = useI18n();
 
-const colorMode = useColorMode();
-const colorTheme = computed(() => {
-  switch (colorMode.preference) {
+const showInterfaceLanguageDialog = ref(false);
+const showContentLanguageDialog = ref(false);
+const showThemeDialog = ref(false);
+
+const colorModes = ["system", "light", "dark"] as const;
+const getColorModeName = (mode: string) => {
+  switch (mode) {
     case "system":
       return t("profile.theme-system");
     case "dark":
@@ -15,7 +19,11 @@ const colorTheme = computed(() => {
     default:
       return t("profile.theme-light");
   }
-});
+};
+const colorMode = useColorMode();
+const currentColorTheme = computed(() =>
+  getColorModeName(colorMode.preference),
+);
 
 const auth0 = useAuth0();
 const logout = async () => {
@@ -102,11 +110,11 @@ const joinedContentLanguages = computed(() =>
                   'bg-label-separator -separator': active,
                 }"
                 class="w-full rounded-lg px-3 py-2 text-left"
-                @click.stop
+                @click="showThemeDialog = true"
               >
                 <p>{{ $t("profile.theme") }}</p>
                 <span class="text-label-2">
-                  {{ colorTheme }}
+                  {{ currentColorTheme }}
                 </span>
               </button>
             </MenuItem>
@@ -116,7 +124,7 @@ const joinedContentLanguages = computed(() =>
                   'bg-label-separator -separator': active,
                 }"
                 class="w-full rounded-lg px-3 py-2 text-left"
-                @click.stop
+                @click="showInterfaceLanguageDialog = true"
               >
                 <p>{{ $t("profile.app-language") }}</p>
                 <span class="text-label-2">
@@ -130,7 +138,7 @@ const joinedContentLanguages = computed(() =>
                   'bg-label-separator -separator': active,
                 }"
                 class="w-full rounded-lg px-3 py-2 text-left"
-                @click.stop
+                @click="showContentLanguageDialog = true"
               >
                 <p>{{ $t("profile.content-language") }}</p>
                 <span class="text-label-2">
@@ -181,5 +189,59 @@ const joinedContentLanguages = computed(() =>
         </MenuItems>
       </transition>
     </Menu>
+
+    <DialogBase
+      :show="showThemeDialog"
+      title="Theme"
+      @close="showThemeDialog = false"
+    >
+      <div>{{ $t("profile.theme-description") }}</div>
+
+      <ul
+        class="bg-background-2 dark:bg-background-dark-2 rounded-2xl mt-4 font-semibold"
+      >
+        <li
+          v-for="mode in colorModes"
+          :key="mode"
+          class="flex justify-between px-4 py-3 cursor-pointer hover:bg-on-color-2 rounded-2xl"
+          @click="colorMode.preference = mode"
+        >
+          <div>{{ getColorModeName(mode) }}</div>
+          <NuxtIcon
+            v-if="mode == colorMode.preference"
+            name="icon.selected"
+            class="text-2xl group-hover:text-4xl inline-block"
+          />
+        </li>
+      </ul>
+    </DialogBase>
+
+    <DialogBase
+      :show="showInterfaceLanguageDialog"
+      :title="$t('profile.interface-language')"
+      @close="showInterfaceLanguageDialog = false"
+    >
+      {{ $t("profile.interface-language-description") }}
+      <br /><br />
+
+      <div
+        class="flex content-center bg-background-2 dark:bg-background-dark-2 rounded-2xl p-3"
+      >
+        <div class="inline-block self-center">
+          {{ $t("profile.select-language") }}
+        </div>
+        <ChangeLocale class="mx-4" />
+      </div>
+    </DialogBase>
+
+    <DialogBase
+      :show="showContentLanguageDialog"
+      :title="$t('profile.content-language')"
+      @close="showContentLanguageDialog = false"
+    >
+      {{ $t("profile.content-language-description") }}
+      <br /><br />
+      <p style="background-color: rgba(255, 0, 0, 0.4)">Not implemented yet.</p>
+    </DialogBase>
   </div>
 </template>
