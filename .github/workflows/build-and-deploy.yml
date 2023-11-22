@@ -94,7 +94,7 @@ jobs:
           subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
 
       - name: Get Static Web App Token
-        uses: Azure/cli@v1.0.7
+        uses: Azure/cli@v1.0.8
         id: swa_token
         with:
           inlineScript: |
@@ -120,7 +120,7 @@ jobs:
           SKIP_DEPLOY_ON_MISSING_SECRETS: true
 
       - name: Rotate Static Web App Token
-        uses: Azure/cli@v1.0.7
+        uses: Azure/cli@v1.0.8
         if: always()
         with:
           inlineScript: |
@@ -144,7 +144,7 @@ jobs:
           subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
 
       - name: Get Static Web App Token
-        uses: Azure/cli@v1.0.7
+        uses: Azure/cli@v1.0.8
         id: swa_token
         with:
           inlineScript: |
@@ -163,7 +163,7 @@ jobs:
           action: "close"
 
       - name: Rotate Static Web App Token
-        uses: Azure/cli@v1.0.7
+        uses: Azure/cli@v1.0.8
         if: always()
         with:
           inlineScript: |
