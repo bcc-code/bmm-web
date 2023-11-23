@@ -193,10 +193,9 @@ const joinedContentLanguages = computed(() =>
     <DialogBase
       :show="showThemeDialog"
       title="Theme"
+      :description="$t('profile.theme-description')"
       @close="showThemeDialog = false"
     >
-      <div>{{ $t("profile.theme-description") }}</div>
-
       <ul
         class="bg-background-2 dark:bg-background-dark-2 rounded-2xl mt-4 font-semibold"
       >
@@ -219,11 +218,9 @@ const joinedContentLanguages = computed(() =>
     <DialogBase
       :show="showInterfaceLanguageDialog"
       :title="$t('profile.interface-language')"
+      :description="$t('profile.interface-language-description')"
       @close="showInterfaceLanguageDialog = false"
     >
-      {{ $t("profile.interface-language-description") }}
-      <br /><br />
-
       <div
         class="flex content-center bg-background-2 dark:bg-background-dark-2 rounded-2xl p-3"
       >
@@ -237,10 +234,9 @@ const joinedContentLanguages = computed(() =>
     <DialogBase
       :show="showContentLanguageDialog"
       :title="$t('profile.content-language')"
+      :description="$t('profile.content-language-description')"
       @close="showContentLanguageDialog = false"
     >
-      {{ $t("profile.content-language-description") }}
-      <br /><br />
       <p style="background-color: rgba(255, 0, 0, 0.4)">Not implemented yet.</p>
     </DialogBase>
   </div>
