@@ -22,20 +22,19 @@ const emit = defineEmits<{
           class="bg-background-1 text-black-1 dark:text-white-1 rounded-2xl md:w-[500px] lg:w-[600px]"
           @click.stop
         >
-          <div class="flex justify-between mx-5">
+          <div class="flex justify-between items-center mx-5">
             <div class="py-4 font-semibold">{{ title }}</div>
-            <div class="align-middle self-center">
-              <ButtonStyled
-                intent="primary"
-                size="small"
-                @click.stop="emit('close')"
-                >Done</ButtonStyled
-              >
-            </div>
+            <ButtonStyled
+              intent="primary"
+              size="small"
+              @click.stop="emit('close')"
+            >
+              {{ $t("profile.done") }}
+            </ButtonStyled>
           </div>
           <div class="bg-label-1 dark:bg-label-dark-1 h-[1px] opacity-10"></div>
           <div class="p-4">
-            <slot></slot>
+            <slot />
           </div>
         </div>
       </div>
