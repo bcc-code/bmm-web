@@ -1,6 +1,14 @@
 <script setup lang="ts">
 import { useAuth0 } from "@auth0/auth0-vue";
-import { Menu, MenuButton, MenuItem, MenuItems, Switch } from "@headlessui/vue";
+import {
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuItems,
+  Switch,
+  RadioGroup,
+  RadioGroupOption,
+} from "@headlessui/vue";
 
 const profileStore = useProfileStore();
 const { t } = useI18n();
@@ -196,23 +204,24 @@ const joinedContentLanguages = computed(() =>
       :description="$t('profile.theme-description')"
       @close="showThemeDialog = false"
     >
-      <ul
+      <RadioGroup
+        v-model="colorMode.preference"
         class="bg-background-2 dark:bg-background-dark-2 rounded-2xl mt-4 font-semibold"
       >
-        <li
+        <RadioGroupOption
           v-for="mode in colorModes"
           :key="mode"
-          class="flex justify-between px-4 py-3 cursor-pointer hover:bg-on-color-2 rounded-2xl"
-          @click="colorMode.preference = mode"
+          :value="mode"
+          class="flex justify-between px-4 py-3 cursor-pointer hover:bg-on-color-2 rounded-2xl w-full"
         >
-          <div>{{ getColorModeName(mode) }}</div>
+          <span>{{ getColorModeName(mode) }}</span>
           <NuxtIcon
             v-if="mode == colorMode.preference"
             name="icon.selected"
             class="text-2xl group-hover:text-4xl inline-block"
           />
-        </li>
-      </ul>
+        </RadioGroupOption>
+      </RadioGroup>
     </DialogBase>
 
     <DialogBase
