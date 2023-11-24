@@ -231,12 +231,12 @@ const joinedContentLanguages = computed(() =>
       @close="showInterfaceLanguageDialog = false"
     >
       <div
-        class="flex content-center gap-4 justify-between bg-background-2 dark:bg-background-dark-2 rounded-2xl p-3"
+        class="bg-background-2 dark:bg-background-dark-2 rounded-2xl p-3 pl-5"
       >
-        <div class="inline-block self-center">
-          {{ $t("profile.select-language") }}
-        </div>
-        <ChangeLocale />
+        <label class="self-center flex items-center gap-4 justify-between">
+          <span>{{ $t("profile.select-language") }}</span>
+          <ChangeLocale />
+        </label>
       </div>
     </DialogBase>
 
