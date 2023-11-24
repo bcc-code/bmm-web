@@ -76,7 +76,7 @@ const joinedContentLanguages = computed(() =>
         leave-to-class="transform scale-95 opacity-0"
       >
         <MenuItems
-          class="absolute right-0 mt-2 w-56 origin-top-right divide-y divide-label-separator rounded-xl bg-white-1 text-sm shadow-lg ring-1 ring-label-separator focus-visible:outline-none -separator"
+          class="absolute right-0 mt-2 w-56 origin-top-right divide-y divide-label-separator rounded-xl bg-background-3 text-sm shadow-lg ring-1 ring-label-separator focus-visible:outline-none -separator"
         >
           <div class="p-1">
             <MenuItem v-slot="{ active }">
@@ -212,7 +212,7 @@ const joinedContentLanguages = computed(() =>
           v-for="mode in colorModes"
           :key="mode"
           :value="mode"
-          class="flex justify-between px-4 py-3 cursor-pointer hover:bg-on-color-2 rounded-2xl w-full"
+          class="flex justify-between px-4 py-3 cursor-pointer hover:bg-on-color-2 focus-visible:bg-on-color-2 w-full first:rounded-t-2xl last:rounded-b-2xl"
         >
           <span>{{ getColorModeName(mode) }}</span>
           <NuxtIcon
