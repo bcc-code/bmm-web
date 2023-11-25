@@ -15,14 +15,14 @@ defineProps<{
       }"
     >
       <div
-        class="absolute -inset-x-4 -inset-y-0 rounded-xl bg-background-2 opacity-0 group-hover:opacity-100 dark:bg-background-dark-2"
+        class="absolute -inset-x-4 -inset-y-0 rounded-xl bg-background-2 opacity-0 group-hover:opacity-100"
       ></div>
       <div class="relative flex items-center justify-between gap-3">
         <div v-if="album.cover" class="w-10">
           <ProtectedImage
             :src="album.cover"
             alt=""
-            class="aspect-square w-10 rounded-xl bg-background-2 dark:bg-background-dark-2"
+            class="aspect-square w-10 rounded-xl bg-background-2"
           />
         </div>
         <div class="mr-auto w-1/3">

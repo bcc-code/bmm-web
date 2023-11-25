@@ -1,3 +1,5 @@
+@import "colors.css";
+
 html,
 body,
 #__nuxt {
@@ -6,4 +8,37 @@ body,
 	 * at least the full screen height 
 	 */
   height: 100%;
+}
+
+::-webkit-scrollbar {
+  width: 3px;
+  height: 3px;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-track {
+  box-shadow:
+    0 1px 3px 0 rgba(0, 0, 0, 0.1),
+    0 1px 2px -1px rgba(0, 0, 0, 0.1);
+  background-color: color-mix(
+    in srgb,
+    var(--bmm-background-4),
+    var(--bmm-background-1) 90%
+  );
+  border: 1px rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: color-mix(
+    in srgb,
+    var(--bmm-background-4),
+    var(--bmm-background-1) 80%
+  );
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: color-mix(
+    in srgb,
+    var(--bmm-tint),
+    var(--bmm-background-4) 20%
+  );
 }

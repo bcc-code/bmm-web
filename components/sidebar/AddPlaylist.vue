@@ -20,7 +20,7 @@ const savePlaylist = async () => {
 </script>
 
 <template>
-  <div class="px-4 py-2 cursor-pointer text-label-3 dark:text-label-dark-3">
+  <div class="px-4 py-2 cursor-pointer text-label-3">
     <div v-if="!showInput" class="group gap-2 flex" @click="toggleInput()">
       <NuxtIcon name="icon.add" class="text-xl" />
       <span class="transition-transform group-hover:translate-x-2">

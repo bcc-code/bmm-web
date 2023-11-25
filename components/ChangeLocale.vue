@@ -1,18 +1,14 @@
-<script lang="ts" setup></script>
-
 <template>
-  <div class="locale-changer">
-    <select
-      v-model="$i18n.locale"
-      class="bg-white-1 text-black-1 dark:bg-white-1 dark:text-black-1"
+  <select
+    v-model="$i18n.locale"
+    class="text-black-1 bg-background-1 dark:bg-background-3 dark:text-black-1 min-w-[100px] pl-3 py-2.5 shadow ring-1 ring-label-separator rounded-lg"
+  >
+    <option
+      v-for="(lang, i) in $i18n.availableLocales"
+      :key="`Lang${i}`"
+      :value="lang"
     >
-      <option
-        v-for="(lang, i) in $i18n.availableLocales"
-        :key="`Lang${i}`"
-        :value="lang"
-      >
-        {{ lang }}
-      </option>
-    </select>
-  </div>
+      {{ lang }}
+    </option>
+  </select>
 </template>
