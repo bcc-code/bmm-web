@@ -142,7 +142,7 @@ const {
   >
     <div
       v-if="open"
-      class="shadow-player h-100 absolute bottom-5 right-5 flex flex-col overflow-auto rounded-2xl bg-white-1 p-4 pb-0"
+      class="shadow-player h-100 absolute bottom-5 right-5 flex flex-col overflow-auto rounded-2xl bg-white-1 p-4 pb-0 w-[400px]"
     >
       <div class="flex justify-between pb-[17px]">
         <div
