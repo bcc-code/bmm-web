@@ -30,7 +30,8 @@
     "logout": "Uitloggen",
     "theme-dark": "Dark",
     "theme-light": "Light",
-    "theme-system": "Hetzelfde als apparaat"
+    "theme-system": "Hetzelfde als apparaat",
+    "done": "Gereed"
   },
   "error": {
     "page-not-found": {
