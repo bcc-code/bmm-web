@@ -1,5 +1,3 @@
-<script lang="ts" setup></script>
-
 <template>
   <select
     v-model="$i18n.locale"
