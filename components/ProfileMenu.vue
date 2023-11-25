@@ -1,6 +1,15 @@
 <script setup lang="ts">
 import { useAuth0 } from "@auth0/auth0-vue";
-import { Menu, MenuButton, MenuItem, MenuItems, Switch } from "@headlessui/vue";
+import {
+  Menu,
+  MenuButton,
+  MenuItem,
+  MenuItems,
+  Switch,
+  RadioGroup,
+  RadioGroupOption,
+} from "@headlessui/vue";
+import { VueDraggable } from "vue-draggable-plus";
 
 const profileStore = useProfileStore();
 const { t } = useI18n();
@@ -68,7 +77,7 @@ const joinedContentLanguages = computed(() =>
         leave-to-class="transform scale-95 opacity-0"
       >
         <MenuItems
-          class="absolute right-0 mt-2 w-56 origin-top-right divide-y divide-label-separator rounded-xl bg-white-1 text-sm shadow-lg ring-1 ring-label-separator focus-visible:outline-none -separator"
+          class="absolute right-0 mt-2 w-56 origin-top-right divide-y divide-label-separator rounded-xl bg-background-3 text-sm shadow-lg ring-1 ring-label-separator focus-visible:outline-none -separator"
         >
           <div class="p-1">
             <MenuItem v-slot="{ active }">
@@ -193,55 +202,84 @@ const joinedContentLanguages = computed(() =>
     <DialogBase
       :show="showThemeDialog"
       title="Theme"
+      :description="$t('profile.theme-description')"
       @close="showThemeDialog = false"
     >
-      <div>{{ $t("profile.theme-description") }}</div>
-
-      <ul
-        class="bg-background-2 dark:bg-background-dark-2 rounded-2xl mt-4 font-semibold"
+      <RadioGroup
+        v-model="colorMode.preference"
+        class="bg-background-2 dark:bg-background-dark-2 rounded-2xl font-semibold"
       >
-        <li
+        <RadioGroupOption
           v-for="mode in colorModes"
           :key="mode"
-          class="flex justify-between px-4 py-3 cursor-pointer hover:bg-on-color-2 rounded-2xl"
-          @click="colorMode.preference = mode"
+          :value="mode"
+          class="flex justify-between px-4 py-3 cursor-pointer hover:bg-on-color-2 focus-visible:bg-on-color-2 w-full first:rounded-t-2xl last:rounded-b-2xl"
         >
-          <div>{{ getColorModeName(mode) }}</div>
+          <span>{{ getColorModeName(mode) }}</span>
           <NuxtIcon
             v-if="mode == colorMode.preference"
             name="icon.selected"
             class="text-2xl group-hover:text-4xl inline-block"
           />
-        </li>
-      </ul>
+        </RadioGroupOption>
+      </RadioGroup>
     </DialogBase>
 
     <DialogBase
       :show="showInterfaceLanguageDialog"
       :title="$t('profile.interface-language')"
+      :description="$t('profile.interface-language-description')"
       @close="showInterfaceLanguageDialog = false"
     >
-      {{ $t("profile.interface-language-description") }}
-      <br /><br />
-
       <div
-        class="flex content-center bg-background-2 dark:bg-background-dark-2 rounded-2xl p-3"
+        class="bg-background-2 dark:bg-background-dark-2 rounded-2xl p-3 pl-5"
       >
-        <div class="inline-block self-center">
-          {{ $t("profile.select-language") }}
-        </div>
-        <ChangeLocale class="mx-4" />
+        <label class="self-center flex items-center gap-4 justify-between">
+          <span>{{ $t("profile.select-language") }}</span>
+          <ChangeLocale />
+        </label>
       </div>
     </DialogBase>
 
     <DialogBase
       :show="showContentLanguageDialog"
       :title="$t('profile.content-language')"
+      :description="$t('profile.content-language-description')"
       @close="showContentLanguageDialog = false"
     >
-      {{ $t("profile.content-language-description") }}
-      <br /><br />
-      <p style="background-color: rgba(255, 0, 0, 0.4)">Not implemented yet.</p>
+      <VueDraggable
+        v-model="contentLanguages"
+        handle=".handle"
+        :animation="200"
+        class="bg-background-2 dark:bg-background-dark-2 rounded-2xl font-semibold divide-y divide-label-separator"
+      >
+        <div
+          v-for="(lang, i) in contentLanguages"
+          :key="lang"
+          class="grid grid-cols-[24px_1fr_24px] items-center px-4 py-3 gap-4 w-full first:rounded-t-2xl last:rounded-b-2xl"
+        >
+          <button class="handle">
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path d="M4 9H20" stroke="#ABAFB3" stroke-width="2" />
+              <path d="M4 15H20" stroke="#ABAFB3" stroke-width="2" />
+            </svg>
+          </button>
+          <div
+            class="text-black-1 bg-background-1 dark:bg-background-3 dark:text-black-1 min-w-[100px] pl-3 py-2.5 shadow ring-1 ring-label-separator rounded-lg"
+          >
+            {{ lang }}
+          </div>
+          <button v-if="i > 0" class="text-2xl">
+            <NuxtIcon name="icon.close.small" />
+          </button>
+        </div>
+      </VueDraggable>
     </DialogBase>
   </div>
 </template>
