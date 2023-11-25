@@ -145,12 +145,28 @@ const {
       class="shadow-player h-100 absolute bottom-5 right-5 flex flex-col overflow-auto rounded-2xl bg-white-1 p-4 pb-0"
     >
       <div class="flex justify-between pb-[17px]">
-        <div class="rounded-2xl border" @click.stop="open = !open">
-          <NuxtIcon name="icon.minify" filled class="text-2xl" />
+        <div
+          class="rounded-full border border-label-separator p-1.5 cursor-pointer"
+          @click.stop="open = !open"
+        >
+          <NuxtIcon name="icon.minify" filled class="text-xl" />
         </div>
-        <div class="rounded-2xl border">{{ currentTrack?.language }}</div>
-        <div class="rounded-2xl border">
-          <NuxtIcon name="options" filled class="text-2xl" />
+        <div
+          class="rounded-full border border-label-separator px-3 py-1.5 cursor-pointer text-sm"
+          style="background-color: rgba(255, 0, 0, 0.4); color: red"
+        >
+          <!-- TODO: Implement option to change the language -->
+          {{
+            currentTrack?.language
+              ? getLocalizedLanguageName(currentTrack.language)
+              : ""
+          }}
+        </div>
+        <div
+          class="rounded-full border border-label-separator p-1.5 cursor-pointer"
+          style="background-color: rgba(255, 0, 0, 0.4); color: red"
+        >
+          <NuxtIcon name="options" filled class="text-xl" />
         </div>
       </div>
       <div class="flex justify-around pb-12">
