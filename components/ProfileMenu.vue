@@ -9,6 +9,7 @@ import {
   RadioGroup,
   RadioGroupOption,
 } from "@headlessui/vue";
+import { VueDraggable } from "vue-draggable-plus";
 
 const profileStore = useProfileStore();
 const { t } = useI18n();
@@ -206,7 +207,7 @@ const joinedContentLanguages = computed(() =>
     >
       <RadioGroup
         v-model="colorMode.preference"
-        class="bg-background-2 dark:bg-background-dark-2 rounded-2xl mt-4 font-semibold"
+        class="bg-background-2 dark:bg-background-dark-2 rounded-2xl font-semibold"
       >
         <RadioGroupOption
           v-for="mode in colorModes"
@@ -246,7 +247,39 @@ const joinedContentLanguages = computed(() =>
       :description="$t('profile.content-language-description')"
       @close="showContentLanguageDialog = false"
     >
-      <p style="background-color: rgba(255, 0, 0, 0.4)">Not implemented yet.</p>
+      <VueDraggable
+        v-model="contentLanguages"
+        handle=".handle"
+        :animation="200"
+        class="bg-background-2 dark:bg-background-dark-2 rounded-2xl font-semibold divide-y divide-label-separator"
+      >
+        <div
+          v-for="(lang, i) in contentLanguages"
+          :key="lang"
+          class="grid grid-cols-[24px_1fr_24px] items-center px-4 py-3 gap-4 w-full first:rounded-t-2xl last:rounded-b-2xl"
+        >
+          <button class="handle">
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path d="M4 9H20" stroke="#ABAFB3" stroke-width="2" />
+              <path d="M4 15H20" stroke="#ABAFB3" stroke-width="2" />
+            </svg>
+          </button>
+          <div
+            class="text-black-1 bg-background-1 dark:bg-background-3 dark:text-black-1 min-w-[100px] pl-3 py-2.5 shadow ring-1 ring-label-separator rounded-lg"
+          >
+            {{ lang }}
+          </div>
+          <button v-if="i > 0" class="text-2xl">
+            <NuxtIcon name="icon.close.small" />
+          </button>
+        </div>
+      </VueDraggable>
     </DialogBase>
   </div>
 </template>
