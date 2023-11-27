@@ -63,6 +63,12 @@
       "shuffle": "Shuffle"
     }
   },
+  "podcast": {
+    "action": {
+      "play": "Play",
+      "follow": "Follow"
+    }
+  },
   "track": {
     "dropdown": {
       "play-next": "Play next",
