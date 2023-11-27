@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import { BrowseApi } from "@bcc-code/bmm-sdk-fetch";
-
 const { t } = useI18n();
 toolbarTitleStore().setReactiveToolbarTitle(() => t("nav.browse"));
 
@@ -26,7 +24,7 @@ const { data: browseSections, pending } = await useBrowse();
             <div>
               <NuxtLink
                 v-if="typeof section.link === 'string'"
-                :to="section.link"
+                :to="section.link as any"
               >
                 {{ section.title }}
               </NuxtLink>
