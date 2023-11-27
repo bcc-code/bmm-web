@@ -25,7 +25,7 @@ export function usePodcastTracks(options: UsePodcastTracksOptions) {
     useLazyAsyncData(`podcast-tracks-${id}`, () =>
       new PodcastApi().podcastIdTrackGet({ id }),
     ),
-  )
+  );
 }
 
 export function usePodcasts() {
