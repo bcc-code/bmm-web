@@ -48,6 +48,7 @@ const { data: browseSections, pending } = await useBrowse();
           v-else-if="section.type === 'podcast'"
           :podcast="section"
         />
+        <p v-else style="color: red">This is not implemented yet</p>
       </template>
     </ul>
   </div>
