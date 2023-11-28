@@ -109,26 +109,20 @@ const {
       </div>
       <svg
         width="100%"
-        height="28"
-        viewBox="0 0 100% 28"
+        height="8"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        class="width-full"
+        class="width-full rounded-full overflow-hidden"
       >
-        <rect y="10" width="100%" height="8" rx="4" fill="#F5F6F7" />
+        <rect width="100%" height="8" class="fill-background-2" />
         <rect
+          v-if="
+            Number.isFinite(currentPosition) &&
+            Number.isFinite(currentTrackDuration)
+          "
           :width="(currentPosition / currentTrackDuration) * 100 + '%'"
           height="8"
-          transform="translate(0 10)"
-          fill="#0D131A"
-          rx="4"
-        />
-        <rect
-          v-if="(currentPosition / currentTrackDuration) * 100 > 0.95"
-          :width="(currentPosition / currentTrackDuration) * 105 + '%'"
-          height="8"
-          transform="translate(1.8 10)"
-          fill="#0D131A"
+          class="fill-label-1"
         />
       </svg>
     </div>
@@ -187,30 +181,26 @@ const {
           </div>
         </div>
         <div class="px-4 py-2">
-          <svg
-            width="100%"
-            height="28"
-            viewBox="0 0 100% 28"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            class="width-full"
-          >
-            <rect y="10" width="100%" height="8" rx="4" fill="#F5F6F7" />
-            <rect
-              :width="(currentPosition / currentTrackDuration) * 100 + '%'"
+          <div class="py-2">
+            <svg
+              width="100%"
               height="8"
-              transform="translate(0 10)"
-              fill="#0D131A"
-              rx="4"
-            />
-            <rect
-              v-if="(currentPosition / currentTrackDuration) * 100 > 0.95"
-              :width="(currentPosition / currentTrackDuration) * 105 + '%'"
-              height="8"
-              transform="translate(1.8 10)"
-              fill="#0D131A"
-            />
-          </svg>
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              class="width-full rounded-full overflow-hidden"
+            >
+              <rect width="100%" height="8" class="fill-background-2" />
+              <rect
+                v-if="
+                  Number.isFinite(currentPosition) &&
+                  Number.isFinite(currentTrackDuration)
+                "
+                :width="(currentPosition / currentTrackDuration) * 100 + '%'"
+                height="8"
+                class="fill-label-1"
+              />
+            </svg>
+          </div>
           <div class="flex justify-between py-0.5 text-sm">
             <span>
               <TimeDuration :duration="currentPosition"></TimeDuration
