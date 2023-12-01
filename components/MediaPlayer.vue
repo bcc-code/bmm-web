@@ -2,7 +2,6 @@
 import { MediaPlayerStatus } from "~/plugins/mediaPlayer/mediaPlayer";
 
 const open = ref(false);
-const hover = ref(false);
 
 const {
   status,
@@ -39,14 +38,11 @@ const onPointerUpProgressBar = (event: PointerEvent) => {
   >
     <div
       v-if="!open"
-      class="shadow-player absolute bottom-5 right-5 flex flex-col rounded-2xl bg-background-1 p-3"
+      class="group absolute bottom-5 right-5 w-[400px]"
       @click.stop="open = !open"
-      @mouseover="hover = true"
-      @mouseleave="hover = false"
     >
       <svg
-        v-if="hover"
-        class="absolute -left-1 -top-1"
+        class="absolute -left-1 -top-1 hidden group-hover:block"
         xmlns="http://www.w3.org/2000/svg"
         width="11"
         height="11"
@@ -58,85 +54,90 @@ const onPointerUpProgressBar = (event: PointerEvent) => {
           fill="currentColor"
         />
       </svg>
-      <div class="flex">
-        <div
-          class="mr-3 aspect-square h-[48px] shrink-0 overflow-hidden rounded-md bg-background-2"
-        >
-          <ProtectedImage
-            v-if="currentTrack?.meta?.attachedPicture"
-            :src="currentTrack?.meta?.attachedPicture"
-          />
-        </div>
-        <div class="flex min-w-0 flex-col">
-          <h3
-            class="truncate text-lg font-semibold leading-tight"
-            :title="currentTrack?.title || ''"
-          >
-            {{ currentTrack?.title }}
-          </h3>
-          <div>
-            <span
-              v-if="currentTrack?.meta?.artist"
-              class="truncate text-base leading-snug text-label-2"
-              :title="currentTrack?.meta?.artist"
+      <div
+        class="shadow-player relative overflow-hidden flex flex-col rounded-2xl bg-background-1 p-3"
+      >
+        <div class="flex gap-4">
+          <div class="aspect-square h-[48px] rounded-md">
+            <ProtectedImage
+              v-if="currentTrack?.meta?.attachedPicture"
+              :src="currentTrack?.meta?.attachedPicture"
+            />
+          </div>
+          <div class="flex gap-1 w-full flex-col overflow-hidden">
+            <h3
+              class="truncate text-lg font-semibold leading-tight"
+              :title="currentTrack?.title || ''"
             >
-              {{ currentTrack.meta?.artist }}
-            </span>
-            <span
-              v-if="currentTrack?.meta?.artist && currentTrack?.meta?.album"
+              {{ currentTrack?.title }}
+            </h3>
+            <div class="truncate text-base leading-snug text-label-2">
+              <span
+                v-if="currentTrack?.meta?.artist"
+                :title="currentTrack?.meta?.artist"
+              >
+                {{ currentTrack.meta?.artist }}
+              </span>
+              <span
+                v-if="currentTrack?.meta?.artist && currentTrack?.meta?.album"
+              >
+                -
+              </span>
+              <span
+                v-if="currentTrack?.meta?.album"
+                :title="currentTrack?.meta?.album"
+              >
+                {{ currentTrack.meta?.album }}
+              </span>
+            </div>
+          </div>
+          <div class="flex aspect-square h-12 justify-center align-middle">
+            <button
+              v-if="status === MediaPlayerStatus.Playing"
+              @click.stop="pause()"
             >
-              -
-            </span>
-            <span
-              v-if="currentTrack?.meta?.album"
-              class="truncate text-base leading-snug text-label-2"
-              :title="currentTrack?.meta?.album"
+              <span>
+                <NuxtIcon
+                  name="icon.pause.large"
+                  class="text-3xl transition-all duration-200 ease-out hover:text-4xl"
+                />
+              </span>
+            </button>
+            <button
+              v-if="status !== MediaPlayerStatus.Playing"
+              @click.stop="play()"
             >
-              {{ currentTrack.meta?.album }}
-            </span>
+              <span>
+                <NuxtIcon
+                  name="play"
+                  class="text-3xl transition-all duration-200 ease-out hover:text-4xl"
+                />
+              </span>
+            </button>
           </div>
         </div>
-        <button
-          v-if="status === MediaPlayerStatus.Playing"
-          @click.stop="pause()"
+        <svg
+          width="100%"
+          height="4"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          class="absolute bottom-0 left-0 right-0 rounded-full overflow-hidden"
+          @pointerdown="onPointerDownProgressBar"
+          @pointerup="onPointerUpProgressBar"
+          @click.stop
         >
-          <span class="flex aspect-square w-12 justify-center align-middle">
-            <NuxtIcon
-              name="icon.pause.large"
-              class="text-3xl group-hover:text-4xl"
-            />
-          </span>
-        </button>
-        <button
-          v-if="status !== MediaPlayerStatus.Playing"
-          @click.stop="play()"
-        >
-          <span class="flex aspect-square w-12 justify-center align-middle">
-            <NuxtIcon name="play" class="text-3xl group-hover:text-4xl" />
-          </span>
-        </button>
+          <rect width="100%" height="4" class="fill-background-2" />
+          <rect
+            v-if="
+              Number.isFinite(currentPosition) &&
+              Number.isFinite(currentTrackDuration)
+            "
+            :width="(currentPosition / currentTrackDuration) * 100 + '%'"
+            height="4"
+            class="fill-label-1"
+          />
+        </svg>
       </div>
-      <svg
-        width="100%"
-        height="8"
-        fill="none"
-        xmlns="http://www.w3.org/2000/svg"
-        class="width-full rounded-full overflow-hidden"
-        @pointerdown="onPointerDownProgressBar"
-        @pointerup="onPointerUpProgressBar"
-        @click.stop
-      >
-        <rect width="100%" height="8" class="fill-background-2" />
-        <rect
-          v-if="
-            Number.isFinite(currentPosition) &&
-            Number.isFinite(currentTrackDuration)
-          "
-          :width="(currentPosition / currentTrackDuration) * 100 + '%'"
-          height="8"
-          class="fill-label-1"
-        />
-      </svg>
     </div>
   </transition>
 
@@ -334,12 +335,15 @@ const onPointerUpProgressBar = (event: PointerEvent) => {
       <ul class="overflow-y-scroll px-3 pb-3 max-h-20">
         <li v-for="(item, i) in queue" :key="i" @click="queue.index = i">
           <div
-            :class="queue.index === i ? 'bg-tint' : ''"
-            class="rounded-xl px-3 py-2 flex justify-between gap-2"
+            :class="queue.index === i ? 'bg-tint text-black-1' : ''"
+            class="rounded-xl px-3 py-2 flex justify-between gap-2 cursor-pointer"
           >
             <div class="truncate">
               <div>{{ item.meta?.title || item.title }}</div>
-              <div class="text-sm text-label-2">
+              <div
+                class="text-sm text-label-2"
+                :class="queue.index === i ? 'text-black-2' : ''"
+              >
                 <span v-if="item?.meta?.artist">
                   {{ item.meta?.artist }}
                 </span>
@@ -349,13 +353,15 @@ const onPointerUpProgressBar = (event: PointerEvent) => {
                 </span>
               </div>
             </div>
-            <NuxtIcon name="options" filled class="text-2xl" />
-            <NuxtIcon
-              v-if="queue.index === i"
-              name="icon.playing (animation)"
-              filled
-              class="text-2xl"
-            />
+            <div class="flex justify-between gap-2">
+              <NuxtIcon name="options" filled class="text-2xl" />
+              <NuxtIcon
+                v-if="queue.index === i"
+                name="icon.playing (animation)"
+                filled
+                class="text-2xl"
+              />
+            </div>
           </div>
 
           <hr
