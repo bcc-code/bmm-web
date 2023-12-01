@@ -19,6 +19,15 @@ const {
   rewind,
   fastForward,
 } = useNuxtApp().$mediaPlayer;
+
+const onPointerDownProgressBar = (event: PointerEvent) => {
+  // Todo: let user drag the progress-bar on mouse-down, update the time while keeping the song playing, and update the players position only on mouse-up.
+};
+const onPointerUpProgressBar = (event: PointerEvent) => {
+  const rect = (event.currentTarget as Element)?.getBoundingClientRect();
+  currentPosition.value =
+    ((event.clientX - rect.left) / rect.width) * currentTrackDuration.value;
+};
 </script>
 
 <template>
@@ -113,6 +122,9 @@ const {
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
         class="width-full rounded-full overflow-hidden"
+        @pointerdown="onPointerDownProgressBar"
+        @pointerup="onPointerUpProgressBar"
+        @click.stop
       >
         <rect width="100%" height="8" class="fill-background-2" />
         <rect
@@ -188,6 +200,9 @@ const {
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
               class="width-full rounded-full overflow-hidden"
+              @pointerdown="onPointerDownProgressBar"
+              @pointerup="onPointerUpProgressBar"
+              @click.stop
             >
               <rect width="100%" height="8" class="fill-background-2" />
               <rect
