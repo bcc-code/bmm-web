@@ -39,7 +39,7 @@ const onPointerUpProgressBar = (event: PointerEvent) => {
   >
     <div
       v-if="!open"
-      class="shadow-player absolute bottom-5 right-5 flex flex-col rounded-2xl bg-white-1 p-3"
+      class="shadow-player absolute bottom-5 right-5 flex flex-col rounded-2xl bg-background-1 p-3"
       @click.stop="open = !open"
       @mouseover="hover = true"
       @mouseleave="hover = false"
@@ -55,12 +55,12 @@ const onPointerUpProgressBar = (event: PointerEvent) => {
       >
         <path
           d="M0 1.5C0 0.671573 0.671573 0 1.5 0H7.37868C8.71504 0 9.38429 1.61571 8.43934 2.56066L2.56066 8.43934C1.61572 9.38428 0 8.71504 0 7.37868V1.5Z"
-          fill="#0D131A"
+          fill="currentColor"
         />
       </svg>
       <div class="flex">
         <div
-          class="mr-3 aspect-square h-[48px] shrink-0 overflow-hidden rounded-md bg-background-2 dark:bg-background-dark-2"
+          class="mr-3 aspect-square h-[48px] shrink-0 overflow-hidden rounded-md bg-background-2"
         >
           <ProtectedImage
             v-if="currentTrack?.meta?.attachedPicture"
@@ -77,7 +77,7 @@ const onPointerUpProgressBar = (event: PointerEvent) => {
           <div>
             <span
               v-if="currentTrack?.meta?.artist"
-              class="truncate text-base leading-snug text-label-2 dark:text-label-dark-2"
+              class="truncate text-base leading-snug text-label-2"
               :title="currentTrack?.meta?.artist"
             >
               {{ currentTrack.meta?.artist }}
@@ -89,7 +89,7 @@ const onPointerUpProgressBar = (event: PointerEvent) => {
             </span>
             <span
               v-if="currentTrack?.meta?.album"
-              class="truncate text-base leading-snug text-label-2 dark:text-label-dark-2"
+              class="truncate text-base leading-snug text-label-2"
               :title="currentTrack?.meta?.album"
             >
               {{ currentTrack.meta?.album }}
@@ -148,7 +148,7 @@ const onPointerUpProgressBar = (event: PointerEvent) => {
   >
     <div
       v-if="open"
-      class="shadow-player h-100 absolute bottom-5 right-5 flex flex-col rounded-2xl bg-white-1 w-[400px]"
+      class="shadow-player h-100 absolute bottom-5 right-5 flex flex-col rounded-2xl bg-background-1 w-[400px]"
     >
       <div class="px-3 py-6">
         <div class="flex items-center justify-center h-60">
@@ -170,9 +170,7 @@ const onPointerUpProgressBar = (event: PointerEvent) => {
           >
             {{ currentTrack?.title }}
           </h3>
-          <div
-            class="text-center truncate text-base leading-snug text-label-2 dark:text-label-dark-2"
-          >
+          <div class="text-center truncate text-base leading-snug text-label-2">
             <span
               v-if="currentTrack?.meta?.artist"
               :title="currentTrack?.meta?.artist"
@@ -313,14 +311,14 @@ const onPointerUpProgressBar = (event: PointerEvent) => {
         <div class="flex gap-2">
           <button
             v-if="queue.isShuffled"
-            class="rounded-full bg-background-4 p-2 text-background-3 hover:bg-background-3 hover:text-background-4 dark:bg-background-dark-4 dark:text-background-dark-3 dark:hover:bg-background-dark-3 dark:hover:text-background-dark-4"
+            class="rounded-full bg-background-4 p-2 text-background-3 hover:bg-background-3 hover:text-background-4"
             @click.stop="queue.unshuffle()"
           >
             <NuxtIcon name="icon.shuffle" class="text-2xl" />
           </button>
           <button
             v-else
-            class="rounded-full bg-background-3 p-2 text-background-4 hover:bg-background-4 hover:text-background-3 dark:bg-background-dark-3 dark:text-background-dark-4 dark:hover:bg-background-dark-4 dark:hover:text-background-dark-3"
+            class="rounded-full bg-background-3 p-2 text-background-4 hover:bg-background-4 hover:text-background-3"
             @click.stop="queue.shuffle()"
           >
             <NuxtIcon name="icon.shuffle" class="text-2xl" />
@@ -341,7 +339,7 @@ const onPointerUpProgressBar = (event: PointerEvent) => {
           >
             <div class="truncate">
               <div>{{ item.meta?.title || item.title }}</div>
-              <div class="text-sm text-label-2 dark:text-label-dark-2">
+              <div class="text-sm text-label-2">
                 <span v-if="item?.meta?.artist">
                   {{ item.meta?.artist }}
                 </span>
@@ -376,5 +374,11 @@ const onPointerUpProgressBar = (event: PointerEvent) => {
     0px 4px 12px 0px rgba(0, 0, 0, 0.05),
     0px 1px 4px 0px rgba(0, 0, 0, 0.05),
     0px 0px 0px 1px rgba(0, 0, 0, 0.05);
+}
+.dark .shadow-player {
+  box-shadow:
+    0px 4px 12px 0px rgba(255, 255, 255, 0.05),
+    0px 1px 4px 0px rgba(255, 255, 255, 0.05),
+    0px 0px 0px 1px rgba(255, 255, 255, 0.05);
 }
 </style>
