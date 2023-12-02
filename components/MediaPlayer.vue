@@ -10,6 +10,7 @@ const {
   currentTrack,
   currentPosition,
   currentTrackDuration,
+  isLoading,
   queue,
   next,
   hasNext,
@@ -226,58 +227,70 @@ const onPointerUpProgressBar = (event: PointerEvent) => {
         </div>
         <div class="flex justify-evenly px-4 py-2">
           <button
-            :class="{ 'text-label-4': currentPosition === 0 }"
+            :class="
+              currentPosition === 0 || isLoading
+                ? 'text-label-4 '
+                : 'hover:text-3xl border-background-2 border'
+            "
+            class="flex rounded-full aspect-square w-14 text-2xl transition-all duration-200 ease-out justify-center items-center"
             @click.stop="rewind()"
           >
-            <span class="flex aspect-square w-12">
-              <NuxtIcon name="icon.rewind.large" filled class="text-2xl" />
-            </span>
+            <NuxtIcon name="icon.rewind.large" filled />
           </button>
           <button
-            :class="{ 'text-label-4': !hasPrevious }"
+            :class="
+              !hasPrevious || isLoading
+                ? 'text-label-4'
+                : 'hover:text-3xl bg-background-2'
+            "
+            class="flex rounded-full aspect-square w-14 text-2xl transition-all duration-200 ease-out justify-center items-center"
             @click.stop="previous()"
           >
-            <span class="flex aspect-square w-12">
-              <NuxtIcon
-                name="icon.previous.track.large"
-                filled
-                class="text-2xl"
-              />
-            </span>
+            <NuxtIcon name="icon.previous.track.large" filled />
           </button>
 
           <button
-            v-if="status === MediaPlayerStatus.Playing"
+            v-if="isLoading"
+            class="flex rounded-full aspect-square bg-background-2 w-14 text-2xl justify-center items-center"
+          >
+            <NuxtIcon name="icon.loading (animation)" :filled="false" />
+          </button>
+          <button
+            v-if="!isLoading && status === MediaPlayerStatus.Playing"
+            class="flex rounded-full aspect-square bg-background-2 w-14 text-3xl transition-all duration-200 ease-out hover:text-4xl justify-center items-center"
             @click.stop="pause()"
           >
-            <span class="flex aspect-square w-12">
-              <NuxtIcon
-                name="icon.pause.large"
-                class="text-3xl group-hover:text-4xl"
-              />
-            </span>
+            <NuxtIcon name="icon.pause.large" />
           </button>
           <button
-            v-if="status !== MediaPlayerStatus.Playing"
+            v-if="!isLoading && status !== MediaPlayerStatus.Playing"
+            class="flex rounded-full aspect-square bg-background-2 w-14 text-3xl transition-all duration-200 ease-out hover:text-4xl justify-center items-center"
             @click.stop="play()"
           >
-            <span class="flex aspect-square w-12">
-              <NuxtIcon name="play" class="text-3xl group-hover:text-4xl" />
-            </span>
+            <NuxtIcon name="play" />
           </button>
-          <button :class="{ 'text-label-4': !hasNext }" @click.stop="next()">
-            <span class="flex aspect-square w-12">
-              <NuxtIcon name="icon.next.track.large" filled class="text-2xl" />
-            </span>
+          <button
+            :class="
+              !hasNext || isLoading
+                ? 'text-label-4'
+                : 'hover:text-3xl bg-background-2'
+            "
+            class="flex rounded-full aspect-square w-14 text-2xl transition-all duration-200 ease-out justify-center items-center"
+            @click.stop="next()"
+          >
+            <NuxtIcon name="icon.next.track.large" filled />
           </button>
 
           <button
-            :class="{ 'text-label-4': currentPosition >= currentTrackDuration }"
+            :class="
+              currentPosition >= currentTrackDuration || isLoading
+                ? 'text-label-4'
+                : 'hover:text-3xl border-background-2 border'
+            "
+            class="flex rounded-full aspect-square w-14 text-2xl transition-all duration-200 ease-out justify-center items-center"
             @click.stop="fastForward()"
           >
-            <span class="flex aspect-square w-12">
-              <NuxtIcon name="icon.skip.large" filled class="text-2xl" />
-            </span>
+            <NuxtIcon name="icon.skip.large" filled />
           </button>
         </div>
         <div class="flex justify-between absolute z-10 top-4 left-4 right-4">
