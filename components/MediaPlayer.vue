@@ -118,23 +118,21 @@ const onPointerUpProgressBar = (event: PointerEvent) => {
           </div>
         </div>
         <svg
-          width="100%"
-          height="4"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          class="absolute bottom-0 left-1.5 right-1.5"
+          class="absolute bottom-0 left-1 right-1 w-full h-1 hover:h-1.5 transition-all duration-200 ease-out"
           @pointerdown="onPointerDownProgressBar"
           @pointerup="onPointerUpProgressBar"
           @click.stop
         >
-          <rect width="100%" height="4" class="fill-background-2" />
+          <rect width="100%" height="100%" class="fill-background-2" />
           <rect
             v-if="
               Number.isFinite(currentPosition) &&
               Number.isFinite(currentTrackDuration)
             "
             :width="(currentPosition / currentTrackDuration) * 100 + '%'"
-            height="4"
+            height="100%"
             class="fill-label-1"
           />
         </svg>
@@ -193,25 +191,23 @@ const onPointerUpProgressBar = (event: PointerEvent) => {
           </div>
         </div>
         <div class="px-4 py-2">
-          <div class="py-2">
+          <div class="py-2 group h-3 flex items-center">
             <svg
-              width="100%"
-              height="8"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
-              class="width-full rounded-full overflow-hidden"
+              class="width-full rounded-full overflow-hidden w-full h-2 group-hover:h-3 transition-all duration-200 ease-out"
               @pointerdown="onPointerDownProgressBar"
               @pointerup="onPointerUpProgressBar"
               @click.stop
             >
-              <rect width="100%" height="8" class="fill-background-2" />
+              <rect width="100%" height="100%" class="fill-background-2" />
               <rect
                 v-if="
                   Number.isFinite(currentPosition) &&
                   Number.isFinite(currentTrackDuration)
                 "
                 :width="(currentPosition / currentTrackDuration) * 100 + '%'"
-                height="8"
+                height="100%"
                 class="fill-label-1"
               />
             </svg>
