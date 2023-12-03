@@ -10,23 +10,7 @@ const { data: tracks, pending: tracksPending } = usePodcastTracks({
   id: collectionId,
 });
 
-const trackGroups = computed(() => {
-  if (tracks.value) {
-    const sorted = tracks.value.sort((a, b) =>
-      a.publishedAt! > b.publishedAt! ? -1 : 1,
-    );
-
-    // split the tracks into groups of 7
-    const groups = [];
-    for (let i = 0; i < sorted.length; i += 7) {
-      groups.push(sorted.slice(i, i + 7));
-    }
-
-    return groups;
-  }
-
-  return [];
-});
+// TODO: Group episodes into weeks
 
 useHead({
   title: podcast.value?.title || "",
@@ -64,14 +48,14 @@ useHead({
           </div>
         </div>
       </header>
-      <template v-for="(group, index) in trackGroups" :key="index">
-        <h2 class="text-3xl font-bold mb-4 mt-12">This week</h2>
-        <TrackList
-          :skeleton-count="10"
-          :show-skeleton="tracksPending"
-          :tracks="group"
-        />
-      </template>
+      <TrackList
+        :skeleton-count="10"
+        :show-skeleton="tracksPending"
+        :tracks="tracks"
+      />
+      <p style="color: red; background-color: rgb(255 0 0 / 0.1)" class="p-4">
+        "Load more" functionality is not yet implemented
+      </p>
     </div>
   </div>
 </template>
