@@ -2,7 +2,7 @@
 const { t } = useI18n();
 toolbarTitleStore().setReactiveToolbarTitle(() => t("nav.browse"));
 
-const { data: browseSections, pending } = await useBrowse();
+const { data: browseSections, pending } = useBrowse();
 </script>
 
 <template>
