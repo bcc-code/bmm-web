@@ -22,12 +22,9 @@ const { data: browseSections, pending } = useBrowse();
         <PageHeading v-if="section.type === 'section_header'" :level="3">
           <div class="flex items-center justify-between">
             <div>
-              <NuxtLink
-                v-if="typeof section.link === 'string'"
-                :to="section.link as any"
-              >
+              <a v-if="typeof section.link === 'string'" :href="section.link">
                 {{ section.title }}
-              </NuxtLink>
+              </a>
               <span v-else>{{ section.title }}</span>
             </div>
             <a v-if="section.link" :href="section.link">
