@@ -43,7 +43,7 @@ const onPointerUpProgressBar = (event: PointerEvent) => {
       @click.stop="open = !open"
     >
       <svg
-        class="absolute -left-1 -top-1 hidden group-hover:block"
+        class="absolute left-0 top-0 opacity-0 group-hover:opacity-100 group-hover:-left-1 group-hover:-top-1 transition-all duration-200 ease-out"
         xmlns="http://www.w3.org/2000/svg"
         width="11"
         height="11"
@@ -321,14 +321,14 @@ const onPointerUpProgressBar = (event: PointerEvent) => {
         <div class="flex gap-2">
           <button
             v-if="queue.isShuffled"
-            class="rounded-full bg-background-4 p-2 text-background-3 hover:bg-background-3 hover:text-background-4"
+            class="rounded-full bg-background-4 p-2 text-background-3 hover:bg-background-3 hover:text-background-4 transition-all duration-200 ease-out"
             @click.stop="queue.unshuffle()"
           >
             <NuxtIcon name="icon.shuffle" class="text-2xl" />
           </button>
           <button
             v-else
-            class="rounded-full bg-background-3 p-2 text-background-4 hover:bg-background-4 hover:text-background-3"
+            class="rounded-full bg-background-3 p-2 text-background-4 hover:bg-background-4 hover:text-background-3 transition-all duration-200 ease-out"
             @click.stop="queue.shuffle()"
           >
             <NuxtIcon name="icon.shuffle" class="text-2xl" />
@@ -344,8 +344,10 @@ const onPointerUpProgressBar = (event: PointerEvent) => {
       <ul class="overflow-y-scroll px-3 pb-3 max-h-20">
         <li v-for="(item, i) in queue" :key="i" @click="queue.index = i">
           <div
-            :class="queue.index === i ? 'bg-tint text-black-1' : ''"
-            class="rounded-xl px-3 py-2 flex justify-between gap-2 cursor-pointer"
+            :class="
+              queue.index === i ? 'bg-tint hover:bg-tint text-black-1' : ''
+            "
+            class="rounded-xl px-3 py-2 flex justify-between gap-2 cursor-pointer hover:bg-background-2 transition-all duration-500 ease-out"
           >
             <div class="truncate">
               <div>{{ item.meta?.title || item.title }}</div>
