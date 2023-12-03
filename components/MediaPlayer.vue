@@ -20,8 +20,8 @@ const {
   fastForward,
 } = useNuxtApp().$mediaPlayer;
 
-const onPointerDownProgressBar = (event: PointerEvent) => {
-  // Todo: let user drag the progress-bar on mouse-down, update the time while keeping the song playing, and update the players position only on mouse-up.
+const onPointerDownProgressBar = () => {
+  // Todo: Let user drag the progress-bar on mouse-down, update the time while keeping the song playing, and update the players position only on mouse-up.
 };
 const onPointerUpProgressBar = (event: PointerEvent) => {
   const rect = (event.currentTarget as Element)?.getBoundingClientRect();
