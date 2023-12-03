@@ -122,7 +122,7 @@ const onPointerUpProgressBar = (event: PointerEvent) => {
           height="4"
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          class="absolute bottom-0 left-0 right-0 rounded-full overflow-hidden"
+          class="absolute bottom-0 left-1.5 right-1.5"
           @pointerdown="onPointerDownProgressBar"
           @pointerup="onPointerUpProgressBar"
           @click.stop
