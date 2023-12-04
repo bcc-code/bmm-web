@@ -249,7 +249,7 @@ const onPointerUpProgressBar = (event: PointerEvent) => {
             v-if="isLoading"
             class="flex rounded-full aspect-square bg-background-2 w-14 text-2xl justify-center items-center"
           >
-            <NuxtIcon name="icon.loading (animation)" :filled="false" />
+            <NuxtIcon name="icon.loading (animation)" filled />
           </button>
           <button
             v-if="!isLoading && status === MediaPlayerStatus.Playing"
