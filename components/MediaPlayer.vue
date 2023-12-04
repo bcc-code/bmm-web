@@ -92,30 +92,26 @@ const onPointerUpProgressBar = (event: PointerEvent) => {
               </span>
             </div>
           </div>
-          <div class="flex aspect-square h-12 justify-center align-middle">
-            <button
-              v-if="status === MediaPlayerStatus.Playing"
-              @click.stop="pause()"
-            >
-              <span>
-                <NuxtIcon
-                  name="icon.pause.large"
-                  class="text-3xl transition-all duration-200 ease-out hover:text-4xl"
-                />
-              </span>
-            </button>
-            <button
-              v-if="status !== MediaPlayerStatus.Playing"
-              @click.stop="play()"
-            >
-              <span>
-                <NuxtIcon
-                  name="play"
-                  class="text-3xl transition-all duration-200 ease-out hover:text-4xl"
-                />
-              </span>
-            </button>
-          </div>
+          <button
+            v-if="isLoading"
+            class="flex aspect-square w-12 text-2xl justify-center items-center"
+          >
+            <NuxtIcon name="icon.loading (animation)" filled />
+          </button>
+          <button
+            v-if="!isLoading && status === MediaPlayerStatus.Playing"
+            class="flex aspect-square w-12 text-3xl transition-all duration-200 ease-out hover:text-4xl justify-center items-center"
+            @click.stop="pause()"
+          >
+            <NuxtIcon name="icon.pause.large" />
+          </button>
+          <button
+            v-if="!isLoading && status !== MediaPlayerStatus.Playing"
+            class="flex aspect-square w-12 text-3xl transition-all duration-200 ease-out hover:text-4xl justify-center items-center"
+            @click.stop="play()"
+          >
+            <NuxtIcon name="play" />
+          </button>
         </div>
         <svg
           fill="none"
