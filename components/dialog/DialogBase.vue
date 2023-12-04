@@ -22,7 +22,7 @@ const emit = defineEmits<{
 
 <template>
   <TransitionRoot :show="show" as="template">
-    <Dialog :open="show" class="relative z-30" @close="emit('close')">
+    <Dialog :open="show" class="relative z-40" @close="emit('close')">
       <TransitionChild
         as="template"
         enter="duration-300 ease-out"
