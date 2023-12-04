@@ -108,7 +108,6 @@ function secondsToTime(totalSeconds: number | undefined) {
           ></div>
           <NuxtIcon
             name="play"
-            filled
             class="absolute inset-0 flex items-center justify-center text-2xl text-white-1 dark:text-black-1"
           />
         </div>
@@ -149,14 +148,14 @@ function secondsToTime(totalSeconds: number | undefined) {
           :aria-label="t('track.a11y.download')"
           @click.stop
         >
-          <NuxtIcon name="download" filled class="text-2xl" />
+          <NuxtIcon name="download" class="text-2xl" />
         </button>
         <button
           class="px-2 py-0 opacity-0 hover:bg-[red] hover:opacity-100 focus:opacity-100 group-hover:opacity-100 group-focus:opacity-100"
           :aria-label="t('track.a11y.queue')"
           @click.stop
         >
-          <NuxtIcon name="queue" filled class="text-2xl" />
+          <NuxtIcon name="queue" class="text-2xl" />
         </button>
         <Menu
           as="div"
@@ -168,7 +167,7 @@ function secondsToTime(totalSeconds: number | undefined) {
             :aria-label="t('track.a11y.options')"
             class="relative top-0.5 rounded-lg px-2 py-0"
           >
-            <NuxtIcon name="options" filled class="text-2xl" />
+            <NuxtIcon name="options" class="text-2xl" />
           </MenuButton>
 
           <MenuItems

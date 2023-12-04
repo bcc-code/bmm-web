@@ -5,13 +5,11 @@ import { ref, watchEffect } from "#imports";
 const props = withDefaults(
   defineProps<{
     name: NuxtIconName;
-    filled?: boolean;
   }>(),
-  { filled: false },
+  {},
 );
 
 const icon = ref<string | Record<string, any>>("");
-let hasStroke = false;
 
 async function getIcon() {
   try {
@@ -20,9 +18,6 @@ async function getIcon() {
       eager: false,
     });
     const rawIcon = await iconsImport[`/assets/icons/${props.name}.svg`]?.();
-    if (rawIcon?.includes("stroke")) {
-      hasStroke = true;
-    }
 
     if (rawIcon) {
       icon.value = rawIcon;
@@ -40,14 +35,7 @@ watchEffect(getIcon);
 </script>
 
 <template>
-  <span
-    class="nuxt-icon"
-    :class="{
-      'nuxt-icon--fill': !filled,
-      'nuxt-icon--stroke': hasStroke && !filled,
-    }"
-    v-html="icon"
-  />
+  <span class="nuxt-icon" v-html="icon" />
 </template>
 
 <style>
@@ -59,14 +47,5 @@ watchEffect(getIcon);
   width: 1em;
   height: 1em;
   vertical-align: middle;
-}
-.nuxt-icon.nuxt-icon--fill,
-.nuxt-icon.nuxt-icon--fill * {
-  fill: currentColor !important;
-}
-
-.nuxt-icon.nuxt-icon--stroke,
-.nuxt-icon.nuxt-icon--stroke * {
-  stroke: currentColor !important;
 }
 </style>

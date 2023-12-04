@@ -35,7 +35,7 @@ defineProps<{
         </div>
         <div class="ml-auto flex items-center justify-center gap-1">
           <button class="focus:bg-lime-400 rounded-lg px-2 py-0">
-            <NuxtIcon name="icon.chevron.right" filled class="text-2xl" />
+            <NuxtIcon name="icon.chevron.right" class="text-2xl" />
           </button>
         </div>
       </div>
