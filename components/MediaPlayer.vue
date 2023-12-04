@@ -348,8 +348,8 @@ const onPointerUpProgressBar = (event: PointerEvent) => {
             <div class="truncate">
               <div>{{ item.meta?.title || item.title }}</div>
               <div
-                class="text-sm text-label-2"
-                :class="queue.index === i ? 'text-black-2' : ''"
+                class="text-sm"
+                :class="queue.index === i ? 'text-black-2' : 'text-label-2'"
               >
                 <span v-if="item?.meta?.artist">
                   {{ item.meta?.artist }}
