@@ -312,77 +312,83 @@ const onPointerUpProgressBar = (event: PointerEvent) => {
         </div>
       </div>
       <hr class="border-label-separator" />
-      <div class="flex justify-between items-center pb-1 pt-4 px-6">
-        <div class="text-label-3">Queue</div>
-        <div class="flex gap-2">
-          <button
-            v-if="queue.isShuffled"
-            class="rounded-full bg-background-4 p-2 text-background-3 hover:bg-background-3 hover:text-background-4 transition-all duration-200 ease-out"
-            @click.stop="queue.unshuffle()"
-          >
-            <NuxtIcon name="icon.shuffle" class="text-2xl" />
-          </button>
-          <button
-            v-else
-            class="rounded-full bg-background-3 p-2 text-background-4 hover:bg-background-4 hover:text-background-3 transition-all duration-200 ease-out"
-            @click.stop="queue.shuffle()"
-          >
-            <NuxtIcon name="icon.shuffle" class="text-2xl" />
-          </button>
-          <button
-            class="rounded-full bg-background-3 p-2"
-            style="background-color: rgba(255, 0, 0, 0.4); color: red"
-          >
-            <NuxtIcon name="icon.repeat" filled class="text-2xl" />
-          </button>
+      <div class="overflow-y-scroll">
+        <div class="flex justify-between items-center pb-1 pt-4 px-6">
+          <div class="text-label-3">Queue</div>
+          <div class="flex gap-2">
+            <button
+              v-if="queue.isShuffled"
+              class="rounded-full bg-background-4 p-2 text-background-3 hover:bg-background-3 hover:text-background-4 transition-all duration-200 ease-out"
+              @click.stop="queue.unshuffle()"
+            >
+              <NuxtIcon name="icon.shuffle" class="text-2xl" />
+            </button>
+            <button
+              v-else
+              class="rounded-full bg-background-3 p-2 text-background-4 hover:bg-background-4 hover:text-background-3 transition-all duration-200 ease-out"
+              @click.stop="queue.shuffle()"
+            >
+              <NuxtIcon name="icon.shuffle" class="text-2xl" />
+            </button>
+            <button
+              class="rounded-full bg-background-3 p-2"
+              style="background-color: rgba(255, 0, 0, 0.4); color: red"
+            >
+              <NuxtIcon name="icon.repeat" filled class="text-2xl" />
+            </button>
+          </div>
         </div>
-      </div>
-      <ul class="overflow-y-scroll px-3 pb-3 max-h-20">
-        <li v-for="(item, i) in queue" :key="i" @click="queue.index = i">
-          <div
-            :class="
-              queue.index === i ? 'bg-tint hover:bg-tint text-black-1' : ''
-            "
-            class="rounded-xl px-3 py-2 flex justify-between gap-2 cursor-pointer hover:bg-background-2 transition-all duration-500 ease-out"
-          >
-            <div class="truncate">
-              <div>{{ item.meta?.title || item.title }}</div>
-              <div
-                class="text-sm"
-                :class="queue.index === i ? 'text-black-2' : 'text-label-2'"
-              >
-                <span v-if="item?.meta?.artist">
-                  {{ item.meta?.artist }}
-                </span>
-                <span v-if="item?.meta?.artist && item?.meta?.album"> - </span>
-                <span v-if="item?.meta?.album">
-                  {{ item.meta?.album }}
-                </span>
+        <ul class="px-3 pb-3">
+          <li v-for="(item, i) in queue" :key="i" @click="queue.index = i">
+            <div
+              :class="
+                queue.index === i ? 'bg-tint hover:bg-tint text-black-1' : ''
+              "
+              class="rounded-xl px-3 py-2 flex justify-between gap-2 cursor-pointer hover:bg-background-2 transition-all duration-500 ease-out"
+            >
+              <div class="truncate">
+                <div>{{ item.meta?.title || item.title }}</div>
+                <div
+                  class="text-sm"
+                  :class="queue.index === i ? 'text-black-2' : 'text-label-2'"
+                >
+                  <span v-if="item?.meta?.artist">
+                    {{ item.meta?.artist }}
+                  </span>
+                  <span v-if="item?.meta?.artist && item?.meta?.album">
+                    -
+                  </span>
+                  <span v-if="item?.meta?.album">
+                    {{ item.meta?.album }}
+                  </span>
+                </div>
+              </div>
+              <div class="flex justify-between gap-2">
+                <NuxtIcon name="options" filled class="text-2xl" />
+                <NuxtIcon
+                  v-if="queue.index === i"
+                  name="icon.playing (animation)"
+                  filled
+                  class="text-2xl"
+                />
               </div>
             </div>
-            <div class="flex justify-between gap-2">
-              <NuxtIcon name="options" filled class="text-2xl" />
-              <NuxtIcon
-                v-if="queue.index === i"
-                name="icon.playing (animation)"
-                filled
-                class="text-2xl"
-              />
-            </div>
-          </div>
 
-          <hr
-            v-if="!(queue.index - 1 === i || queue.index === i)"
-            class="border-label-separator"
-          />
-        </li>
-      </ul>
+            <hr
+              v-if="!(queue.index - 1 === i || queue.index === i)"
+              class="border-label-separator"
+            />
+          </li>
+        </ul>
+      </div>
     </div>
   </transition>
 </template>
 
 <style scoped>
 .shadow-player {
+  max-height: calc(100vh - 1.25rem - 4.5rem);
+
   box-shadow:
     0px 4px 12px 0px rgba(0, 0, 0, 0.05),
     0px 1px 4px 0px rgba(0, 0, 0, 0.05),
