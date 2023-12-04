@@ -3,12 +3,9 @@
   "extends": "./.nuxt/tsconfig.json",
   "compilerOptions": {
     "useDefineForClassFields": true,
-    "moduleResolution": "node",
     "esModuleInterop": true,
     "lib": ["ESNext", "DOM"],
     "noUncheckedIndexedAccess": true,
-    "exactOptionalPropertyTypes": true,
-    "types": ["pinia-plugin-persistedstate", "@types/node"]
-  },
-  "exclude": ["node_modules", "dist"]
+    "exactOptionalPropertyTypes": true
+  }
 }

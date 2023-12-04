@@ -1,5 +1,3 @@
-import { PiniaPersistedStateOptions } from "@/utils/persistedState";
-
 export const contentLanguageStore = defineStore(
   "contentLanguage",
   () => {
@@ -8,6 +6,6 @@ export const contentLanguageStore = defineStore(
     return { contentLanguages };
   },
   {
-    persist: PiniaPersistedStateOptions,
+    persist: true,
   },
 );
