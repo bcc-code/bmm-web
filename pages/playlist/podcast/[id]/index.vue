@@ -11,10 +11,6 @@ const { data: tracks, pending: tracksPending } = usePodcastTracks({
 });
 
 // TODO: Group episodes into weeks
-
-useHead({
-  title: podcast.value?.title || "",
-});
 </script>
 
 <template>
