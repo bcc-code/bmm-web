@@ -18,14 +18,20 @@
     "title": "Profiel",
     "autoplay": "Automatisch afspelen",
     "theme": "Thema",
+    "theme-description": "Selecteer het te gebruiken thema",
     "app-language": "Taal",
+    "interface-language": "Taal van de gebruikersinterface",
+    "interface-language-description": "De taal die wordt gebruikt in de gebruikersinterface",
+    "select-language": "Kies taal",
     "content-language": "Taal van de content ",
+    "content-language-description": "De voorkeurstaal voor de inhoud waarnaar je luistert.",
     "uservoice": "User Voice",
     "contact": "Contact",
     "logout": "Uitloggen",
     "theme-dark": "Dark",
     "theme-light": "Light",
-    "theme-system": "Systeem"
+    "theme-system": "Hetzelfde als apparaat",
+    "done": "Gereed"
   },
   "error": {
     "page-not-found": {
@@ -55,6 +61,12 @@
     "add": "Afspeellijst toevoegen",
     "action": {
       "shuffle": "Shuffle"
+    }
+  },
+  "podcast": {
+    "action": {
+      "play": "Afspelen",
+      "follow": "Volg"
     }
   },
   "track": {

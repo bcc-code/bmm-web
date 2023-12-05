@@ -18,14 +18,20 @@
     "title": "Min profil",
     "autoplay": "Automatisk avspilling",
     "theme": "Tema",
+    "theme-description": "Select the theme used for the interface.",
     "app-language": "Språk",
+    "interface-language": "Interface Language",
+    "interface-language-description": "The language used for the interface.",
+    "select-language": "Select language",
     "content-language": "Innholdsspråk",
+    "content-language-description": "The preferred language for the content you are listening to.",
     "uservoice": "User Voice",
     "contact": "Kontakt",
     "logout": "Logg ut",
     "theme-dark": "Dark",
     "theme-light": "Light",
-    "theme-system": "System"
+    "theme-system": "Same as system",
+    "done": "Ferdig"
   },
   "error": {
     "page-not-found": {
@@ -55,6 +61,12 @@
     "add": "Add playlist",
     "action": {
       "shuffle": "Shuffle"
+    }
+  },
+  "podcast": {
+    "action": {
+      "play": "Spill av",
+      "follow": "Følg"
     }
   },
   "track": {
