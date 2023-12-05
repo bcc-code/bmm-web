@@ -63,6 +63,12 @@
       "shuffle": "Zufällige Wiedergabe"
     }
   },
+  "podcast": {
+    "action": {
+      "play": "Abspielen",
+      "follow": "Abonnieren"
+    }
+  },
   "track": {
     "dropdown": {
       "play-next": "Als nächstes abspielen",
