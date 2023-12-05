@@ -63,6 +63,12 @@
       "shuffle": "Shuffle"
     }
   },
+  "podcast": {
+    "action": {
+      "play": "Spill av",
+      "follow": "Følg"
+    }
+  },
   "track": {
     "dropdown": {
       "play-next": "Spill av som neste",
