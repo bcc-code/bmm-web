@@ -35,6 +35,9 @@ dependencies:
   pinia:
     specifier: ^2.1.7
     version: 2.1.7(typescript@5.2.2)(vue@3.3.4)
+  pinia-plugin-persistedstate:
+    specifier: ^3.2.0
+    version: 3.2.0(pinia@2.1.7)
   vue-draggable-plus:
     specifier: ^0.2.7
     version: 0.2.7(@types/sortablejs@1.15.7)
@@ -9642,7 +9645,6 @@ packages:
       pinia: ^2.0.0
     dependencies:
       pinia: 2.1.7(typescript@5.2.2)(vue@3.3.4)
-    dev: true
 
   /pinia@2.1.7(typescript@5.2.2)(vue@3.3.4):
     resolution: {integrity: sha512-+C2AHFtcFqjPih0zpYuvof37SFxMQ7OEG2zV9jRI12i9BOy3YQVAHwdKtyyc8pDcDyIc33WCIsZaCFWU7WWxGQ==}
