@@ -1,174 +1,403 @@
 <script setup lang="ts">
 import { MediaPlayerStatus } from "~/plugins/mediaPlayer/mediaPlayer";
 
+const open = ref(false);
+
 const {
   status,
   play,
   pause,
-  hasNext,
-  next,
-  previous,
-  hasPrevious,
-  rewind,
-  fastForward,
   currentTrack,
   currentPosition,
   currentTrackDuration,
   isLoading,
   queue,
+  next,
+  hasNext,
+  previous,
+  hasPrevious,
+  rewind,
+  fastForward,
 } = useNuxtApp().$mediaPlayer;
+
+const onPointerDownProgressBar = () => {
+  // Todo: Let user drag the progress-bar on mouse-down, update the time while keeping the song playing, and update the players position only on mouse-up.
+};
+const onPointerUpProgressBar = (event: PointerEvent) => {
+  const rect = (event.currentTarget as Element)?.getBoundingClientRect();
+  currentPosition.value =
+    ((event.clientX - rect.left) / rect.width) * currentTrackDuration.value;
+};
 </script>
 
 <template>
-  <div
-    class="fixed bottom-4 right-4 flex w-[400px] flex-col rounded-2xl border border-black-1/10 bg-white-1 p-3 shadow-xl dark:border-white-1/10 dark:bg-black-1"
+  <transition
+    enter-active-class="transition-all duration-200 ease-out"
+    enter-from-class="opacity-0 translate-y-2"
+    leave-active-class="transition-all duration-200 ease-out"
+    leave-to-class="opacity-0 translate-y-2"
   >
-    <div class="flex min-w-0 flex-1 gap-3">
-      <div class="group select-none">
-        <button @click.stop="rewind()">
-          <span class="flex aspect-square w-12 justify-center align-middle">
-            <NuxtIcon
-              name="icon.rewind.large"
-              class="text-3xl group-hover:text-4xl"
+    <div
+      v-if="!open"
+      class="group absolute bottom-5 right-5 w-[400px]"
+      @click.stop="open = !open"
+    >
+      <svg
+        class="absolute left-0 top-0 opacity-0 group-hover:opacity-100 group-hover:-left-1 group-hover:-top-1 transition-all duration-200 ease-out"
+        xmlns="http://www.w3.org/2000/svg"
+        width="11"
+        height="11"
+        viewBox="0 0 11 11"
+        fill="none"
+      >
+        <path
+          d="M0 1.5C0 0.671573 0.671573 0 1.5 0H7.37868C8.71504 0 9.38429 1.61571 8.43934 2.56066L2.56066 8.43934C1.61572 9.38428 0 8.71504 0 7.37868V1.5Z"
+          fill="currentColor"
+        />
+      </svg>
+      <div
+        class="shadow-player relative overflow-hidden flex flex-col rounded-2xl bg-background-1 p-3"
+      >
+        <div class="flex gap-4">
+          <div class="aspect-square h-[48px] rounded-md">
+            <ProtectedImage
+              v-if="currentTrack?.meta?.attachedPicture"
+              :src="currentTrack?.meta?.attachedPicture"
             />
-          </span>
-        </button>
-      </div>
-      <div v-if="hasPrevious" class="group select-none">
-        <button @click.stop="previous()">
-          <span class="flex aspect-square w-12 justify-center align-middle">
-            <NuxtIcon
-              name="icon.previous.track.large"
-              class="text-3xl group-hover:text-4xl"
-            />
-          </span>
-        </button>
-      </div>
-      <div class="flex min-w-0 flex-1 gap-3">
-        <div
-          class="aspect-square h-[48px] shrink-0 overflow-hidden rounded-md bg-background-2"
+          </div>
+          <div class="flex gap-1 w-full flex-col overflow-hidden">
+            <h3
+              class="truncate text-lg font-semibold leading-tight"
+              :title="currentTrack?.title || ''"
+            >
+              {{ currentTrack?.title }}
+            </h3>
+            <div class="truncate text-base leading-snug text-label-2">
+              <span
+                v-if="currentTrack?.meta?.artist"
+                :title="currentTrack?.meta?.artist"
+              >
+                {{ currentTrack.meta?.artist }}
+              </span>
+              <span
+                v-if="currentTrack?.meta?.artist && currentTrack?.meta?.album"
+              >
+                -
+              </span>
+              <span
+                v-if="currentTrack?.meta?.album"
+                :title="currentTrack?.meta?.album"
+              >
+                {{ currentTrack.meta?.album }}
+              </span>
+            </div>
+          </div>
+          <button
+            v-if="isLoading"
+            class="flex aspect-square w-12 text-2xl justify-center items-center"
+          >
+            <NuxtIcon name="icon.loading (animation)" filled />
+          </button>
+          <button
+            v-if="!isLoading && status === MediaPlayerStatus.Playing"
+            class="flex aspect-square w-12 text-3xl transition-all duration-200 ease-out hover:text-4xl justify-center items-center"
+            @click.stop="pause()"
+          >
+            <NuxtIcon name="icon.pause.large" />
+          </button>
+          <button
+            v-if="!isLoading && status !== MediaPlayerStatus.Playing"
+            class="flex aspect-square w-12 text-3xl transition-all duration-200 ease-out hover:text-4xl justify-center items-center"
+            @click.stop="play()"
+          >
+            <NuxtIcon name="play" />
+          </button>
+        </div>
+        <svg
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          class="absolute bottom-0 left-1 right-1 w-full h-1 hover:h-1.5 transition-all duration-200 ease-out"
+          @pointerdown="onPointerDownProgressBar"
+          @pointerup="onPointerUpProgressBar"
+          @click.stop
         >
+          <rect width="100%" height="100%" class="fill-background-2" />
+          <rect
+            v-if="
+              Number.isFinite(currentPosition) &&
+              Number.isFinite(currentTrackDuration)
+            "
+            :width="(currentPosition / currentTrackDuration) * 100 + '%'"
+            height="100%"
+            class="fill-label-1"
+          />
+        </svg>
+      </div>
+    </div>
+  </transition>
+
+  <transition
+    enter-active-class="transition-all duration-200 ease-out"
+    enter-from-class="opacity-0 translate-y-2"
+    leave-active-class="transition-all duration-200 ease-out"
+    leave-to-class="opacity-0 translate-y-2"
+  >
+    <div
+      v-if="open"
+      class="shadow-player h-100 absolute bottom-5 right-5 flex flex-col rounded-2xl bg-background-1 w-[400px]"
+    >
+      <div class="px-3 py-6">
+        <div class="flex items-center justify-center h-60">
           <ProtectedImage
             v-if="currentTrack?.meta?.attachedPicture"
             :src="currentTrack?.meta?.attachedPicture"
+            class="relative z-10 overflow-hidden rounded-md w-40"
+          />
+          <ProtectedImage
+            v-if="currentTrack?.meta?.attachedPicture"
+            :src="currentTrack?.meta?.attachedPicture"
+            class="absolute top-[59px] z-0 w-[160px] blur-[80px]"
           />
         </div>
-        <div class="flex min-w-0 flex-col">
+        <div class="flex flex-col py-3 gap-1">
           <h3
-            class="truncate text-lg font-semibold leading-tight"
+            class="truncate text-center text-lg font-semibold leading-tight"
             :title="currentTrack?.title || ''"
           >
             {{ currentTrack?.title }}
           </h3>
-          <span
-            v-if="currentTrack?.meta?.artist"
-            class="truncate text-base leading-snug text-label-2"
-            :title="currentTrack?.meta?.artist"
-          >
-            {{ currentTrack.meta?.artist }}
-          </span>
+          <div class="text-center truncate text-base leading-snug text-label-2">
+            <span
+              v-if="currentTrack?.meta?.artist"
+              :title="currentTrack?.meta?.artist"
+            >
+              {{ currentTrack.meta?.artist }}
+            </span>
+            <span
+              v-if="currentTrack?.meta?.artist && currentTrack?.meta?.album"
+            >
+              -
+            </span>
+            <span
+              v-if="currentTrack?.meta?.album"
+              :title="currentTrack?.meta?.album"
+            >
+              {{ currentTrack.meta?.album }}
+            </span>
+          </div>
         </div>
-      </div>
-      <div class="group relative select-none">
-        <div
-          v-if="isLoading"
-          role="status"
-          class="absolute -z-10 flex h-full w-full justify-center fill-background-4 align-middle"
-        >
-          <svg
-            aria-hidden="true"
-            class="flex aspect-square w-6 animate-spin justify-center align-middle"
-            viewBox="0 0 100 101"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
-              class="opacity-20"
-              fill="currentColor"
-            />
-            <path
-              d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z"
-              fill="currentColor"
-            />
-          </svg>
-          <span class="sr-only">Loading...</span>
+        <div class="px-4 py-2">
+          <div class="py-2 group h-3 flex items-center">
+            <svg
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              class="width-full rounded-full overflow-hidden w-full h-2 group-hover:h-3 transition-all duration-200 ease-out"
+              @pointerdown="onPointerDownProgressBar"
+              @pointerup="onPointerUpProgressBar"
+              @click.stop
+            >
+              <rect width="100%" height="100%" class="fill-background-2" />
+              <rect
+                v-if="
+                  Number.isFinite(currentPosition) &&
+                  Number.isFinite(currentTrackDuration)
+                "
+                :width="(currentPosition / currentTrackDuration) * 100 + '%'"
+                height="100%"
+                class="fill-label-1"
+              />
+            </svg>
+          </div>
+          <div class="flex justify-between py-0.5 text-sm">
+            <span>
+              <TimeDuration :duration="currentPosition"></TimeDuration
+            ></span>
+            <span>
+              <TimeDuration :duration="currentTrackDuration"></TimeDuration
+            ></span>
+          </div>
         </div>
-        <button
-          v-if="status === MediaPlayerStatus.Playing"
-          @click.stop="pause()"
-        >
-          <span class="flex aspect-square w-12 justify-center align-middle">
-            <NuxtIcon
-              name="icon.pause.large"
-              class="text-3xl group-hover:text-4xl"
-            />
-          </span>
-        </button>
-        <button
-          v-if="status !== MediaPlayerStatus.Playing"
-          @click.stop="play()"
-        >
-          <span class="flex aspect-square w-12 justify-center align-middle">
-            <NuxtIcon name="play" class="text-3xl group-hover:text-4xl" />
-          </span>
-        </button>
-      </div>
-      <div v-if="hasNext" class="group select-none">
-        <button @click.stop="next()">
-          <span class="flex aspect-square w-12 justify-center align-middle">
-            <NuxtIcon
-              name="icon.next.track.large"
-              class="text-3xl group-hover:text-4xl"
-            />
-          </span>
-        </button>
-      </div>
-      <div class="group select-none">
-        <button @click.stop="fastForward()">
-          <span class="flex aspect-square w-12 justify-center align-middle">
-            <NuxtIcon
-              name="icon.skip.large"
-              class="text-3xl group-hover:text-4xl"
-            />
-          </span>
-        </button>
-      </div>
-    </div>
-    <input
-      v-model="currentPosition"
-      type="range"
-      :min="0"
-      :max="currentTrackDuration"
-    />
-    <TimeDuration :duration="currentPosition"></TimeDuration>
-    | <TimeDuration :duration="currentTrackDuration"></TimeDuration>
-    <div>
-      <button
-        v-if="queue.isShuffled"
-        class="rounded-full bg-background-4 px-2 py-2 text-background-3 hover:bg-background-3 hover:text-background-4"
-        @click.stop="queue.unshuffle()"
-      >
-        <NuxtIcon name="icon.shuffle" class="text-2xl" />
-      </button>
-      <button
-        v-else
-        class="rounded-full bg-background-3 px-2 py-2 text-background-4 hover:bg-background-4 hover:text-background-3"
-        @click.stop="queue.shuffle()"
-      >
-        <NuxtIcon name="icon.shuffle" class="text-2xl" />
-      </button>
-    </div>
+        <div class="flex justify-evenly px-4 py-2">
+          <button
+            :class="
+              currentPosition === 0 || isLoading
+                ? 'text-label-4 '
+                : 'hover:text-3xl border-background-2 border'
+            "
+            class="flex rounded-full aspect-square w-14 text-2xl transition-all duration-200 ease-out justify-center items-center"
+            @click.stop="rewind()"
+          >
+            <NuxtIcon name="icon.rewind.large" filled />
+          </button>
+          <button
+            :class="
+              !hasPrevious || isLoading
+                ? 'text-label-4'
+                : 'hover:text-3xl bg-background-2'
+            "
+            class="flex rounded-full aspect-square w-14 text-2xl transition-all duration-200 ease-out justify-center items-center"
+            @click.stop="previous()"
+          >
+            <NuxtIcon name="icon.previous.track.large" filled />
+          </button>
 
-    <ul class="max-h-20 overflow-y-scroll">
-      <li
-        v-for="(item, i) in queue"
-        :key="i"
-        :class="queue.index === i ? 'bg-tint' : ''"
-        @click="queue.index = i"
-      >
-        {{ item.meta?.title || item.title }}
-      </li>
-    </ul>
-  </div>
+          <button
+            v-if="isLoading"
+            class="flex rounded-full aspect-square bg-background-2 w-14 text-2xl justify-center items-center"
+          >
+            <NuxtIcon name="icon.loading (animation)" filled />
+          </button>
+          <button
+            v-if="!isLoading && status === MediaPlayerStatus.Playing"
+            class="flex rounded-full aspect-square bg-background-2 w-14 text-3xl transition-all duration-200 ease-out hover:text-4xl justify-center items-center"
+            @click.stop="pause()"
+          >
+            <NuxtIcon name="icon.pause.large" />
+          </button>
+          <button
+            v-if="!isLoading && status !== MediaPlayerStatus.Playing"
+            class="flex rounded-full aspect-square bg-background-2 w-14 text-3xl transition-all duration-200 ease-out hover:text-4xl justify-center items-center"
+            @click.stop="play()"
+          >
+            <NuxtIcon name="play" />
+          </button>
+          <button
+            :class="
+              !hasNext || isLoading
+                ? 'text-label-4'
+                : 'hover:text-3xl bg-background-2'
+            "
+            class="flex rounded-full aspect-square w-14 text-2xl transition-all duration-200 ease-out justify-center items-center"
+            @click.stop="next()"
+          >
+            <NuxtIcon name="icon.next.track.large" filled />
+          </button>
+
+          <button
+            :class="
+              currentPosition >= currentTrackDuration || isLoading
+                ? 'text-label-4'
+                : 'hover:text-3xl border-background-2 border'
+            "
+            class="flex rounded-full aspect-square w-14 text-2xl transition-all duration-200 ease-out justify-center items-center"
+            @click.stop="fastForward()"
+          >
+            <NuxtIcon name="icon.skip.large" filled />
+          </button>
+        </div>
+        <div class="flex justify-between absolute z-10 top-4 left-4 right-4">
+          <div
+            class="rounded-full border border-label-separator p-1.5 cursor-pointer"
+            @click.stop="open = !open"
+          >
+            <NuxtIcon name="icon.minify" filled class="text-xl" />
+          </div>
+          <div
+            class="rounded-full border border-label-separator px-3 py-1.5 cursor-pointer text-sm"
+            style="background-color: rgba(255, 0, 0, 0.4); color: red"
+          >
+            <!-- TODO: Implement option to change the language -->
+            {{
+              currentTrack?.language
+                ? getLocalizedLanguageName(currentTrack.language)
+                : ""
+            }}
+          </div>
+          <div
+            class="rounded-full border border-label-separator p-1.5 cursor-pointer"
+            style="background-color: rgba(255, 0, 0, 0.4); color: red"
+          >
+            <NuxtIcon name="options" filled class="text-xl" />
+          </div>
+        </div>
+      </div>
+      <hr class="border-label-separator" />
+      <div class="overflow-y-scroll">
+        <div class="flex justify-between items-center pb-1 pt-4 px-6">
+          <div class="text-label-3">Queue</div>
+          <div class="flex gap-2">
+            <button
+              v-if="queue.isShuffled"
+              class="rounded-full bg-background-4 p-2 text-background-3 hover:bg-background-3 hover:text-background-4 transition-all duration-200 ease-out"
+              @click.stop="queue.unshuffle()"
+            >
+              <NuxtIcon name="icon.shuffle" class="text-2xl" />
+            </button>
+            <button
+              v-else
+              class="rounded-full bg-background-3 p-2 text-background-4 hover:bg-background-4 hover:text-background-3 transition-all duration-200 ease-out"
+              @click.stop="queue.shuffle()"
+            >
+              <NuxtIcon name="icon.shuffle" class="text-2xl" />
+            </button>
+            <button
+              class="rounded-full bg-background-3 p-2"
+              style="background-color: rgba(255, 0, 0, 0.4); color: red"
+            >
+              <NuxtIcon name="icon.repeat" filled class="text-2xl" />
+            </button>
+          </div>
+        </div>
+        <ul class="px-3 pb-3">
+          <li v-for="(item, i) in queue" :key="i" @click="queue.index = i">
+            <div
+              :class="
+                queue.index === i ? 'bg-tint hover:bg-tint text-black-1' : ''
+              "
+              class="rounded-xl px-3 py-2 flex justify-between gap-2 cursor-pointer hover:bg-background-2 transition-all duration-500 ease-out"
+            >
+              <div class="truncate">
+                <div>{{ item.meta?.title || item.title }}</div>
+                <div
+                  class="text-sm"
+                  :class="queue.index === i ? 'text-black-2' : 'text-label-2'"
+                >
+                  <span v-if="item?.meta?.artist">
+                    {{ item.meta?.artist }}
+                  </span>
+                  <span v-if="item?.meta?.artist && item?.meta?.album">
+                    -
+                  </span>
+                  <span v-if="item?.meta?.album">
+                    {{ item.meta?.album }}
+                  </span>
+                </div>
+              </div>
+              <div class="flex justify-between gap-2">
+                <NuxtIcon name="options" filled class="text-2xl" />
+                <NuxtIcon
+                  v-if="queue.index === i"
+                  name="icon.playing (animation)"
+                  filled
+                  class="text-2xl"
+                />
+              </div>
+            </div>
+
+            <hr
+              v-if="!(queue.index - 1 === i || queue.index === i)"
+              class="border-label-separator"
+            />
+          </li>
+        </ul>
+      </div>
+    </div>
+  </transition>
 </template>
+
+<style scoped>
+.shadow-player {
+  max-height: calc(100vh - 1.25rem - 4.5rem);
+
+  box-shadow:
+    0px 4px 12px 0px rgba(0, 0, 0, 0.05),
+    0px 1px 4px 0px rgba(0, 0, 0, 0.05),
+    0px 0px 0px 1px rgba(0, 0, 0, 0.05);
+}
+.dark .shadow-player {
+  box-shadow:
+    0px 4px 12px 0px rgba(255, 255, 255, 0.05),
+    0px 1px 4px 0px rgba(255, 255, 255, 0.05),
+    0px 0px 0px 1px rgba(255, 255, 255, 0.05);
+}
+</style>

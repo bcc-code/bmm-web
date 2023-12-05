@@ -173,7 +173,7 @@ function secondsToTime(totalSeconds: number | undefined) {
 
           <MenuItems
             as="ul"
-            class="absolute right-0 top-10 z-20 w-52 rounded-xl bg-white-1 p-1 shadow-md dark:bg-black-1"
+            class="absolute right-0 top-10 z-30 w-52 rounded-xl bg-white-1 p-1 shadow-md dark:bg-black-1"
           >
             <div class="py-0">
               <MenuItem

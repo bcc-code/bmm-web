@@ -93,16 +93,21 @@ jobs:
           tenant-id: ${{ vars.AZURE_TENANT_ID }}
           subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
 
-      - name: Get Static Web App Token
-        uses: Azure/cli@v1.0.7
-        id: swa_token
+      - name: Get Azure Token
+        uses: Azure/cli@v1.0.8
+        id: az_token
         with:
           inlineScript: |
             AZ_TOKEN=$(az account get-access-token -o tsv --query 'accessToken')
             echo "::add-mask::$AZ_TOKEN"
-            SWA_TOKEN=$(curl -H "Authorization: Bearer $AZ_TOKEN" -X POST https://management.azure.com${{ env.swa_id }}/listsecrets?api-version=2019-08-01 -d "" -s -S -f | jq -r '.properties.apiKey')
-            echo "::add-mask::$SWA_TOKEN"
-            echo "token=$SWA_TOKEN" >> $GITHUB_OUTPUT
+            echo "token=$AZ_TOKEN" >> $GITHUB_OUTPUT
+
+      - name: Get Static Web App Token
+        id: swa_token
+        run: |
+          SWA_TOKEN=$(curl -H "Authorization: Bearer ${{ steps.az_token.outputs.token }}" -X POST https://management.azure.com${{ env.swa_id }}/listsecrets?api-version=2019-08-01 -d "" -s -S -f | jq -r '.properties.apiKey')
+          echo "::add-mask::$SWA_TOKEN"
+          echo "token=$SWA_TOKEN" >> $GITHUB_OUTPUT
 
       - name: Deploy
         uses: Azure/static-web-apps-deploy@v1
@@ -120,12 +125,9 @@ jobs:
           SKIP_DEPLOY_ON_MISSING_SECRETS: true
 
       - name: Rotate Static Web App Token
-        uses: Azure/cli@v1.0.7
         if: always()
-        with:
-          inlineScript: |
-            AZ_TOKEN=$(az account get-access-token -o tsv --query 'accessToken')
-            curl -H "Authorization: Bearer $AZ_TOKEN" -X POST https://management.azure.com${{ env.swa_id }}/resetapikey?api-version=2019-08-01 -d "" -s -S -f | jq -r '.properties.apiKey'
+        run: |
+          curl -H "Authorization: Bearer ${{ steps.az_token.outputs.token }}" -X POST https://management.azure.com${{ env.swa_id }}/resetapikey?api-version=2019-08-01 -d "" -s -S -f
 
   remove_azure_static_web_apps_when_pr_closed:
     if: github.event_name == 'pull_request' && github.event.action == 'closed'
@@ -143,16 +145,21 @@ jobs:
           tenant-id: ${{ vars.AZURE_TENANT_ID }}
           subscription-id: ${{ vars.AZURE_SUBSCRIPTION_ID }}
 
-      - name: Get Static Web App Token
-        uses: Azure/cli@v1.0.7
-        id: swa_token
+      - name: Get Azure Token
+        uses: Azure/cli@v1.0.8
+        id: az_token
         with:
           inlineScript: |
             AZ_TOKEN=$(az account get-access-token -o tsv --query 'accessToken')
             echo "::add-mask::$AZ_TOKEN"
-            SWA_TOKEN=$(curl -H "Authorization: Bearer $AZ_TOKEN" -X POST https://management.azure.com${{ env.swa_id }}/listsecrets?api-version=2019-08-01 -d "" -s -S -f | jq -r '.properties.apiKey')
-            echo "::add-mask::$SWA_TOKEN"
-            echo "token=$SWA_TOKEN" >> $GITHUB_OUTPUT
+            echo "token=$AZ_TOKEN" >> $GITHUB_OUTPUT
+
+      - name: Get Static Web App Token
+        id: swa_token
+        run: |
+          SWA_TOKEN=$(curl -H "Authorization: Bearer ${{ steps.az_token.outputs.token }}" -X POST https://management.azure.com${{ env.swa_id }}/listsecrets?api-version=2019-08-01 -d "" -s -S -f | jq -r '.properties.apiKey')
+          echo "::add-mask::$SWA_TOKEN"
+          echo "token=$SWA_TOKEN" >> $GITHUB_OUTPUT
 
       - name: Remove the Azure Static Web App
         uses: Azure/static-web-apps-deploy@v1
@@ -163,12 +170,9 @@ jobs:
           action: "close"
 
       - name: Rotate Static Web App Token
-        uses: Azure/cli@v1.0.7
         if: always()
-        with:
-          inlineScript: |
-            AZ_TOKEN=$(az account get-access-token -o tsv --query 'accessToken')
-            curl -H "Authorization: Bearer $AZ_TOKEN" -X POST https://management.azure.com${{ env.swa_id }}/resetapikey?api-version=2019-08-01 -d "" -s -S -f | jq -r '.properties.apiKey'
+        run: |
+          curl -H "Authorization: Bearer ${{ steps.az_token.outputs.token }}" -X POST https://management.azure.com${{ env.swa_id }}/resetapikey?api-version=2019-08-01 -d "" -s -S -f
 
   build-electron-app:
     if: github.event.action != 'closed'

@@ -30,7 +30,8 @@
     "cross-env": "^7.0.3",
     "electron-updater": "^6.1.4",
     "pinia": "^2.1.7",
-    "pinia-plugin-persistedstate": "^3.2.0"
+    "pinia-plugin-persistedstate": "^3.2.0",
+    "vue-draggable-plus": "^0.2.7"
   },
   "devDependencies": {
     "@intlify/eslint-plugin-vue-i18n": "^2.0.0",
