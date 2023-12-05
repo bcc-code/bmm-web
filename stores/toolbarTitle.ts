@@ -1,5 +1,3 @@
-import { defineStore } from "pinia";
-
 export const toolbarTitleStore = defineStore("toolbarTitle", () => {
   const toolbarTitle = ref("");
 

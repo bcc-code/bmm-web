@@ -22,13 +22,5 @@
     "editor.tabSize": 2,
     "editor.insertSpaces": true,
     "editor.detectIndentation": false
-  },
-  "workbench.colorCustomizations": {
-    "activityBar.background": "#073149",
-    "titleBar.activeBackground": "#094466",
-    "titleBar.activeForeground": "#F5FBFE"
-  },
-  "i18n-ally.localesPaths": [
-    "locales"
-  ]
+  }
 }
