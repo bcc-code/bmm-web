@@ -44,6 +44,7 @@ const onPointerUpProgressBar = (event: PointerEvent) => {
     >
       <svg
         class="absolute left-0 top-0 opacity-0 group-hover:opacity-100 group-hover:-left-1 group-hover:-top-1 transition-all duration-200 ease-out"
+        fill="none"
         xmlns="http://www.w3.org/2000/svg"
         width="11"
         height="11"
@@ -113,6 +114,7 @@ const onPointerUpProgressBar = (event: PointerEvent) => {
           </button>
         </div>
         <svg
+          fill="none"
           xmlns="http://www.w3.org/2000/svg"
           class="absolute bottom-0 left-1 right-1 w-full h-1 hover:h-1.5 transition-all duration-200 ease-out"
           @pointerdown="onPointerDownProgressBar"
@@ -187,6 +189,7 @@ const onPointerUpProgressBar = (event: PointerEvent) => {
         <div class="px-4 py-2">
           <div class="py-2 group h-3 flex items-center">
             <svg
+              fill="none"
               xmlns="http://www.w3.org/2000/svg"
               class="width-full rounded-full overflow-hidden w-full h-2 group-hover:h-3 transition-all duration-200 ease-out"
               @pointerdown="onPointerDownProgressBar"
