@@ -266,8 +266,8 @@ const joinedContentLanguages = computed(() =>
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
             >
-              <path d="M4 9H20" stroke="#ABAFB3" stroke-width="2" />
-              <path d="M4 15H20" stroke="#ABAFB3" stroke-width="2" />
+              <path d="M4 9H20" stroke="currentColor" stroke-width="2" />
+              <path d="M4 15H20" stroke="currentColor" stroke-width="2" />
             </svg>
           </button>
           <div

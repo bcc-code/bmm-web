@@ -44,11 +44,11 @@ const onPointerUpProgressBar = (event: PointerEvent) => {
     >
       <svg
         class="absolute left-0 top-0 opacity-0 group-hover:opacity-100 group-hover:-left-1 group-hover:-top-1 transition-all duration-200 ease-out"
+        fill="none"
         xmlns="http://www.w3.org/2000/svg"
         width="11"
         height="11"
         viewBox="0 0 11 11"
-        fill="none"
       >
         <path
           d="M0 1.5C0 0.671573 0.671573 0 1.5 0H7.37868C8.71504 0 9.38429 1.61571 8.43934 2.56066L2.56066 8.43934C1.61572 9.38428 0 8.71504 0 7.37868V1.5Z"

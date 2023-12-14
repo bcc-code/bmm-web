@@ -20,6 +20,7 @@ const className = cva("inline-block", {
   <svg
     :class="className({ size })"
     viewBox="0 0 53 32"
+    fill="none"
     xmlns="http://www.w3.org/2000/svg"
     class="fill-black-1 dark:fill-white-1"
   >
