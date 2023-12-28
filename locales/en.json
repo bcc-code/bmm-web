@@ -83,6 +83,13 @@
       "download": "Download",
       "queue": "Add to queue",
       "options": "Show options"
+    },
+    "details": {
+      "duration": "Duration:",
+      "publish-date": "Publish Date:",
+      "album": "Album:",
+      "publisher": "Publisher:",
+      "copyright": "Copyright:"
     }
   },
   "home": {
