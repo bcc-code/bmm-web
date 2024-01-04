@@ -85,10 +85,10 @@
       "options": "Zeige Optionen"
     },
     "details": {
-      "duration": "Dauer:",
-      "publish-date": "Veröffentlichung:",
+      "duration": "Duration:",
+      "publish-date": "Publish Date:",
       "album": "Album:",
-      "publisher": "Veröffentlicher:",
+      "publisher": "Publisher:",
       "copyright": "Copyright:"
     }
   },
