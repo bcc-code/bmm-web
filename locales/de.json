@@ -83,6 +83,13 @@
       "download": "Herunterladen",
       "queue": "Zur Warteschlange hinzufügen",
       "options": "Zeige Optionen"
+    },
+    "details": {
+      "duration": "Dauer:",
+      "publish-date": "Veröffentlichung:",
+      "album": "Album:",
+      "publisher": "Veröffentlicher:",
+      "copyright": "Copyright:"
     }
   },
   "home": {
