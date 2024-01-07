@@ -1,13 +1,13 @@
 {
   "nav": {
-    "home": "Home",
-    "browse": "Browse",
-    "playlist": "Playlist",
-    "profile": "Profile",
-    "messages": "Messages",
-    "audiobooks": "Audiobooks",
+    "home": "முகப்பு ",
+    "browse": "உலாவு",
+    "playlist": "பிளேலிஸ்ட்",
+    "profile": "சுயவிவரம்",
+    "messages": "செய்திகள்",
+    "audiobooks": "ஆடியோ புத்தகங்கள்",
     "search": "தேடு",
-    "album": "Album"
+    "album": "ஆல்பம்"
   },
   "sidebar": {
     "playlists": {
@@ -15,21 +15,21 @@
     }
   },
   "profile": {
-    "title": "Profile",
-    "autoplay": "Auto Play",
-    "theme": "Theme",
-    "theme-description": "Select the theme used for the interface.",
-    "app-language": "Language",
-    "interface-language": "Interface Language",
-    "interface-language-description": "The language used for the interface.",
-    "select-language": "Select language",
-    "content-language": "Content Language",
-    "content-language-description": "The preferred language for the content you are listening to.",
-    "uservoice": "User Voice",
-    "contact": "Contact",
-    "logout": "Sign out",
-    "theme-dark": "Dark",
-    "theme-light": "Light",
+    "title": "சுயவிவரம்",
+    "autoplay": "தானியங்கி",
+    "theme": "தீம்",
+    "theme-description": "இடைமுகத்திற்குப் பயன்படுத்தப்படும் தீம்மை தேர்ந்தெடுக்கவும்.",
+    "app-language": "மொழி",
+    "interface-language": "இடைமுக மொழி",
+    "interface-language-description": "இடைமுகத்திற்குப் பயன்படுத்தப்படும் மொழி.",
+    "select-language": "மொழியை தேர்ந்தெடுங்கள்",
+    "content-language": "உள்ளடக்க மொழி",
+    "content-language-description": "நீங்கள் கேட்கும் உள்ளடக்கத்திற்கான விருப்பமான மொழி.",
+    "uservoice": "பயனர் குரல்",
+    "contact": "தொடர்பு கொள்ளவும்",
+    "logout": "வெளியேறு",
+    "theme-dark": "இருள் (டார்க்)",
+    "theme-light": "ஒளி (லைட்)",
     "theme-system": "Same as system",
     "done": "முடிந்தது"
   },
@@ -60,7 +60,7 @@
   "playlist": {
     "add": "Add playlist",
     "action": {
-      "shuffle": "Shuffle"
+      "shuffle": "கலக்கு"
     }
   },
   "podcast": {
