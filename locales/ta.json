@@ -86,15 +86,15 @@
     },
     "details": {
       "duration": "காலம்:",
-      "publish-date": "Publish Date:",
-      "album": "Album:",
-      "publisher": "Publisher:",
-      "copyright": "Copyright:"
+      "publish-date": "வெளியிடும் தேதி:",
+      "album": "ஆல்பம்:",
+      "publisher": "பதிப்பகத்தார்:",
+      "copyright": "காப்புரிமை:"
     }
   },
   "home": {
     "list": {
-      "see-all": "See all"
+      "see-all": "அனைத்தையும் பார்"
     }
   }
 }
