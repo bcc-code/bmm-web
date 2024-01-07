@@ -85,10 +85,10 @@
       "options": "Toon opties"
     },
     "details": {
-      "duration": "Duration:",
-      "publish-date": "Publish Date:",
+      "duration": "Afspeelduur:",
+      "publish-date": "Publicatiedatum:",
       "album": "Album:",
-      "publisher": "Publisher:",
+      "publisher": "Uitgever:",
       "copyright": "Copyright:"
     }
   },
