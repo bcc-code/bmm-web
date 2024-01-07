@@ -6,12 +6,12 @@
     "profile": "Profile",
     "messages": "Messages",
     "audiobooks": "Audiobooks",
-    "search": "Search",
+    "search": "தேடு",
     "album": "Album"
   },
   "sidebar": {
     "playlists": {
-      "title": "Playlists"
+      "title": "பிளேலிஸ்ட்கள்"
     }
   },
   "profile": {
@@ -31,7 +31,7 @@
     "theme-dark": "Dark",
     "theme-light": "Light",
     "theme-system": "Same as system",
-    "done": "Done"
+    "done": "முடிந்தது"
   },
   "error": {
     "page-not-found": {
@@ -72,9 +72,9 @@
   "track": {
     "dropdown": {
       "play-next": "Play next",
-      "go-to-album": "Go to album",
+      "go-to-album": "ஆல்பத்திற்குச் செல்லவும்",
       "add-to-queue": "Add to queue",
-      "add-to-playlist": "Add to playlist",
+      "add-to-playlist": "பிளேலிஸ்ட்டில் சேர்",
       "share": "Share track",
       "go-to-contributors": "Go to contributors",
       "more-info": "More information"
