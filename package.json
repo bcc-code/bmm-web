@@ -10,7 +10,7 @@
     "build": "nuxt generate",
     "dev:electron": "cross-env ELECTRON=true nuxt dev --port 9001",
     "build:electron": "cross-env ELECTRON=true nuxt generate",
-    "package:electron": "electron-builder",
+    "package:electron": "electron-builder --config=electron_builder.ts",
     "preview": "cross-env PORT=9001 nuxt preview",
     "coverage": "vitest run --coverage",
     "e2e": "cypress open",
