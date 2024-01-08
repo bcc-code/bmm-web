@@ -1,7 +1,6 @@
 /* eslint-disable import/prefer-default-export */
 /* eslint import/no-extraneous-dependencies: ["error", {"devDependencies": true}] */
-// eslint-disable-next-line import/no-extraneous-dependencies
-import { Nuxt } from "@nuxt/schema";
+import type { Nuxt } from "@nuxt/schema";
 import chalk from "chalk";
 import { saveGeneratedFile } from "./output";
 import { constructIconNames } from "./parser";

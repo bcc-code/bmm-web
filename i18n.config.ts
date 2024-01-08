@@ -1,5 +1,5 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { NuxtI18nOptions } from "@nuxtjs/i18n";
+import type { NuxtI18nOptions } from "@nuxtjs/i18n";
 import { LanguageEnum } from "@bcc-code/bmm-sdk-fetch";
 
 import af from "./locales/af.json";

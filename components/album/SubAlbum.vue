@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { AlbumModel, TrackModel } from "@bcc-code/bmm-sdk-fetch";
+import type { AlbumModel, TrackModel } from "@bcc-code/bmm-sdk-fetch";
 
 const props = defineProps<{
   id: number;

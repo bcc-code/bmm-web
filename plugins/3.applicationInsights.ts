@@ -4,7 +4,7 @@
 
 /* eslint-disable no-nested-ternary */
 import { ApplicationInsights } from "@microsoft/applicationinsights-web";
-import { IUserData } from "./2.userData";
+import type { IUserData } from "./2.userData";
 
 export interface AppInsights {
   event: (event: any, customProperties: any) => void;

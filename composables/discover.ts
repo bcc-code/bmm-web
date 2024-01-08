@@ -1,5 +1,5 @@
-import {
-  DiscoverApi,
+import { DiscoverApi } from "@bcc-code/bmm-sdk-fetch";
+import type {
   DiscoverGetRequest,
   SectionHeaderModel,
   IAllDocumentModels,

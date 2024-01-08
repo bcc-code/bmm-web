@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { TrackModel } from "@bcc-code/bmm-sdk-fetch";
+import type { TrackModel } from "@bcc-code/bmm-sdk-fetch";
 
 const { t } = useI18n();
 

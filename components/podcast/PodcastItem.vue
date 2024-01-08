@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { PodcastModel } from "@bcc-code/bmm-sdk-fetch";
+import type { PodcastModel } from "@bcc-code/bmm-sdk-fetch";
 
 defineProps<{
   podcast: PodcastModel;

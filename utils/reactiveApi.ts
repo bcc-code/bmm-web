@@ -1,4 +1,4 @@
-import { AsyncData } from "#app";
+import type { AsyncData } from "#app";
 
 export default function reactiveApi<Data, Error>(data: AsyncData<Data, Error>) {
   const stopHandler = watch(

@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { PlaylistModel } from "@bcc-code/bmm-sdk-fetch";
+import type { PlaylistModel } from "@bcc-code/bmm-sdk-fetch";
 
 defineProps<{
   playlist: PlaylistModel;

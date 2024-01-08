@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ContributorModel } from "@bcc-code/bmm-sdk-fetch";
+import type { ContributorModel } from "@bcc-code/bmm-sdk-fetch";
 
 defineProps<{
   contributor: ContributorModel;

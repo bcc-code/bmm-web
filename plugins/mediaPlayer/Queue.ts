@@ -1,4 +1,4 @@
-import { TrackModel } from "@bcc-code/bmm-sdk-fetch";
+import type { TrackModel } from "@bcc-code/bmm-sdk-fetch";
 
 export default class Queue extends Array<TrackModel> {
   public isShuffled = false;
