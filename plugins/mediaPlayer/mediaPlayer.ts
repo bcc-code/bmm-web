@@ -1,7 +1,8 @@
-import { TrackModel, StatisticsApi } from "@bcc-code/bmm-sdk-fetch";
+import { StatisticsApi } from "@bcc-code/bmm-sdk-fetch";
+import type { TrackModel } from "@bcc-code/bmm-sdk-fetch";
 import type { UnwrapRef } from "vue";
-import { IUserData } from "plugins/2.userData";
-import { AppInsights } from "plugins/3.applicationInsights";
+import type { IUserData } from "plugins/2.userData";
+import type { AppInsights } from "plugins/3.applicationInsights";
 import MediaTrack from "./MediaTrack";
 import Queue from "./Queue";
 

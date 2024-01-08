@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { AlbumModel } from "@bcc-code/bmm-sdk-fetch";
+import type { AlbumModel } from "@bcc-code/bmm-sdk-fetch";
 
 defineProps<{
   album: AlbumModel;

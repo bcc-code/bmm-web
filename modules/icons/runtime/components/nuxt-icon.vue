@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { NuxtIconName } from "#build/nuxt-icons";
+import type { NuxtIconName } from "#build/nuxt-icons";
 import { ref, watchEffect } from "#imports";
 
 const props = withDefaults(

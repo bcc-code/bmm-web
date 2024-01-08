@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import { NuxtIconName } from ".nuxt/nuxt-icons";
-import { RoutesNamedLocations } from ".nuxt/typed-router";
-import { TrackModel } from "@bcc-code/bmm-sdk-fetch";
+import type { NuxtIconName } from ".nuxt/nuxt-icons";
+import type { RoutesNamedLocations } from ".nuxt/typed-router";
+import type { TrackModel } from "@bcc-code/bmm-sdk-fetch";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/vue";
 
 const { t } = useI18n();

@@ -1,11 +1,8 @@
 <script lang="ts" setup>
-import {
-  DiscoverGetRequest,
-  LanguageEnum,
-  TrackModel,
-} from "@bcc-code/bmm-sdk-fetch";
+import { LanguageEnum } from "@bcc-code/bmm-sdk-fetch";
+import type { DiscoverGetRequest, TrackModel } from "@bcc-code/bmm-sdk-fetch";
 import { breakpointsTailwind, useBreakpoints } from "@vueuse/core";
-import { IDiscoverableGroup } from "~/composables/discover";
+import type { IDiscoverableGroup } from "~/composables/discover";
 
 const { setQueue } = useNuxtApp().$mediaPlayer;
 const userData = useNuxtApp().$userData;

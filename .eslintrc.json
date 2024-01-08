@@ -30,6 +30,7 @@
           "warn",
           { "assertionStyle": "never" }
         ],
+        "import/consistent-type-specifier-style": ["error", "prefer-top-level"],
         "promise/always-return": "off"
       }
     },

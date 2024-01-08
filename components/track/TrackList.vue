@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { TrackModel } from "@bcc-code/bmm-sdk-fetch";
+import type { TrackModel } from "@bcc-code/bmm-sdk-fetch";
 
 const props = withDefaults(
   defineProps<{

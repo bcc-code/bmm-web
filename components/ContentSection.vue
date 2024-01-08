@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { RoutesNamedLocations } from "@typed-router";
+import type { RoutesNamedLocations } from "@typed-router";
 
 withDefaults(
   defineProps<{

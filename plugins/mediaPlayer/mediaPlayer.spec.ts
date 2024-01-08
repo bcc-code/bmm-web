@@ -1,11 +1,12 @@
 // @vitest-environment happy-dom
 
-import { describe, it, expect, vi, afterEach, Mock } from "vitest";
-import { TrackModel } from "@bcc-code/bmm-sdk-fetch";
+import { describe, it, expect, vi, afterEach } from "vitest";
+import type { Mock } from "vitest";
+import type { TrackModel } from "@bcc-code/bmm-sdk-fetch";
 import { flushPromises } from "@vue/test-utils";
 import type { UnwrapRef } from "vue";
-import { IUserData } from "plugins/2.userData";
-import { AppInsights } from "../3.applicationInsights";
+import type { IUserData } from "plugins/2.userData";
+import type { AppInsights } from "../3.applicationInsights";
 import Queue from "./Queue";
 import MediaTrack from "./MediaTrack";
 import { initMediaPlayer, MediaPlayerStatus } from "./mediaPlayer";

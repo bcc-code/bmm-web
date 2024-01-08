@@ -2,7 +2,7 @@
 
 import { describe, it, expect } from "vitest";
 import { flushPromises } from "@vue/test-utils";
-import { TrackModel } from "@bcc-code/bmm-sdk-fetch";
+import type { TrackModel } from "@bcc-code/bmm-sdk-fetch";
 import Queue from "./Queue";
 
 describe("plugin mediaPlayer Queue", () => {

@@ -1,6 +1,6 @@
 import { authToken, initMediaPlayer } from "./mediaPlayer/mediaPlayer";
-import { AppInsights } from "./3.applicationInsights";
-import { IUserData } from "./2.userData";
+import type { AppInsights } from "./3.applicationInsights";
+import type { IUserData } from "./2.userData";
 
 export default defineNuxtPlugin((nuxtApp) => {
   const { getAccessTokenSilently, isAuthenticated } =
