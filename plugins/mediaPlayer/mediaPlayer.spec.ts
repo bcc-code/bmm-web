@@ -5,7 +5,7 @@ import type { Mock } from "vitest";
 import type { TrackModel } from "@bcc-code/bmm-sdk-fetch";
 import { flushPromises } from "@vue/test-utils";
 import type { UnwrapRef } from "vue";
-import type { IUserData } from "plugins/2.userData";
+import type { IUserData } from "../2.userData";
 import type { AppInsights } from "../3.applicationInsights";
 import Queue from "./Queue";
 import MediaTrack from "./MediaTrack";
