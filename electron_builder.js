@@ -1,6 +1,8 @@
-import type { Configuration } from "electron-builder";
-
-const config: Configuration = {
+// @ts-check
+/**
+ * @type {import('electron-builder').Configuration}
+ */
+const config = {
   appId: "org.brunstad.bmm",
   productName: "BMM alpha",
   files: [
@@ -64,4 +66,4 @@ const config: Configuration = {
   },
 };
 
-export default config;
+module.exports = config;
