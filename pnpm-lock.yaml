@@ -122,13 +122,13 @@ devDependencies:
     version: 0.7.0(vite-plugin-electron-renderer@0.14.5)(vite-plugin-electron@0.28.0)
   nuxt-typed-router:
     specifier: ^3.5.1
-    version: 3.5.1(prettier@3.2.3)(rollup@4.9.5)
+    version: 3.5.1(prettier@3.2.2)(rollup@4.9.5)
   prettier:
-    specifier: ^3.2.3
-    version: 3.2.3
+    specifier: ^3.2.2
+    version: 3.2.2
   prettier-plugin-tailwindcss:
     specifier: 0.5.11
-    version: 0.5.11(prettier@3.2.3)
+    version: 0.5.11(prettier@3.2.2)
   stylelint:
     specifier: ^16.1.0
     version: 16.1.0(typescript@5.3.3)
@@ -2533,6 +2533,7 @@ packages:
     dependencies:
       is-glob: 4.0.3
       micromatch: 4.0.5
+      napi-wasm: 1.1.0
     dev: true
     bundledDependencies:
       - napi-wasm
@@ -8448,6 +8449,10 @@ packages:
     hasBin: true
     dev: true
 
+  /napi-wasm@1.1.0:
+    resolution: {integrity: sha512-lHwIAJbmLSjF9VDRm9GoVOy9AGp3aIvkjv+Kvz9h16QR3uSVYH78PNQUnT2U4X53mhlnV2M7wrhibQ3GHicDmg==}
+    dev: true
+
   /natural-compare@1.4.0:
     resolution: {integrity: sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==}
     dev: true
@@ -8783,7 +8788,7 @@ packages:
       vite-plugin-electron-renderer: 0.14.5
     dev: true
 
-  /nuxt-typed-router@3.5.1(prettier@3.2.3)(rollup@4.9.5):
+  /nuxt-typed-router@3.5.1(prettier@3.2.2)(rollup@4.9.5):
     resolution: {integrity: sha512-o3SYbArryJynn8uT2NDqpV3b43rsTdM6suG2G0SwONZhBtX2flFsfsrAJw1tiSXvNigqwd/nX4GgI4O591aNWQ==}
     peerDependencies:
       prettier: ^2.5.x || 3.x
@@ -8796,7 +8801,7 @@ packages:
       mkdirp: 3.0.1
       nanoid: 5.0.3
       pathe: 1.1.1
-      prettier: 3.2.3
+      prettier: 3.2.2
     transitivePeerDependencies:
       - rollup
       - supports-color
@@ -9826,7 +9831,7 @@ packages:
     engines: {node: '>= 0.8.0'}
     dev: true
 
-  /prettier-plugin-tailwindcss@0.5.11(prettier@3.2.3):
+  /prettier-plugin-tailwindcss@0.5.11(prettier@3.2.2):
     resolution: {integrity: sha512-AvI/DNyMctyyxGOjyePgi/gqj5hJYClZ1avtQvLlqMT3uDZkRbi4HhGUpok3DRzv9z7Lti85Kdj3s3/1CeNI0w==}
     engines: {node: '>=14.21.3'}
     peerDependencies:
@@ -9875,11 +9880,11 @@ packages:
       prettier-plugin-twig-melody:
         optional: true
     dependencies:
-      prettier: 3.2.3
+      prettier: 3.2.2
     dev: true
 
-  /prettier@3.2.3:
-    resolution: {integrity: sha512-QNhUTBq+mqt1oH1dTfY3phOKNhcDdJkfttHI6u0kj7M2+c+7fmNKlgh2GhnHiqMcbxJ+a0j2igz/2jfl9QKLuw==}
+  /prettier@3.2.2:
+    resolution: {integrity: sha512-HTByuKZzw7utPiDO523Tt2pLtEyK7OibUD9suEJQrPUCYQqrHr74GGX6VidMrovbf/I50mPqr8j/II6oBAuc5A==}
     engines: {node: '>=14'}
     hasBin: true
     dev: true

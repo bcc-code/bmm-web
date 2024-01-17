@@ -62,7 +62,7 @@
     "nuxt": "^3.6.5",
     "nuxt-electron": "^0.7.0",
     "nuxt-typed-router": "^3.5.1",
-    "prettier": "^3.2.3",
+    "prettier": "^3.2.2",
     "prettier-plugin-tailwindcss": "0.5.11",
     "stylelint": "^16.1.0",
     "stylelint-config-recommended-scss": "^14.0.0",
