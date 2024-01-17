@@ -1,7 +1,6 @@
 // @vitest-environment happy-dom
 
 import { describe, it, expect, vi } from "vitest";
-import { HTMLAudioElement, Event } from "happy-dom";
 import { flushPromises } from "@vue/test-utils";
 import MediaTrack from "./MediaTrack";
 
@@ -25,7 +24,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
   describe("duration", () => {
     it("reports the updated duration after its known or estimated", async () => {
       // Arrange
-      const audio = new HTMLAudioElement();
+      const audio = new Audio();
       const mT = ref(
         new MediaTrack(audio as unknown as globalThis.HTMLAudioElement),
       );
@@ -43,12 +42,18 @@ describe("plugin mediaPlayer MediaTrack", () => {
       await flushPromises();
       (audio as any).duration = 500;
       audio.dispatchEvent(
-        new Event("durationchange", { bubbles: false, cancelable: false }),
+        new global.Event("durationchange", {
+          bubbles: false,
+          cancelable: false,
+        }),
       );
       await flushPromises();
       (audio as any).duration = 800;
       audio.dispatchEvent(
-        new Event("durationchange", { bubbles: false, cancelable: false }),
+        new global.Event("durationchange", {
+          bubbles: false,
+          cancelable: false,
+        }),
       );
       await flushPromises();
 
@@ -59,7 +64,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
 
     it("reports the updated duration as positive infinity if unknown", async () => {
       // Arrange
-      const audio = new HTMLAudioElement();
+      const audio = new Audio();
       const mT = ref(
         new MediaTrack(audio as unknown as globalThis.HTMLAudioElement),
       );
@@ -77,12 +82,18 @@ describe("plugin mediaPlayer MediaTrack", () => {
       await flushPromises();
       (audio as any).duration = 500;
       audio.dispatchEvent(
-        new Event("durationchange", { bubbles: false, cancelable: false }),
+        new global.Event("durationchange", {
+          bubbles: false,
+          cancelable: false,
+        }),
       );
       await flushPromises();
       (audio as any).duration = +Infinity;
       audio.dispatchEvent(
-        new Event("durationchange", { bubbles: false, cancelable: false }),
+        new global.Event("durationchange", {
+          bubbles: false,
+          cancelable: false,
+        }),
       );
       await flushPromises();
 
@@ -95,7 +106,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
   describe("position", () => {
     it("reports the updated duration after playback has started", async () => {
       // Arrange
-      const audio = new HTMLAudioElement();
+      const audio = new Audio();
       const mT = ref(
         new MediaTrack(audio as unknown as globalThis.HTMLAudioElement),
       );
@@ -113,12 +124,12 @@ describe("plugin mediaPlayer MediaTrack", () => {
       await flushPromises();
       (audio as any).currentTime = 500;
       audio.dispatchEvent(
-        new Event("timeupdate", { bubbles: false, cancelable: false }),
+        new global.Event("timeupdate", { bubbles: false, cancelable: false }),
       );
       await flushPromises();
       (audio as any).currentTime = 501;
       audio.dispatchEvent(
-        new Event("timeupdate", { bubbles: false, cancelable: false }),
+        new global.Event("timeupdate", { bubbles: false, cancelable: false }),
       );
       await flushPromises();
 
@@ -129,7 +140,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
 
     it("only triggers one update if the internal position changes but not the official", async () => {
       // Arrange
-      const audio = new HTMLAudioElement();
+      const audio = new Audio();
       const mT = ref(
         new MediaTrack(audio as unknown as globalThis.HTMLAudioElement),
       );
@@ -147,22 +158,22 @@ describe("plugin mediaPlayer MediaTrack", () => {
       await flushPromises();
       (audio as any).currentTime = 500;
       audio.dispatchEvent(
-        new Event("timeupdate", { bubbles: false, cancelable: false }),
+        new global.Event("timeupdate", { bubbles: false, cancelable: false }),
       );
       await flushPromises();
       (audio as any).currentTime = 500;
       audio.dispatchEvent(
-        new Event("timeupdate", { bubbles: false, cancelable: false }),
+        new global.Event("timeupdate", { bubbles: false, cancelable: false }),
       );
       await flushPromises();
       (audio as any).currentTime = 500;
       audio.dispatchEvent(
-        new Event("timeupdate", { bubbles: false, cancelable: false }),
+        new global.Event("timeupdate", { bubbles: false, cancelable: false }),
       );
       await flushPromises();
       (audio as any).currentTime = 500;
       audio.dispatchEvent(
-        new Event("timeupdate", { bubbles: false, cancelable: false }),
+        new global.Event("timeupdate", { bubbles: false, cancelable: false }),
       );
       await flushPromises();
 
@@ -173,7 +184,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
 
     it("allows the user to set the position (seek)", () => {
       // Arrange
-      const audio = new HTMLAudioElement();
+      const audio = new Audio();
       const mT = ref(
         new MediaTrack(audio as unknown as globalThis.HTMLAudioElement),
       );
@@ -197,7 +208,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
 
     it("skips setting the position (seek) if value is not a finite number", async () => {
       // Arrange
-      const audio = new HTMLAudioElement();
+      const audio = new Audio();
       const mT = ref(
         new MediaTrack(audio as unknown as globalThis.HTMLAudioElement),
       );
@@ -227,9 +238,8 @@ describe("plugin mediaPlayer MediaTrack", () => {
   describe("destroy", () => {
     it("resets the option `srcObject` to `null` (best practice)", () => {
       // Arrange
-      const audio: HTMLAudioElement & { srcObject?: {} | null } =
-        new HTMLAudioElement();
-      audio.srcObject = {};
+      const audio = new Audio();
+      audio.srcObject = new Blob();
       const mT = new MediaTrack(
         audio as unknown as globalThis.HTMLAudioElement,
       );
@@ -242,7 +252,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
 
     it("calls `pause()` on the media-element (best practice)", () => {
       // Arrange
-      const audio = new HTMLAudioElement();
+      const audio = new Audio();
       const pauseSpy = vi.spyOn(audio, "pause");
       const mT = new MediaTrack(
         audio as unknown as globalThis.HTMLAudioElement,
@@ -256,7 +266,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
 
     it("sets `autoplay` to `false` (Chrome would restart playback if `srcObject` is set to `null`)", () => {
       // Arrange
-      const audio = new HTMLAudioElement();
+      const audio = new Audio();
       const mT = new MediaTrack(
         audio as unknown as globalThis.HTMLAudioElement,
       );
