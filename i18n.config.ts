@@ -1,7 +1,3 @@
-// eslint-disable-next-line import/no-extraneous-dependencies
-import type { NuxtI18nOptions } from "@nuxtjs/i18n";
-import { LanguageEnum } from "@bcc-code/bmm-sdk-fetch";
-
 import af from "./locales/af.json";
 import bg from "./locales/bg.json";
 import cs from "./locales/cs.json";
@@ -28,9 +24,7 @@ import tr from "./locales/tr.json";
 import uk from "./locales/uk.json";
 import zh from "./locales/zh.json";
 
-const i18nConfig: NuxtI18nOptions["vueI18n"] & {
-  messages: { [key in LanguageEnum]?: any };
-} = {
+export default defineI18nConfig(() => ({
   legacy: false,
   messages: {
     af,
@@ -59,6 +53,4 @@ const i18nConfig: NuxtI18nOptions["vueI18n"] & {
     uk,
     zh,
   },
-};
-
-export default i18nConfig;
+}));

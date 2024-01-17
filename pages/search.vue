@@ -4,8 +4,7 @@ import type {
   SearchResults,
   TrackModel,
 } from "@bcc-code/bmm-sdk-fetch";
-import { watchDebounced } from "@vueuse/core";
-import type { IDiscoverableGroup } from "composables/discover";
+import type { IDiscoverableGroup } from "~/composables/discover";
 
 const { t } = useI18n();
 toolbarTitleStore().setReactiveToolbarTitle(() => t("nav.search"));
