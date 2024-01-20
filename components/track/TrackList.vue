@@ -28,7 +28,9 @@ const isTrackTypeKnown = () => {
 </script>
 
 <template>
-  <ol class="w-full divide-y divide-label-separator">
+  <ol
+    class="grid grid-cols-tracklist grid-rows-1 gap-4 w-full divide-y divide-label-separator"
+  >
     <template v-if="showSkeleton">
       <li
         v-for="skeleton in skeletonCount"
