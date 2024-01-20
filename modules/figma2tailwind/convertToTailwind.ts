@@ -21,6 +21,11 @@ const config: Partial<Config> = {
   darkMode: "class",
   theme: {
     colors,
+    extend: {  
+      gridTemplateColumns: {
+        tracklist: "2.5rem 1fr 1fr 50px 144px" 
+      }
+    }
   },
 };
 

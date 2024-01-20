@@ -88,15 +88,12 @@ function secondsToTime(totalSeconds: number | undefined) {
 </script>
 
 <template>
-  <li class="group relative mr-3 cursor-pointer py-3" @click.stop="playTrack">
-    <div
-      class="absolute -inset-x-4 -inset-y-0 rounded-xl bg-background-2 opacity-0 group-hover:opacity-100"
-    ></div>
-    <div class="relative flex items-center justify-between gap-3">
-      <div
-        v-if="track.meta?.attachedPicture && showThumbnail"
-        class="relative w-10"
-      >
+  <li
+    class="w-full cursor-pointer grid grid-flow-col col-span-5 grid-cols-subgrid"
+    @click.stop="playTrack"
+  >
+    <div class="grid grid-flow-col col-span-5 grid-cols-subgrid">
+      <div v-if="track.meta?.attachedPicture && showThumbnail" class="relative">
         <ProtectedImage
           :src="track.meta?.attachedPicture"
           alt=""
@@ -112,9 +109,14 @@ function secondsToTime(totalSeconds: number | undefined) {
           />
         </div>
       </div>
-      <div class="mr-auto w-1/3">
+
+      <div
+        v-if="!(track.meta?.attachedPicture && showThumbnail)"
+        class="relative"
+      ></div>
+      <div class="mr-auto">
         <h4
-          class="overflow-hidden text-ellipsis whitespace-nowrap font-semibold"
+          class="block overflow-hidden text-ellipsis font-semibold"
           :title="track.meta?.title || ''"
         >
           {{ track.meta?.title }}
@@ -122,15 +124,11 @@ function secondsToTime(totalSeconds: number | undefined) {
         <span
           v-if="track.meta?.artist"
           :title="track.meta?.artist"
-          class="block overflow-hidden text-ellipsis whitespace-nowrap text-label-1"
+          class="block overflow-hidden text-ellipsis text-label-1"
         >
           {{ track.meta?.artist }}
         </span>
       </div>
-      <div
-        v-if="!(track.meta?.attachedPicture && showThumbnail)"
-        class="block h-1 w-10"
-      ></div>
       <div v-if="!isTrackTypeKnown">
         <span class="text-label-2">{{ track.subtype }}</span>
       </div>

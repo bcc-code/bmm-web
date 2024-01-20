@@ -7,7 +7,7 @@ defineProps<{
 </script>
 
 <template>
-  <li class="group relative mr-3 cursor-pointer py-3">
+  <li class="group col-span-5 relative mr-3 cursor-pointer py-3">
     <NuxtLink
       :to="{
         name: 'playlist-podcast-id',

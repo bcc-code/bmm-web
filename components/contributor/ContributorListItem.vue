@@ -7,7 +7,7 @@ defineProps<{
 </script>
 
 <template>
-  <li class="group relative mr-3 cursor-pointer py-3">
+  <li class="group col-span-5 relative mr-3 cursor-pointer py-3">
     <NuxtLink
       :to="{
         name: 'playlist-contributor-id',
@@ -18,8 +18,9 @@ defineProps<{
         class="absolute -inset-x-4 -inset-y-0 rounded-xl bg-background-2 opacity-0 group-hover:opacity-100"
       ></div>
       <div class="relative flex items-center justify-between gap-3">
-        <div v-if="contributor.cover" class="w-10">
+        <div class="w-10">
           <ProtectedImage
+            v-if="contributor.cover"
             :src="contributor.cover"
             alt=""
             class="aspect-square w-10 rounded-xl bg-background-2"
