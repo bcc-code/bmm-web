@@ -83,6 +83,13 @@
       "download": "Download",
       "queue": "Toevoegen aan wachtrij",
       "options": "Toon opties"
+    },
+    "details": {
+      "duration": "Afspeelduur:",
+      "publish-date": "Publicatiedatum:",
+      "album": "Album:",
+      "publisher": "Uitgever:",
+      "copyright": "Copyright:"
     }
   },
   "home": {
