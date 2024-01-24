@@ -127,7 +127,10 @@ const isSmallScreen = breakpoints.smallerOrEqual("lg");
             </div>
           </template>
         </div>
-        <ol v-else class="w-full divide-y divide-label-separator">
+        <ol
+          v-else
+          class="w-full divide-y divide-label-separator grid grid-cols-tracklist"
+        >
           <template v-for="item in group.items" :key="item.id">
             <TrackItem
               v-if="item.type === 'track'"
