@@ -89,24 +89,33 @@ function secondsToTime(totalSeconds: number | undefined) {
 
 <template>
   <li
-    class="w-full cursor-pointer grid grid-flow-col col-span-5 grid-cols-subgrid"
+    class="group grid col-span-5 relative grid-cols-subgrid cursor-pointer gap-3 py-3"
     @click.stop="playTrack"
   >
-    <div class="grid grid-flow-col col-span-5 grid-cols-subgrid">
-      <div v-if="track.meta?.attachedPicture && showThumbnail" class="relative">
-        <ProtectedImage
-          :src="track.meta?.attachedPicture"
-          alt=""
-          class="aspect-square w-10 rounded-md bg-background-2"
-        />
-        <div class="absolute inset-0 opacity-0 group-hover:opacity-100">
-          <div
-            class="absolute inset-0 h-full w-full rounded-md bg-black-1 opacity-50 dark:bg-white-1"
-          ></div>
-          <NuxtIcon
-            name="play"
-            class="absolute inset-0 flex items-center justify-center text-2xl text-white-1 dark:text-black-1"
+    <div
+      class="absolute -inset-x-4 -inset-y-0 rounded-xl bg-background-2 opacity-0 group-hover:opacity-100"
+    ></div>
+
+    <div class="relative grid col-span-5 grid-cols-subgrid">
+      <div
+        v-if="track.meta?.attachedPicture && showThumbnail"
+        class="flex items-center"
+      >
+        <div class="relative">
+          <ProtectedImage
+            :src="track.meta?.attachedPicture"
+            alt=""
+            class="aspect-square w-10 rounded-md bg-background-2"
           />
+          <div class="absolute inset-0 opacity-0 group-hover:opacity-100">
+            <div
+              class="absolute inset-0 h-full w-full rounded-md bg-black-1 opacity-50 dark:bg-white-1"
+            ></div>
+            <NuxtIcon
+              name="play"
+              class="absolute inset-0 flex items-center justify-center text-2xl text-white-1 dark:text-black-1"
+            />
+          </div>
         </div>
       </div>
 
@@ -114,7 +123,7 @@ function secondsToTime(totalSeconds: number | undefined) {
         v-if="!(track.meta?.attachedPicture && showThumbnail)"
         class="relative"
       ></div>
-      <div class="mr-auto">
+      <div class="flex flex-col justify-center">
         <h4
           class="block overflow-hidden text-ellipsis font-semibold"
           :title="track.meta?.title || ''"
@@ -129,18 +138,18 @@ function secondsToTime(totalSeconds: number | undefined) {
           {{ track.meta?.artist }}
         </span>
       </div>
-      <div v-if="!isTrackTypeKnown">
+      <div v-if="!isTrackTypeKnown" class="flex items-center">
         <span class="text-label-2">{{ track.subtype }}</span>
       </div>
-      <div v-if="isTrackTypeKnown">
+      <div v-if="isTrackTypeKnown" class="flex items-center">
         <span class="text-label-2">{{ track.meta?.album }}</span>
       </div>
-      <div class="ml-auto">
+      <div class="flex items-center">
         <span class="text-label-2">{{
           secondsToTime(track.media?.[0]?.files?.[0]?.duration)
         }}</span>
       </div>
-      <div class="ml-auto flex items-center justify-center gap-1">
+      <div class="flex items-center gap-1">
         <button
           class="px-2 py-0 opacity-0 hover:bg-[red] hover:opacity-100 focus:opacity-100 group-hover:opacity-100 group-focus:opacity-100"
           :aria-label="t('track.a11y.download')"
