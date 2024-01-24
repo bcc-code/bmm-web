@@ -32,3 +32,11 @@ export function useDiscover(requestParameters: DiscoverGetRequest) {
     ),
   );
 }
+
+export function useDiscover2(requestParameters: DiscoverGetRequest) {
+  return reactiveApi(
+    useLazyAsyncData("discover", () =>
+      new DiscoverApi().discoverGet(requestParameters),
+    ),
+  );
+}
