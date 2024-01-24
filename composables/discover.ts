@@ -10,7 +10,7 @@ export type IDiscoverableGroup = {
   items: Exclude<IAllDocumentModels, SectionHeaderModel>[];
 };
 
-export function useDiscover(requestParameters: DiscoverGetRequest) {
+export function useDiscoverOld(requestParameters: DiscoverGetRequest) {
   return reactiveApi(
     useLazyAsyncData("discover", () =>
       new DiscoverApi().discoverGet(requestParameters).then((d) => {
@@ -33,7 +33,7 @@ export function useDiscover(requestParameters: DiscoverGetRequest) {
   );
 }
 
-export function useDiscover2(requestParameters: DiscoverGetRequest) {
+export function useDiscover(requestParameters: DiscoverGetRequest) {
   return reactiveApi(
     useLazyAsyncData("discover", () =>
       new DiscoverApi().discoverGet(requestParameters),

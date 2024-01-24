@@ -1,15 +1,16 @@
 <script lang="ts" setup>
+import type { DiscoverGetRequest, LanguageEnum } from "@bcc-code/bmm-sdk-fetch";
+
 const { t, locale } = useI18n();
 const userData = useNuxtApp().$userData;
 toolbarTitleStore().setReactiveToolbarTitle(() => t("nav.home"));
 
-//const { data: browseSections, pending } = useBrowse();
 const parameters: DiscoverGetRequest = {
   // Compatibility is ensured in i18n.config.ts file
   lang: locale.value as LanguageEnum,
 };
 if (userData.age) parameters.age = userData.age;
-const { data: models, pending } = useDiscover2(parameters);
+const { data: models, pending } = useDiscover(parameters);
 </script>
 
 <template>
