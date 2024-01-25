@@ -64,21 +64,21 @@ const isSmallScreen = breakpoints.smallerOrEqual("lg");
     <PageHeading v-if="group.header" :level="3">
       <div class="flex items-center justify-between">
         <div>
-          <a
+          <NuxtLink
             v-if="typeof group.header.link === 'string'"
-            :href="parseLink(group.header.link)"
+            :to="parseLink(group.header.link)"
           >
             {{ group.header.title }}
-          </a>
+          </NuxtLink>
           <span v-else>{{ group.header.title }}</span>
         </div>
-        <a v-if="group.header.link" :href="parseLink(group.header.link)">
+        <NuxtLink v-if="group.header.link" :to="parseLink(group.header.link)">
           <ButtonStyled intent="secondary" size="small">
             <span class="whitespace-nowrap">
               {{ t("home.list.see-all") }}
             </span>
           </ButtonStyled>
-        </a>
+        </NuxtLink>
       </div>
     </PageHeading>
     <div
