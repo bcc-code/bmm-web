@@ -35,7 +35,6 @@ const convertModels = (models: IAllDocumentModels[]) => {
       currentSection.push(el);
     }
   });
-  console.log("result", result, models);
   return result;
 };
 
@@ -119,15 +118,12 @@ const isSmallScreen = breakpoints.smallerOrEqual("lg");
     </div>
     <ol v-else class="w-full divide-y divide-label-separator">
       <template v-for="item in group.items" :key="item.id">
-        <PageHeading v-if="item.type === 'chapter_header'" :level="5">
-          <div class="flex items-center justify-between">
-            <div>
-              <span>
-                {{ item.title }}
-              </span>
-            </div>
-          </div>
-        </PageHeading>
+        <h2
+          v-if="item.type === 'chapter_header'"
+          class="text-2xl font-extrabold pt-10 pb-4"
+        >
+          {{ item.title }}
+        </h2>
         <TrackItem
           v-else-if="item.type === 'track'"
           :track="item"
