@@ -18,17 +18,24 @@ const props = withDefaults(
 const convertModels = (models: IAllDocumentModels[]) => {
   let currentSection: IDiscoverableGroup["items"] = [];
   const result: IDiscoverableGroup[] = [];
-  models.forEach((el) => {
+  models.forEach((el, i) => {
     if (el.type === "section_header") {
       currentSection = [];
       result.push({
         header: el,
         items: currentSection,
       });
+    } else if (i === 0) {
+      currentSection = [el];
+      result.push({
+        header: null,
+        items: currentSection,
+      });
     } else {
       currentSection.push(el);
     }
   });
+  console.log("result", result, models);
   return result;
 };
 
@@ -112,8 +119,17 @@ const isSmallScreen = breakpoints.smallerOrEqual("lg");
     </div>
     <ol v-else class="w-full divide-y divide-label-separator">
       <template v-for="item in group.items" :key="item.id">
+        <PageHeading v-if="item.type === 'chapter_header'" :level="5">
+          <div class="flex items-center justify-between">
+            <div>
+              <span>
+                {{ item.title }}
+              </span>
+            </div>
+          </div>
+        </PageHeading>
         <TrackItem
-          v-if="item.type === 'track'"
+          v-else-if="item.type === 'track'"
           :track="item"
           :is-track-type-known="true"
           show-thumbnail
@@ -129,6 +145,7 @@ const isSmallScreen = breakpoints.smallerOrEqual("lg");
         <li v-else>
           <div style="background-color: rgba(255, 0, 0, 0.4); color: red">
             "{{ item.type }}" is not yet implemented ...
+            {{ console.log("not implemented", item) }}
           </div>
         </li>
       </template>
