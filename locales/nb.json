@@ -83,6 +83,13 @@
       "download": "Last ned",
       "queue": "Legg til i køen",
       "options": "Show options"
+    },
+    "details": {
+      "duration": "Duration:",
+      "publish-date": "Publish Date:",
+      "album": "Album:",
+      "publisher": "Publisher:",
+      "copyright": "Copyright:"
     }
   },
   "home": {
