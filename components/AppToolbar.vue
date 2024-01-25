@@ -1,6 +1,6 @@
 <script setup type="ts">
 const route = useRoute();
-const showBackButton = () =>  route.name !== "index" && route.name !== "search" && route.name !== "browse";
+const showBackButton = computed(() => route.name !== "index" && route.name !== "search" && route.name !== "browse");
 </script>
 <template>
   <header
@@ -8,7 +8,7 @@ const showBackButton = () =>  route.name !== "index" && route.name !== "search" 
   >
     <div class="flex flex-row mx-5">
       <div
-        v-if="showBackButton()"
+        v-if="showBackButton"
         class="p-4 cursor-pointer"
         @click="$router.back()"
       >
