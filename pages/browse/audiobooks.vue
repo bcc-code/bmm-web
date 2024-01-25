@@ -1,3 +1,12 @@
+<script lang="ts" setup>
+import type { DocumentListIAllDocumentModels } from "@bcc-code/bmm-sdk-fetch";
+
+const { data: models, pending } = useBrowseAudiobooks();
+</script>
+
 <template>
-  <h1>The route {{ useRoute().name }} has not been implemented yet.</h1>
+  <DocumentList
+    :list="models as DocumentListIAllDocumentModels"
+    :pending="pending"
+  ></DocumentList>
 </template>
