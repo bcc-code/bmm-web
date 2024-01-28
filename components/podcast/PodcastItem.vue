@@ -7,8 +7,11 @@ defineProps<{
 </script>
 
 <template>
-  <li class="group relative mr-3 cursor-pointer py-3">
+  <li
+    class="group grid col-span-full relative grid-cols-subgrid cursor-pointer gap-3 py-3"
+  >
     <NuxtLink
+      class="grid col-span-full grid-cols-subgrid"
       :to="{
         name: 'playlist-podcast-id',
         params: { id: podcast.id },
@@ -17,15 +20,16 @@ defineProps<{
       <div
         class="absolute -inset-x-4 -inset-y-0 rounded-xl bg-background-2 opacity-0 group-hover:opacity-100"
       ></div>
-      <div class="relative flex items-center justify-between gap-3">
-        <div v-if="podcast.cover" class="w-10">
+      <div class="relative grid col-span-full grid-cols-subgrid">
+        <div>
           <ProtectedImage
+            v-if="podcast.cover"
             :src="podcast.cover"
             alt=""
             class="aspect-square w-10 rounded-xl bg-background-2"
           />
         </div>
-        <div class="mr-auto w-1/3">
+        <div class="col-span-3 flex items-center">
           <h4
             class="overflow-hidden text-ellipsis whitespace-nowrap font-semibold"
             :title="podcast.title || ''"
@@ -33,8 +37,8 @@ defineProps<{
             {{ podcast.title }}
           </h4>
         </div>
-        <div class="ml-auto flex items-center justify-center gap-1">
-          <button class="focus:bg-lime-400 rounded-lg px-2 py-0">
+        <div class="flex justify-end">
+          <button class="px-2">
             <NuxtIcon name="icon.chevron.right" class="text-2xl" />
           </button>
         </div>

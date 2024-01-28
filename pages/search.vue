@@ -97,7 +97,9 @@ const playItem = (item: TrackModel, group: IDiscoverableGroup) => {
       </div>
       <div class="border-t border-label-4 p-4">
         <div>
-          <ol class="w-full divide-y divide-label-separator">
+          <ol
+            class="grid grid-cols-tracklist grid-rows-1 w-full divide-y divide-label-separator gap-4"
+          >
             <template v-for="item in results?.items" :key="item.id">
               <TrackItem
                 v-if="item.type === 'track'"
