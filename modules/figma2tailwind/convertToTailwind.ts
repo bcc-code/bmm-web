@@ -23,7 +23,7 @@ const config: Partial<Config> = {
     colors,
     extend: {  
       gridTemplateColumns: {
-        tracklist: "3rem 1fr 1fr auto auto" 
+        tracklist: "3rem auto auto auto auto" 
       }
     }
   },
