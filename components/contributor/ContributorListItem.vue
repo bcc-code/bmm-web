@@ -8,10 +8,10 @@ defineProps<{
 
 <template>
   <li
-    class="group grid col-span-5 relative grid-cols-subgrid cursor-pointer gap-3 py-3"
+    class="group grid col-span-full relative grid-cols-subgrid cursor-pointer gap-3 py-3"
   >
     <NuxtLink
-      class="grid col-span-5 grid-cols-subgrid"
+      class="grid col-span-full grid-cols-subgrid"
       :to="{
         name: 'playlist-contributor-id',
         params: { id: contributor.id },
@@ -20,7 +20,7 @@ defineProps<{
       <div
         class="absolute -inset-x-4 -inset-y-0 rounded-xl bg-background-2 opacity-0 group-hover:opacity-100"
       ></div>
-      <div class="relative grid col-span-5 grid-cols-subgrid">
+      <div class="relative grid col-span-full grid-cols-subgrid">
         <div>
           <ProtectedImage
             v-if="contributor.cover"
