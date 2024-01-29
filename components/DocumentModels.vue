@@ -48,7 +48,7 @@ const playItem = (item: TrackModel, group: IDiscoverableGroup) => {
   );
 };
 
-// this is only needed while it's hosted on bmm-web.brunstad.org (Actually, it might be needed for )
+// this is only needed while it's hosted on bmm-web.brunstad.org (Actually, it might be needed for Electron)
 const parseLink = (link: string) =>
   link.replace("https://bmm.brunstad.org", "");
 
@@ -116,7 +116,10 @@ const isSmallScreen = breakpoints.smallerOrEqual("lg");
         </div>
       </template>
     </div>
-    <ol v-else class="w-full divide-y divide-label-separator">
+    <ol
+      v-else
+      class="w-full divide-y divide-label-separator grid grid-cols-tracklist"
+    >
       <template v-for="item in group.items" :key="item.id">
         <h2
           v-if="item.type === 'chapter_header'"
