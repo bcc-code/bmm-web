@@ -5,15 +5,9 @@ import { breakpointsTailwind, useBreakpoints } from "@vueuse/core";
 
 const { t } = useI18n();
 
-const props = withDefaults(
-  defineProps<{
-    type?: "page" | "playlist" | "private-playlist";
-    models: IAllDocumentModels[];
-  }>(),
-  {
-    type: "page",
-  },
-);
+const props = defineProps<{
+  models: IAllDocumentModels[];
+}>();
 
 const convertModels = (models: IAllDocumentModels[]) => {
   let currentSection: IDiscoverableGroup["items"] = [];
@@ -48,9 +42,11 @@ const playItem = (item: TrackModel, group: IDiscoverableGroup) => {
   );
 };
 
-// this is only needed while it's hosted on bmm-web.brunstad.org (Actually, it might be needed for Electron)
-const parseLink = (link: string) =>
-  link.replace("https://bmm.brunstad.org", "");
+// We remove the hostname so that we use SPA links (without full page refresh)
+const parseLink = (link: string) => {
+  const url = new URL(link);
+  return url.pathname + url.search + url.hash;
+};
 
 const breakpoints = useBreakpoints(breakpointsTailwind);
 const isSmallScreen = breakpoints.smallerOrEqual("lg");

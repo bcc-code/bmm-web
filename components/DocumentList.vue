@@ -1,12 +1,10 @@
 <script setup lang="ts">
 import type {
-  DocumentListIAlbumOrChapterHeader,
   DocumentListIAllDocumentModels,
   IAllDocumentModels,
 } from "@bcc-code/bmm-sdk-fetch";
 
 const props = defineProps<{
-  type?: "page" | "playlist" | "private-playlist";
   list: DocumentListIAllDocumentModels | null;
   pending: boolean;
 }>();

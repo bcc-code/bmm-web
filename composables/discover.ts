@@ -10,29 +10,6 @@ export type IDiscoverableGroup = {
   items: Exclude<IAllDocumentModels, SectionHeaderModel>[];
 };
 
-export function useDiscoverOld(requestParameters: DiscoverGetRequest) {
-  return reactiveApi(
-    useLazyAsyncData("discover", () =>
-      new DiscoverApi().discoverGet(requestParameters).then((d) => {
-        let currentSection: IDiscoverableGroup["items"] = [];
-        const result: IDiscoverableGroup[] = [];
-        d.forEach((el) => {
-          if (el.type === "section_header") {
-            currentSection = [];
-            result.push({
-              header: el,
-              items: currentSection,
-            });
-          } else {
-            currentSection.push(el);
-          }
-        });
-        return result;
-      }),
-    ),
-  );
-}
-
 export function useDiscover(requestParameters: DiscoverGetRequest) {
   return reactiveApi(
     useLazyAsyncData("discover", () =>
