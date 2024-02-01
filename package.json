@@ -21,7 +21,7 @@
   },
   "dependencies": {
     "@auth0/auth0-vue": "^2.3.3",
-    "@bcc-code/bmm-sdk-fetch": "^7.1.0",
+    "@bcc-code/bmm-sdk-fetch": "^7.3.0",
     "@headlessui/vue": "^1.7.17",
     "@microsoft/applicationinsights-web": "^3.0.7",
     "@pinia/nuxt": "^0.5.1",
