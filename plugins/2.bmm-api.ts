@@ -1,5 +1,4 @@
 import { Configuration, DefaultConfig } from "@bcc-code/bmm-sdk-fetch";
-import { useNuxtApp } from "nuxt/app";
 
 export default defineNuxtPlugin((nuxtApp) => {
   const runtimeConfig = useRuntimeConfig();

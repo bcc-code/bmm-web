@@ -1,4 +1,4 @@
-import { useNuxtApp, type AsyncData } from "#app";
+import type { AsyncData } from "nuxt/app";
 
 export default function reactiveApi<Data, Error>(data: AsyncData<Data, Error>) {
   const stopHandler = watch(
