@@ -35,3 +35,11 @@ export function useCuratedPlaylists() {
     useLazyAsyncData("playlists", () => new PlaylistApi().playlistGet()),
   );
 }
+
+export function useFeaturedPlaylists() {
+  return reactiveApi(
+    useLazyAsyncData("playlists-featured", () =>
+      new PlaylistApi().playlistDocumentsGet(),
+    ),
+  );
+}
