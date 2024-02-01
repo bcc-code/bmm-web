@@ -1,4 +1,5 @@
 import { Configuration, DefaultConfig } from "@bcc-code/bmm-sdk-fetch";
+import { useNuxtApp } from "nuxt/app";
 
 export default defineNuxtPlugin((nuxtApp) => {
   const runtimeConfig = useRuntimeConfig();
@@ -26,6 +27,8 @@ export default defineNuxtPlugin((nuxtApp) => {
               ",",
             ),
           );
+          const uiLanguage = useNuxtApp().$i18n.locale.value;
+          headers.set("UiLanguage", uiLanguage);
 
           ctx.init.headers = headers;
 
