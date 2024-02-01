@@ -9,7 +9,13 @@ const props = defineProps<{
   pending: boolean;
 }>();
 
-toolbarTitleStore().setReactiveToolbarTitle(() => props.list?.title ?? " ");
+watch(
+  props,
+  () => {
+    toolbarTitleStore().setToolbarTitle(props.list?.title ?? " ");
+  },
+  { immediate: true },
+);
 </script>
 
 <template>
