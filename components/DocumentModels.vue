@@ -46,7 +46,9 @@ const convertModels = (models: IAllDocumentModels[]) => {
     if (el.type === "Tile") {
       tiles.push(el);
     } else if (el.type === "project_box" || el.type === "listening_streak") {
-      console.log(`don't render ${el.type}`);
+      console.log(
+        `since we don't have a design for ${el.type} we don't render it.`,
+      );
     } else if (el.type === "section_header") {
       currentSection = [];
       result.push({
@@ -141,14 +143,19 @@ const isSmallScreen = breakpoints.smallerOrEqual("lg");
         </NuxtLink>
 
         <div
-          v-else-if="item.type === 'Tile'"
+          v-else-if="item.type === 'Tile' && item.showAllLink"
           class="rounded-2xl bg- w-[450px] h-[225px] flex flex-row"
         >
-          <ProtectedImage
-            v-if="item.coverUrl"
-            :src="item.coverUrl"
+          <NuxtLink
+            :to="parseLink(item.showAllLink)"
             class="w-1/2 aspect-square rounded-l-2xl"
-          />
+          >
+            <ProtectedImage
+              v-if="item.coverUrl"
+              :src="item.coverUrl"
+              class="aspect-square rounded-l-2xl"
+            />
+          </NuxtLink>
           <div
             class="w-1/2 p-6 rounded-r-2xl text-black-1"
             :style="'background: ' + (item.backgroundColor ?? '#F5F6F7')"
