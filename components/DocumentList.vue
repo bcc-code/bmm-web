@@ -166,7 +166,6 @@ const isSmallScreen = breakpoints.smallerOrEqual("lg");
             <li v-else>
               <div style="background-color: rgba(255, 0, 0, 0.4); color: red">
                 "{{ item.type }}" is not yet implemented ...
-                {{ console.log("not implemented", item) }}
               </div>
             </li>
           </template>
