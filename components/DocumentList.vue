@@ -1,8 +1,5 @@
 <script setup lang="ts">
-import type {
-  DocumentListIAllDocumentModels,
-  IAllDocumentModels,
-} from "@bcc-code/bmm-sdk-fetch";
+import type { DocumentListIAllDocumentModels } from "@bcc-code/bmm-sdk-fetch";
 
 const props = defineProps<{
   list: DocumentListIAllDocumentModels | null;
@@ -31,13 +28,8 @@ watch(
     </template>
     <template v-else>
       <DocumentModels
-        v-if="
-          list !== null &&
-          list !== undefined &&
-          list.items !== null &&
-          list.items !== undefined
-        "
-        :models="list.items as IAllDocumentModels[]"
+        v-if="list && list.items"
+        :models="list.items"
       ></DocumentModels>
     </template>
   </div>

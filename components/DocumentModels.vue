@@ -1,7 +1,15 @@
 <script setup lang="ts">
-import type { IAllDocumentModels, TrackModel } from "@bcc-code/bmm-sdk-fetch";
-import type { IDiscoverableGroup } from "~/composables/discover";
+import type {
+  IAllDocumentModels,
+  TrackModel,
+  SectionHeaderModel,
+} from "@bcc-code/bmm-sdk-fetch";
 import { breakpointsTailwind, useBreakpoints } from "@vueuse/core";
+
+type IDiscoverableGroup = {
+  header: SectionHeaderModel | null;
+  items: Exclude<IAllDocumentModels, SectionHeaderModel>[];
+};
 
 const { t } = useI18n();
 
