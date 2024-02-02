@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-const { data: models, pending } = useBrowsePodcast();
+const { data: models, pending } = useBrowseAudiobooks();
 setTitleOfDocumentList(models);
 </script>
 

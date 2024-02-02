@@ -1,3 +1,8 @@
+<script lang="ts" setup>
+const { data: models, pending } = useBrowseMusic();
+setTitleOfDocumentList(models);
+</script>
+
 <template>
-  <h1>The route {{ useRoute().name }} has not been implemented yet.</h1>
+  <DocumentList :items="models?.items" :pending="pending"></DocumentList>
 </template>

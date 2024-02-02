@@ -26,6 +26,8 @@ export default defineNuxtPlugin((nuxtApp) => {
               ",",
             ),
           );
+          const uiLanguage = useNuxtApp().$i18n.locale.value;
+          headers.set("UiLanguage", uiLanguage);
 
           ctx.init.headers = headers;
 
