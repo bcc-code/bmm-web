@@ -1,18 +1,10 @@
 <script setup lang="ts">
-import type { DocumentListIAllDocumentModels } from "@bcc-code/bmm-sdk-fetch";
+import type { IAllDocumentModels } from "@bcc-code/bmm-sdk-fetch";
 
 const props = defineProps<{
-  list: DocumentListIAllDocumentModels | null;
+  items: Array<IAllDocumentModels> | null | undefined;
   pending: boolean;
 }>();
-
-watch(
-  props,
-  () => {
-    toolbarTitleStore().setToolbarTitle(props.list?.title ?? " ");
-  },
-  { immediate: true },
-);
 </script>
 
 <template>
@@ -27,10 +19,7 @@ watch(
       </ul>
     </template>
     <template v-else>
-      <DocumentModels
-        v-if="list && list.items"
-        :models="list.items"
-      ></DocumentModels>
+      <DocumentModels v-if="items" :models="items"></DocumentModels>
     </template>
   </div>
 </template>
