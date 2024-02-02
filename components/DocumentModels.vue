@@ -9,26 +9,65 @@ const props = defineProps<{
   models: IAllDocumentModels[];
 }>();
 
+const dateToUtc = (date: Date) =>
+  new Date(
+    Date.UTC(
+      date.getUTCFullYear(),
+      date.getUTCMonth(),
+      date.getUTCDate(),
+      date.getUTCHours(),
+      date.getUTCMinutes(),
+      date.getUTCSeconds(),
+    ),
+  );
+const formatDate = (date: Date) => {
+  const options: Intl.DateTimeFormatOptions = {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+    timeZone: "UTC",
+  };
+  return new Intl.DateTimeFormat("en-US", options).format(dateToUtc(date));
+};
+const weekDay = (date: Date) => {
+  const options: Intl.DateTimeFormatOptions = {
+    weekday: "long",
+    timeZone: "UTC",
+  };
+  return new Intl.DateTimeFormat("en-US", options).format(dateToUtc(date));
+};
+
 const convertModels = (models: IAllDocumentModels[]) => {
   let currentSection: IDiscoverableGroup["items"] = [];
   const result: IDiscoverableGroup[] = [];
+  const tiles: IDiscoverableGroup["items"] = [];
+
   models.forEach((el, i) => {
-    if (el.type === "section_header") {
+    if (el.type === "Tile") {
+      tiles.push(el);
+    } else if (el.type === "project_box" || el.type === "listening_streak") {
+      console.log(`don't render ${el.type}`);
+    } else if (el.type === "section_header") {
       currentSection = [];
       result.push({
         header: el,
         items: currentSection,
+        useFlex: el.useCoverCarousel === true,
       });
     } else if (i === 0) {
       currentSection = [el];
       result.push({
         header: null,
         items: currentSection,
+        useFlex: false,
       });
     } else {
       currentSection.push(el);
     }
   });
+  if (tiles.length > 0) {
+    result.unshift({ header: null, items: tiles, useFlex: true });
+  }
   return result;
 };
 
@@ -77,10 +116,7 @@ const isSmallScreen = breakpoints.smallerOrEqual("lg");
         </NuxtLink>
       </div>
     </PageHeading>
-    <div
-      v-if="group.header?.useCoverCarousel"
-      class="flex flex-row flex-wrap gap-6"
-    >
+    <div v-if="group.useFlex" class="flex flex-row flex-wrap gap-6">
       <template
         v-for="item in group.items.slice(0, isSmallScreen ? 4 : 6)"
         :key="item.id"
@@ -103,6 +139,33 @@ const isSmallScreen = breakpoints.smallerOrEqual("lg");
         >
           <ItemCard :item="item" />
         </NuxtLink>
+
+        <div
+          v-else-if="item.type === 'Tile'"
+          class="rounded-2xl bg- w-[450px] h-[225px] flex flex-row"
+        >
+          <ProtectedImage
+            v-if="item.coverUrl"
+            :src="item.coverUrl"
+            class="w-1/2 aspect-square rounded-l-2xl"
+          />
+          <div
+            class="w-1/2 p-6 rounded-r-2xl text-black-1"
+            :style="'background: ' + (item.backgroundColor ?? '#F5F6F7')"
+          >
+            <div class="opacity-70">{{ item.title }}</div>
+            <div class="font-semibold text-lg">{{ item.label }}</div>
+            <div v-if="item.date" class="text-sm">
+              {{ weekDay(item.date) }}
+              <span class="opacity-70">{{ formatDate(item.date) }}</span>
+            </div>
+            <div v-else class="text-sm">
+              {{ item.subtitle }}
+            </div>
+          </div>
+          {{ console.log("Tile", item) }}
+        </div>
+
         <div
           v-else
           class="grid w-52 flex-shrink-0 basis-52 gap-4"
@@ -137,8 +200,11 @@ const isSmallScreen = breakpoints.smallerOrEqual("lg");
         <AlbumItem v-else-if="item.type === 'album'" :album="item" />
         <PlaylistItem v-else-if="item.type === 'playlist'" :playlist="item" />
         <PodcastItem v-else-if="item.type === 'podcast'" :podcast="item" />
-        <li v-else>
-          <div style="background-color: rgba(255, 0, 0, 0.4); color: red">
+        <li v-else class="col-span-full" v-if="false">
+          <div
+            style="background-color: rgba(255, 0, 0, 0.4); color: red"
+            class="block w-full"
+          >
             "{{ item.type }}" is not yet implemented ...
             {{ console.log("not implemented", item) }}
           </div>

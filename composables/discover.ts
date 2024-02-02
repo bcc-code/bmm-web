@@ -8,6 +8,7 @@ import type {
 export type IDiscoverableGroup = {
   header: SectionHeaderModel | null;
   items: Exclude<IAllDocumentModels, SectionHeaderModel>[];
+  useFlex: boolean;
 };
 
 export function useDiscover(requestParameters: DiscoverGetRequest) {
