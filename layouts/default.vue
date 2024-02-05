@@ -17,20 +17,23 @@ const { queue } = useNuxtApp().$mediaPlayer;
     <SidebarElement />
     <main class="relative flex-grow overflow-y-auto">
       <AppToolbar />
-      <NuxtErrorBoundary @error="onError">
-        <slot />
-        <template #error="{ error }">
-          <ErrorMsg :error="error.value" />
-        </template>
-      </NuxtErrorBoundary>
+      <div class="flex flex-row">
+        <NuxtErrorBoundary @error="onError">
+          <slot />
+          <template #error="{ error }">
+            <ErrorMsg :error="error.value" />
+          </template>
+        </NuxtErrorBoundary>
+
+        <transition
+          enter-active-class="transition-all duration-200 ease-out"
+          enter-from-class="opacity-0 translate-y-2"
+          leave-active-class="transition-all duration-200 ease-out"
+          leave-to-class="opacity-0 translate-y-2"
+        >
+          <MediaPlayer v-if="queue.length > 0" />
+        </transition>
+      </div>
     </main>
-    <transition
-      enter-active-class="transition-all duration-200 ease-out"
-      enter-from-class="opacity-0 translate-y-2"
-      leave-active-class="transition-all duration-200 ease-out"
-      leave-to-class="opacity-0 translate-y-2"
-    >
-      <MediaPlayer v-if="queue.length > 0" />
-    </transition>
   </div>
 </template>

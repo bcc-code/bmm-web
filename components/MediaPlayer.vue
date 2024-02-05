@@ -136,6 +136,7 @@ const onPointerUpProgressBar = (event: PointerEvent) => {
     </div>
   </transition>
 
+  <div class="min-w-[400px] ml-5" v-if="open"></div>
   <transition
     enter-active-class="transition-all duration-200 ease-out"
     enter-from-class="opacity-0 translate-y-2"
@@ -144,7 +145,7 @@ const onPointerUpProgressBar = (event: PointerEvent) => {
   >
     <div
       v-if="open"
-      class="shadow-player h-100 absolute bottom-5 right-5 flex flex-col rounded-2xl bg-background-1 w-[400px]"
+      class="shadow-player h-100 fixed bottom-5 right-5 flex flex-col rounded-2xl bg-background-1 w-[400px]"
     >
       <div class="px-3 py-6">
         <div class="flex items-center justify-center h-60">
