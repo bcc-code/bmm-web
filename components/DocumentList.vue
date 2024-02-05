@@ -66,7 +66,7 @@ const playItem = (item: TrackModel, group: IDiscoverableGroup) => {
 };
 const playSingleItem = (item: TrackModel) => {
   const items: TrackModel[] = [item];
-  setQueue(items, 0);
+  setQueue(items, 0); // ToDo: read item.lastPositionInMs and go to specific location
 };
 
 const breakpoints = useBreakpoints(breakpointsTailwind);

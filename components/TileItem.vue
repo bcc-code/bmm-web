@@ -30,7 +30,6 @@ const formatDate = (date: Date) => {
     day: "numeric",
     timeZone: "UTC",
   };
-  console.log("locale", locale);
   return new Intl.DateTimeFormat(locale.value, options).format(dateToUtc(date));
 };
 const weekDay = (date: Date) => {
@@ -58,7 +57,7 @@ const weekDay = (date: Date) => {
       />
     </NuxtLink>
     <div
-      class="w-1/2 p-6 rounded-r-2xl text-black-1 relative cursor-pointer"
+      class="w-1/2 p-6 rounded-r-2xl text-black-1 cursor-pointer flex flex-col"
       :style="'background: ' + (item.backgroundColor ?? '#F5F6F7')"
       @click.stop="playTrack"
     >
@@ -71,7 +70,7 @@ const weekDay = (date: Date) => {
       <div v-else class="text-sm">
         {{ item.subtitle }}
       </div>
-      <div class="absolute bottom-6">
+      <div class="flex flex-row w-full mt-auto">
         <button
           class="bg-[#0D131A] rounded-full w-10 h-10"
           @click.stop="playTrack"
@@ -81,8 +80,8 @@ const weekDay = (date: Date) => {
             class="text-black-1 text-[#ffffff] text-2xl p-2"
           />
         </button>
+        <TrackMenu v-if="item.track" :track="item.track"></TrackMenu>
       </div>
     </div>
-    {{ console.log("Tile", item) }}
   </div>
 </template>
