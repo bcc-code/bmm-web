@@ -10,7 +10,7 @@ defineSlots<{
 
 <template>
   <div class="p-3">
-    <span v-if="title" class="mb-0.5 block px-4 py-1 text-[15px] text-label-3">
+    <span v-if="title" class="mb-0.5 block px-4 pt-1 text-[15px] text-label-3">
       {{ title }}
     </span>
     <slot />

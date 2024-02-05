@@ -39,7 +39,7 @@ const onPointerUpProgressBar = (event: PointerEvent) => {
   >
     <div
       v-if="!open"
-      class="group absolute bottom-5 right-5 w-[400px]"
+      class="group fixed bottom-5 right-5 w-[400px]"
       @click.stop="open = !open"
     >
       <svg
