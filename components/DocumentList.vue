@@ -19,34 +19,6 @@ const props = defineProps<{
   pending: boolean;
 }>();
 
-const dateToUtc = (date: Date) =>
-  new Date(
-    Date.UTC(
-      date.getUTCFullYear(),
-      date.getUTCMonth(),
-      date.getUTCDate(),
-      date.getUTCHours(),
-      date.getUTCMinutes(),
-      date.getUTCSeconds(),
-    ),
-  );
-const formatDate = (date: Date) => {
-  const options: Intl.DateTimeFormatOptions = {
-    year: "numeric",
-    month: "short",
-    day: "numeric",
-    timeZone: "UTC",
-  };
-  return new Intl.DateTimeFormat("en-US", options).format(dateToUtc(date));
-};
-const weekDay = (date: Date) => {
-  const options: Intl.DateTimeFormatOptions = {
-    weekday: "long",
-    timeZone: "UTC",
-  };
-  return new Intl.DateTimeFormat("en-US", options).format(dateToUtc(date));
-};
-
 const convertModels = (models: IAllDocumentModels[]) => {
   let currentSection: IDiscoverableGroup["items"] = [];
   const result: IDiscoverableGroup[] = [];
@@ -92,11 +64,9 @@ const playItem = (item: TrackModel, group: IDiscoverableGroup) => {
     items.findIndex((track) => track.id === item.id),
   );
 };
-
-// We remove the hostname so that we use SPA links (without full page refresh)
-const parseLink = (link: string) => {
-  const url = new URL(link);
-  return url.pathname + url.search + url.hash;
+const playSingleItem = (item: TrackModel) => {
+  const items: TrackModel[] = [item];
+  setQueue(items, 0);
 };
 
 const breakpoints = useBreakpoints(breakpointsTailwind);
@@ -166,36 +136,11 @@ const isSmallScreen = breakpoints.smallerOrEqual("lg");
               <ItemCard :item="item" />
             </NuxtLink>
 
-            <div
-              v-else-if="item.type === 'Tile' && item.showAllLink"
-              class="rounded-2xl bg- w-[450px] h-[225px] flex flex-row"
-            >
-              <NuxtLink
-                :to="parseLink(item.showAllLink)"
-                class="w-1/2 aspect-square rounded-l-2xl"
-              >
-                <ProtectedImage
-                  v-if="item.coverUrl"
-                  :src="item.coverUrl"
-                  class="aspect-square rounded-l-2xl"
-                />
-              </NuxtLink>
-              <div
-                class="w-1/2 p-6 rounded-r-2xl text-black-1"
-                :style="'background: ' + (item.backgroundColor ?? '#F5F6F7')"
-              >
-                <div class="opacity-70">{{ item.title }}</div>
-                <div class="font-semibold text-lg">{{ item.label }}</div>
-                <div v-if="item.date" class="text-sm">
-                  {{ weekDay(item.date) }}
-                  <span class="opacity-70">{{ formatDate(item.date) }}</span>
-                </div>
-                <div v-else class="text-sm">
-                  {{ item.subtitle }}
-                </div>
-              </div>
-              {{ console.log("Tile", item) }}
-            </div>
+            <TileItem
+              v-else-if="item.type === 'Tile' && item.track"
+              :item="item"
+              @play-track="playSingleItem(item.track)"
+            ></TileItem>
 
             <div
               v-else
