@@ -28,11 +28,11 @@ const toggleExpandedAlbum = (albumReference: string) => {
         v-if="album.cover"
         :src="album.cover"
         alt=""
-        class="bg-slate-100 aspect-square w-[300px] rounded-2xl"
+        class="bg-slate-100 aspect-square w-[240px] rounded-2xl mt-10"
       />
-      <div class="flex flex-col justify-between p-6">
+      <div class="flex flex-col justify-between px-6 pt-4">
         <div>
-          <PageHeading :level="2">{{ album.title }}</PageHeading>
+          <PageHeading>{{ album.title }}</PageHeading>
         </div>
       </div>
     </header>

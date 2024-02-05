@@ -14,16 +14,16 @@ const { data: tracks, pending: tracksPending } = usePodcastTracks({
 </script>
 
 <template>
-  <div v-if="podcast" class="grid grid-cols-12">
-    <div class="col-span-8 col-start-3">
+  <div v-if="podcast">
+    <div>
       <header class="mb-12 flex gap-6">
         <ProtectedImage
           v-if="podcast.cover"
           :src="podcast.cover"
           alt=""
-          class="aspect-square w-[300px] rounded-2xl bg-background-2"
+          class="aspect-square w-[240px] rounded-2xl bg-background-2 mt-10"
         />
-        <div class="flex flex-col justify-between p-6">
+        <div class="flex flex-col justify-between px-6 pt-4">
           <div>
             <PageHeading>{{ podcast.title }}</PageHeading>
             <p v-if="tracks">
