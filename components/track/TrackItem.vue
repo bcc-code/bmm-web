@@ -99,7 +99,7 @@ function secondsToTime(totalSeconds: number | undefined) {
     <div class="relative grid col-span-full grid-cols-subgrid">
       <div
         v-if="track.meta?.attachedPicture && showThumbnail"
-        class="flex items-center"
+        class="flex items-center hidden lg:block"
       >
         <div class="relative">
           <ProtectedImage
@@ -121,9 +121,9 @@ function secondsToTime(totalSeconds: number | undefined) {
 
       <div
         v-if="!(track.meta?.attachedPicture && showThumbnail)"
-        class="relative"
+        class="relative hidden lg:block"
       ></div>
-      <div class="flex flex-col justify-center">
+      <div class="flex flex-col justify-center col-span-2 lg:col-span-1">
         <h4
           class="block overflow-hidden text-ellipsis font-semibold"
           :title="track.meta?.title || ''"
