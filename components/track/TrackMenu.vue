@@ -76,7 +76,7 @@ const dropdownMenuItemsForTrack = (track: TrackModel) => {
     <MenuButton
       as="button"
       :aria-label="t('track.a11y.options')"
-      class="relative top-0.5 rounded-lg px-2 py-0 my-auto"
+      class="rounded-lg px-2 py-0 flex flex-col h-full justify-center"
     >
       <NuxtIcon name="options" class="text-2xl" />
     </MenuButton>

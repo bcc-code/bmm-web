@@ -26,7 +26,7 @@ const convertModels = (models: IAllDocumentModels[]) => {
 
   models.forEach((el, i) => {
     if (el.type === "Tile") {
-      tiles.push(el);
+      if (!el.lastPositionInMs) tiles.push(el); // We currently don't support continuing from the position. Then it's better to hide it.
     } else if (el.type === "project_box" || el.type === "listening_streak") {
       console.log(
         `since we don't have a design for ${el.type} we don't render it.`,
