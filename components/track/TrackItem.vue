@@ -107,7 +107,7 @@ function secondsToTime(totalSeconds: number | undefined) {
             alt=""
             class="aspect-square w-10 rounded-md bg-background-2"
           />
-          <div class="absolute inset-0 opacity-0 group-hover:opacity-100">
+          <div class="absolute w-10 inset-0 opacity-0 group-hover:opacity-100">
             <div
               class="absolute inset-0 h-full w-full rounded-md bg-black-1 opacity-50 dark:bg-white-1"
             ></div>
