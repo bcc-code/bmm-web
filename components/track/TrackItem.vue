@@ -99,7 +99,7 @@ function secondsToTime(totalSeconds: number | undefined) {
     <div class="relative grid col-span-full grid-cols-subgrid">
       <div
         v-if="track.meta?.attachedPicture && showThumbnail"
-        class="flex items-center"
+        class="flex items-center hidden lg:block"
       >
         <div class="relative">
           <ProtectedImage
@@ -107,7 +107,7 @@ function secondsToTime(totalSeconds: number | undefined) {
             alt=""
             class="aspect-square w-10 rounded-md bg-background-2"
           />
-          <div class="absolute inset-0 opacity-0 group-hover:opacity-100">
+          <div class="absolute w-10 inset-0 opacity-0 group-hover:opacity-100">
             <div
               class="absolute inset-0 h-full w-full rounded-md bg-black-1 opacity-50 dark:bg-white-1"
             ></div>
@@ -121,9 +121,9 @@ function secondsToTime(totalSeconds: number | undefined) {
 
       <div
         v-if="!(track.meta?.attachedPicture && showThumbnail)"
-        class="relative"
+        class="relative hidden lg:block"
       ></div>
-      <div class="flex flex-col justify-center">
+      <div class="flex flex-col justify-center col-span-2 lg:col-span-1">
         <h4
           class="block overflow-hidden text-ellipsis font-semibold"
           :title="track.meta?.title || ''"

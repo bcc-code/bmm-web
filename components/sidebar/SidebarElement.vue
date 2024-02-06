@@ -6,7 +6,7 @@ const { data: collections } = usePrivatePlaylists();
 
 <template>
   <aside
-    class="flex max-h-screen min-w-[300px] flex-col border-r border-label-separator bg-background-2"
+    class="flex-none flex max-h-screen w-[300px] flex-col border-r border-label-separator bg-background-2"
   >
     <div class="flex items-center p-3">
       <SiteLogo size="small" />
