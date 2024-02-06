@@ -75,10 +75,7 @@ const weekDay = (date: Date) => {
           class="bg-[#0D131A] rounded-full w-10 h-10"
           @click.stop="playTrack"
         >
-          <NuxtIcon
-            name="icon.play"
-            class="text-black-1 text-[#ffffff] text-2xl p-2"
-          />
+          <NuxtIcon name="icon.play" class="text-[#ffffff] text-2xl p-2" />
         </button>
         <TrackMenu v-if="item.track" :track="item.track"></TrackMenu>
       </div>

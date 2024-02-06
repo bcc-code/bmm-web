@@ -70,15 +70,15 @@ const dropdownMenuItemsForTrack = (track: TrackModel) => {
 <template>
   <Menu
     as="div"
-    class="relative inline-block px-2 py-0 text-left ml-auto"
+    class="relative px-2 py-0 text-left ml-auto flex flex-col justify-center"
     @click.stop
   >
     <MenuButton
       as="button"
       :aria-label="t('track.a11y.options')"
-      class="rounded-lg px-2 py-0 flex flex-col h-full justify-center"
+      class="rounded-full mx-2 p-1 hover:bg-background-2"
     >
-      <NuxtIcon name="options" class="text-2xl" />
+      <NuxtIcon name="options" class="text-xl" />
     </MenuButton>
 
     <MenuItems
