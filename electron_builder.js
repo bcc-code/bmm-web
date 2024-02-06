@@ -24,10 +24,10 @@ const config = {
     gatekeeperAssess: true,
     target: [
       {
-        target: "dmg",
+        target: "default",
         arch: "x64",
       },
-      { target: "dmg", arch: "arm64" },
+      { target: "default", arch: "arm64" },
     ],
     notarize: {
       teamId: process.env.APPLE_TEAM_ID || "",
