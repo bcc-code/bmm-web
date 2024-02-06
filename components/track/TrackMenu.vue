@@ -76,21 +76,21 @@ const dropdownMenuItemsForTrack = (track: TrackModel) => {
     <MenuButton
       as="button"
       :aria-label="t('track.a11y.options')"
-      class="rounded-full mx-2 p-1 hover:bg-background-2"
+      class="rounded-full mx-2 p-1 hover:bg-background-2 hover:text-label-1"
     >
       <NuxtIcon name="options" class="text-xl" />
     </MenuButton>
 
     <MenuItems
       as="ul"
-      class="absolute right-0 top-10 z-30 w-52 rounded-xl bg-white-1 p-1 shadow-md dark:bg-black-1"
+      class="absolute right-0 top-10 z-30 w-52 rounded-xl p-1 shadow-md bg-background-3"
     >
       <div class="py-0">
         <MenuItem
           v-for="item in dropdownMenuItemsForTrack(track)"
           :key="item.text"
           as="li"
-          class="hover:text-black block w-full cursor-pointer rounded-lg hover:bg-background-2 hover:"
+          class="block w-full cursor-pointer rounded-lg text-label-1 hover:bg-background-2 hover:text-black"
         >
           <NuxtLink
             v-if="'link' in item"

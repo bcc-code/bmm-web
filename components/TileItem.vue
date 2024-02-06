@@ -72,10 +72,10 @@ const weekDay = (date: Date) => {
       </div>
       <div class="flex flex-row w-full mt-auto">
         <button
-          class="bg-[#0D131A] rounded-full w-10 h-10"
+          class="bg-black-1 rounded-full w-10 h-10"
           @click.stop="playTrack"
         >
-          <NuxtIcon name="icon.play" class="text-[#ffffff] text-2xl p-2" />
+          <NuxtIcon name="icon.play" class="text-white-1 text-2xl p-2" />
         </button>
         <TrackMenu v-if="item.track" :track="item.track"></TrackMenu>
       </div>
