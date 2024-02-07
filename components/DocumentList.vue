@@ -9,6 +9,7 @@ import { breakpointsTailwind, useBreakpoints } from "@vueuse/core";
 type IDiscoverableGroup = {
   header: SectionHeaderModel | null;
   items: Exclude<IAllDocumentModels, SectionHeaderModel>[];
+  useFlex: boolean;
 };
 
 const { t } = useI18n();
@@ -21,23 +22,36 @@ const props = defineProps<{
 const convertModels = (models: IAllDocumentModels[]) => {
   let currentSection: IDiscoverableGroup["items"] = [];
   const result: IDiscoverableGroup[] = [];
+  const tiles: IDiscoverableGroup["items"] = [];
+
   models.forEach((el, i) => {
-    if (el.type === "section_header") {
+    if (el.type === "Tile") {
+      if (!el.lastPositionInMs) tiles.push(el); // We currently don't support continuing from the position. Then it's better to hide it.
+    } else if (el.type === "project_box" || el.type === "listening_streak") {
+      console.log(
+        `since we don't have a design for ${el.type} we don't render it.`,
+      );
+    } else if (el.type === "section_header") {
       currentSection = [];
       result.push({
         header: el,
         items: currentSection,
+        useFlex: el.useCoverCarousel === true,
       });
     } else if (i === 0) {
       currentSection = [el];
       result.push({
         header: null,
         items: currentSection,
+        useFlex: false,
       });
     } else {
       currentSection.push(el);
     }
   });
+  if (tiles.length > 0) {
+    result.unshift({ header: null, items: tiles, useFlex: true });
+  }
   return result;
 };
 
@@ -50,11 +64,10 @@ const playItem = (item: TrackModel, group: IDiscoverableGroup) => {
     items.findIndex((track) => track.id === item.id),
   );
 };
-
-// We remove the hostname so that we use SPA links (without full page refresh)
-const parseLink = (link: string) => {
-  const url = new URL(link);
-  return url.pathname + url.search + url.hash;
+const playSingleItem = (item: TrackModel) => {
+  const items: TrackModel[] = [item];
+  setQueue(items, 0); // ToDo: read item.lastPositionInMs and go to specific location
+  // ToDo: load linked album (from showAllLink) and add remaining items to the queue
 };
 
 const breakpoints = useBreakpoints(breakpointsTailwind);
@@ -101,8 +114,8 @@ const isSmallScreen = breakpoints.smallerOrEqual("lg");
           </div>
         </PageHeading>
         <div
-          v-if="group.header?.useCoverCarousel"
-          class="flex flex-row flex-wrap gap-6"
+          v-if="group.useFlex"
+          class="flex flex-row flex-wrap gap-6 mt-3 lg:mt-9"
         >
           <template
             v-for="item in group.items.slice(0, isSmallScreen ? 4 : 6)"
@@ -126,6 +139,13 @@ const isSmallScreen = breakpoints.smallerOrEqual("lg");
             >
               <ItemCard :item="item" />
             </NuxtLink>
+
+            <TileItem
+              v-else-if="item.type === 'Tile' && item.track"
+              :item="item"
+              @play-track="playSingleItem(item.track)"
+            ></TileItem>
+
             <div
               v-else
               class="grid w-52 flex-shrink-0 basis-52 gap-4"
@@ -137,7 +157,7 @@ const isSmallScreen = breakpoints.smallerOrEqual("lg");
         </div>
         <ol
           v-else
-          class="w-full divide-y divide-label-separator grid grid-cols-tracklist"
+          class="w-full divide-y divide-label-separator grid grid-cols-tracklist mt-3 lg:mt-6"
         >
           <template v-for="item in group.items" :key="item.id">
             <h2
@@ -163,7 +183,7 @@ const isSmallScreen = breakpoints.smallerOrEqual("lg");
               :playlist="item"
             />
             <PodcastItem v-else-if="item.type === 'podcast'" :podcast="item" />
-            <li v-else>
+            <li v-else class="col-span-full">
               <div style="background-color: rgba(255, 0, 0, 0.4); color: red">
                 "{{ item.type }}" is not yet implemented ...
               </div>
