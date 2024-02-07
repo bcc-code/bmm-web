@@ -113,7 +113,10 @@ const isSmallScreen = breakpoints.smallerOrEqual("lg");
             </NuxtLink>
           </div>
         </PageHeading>
-        <div v-if="group.useFlex" class="flex flex-row flex-wrap gap-6">
+        <div
+          v-if="group.useFlex"
+          class="flex flex-row flex-wrap gap-6 mt-3 lg:mt-9"
+        >
           <template
             v-for="item in group.items.slice(0, isSmallScreen ? 4 : 6)"
             :key="item.id"
@@ -154,7 +157,7 @@ const isSmallScreen = breakpoints.smallerOrEqual("lg");
         </div>
         <ol
           v-else
-          class="w-full divide-y divide-label-separator grid grid-cols-tracklist"
+          class="w-full divide-y divide-label-separator grid grid-cols-tracklist mt-3 lg:mt-6"
         >
           <template v-for="item in group.items" :key="item.id">
             <h2

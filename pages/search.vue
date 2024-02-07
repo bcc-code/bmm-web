@@ -59,7 +59,7 @@ const { setQueue } = useNuxtApp().$mediaPlayer;
 <template>
   <div>
     <div
-      class="border-gray-300 flex w-60 items-center rounded bg-background-2 p-2"
+      class="border-gray-300 flex w-60 items-center rounded bg-background-2 p-2 mt-6"
     >
       <NuxtIcon name="nav.search" class="text-gray-500 ml-2 h-6 w-6" />
       <input
