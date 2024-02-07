@@ -3,8 +3,8 @@
  * @type {import('electron-builder').Configuration}
  */
 const config = {
-  appId: "org.brunstad.bmm",
-  productName: "BMM alpha",
+  appId: "media.bcc.bmm-web",
+  productName: "BMM",
   files: [
     { from: ".output/public", to: "dist-electron", filter: ["**/*"] },
     { from: "dist-electron", to: "dist-electron", filter: ["**/*"] },
@@ -24,17 +24,17 @@ const config = {
     gatekeeperAssess: true,
     target: [
       {
-        target: "dmg",
+        target: "default",
         arch: "x64",
       },
-      { target: "dmg", arch: "arm64" },
+      { target: "default", arch: "arm64" },
     ],
     notarize: {
       teamId: process.env.APPLE_TEAM_ID || "",
     },
   },
   win: {
-    target: ["msi", "zip"],
+    target: ["nsis", "zip"],
   },
   linux: {
     category: "Audio;Player",
@@ -65,5 +65,9 @@ const config = {
     packageCategory: "sound",
   },
 };
+
+// To debug the auto update on Mac, you can right click on BMM.app and "Show package contents".
+// Then open Contents/MacOS/BMM, which starts a terminal window with some logs and the BMM app as well.
+// The terminal window should give an error message telling you what went wrong.
 
 module.exports = config;
