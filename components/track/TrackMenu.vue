@@ -17,6 +17,7 @@ type DropdownMenuItem = {
 } & ({ link: RoutesNamedLocations } | { clickFunction: Function });
 
 const showInfo = ref(false);
+const showAddToPlaylist = ref(false);
 
 const dropdownMenuItemsForTrack = (track: TrackModel) => {
   const items: DropdownMenuItem[] = [];
@@ -43,7 +44,9 @@ const dropdownMenuItemsForTrack = (track: TrackModel) => {
   items.push({
     icon: "icon.category.playlist",
     text: t("track.dropdown.add-to-playlist"),
-    link: { name: "browse" }, // TODO: change link
+    clickFunction: () => {
+      showAddToPlaylist.value = true;
+    },
   });
   items.push({
     icon: "icon.share",
@@ -115,4 +118,9 @@ const dropdownMenuItemsForTrack = (track: TrackModel) => {
   <DialogBase :show="showInfo" title="Track Details" @close="showInfo = false">
     <TrackDetails :track="track"></TrackDetails>
   </DialogBase>
+  <TrackAddToPlaylist
+    v-if="showAddToPlaylist"
+    :track-id="track.id"
+    @close="showAddToPlaylist = false"
+  ></TrackAddToPlaylist>
 </template>
