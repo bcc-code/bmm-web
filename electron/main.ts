@@ -2,6 +2,7 @@ import { app, protocol, shell, dialog, BrowserWindow, net } from "electron";
 import * as path from "path";
 import * as fs from "fs/promises";
 import { autoUpdater } from "electron-updater";
+import ElectronStore from "electron-store";
 
 const PRODUCTION_APP_PROTOCOL = "bmm";
 const PRODUCTION_APP_PATH = path.join(__dirname);
@@ -12,6 +13,8 @@ let appReadyHasRun = false;
 const navigateToUri = (window: BrowserWindow, url: string) => {
   window.webContents.send("route-changed", url);
 };
+const store = new ElectronStore();
+console.log("Hello world!");
 
 const removeUrlOrigin = (_url: string) => {
   const url = new URL(
@@ -35,6 +38,10 @@ const openWindow = (url: string) => {
     },
   });
 
+  const bounds = store.get("bounds");
+  // restoring settings works fine on Mac. Maybe other environments need additional code to deal with changing monitor setups. See https://github.com/electron/electron/issues/526
+  if (bounds) window.setBounds(bounds);
+
   window.webContents.on("will-navigate", (e, _url) => {
     // Some links from the API have the fixed domain `bmm.brunstad.org` on the `http(s)` protocol. Use our router instead of navigating (which means reloading the "app").
     if (/^https?:\/\/bmm\.brunstad\.org\//.test(_url)) {
@@ -56,6 +63,9 @@ const openWindow = (url: string) => {
     dialog.showErrorBox(url, `${error}`);
   });
 
+  window.on("close", () => {
+    store.set("bounds", window?.getBounds());
+  });
   window.on("closed", () => {
     window = undefined;
   });

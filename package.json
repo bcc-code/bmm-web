@@ -28,6 +28,7 @@
     "@vueuse/core": "^10.7.2",
     "class-variance-authority": "^0.7.0",
     "cross-env": "^7.0.3",
+    "electron-store": "^8.1.0",
     "electron-updater": "^6.1.7",
     "pinia": "^2.1.7",
     "pinia-plugin-persistedstate": "^3.2.1",
