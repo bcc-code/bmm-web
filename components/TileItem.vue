@@ -43,7 +43,7 @@ const weekDay = (date: Date) => {
 
 <template>
   <div
-    v-if="item.showAllLink"
+    v-if="item.showAllLink && item.track"
     class="rounded-2xl bg- w-[450px] h-[225px] flex flex-row"
   >
     <NuxtLink
@@ -77,7 +77,7 @@ const weekDay = (date: Date) => {
         >
           <NuxtIcon name="icon.play" class="text-white-1 text-2xl p-2" />
         </button>
-        <TrackMenu v-if="item.track" :track="item.track"></TrackMenu>
+        <TrackMenu :track="item.track" class="ml-auto"></TrackMenu>
       </div>
     </div>
   </div>

@@ -7,9 +7,15 @@ import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/vue";
 const { t } = useI18n();
 const { addNext, addToQueue } = useNuxtApp().$mediaPlayer;
 
-defineProps<{
-  track: TrackModel;
-}>();
+withDefaults(
+  defineProps<{
+    track: TrackModel;
+    buttonClass: string;
+  }>(),
+  {
+    buttonClass: "",
+  },
+);
 
 type DropdownMenuItem = {
   text: string;
@@ -73,13 +79,15 @@ const dropdownMenuItemsForTrack = (track: TrackModel) => {
 <template>
   <Menu
     as="div"
-    class="relative px-2 py-0 text-left ml-auto flex flex-col justify-center"
+    class="relative text-left flex flex-col justify-center"
+    :class="$attrs.class"
     @click.stop
   >
     <MenuButton
       as="button"
       :aria-label="t('track.a11y.options')"
-      class="rounded-full mx-2 p-1 hover:bg-background-2 hover:text-label-1"
+      class="rounded-full p-1 hover:bg-background-2 hover:text-label-1"
+      :class="buttonClass"
     >
       <NuxtIcon name="options" class="text-xl" />
     </MenuButton>
