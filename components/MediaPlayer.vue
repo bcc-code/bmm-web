@@ -31,11 +31,11 @@ const onPointerUpProgressBar = (event: PointerEvent) => {
 </script>
 
 <template>
-  <transition
-    enter-active-class="transition-all duration-200 ease-out"
-    enter-from-class="opacity-0 translate-y-2"
-    leave-active-class="transition-all duration-200 ease-out"
-    leave-to-class="opacity-0 translate-y-2"
+  <Transition
+    enter-active-class="transition-all duration-500 ease-out"
+    enter-from-class="translate-y-[80vh]"
+    leave-active-class="transition-all duration-500 ease-out"
+    leave-to-class="translate-y-[80vh]"
   >
     <div
       v-if="!open"
@@ -134,14 +134,14 @@ const onPointerUpProgressBar = (event: PointerEvent) => {
         </svg>
       </div>
     </div>
-  </transition>
+  </Transition>
 
-  <div class="min-w-[400px] ml-5" v-if="open"></div>
-  <transition
-    enter-active-class="transition-all duration-200 ease-out"
-    enter-from-class="opacity-0 translate-y-2"
-    leave-active-class="transition-all duration-200 ease-out"
-    leave-to-class="opacity-0 translate-y-2"
+  <div v-if="open" class="min-w-[400px] ml-5"></div>
+  <Transition
+    enter-active-class="transition-all duration-500 ease-out"
+    enter-from-class="translate-y-[80vh]"
+    leave-active-class="transition-all duration-500 ease-out"
+    leave-to-class="translate-y-[80vh]"
   >
     <div
       v-if="open"
@@ -386,7 +386,7 @@ const onPointerUpProgressBar = (event: PointerEvent) => {
         </ul>
       </div>
     </div>
-  </transition>
+  </Transition>
 </template>
 
 <style scoped>
