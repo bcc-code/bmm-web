@@ -104,7 +104,7 @@ function secondsToTime(totalSeconds: number | undefined) {
         >
           <NuxtIcon name="queue" class="text-2xl" />
         </button>
-        <TrackMenu :track="track"></TrackMenu>
+        <TrackMenu :track="track" button-class="px-2"></TrackMenu>
       </div>
     </div>
     <slot />

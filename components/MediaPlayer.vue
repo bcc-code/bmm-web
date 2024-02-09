@@ -304,12 +304,12 @@ const onPointerUpProgressBar = (event: PointerEvent) => {
                 : ""
             }}
           </div>
-          <div
-            class="rounded-full border border-label-separator p-1.5 cursor-pointer"
-            style="background-color: rgba(255, 0, 0, 0.4); color: red"
-          >
-            <NuxtIcon name="options" filled class="text-xl" />
-          </div>
+
+          <TrackMenu
+            v-if="currentTrack"
+            :track="currentTrack"
+            button-class="rounded-full border border-label-separator p-1.5"
+          ></TrackMenu>
         </div>
       </div>
       <hr class="border-label-separator" />
@@ -364,8 +364,9 @@ const onPointerUpProgressBar = (event: PointerEvent) => {
                   </span>
                 </div>
               </div>
+
               <div class="flex justify-between gap-2">
-                <NuxtIcon name="options" filled class="text-2xl" />
+                <TrackMenu :track="item"></TrackMenu>
                 <NuxtIcon
                   v-if="
                     queue.index === i && status === MediaPlayerStatus.Playing
