@@ -368,7 +368,9 @@ const onPointerUpProgressBar = (event: PointerEvent) => {
               <div class="flex justify-between gap-2">
                 <TrackMenu :track="item"></TrackMenu>
                 <NuxtIcon
-                  v-if="queue.index === i"
+                  v-if="
+                    queue.index === i && status === MediaPlayerStatus.Playing
+                  "
                   name="icon.playing (animation)"
                   filled
                   class="text-2xl"
