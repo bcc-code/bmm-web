@@ -24,6 +24,7 @@ type DropdownMenuItem = {
 
 const showInfo = ref(false);
 const showAddToPlaylist = ref(false);
+const showShareDialog = ref(false);
 
 const dropdownMenuItemsForTrack = (track: TrackModel) => {
   const items: DropdownMenuItem[] = [];
@@ -57,7 +58,9 @@ const dropdownMenuItemsForTrack = (track: TrackModel) => {
   items.push({
     icon: "icon.share",
     text: t("track.dropdown.share"),
-    link: { name: "browse" }, // TODO: change link
+    clickFunction: () => {
+      showShareDialog.value = true;
+    },
   });
   items.push({
     icon: "icon.person",
@@ -131,4 +134,9 @@ const dropdownMenuItemsForTrack = (track: TrackModel) => {
     :track-id="track.id"
     @close="showAddToPlaylist = false"
   ></TrackAddToPlaylist>
+  <TrackShareDialog
+    v-if="showShareDialog"
+    :track-id="track.id"
+    @close="showShareDialog = false"
+  ></TrackShareDialog>
 </template>
