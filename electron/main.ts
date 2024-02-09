@@ -14,7 +14,6 @@ const navigateToUri = (window: BrowserWindow, url: string) => {
   window.webContents.send("route-changed", url);
 };
 const store = new ElectronStore();
-console.log("Hello world!");
 
 const removeUrlOrigin = (_url: string) => {
   const url = new URL(
