@@ -10,7 +10,7 @@ const { addNext, addToQueue } = useNuxtApp().$mediaPlayer;
 withDefaults(
   defineProps<{
     track: TrackModel;
-    buttonClass: string;
+    buttonClass?: string;
   }>(),
   {
     buttonClass: "",

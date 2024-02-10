@@ -3,7 +3,7 @@ import { cva, cx } from "class-variance-authority";
 
 const props = withDefaults(
   defineProps<{
-    level: 1 | 2 | 3 | 4 | 5;
+    level?: 1 | 2 | 3 | 4 | 5;
     class?: string;
   }>(),
   {
