@@ -74,7 +74,7 @@ const formatDate = (date: Date) => {
     <div class="w-40">
       <b>{{ t("track.details.album") }}</b>
     </div>
-    <div>{{ track.meta?.album }}</div>
+    <div class="text-label-2">{{ track.meta?.album }}</div>
   </div>
   <hr class="bg-background-2 border-0 h-[2px]" />
   <template v-if="track.publishedAt">
@@ -82,7 +82,7 @@ const formatDate = (date: Date) => {
       <div class="w-40 shrink-0">
         <b>{{ t("track.details.publish-date") }}</b>
       </div>
-      <div>
+      <div class="text-label-2">
         {{ formatDate(track.publishedAt) }}
       </div>
     </div>
@@ -94,6 +94,7 @@ const formatDate = (date: Date) => {
     </div>
     <TimeDuration
       :duration="((track.media || [])[0]?.files || [])[0]?.duration || 0"
+      class="text-label-2"
     ></TimeDuration>
   </div>
   <hr class="bg-background-2 border-0 h-[2px]" />
@@ -101,7 +102,7 @@ const formatDate = (date: Date) => {
     <div class="w-40 shrink-0">
       <b>{{ t("track.details.publisher") }}</b>
     </div>
-    <div>
+    <div class="text-label-2">
       {{ track.publisher }}
     </div>
   </div>
@@ -110,7 +111,7 @@ const formatDate = (date: Date) => {
     <div class="w-40 shrink-0">
       <b>{{ t("track.details.copyright") }}</b>
     </div>
-    <div>
+    <div class="text-label-2">
       {{ track.copyright }}
     </div>
   </div>
