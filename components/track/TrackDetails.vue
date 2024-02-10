@@ -49,22 +49,21 @@ const formatDate = (date: Date) => {
           v-for="reference in track.externalRelations?.filter((x) => x.url)"
           :key="reference.url"
           :to="parseLink(reference.url || '')"
-          class="bg-background-2 m-2 p-3 rounded-2xl flex flex-row gap-2"
+          class="bg-background-2 my-2 p-3 rounded-2xl flex flex-row gap-2 text-2xl"
         >
-          <NuxtIcon name="icon.link" class="text-2xl"></NuxtIcon>
+          <NuxtIcon
+            :name="reference.hasListened ? 'icon.checkmark' : 'icon.link'"
+          ></NuxtIcon>
           <div v-if="reference.name">
             <div
               v-for="(part, index) in reference.name.split(' / ')"
               :key="part"
-              :class="index === 0 ? '' : 'text-sm text-label-2'"
+              :class="index === 0 ? 'text-base' : 'text-sm text-label-2'"
             >
               {{ part }}
             </div>
           </div>
-          <NuxtIcon
-            name="icon.chevron.right"
-            class="text-2xl ml-auto"
-          ></NuxtIcon>
+          <NuxtIcon name="icon.chevron.right" class="ml-auto"></NuxtIcon>
         </NuxtLink>
       </div>
     </div>
