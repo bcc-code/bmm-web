@@ -27,13 +27,13 @@ const selectList = async (playlistId: number, trackId: number) => {
         console.error("The track is alreday in the playlist");
       } else {
         console.error(
-          "some unknown error occurred when adding a track to a playlist.",
+          "The server responded with an error when adding a track to a playlist.",
           e,
         );
       }
     } else {
       console.error(
-        "some unknown error occurred when adding a track to a playlist.",
+        "Some unknown error occurred when adding a track to a playlist.",
         e,
       );
     }
