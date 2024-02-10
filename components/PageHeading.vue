@@ -4,7 +4,6 @@ import { cva, cx } from "class-variance-authority";
 const props = withDefaults(
   defineProps<{
     level?: 1 | 2 | 3 | 4 | 5;
-    class?: string;
   }>(),
   {
     level: 1,
@@ -31,7 +30,7 @@ const className = cva("font-bold leading-tight text-label-1 mt-6 mb-6", {
 </script>
 
 <template>
-  <component :is="component" :class="cx([className({ level }), props.class])">
+  <component :is="component" :class="cx([className({ level })])">
     <slot />
   </component>
 </template>
