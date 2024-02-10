@@ -22,7 +22,6 @@ useHead({
       <ProtectedImage
         v-if="contributor?.cover"
         :src="contributor?.cover"
-        alt=""
         class="bg-slate-100 aspect-square w-[240px] rounded-2xl mt-10"
       />
       <div class="flex flex-col justify-between px-6 pt-4">

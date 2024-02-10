@@ -20,7 +20,6 @@ const { data: tracks, pending: tracksPending } = usePodcastTracks({
         <ProtectedImage
           v-if="podcast.cover"
           :src="podcast.cover"
-          alt=""
           class="aspect-square w-[240px] rounded-2xl bg-background-2 mt-10"
         />
         <div class="flex flex-col justify-between px-6 pt-4">

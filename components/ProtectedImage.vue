@@ -1,16 +1,11 @@
 <script lang="ts" setup>
 import { useAuth0 } from "@auth0/auth0-vue";
 
-const props = withDefaults(
-  defineProps<{
-    src: string;
-    alt?: string;
-    noBorder: boolean;
-  }>(),
-  {
-    noBorder: false,
-  },
-);
+const props = defineProps<{
+  src: string;
+  alt?: string;
+  noBorder?: boolean;
+}>();
 
 const source = ref<string>("");
 const { getAccessTokenSilently } = useAuth0();
@@ -29,7 +24,6 @@ watch(
     :src="source"
     :alt="alt || ''"
     loading="lazy"
-    v-bind="$attrs"
     :class="
       noBorder
         ? ''

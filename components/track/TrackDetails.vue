@@ -13,7 +13,6 @@ defineProps<{
     <div v-if="track.meta?.attachedPicture" class="relative w-24">
       <ProtectedImage
         :src="track.meta?.attachedPicture"
-        alt=""
         class="aspect-square w-24 rounded-md bg-background-2"
       />
     </div>

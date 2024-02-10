@@ -43,7 +43,7 @@ const weekDay = (date: Date) => {
 
 <template>
   <div
-    v-if="item.showAllLink && item.track"
+    v-if="item.showAllLink && item.track && item.title"
     class="rounded-2xl bg- w-[400px] h-[200px] flex flex-row"
   >
     <NuxtLink
@@ -53,6 +53,7 @@ const weekDay = (date: Date) => {
       <ProtectedImage
         v-if="item.coverUrl"
         :src="item.coverUrl"
+        :alt="item.title"
         class="aspect-square rounded-l-2xl"
         no-border
       />
