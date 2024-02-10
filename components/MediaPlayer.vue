@@ -158,6 +158,7 @@ const onPointerUpProgressBar = (event: PointerEvent) => {
             v-if="currentTrack?.meta?.attachedPicture"
             :src="currentTrack?.meta?.attachedPicture"
             class="absolute top-[59px] z-0 w-[160px] blur-[80px]"
+            no-border
           />
         </div>
         <div class="flex flex-col py-3 gap-1">
