@@ -40,7 +40,6 @@ const toggleExpandedAlbum = (albumReference: string) => {
               name: 'album-id',
               params: { id: albumId },
             }"
-            :toast-message="$t('track.dropdown.share-copy-message')"
           >
             <ButtonStyled intent="secondary" class="h-full aspect-square">
               <NuxtIcon name="icon.link" />

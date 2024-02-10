@@ -166,7 +166,6 @@ const dropdownMenuItemsForTrack = (
     v-if="shareLink"
     ref="copyToClipboardComponent"
     :link="shareLink"
-    :toast-message="$t('track.dropdown.share-copy-message')"
   ></CopyToClipboard>
   <TrackAddToPlaylist
     v-if="showAddToPlaylist"

@@ -56,7 +56,6 @@ onBeforeMount(() => {
                 name: 'playlist-curated-id',
                 params: { id: playlistId },
               }"
-              :toast-message="$t('track.dropdown.share-copy-message')"
             >
               <ButtonStyled intent="secondary" class="h-full aspect-square">
                 <NuxtIcon name="icon.link" />
