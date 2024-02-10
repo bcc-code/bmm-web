@@ -2,6 +2,7 @@
 import { MediaPlayerStatus } from "~/plugins/mediaPlayer/mediaPlayer";
 
 const open = ref(false);
+provide("showMediaPlayer", open);
 
 const {
   status,
