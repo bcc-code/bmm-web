@@ -66,7 +66,7 @@ const dropdownMenuItemsForTrack = (track: TrackModel) => {
     clickFunction: () => {
       if (track.contributors && track.contributors.length > 1) {
         showContributorsList.value = true;
-      } else if (track.contributors && track.contributors?.[0]?.id) {
+      } else if (track.contributors?.[0]?.id) {
         navigateTo({
           name: "playlist-contributor-id",
           params: { id: track.contributors[0].id },
