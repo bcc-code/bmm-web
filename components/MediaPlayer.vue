@@ -5,7 +5,6 @@ const open = ref(false);
 const titleRef = ref<HTMLElement | null>(null);
 const subTitleRef = ref<HTMLElement | null>(null);
 const titleRefSmallPlayer = ref<HTMLElement | null>(null);
-const textRefSmallPlayer = ref<HTMLElement | null>(null);
 
 const {
   status,
@@ -88,7 +87,7 @@ const getMarqueeClass = (value: HTMLElement, center: Boolean) => {
             />
           </div>
           <div
-            class="flex gap-1 w-full flex-col overflow-hidden whitespace-nowrap items-center justify-center"
+            class="flex gap-1 w-full flex-col overflow-hidden whitespace-nowrap"
           >
             <div
               ref="titleRefSmallPlayer"
@@ -106,7 +105,7 @@ const getMarqueeClass = (value: HTMLElement, center: Boolean) => {
                 {{ currentTrack?.title }}
               </h3>
             </div>
-            <div>
+            <div class="w-full truncate text-base leading-snug text-label-2">
               <span
                 v-if="currentTrack?.meta?.artist"
                 :title="currentTrack?.meta?.artist"
