@@ -25,7 +25,6 @@ type DropdownMenuItem = {
 const showInfo = ref(false);
 const showAddToPlaylist = ref(false);
 const showContributorsList = ref(false);
-const showMediaPlayer = ref(inject<boolean>("showMediaPlayer"));
 
 const dropdownMenuItemsForTrack = (track: TrackModel) => {
   const items: DropdownMenuItem[] = [];
@@ -72,9 +71,6 @@ const dropdownMenuItemsForTrack = (track: TrackModel) => {
           name: "playlist-contributor-id",
           params: { id: track.contributors[0].id },
         });
-        if (showMediaPlayer) {
-          showMediaPlayer.value = false;
-        }
       }
     },
   });

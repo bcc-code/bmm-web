@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import type { TrackModel } from "@bcc-code/bmm-sdk-fetch";
 
-const showMediaPlayer = inject<boolean>("showMediaPlayer");
-
 defineProps<{
   track: TrackModel;
 }>();
@@ -17,7 +15,6 @@ defineProps<{
           name: 'playlist-contributor-id',
           params: { id: contributor.id ?? 0 },
         }"
-        @click="showMediaPlayer = false"
       >
         {{ contributor.name }}
       </NuxtLink>
