@@ -1,15 +1,25 @@
 <script lang="ts" setup>
 import type { NuxtIconName } from "#build//nuxt-icons";
-import type { RoutesNamedLocations } from "#build/typed-router";
+import type {
+  NuxtRoute,
+  RoutesNamedLocations,
+  RoutesNamesList,
+} from "#build/typed-router";
 import type { TrackModel } from "@bcc-code/bmm-sdk-fetch";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/vue";
 
 const { t } = useI18n();
 const { addNext, addToQueue } = useNuxtApp().$mediaPlayer;
 
+const copyToClipboardComponent = ref<null | { copyToClipboard: () => void }>(
+  null,
+);
+
 withDefaults(
   defineProps<{
     track: TrackModel;
+    shareText: string | null;
+    shareLink: NuxtRoute<RoutesNamesList, string, boolean> | null;
     buttonClass: string;
   }>(),
   {
@@ -24,9 +34,12 @@ type DropdownMenuItem = {
 
 const showInfo = ref(false);
 const showAddToPlaylist = ref(false);
-const showShareTrackMessage = ref(false);
 
-const dropdownMenuItemsForTrack = (track: TrackModel) => {
+const dropdownMenuItemsForTrack = (
+  track: TrackModel,
+  shareText: string,
+  shareLink: NuxtRoute<RoutesNamesList, string, boolean> | null,
+) => {
   const items: DropdownMenuItem[] = [];
 
   items.push({
@@ -55,19 +68,16 @@ const dropdownMenuItemsForTrack = (track: TrackModel) => {
       showAddToPlaylist.value = true;
     },
   });
-  items.push({
-    icon: "icon.share",
-    text: t("track.dropdown.share"),
-    clickFunction: () => {
-      navigator.clipboard.writeText(
-        `${window.location.origin}/track/${track.id}`,
-      );
-      showShareTrackMessage.value = true;
-      setTimeout(() => {
-        showShareTrackMessage.value = false;
-      }, 2000);
-    },
-  });
+
+  if (shareText && shareLink) {
+    items.push({
+      icon: "icon.share",
+      text: shareText,
+      clickFunction: () => {
+        copyToClipboardComponent?.value?.copyToClipboard?.();
+      },
+    });
+  }
   items.push({
     icon: "icon.person",
     text: t("track.dropdown.go-to-contributors"),
@@ -107,7 +117,7 @@ const dropdownMenuItemsForTrack = (track: TrackModel) => {
     >
       <div class="py-0">
         <MenuItem
-          v-for="item in dropdownMenuItemsForTrack(track)"
+          v-for="item in dropdownMenuItemsForTrack(track, shareText, shareLink)"
           :key="item.text"
           as="li"
           class="block w-full cursor-pointer rounded-lg text-label-1 hover:bg-background-2 hover:text-black"
@@ -135,11 +145,12 @@ const dropdownMenuItemsForTrack = (track: TrackModel) => {
   <DialogBase :show="showInfo" title="Track Details" @close="showInfo = false">
     <TrackDetails :track="track"></TrackDetails>
   </DialogBase>
-  <div v-if="showShareTrackMessage" class="fixed bottom-10 right-10 z-10">
-    <p class="bg-tint text-label-1 dark:text-white-1 px-10 py-6 rounded-xl">
-      {{ $t("track.dropdown.share-track-message") }}
-    </p>
-  </div>
+  <CopyToClipboard
+    v-if="shareLink"
+    ref="copyToClipboardComponent"
+    :link="shareLink"
+    :toast-message="$t('track.dropdown.share-copy-message')"
+  ></CopyToClipboard>
   <TrackAddToPlaylist
     v-if="showAddToPlaylist"
     :track-id="track.id"

@@ -6,6 +6,7 @@ defineProps<{
 }>();
 
 const emit = defineEmits<{ "play-track": [] }>();
+const { t } = useI18n();
 
 function playTrack() {
   emit("play-track");
@@ -77,7 +78,19 @@ const weekDay = (date: Date) => {
         >
           <NuxtIcon name="icon.play" class="text-white-1 text-2xl p-2" />
         </button>
-        <TrackMenu :track="item.track" class="ml-auto"></TrackMenu>
+        <TrackMenu
+          :track="item.track"
+          :share-text="t('podcast.action.share')"
+          :share-link="
+            item.shufflePodcastId
+              ? {
+                  name: 'playlist-podcast-id',
+                  params: { id: item.shufflePodcastId },
+                }
+              : null
+          "
+          class="ml-auto"
+        ></TrackMenu>
       </div>
     </div>
   </div>

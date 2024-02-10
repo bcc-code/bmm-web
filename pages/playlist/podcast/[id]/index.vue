@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import type { NuxtRoute, RoutesNamesList } from ".nuxt/typed-router";
+
 const { t } = useI18n();
 toolbarTitleStore().setReactiveToolbarTitle(() => t("nav.podcast"));
 
@@ -38,9 +40,17 @@ const { data: tracks, pending: tracksPending } = usePodcastTracks({
             <ButtonStyled intent="secondary" style="border: 1px solid red">
               {{ t("podcast.action.follow") }}
             </ButtonStyled>
-            <ButtonStyled intent="secondary" style="border: 1px solid red">
-              <NuxtIcon name="icon.link" />
-            </ButtonStyled>
+            <CopyToClipboard
+              :link="{
+                name: 'playlist-podcast-id',
+                params: { id: collectionId },
+              }"
+              :toast-message="$t('track.dropdown.share-copy-message')"
+            >
+              <ButtonStyled intent="secondary">
+                <NuxtIcon name="icon.link" />
+              </ButtonStyled>
+            </CopyToClipboard>
           </div>
         </div>
       </header>

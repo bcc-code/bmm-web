@@ -104,7 +104,12 @@ function secondsToTime(totalSeconds: number | undefined) {
         >
           <NuxtIcon name="queue" class="text-2xl" />
         </button>
-        <TrackMenu :track="track" button-class="px-2"></TrackMenu>
+        <TrackMenu
+          :track="track"
+          :share-text="t('track.dropdown.share')"
+          :share-link="{ name: 'track-id', params: { id: track.id } }"
+          button-class="px-2"
+        />
       </div>
     </div>
     <slot />
