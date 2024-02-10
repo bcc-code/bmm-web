@@ -18,6 +18,68 @@ const formatDate = (date: Date) => {
   };
   return new Intl.DateTimeFormat(locale.value, options).format(dateToUtc(date));
 };
+const songbook = (apiName: string | null | undefined) => {
+  if (apiName === "herrens_veier") return "HV";
+  if (apiName === "mandelblomsten") return "FMB";
+  return apiName;
+};
+
+type Field = {
+  label: string;
+  text: string;
+};
+
+const extractFields = (track: TrackModel) => {
+  const items: Field[] = [];
+
+  if (track.meta?.album)
+    items.push({ label: t("track.details.album"), text: track.meta?.album });
+  if (track.publishedAt)
+    items.push({
+      label: t("track.details.publish-date"),
+      text: formatDate(track.publishedAt),
+    });
+
+  items.push({
+    label: t("track.details.duration"),
+    text: formatTime(((track.media || [])[0]?.files || [])[0]?.duration || 0),
+  });
+  if (track.songbookRelations && track.songbookRelations.length > 0)
+    items.push({
+      label: t("track.details.song-number"),
+      text: track.songbookRelations
+        ?.map((r) => `${songbook(r.name)} ${r.id}`)
+        .join(", "),
+    });
+  if (track.contributors) {
+    const lyricists = track.contributors.filter((c) => c.type === "lyricist");
+    if (lyricists.length > 0)
+      items.push({
+        label: t("track.details.lyricist"),
+        text: lyricists?.map((c) => c.name).join(", "),
+      });
+    const composers = track.contributors.filter((c) => c.type === "composer");
+    if (composers.length > 0)
+      items.push({
+        label: t("track.details.composer"),
+        text: composers?.map((c) => c.name).join(", "),
+      });
+    const arrangers = track.contributors.filter((c) => c.type === "arranger");
+    if (arrangers.length > 0)
+      items.push({
+        label: t("track.details.arranger"),
+        text: arrangers?.map((c) => c.name).join(", "),
+      });
+  }
+  if (track.publisher)
+    items.push({
+      label: t("track.details.publisher"),
+      text: track.publisher,
+    });
+  if (track.copyright)
+    items.push({ label: t("track.details.copyright"), text: track.copyright });
+  return items;
+};
 </script>
 
 <template>
@@ -37,9 +99,9 @@ const formatDate = (date: Date) => {
     </div>
   </div>
   <br />
-  <hr class="bg-background-2 border-0 h-[2px]" />
 
   <template v-if="track.externalRelations?.length ?? 0 > 0">
+    <hr class="bg-background-2 border-0 h-[2px]" />
     <div class="py-4 text-lg">
       <div>
         <b>{{ t("track.details.reference") }}</b>
@@ -70,49 +132,13 @@ const formatDate = (date: Date) => {
     <hr class="bg-background-2 border-0 h-[2px]" />
   </template>
 
-  <div class="py-4 text-lg flex">
-    <div class="w-40">
-      <b>{{ t("track.details.album") }}</b>
-    </div>
-    <div class="text-label-2">{{ track.meta?.album }}</div>
-  </div>
-  <hr class="bg-background-2 border-0 h-[2px]" />
-  <template v-if="track.publishedAt">
+  <template v-for="(field, index) in extractFields(track)" :key="index">
+    <hr class="bg-background-2 border-0 h-[2px]" />
     <div class="py-4 text-lg flex">
       <div class="w-40 shrink-0">
-        <b>{{ t("track.details.publish-date") }}</b>
+        <b>{{ field.label }}</b>
       </div>
-      <div class="text-label-2">
-        {{ formatDate(track.publishedAt) }}
-      </div>
+      <div class="text-label-2">{{ field.text }}</div>
     </div>
-    <hr class="bg-background-2 border-0 h-[2px]" />
   </template>
-  <div class="py-4 text-lg flex">
-    <div class="w-40 shrink-0">
-      <b>{{ t("track.details.duration") }}</b>
-    </div>
-    <TimeDuration
-      :duration="((track.media || [])[0]?.files || [])[0]?.duration || 0"
-      class="text-label-2"
-    ></TimeDuration>
-  </div>
-  <hr class="bg-background-2 border-0 h-[2px]" />
-  <div class="py-4 text-lg flex">
-    <div class="w-40 shrink-0">
-      <b>{{ t("track.details.publisher") }}</b>
-    </div>
-    <div class="text-label-2">
-      {{ track.publisher }}
-    </div>
-  </div>
-  <hr class="bg-background-2 border-0 h-[2px]" />
-  <div class="py-4 text-lg flex">
-    <div class="w-40 shrink-0">
-      <b>{{ t("track.details.copyright") }}</b>
-    </div>
-    <div class="text-label-2">
-      {{ track.copyright }}
-    </div>
-  </div>
 </template>

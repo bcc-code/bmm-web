@@ -90,7 +90,11 @@
       "publish-date": "Publish Date",
       "album": "Album",
       "publisher": "Publisher",
-      "copyright": "Copyright"
+      "copyright": "Copyright",
+      "song-number": "Song number",
+      "arranger": "Arranger",
+      "composer": "Composer",
+      "lyricist": "Lyricist"
     }
   },
   "home": {
