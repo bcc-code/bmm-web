@@ -1,4 +1,4 @@
-<svg width="24" height="20" viewBox="0 0 24 18" fill="none" xmlns="http://www.w3.org/2000/svg" class="bars-playing">
+<svg width="16" height="20" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg" class="bars-playing">
     <rect class="morphing-bar morphing-bar-left" width="2" height="16" fill="currentColor"/>
     <rect class="morphing-bar morphing-bar-center" width="2" height="16" x="5" fill="currentColor"/>
     <rect class="morphing-bar morphing-bar-right" width="2" height="16" x="10" fill="currentColor"/>
