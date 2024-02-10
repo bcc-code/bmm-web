@@ -63,9 +63,11 @@ function secondsToTime(totalSeconds: number | undefined) {
         v-if="!(track.meta?.attachedPicture && showThumbnail)"
         class="relative hidden lg:block"
       ></div>
-      <div class="flex flex-col justify-center col-span-2 lg:col-span-1">
+      <div
+        class="flex flex-col justify-center col-span-2 lg:col-span-1 min-w-0"
+      >
         <h4
-          class="block overflow-hidden text-ellipsis font-semibold"
+          class="block truncate font-semibold"
           :title="track.meta?.title || ''"
         >
           {{ track.meta?.title }}
@@ -73,16 +75,16 @@ function secondsToTime(totalSeconds: number | undefined) {
         <span
           v-if="track.meta?.artist"
           :title="track.meta?.artist"
-          class="block overflow-hidden text-ellipsis text-label-1"
+          class="block truncate text-label-1"
         >
           {{ track.meta?.artist }}
         </span>
       </div>
-      <div v-if="!isTrackTypeKnown" class="flex items-center">
-        <span class="text-label-2">{{ track.subtype }}</span>
+      <div v-if="!isTrackTypeKnown" class="flex items-center min-w-0">
+        <span class="text-label-2 truncate">{{ track.subtype }}</span>
       </div>
-      <div v-if="isTrackTypeKnown" class="flex items-center">
-        <span class="text-label-2">{{ track.meta?.album }}</span>
+      <div v-if="isTrackTypeKnown" class="flex items-center min-w-0">
+        <span class="text-label-2 truncate">{{ track.meta?.album }}</span>
       </div>
       <div class="flex items-center">
         <span class="text-label-2">{{
