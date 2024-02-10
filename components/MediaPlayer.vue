@@ -35,10 +35,10 @@ const onPointerDownProgressBar = () => {
   // and update the players position only on mouse-up.
 };
 
-const getMarqueeClass = (value: HTMLElement) => {
-  const centerElement = { "ml-auto": true, "mr-auto": true };
-  if (value === null) return centerElement;
-  if (!value || !value.parentElement) return centerElement;
+const getMarqueeClass = (value: HTMLElement, center: Boolean) => {
+  const centerClasses = center ? { "ml-auto": true, "mr-auto": true } : {};
+  if (value === null) return centerClasses;
+  if (!value || !value.parentElement) return centerClasses;
   const offset = -(value.scrollWidth - value.parentElement.clientWidth) || 0;
   value.style.setProperty("--animate-marquee-offset", `${offset}px`);
   const isWiderThanParent =
@@ -47,7 +47,7 @@ const getMarqueeClass = (value: HTMLElement) => {
     value.scrollWidth > value.parentElement.getBoundingClientRect().width;
   return {
     "animate-marquee": isWiderThanParent,
-    ...(isWiderThanParent ? {} : centerElement),
+    ...(isWiderThanParent ? {} : centerClasses),
   };
 };
 </script>
@@ -95,7 +95,7 @@ const getMarqueeClass = (value: HTMLElement) => {
               class="w-fit"
               :class="
                 titleRefSmallPlayer
-                  ? getMarqueeClass(titleRefSmallPlayer)
+                  ? getMarqueeClass(titleRefSmallPlayer, false)
                   : null
               "
             >
@@ -106,13 +106,7 @@ const getMarqueeClass = (value: HTMLElement) => {
                 {{ currentTrack?.title }}
               </h3>
             </div>
-            <div
-              ref="textRefSmallPlayer"
-              class="text-base leading-snug text-label-2 w-fit"
-              :class="
-                textRefSmallPlayer ? getMarqueeClass(textRefSmallPlayer) : null
-              "
-            >
+            <div>
               <span
                 v-if="currentTrack?.meta?.artist"
                 :title="currentTrack?.meta?.artist"
@@ -206,7 +200,7 @@ const getMarqueeClass = (value: HTMLElement) => {
           <div
             ref="titleRef"
             class="w-fit"
-            :class="titleRef ? getMarqueeClass(titleRef) : null"
+            :class="titleRef ? getMarqueeClass(titleRef, true) : null"
           >
             <h3
               class="text-center text-lg font-semibold leading-tight"
@@ -221,7 +215,7 @@ const getMarqueeClass = (value: HTMLElement) => {
             <div
               ref="subTitleRef"
               class="w-fit"
-              :class="subTitleRef ? getMarqueeClass(subTitleRef) : null"
+              :class="subTitleRef ? getMarqueeClass(subTitleRef, true) : null"
             >
               <span
                 v-if="currentTrack?.meta?.artist"
