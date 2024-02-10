@@ -68,7 +68,10 @@ const dropdownMenuItemsForTrack = (track: TrackModel) => {
       if (track.contributors && track.contributors.length > 1) {
         showContributorsList.value = true;
       } else if (track.contributors && track.contributors?.[0]?.id) {
-        navigateTo(`/playlist/contributor/${track.contributors[0].id}`);
+        navigateTo({
+          name: "playlist-contributor-id",
+          params: { id: track.contributors[0].id },
+        });
         if (showMediaPlayer) {
           showMediaPlayer.value = false;
         }
