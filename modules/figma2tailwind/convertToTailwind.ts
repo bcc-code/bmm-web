@@ -24,6 +24,16 @@ const config: Partial<Config> = {
     extend: {  
       gridTemplateColumns: {
         tracklist: "3rem auto auto auto auto" 
+      },
+      animation: {
+        marquee: 'marquee 15s ease-in-out infinite',
+      },
+      keyframes: {
+        marquee: {
+          '0%': { transform: 'translateX(0%)' },
+          '85%': { transform: 'translateX(var(--animate-marquee-offset))' },
+          '100%': { transform: 'translateX(0%)' },
+        },
       }
     }
   },
