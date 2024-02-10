@@ -4,7 +4,6 @@ import type {
   TrackModel,
   SectionHeaderModel,
 } from "@bcc-code/bmm-sdk-fetch";
-import { breakpointsTailwind, useBreakpoints } from "@vueuse/core";
 
 type IDiscoverableGroup = {
   header: SectionHeaderModel | null;
@@ -69,9 +68,6 @@ const playSingleItem = (item: TrackModel) => {
   setQueue(items, 0); // ToDo: read item.lastPositionInMs and go to specific location
   // ToDo: load linked album (from showAllLink) and add remaining items to the queue
 };
-
-const breakpoints = useBreakpoints(breakpointsTailwind);
-const isSmallScreen = breakpoints.smallerOrEqual("lg");
 </script>
 
 <template>
