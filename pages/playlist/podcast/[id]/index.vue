@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import type { NuxtRoute, RoutesNamesList } from ".nuxt/typed-router";
-
 const { t } = useI18n();
 toolbarTitleStore().setReactiveToolbarTitle(() => t("nav.podcast"));
 
