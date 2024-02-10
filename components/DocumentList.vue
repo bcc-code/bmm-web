@@ -116,11 +116,13 @@ const isSmallScreen = breakpoints.smallerOrEqual("lg");
         <div
           v-if="group.useFlex"
           class="flex flex-row flex-wrap gap-6 mt-3 lg:mt-9"
+          :class="
+            group.header && group.header?.useCoverCarousel && group.header?.link
+              ? 'overflow-hidden max-h-[27.5rem] lg:max-h-[13rem]'
+              : ''
+          "
         >
-          <template
-            v-for="item in group.items.slice(0, isSmallScreen ? 4 : 6)"
-            :key="item.id"
-          >
+          <template v-for="item in group.items" :key="item.id">
             <NuxtLink
               v-if="item.type === 'album'"
               :to="{ name: 'album-id', params: { id: item.id } }"

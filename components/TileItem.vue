@@ -54,6 +54,7 @@ const weekDay = (date: Date) => {
         v-if="item.coverUrl"
         :src="item.coverUrl"
         class="aspect-square rounded-l-2xl"
+        no-border
       />
     </NuxtLink>
     <div
