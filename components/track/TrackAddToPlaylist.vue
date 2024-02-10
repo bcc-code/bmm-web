@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import { ResponseError } from "@bcc-code/bmm-sdk-fetch";
+
 const { t } = useI18n();
 
 defineProps<{
@@ -19,23 +21,9 @@ const selectList = async (playlistId: number, trackId: number) => {
     await promise;
   } catch (e) {
     // TODO: Something went wrong - e.g. track is already in list ... please report it to the user.
-    if (
-      typeof e === "object" &&
-      e !== null &&
-      "response" in e &&
-      e.response instanceof Response
-    ) {
-      const res = (await e.response.json()) as unknown;
-      if (
-        typeof res === "object" &&
-        res !== null &&
-        "code" in res &&
-        res.code === 400 &&
-        "errors" in res &&
-        Array.isArray(res.errors) &&
-        typeof res.errors[0] === "string" &&
-        res.errors[0].startsWith("TrackAlreadyInTrackCollection")
-      ) {
+    if (e instanceof ResponseError && e.response instanceof Response) {
+      const res = await e.response.text();
+      if (res.includes("TrackAlreadyInTrackCollection:")) {
         console.error("The track is alreday in the playlist");
       } else {
         console.error(
