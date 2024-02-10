@@ -44,7 +44,7 @@ const weekDay = (date: Date) => {
 <template>
   <div
     v-if="item.showAllLink && item.track"
-    class="rounded-2xl bg- w-[450px] h-[225px] flex flex-row"
+    class="rounded-2xl bg- w-[400px] h-[200px] flex flex-row"
   >
     <NuxtLink
       :to="parseLink(item.showAllLink)"
