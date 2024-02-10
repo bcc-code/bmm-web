@@ -24,7 +24,7 @@ type DropdownMenuItem = {
 
 const showInfo = ref(false);
 const showAddToPlaylist = ref(false);
-const showShareDialog = ref(false);
+const showShareTrackMessage = ref(false);
 
 const dropdownMenuItemsForTrack = (track: TrackModel) => {
   const items: DropdownMenuItem[] = [];
@@ -59,7 +59,13 @@ const dropdownMenuItemsForTrack = (track: TrackModel) => {
     icon: "icon.share",
     text: t("track.dropdown.share"),
     clickFunction: () => {
-      showShareDialog.value = true;
+      navigator.clipboard.writeText(
+        `${window.location.origin}/track/${track.id}`,
+      );
+      showShareTrackMessage.value = true;
+      setTimeout(() => {
+        showShareTrackMessage.value = false;
+      }, 2000);
     },
   });
   items.push({
@@ -129,14 +135,14 @@ const dropdownMenuItemsForTrack = (track: TrackModel) => {
   <DialogBase :show="showInfo" title="Track Details" @close="showInfo = false">
     <TrackDetails :track="track"></TrackDetails>
   </DialogBase>
+  <div v-if="showShareTrackMessage" class="fixed bottom-10 right-10 z-10">
+    <p class="bg-tint text-label-1 dark:text-white-1 px-10 py-6 rounded-xl">
+      {{ $t("track.dropdown.share-track-message") }}
+    </p>
+  </div>
   <TrackAddToPlaylist
     v-if="showAddToPlaylist"
     :track-id="track.id"
     @close="showAddToPlaylist = false"
   ></TrackAddToPlaylist>
-  <TrackShareDialog
-    v-if="showShareDialog"
-    :track-id="track.id"
-    @close="showShareDialog = false"
-  ></TrackShareDialog>
 </template>

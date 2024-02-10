@@ -76,11 +76,7 @@
       "add-to-queue": "Add to queue",
       "add-to-playlist": "Add to playlist",
       "share": "Share track",
-      "share-facebook": "Facebook",
-      "share-x": "X",
-      "share-whatsapp": "WhatsApp",
-      "share-email": "Email",
-      "share-clipboard": "Copy link",
+      "share-track-message": "Copied track link to clipboard",
       "go-to-contributors": "Go to contributors",
       "more-info": "More information"
     },
