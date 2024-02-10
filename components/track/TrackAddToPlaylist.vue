@@ -11,10 +11,8 @@ const emit = defineEmits<{
 }>();
 
 const { data: playlists } = usePrivatePlaylists();
-const selectedPlaylistId = ref(0);
 
 const selectList = async (playlistId: number, trackId: number) => {
-  selectedPlaylistId.value = playlistId;
   try {
     const promise = addTrackToPlaylist(playlistId, trackId);
     emit("close");
@@ -52,21 +50,10 @@ const selectList = async (playlistId: number, trackId: number) => {
         v-for="collection in playlists"
         :key="collection.id"
         class="text-label-1 flex flow-row gap-3 p-2 px-5"
-        @class="
-          selectedPlaylistId == collection.id
-            ? ' text-label-1 bg-background-4'
-            : ''
-        "
         @click="selectList(collection.id, trackId)"
       >
         <NuxtIcon name="icon.category.playlist"></NuxtIcon>
         {{ collection.name }}
-        <div
-          v-if="selectedPlaylistId == collection.id"
-          class="bg-background-4 rounded-full w-6 h-6 ml-auto"
-        >
-          <NuxtIcon name="icon.checkmark" class="text-on-color-1 text-2xl" />
-        </div>
       </div>
     </div>
   </DialogBase>
