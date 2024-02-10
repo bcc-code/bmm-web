@@ -6,25 +6,71 @@ const { t } = useI18n();
 defineProps<{
   track: TrackModel;
 }>();
+
+const { locale } = useI18n();
+const formatDate = (date: Date) => {
+  const options: Intl.DateTimeFormatOptions = {
+    weekday: "long",
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+    timeZone: "UTC",
+  };
+  return new Intl.DateTimeFormat(locale.value, options).format(dateToUtc(date));
+};
 </script>
 
 <template>
-  <div class="relative flex items-center justify-normal gap-3">
-    <div v-if="track.meta?.attachedPicture" class="relative w-24">
-      <ProtectedImage
-        :src="track.meta?.attachedPicture"
-        class="aspect-square w-24 rounded-md bg-background-2"
-      />
-    </div>
-    <div class="py-4 text-lg">
-      {{ track.title }}
-      <div class="text-on-color-2">
+  <div class="relative flex items-center justify-normal gap-4">
+    <ProtectedImage
+      v-if="track.meta?.attachedPicture"
+      :src="track.meta?.attachedPicture"
+      class="aspect-square w-24 rounded-md bg-background-2"
+    />
+    <div>
+      <h3 class="text-label-1 py-1 text-2xl font-extrabold">
+        {{ track.title }}
+      </h3>
+      <div class="text-label-2 text-[1.1rem]">
         {{ track.meta?.artist }}
       </div>
     </div>
   </div>
   <br />
   <hr class="bg-background-2 border-0 h-[2px]" />
+
+  <template v-if="track.externalRelations?.length ?? 0 > 0">
+    <div class="py-4 text-lg">
+      <div>
+        <b>{{ t("track.details.reference") }}</b>
+      </div>
+      <div>
+        <NuxtLink
+          v-for="reference in track.externalRelations?.filter((x) => x.url)"
+          :key="reference.url"
+          :to="parseLink(reference.url || '')"
+          class="bg-background-2 m-2 p-3 rounded-2xl flex flex-row gap-2"
+        >
+          <NuxtIcon name="icon.link" class="text-2xl"></NuxtIcon>
+          <div v-if="reference.name">
+            <div
+              v-for="(part, index) in reference.name.split(' / ')"
+              :key="part"
+              :class="index === 0 ? '' : 'text-sm text-label-2'"
+            >
+              {{ part }}
+            </div>
+          </div>
+          <NuxtIcon
+            name="icon.chevron.right"
+            class="text-2xl ml-auto"
+          ></NuxtIcon>
+        </NuxtLink>
+      </div>
+    </div>
+    <hr class="bg-background-2 border-0 h-[2px]" />
+  </template>
+
   <div class="py-4 text-lg flex">
     <div class="w-40">
       <b>{{ t("track.details.album") }}</b>
@@ -32,17 +78,19 @@ defineProps<{
     <div>{{ track.meta?.album }}</div>
   </div>
   <hr class="bg-background-2 border-0 h-[2px]" />
-  <div class="py-4 text-lg flex">
-    <div class="w-40">
-      <b>{{ t("track.details.publish-date") }}</b>
+  <template v-if="track.publishedAt">
+    <div class="py-4 text-lg flex">
+      <div class="w-40 shrink-0">
+        <b>{{ t("track.details.publish-date") }}</b>
+      </div>
+      <div>
+        {{ formatDate(track.publishedAt) }}
+      </div>
     </div>
-    <div>
-      {{ track.publishedAt?.toLocaleDateString() }}
-    </div>
-  </div>
-  <hr class="bg-background-2 border-0 h-[2px]" />
+    <hr class="bg-background-2 border-0 h-[2px]" />
+  </template>
   <div class="py-4 text-lg flex">
-    <div class="w-40">
+    <div class="w-40 shrink-0">
       <b>{{ t("track.details.duration") }}</b>
     </div>
     <TimeDuration
@@ -51,7 +99,7 @@ defineProps<{
   </div>
   <hr class="bg-background-2 border-0 h-[2px]" />
   <div class="py-4 text-lg flex">
-    <div class="w-40">
+    <div class="w-40 shrink-0">
       <b>{{ t("track.details.publisher") }}</b>
     </div>
     <div>
@@ -60,7 +108,7 @@ defineProps<{
   </div>
   <hr class="bg-background-2 border-0 h-[2px]" />
   <div class="py-4 text-lg flex">
-    <div class="w-40">
+    <div class="w-40 shrink-0">
       <b>{{ t("track.details.copyright") }}</b>
     </div>
     <div>
