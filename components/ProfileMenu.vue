@@ -207,13 +207,13 @@ const joinedContentLanguages = computed(() =>
     >
       <RadioGroup
         v-model="colorMode.preference"
-        class="bg-background-2 dark:bg-background-dark-2 rounded-2xl font-semibold"
+        class="bg-background-2 dark:bg-background-dark-2 rounded-lg font-semibold"
       >
         <RadioGroupOption
           v-for="mode in colorModes"
           :key="mode"
           :value="mode"
-          class="flex justify-between px-4 py-3 cursor-pointer hover:bg-on-color-2 focus-visible:bg-on-color-2 w-full first:rounded-t-2xl last:rounded-b-2xl"
+          class="flex justify-between px-4 py-3 cursor-pointer hover:bg-label-separator w-full rounded-lg"
         >
           <span>{{ getColorModeName(mode) }}</span>
           <NuxtIcon

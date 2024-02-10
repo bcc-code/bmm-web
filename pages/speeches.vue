@@ -9,7 +9,7 @@ const { data: speeches, pending } = useTracks({
 
 <template>
   <div>
-    <PageHeading class="mb-6">{{ $t("nav.messages") }}</PageHeading>
+    <PageHeading>{{ $t("nav.messages") }}</PageHeading>
     <TrackList :skeleton-count="10" :show-skeleton="pending" :tracks="speeches">
     </TrackList>
   </div>
