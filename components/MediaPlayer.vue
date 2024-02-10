@@ -3,6 +3,9 @@ import { MediaPlayerStatus } from "~/plugins/mediaPlayer/mediaPlayer";
 
 const open = ref(false);
 const titleRef = ref<HTMLElement | null>(null);
+const subTitleRef = ref<HTMLElement | null>(null);
+const titleRefSmallPlayer = ref<HTMLElement | null>(null);
+const textRefSmallPlayer = ref<HTMLElement | null>(null);
 
 const {
   status,
@@ -21,26 +24,30 @@ const {
   fastForward,
 } = useNuxtApp().$mediaPlayer;
 
-const onPointerDownProgressBar = () => {
-  // Todo: Let user drag the progress-bar on mouse-down, update the time while keeping the song playing, and update the players position only on mouse-up.
-};
 const onPointerUpProgressBar = (event: PointerEvent) => {
   const rect = (event.currentTarget as Element)?.getBoundingClientRect();
   currentPosition.value =
     ((event.clientX - rect.left) / rect.width) * currentTrackDuration.value;
 };
+const onPointerDownProgressBar = () => {
+  // TODO: let user drag the progress-bar on mouse-down,
+  // update the time while keeping the song playing,
+  // and update the players position only on mouse-up.
+};
 
-const getMarqueeClass = () => {
-  const { value } = titleRef;
-  if (!value || !value.parentElement) return {};
+const getMarqueeClass = (value: HTMLElement) => {
+  const centerElement = { "ml-auto": true, "mr-auto": true };
+  if (value === null) return centerElement;
+  if (!value || !value.parentElement) return centerElement;
   const offset = -(value.scrollWidth - value.parentElement.clientWidth) || 0;
-  titleRef.value?.style.setProperty("--animate-marquee-offset", `${offset}px`);
+  value.style.setProperty("--animate-marquee-offset", `${offset}px`);
+  const isWiderThanParent =
+    value &&
+    value.parentElement &&
+    value.scrollWidth > value.parentElement.getBoundingClientRect().width;
   return {
-    "animate-marquee":
-      titleRef.value &&
-      titleRef.value.parentElement &&
-      titleRef.value.scrollWidth >
-        titleRef.value.parentElement.getBoundingClientRect().width,
+    "animate-marquee": isWiderThanParent,
+    ...(isWiderThanParent ? {} : centerElement),
   };
 };
 </script>
@@ -80,14 +87,32 @@ const getMarqueeClass = () => {
               :src="currentTrack?.meta?.attachedPicture"
             />
           </div>
-          <div class="flex gap-1 w-full flex-col overflow-hidden">
-            <h3
-              class="truncate text-lg font-semibold leading-tight"
-              :title="currentTrack?.title || ''"
+          <div
+            class="flex gap-1 w-full flex-col overflow-hidden whitespace-nowrap items-center justify-center"
+          >
+            <div
+              ref="titleRefSmallPlayer"
+              class="w-fit"
+              :class="
+                titleRefSmallPlayer
+                  ? getMarqueeClass(titleRefSmallPlayer)
+                  : null
+              "
             >
-              {{ currentTrack?.title }}
-            </h3>
-            <div class="truncate text-base leading-snug text-label-2">
+              <h3
+                class="truncate text-lg font-semibold leading-tight"
+                :title="currentTrack?.title || ''"
+              >
+                {{ currentTrack?.title }}
+              </h3>
+            </div>
+            <div
+              ref="textRefSmallPlayer"
+              class="text-base leading-snug text-label-2 w-fit"
+              :class="
+                textRefSmallPlayer ? getMarqueeClass(textRefSmallPlayer) : null
+              "
+            >
               <span
                 v-if="currentTrack?.meta?.artist"
                 :title="currentTrack?.meta?.artist"
@@ -175,17 +200,29 @@ const getMarqueeClass = () => {
             class="absolute top-[59px] z-0 w-[160px] blur-[80px]"
           />
         </div>
-        <div class="flex flex-col py-3 gap-1 overflow-x-hidden">
-          <h3
-            class="text-center text-lg font-semibold leading-tight"
-            :title="currentTrack?.title || ''"
+        <div
+          class="flex flex-col py-3 gap-1 overflow-x-hidden whitespace-nowrap"
+        >
+          <div
+            ref="titleRef"
+            class="w-fit"
+            :class="titleRef ? getMarqueeClass(titleRef) : null"
           >
-            {{ currentTrack?.title }}
-          </h3>
+            <h3
+              class="text-center text-lg font-semibold leading-tight"
+              :title="currentTrack?.title || ''"
+            >
+              {{ currentTrack?.title }}
+            </h3>
+          </div>
           <div
             class="overflow-x-hidden whitespace-nowrap text-center text-base leading-snug text-label-2"
           >
-            <div ref="titleRef" class="w-fit" :class="getMarqueeClass()">
+            <div
+              ref="subTitleRef"
+              class="w-fit"
+              :class="subTitleRef ? getMarqueeClass(subTitleRef) : null"
+            >
               <span
                 v-if="currentTrack?.meta?.artist"
                 :title="currentTrack?.meta?.artist"
