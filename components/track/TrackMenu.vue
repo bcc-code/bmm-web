@@ -25,7 +25,7 @@ type DropdownMenuItem = {
 const showInfo = ref(false);
 const showAddToPlaylist = ref(false);
 const showContributorsList = ref(false);
-const showMediaPlayer = inject<boolean>("showMediaPlayer");
+const showMediaPlayer = ref(inject<boolean>("showMediaPlayer"));
 
 const dropdownMenuItemsForTrack = (track: TrackModel) => {
   const items: DropdownMenuItem[] = [];
