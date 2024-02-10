@@ -185,7 +185,7 @@ const getMarqueeClass = () => {
           <div
             class="overflow-x-hidden whitespace-nowrap text-center text-base leading-snug text-label-2"
           >
-            <div ref="titleRef" class="w-fit" v-bind:class="getMarqueeClass()">
+            <div ref="titleRef" class="w-fit" :class="getMarqueeClass()">
               <span
                 v-if="currentTrack?.meta?.artist"
                 :title="currentTrack?.meta?.artist"
