@@ -86,7 +86,7 @@ const playSingleItem = (item: TrackModel) => {
         v-for="group in convertModels(props.items)"
         :key="group.header?.id || 0"
       >
-        <PageHeading v-if="group.header" :level="3">
+        <PageHeading v-if="group.header" :level="3" class="mt-12 mb-5">
           <div class="flex items-center justify-between">
             <div>
               <NuxtLink
@@ -111,7 +111,7 @@ const playSingleItem = (item: TrackModel) => {
         </PageHeading>
         <div
           v-if="group.useFlex"
-          class="flex flex-row flex-wrap gap-6 mt-3 lg:mt-9"
+          class="flex flex-row flex-wrap gap-6 mt-3"
           :class="
             group.header && group.header?.useCoverCarousel && group.header?.link
               ? 'overflow-hidden max-h-[27.5rem] lg:max-h-[13rem]'
