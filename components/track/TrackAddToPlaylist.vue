@@ -1,10 +1,9 @@
 <script lang="ts" setup>
-import { TrackCollectionApi } from "@bcc-code/bmm-sdk-fetch";
-import type { TrackCollectionIdPostRequest } from "@bcc-code/bmm-sdk-fetch";
+import { ResponseError } from "@bcc-code/bmm-sdk-fetch";
 
 const { t } = useI18n();
 
-const props = defineProps<{
+defineProps<{
   trackId: number;
 }>();
 const emit = defineEmits<{
@@ -12,17 +11,31 @@ const emit = defineEmits<{
 }>();
 
 const { data: playlists } = usePrivatePlaylists();
-const selectedPlaylistId = ref(0);
-const idsToLink = (...ids: number[]) => ids.map((id) => `</track/${id}>,`);
 
-const selectList = (playlistId: number) => {
-  selectedPlaylistId.value = playlistId;
-  const options: TrackCollectionIdPostRequest = {
-    id: playlistId,
-    link: idsToLink(props.trackId),
-  };
-  new TrackCollectionApi().trackCollectionIdPost(options);
-  emit("close");
+const selectList = async (playlistId: number, trackId: number) => {
+  try {
+    const promise = addTrackToPlaylist(playlistId, trackId);
+    emit("close");
+    await promise;
+  } catch (e) {
+    // TODO: Something went wrong - e.g. track is already in list ... please report it to the user.
+    if (e instanceof ResponseError && e.response instanceof Response) {
+      const res = await e.response.text();
+      if (res.includes("TrackAlreadyInTrackCollection:")) {
+        console.error("The track is alreday in the playlist");
+      } else {
+        console.error(
+          "The server responded with an error when adding a track to a playlist.",
+          e,
+        );
+      }
+    } else {
+      console.error(
+        "Some unknown error occurred when adding a track to a playlist.",
+        e,
+      );
+    }
+  }
 };
 </script>
 
@@ -36,22 +49,11 @@ const selectList = (playlistId: number) => {
       <div
         v-for="collection in playlists"
         :key="collection.id"
-        class="text-label-1 flex flow-row gap-3 p-2 px-5"
-        @class="
-          selectedPlaylistId == collection.id
-            ? ' text-label-1 bg-background-4'
-            : ''
-        "
-        @click="selectList(collection.id)"
+        class="text-label-1 flex flow-row gap-3 p-2 px-5 cursor-pointer rounded-lg hover:bg-label-separator"
+        @click="selectList(collection.id, trackId)"
       >
         <NuxtIcon name="icon.category.playlist"></NuxtIcon>
         {{ collection.name }}
-        <div
-          v-if="selectedPlaylistId == collection.id"
-          class="bg-background-4 rounded-full w-6 h-6 ml-auto"
-        >
-          <NuxtIcon name="icon.checkmark" class="text-on-color-1 text-2xl" />
-        </div>
       </div>
     </div>
   </DialogBase>

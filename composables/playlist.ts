@@ -1,4 +1,4 @@
-import { PlaylistApi } from "@bcc-code/bmm-sdk-fetch";
+import { PlaylistApi, TrackCollectionApi } from "@bcc-code/bmm-sdk-fetch";
 
 interface UseCuratedPlaylistOptions {
   id: number;
@@ -42,4 +42,11 @@ export function useFeaturedPlaylists() {
       new PlaylistApi().playlistDocumentsGet(),
     ),
   );
+}
+
+export function addTrackToPlaylist(playlistId: number, trackId: number) {
+  return new TrackCollectionApi().trackCollectionIdPost({
+    id: playlistId,
+    link: [`</track/${trackId}>,`],
+  });
 }

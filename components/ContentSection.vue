@@ -4,10 +4,11 @@ import type { RoutesNamedLocations } from "@typed-router";
 withDefaults(
   defineProps<{
     title: string;
-    link?: RoutesNamedLocations;
+    link?: RoutesNamedLocations | null;
     linkLabel?: string;
   }>(),
   {
+    link: null,
     linkLabel: "See all",
   },
 );

@@ -9,7 +9,7 @@ const { data: audiobooks, pending } = useTracks({
 
 <template>
   <div>
-    <PageHeading class="mb-6">{{ $t("nav.audiobooks") }}</PageHeading>
+    <PageHeading>{{ $t("nav.audiobooks") }}</PageHeading>
     <TrackList
       :skeleton-count="10"
       :show-skeleton="pending"
