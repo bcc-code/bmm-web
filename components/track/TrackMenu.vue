@@ -24,6 +24,7 @@ type DropdownMenuItem = {
 
 const showInfo = ref(false);
 const showAddToPlaylist = ref(false);
+const showContributorsList = ref(false);
 
 const dropdownMenuItemsForTrack = (track: TrackModel) => {
   const items: DropdownMenuItem[] = [];
@@ -62,7 +63,16 @@ const dropdownMenuItemsForTrack = (track: TrackModel) => {
   items.push({
     icon: "icon.person",
     text: t("track.dropdown.go-to-contributors"),
-    link: { name: "browse" }, // TODO: change link
+    clickFunction: () => {
+      if (track.contributors && track.contributors.length > 1) {
+        showContributorsList.value = true;
+      } else if (track.contributors?.[0]?.id) {
+        navigateTo({
+          name: "playlist-contributor-id",
+          params: { id: track.contributors[0].id },
+        });
+      }
+    },
   });
   items.push({
     icon: "icon.information",
@@ -125,6 +135,13 @@ const dropdownMenuItemsForTrack = (track: TrackModel) => {
   </Menu>
   <DialogBase :show="showInfo" title="Track Details" @close="showInfo = false">
     <TrackDetails :track="track"></TrackDetails>
+  </DialogBase>
+  <DialogBase
+    :show="showContributorsList"
+    :title="t('track.dropdown.go-to-contributors')"
+    @close="showContributorsList = false"
+  >
+    <TrackContributors :track="track"></TrackContributors>
   </DialogBase>
   <TrackAddToPlaylist
     v-if="showAddToPlaylist"
