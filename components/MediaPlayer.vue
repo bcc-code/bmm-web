@@ -191,6 +191,7 @@ const getMarqueeClass = (value: HTMLElement, center: Boolean) => {
             v-if="currentTrack?.meta?.attachedPicture"
             :src="currentTrack?.meta?.attachedPicture"
             class="absolute top-[59px] z-0 w-[160px] blur-[80px]"
+            no-border
           />
         </div>
         <div
