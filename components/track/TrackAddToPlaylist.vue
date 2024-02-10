@@ -49,7 +49,12 @@ const selectList = async (playlistId: number, trackId: number) => {
       <div
         v-for="collection in playlists"
         :key="collection.id"
-        class="text-label-1 flex flow-row gap-3 p-2 px-5 cursor-pointer rounded-lg hover:bg-label-separator"
+        class="text-label-1 flex flow-row gap-3 p-2 px-5 hover:bg-label-separator rounded-lg"
+        @class="
+          selectedPlaylistId == collection.id
+            ? ' text-label-1 bg-background-4'
+            : ''
+        "
         @click="selectList(collection.id, trackId)"
       >
         <NuxtIcon name="icon.category.playlist"></NuxtIcon>
