@@ -34,6 +34,19 @@ const toggleExpandedAlbum = (albumReference: string) => {
         <div>
           <PageHeading>{{ album.title }}</PageHeading>
         </div>
+        <div class="flex gap-2">
+          <CopyToClipboard
+            :link="{
+              name: 'album-id',
+              params: { id: albumId },
+            }"
+            :toast-message="$t('track.dropdown.share-copy-message')"
+          >
+            <ButtonStyled intent="secondary" class="h-full aspect-square">
+              <NuxtIcon name="icon.link" />
+            </ButtonStyled>
+          </CopyToClipboard>
+        </div>
       </div>
     </header>
     <p v-if="album.children" class="p-2">

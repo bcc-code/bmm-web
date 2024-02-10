@@ -45,7 +45,7 @@ const { data: tracks, pending: tracksPending } = usePodcastTracks({
               }"
               :toast-message="$t('track.dropdown.share-copy-message')"
             >
-              <ButtonStyled intent="secondary">
+              <ButtonStyled intent="secondary" class="h-full aspect-square">
                 <NuxtIcon name="icon.link" />
               </ButtonStyled>
             </CopyToClipboard>
