@@ -2,6 +2,7 @@
 import { MediaPlayerStatus } from "~/plugins/mediaPlayer/mediaPlayer";
 
 const open = ref(false);
+const titleRef = ref<HTMLElement | null>(null);
 
 const {
   status,
@@ -28,13 +29,27 @@ const onPointerUpProgressBar = (event: PointerEvent) => {
   currentPosition.value =
     ((event.clientX - rect.left) / rect.width) * currentTrackDuration.value;
 };
+
+const getMarqueeClass = () => {
+  const { value } = titleRef;
+  if (!value || !value.parentElement) return {};
+  const offset = -(value.scrollWidth - value.parentElement.clientWidth) || 0;
+  titleRef.value?.style.setProperty("--animate-marquee-offset", `${offset}px`);
+  return {
+    "animate-marquee":
+      titleRef.value &&
+      titleRef.value.parentElement &&
+      titleRef.value.scrollWidth >
+        titleRef.value.parentElement.getBoundingClientRect().width,
+  };
+};
 </script>
 
 <template>
   <Transition
     enter-active-class="transition-all duration-500 ease-out"
     enter-from-class="translate-y-[80vh]"
-    leave-active-class="transition-all duration-500 ease-out"
+    leave-active-class="transition-all z-20 duration-500 ease-out"
     leave-to-class="translate-y-[80vh]"
   >
     <div
@@ -140,7 +155,7 @@ const onPointerUpProgressBar = (event: PointerEvent) => {
   <Transition
     enter-active-class="transition-all duration-500 ease-out"
     enter-from-class="translate-y-[80vh]"
-    leave-active-class="transition-all duration-500 ease-out"
+    leave-active-class="transition-all z-30 duration-500 ease-out"
     leave-to-class="translate-y-[80vh]"
   >
     <div
@@ -160,31 +175,35 @@ const onPointerUpProgressBar = (event: PointerEvent) => {
             class="absolute top-[59px] z-0 w-[160px] blur-[80px]"
           />
         </div>
-        <div class="flex flex-col py-3 gap-1">
+        <div class="flex flex-col py-3 gap-1 overflow-x-hidden">
           <h3
-            class="truncate text-center text-lg font-semibold leading-tight"
+            class="text-center text-lg font-semibold leading-tight"
             :title="currentTrack?.title || ''"
           >
             {{ currentTrack?.title }}
           </h3>
-          <div class="text-center truncate text-base leading-snug text-label-2">
-            <span
-              v-if="currentTrack?.meta?.artist"
-              :title="currentTrack?.meta?.artist"
-            >
-              {{ currentTrack.meta?.artist }}
-            </span>
-            <span
-              v-if="currentTrack?.meta?.artist && currentTrack?.meta?.album"
-            >
-              -
-            </span>
-            <span
-              v-if="currentTrack?.meta?.album"
-              :title="currentTrack?.meta?.album"
-            >
-              {{ currentTrack.meta?.album }}
-            </span>
+          <div
+            class="overflow-x-hidden whitespace-nowrap text-center text-base leading-snug text-label-2"
+          >
+            <div ref="titleRef" class="w-fit" v-bind:class="getMarqueeClass()">
+              <span
+                v-if="currentTrack?.meta?.artist"
+                :title="currentTrack?.meta?.artist"
+              >
+                {{ currentTrack.meta?.artist }}
+              </span>
+              <span
+                v-if="currentTrack?.meta?.artist && currentTrack?.meta?.album"
+              >
+                -
+              </span>
+              <span
+                v-if="currentTrack?.meta?.album"
+                :title="currentTrack?.meta?.album"
+              >
+                {{ currentTrack.meta?.album }}
+              </span>
+            </div>
           </div>
         </div>
         <div class="px-4 py-2">
