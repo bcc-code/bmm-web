@@ -36,7 +36,6 @@ function expand() {
       <ProtectedImage
         v-if="album.cover"
         :src="album.cover"
-        alt=""
         class="bg-slate-100 aspect-square w-20 rounded-md"
       />
       <p class="text-2xl font-bold">{{ album.title }}</p>
