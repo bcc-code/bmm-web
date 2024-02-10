@@ -38,7 +38,7 @@ const showContributorsList = ref(false);
 
 const dropdownMenuItemsForTrack = (
   track: TrackModel,
-  shareText: string,
+  shareText: string | null,
   shareLink: NuxtRoute<RoutesNamesList, string, boolean> | null,
 ) => {
   const items: DropdownMenuItem[] = [];
