@@ -2,6 +2,9 @@
 import { MediaPlayerStatus } from "~/plugins/mediaPlayer/mediaPlayer";
 
 const open = ref(false);
+const titleRef = ref<HTMLElement | null>(null);
+const subTitleRef = ref<HTMLElement | null>(null);
+const titleRefSmallPlayer = ref<HTMLElement | null>(null);
 
 const {
   status,
@@ -20,22 +23,40 @@ const {
   fastForward,
 } = useNuxtApp().$mediaPlayer;
 
-const onPointerDownProgressBar = () => {
-  // Todo: Let user drag the progress-bar on mouse-down, update the time while keeping the song playing, and update the players position only on mouse-up.
-};
 const onPointerUpProgressBar = (event: PointerEvent) => {
   const rect = (event.currentTarget as Element)?.getBoundingClientRect();
   currentPosition.value =
     ((event.clientX - rect.left) / rect.width) * currentTrackDuration.value;
 };
+const onPointerDownProgressBar = () => {
+  // TODO: let user drag the progress-bar on mouse-down,
+  // update the time while keeping the song playing,
+  // and update the players position only on mouse-up.
+};
+
+const getMarqueeClass = (value: HTMLElement, center: Boolean) => {
+  const centerClasses = center ? { "ml-auto": true, "mr-auto": true } : {};
+  if (value === null) return centerClasses;
+  if (!value || !value.parentElement) return centerClasses;
+  const offset = -(value.scrollWidth - value.parentElement.clientWidth) || 0;
+  value.style.setProperty("--animate-marquee-offset", `${offset}px`);
+  const isWiderThanParent =
+    value &&
+    value.parentElement &&
+    value.scrollWidth > value.parentElement.getBoundingClientRect().width;
+  return {
+    "animate-marquee": isWiderThanParent,
+    ...(isWiderThanParent ? {} : centerClasses),
+  };
+};
 </script>
 
 <template>
-  <transition
-    enter-active-class="transition-all duration-200 ease-out"
-    enter-from-class="opacity-0 translate-y-2"
-    leave-active-class="transition-all duration-200 ease-out"
-    leave-to-class="opacity-0 translate-y-2"
+  <Transition
+    enter-active-class="transition-all duration-500 ease-out"
+    enter-from-class="translate-y-[80vh]"
+    leave-active-class="transition-all z-20 duration-500 ease-out"
+    leave-to-class="translate-y-[80vh]"
   >
     <div
       v-if="!open"
@@ -65,14 +86,26 @@ const onPointerUpProgressBar = (event: PointerEvent) => {
               :src="currentTrack?.meta?.attachedPicture"
             />
           </div>
-          <div class="flex gap-1 w-full flex-col overflow-hidden">
-            <h3
-              class="truncate text-lg font-semibold leading-tight"
-              :title="currentTrack?.title || ''"
+          <div
+            class="flex gap-1 w-full flex-col overflow-hidden whitespace-nowrap"
+          >
+            <div
+              ref="titleRefSmallPlayer"
+              class="w-fit"
+              :class="
+                titleRefSmallPlayer
+                  ? getMarqueeClass(titleRefSmallPlayer, false)
+                  : null
+              "
             >
-              {{ currentTrack?.title }}
-            </h3>
-            <div class="truncate text-base leading-snug text-label-2">
+              <h3
+                class="truncate text-lg font-semibold leading-tight"
+                :title="currentTrack?.title || ''"
+              >
+                {{ currentTrack?.title }}
+              </h3>
+            </div>
+            <div class="w-full truncate text-base leading-snug text-label-2">
               <span
                 v-if="currentTrack?.meta?.artist"
                 :title="currentTrack?.meta?.artist"
@@ -134,14 +167,14 @@ const onPointerUpProgressBar = (event: PointerEvent) => {
         </svg>
       </div>
     </div>
-  </transition>
+  </Transition>
 
-  <div class="min-w-[400px] ml-5" v-if="open"></div>
-  <transition
-    enter-active-class="transition-all duration-200 ease-out"
-    enter-from-class="opacity-0 translate-y-2"
-    leave-active-class="transition-all duration-200 ease-out"
-    leave-to-class="opacity-0 translate-y-2"
+  <div v-if="open" class="min-w-[400px] ml-5"></div>
+  <Transition
+    enter-active-class="transition-all duration-500 ease-out"
+    enter-from-class="translate-y-[80vh]"
+    leave-active-class="transition-all z-30 duration-500 ease-out"
+    leave-to-class="translate-y-[80vh]"
   >
     <div
       v-if="open"
@@ -160,31 +193,47 @@ const onPointerUpProgressBar = (event: PointerEvent) => {
             class="absolute top-[59px] z-0 w-[160px] blur-[80px]"
           />
         </div>
-        <div class="flex flex-col py-3 gap-1">
-          <h3
-            class="truncate text-center text-lg font-semibold leading-tight"
-            :title="currentTrack?.title || ''"
+        <div
+          class="flex flex-col py-3 gap-1 overflow-x-hidden whitespace-nowrap"
+        >
+          <div
+            ref="titleRef"
+            class="w-fit"
+            :class="titleRef ? getMarqueeClass(titleRef, true) : null"
           >
-            {{ currentTrack?.title }}
-          </h3>
-          <div class="text-center truncate text-base leading-snug text-label-2">
-            <span
-              v-if="currentTrack?.meta?.artist"
-              :title="currentTrack?.meta?.artist"
+            <h3
+              class="text-center text-lg font-semibold leading-tight"
+              :title="currentTrack?.title || ''"
             >
-              {{ currentTrack.meta?.artist }}
-            </span>
-            <span
-              v-if="currentTrack?.meta?.artist && currentTrack?.meta?.album"
+              {{ currentTrack?.title }}
+            </h3>
+          </div>
+          <div
+            class="overflow-x-hidden whitespace-nowrap text-center text-base leading-snug text-label-2"
+          >
+            <div
+              ref="subTitleRef"
+              class="w-fit"
+              :class="subTitleRef ? getMarqueeClass(subTitleRef, true) : null"
             >
-              -
-            </span>
-            <span
-              v-if="currentTrack?.meta?.album"
-              :title="currentTrack?.meta?.album"
-            >
-              {{ currentTrack.meta?.album }}
-            </span>
+              <span
+                v-if="currentTrack?.meta?.artist"
+                :title="currentTrack?.meta?.artist"
+              >
+                {{ currentTrack.meta?.artist }}
+              </span>
+              <span
+                v-if="currentTrack?.meta?.artist && currentTrack?.meta?.album"
+              >
+                -
+              </span>
+              <span
+                v-if="currentTrack?.meta?.album"
+                :title="currentTrack?.meta?.album"
+              >
+                {{ currentTrack.meta?.album }}
+              </span>
+            </div>
           </div>
         </div>
         <div class="px-4 py-2">
@@ -368,7 +417,9 @@ const onPointerUpProgressBar = (event: PointerEvent) => {
               <div class="flex justify-between gap-2">
                 <TrackMenu :track="item"></TrackMenu>
                 <NuxtIcon
-                  v-if="queue.index === i"
+                  v-if="
+                    queue.index === i && status === MediaPlayerStatus.Playing
+                  "
                   name="icon.playing (animation)"
                   filled
                   class="text-2xl"
@@ -384,7 +435,7 @@ const onPointerUpProgressBar = (event: PointerEvent) => {
         </ul>
       </div>
     </div>
-  </transition>
+  </Transition>
 </template>
 
 <style scoped>
