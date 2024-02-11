@@ -47,7 +47,13 @@ onUnmounted(() => {
 </script>
 <template>
   <div ref="elRef" class="w-fit flex relative">
-    <div ref="container" class="inline-block pr-14"><slot /></div>
+    <div
+      ref="container"
+      class="inline-block"
+      :class="{ 'pr-14': contentIsTooLarge }"
+    >
+      <slot />
+    </div>
     <div v-if="contentIsTooLarge" class="inline-block pr-14"><slot /></div>
   </div>
 </template>
