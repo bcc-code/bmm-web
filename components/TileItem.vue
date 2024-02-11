@@ -11,17 +11,6 @@ function playTrack() {
   emit("play-track");
 }
 
-const dateToUtc = (date: Date) =>
-  new Date(
-    Date.UTC(
-      date.getUTCFullYear(),
-      date.getUTCMonth(),
-      date.getUTCDate(),
-      date.getUTCHours(),
-      date.getUTCMinutes(),
-      date.getUTCSeconds(),
-    ),
-  );
 const { locale } = useI18n();
 const formatDate = (date: Date) => {
   const options: Intl.DateTimeFormatOptions = {

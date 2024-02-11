@@ -65,7 +65,7 @@ const emit = defineEmits<{
             <div
               class="bg-label-1 dark:bg-label-dark-1 h-[1px] opacity-10"
             ></div>
-            <div class="p-4 max-h-[500px] overflow-auto">
+            <div class="p-5 overflow-auto max-h-[80vh]">
               <DialogDescription v-if="description" class="mb-4">
                 {{ description }}
               </DialogDescription>

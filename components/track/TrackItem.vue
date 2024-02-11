@@ -18,13 +18,6 @@ const emit = defineEmits<{ "play-track": [] }>();
 function playTrack() {
   emit("play-track");
 }
-
-function secondsToTime(totalSeconds: number | undefined) {
-  if (totalSeconds === undefined) return "";
-  const minutes = Math.ceil(totalSeconds / 60);
-  const seconds = totalSeconds % 60;
-  return `${minutes}:${seconds.toString().padStart(2, "0")}`;
-}
 </script>
 
 <template>
@@ -86,9 +79,11 @@ function secondsToTime(totalSeconds: number | undefined) {
         <span class="text-label-2 truncate">{{ track.meta?.album }}</span>
       </div>
       <div class="flex items-center">
-        <span class="text-label-2">{{
-          secondsToTime(track.media?.[0]?.files?.[0]?.duration)
-        }}</span>
+        <span class="text-label-2">
+          <TimeDuration
+            :duration="((track.media || [])[0]?.files || [])[0]?.duration || 0"
+          ></TimeDuration>
+        </span>
       </div>
       <div class="flex items-center gap-1">
         <button
