@@ -85,11 +85,16 @@
       "options": "Toon opties"
     },
     "details": {
-      "duration": "Afspeelduur:",
-      "publish-date": "Publicatiedatum:",
-      "album": "Album:",
-      "publisher": "Uitgever:",
-      "copyright": "Copyright:"
+      "reference": "Reference",
+      "duration": "Afspeelduur",
+      "publish-date": "Publish Date",
+      "album": "Album",
+      "publisher": "Uitgever",
+      "copyright": "Auteursrecht",
+      "song-number": "Liednummer",
+      "arranger": "Arrangeur",
+      "composer": "Componist",
+      "lyricist": "Schrijver"
     }
   },
   "home": {
