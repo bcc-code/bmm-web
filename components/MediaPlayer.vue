@@ -70,14 +70,14 @@ const onPointerDownProgressBar = () => {
           <div
             class="flex gap-1 w-full flex-col overflow-hidden whitespace-nowrap"
           >
-            <TextMarquee>
+            <div class="w-full truncate">
               <h3
                 class="truncate text-lg font-semibold leading-tight"
                 :title="currentTrack?.title || ''"
               >
                 {{ currentTrack?.title }}
               </h3>
-            </TextMarquee>
+            </div>
             <div class="w-full truncate text-base leading-snug text-label-2">
               <span
                 v-if="currentTrack?.meta?.artist"
