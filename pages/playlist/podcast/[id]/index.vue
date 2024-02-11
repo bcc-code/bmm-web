@@ -1,4 +1,6 @@
 <script lang="ts" setup>
+import type { TrackModel } from "@bcc-code/bmm-sdk-fetch";
+
 const { t } = useI18n();
 toolbarTitleStore().setReactiveToolbarTitle(() => t("nav.podcast"));
 
@@ -18,7 +20,14 @@ const onPressPlay = () => {
 };
 
 const onPressShuffle = () => {
-  const shuffledTracks = usePodcastShuffle(collectionId).data;
+  let shuffledTracks: Ref<TrackModel[] | null>;
+  try {
+    shuffledTracks = usePodcastShuffle(collectionId).data;
+  } catch (error) {
+    // TODO: Show proper error message
+    console.error("Failed to fetch shuffle tracks (%s)", error);
+    return;
+  }
   if (shuffledTracks.value) {
     setQueue(shuffledTracks.value);
   }
