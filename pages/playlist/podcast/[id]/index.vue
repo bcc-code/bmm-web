@@ -2,6 +2,7 @@
 const { t } = useI18n();
 toolbarTitleStore().setReactiveToolbarTitle(() => t("nav.podcast"));
 
+const { setQueue } = useNuxtApp().$mediaPlayer;
 const { id } = useRoute<"playlist-podcast-id">().params;
 const collectionId = Number(id);
 
@@ -9,6 +10,19 @@ const { data: podcast } = usePodcast({ id: collectionId });
 const { data: tracks, pending: tracksPending } = usePodcastTracks({
   id: collectionId,
 });
+
+const onPressPlay = () => {
+  if (tracks.value) {
+    setQueue(tracks.value);
+  }
+};
+
+const onPressShuffle = () => {
+  const shuffledTracks = usePodcastShuffle(collectionId).data;
+  if (shuffledTracks.value) {
+    setQueue(shuffledTracks.value);
+  }
+};
 
 // TODO: Group episodes into weeks
 </script>
@@ -30,12 +44,13 @@ const { data: tracks, pending: tracksPending } = usePodcastTracks({
             </p>
           </div>
           <div class="flex gap-2">
-            <ButtonStyled intent="primary" style="border: 1px solid red">
-              <NuxtIcon name="icon.play" />
+            <ButtonStyled intent="primary" @click.stop="onPressPlay">
+              <NuxtIcon name="icon.play" class="text-2xl" />
               {{ t("podcast.action.play") }}
             </ButtonStyled>
-            <ButtonStyled intent="secondary" style="border: 1px solid red">
-              {{ t("podcast.action.follow") }}
+            <ButtonStyled intent="primary" @click.stop="onPressShuffle">
+              <NuxtIcon name="icon.shuffle" class="text-2xl" />
+              {{ t("playlist.action.shuffle") }}
             </ButtonStyled>
             <ButtonStyled intent="secondary" style="border: 1px solid red">
               <NuxtIcon name="icon.link" />
