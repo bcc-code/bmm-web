@@ -11,22 +11,37 @@ const speed = 50; // in pixel per second
 const delay = 2000; // in millisecons
 const bufferSpace = 5; // Only start marquee if content exceepds parent by this amount of pixels
 
-const onSlotContentChange = () => {
+watch(contentIsTooLarge, () => {
+  if (!container.value) return;
+
+  const { scrollWidth } = container.value;
+
+  if (contentIsTooLarge.value) {
+    setTimeout(() => {
+      elRef.value!.style.animation = `vue-component-text-marquee ${scrollWidth * (1 / speed)}s linear infinite`;
+    }, delay);
+  } else {
+    elRef.value!.style.animation = "";
+  }
+});
+
+const checkIfContentIsTooLarge = () => {
   if (!elRef.value?.parentElement || !container.value) return;
 
   const { scrollWidth } = container.value;
   const { clientWidth } = elRef.value.parentElement;
 
-  elRef.value.style.animation = "";
+  contentIsTooLarge.value = scrollWidth > clientWidth + bufferSpace;
+};
 
-  if (scrollWidth > clientWidth + bufferSpace) {
-    contentIsTooLarge.value = true;
-    setTimeout(() => {
-      elRef.value!.style.animation = `vue-component-text-marquee ${scrollWidth * (1 / speed)}s linear infinite`;
-    }, delay);
-  } else {
-    contentIsTooLarge.value = false;
-  }
+const onSlotContentChange = () => {
+  // Reset the animation if content changed.
+  elRef.value!.style.animation = "";
+  contentIsTooLarge.value = false;
+
+  setTimeout(() => {
+    checkIfContentIsTooLarge();
+  });
 };
 
 onMounted(() => {
@@ -39,10 +54,13 @@ onMounted(() => {
   });
 
   onSlotContentChange();
+
+  window.addEventListener("resize", checkIfContentIsTooLarge);
 });
 
 onUnmounted(() => {
   mutationObserver.value?.disconnect();
+  window.removeEventListener("resize", checkIfContentIsTooLarge);
 });
 </script>
 <template>
