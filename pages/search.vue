@@ -15,6 +15,12 @@ let stopHandles: (() => void)[] = [];
 watchDebounced(
   [searchTerm, activeTab],
   () => {
+    if (searchTerm.value === "") {
+      loading.value = false;
+      results.value = null;
+      return;
+    }
+
     const searchOptions = {
       term: searchTerm.value,
       filter: activeTab.value,
@@ -40,7 +46,7 @@ watchDebounced(
       ),
     ];
   },
-  { immediate: true, debounce: 1000, maxWait: 5000 },
+  { immediate: true, debounce: 200, maxWait: 5000 },
 );
 
 const tabs = [
@@ -83,8 +89,22 @@ const { setQueue } = useNuxtApp().$mediaPlayer;
           {{ tab }}
         </button>
       </div>
-      <div class="border-t border-label-4 p-4">
+      <div class="border-t border-label-4 py-4">
         <div>
+          <div class="text-2xl font-extrabold pt-6 pb-4">
+            <template v-if="loading">loading results</template>
+            <template
+              v-else-if="!results?.items || results?.items?.length === 0"
+            >
+              <template v-if="searchTerm === ''">
+                <div class="text-lg">
+                  Use the search field to search for content on BMM
+                </div>
+              </template>
+              <template v-else>No results found</template>
+            </template>
+            <template v-else>{{ results.items.length }} results found</template>
+          </div>
           <ol
             class="grid grid-cols-tracklist grid-rows-1 w-full divide-y divide-label-separator gap-4"
           >
@@ -116,7 +136,6 @@ const { setQueue } = useNuxtApp().$mediaPlayer;
                 {{ ((a: never) => {})(item) }}
               </li>
             </template>
-            <li v-if="results?.items?.length === 0">No results found</li>
           </ol>
         </div>
       </div>
