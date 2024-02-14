@@ -85,16 +85,21 @@
       "options": "Show options"
     },
     "details": {
-      "duration": "Duration:",
-      "publish-date": "Publish Date:",
-      "album": "Album:",
-      "publisher": "Publisher:",
-      "copyright": "Copyright:"
+      "reference": "Reference",
+      "duration": "Varighet",
+      "publish-date": "Publiseringsdato",
+      "album": "Album",
+      "publisher": "Forlegger",
+      "copyright": "Opphavsrett",
+      "song-number": "Sangnummer",
+      "arranger": "Arrangør",
+      "composer": "Komponist",
+      "lyricist": "Tekstforfatter"
     }
   },
   "home": {
     "list": {
-      "see-all": "See all"
+      "see-all": "Vis alle"
     }
   }
 }
