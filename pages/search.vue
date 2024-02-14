@@ -2,7 +2,7 @@
 import type { SearchFilter, SearchResults } from "@bcc-code/bmm-sdk-fetch";
 
 const { t } = useI18n();
-toolbarTitleStore().setReactiveToolbarTitle(() => t("nav.search"));
+toolbarTitleStore().setReactiveToolbarTitle(() => "");
 
 const activeTab = ref<SearchFilter>("All");
 const searchTerm = ref("");
@@ -11,6 +11,9 @@ const results = ref<SearchResults | null>(null);
 const loading = ref(true);
 
 let stopHandles: (() => void)[] = [];
+
+const isMounted = ref<boolean>(false);
+onMounted(() => (isMounted.value = true));
 
 watchDebounced(
   [searchTerm, activeTab],
@@ -64,18 +67,28 @@ const { setQueue } = useNuxtApp().$mediaPlayer;
 
 <template>
   <div>
-    <div
-      class="border-gray-300 flex w-60 items-center rounded bg-background-2 p-2 mt-6"
-    >
-      <NuxtIcon name="nav.search" class="text-gray-500 ml-2 h-6 w-6" />
-      <input
-        v-model="searchTerm"
-        type="text"
-        placeholder="Search..."
-        class="w-auto flex-grow bg-background-2 px-2 outline-none"
-      />
-    </div>
-    <div class="w-full">
+    <Teleport v-if="isMounted" to="header .teleport">
+      <div
+        class="inline-block rounded-lg bg-background-2 focus-within:bg-background-1 mt-2 ml-[-0.75rem] focus-within:shadow-[0_4px_12px_0_#0000000D,0_1px_4px_0_#0000000D,0_0_0_1px_#0000000D]"
+        :class="searchTerm === '' ? '' : 'bg-background-'"
+      >
+        <div class="flex w-80 items-center px-3 py-2">
+          <NuxtIcon name="nav.search" class="text-label-1 text-xl" />
+          <input
+            v-model="searchTerm"
+            type="text"
+            placeholder="Search"
+            class="w-auto flex-grow bg-background-2 focus-within:bg-background-1 px-2 outline-none text-label-1 text-[17px] placeholder:text-label-3"
+          />
+          <NuxtIcon
+            v-if="searchTerm !== ''"
+            name="icon.close.small"
+            class="text-label-1 text-2xl cursor-pointer"
+            @click="searchTerm = ''"
+          ></NuxtIcon>
+        </div>
+      </div>
+
       <div class="flex space-x-6">
         <button
           v-for="tab in tabs"
@@ -89,7 +102,10 @@ const { setQueue } = useNuxtApp().$mediaPlayer;
           {{ tab }}
         </button>
       </div>
-      <div class="border-t border-label-4 py-4">
+    </Teleport>
+
+    <div class="w-full">
+      <div class="py-4">
         <div>
           <div class="text-2xl font-extrabold pt-6 pb-4">
             <template v-if="loading">loading results</template>

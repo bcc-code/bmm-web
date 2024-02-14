@@ -7,6 +7,7 @@ const showBackButton = computed(() => globalThis.history.length > 1 && route.nam
     class="sticky top-0 z-20 flex justify-between border-b border-label-separator bg-white-2 backdrop-blur-md dark:bg-black-2"
   >
     <div class="flex flex-row mx-5">
+      <div class="teleport"></div>
       <div
         v-if="showBackButton"
         class="p-4 cursor-pointer"
