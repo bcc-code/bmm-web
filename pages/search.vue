@@ -69,7 +69,7 @@ const { setQueue } = useNuxtApp().$mediaPlayer;
   <div>
     <Teleport v-if="isMounted" to="header .teleport">
       <div
-        class="inline-block rounded-lg bg-background-2 focus-within:bg-background-1 mt-2 ml-[-0.75rem] focus-within:shadow-[0_4px_12px_0_#0000000D,0_1px_4px_0_#0000000D,0_0_0_1px_#0000000D]"
+        class="inline-block rounded-lg bg-background-2 focus-within:bg-background-1 mt-2 focus-within:shadow-[0_4px_12px_0_#0000000D,0_1px_4px_0_#0000000D,0_0_0_1px_#0000000D]"
         :class="searchTerm === '' ? '' : 'bg-background-'"
       >
         <div class="flex w-80 items-center px-3 py-2">
@@ -89,17 +89,23 @@ const { setQueue } = useNuxtApp().$mediaPlayer;
         </div>
       </div>
 
-      <div class="flex space-x-6">
+      <div class="flex">
         <button
           v-for="tab in tabs"
           :key="tab"
-          class="py-2 text-label-3"
-          :class="{
-            'border-b-2 border-label-1 text-label-1': activeTab === tab,
-          }"
+          class="px-3"
           @click="activeTab = tab"
         >
-          {{ tab }}
+          <div
+            class="py-[16px]"
+            :class="{
+              'border-b-2 pb-[14px] border-label-1 text-label-1':
+                activeTab === tab,
+              'text-label-3': activeTab !== tab,
+            }"
+          >
+            {{ tab }}
+          </div>
         </button>
       </div>
     </Teleport>
@@ -112,17 +118,13 @@ const { setQueue } = useNuxtApp().$mediaPlayer;
             <template
               v-else-if="!results?.items || results?.items?.length === 0"
             >
-              <template v-if="searchTerm === ''">
-                <div class="text-lg">
-                  Use the search field to search for content on BMM
-                </div>
-              </template>
+              <template v-if="results === null">No results yet</template>
               <template v-else>No results found</template>
             </template>
-            <template v-else>{{ results.items.length }} results found</template>
+            <template v-else>{{ results.items.length }} results</template>
           </div>
           <ol
-            class="grid grid-cols-tracklist grid-rows-1 w-full divide-y divide-label-separator gap-4"
+            class="grid grid-cols-tracklist grid-rows-1 w-full divide-y divide-label-separator"
           >
             <template v-for="item in results?.items" :key="item.id">
               <TrackItem
