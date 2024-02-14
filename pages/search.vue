@@ -1,10 +1,11 @@
 <script lang="ts" setup>
 import type { SearchFilter, SearchResults } from "@bcc-code/bmm-sdk-fetch";
 
+const router = useRouter();
 const { t } = useI18n();
 toolbarTitleStore().setReactiveToolbarTitle(() => "");
 
-const activeTab = ref<SearchFilter>("All");
+const searchFilter = ref<SearchFilter>("All");
 const searchTerm = ref("");
 
 const results = ref<SearchResults | null>(null);
@@ -16,7 +17,7 @@ const isMounted = ref<boolean>(false);
 onMounted(() => (isMounted.value = true));
 
 watchDebounced(
-  [searchTerm, activeTab],
+  [searchTerm, searchFilter],
   () => {
     if (searchTerm.value === "") {
       loading.value = false;
@@ -26,7 +27,7 @@ watchDebounced(
 
     const searchOptions = {
       term: searchTerm.value,
-      filter: activeTab.value,
+      filter: searchFilter.value,
     };
     const { data, pending, stopHandler } = useSearch(searchOptions);
     stopHandles.forEach((el) => el());
@@ -94,17 +95,17 @@ const { setQueue } = useNuxtApp().$mediaPlayer;
           v-for="tab in tabs"
           :key="tab"
           class="px-3"
-          @click="activeTab = tab"
+          @click="searchFilter = tab"
         >
           <div
             class="py-[16px]"
             :class="{
               'border-b-2 pb-[14px] border-label-1 text-label-1':
-                activeTab === tab,
-              'text-label-3': activeTab !== tab,
+                searchFilter === tab,
+              'text-label-3': searchFilter !== tab,
             }"
           >
-            {{ tab }}
+            {{ t("search.search-filter." + tab) }}
           </div>
         </button>
       </div>
@@ -114,14 +115,20 @@ const { setQueue } = useNuxtApp().$mediaPlayer;
       <div class="py-4">
         <div>
           <div class="text-2xl font-extrabold pt-6 pb-4">
-            <template v-if="loading">loading results</template>
+            <template v-if="loading">{{
+              t("search.loading-results")
+            }}</template>
             <template
               v-else-if="!results?.items || results?.items?.length === 0"
             >
-              <template v-if="results === null">No results yet</template>
-              <template v-else>No results found</template>
+              <template v-if="results === null">{{
+                t("search.no-results-yet")
+              }}</template>
+              <template v-else>{{ t("search.no-results-found") }}</template>
             </template>
-            <template v-else>{{ results.items.length }} results</template>
+            <template v-else>
+              {{ t("search.result-count", results.items.length) }}
+            </template>
           </div>
           <ol
             class="grid grid-cols-tracklist grid-rows-1 w-full divide-y divide-label-separator"
