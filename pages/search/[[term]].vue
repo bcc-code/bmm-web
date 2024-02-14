@@ -60,6 +60,7 @@ watchDebounced(
               ? { term: searchTerm.value, filter: searchFilter.value }
               : { term: searchTerm.value };
 
+          // Todo: it would be better to store the term in params instead of query, but that causes an annoying page reload.
           router.push({
             query,
           });
