@@ -29,7 +29,7 @@ const { data: collections } = usePrivatePlaylists();
         />
         <SidebarItem
           :title="$t('nav.search')"
-          :link="{ name: 'search' }"
+          :link="{ name: 'search-term' }"
           icon="nav.search"
         />
       </SidebarGroup>

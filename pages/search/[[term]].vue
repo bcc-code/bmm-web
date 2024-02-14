@@ -1,12 +1,28 @@
 <script lang="ts" setup>
-import type { SearchFilter, SearchResults } from "@bcc-code/bmm-sdk-fetch";
+import { SearchFilter } from "@bcc-code/bmm-sdk-fetch";
+import type { SearchResults } from "@bcc-code/bmm-sdk-fetch";
 
 const router = useRouter();
 const { t } = useI18n();
 toolbarTitleStore().setReactiveToolbarTitle(() => "");
+const route = useRoute<"search-term">();
 
-const searchFilter = ref<SearchFilter>("All");
-const searchTerm = ref("");
+const { filter } = route.query;
+const searchFilter = ref<SearchFilter>(
+  filter &&
+    (filter === "All" ||
+      filter === "Speeches" ||
+      filter === "Music" ||
+      filter === "Albums" ||
+      filter === "Contributors" ||
+      filter === "Podcasts" ||
+      filter === "Playlists")
+    ? filter
+    : "All",
+);
+
+const termParam = route.query.term ?? route.params.term;
+const searchTerm = ref<string>(typeof termParam === "string" ? termParam : "");
 
 const results = ref<SearchResults | null>(null);
 const loading = ref(true);
@@ -15,6 +31,7 @@ let stopHandles: (() => void)[] = [];
 
 const isMounted = ref<boolean>(false);
 onMounted(() => (isMounted.value = true));
+console.log("params", route.params, route.query);
 
 watchDebounced(
   [searchTerm, searchFilter],
@@ -38,6 +55,14 @@ watchDebounced(
         data,
         (d) => {
           results.value = d;
+          const query =
+            searchFilter.value !== "All"
+              ? { term: searchTerm.value, filter: searchFilter.value }
+              : { term: searchTerm.value };
+
+          router.push({
+            query,
+          });
         },
         { immediate: true },
       ),

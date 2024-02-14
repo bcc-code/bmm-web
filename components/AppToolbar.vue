@@ -1,6 +1,6 @@
 <script setup type="ts">
 const route = useRoute();
-const showBackButton = computed(() => globalThis.history.length > 1 && route.name !== "index" && route.name !== "search" && route.name !== "browse");
+const showBackButton = computed(() => globalThis.history.length > 1 && route.name !== "index" && route.name !== "search-term" && route.name !== "browse");
 </script>
 <template>
   <header
