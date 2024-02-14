@@ -44,11 +44,18 @@ const logout = async () => {
 };
 
 const { locale } = useI18n();
+locale.value = profileStore.uiLanguage;
+
 const languageName = computed(() => getLocalizedLanguageName(locale));
 const { contentLanguages } = contentLanguageStore();
 const joinedContentLanguages = computed(() =>
   getLocalizedList(contentLanguages),
 );
+
+const closeInterfaceLanguageDialog = () => {
+  profileStore.uiLanguage = locale.value;
+  showInterfaceLanguageDialog.value = false;
+};
 </script>
 <template>
   <div>
@@ -229,7 +236,7 @@ const joinedContentLanguages = computed(() =>
       :show="showInterfaceLanguageDialog"
       :title="$t('profile.interface-language')"
       :description="$t('profile.interface-language-description')"
-      @close="showInterfaceLanguageDialog = false"
+      @close="closeInterfaceLanguageDialog()"
     >
       <div
         class="bg-background-2 dark:bg-background-dark-2 rounded-2xl p-3 pl-5"
