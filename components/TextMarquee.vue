@@ -7,7 +7,7 @@ const elRef = ref<HTMLElement | null>(null);
 const container = ref<HTMLElement | null>(null);
 const contentIsTooLarge = ref<boolean>(false);
 const mutationObserver = ref<MutationObserver | null>(null);
-const speed = 50; // in pixel per second
+const speed = 30; // in pixel per second
 const delay = 2000; // in millisecons
 const bufferSpace = 5; // Only start marquee if content exceepds parent by this amount of pixels
 
