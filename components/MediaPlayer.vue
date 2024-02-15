@@ -2,7 +2,6 @@
 import { MediaPlayerStatus } from "~/plugins/mediaPlayer/mediaPlayer";
 
 const open = ref(false);
-const { t } = useI18n();
 
 const {
   status,

@@ -6,7 +6,6 @@ defineProps<{
 }>();
 
 const emit = defineEmits<{ "play-track": [] }>();
-const { t } = useI18n();
 
 function playTrack() {
   emit("play-track");
