@@ -8,6 +8,10 @@
   transform: scaleY(0.5);
 }
 
+.animation-paused .bars-playing .morphing-bar {
+  animation-play-state: paused;
+}
+
 .bars-playing .morphing-bar-left {
   animation-delay: calc(var(--playing-animation-speed));
 }
