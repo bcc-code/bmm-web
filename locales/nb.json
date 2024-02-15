@@ -104,5 +104,21 @@
     "list": {
       "see-all": "Vis alle"
     }
+  },
+  "search": {
+    "search-filter": {
+      "All": "Alle",
+      "Speeches": "Taler",
+      "Music": "Musikk",
+      "Albums": "Album",
+      "Contributors": "Bidragsytere",
+      "Podcasts": "Podcaster",
+      "Playlists": "Spillelister"
+    },
+    "input-placeholder": "Søk",
+    "loading-results": "loading results",
+    "no-results-yet": "No results yet",
+    "no-results-found": "No results found",
+    "result-count": "{count} results"
   }
 }
