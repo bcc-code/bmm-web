@@ -34,10 +34,10 @@ function playTrack() {
         v-if="track.meta?.attachedPicture && showThumbnail"
         class="flex items-center hidden lg:block"
       >
-        <div class="relative">
+        <div class="relative aspect-square w-10">
           <ProtectedImage
             :src="track.meta?.attachedPicture"
-            class="aspect-square w-10 rounded-md bg-background-2"
+            class="rounded-md bg-background-2"
           />
           <div class="absolute w-10 inset-0 opacity-0 group-hover:opacity-100">
             <div
