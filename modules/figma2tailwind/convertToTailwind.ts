@@ -23,7 +23,7 @@ const config: Partial<Config> = {
     colors,
     extend: {  
       gridTemplateColumns: {
-        tracklist: "3rem auto auto auto auto" 
+        tracklist: "min-content auto auto auto min-content"
       }
     }
   },

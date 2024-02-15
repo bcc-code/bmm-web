@@ -21,11 +21,11 @@ defineProps<{
         class="absolute -inset-x-4 -inset-y-0 rounded-xl bg-background-2 opacity-0 group-hover:opacity-100"
       ></div>
       <div class="relative grid col-span-full grid-cols-subgrid">
-        <div>
+        <div class="aspect-square w-10">
           <ProtectedImage
             v-if="album.cover"
             :src="album.cover"
-            class="aspect-square w-10 rounded-xl bg-background-2"
+            class="rounded-xl bg-background-2"
           />
         </div>
         <div class="col-span-3 flex items-center">
