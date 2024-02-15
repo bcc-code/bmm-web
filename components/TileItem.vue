@@ -71,15 +71,8 @@ const weekDay = (date: Date) => {
         </button>
         <TrackMenu
           :track="item.track"
-          :share-text="t('podcast.action.share')"
-          :share-link="
-            item.shufflePodcastId
-              ? {
-                  name: 'playlist-podcast-id',
-                  params: { id: item.shufflePodcastId },
-                }
-              : null
-          "
+          :share-text="t('track.dropdown.share')"
+          :share-link="{ name: 'track-id', params: { id: item.track.id } }"
           class="ml-auto"
         ></TrackMenu>
       </div>
