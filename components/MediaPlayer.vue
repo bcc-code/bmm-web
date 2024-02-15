@@ -384,11 +384,14 @@ const onPointerDownProgressBar = () => {
                 <TrackMenu :track="item"></TrackMenu>
                 <NuxtIcon
                   v-if="
-                    queue.index === i && status === MediaPlayerStatus.Playing
+                    queue.index === i && status !== MediaPlayerStatus.Stopped
                   "
                   name="icon.playing (animation)"
                   filled
                   class="text-2xl"
+                  :class="{
+                    'animation-paused': status !== MediaPlayerStatus.Playing,
+                  }"
                 />
               </div>
             </div>
