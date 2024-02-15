@@ -1,3 +1,7 @@
+<script lang="ts" setup>
+const { id } = useRoute<"playlist-podcast-id-name">().params;
+navigateTo({ name: "playlist-podcast-id", params: { id } });
+</script>
 <template>
-  <h1>The route {{ useRoute().name }} has not been implemented yet.</h1>
+  <div></div>
 </template>

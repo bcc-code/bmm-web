@@ -25,6 +25,22 @@
         "prettier"
       ],
       "rules": {
+        "@intlify/vue-i18n/no-raw-text": [
+          "warn",
+          {
+            "attributes": {
+              "/.+/": [
+                "title",
+                "aria-label",
+                "aria-placeholder",
+                "aria-roledescription",
+                "aria-valuetext"
+              ],
+              "input": ["placeholder"],
+              "img": ["alt"]
+            }
+          }
+        ],
         "no-param-reassign": ["error", { "props": false }],
         "@typescript-eslint/consistent-type-assertions": [
           "warn",

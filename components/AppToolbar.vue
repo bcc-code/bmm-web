@@ -1,12 +1,13 @@
 <script setup type="ts">
 const route = useRoute();
-const showBackButton = computed(() => globalThis.history.length > 1 && route.name !== "index" && route.name !== "search" && route.name !== "browse");
+const showBackButton = computed(() => globalThis.history.length > 1 && route.name !== "index" && route.name !== "search-term" && route.name !== "browse");
 </script>
 <template>
   <header
     class="sticky top-0 z-20 flex justify-between border-b border-label-separator bg-white-2 backdrop-blur-md dark:bg-black-2"
   >
     <div class="flex flex-row mx-5">
+      <div class="teleport ml-[-0.75rem]"></div>
       <div
         v-if="showBackButton"
         class="p-4 cursor-pointer"
