@@ -21,7 +21,7 @@ const searchFilter = ref<SearchFilter>(
     : "All",
 );
 
-const termParam = route.query.term ?? route.params.term;
+const termParam = route.params.term;
 const searchTerm = ref<string>(typeof termParam === "string" ? termParam : "");
 
 const results = ref<SearchResults | null>(null);
@@ -55,15 +55,17 @@ watchDebounced(
         data,
         (d) => {
           results.value = d;
-          const query =
-            searchFilter.value !== "All"
-              ? { term: searchTerm.value, filter: searchFilter.value }
-              : { term: searchTerm.value };
+          const query = {
+            name: "search-term",
+            params: { term: searchTerm.value },
+            query:
+              searchFilter.value === "All"
+                ? {}
+                : { filter: searchFilter.value },
+          };
 
-          // Todo: it would be better to store the term in params instead of query, but that causes an annoying page reload.
-          router.push({
-            query,
-          });
+          const { href } = router.resolve(query);
+          window.history.replaceState(null, "", href);
         },
         { immediate: true },
       ),
