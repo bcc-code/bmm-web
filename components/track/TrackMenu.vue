@@ -1,10 +1,6 @@
 <script lang="ts" setup>
 import type { NuxtIconName } from "#build//nuxt-icons";
-import type {
-  NuxtRoute,
-  RoutesNamedLocations,
-  RoutesNamesList,
-} from "#build/typed-router";
+import type { RoutesNamedLocations } from "#build/typed-router";
 import type { TrackModel } from "@bcc-code/bmm-sdk-fetch";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/vue";
 
@@ -18,8 +14,6 @@ const copyToClipboardComponent = ref<null | { copyToClipboard: () => void }>(
 withDefaults(
   defineProps<{
     track: TrackModel;
-    shareText: string | null;
-    shareLink: NuxtRoute<RoutesNamesList, string, boolean> | null;
     buttonClass?: string;
   }>(),
   {
@@ -36,11 +30,7 @@ const showInfo = ref(false);
 const showAddToPlaylist = ref(false);
 const showContributorsList = ref(false);
 
-const dropdownMenuItemsForTrack = (
-  track: TrackModel,
-  shareText: string | null,
-  shareLink: NuxtRoute<RoutesNamesList, string, boolean> | null,
-) => {
+const dropdownMenuItemsForTrack = (track: TrackModel) => {
   const items: DropdownMenuItem[] = [];
 
   items.push({
@@ -70,15 +60,14 @@ const dropdownMenuItemsForTrack = (
     },
   });
 
-  if (shareText && shareLink) {
-    items.push({
-      icon: "icon.share",
-      text: shareText,
-      clickFunction: () => {
-        copyToClipboardComponent?.value?.copyToClipboard?.();
-      },
-    });
-  }
+  items.push({
+    icon: "icon.share",
+    text: t("track.dropdown.share"),
+    clickFunction: () => {
+      copyToClipboardComponent?.value?.copyToClipboard?.();
+    },
+  });
+
   items.push({
     icon: "icon.person",
     text: t("track.dropdown.go-to-contributors"),
@@ -127,7 +116,7 @@ const dropdownMenuItemsForTrack = (
     >
       <div class="py-0">
         <MenuItem
-          v-for="item in dropdownMenuItemsForTrack(track, shareText, shareLink)"
+          v-for="item in dropdownMenuItemsForTrack(track)"
           :key="item.text"
           as="li"
           class="block w-full cursor-pointer rounded-lg text-label-1 hover:bg-background-2 hover:text-black"
@@ -163,9 +152,8 @@ const dropdownMenuItemsForTrack = (
     <TrackContributors :track="track"></TrackContributors>
   </DialogBase>
   <CopyToClipboard
-    v-if="shareLink"
     ref="copyToClipboardComponent"
-    :link="shareLink"
+    :link="{ name: 'track-id', params: { id: track.id } }"
   ></CopyToClipboard>
   <TrackAddToPlaylist
     v-if="showAddToPlaylist"

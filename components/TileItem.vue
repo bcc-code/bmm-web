@@ -69,12 +69,7 @@ const weekDay = (date: Date) => {
         >
           <NuxtIcon name="icon.play" class="text-white-1 text-2xl p-2" />
         </button>
-        <TrackMenu
-          :track="item.track"
-          :share-text="t('track.dropdown.share')"
-          :share-link="{ name: 'track-id', params: { id: item.track.id } }"
-          class="ml-auto"
-        ></TrackMenu>
+        <TrackMenu :track="item.track" class="ml-auto"></TrackMenu>
       </div>
     </div>
   </div>

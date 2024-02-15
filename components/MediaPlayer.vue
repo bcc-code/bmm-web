@@ -324,8 +324,6 @@ const onPointerDownProgressBar = () => {
           <TrackMenu
             v-if="currentTrack"
             :track="currentTrack"
-            :share-text="t('track.dropdown.share')"
-            :share-link="{ name: 'track-id', params: { id: currentTrack.id } }"
             button-class="rounded-full border border-label-separator p-1.5"
           ></TrackMenu>
         </div>
@@ -384,11 +382,7 @@ const onPointerDownProgressBar = () => {
               </div>
 
               <div class="flex justify-between gap-2">
-                <TrackMenu
-                  :track="item"
-                  :share-text="t('track.dropdown.share')"
-                  :share-link="{ name: 'track-id', params: { id: item.id } }"
-                ></TrackMenu>
+                <TrackMenu :track="item"></TrackMenu>
                 <NuxtIcon
                   v-if="
                     queue.index === i && status === MediaPlayerStatus.Playing
