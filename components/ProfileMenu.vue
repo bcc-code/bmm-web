@@ -18,6 +18,36 @@ const showInterfaceLanguageDialog = ref(false);
 const showContentLanguageDialog = ref(false);
 const showThemeDialog = ref(false);
 
+const availableContentLanguages = [
+  "nb",
+  "en",
+  "de",
+  "af",
+  "bg",
+  "cs",
+  "da",
+  "el",
+  "es",
+  "et",
+  "fi",
+  "fr",
+  "he",
+  "hr",
+  "hu",
+  "it",
+  "nl",
+  "pl",
+  "pt",
+  "ro",
+  "ru",
+  "sl",
+  "ta",
+  "tr",
+  "zh",
+  "ml",
+  "yue",
+  "kha",
+];
 const colorModes = ["system", "light", "dark"] as const;
 const getColorModeName = (mode: string) => {
   switch (mode) {
@@ -46,17 +76,6 @@ const logout = async () => {
 const { locale } = useI18n();
 locale.value = profileStore.uiLanguage;
 
-const languageName = computed(() => getLocalizedLanguageName(locale));
-const { contentLanguages } = contentLanguageStore();
-const joinedContentLanguages = computed(() =>
-  getLocalizedList(contentLanguages),
-);
-
-const closeInterfaceLanguageDialog = () => {
-  profileStore.uiLanguage = locale.value;
-  showInterfaceLanguageDialog.value = false;
-};
-
 type ILanguageInfo = {
   EnglishName: string;
   NativeName: string;
@@ -78,7 +97,7 @@ const dictionary: { [key: string]: ILanguageInfo } = {
   hu: { EnglishName: "Hungarian", NativeName: "magyar" },
   it: { EnglishName: "Italian", NativeName: "italiano" },
   kha: { EnglishName: "Khasi", NativeName: "Khasi" },
-  nb: { EnglishName: "Norwegian", NativeName: "norsk bokmål" },
+  nb: { EnglishName: "Norwegian", NativeName: "Norsk" },
   nl: { EnglishName: "Dutch", NativeName: "Nederlands" },
   ml: { EnglishName: "Malayalam", NativeName: "മലയ\u0D3Eള\u0D02" },
   pl: { EnglishName: "Polish", NativeName: "polski" },
@@ -91,6 +110,22 @@ const dictionary: { [key: string]: ILanguageInfo } = {
   zh: { EnglishName: "Chinese (Simplified)", NativeName: "中文" },
   uk: { EnglishName: "Ukrainian", NativeName: "українська" },
   yue: { EnglishName: "Cantonese", NativeName: "廣東話" },
+};
+
+const languageName = computed(() => getLocalizedLanguageName(locale));
+const contentLanguages = ref(
+  contentLanguageStore().contentLanguages.filter((x) => x !== "zxx"),
+);
+const joinedContentLanguages = computed(() => {
+  const list = contentLanguages.value;
+  return getLocalizedList(
+    list.map((x) => dictionary[x]?.NativeName ?? "Unknown"),
+  );
+});
+
+const closeInterfaceLanguageDialog = () => {
+  profileStore.uiLanguage = locale.value;
+  showInterfaceLanguageDialog.value = false;
 };
 </script>
 <template>
@@ -123,7 +158,7 @@ const dictionary: { [key: string]: ILanguageInfo } = {
           class="absolute right-0 mt-2 w-56 origin-top-right divide-y divide-label-separator rounded-xl bg-background-3 text-sm shadow-lg ring-1 ring-label-separator focus-visible:outline-none -separator"
         >
           <div class="p-1">
-            <MenuItem v-slot="{ active }">
+            <MenuItem v-if="false" v-slot="{ active }">
               <button
                 :class="{
                   'bg-label-separator -separator': active,
@@ -300,7 +335,14 @@ const dictionary: { [key: string]: ILanguageInfo } = {
       :show="showContentLanguageDialog"
       :title="$t('profile.content-language')"
       :description="$t('profile.content-language-description')"
-      @close="showContentLanguageDialog = false"
+      @close="
+        () => {
+          showContentLanguageDialog = false;
+          contentLanguageStore().contentLanguages = contentLanguages.concat([
+            'zxx',
+          ]);
+        }
+      "
     >
       <VueDraggable
         v-model="contentLanguages"
@@ -308,52 +350,86 @@ const dictionary: { [key: string]: ILanguageInfo } = {
         :animation="200"
         class="bg-background-2 rounded-2xl divide-y divide-label-separator"
       >
-        {{ console.log("content languages", contentLanguages) }}
         <div
-          v-for="(lang, i) in contentLanguages"
-          :key="lang"
-          class="grid grid-cols-[24px_1fr_1fr_24px] items-center px-4 py-3 gap-4 w-full first:rounded-t-2xl last:rounded-b-2xl"
+          v-for="(item, i) in contentLanguages"
+          :key="item"
+          class="grid grid-cols-[24px_1fr_1.5fr_24px] items-center px-4 py-3 gap-4 w-full first:rounded-t-2xl last:rounded-b-2xl"
         >
-          <button class="handle text-label-4">
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path d="M4 9H20" stroke="currentColor" stroke-width="2" />
-              <path d="M4 15H20" stroke="currentColor" stroke-width="2" />
-            </svg>
-          </button>
-          <div>{{ t("profile.preference-language-" + (i + 1)) }}</div>
-          <div
-            class="text-label-1 bg-background-1 min-w-min px-2 py-1.5 rounded-lg font-semibold shadow-[0_4px_12px_0_#0000000D,0_1px_4px_0_#0000000D,0_0_0_1px_#0000000D]"
-          >
-            <select class="py-1">
-              <option
-                v-for="(lang, i) in $i18n.availableLocales"
-                :key="`Lang${i}`"
-                :value="lang"
+          <template v-if="item !== 'zxx'">
+            <button class="handle text-label-4">
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
               >
-                {{
-                  `${dictionary[lang]?.NativeName} (${dictionary[lang]?.EnglishName})`
-                }}
-              </option>
-            </select>
-          </div>
+                <path d="M4 9H20" stroke="currentColor" stroke-width="2" />
+                <path d="M4 15H20" stroke="currentColor" stroke-width="2" />
+              </svg>
+            </button>
+            <div>
+              {{
+                t("profile.preference-language-" + Math.min(i + 1, 4), i + 1)
+              }}
+            </div>
+            <div
+              class="text-label-1 bg-background-1 min-w-min px-2 py-1.5 rounded-lg font-semibold shadow-[0_4px_12px_0_#0000000D,0_1px_4px_0_#0000000D,0_0_0_1px_#0000000D]"
+            >
+              <select v-model="contentLanguages[i]" class="py-1 w-full">
+                <option
+                  v-for="(lang, i) in availableContentLanguages
+                    .filter((x) => !contentLanguages.includes(x))
+                    .concat([item])"
+                  :key="`Lang${i}`"
+                  :value="lang"
+                >
+                  {{
+                    `${dictionary[lang]?.NativeName} (${dictionary[lang]?.EnglishName})`
+                  }}
+                </option>
+              </select>
+            </div>
 
-          <div
-            v-if="false"
-            class="text-black-1 bg-background-1 dark:bg-background-3 dark:text-black-1 min-w-[100px] pl-3 py-2.5 shadow ring-1 ring-label-separator rounded-lg"
-          >
-            {{ lang }}
-          </div>
-          <button v-if="i > 0" class="text-2xl">
-            <NuxtIcon name="icon.close.small" />
-          </button>
+            <div
+              v-if="false"
+              class="text-black-1 bg-background-1 dark:bg-background-3 dark:text-black-1 min-w-[100px] pl-3 py-2.5 shadow ring-1 ring-label-separator rounded-lg"
+            >
+              {{ item }}
+            </div>
+            <button
+              v-if="i > 0"
+              class="text-2xl"
+              @click="
+                () => {
+                  contentLanguages.splice(i, 1);
+                }
+              "
+            >
+              <NuxtIcon name="icon.close.small" />
+            </button>
+          </template>
         </div>
       </VueDraggable>
+      <div
+        v-if="
+          availableContentLanguages.filter(
+            (x) => !contentLanguages.includes(x),
+          )[0]
+        "
+        class="text-label-3 p-3 flex flex-row gap-2 mt-4"
+        @click="
+          () => {
+            const available = availableContentLanguages.filter(
+              (x) => !contentLanguages.includes(x),
+            );
+            if (available[0]) contentLanguages.push(available[0]);
+          }
+        "
+      >
+        <NuxtIcon name="icon.add"></NuxtIcon>
+        {{ t("profile.add-another-language") }}
+      </div>
     </DialogBase>
   </div>
 </template>

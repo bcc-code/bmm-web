@@ -38,7 +38,8 @@
     "theme-dark": "Dark",
     "theme-light": "Light",
     "theme-system": "Same as system",
-    "done": "Done"
+    "done": "Done",
+    "add-another-language": "Add another language"
   },
   "error": {
     "page-not-found": {
