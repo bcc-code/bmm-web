@@ -31,7 +31,6 @@ let stopHandles: (() => void)[] = [];
 
 const isMounted = ref<boolean>(false);
 onMounted(() => (isMounted.value = true));
-console.log("params", route.params, route.query);
 
 watchDebounced(
   [searchTerm, searchFilter],
