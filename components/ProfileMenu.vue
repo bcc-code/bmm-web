@@ -238,9 +238,7 @@ const closeInterfaceLanguageDialog = () => {
       :description="$t('profile.interface-language-description')"
       @close="closeInterfaceLanguageDialog()"
     >
-      <div
-        class="bg-background-2 dark:bg-background-dark-2 rounded-2xl p-3 pl-5"
-      >
+      <div class="bg-background-2 text-label-2 rounded-2xl p-3">
         <label class="self-center flex items-center gap-4 justify-between">
           <span>{{ $t("profile.select-language") }}</span>
           <ChangeLocale />
