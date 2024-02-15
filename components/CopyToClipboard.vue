@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { NuxtRoute, RoutesNamesList } from ".nuxt/typed-router";
+import type { NuxtRoute, RoutesNamesList } from "@typed-router";
 
 const props = defineProps<{
   link: NuxtRoute<RoutesNamesList, string, boolean>;
