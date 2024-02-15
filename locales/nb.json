@@ -14,6 +14,9 @@
       "title": "Spillelister"
     }
   },
+  "share": {
+    "link-copied-message": "Copied link to clipboard"
+  },
   "profile": {
     "title": "Min profil",
     "autoplay": "Automatisk avspilling",
