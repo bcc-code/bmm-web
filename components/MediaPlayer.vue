@@ -2,9 +2,6 @@
 import { MediaPlayerStatus } from "~/plugins/mediaPlayer/mediaPlayer";
 
 const open = ref(false);
-const titleRef = ref<HTMLElement | null>(null);
-const subTitleRef = ref<HTMLElement | null>(null);
-const titleRefSmallPlayer = ref<HTMLElement | null>(null);
 
 const {
   status,
@@ -32,22 +29,6 @@ const onPointerDownProgressBar = () => {
   // TODO: let user drag the progress-bar on mouse-down,
   // update the time while keeping the song playing,
   // and update the players position only on mouse-up.
-};
-
-const getMarqueeClass = (value: HTMLElement, center: Boolean) => {
-  const centerClasses = center ? { "ml-auto": true, "mr-auto": true } : {};
-  if (value === null) return centerClasses;
-  if (!value || !value.parentElement) return centerClasses;
-  const offset = -(value.scrollWidth - value.parentElement.clientWidth) || 0;
-  value.style.setProperty("--animate-marquee-offset", `${offset}px`);
-  const isWiderThanParent =
-    value &&
-    value.parentElement &&
-    value.scrollWidth > value.parentElement.getBoundingClientRect().width;
-  return {
-    "animate-marquee": isWiderThanParent,
-    ...(isWiderThanParent ? {} : centerClasses),
-  };
 };
 </script>
 
@@ -89,15 +70,7 @@ const getMarqueeClass = (value: HTMLElement, center: Boolean) => {
           <div
             class="flex gap-1 w-full flex-col overflow-hidden whitespace-nowrap"
           >
-            <div
-              ref="titleRefSmallPlayer"
-              class="w-fit"
-              :class="
-                titleRefSmallPlayer
-                  ? getMarqueeClass(titleRefSmallPlayer, false)
-                  : null
-              "
-            >
+            <div class="w-full truncate">
               <h3
                 class="truncate text-lg font-semibold leading-tight"
                 :title="currentTrack?.title || ''"
@@ -197,26 +170,18 @@ const getMarqueeClass = (value: HTMLElement, center: Boolean) => {
         <div
           class="flex flex-col py-3 gap-1 overflow-x-hidden whitespace-nowrap"
         >
-          <div
-            ref="titleRef"
-            class="w-fit"
-            :class="titleRef ? getMarqueeClass(titleRef, true) : null"
-          >
+          <TextMarquee class="m-auto">
             <h3
-              class="text-center text-lg font-semibold leading-tight"
+              class="text-lg font-semibold leading-tight"
               :title="currentTrack?.title || ''"
             >
               {{ currentTrack?.title }}
             </h3>
-          </div>
+          </TextMarquee>
           <div
-            class="overflow-x-hidden whitespace-nowrap text-center text-base leading-snug text-label-2"
+            class="overflow-x-hidden whitespace-nowrap text-base leading-snug text-label-2"
           >
-            <div
-              ref="subTitleRef"
-              class="w-fit"
-              :class="subTitleRef ? getMarqueeClass(subTitleRef, true) : null"
-            >
+            <TextMarquee class="m-auto">
               <span
                 v-if="currentTrack?.meta?.artist"
                 :title="currentTrack?.meta?.artist"
@@ -234,7 +199,7 @@ const getMarqueeClass = (value: HTMLElement, center: Boolean) => {
               >
                 {{ currentTrack.meta?.album }}
               </span>
-            </div>
+            </TextMarquee>
           </div>
         </div>
         <div class="px-4 py-2">

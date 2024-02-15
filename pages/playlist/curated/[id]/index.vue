@@ -49,6 +49,17 @@ onBeforeMount(() => {
             <ButtonStyled intent="primary" @click.stop="shuffle">{{
               t("playlist.action.shuffle")
             }}</ButtonStyled>
+
+            <CopyToClipboard
+              :link="{
+                name: 'playlist-curated-id',
+                params: { id: playlistId },
+              }"
+            >
+              <ButtonStyled intent="secondary" class="h-full aspect-square">
+                <NuxtIcon name="icon.link" />
+              </ButtonStyled>
+            </CopyToClipboard>
           </div>
         </div>
       </header>

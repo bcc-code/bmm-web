@@ -58,9 +58,16 @@ const onPressShuffle = () => {
               <NuxtIcon name="icon.shuffle" class="text-2xl" />
               {{ t("playlist.action.shuffle") }}
             </ButtonStyled>
-            <ButtonStyled intent="secondary" style="border: 1px solid red">
-              <NuxtIcon name="icon.link" />
-            </ButtonStyled>
+            <CopyToClipboard
+              :link="{
+                name: 'playlist-podcast-id',
+                params: { id: collectionId },
+              }"
+            >
+              <ButtonStyled intent="secondary" class="h-full aspect-square">
+                <NuxtIcon name="icon.link" />
+              </ButtonStyled>
+            </CopyToClipboard>
           </div>
         </div>
       </header>
