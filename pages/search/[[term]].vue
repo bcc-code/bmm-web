@@ -106,7 +106,7 @@ const { setQueue } = useNuxtApp().$mediaPlayer;
           <input
             v-model="searchTerm"
             type="text"
-            placeholder="Search"
+            :placeholder="t('search.input-placeholder')"
             class="w-auto flex-grow bg-background-2 focus-within:bg-background-1 px-2 outline-none text-label-1 text-[17px] placeholder:text-label-3"
           />
           <NuxtIcon
