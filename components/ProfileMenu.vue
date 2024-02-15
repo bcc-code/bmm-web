@@ -56,6 +56,42 @@ const closeInterfaceLanguageDialog = () => {
   profileStore.uiLanguage = locale.value;
   showInterfaceLanguageDialog.value = false;
 };
+
+type ILanguageInfo = {
+  EnglishName: string;
+  NativeName: string;
+};
+const dictionary: { [key: string]: ILanguageInfo } = {
+  af: { EnglishName: "Afrikaans", NativeName: "Afrikaans" },
+  bg: { EnglishName: "Bulgarian", NativeName: "български" },
+  cs: { EnglishName: "Czech", NativeName: "čeština" },
+  da: { EnglishName: "Danish", NativeName: "dansk" },
+  de: { EnglishName: "German", NativeName: "Deutsch" },
+  en: { EnglishName: "English", NativeName: "English" },
+  el: { EnglishName: "Greek", NativeName: "Ελληνικά" },
+  es: { EnglishName: "Spanish", NativeName: "español" },
+  et: { EnglishName: "Estonian", NativeName: "eesti" },
+  fr: { EnglishName: "French", NativeName: "Français" },
+  fi: { EnglishName: "Finnish", NativeName: "suomi" },
+  he: { EnglishName: "Hebrew", NativeName: "עברית" },
+  hr: { EnglishName: "Croatian", NativeName: "hrvatski" },
+  hu: { EnglishName: "Hungarian", NativeName: "magyar" },
+  it: { EnglishName: "Italian", NativeName: "italiano" },
+  kha: { EnglishName: "Khasi", NativeName: "Khasi" },
+  nb: { EnglishName: "Norwegian", NativeName: "norsk bokmål" },
+  nl: { EnglishName: "Dutch", NativeName: "Nederlands" },
+  ml: { EnglishName: "Malayalam", NativeName: "മലയ\u0D3Eള\u0D02" },
+  pl: { EnglishName: "Polish", NativeName: "polski" },
+  pt: { EnglishName: "Portuguese", NativeName: "português" },
+  ro: { EnglishName: "Romanian", NativeName: "română" },
+  ru: { EnglishName: "Russian", NativeName: "русский" },
+  sl: { EnglishName: "Slovenian", NativeName: "slovenščina" },
+  ta: { EnglishName: "Tamil", NativeName: "தம\u0BBFழ\u0BCD" },
+  tr: { EnglishName: "Turkish", NativeName: "Türkçe" },
+  zh: { EnglishName: "Chinese (Simplified)", NativeName: "中文" },
+  uk: { EnglishName: "Ukrainian", NativeName: "українська" },
+  yue: { EnglishName: "Cantonese", NativeName: "廣東話" },
+};
 </script>
 <template>
   <div>
@@ -241,7 +277,21 @@ const closeInterfaceLanguageDialog = () => {
       <div class="bg-background-2 text-label-2 rounded-2xl p-3">
         <label class="self-center flex items-center gap-4 justify-between">
           <span>{{ $t("profile.select-language") }}</span>
-          <ChangeLocale />
+          <div
+            class="text-label-1 bg-background-1 min-w-[100px] px-2 py-1.5 rounded-lg font-semibold shadow-[0_4px_12px_0_#0000000D,0_1px_4px_0_#0000000D,0_0_0_1px_#0000000D]"
+          >
+            <select v-model="$i18n.locale" class="py-1">
+              <option
+                v-for="(lang, i) in $i18n.availableLocales"
+                :key="`Lang${i}`"
+                :value="lang"
+              >
+                {{
+                  `${dictionary[lang]?.NativeName} (${dictionary[lang]?.EnglishName})`
+                }}
+              </option>
+            </select>
+          </div>
         </label>
       </div>
     </DialogBase>
@@ -256,14 +306,15 @@ const closeInterfaceLanguageDialog = () => {
         v-model="contentLanguages"
         handle=".handle"
         :animation="200"
-        class="bg-background-2 dark:bg-background-dark-2 rounded-2xl font-semibold divide-y divide-label-separator"
+        class="bg-background-2 rounded-2xl divide-y divide-label-separator"
       >
+        {{ console.log("content languages", contentLanguages) }}
         <div
           v-for="(lang, i) in contentLanguages"
           :key="lang"
-          class="grid grid-cols-[24px_1fr_24px] items-center px-4 py-3 gap-4 w-full first:rounded-t-2xl last:rounded-b-2xl"
+          class="grid grid-cols-[24px_1fr_1fr_24px] items-center px-4 py-3 gap-4 w-full first:rounded-t-2xl last:rounded-b-2xl"
         >
-          <button class="handle">
+          <button class="handle text-label-4">
             <svg
               width="24"
               height="24"
@@ -275,7 +326,25 @@ const closeInterfaceLanguageDialog = () => {
               <path d="M4 15H20" stroke="currentColor" stroke-width="2" />
             </svg>
           </button>
+          <div>{{ t("profile.preference-language-" + (i + 1)) }}</div>
           <div
+            class="text-label-1 bg-background-1 min-w-min px-2 py-1.5 rounded-lg font-semibold shadow-[0_4px_12px_0_#0000000D,0_1px_4px_0_#0000000D,0_0_0_1px_#0000000D]"
+          >
+            <select class="py-1">
+              <option
+                v-for="(lang, i) in $i18n.availableLocales"
+                :key="`Lang${i}`"
+                :value="lang"
+              >
+                {{
+                  `${dictionary[lang]?.NativeName} (${dictionary[lang]?.EnglishName})`
+                }}
+              </option>
+            </select>
+          </div>
+
+          <div
+            v-if="false"
             class="text-black-1 bg-background-1 dark:bg-background-3 dark:text-black-1 min-w-[100px] pl-3 py-2.5 shadow ring-1 ring-label-separator rounded-lg"
           >
             {{ lang }}
