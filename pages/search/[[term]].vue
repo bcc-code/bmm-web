@@ -5,24 +5,24 @@ import type { SearchResults } from "@bcc-code/bmm-sdk-fetch";
 const router = useRouter();
 const { t } = useI18n();
 toolbarTitleStore().setReactiveToolbarTitle(() => "");
-const route = useRoute<"search-term">();
+const {
+  query: { filter = "" },
+  params: { term: termParam = "" },
+} = useRoute<"search-term">();
 
-const { filter } = route.query;
 const searchFilter = ref<SearchFilter>(
-  filter &&
-    (filter === "All" ||
-      filter === "Speeches" ||
-      filter === "Music" ||
-      filter === "Albums" ||
-      filter === "Contributors" ||
-      filter === "Podcasts" ||
-      filter === "Playlists")
+  filter === "All" ||
+    filter === "Speeches" ||
+    filter === "Music" ||
+    filter === "Albums" ||
+    filter === "Contributors" ||
+    filter === "Podcasts" ||
+    filter === "Playlists"
     ? filter
     : "All",
 );
 
-const termParam = route.params.term;
-const searchTerm = ref<string>(typeof termParam === "string" ? termParam : "");
+const searchTerm = ref(termParam);
 
 const results = ref<SearchResults | null>(null);
 const loading = ref(true);
