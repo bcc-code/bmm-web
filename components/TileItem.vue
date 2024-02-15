@@ -12,17 +12,6 @@ function playTrack() {
   emit("play-track");
 }
 
-const dateToUtc = (date: Date) =>
-  new Date(
-    Date.UTC(
-      date.getUTCFullYear(),
-      date.getUTCMonth(),
-      date.getUTCDate(),
-      date.getUTCHours(),
-      date.getUTCMinutes(),
-      date.getUTCSeconds(),
-    ),
-  );
 const { locale } = useI18n();
 const formatDate = (date: Date) => {
   const options: Intl.DateTimeFormatOptions = {
@@ -44,8 +33,8 @@ const weekDay = (date: Date) => {
 
 <template>
   <div
-    v-if="item.showAllLink && item.track"
-    class="rounded-2xl bg- w-[450px] h-[225px] flex flex-row"
+    v-if="item.showAllLink && item.track && item.title"
+    class="rounded-2xl bg- w-[400px] h-[200px] flex flex-row"
   >
     <NuxtLink
       :to="parseLink(item.showAllLink)"
@@ -54,7 +43,9 @@ const weekDay = (date: Date) => {
       <ProtectedImage
         v-if="item.coverUrl"
         :src="item.coverUrl"
+        :alt="item.title"
         class="aspect-square rounded-l-2xl"
+        no-border
       />
     </NuxtLink>
     <div

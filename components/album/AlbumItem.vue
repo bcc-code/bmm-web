@@ -25,7 +25,6 @@ defineProps<{
           <ProtectedImage
             v-if="album.cover"
             :src="album.cover"
-            alt=""
             class="aspect-square w-10 rounded-xl bg-background-2"
           />
         </div>

@@ -21,22 +21,24 @@ const {
   fastForward,
 } = useNuxtApp().$mediaPlayer;
 
-const onPointerDownProgressBar = () => {
-  // Todo: Let user drag the progress-bar on mouse-down, update the time while keeping the song playing, and update the players position only on mouse-up.
-};
 const onPointerUpProgressBar = (event: PointerEvent) => {
   const rect = (event.currentTarget as Element)?.getBoundingClientRect();
   currentPosition.value =
     ((event.clientX - rect.left) / rect.width) * currentTrackDuration.value;
 };
+const onPointerDownProgressBar = () => {
+  // TODO: let user drag the progress-bar on mouse-down,
+  // update the time while keeping the song playing,
+  // and update the players position only on mouse-up.
+};
 </script>
 
 <template>
-  <transition
-    enter-active-class="transition-all duration-200 ease-out"
-    enter-from-class="opacity-0 translate-y-2"
-    leave-active-class="transition-all duration-200 ease-out"
-    leave-to-class="opacity-0 translate-y-2"
+  <Transition
+    enter-active-class="transition-all duration-500 ease-out"
+    enter-from-class="translate-y-[80vh]"
+    leave-active-class="transition-all z-20 duration-500 ease-out"
+    leave-to-class="translate-y-[80vh]"
   >
     <div
       v-if="!open"
@@ -66,14 +68,18 @@ const onPointerUpProgressBar = (event: PointerEvent) => {
               :src="currentTrack?.meta?.attachedPicture"
             />
           </div>
-          <div class="flex gap-1 w-full flex-col overflow-hidden">
-            <h3
-              class="truncate text-lg font-semibold leading-tight"
-              :title="currentTrack?.title || ''"
-            >
-              {{ currentTrack?.title }}
-            </h3>
-            <div class="truncate text-base leading-snug text-label-2">
+          <div
+            class="flex gap-1 w-full flex-col overflow-hidden whitespace-nowrap"
+          >
+            <div class="w-full truncate">
+              <h3
+                class="truncate text-lg font-semibold leading-tight"
+                :title="currentTrack?.title || ''"
+              >
+                {{ currentTrack?.title }}
+              </h3>
+            </div>
+            <div class="w-full truncate text-base leading-snug text-label-2">
               <span
                 v-if="currentTrack?.meta?.artist"
                 :title="currentTrack?.meta?.artist"
@@ -135,14 +141,14 @@ const onPointerUpProgressBar = (event: PointerEvent) => {
         </svg>
       </div>
     </div>
-  </transition>
+  </Transition>
 
-  <div class="min-w-[400px] ml-5" v-if="open"></div>
-  <transition
-    enter-active-class="transition-all duration-200 ease-out"
-    enter-from-class="opacity-0 translate-y-2"
-    leave-active-class="transition-all duration-200 ease-out"
-    leave-to-class="opacity-0 translate-y-2"
+  <div v-if="open" class="min-w-[400px] ml-5"></div>
+  <Transition
+    enter-active-class="transition-all duration-500 ease-out"
+    enter-from-class="translate-y-[80vh]"
+    leave-active-class="transition-all z-30 duration-500 ease-out"
+    leave-to-class="translate-y-[80vh]"
   >
     <div
       v-if="open"
@@ -159,33 +165,42 @@ const onPointerUpProgressBar = (event: PointerEvent) => {
             v-if="currentTrack?.meta?.attachedPicture"
             :src="currentTrack?.meta?.attachedPicture"
             class="absolute top-[59px] z-0 w-[160px] blur-[80px]"
+            no-border
           />
         </div>
-        <div class="flex flex-col py-3 gap-1">
-          <h3
-            class="truncate text-center text-lg font-semibold leading-tight"
-            :title="currentTrack?.title || ''"
+        <div
+          class="flex flex-col py-3 gap-1 overflow-x-hidden whitespace-nowrap"
+        >
+          <TextMarquee class="m-auto">
+            <h3
+              class="text-lg font-semibold leading-tight"
+              :title="currentTrack?.title || ''"
+            >
+              {{ currentTrack?.title }}
+            </h3>
+          </TextMarquee>
+          <div
+            class="overflow-x-hidden whitespace-nowrap text-base leading-snug text-label-2"
           >
-            {{ currentTrack?.title }}
-          </h3>
-          <div class="text-center truncate text-base leading-snug text-label-2">
-            <span
-              v-if="currentTrack?.meta?.artist"
-              :title="currentTrack?.meta?.artist"
-            >
-              {{ currentTrack.meta?.artist }}
-            </span>
-            <span
-              v-if="currentTrack?.meta?.artist && currentTrack?.meta?.album"
-            >
-              -
-            </span>
-            <span
-              v-if="currentTrack?.meta?.album"
-              :title="currentTrack?.meta?.album"
-            >
-              {{ currentTrack.meta?.album }}
-            </span>
+            <TextMarquee class="m-auto">
+              <span
+                v-if="currentTrack?.meta?.artist"
+                :title="currentTrack?.meta?.artist"
+              >
+                {{ currentTrack.meta?.artist }}
+              </span>
+              <span
+                v-if="currentTrack?.meta?.artist && currentTrack?.meta?.album"
+              >
+                -
+              </span>
+              <span
+                v-if="currentTrack?.meta?.album"
+                :title="currentTrack?.meta?.album"
+              >
+                {{ currentTrack.meta?.album }}
+              </span>
+            </TextMarquee>
           </div>
         </div>
         <div class="px-4 py-2">
@@ -375,7 +390,9 @@ const onPointerUpProgressBar = (event: PointerEvent) => {
                   :share-link="{ name: 'track-id', params: { id: item.id } }"
                 ></TrackMenu>
                 <NuxtIcon
-                  v-if="queue.index === i"
+                  v-if="
+                    queue.index === i && status === MediaPlayerStatus.Playing
+                  "
                   name="icon.playing (animation)"
                   filled
                   class="text-2xl"
@@ -391,7 +408,7 @@ const onPointerUpProgressBar = (event: PointerEvent) => {
         </ul>
       </div>
     </div>
-  </transition>
+  </Transition>
 </template>
 
 <style scoped>

@@ -85,11 +85,16 @@
       "options": "Zeige Optionen"
     },
     "details": {
-      "duration": "Dauer:",
-      "publish-date": "Veröffentlichung:",
-      "album": "Album:",
-      "publisher": "Veröffentlicher:",
-      "copyright": "Copyright:"
+      "reference": "Referenz",
+      "duration": "Dauer",
+      "publish-date": "Veröffentlichung",
+      "album": "Album",
+      "publisher": "Herausgeber",
+      "copyright": "Copyright",
+      "song-number": "Liednummer",
+      "arranger": "Arrangeur",
+      "composer": "Komponist",
+      "lyricist": "Verfasser"
     }
   },
   "home": {

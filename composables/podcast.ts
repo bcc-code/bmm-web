@@ -33,3 +33,11 @@ export function usePodcasts() {
     useLazyAsyncData("podcasts", () => new PodcastApi().podcastGet()),
   );
 }
+
+export function usePodcastShuffle(id: number) {
+  return reactiveApi(
+    useLazyAsyncData("podcastshuffle", () =>
+      new PodcastApi().podcastIdShuffleGet({ id }),
+    ),
+  );
+}

@@ -18,13 +18,6 @@ const emit = defineEmits<{ "play-track": [] }>();
 function playTrack() {
   emit("play-track");
 }
-
-function secondsToTime(totalSeconds: number | undefined) {
-  if (totalSeconds === undefined) return "";
-  const minutes = Math.ceil(totalSeconds / 60);
-  const seconds = totalSeconds % 60;
-  return `${minutes}:${seconds.toString().padStart(2, "0")}`;
-}
 </script>
 
 <template>
@@ -44,7 +37,6 @@ function secondsToTime(totalSeconds: number | undefined) {
         <div class="relative">
           <ProtectedImage
             :src="track.meta?.attachedPicture"
-            alt=""
             class="aspect-square w-10 rounded-md bg-background-2"
           />
           <div class="absolute w-10 inset-0 opacity-0 group-hover:opacity-100">
@@ -63,9 +55,11 @@ function secondsToTime(totalSeconds: number | undefined) {
         v-if="!(track.meta?.attachedPicture && showThumbnail)"
         class="relative hidden lg:block"
       ></div>
-      <div class="flex flex-col justify-center col-span-2 lg:col-span-1">
+      <div
+        class="flex flex-col justify-center col-span-2 lg:col-span-1 min-w-0"
+      >
         <h4
-          class="block overflow-hidden text-ellipsis font-semibold"
+          class="block truncate font-semibold"
           :title="track.meta?.title || ''"
         >
           {{ track.meta?.title }}
@@ -73,21 +67,23 @@ function secondsToTime(totalSeconds: number | undefined) {
         <span
           v-if="track.meta?.artist"
           :title="track.meta?.artist"
-          class="block overflow-hidden text-ellipsis text-label-1"
+          class="block truncate text-label-1"
         >
           {{ track.meta?.artist }}
         </span>
       </div>
-      <div v-if="!isTrackTypeKnown" class="flex items-center">
-        <span class="text-label-2">{{ track.subtype }}</span>
+      <div v-if="!isTrackTypeKnown" class="flex items-center min-w-0">
+        <span class="text-label-2 truncate">{{ track.subtype }}</span>
       </div>
-      <div v-if="isTrackTypeKnown" class="flex items-center">
-        <span class="text-label-2">{{ track.meta?.album }}</span>
+      <div v-if="isTrackTypeKnown" class="flex items-center min-w-0">
+        <span class="text-label-2 truncate">{{ track.meta?.album }}</span>
       </div>
       <div class="flex items-center">
-        <span class="text-label-2">{{
-          secondsToTime(track.media?.[0]?.files?.[0]?.duration)
-        }}</span>
+        <span class="text-label-2">
+          <TimeDuration
+            :duration="((track.media || [])[0]?.files || [])[0]?.duration || 0"
+          ></TimeDuration>
+        </span>
       </div>
       <div class="flex items-center gap-1">
         <button

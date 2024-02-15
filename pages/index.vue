@@ -11,5 +11,9 @@ const { data: models, pending } = useDiscover(parameters);
 </script>
 
 <template>
-  <DocumentList :items="models" :pending="pending"></DocumentList>
+  <DocumentList
+    :items="models"
+    :pending="pending"
+    class="mt-6 lg:mt-12"
+  ></DocumentList>
 </template>

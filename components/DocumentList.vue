@@ -4,7 +4,6 @@ import type {
   TrackModel,
   SectionHeaderModel,
 } from "@bcc-code/bmm-sdk-fetch";
-import { breakpointsTailwind, useBreakpoints } from "@vueuse/core";
 
 type IDiscoverableGroup = {
   header: SectionHeaderModel | null;
@@ -69,9 +68,6 @@ const playSingleItem = (item: TrackModel) => {
   setQueue(items, 0); // ToDo: read item.lastPositionInMs and go to specific location
   // ToDo: load linked album (from showAllLink) and add remaining items to the queue
 };
-
-const breakpoints = useBreakpoints(breakpointsTailwind);
-const isSmallScreen = breakpoints.smallerOrEqual("lg");
 </script>
 
 <template>
@@ -90,7 +86,7 @@ const isSmallScreen = breakpoints.smallerOrEqual("lg");
         v-for="group in convertModels(props.items)"
         :key="group.header?.id || 0"
       >
-        <PageHeading v-if="group.header" :level="3">
+        <PageHeading v-if="group.header" :level="3" class="mt-12 mb-5">
           <div class="flex items-center justify-between">
             <div>
               <NuxtLink
@@ -115,12 +111,14 @@ const isSmallScreen = breakpoints.smallerOrEqual("lg");
         </PageHeading>
         <div
           v-if="group.useFlex"
-          class="flex flex-row flex-wrap gap-6 mt-3 lg:mt-9"
+          class="flex flex-row flex-wrap gap-6 mt-3"
+          :class="
+            group.header && group.header?.useCoverCarousel && group.header?.link
+              ? 'overflow-hidden max-h-[27.5rem] lg:max-h-[13rem]'
+              : ''
+          "
         >
-          <template
-            v-for="item in group.items.slice(0, isSmallScreen ? 4 : 6)"
-            :key="item.id"
-          >
+          <template v-for="item in group.items" :key="item.id">
             <NuxtLink
               v-if="item.type === 'album'"
               :to="{ name: 'album-id', params: { id: item.id } }"
