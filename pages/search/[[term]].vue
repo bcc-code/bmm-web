@@ -55,7 +55,7 @@ watchDebounced(
         data,
         (d) => {
           results.value = d;
-          const query = {
+          const routeParams = {
             name: "search-term",
             params: { term: searchTerm.value },
             query:
@@ -64,7 +64,7 @@ watchDebounced(
                 : { filter: searchFilter.value },
           };
 
-          const { href } = router.resolve(query);
+          const { href } = router.resolve(routeParams);
           window.history.replaceState(null, "", href);
         },
         { immediate: true },
