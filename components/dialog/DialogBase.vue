@@ -32,7 +32,7 @@ const emit = defineEmits<{
         leave-from="opacity-100"
         leave-to="opacity-0"
       >
-        <DialogBackdrop class="fixed inset-0 bg-background-4 opacity-40" />
+        <DialogBackdrop class="fixed z-30 inset-0 bg-background-4 opacity-40" />
       </TransitionChild>
 
       <div
