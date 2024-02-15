@@ -2,8 +2,7 @@
 import type { NuxtRoute, RoutesNamesList } from ".nuxt/typed-router";
 
 const props = defineProps<{
-  link?: NuxtRoute<RoutesNamesList, string, boolean>;
-  text?: string;
+  link: NuxtRoute<RoutesNamesList, string, boolean>;
 }>();
 
 const { t } = useI18n();
@@ -12,18 +11,11 @@ const router = useRouter();
 const showToast = ref(false);
 
 const copyToClipboard = () => {
-  if (!props.link && !props.text) {
-    return;
-  }
-
   showToast.value = true;
-  let textToCopy = props.text || "";
 
-  if (props.link) {
-    textToCopy = `${window.location.origin}${router.resolve(props.link).href}`;
-  }
-
-  navigator.clipboard.writeText(textToCopy);
+  navigator.clipboard.writeText(
+    `${window.location.origin}${router.resolve(props.link).href}`,
+  );
 
   setTimeout(() => {
     showToast.value = false;
