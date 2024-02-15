@@ -7,6 +7,10 @@ import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/vue";
 const { t } = useI18n();
 const { addNext, addToQueue } = useNuxtApp().$mediaPlayer;
 
+const copyToClipboardComponent = ref<null | { copyToClipboard: () => void }>(
+  null,
+);
+
 withDefaults(
   defineProps<{
     track: TrackModel;
@@ -55,11 +59,15 @@ const dropdownMenuItemsForTrack = (track: TrackModel) => {
       showAddToPlaylist.value = true;
     },
   });
+
   items.push({
     icon: "icon.share",
     text: t("track.dropdown.share"),
-    link: { name: "browse" }, // TODO: change link
+    clickFunction: () => {
+      copyToClipboardComponent?.value?.copyToClipboard?.();
+    },
   });
+
   items.push({
     icon: "icon.person",
     text: t("track.dropdown.go-to-contributors"),
@@ -143,6 +151,10 @@ const dropdownMenuItemsForTrack = (track: TrackModel) => {
   >
     <TrackContributors :track="track"></TrackContributors>
   </DialogBase>
+  <CopyToClipboard
+    ref="copyToClipboardComponent"
+    :link="{ name: 'track-id', params: { id: track.id } }"
+  ></CopyToClipboard>
   <TrackAddToPlaylist
     v-if="showAddToPlaylist"
     :track-id="track.id"
