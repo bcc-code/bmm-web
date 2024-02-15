@@ -6,7 +6,7 @@ const router = useRouter();
 const { t } = useI18n();
 toolbarTitleStore().setReactiveToolbarTitle(() => "");
 const {
-  query: { filter = "" },
+  query: { filter = "", term: termQuery },
   params: { term: termParam = "" },
 } = useRoute<"search-term">();
 
@@ -22,7 +22,8 @@ const searchFilter = ref<SearchFilter>(
     : "All",
 );
 
-const searchTerm = ref(termParam);
+const urlTerm = termQuery ?? termParam;
+const searchTerm = ref<string>(typeof urlTerm === "string" ? urlTerm : "");
 
 const results = ref<SearchResults | null>(null);
 const loading = ref(true);
@@ -56,15 +57,13 @@ watchDebounced(
           results.value = d;
           const routeParams = {
             name: "search-term",
-            params: { term: searchTerm.value },
             query:
               searchFilter.value === "All"
-                ? {}
-                : { filter: searchFilter.value },
+                ? { term: searchTerm.value }
+                : { term: searchTerm.value, filter: searchFilter.value },
           };
 
-          const { href } = router.resolve(routeParams);
-          window.history.replaceState(null, "", href);
+          router.push(routeParams);
         },
         { immediate: true },
       ),
