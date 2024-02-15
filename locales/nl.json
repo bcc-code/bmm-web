@@ -104,5 +104,21 @@
     "list": {
       "see-all": "Toon alles"
     }
+  },
+  "search": {
+    "search-filter": {
+      "All": "Alle",
+      "Speeches": "Toespraken",
+      "Music": "Muziek",
+      "Albums": "Albums",
+      "Contributors": "Bijdragers",
+      "Podcasts": "Podcasts",
+      "Playlists": "Afspeellijsten"
+    },
+    "input-placeholder": "Zoeken",
+    "loading-results": "loading results",
+    "no-results-yet": "No results yet",
+    "no-results-found": "No results found",
+    "result-count": "{count} results"
   }
 }
