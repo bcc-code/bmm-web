@@ -14,6 +14,9 @@
       "title": "Playlists"
     }
   },
+  "share": {
+    "link-copied-message": "Link in Zwischenablage kopiert"
+  },
   "profile": {
     "title": "Profil",
     "autoplay": "Automatische Wiedergabe",
@@ -101,5 +104,21 @@
     "list": {
       "see-all": "Alle sehen"
     }
+  },
+  "search": {
+    "search-filter": {
+      "All": "Alle",
+      "Speeches": "Reden",
+      "Music": "Musik",
+      "Albums": "Alben",
+      "Contributors": "Mitwirkende",
+      "Podcasts": "Podcasts",
+      "Playlists": "Playlists"
+    },
+    "input-placeholder": "Suche",
+    "loading-results": "loading results",
+    "no-results-yet": "No results yet",
+    "no-results-found": "No results found",
+    "result-count": "{count} results"
   }
 }
