@@ -16,16 +16,18 @@ export function useCuratedPlaylist(options: UseCuratedPlaylistOptions) {
 
 interface UseCuratedPlaylistTracksOptions {
   id: number;
+  locale?: string;
 }
 
 export function useCuratedPlaylistTracks(
   options: UseCuratedPlaylistTracksOptions,
 ) {
-  const { id } = options;
+  const { id, locale } = options;
 
   return reactiveApi(
     useLazyAsyncData(`playlist-tracks-${id}`, () =>
-      new PlaylistApi().playlistIdTrackGet({ id }),
+      new PlaylistApi().playlistIdTrackGet({ id }, 
+        locale ? { headers: { 'Accept-Language': locale } } : undefined),
     ),
   );
 }

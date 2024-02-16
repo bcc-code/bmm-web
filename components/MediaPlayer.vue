@@ -308,16 +308,11 @@ const onPointerDownProgressBar = () => {
           >
             <NuxtIcon name="icon.minify" filled class="text-xl" />
           </div>
-          <div
+          <div 
+            v-if="(currentTrack?.languages?.length || 0) > 1"
             class="rounded-full border border-label-separator px-3 py-1.5 cursor-pointer text-sm"
-            style="background-color: rgba(255, 0, 0, 0.4); color: red"
           >
-            <!-- TODO: Implement option to change the language -->
-            {{
-              currentTrack?.language
-                ? getLocalizedLanguageName(currentTrack.language)
-                : ""
-            }}
+            <TrackChangeLocale />
           </div>
 
           <TrackMenu
