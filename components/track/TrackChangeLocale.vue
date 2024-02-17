@@ -1,8 +1,18 @@
 <script setup lang="ts">
-const { currentTrack } = useNuxtApp().$mediaPlayer;
-const uiLanguage = useNuxtApp().$i18n.locale.value;
+import { LanguageEnum } from "@bcc-code/bmm-sdk-fetch";
 
-const trackLanguage = currentTrack?.value?.language || uiLanguage;
+const { currentTrack } = useNuxtApp().$mediaPlayer;
+const uiLanguage: LanguageEnum = (<any>LanguageEnum)[
+  useNuxtApp().$i18n.locale.value
+];
+
+const trackLanguage: Ref<LanguageEnum> = ref(
+  currentTrack?.value?.language || uiLanguage,
+);
+watch(trackLanguage, (_, newLang) => {
+  if (!currentTrack?.value) return;
+  currentTrack.value.language = newLang;
+});
 </script>
 <template>
   <select

@@ -308,18 +308,19 @@ const onPointerDownProgressBar = () => {
           >
             <NuxtIcon name="icon.minify" filled class="text-xl" />
           </div>
-          <div 
+          <div
             v-if="(currentTrack?.languages?.length || 0) > 1"
             class="rounded-full border border-label-separator px-3 py-1.5 cursor-pointer text-sm"
           >
             <TrackChangeLocale />
           </div>
-
-          <TrackMenu
-            v-if="currentTrack"
-            :track="currentTrack"
-            button-class="rounded-full border border-label-separator p-1.5"
-          ></TrackMenu>
+          <div>
+            <TrackMenu
+              v-if="currentTrack"
+              :track="currentTrack"
+              button-class="rounded-full border border-label-separator p-1.5"
+            ></TrackMenu>
+          </div>
         </div>
       </div>
       <hr class="border-label-separator" />
