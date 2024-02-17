@@ -81,7 +81,8 @@
       "add-to-playlist": "Add to playlist",
       "share": "Share track",
       "go-to-contributors": "Go to contributors",
-      "more-info": "More information"
+      "more-info": "More information",
+      "show-all": "Show all"
     },
     "a11y": {
       "download": "Download",
