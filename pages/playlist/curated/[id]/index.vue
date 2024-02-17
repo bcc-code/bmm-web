@@ -9,19 +9,7 @@ const playlistId = Number(id);
 const { data: playlist } = useCuratedPlaylist({ id: playlistId });
 const { data: tracks, pending } = useCuratedPlaylistTracks({ id: playlistId });
 
-const { setQueue, queue, currentTrack } = useNuxtApp().$mediaPlayer;
-
-watch(currentTrack, (oldTrack, newTrack) => {
-  if (!oldTrack) return;
-  if (oldTrack?.language !== newTrack?.language) {
-    const { data: newLangTracks } = useCuratedPlaylistTracks({
-      id: playlistId,
-      locale: newTrack?.language,
-    });
-
-    setQueue(newLangTracks.value || []);
-  }
-});
+const { setQueue, queue } = useNuxtApp().$mediaPlayer;
 
 function shuffle() {
   if (tracks.value) {

@@ -1,8 +1,4 @@
-import {
-  LanguageEnum,
-  PlaylistApi,
-  TrackCollectionApi,
-} from "@bcc-code/bmm-sdk-fetch";
+import { PlaylistApi, TrackCollectionApi } from "@bcc-code/bmm-sdk-fetch";
 
 interface UseCuratedPlaylistOptions {
   id: number;
@@ -20,20 +16,16 @@ export function useCuratedPlaylist(options: UseCuratedPlaylistOptions) {
 
 interface UseCuratedPlaylistTracksOptions {
   id: number;
-  locale?: LanguageEnum | undefined;
 }
 
 export function useCuratedPlaylistTracks(
   options: UseCuratedPlaylistTracksOptions,
 ) {
-  const { id, locale } = options;
+  const { id } = options;
 
   return reactiveApi(
     useLazyAsyncData(`playlist-tracks-${id}`, () =>
-      new PlaylistApi().playlistIdTrackGet(
-        { id },
-        locale ? { headers: { "Accept-Language": locale } } : undefined,
-      ),
+      new PlaylistApi().playlistIdTrackGet({ id }),
     ),
   );
 }
