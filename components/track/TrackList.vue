@@ -12,7 +12,7 @@ const props = withDefaults(
   },
 );
 
-const { setQueue } = useNuxtApp().$mediaPlayer;
+const { setQueue, currentTrack } = useNuxtApp().$mediaPlayer;
 
 const isTrackTypeKnown = () => {
   const firstType = props.tracks?.[0]?.subtype;
@@ -25,6 +25,14 @@ const isTrackTypeKnown = () => {
     ) || false
   );
 };
+
+watch(
+  [() => props.tracks, () => contentLanguageStore().selectedLanguage],
+  ([newTracks, newLanguage]) =>
+    newLanguage !== currentTrack?.value?.language && newTracks?.length
+      ? setQueue(newTracks)
+      : undefined,
+);
 </script>
 
 <template>

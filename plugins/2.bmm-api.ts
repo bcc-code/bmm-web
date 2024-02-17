@@ -20,11 +20,10 @@ export default defineNuxtPlugin((nuxtApp) => {
             headers.set("Authorization", `Bearer ${token}`);
           }
 
+          const langStore = contentLanguageStore(useNuxtApp().$pinia);
           headers.set(
             "Accept-Language",
-            contentLanguageStore(useNuxtApp().$pinia).contentLanguages.join(
-              ",",
-            ),
+            langStore.selectedLanguage || langStore.contentLanguages.join(","),
           );
           const uiLanguage = useNuxtApp().$i18n.locale.value;
           headers.set("UiLanguage", uiLanguage);
