@@ -3,7 +3,7 @@ import type { TrackModel } from "@bcc-code/bmm-sdk-fetch";
 
 const { t } = useI18n();
 
-defineProps<{
+const props = defineProps<{
   track: TrackModel;
   showThumbnail?: boolean;
   isTrackTypeKnown: boolean;
@@ -16,6 +16,13 @@ defineSlots<{
 const emit = defineEmits<{ "play-track": [] }>();
 
 function playTrack() {
+  // change the selected language if the track language is different
+  if (
+    props.track.language &&
+    contentLanguageStore().selectedLanguage !== props.track.language
+  ) {
+    contentLanguageStore().selectedLanguage = props.track.language;
+  }
   emit("play-track");
 }
 </script>
