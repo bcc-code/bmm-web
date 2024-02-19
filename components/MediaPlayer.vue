@@ -310,7 +310,7 @@ const onPointerDownProgressBar = () => {
           </div>
           <div
             v-if="(currentTrack?.languages?.length || 0) > 1"
-            class="rounded-full border border-label-separator px-3 py-1.5 cursor-pointer text-sm"
+            class="rounded-full border border-label-separator px-3 py-1.5 cursor-pointer text-sm hover:bg-background-2 hover:text-label-1"
           >
             <TrackChangeLocale />
           </div>

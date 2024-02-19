@@ -3,32 +3,43 @@ import { LanguageEnum } from "@bcc-code/bmm-sdk-fetch";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/vue";
 
 const expanded = ref(false);
-const { currentTrack } = useNuxtApp().$mediaPlayer;
+const { currentTrack, replaceCurrent } = useNuxtApp().$mediaPlayer;
 const { t } = useI18n();
 
-const changeLanguage = (lang: LanguageEnum) => {
+const changeLanguage = async (lang: LanguageEnum) => {
   expanded.value = false;
-  contentLanguageStore().selectedLanguage = lang;
+  if (!currentTrack.value) return;
+
+  try {
+    const reloadedTrack = await useTrackIDWithLanguage(lang, {
+      id: currentTrack.value.id,
+    });
+    if (!reloadedTrack.data.value) return;
+    replaceCurrent(reloadedTrack.data.value);
+  } catch (error) {
+    console.error(error);
+  }
 };
 
-const getSortedLanguages = () => {
+const trackLanguages = currentTrack?.value?.languages || [];
+
+const getUserLanguages = () => {
   const contentLangs = contentLanguageStore()
     .contentLanguages as LanguageEnum[];
-  const tempLangs = currentTrack?.value?.languages || [];
-  const sortedLanguages = contentLangs.filter((lang) =>
-    tempLangs.includes(lang),
-  );
-  tempLangs.forEach((lang) => {
-    if (sortedLanguages.includes(lang)) {
+  return contentLangs.filter((lang) => trackLanguages.includes(lang));
+};
+
+const getAvailableLanguages = () => {
+  const returnLanguages = [...getUserLanguages()];
+  trackLanguages.forEach((lang) => {
+    if (returnLanguages.includes(lang)) {
       return;
     }
-    sortedLanguages.push(lang);
+    returnLanguages.push(lang);
   });
 
-  return sortedLanguages;
+  return returnLanguages;
 };
-const firstFiveLanguages = () => getSortedLanguages().slice(0, 5);
-const allLanguages = () => getSortedLanguages();
 </script>
 <template>
   <Menu
@@ -39,7 +50,7 @@ const allLanguages = () => getSortedLanguages();
     <MenuButton
       as="button"
       :aria-label="t('track.a11y.options')"
-      class="rounded-full p-1 hover:bg-background-2 hover:text-label-1"
+      class="rounded-full p-1"
     >
       {{
         currentTrack?.language
@@ -54,9 +65,10 @@ const allLanguages = () => getSortedLanguages();
     >
       <div class="py-0">
         <MenuItem
-          v-for="(lang, i) in expanded ? allLanguages() : firstFiveLanguages()"
+          v-for="(lang, i) in expanded || getAvailableLanguages().length <= 5
+            ? getAvailableLanguages()
+            : getUserLanguages()"
           :key="`Lang${i}`"
-          :visible="expanded || i < 5"
           as="li"
           class="block w-full cursor-pointer rounded-lg text-label-1 hover:bg-background-2 hover:text-black"
         >
@@ -67,8 +79,12 @@ const allLanguages = () => getSortedLanguages();
             <span>{{ lang ? getLocalizedLanguageName(lang) : "" }}</span>
           </button>
         </MenuItem>
+        <divide-label-separator
+          v-if="expanded"
+          class="w-full h-0.5 bg-background-2"
+        ></divide-label-separator>
         <MenuItem
-          v-if="!expanded"
+          v-if="!expanded && getAvailableLanguages().length > 5"
           as="li"
           class="block w-full cursor-pointer rounded-lg text-label-1 hover:bg-background-2 hover:text-black"
           @click.stop
@@ -78,6 +94,11 @@ const allLanguages = () => getSortedLanguages();
             @click.stop="expanded = true"
           >
             {{ t("track.dropdown.show-all") }}
+            <NuxtIcon
+              name="icon.chevron.down"
+              class="-mr-1 ml-2 h-5 w-5 text-violet-200 hover:text-violet-100"
+              aria-hidden="true"
+            />
           </button>
         </MenuItem>
       </div>

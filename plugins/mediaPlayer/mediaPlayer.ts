@@ -31,6 +31,7 @@ export interface MediaPlayer {
   setQueue: (queue: TrackModel[], index?: number) => void;
   addToQueue: (track: TrackModel) => void;
   addNext: (track: TrackModel) => void;
+  replaceCurrent: (track: TrackModel) => void;
 }
 
 export const authToken = ref<string | undefined>();
@@ -159,6 +160,13 @@ export const initMediaPlayer = (
     continuePlayingNextIfEnded();
   }
 
+  function replaceCurrent(track: TrackModel): void {
+    stop();
+    queue.value.splice(queue.value.index, 1, { ...track });
+    queue.value.index = Number(queue.value.index);
+    initCurrentTrack();
+  }
+
   function rewind() {
     if (activeMedia.value) {
       activeMedia.value.position -= seekOffset;
@@ -211,5 +219,6 @@ export const initMediaPlayer = (
     setQueue,
     addToQueue,
     addNext,
+    replaceCurrent,
   };
 };
