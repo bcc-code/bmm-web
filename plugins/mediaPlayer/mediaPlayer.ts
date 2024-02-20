@@ -31,6 +31,7 @@ export interface MediaPlayer {
   setQueue: (queue: TrackModel[], index?: number) => void;
   addToQueue: (track: TrackModel) => void;
   addNext: (track: TrackModel) => void;
+  replaceCurrent: (track: TrackModel) => void;
 }
 
 export const authToken = ref<string | undefined>();
@@ -48,6 +49,8 @@ export const initMediaPlayer = (
 
   const hasNext = computed(() => queue.value.length > queue.value.index + 1);
   let trackTimestampStart: Date;
+
+  let nextStartPosition = 0;
 
   function next() {
     if (!hasNext.value) return;
@@ -70,10 +73,13 @@ export const initMediaPlayer = (
 
     activeMedia.value?.destroy();
 
+    let url = track.media?.[0]?.files?.[0]?.url || "";
+    if (nextStartPosition > 0) {
+      url = `${url}#t=${new Date(nextStartPosition * 1000).toISOString().slice(11, 19)}`;
+      nextStartPosition = 0;
+    }
     activeMedia.value = new MediaTrack(
-      createMedia(
-        authorizedUrl(track.media?.[0]?.files?.[0]?.url || "", authToken.value),
-      ),
+      createMedia(authorizedUrl(url, authToken.value)),
     );
     activeMedia.value.registerEvents();
   }
@@ -159,6 +165,16 @@ export const initMediaPlayer = (
     continuePlayingNextIfEnded();
   }
 
+  function replaceCurrent(track: TrackModel): void {
+    nextStartPosition = activeMedia.value?.position ?? 0;
+    stop();
+
+    queue.value = new Queue(
+      queue.value.toSpliced(queue.value.index, 1, { ...track }),
+      queue.value.index,
+    );
+  }
+
   function rewind() {
     if (activeMedia.value) {
       activeMedia.value.position -= seekOffset;
@@ -211,5 +227,6 @@ export const initMediaPlayer = (
     setQueue,
     addToQueue,
     addNext,
+    replaceCurrent,
   };
 };

@@ -302,29 +302,27 @@ const onPointerDownProgressBar = () => {
           </button>
         </div>
         <div class="flex justify-between absolute z-10 top-4 left-4 right-4">
-          <div
-            class="rounded-full border border-label-separator p-1.5 cursor-pointer"
-            @click.stop="open = !open"
-          >
-            <NuxtIcon name="icon.minify" filled class="text-xl" />
+          <div>
+            <div
+              class="rounded-full border border-label-separator p-1.5 cursor-pointer"
+              @click.stop="open = !open"
+            >
+              <NuxtIcon name="icon.minify" filled class="text-xl" />
+            </div>
           </div>
           <div
-            class="rounded-full border border-label-separator px-3 py-1.5 cursor-pointer text-sm"
-            style="background-color: rgba(255, 0, 0, 0.4); color: red"
+            v-if="(currentTrack?.languages?.length || 0) > 1"
+            class="text-sm"
           >
-            <!-- TODO: Implement option to change the language -->
-            {{
-              currentTrack?.language
-                ? getLocalizedLanguageName(currentTrack.language)
-                : ""
-            }}
+            <TrackChangeLocale />
           </div>
-
-          <TrackMenu
-            v-if="currentTrack"
-            :track="currentTrack"
-            button-class="rounded-full border border-label-separator p-1.5"
-          ></TrackMenu>
+          <div>
+            <TrackMenu
+              v-if="currentTrack"
+              :track="currentTrack"
+              button-class="rounded-full border border-label-separator p-1.5"
+            ></TrackMenu>
+          </div>
         </div>
       </div>
       <hr class="border-label-separator" />

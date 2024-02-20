@@ -20,12 +20,13 @@ export default defineNuxtPlugin((nuxtApp) => {
             headers.set("Authorization", `Bearer ${token}`);
           }
 
-          headers.set(
-            "Accept-Language",
-            contentLanguageStore(useNuxtApp().$pinia).contentLanguages.join(
-              ",",
-            ),
-          );
+          if (!headers.get("Accept-Language")) {
+            const langStore = contentLanguageStore(useNuxtApp().$pinia);
+            headers.set(
+              "Accept-Language",
+              langStore.contentLanguages.join(","),
+            );
+          }
           const uiLanguage = useNuxtApp().$i18n.locale.value;
           headers.set("UiLanguage", uiLanguage);
           headers.set("BMM-Version", "Web");

@@ -64,8 +64,7 @@ const playItem = (item: TrackModel, group: IDiscoverableGroup) => {
   );
 };
 const playSingleItem = (item: TrackModel) => {
-  const items: TrackModel[] = [item];
-  setQueue(items, 0); // ToDo: read item.lastPositionInMs and go to specific location
+  setQueue([item], 0); // ToDo: read item.lastPositionInMs and go to specific location
   // ToDo: load linked album (from showAllLink) and add remaining items to the queue
 };
 </script>
