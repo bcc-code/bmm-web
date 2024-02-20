@@ -103,6 +103,7 @@ const closeContentLanguageDialog = () => {
           class="absolute right-0 mt-2 w-56 origin-top-right divide-y divide-label-separator rounded-xl bg-background-3 text-sm shadow-lg ring-1 ring-label-separator focus-visible:outline-none -separator"
         >
           <div class="p-1">
+            <!-- Todo: #284 implement autoplay behavior -->
             <MenuItem v-if="false" v-slot="{ active }">
               <button
                 :class="{
