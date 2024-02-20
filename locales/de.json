@@ -126,6 +126,6 @@
     "loading-results": "Laden von Ergebnissen",
     "no-results-yet": "Noch keine Ergebnisse",
     "no-results-found": "Keine Ergebnisse gefunden",
-    "result-count": ""
+    "result-count": "{count} Ergebnisse"
   }
 }
