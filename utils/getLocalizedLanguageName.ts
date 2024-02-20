@@ -3,5 +3,6 @@ export default function getLocalizedLanguageName(key: MaybeRef<string>) {
   const k = unref(key);
   const intl = new Intl.DisplayNames([locale.value], { type: "language" });
 
-  return intl.of(k);
+  const translatedValue = intl.of(k);
+  return translatedValue === "kha" ? "Khasi" : translatedValue;
 }
