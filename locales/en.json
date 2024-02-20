@@ -25,17 +25,22 @@
     "theme-description": "Select the theme used for the interface.",
     "app-language": "Language",
     "interface-language": "Interface Language",
-    "interface-language-description": "The language used for the interface.",
+    "interface-language-description": "Select the language used for the interface.",
     "select-language": "Select language",
     "content-language": "Content Language",
     "content-language-description": "The preferred language for the content you are listening to.",
+    "preference-language-1": "Preferred language",
+    "preference-language-2": "Second language",
+    "preference-language-3": "Third language",
+    "preference-language-4": "{count}th language",
     "uservoice": "User Voice",
     "contact": "Contact",
     "logout": "Sign out",
     "theme-dark": "Dark",
     "theme-light": "Light",
     "theme-system": "Same as system",
-    "done": "Done"
+    "done": "Done",
+    "add-another-language": "Add another language"
   },
   "error": {
     "page-not-found": {

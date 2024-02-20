@@ -32,7 +32,7 @@ const emit = defineEmits<{
         leave-from="opacity-100"
         leave-to="opacity-0"
       >
-        <DialogBackdrop class="fixed inset-0 bg-background-4 opacity-40" />
+        <DialogBackdrop class="fixed z-30 inset-0 bg-background-4 opacity-40" />
       </TransitionChild>
 
       <div
@@ -66,7 +66,7 @@ const emit = defineEmits<{
               class="bg-label-1 dark:bg-label-dark-1 h-[1px] opacity-10"
             ></div>
             <div class="p-5 overflow-auto max-h-[80vh]">
-              <DialogDescription v-if="description" class="mb-4">
+              <DialogDescription v-if="description" class="mb-4 text-label-2">
                 {{ description }}
               </DialogDescription>
               <slot />

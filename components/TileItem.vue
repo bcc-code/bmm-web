@@ -54,7 +54,7 @@ const weekDay = (date: Date) => {
     >
       <div class="opacity-70">{{ item.title }}</div>
       <div class="font-semibold text-lg">{{ item.label }}</div>
-      <div v-if="item.date" class="text-sm">
+      <div v-if="item.date" class="text-sm whitespace-nowrap">
         {{ weekDay(item.date) }}
         <span class="opacity-70">{{ formatDate(item.date) }}</span>
       </div>
