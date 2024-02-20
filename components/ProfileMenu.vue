@@ -56,10 +56,23 @@ const joinedContentLanguages = computed(() => {
     list.map((x) => languageDictionary[x]?.NativeName ?? "Unknown"),
   );
 });
+const nextUnusedContentLanguage = () =>
+  availableContentLanguages.filter(
+    (x) => !contentLanguages.value.includes(x),
+  )[0];
 
 const closeInterfaceLanguageDialog = () => {
   profileStore.uiLanguage = locale.value;
   showInterfaceLanguageDialog.value = false;
+};
+const closeContentLanguageDialog = () => {
+  showContentLanguageDialog.value = false;
+  const newLanguages = contentLanguages.value.concat(["zxx"]);
+  if (
+    newLanguages.toString() !==
+    contentLanguageStore().contentLanguages.toString()
+  )
+    contentLanguageStore().contentLanguages = newLanguages;
 };
 </script>
 <template>
@@ -269,17 +282,7 @@ const closeInterfaceLanguageDialog = () => {
       :show="showContentLanguageDialog"
       :title="$t('profile.content-language')"
       :description="$t('profile.content-language-description')"
-      @close="
-        () => {
-          showContentLanguageDialog = false;
-          const newLanguages = contentLanguages.concat(['zxx']);
-          if (
-            newLanguages.toString() !==
-            contentLanguageStore().contentLanguages.toString()
-          )
-            contentLanguageStore().contentLanguages = newLanguages;
-        }
-      "
+      @close="closeContentLanguageDialog()"
     >
       <VueDraggable
         v-model="contentLanguages"
@@ -319,44 +322,28 @@ const closeInterfaceLanguageDialog = () => {
                 :value="lang"
               >
                 {{
-                  `${languageDictionary[lang]?.NativeName} (${languageDictionary[lang]?.EnglishName})`
+                  `${languageDictionary[lang]?.NativeName} (${getLocalizedLanguageName(lang)})`
                 }}
               </option>
             </select>
           </div>
 
-          <div
-            v-if="false"
-            class="text-black-1 bg-background-1 dark:bg-background-3 dark:text-black-1 min-w-[100px] pl-3 py-2.5 shadow ring-1 ring-label-separator rounded-lg"
-          >
-            {{ item }}
-          </div>
           <button
             v-if="i > 0"
             class="text-2xl"
-            @click="
-              () => {
-                contentLanguages.splice(i, 1);
-              }
-            "
+            @click="contentLanguages.splice(i, 1)"
           >
             <NuxtIcon name="icon.close.small" />
           </button>
         </div>
       </VueDraggable>
       <div
-        v-if="
-          availableContentLanguages.filter(
-            (x) => !contentLanguages.includes(x),
-          )[0]
-        "
+        v-if="nextUnusedContentLanguage()"
         class="text-label-3 p-3 flex flex-row gap-2 mt-4"
         @click="
           () => {
-            const available = availableContentLanguages.filter(
-              (x) => !contentLanguages.includes(x),
-            );
-            if (available[0]) contentLanguages.push(available[0]);
+            const next = nextUnusedContentLanguage();
+            if (next) contentLanguages.push(next);
           }
         "
       >
