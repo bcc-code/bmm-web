@@ -7,7 +7,8 @@
     "messages": "Toespraken",
     "audiobooks": "Audioboeken",
     "search": "Zoeken",
-    "album": "Album"
+    "album": "Album",
+    "podcast": "Podcast"
   },
   "sidebar": {
     "playlists": {
@@ -24,17 +25,22 @@
     "theme-description": "Selecteer het te gebruiken thema",
     "app-language": "Taal",
     "interface-language": "Taal van de gebruikersinterface",
-    "interface-language-description": "De taal die wordt gebruikt in de gebruikersinterface",
+    "interface-language-description": "Select the language used for the interface.",
     "select-language": "Kies taal",
     "content-language": "Taal van de content ",
     "content-language-description": "De voorkeurstaal voor de inhoud waarnaar je luistert.",
+    "preference-language-1": "Preferred language",
+    "preference-language-2": "Second language",
+    "preference-language-3": "Third language",
+    "preference-language-4": "{count}th language",
     "uservoice": "User Voice",
     "contact": "Contact",
     "logout": "Uitloggen",
     "theme-dark": "Dark",
     "theme-light": "Light",
     "theme-system": "Hetzelfde als apparaat",
-    "done": "Gereed"
+    "done": "Gereed",
+    "add-another-language": "Add another language"
   },
   "error": {
     "page-not-found": {
@@ -80,7 +86,8 @@
       "add-to-playlist": "Toevoegen aan afspeellijst",
       "share": "Deel nummer",
       "go-to-contributors": "Ga naar bijdragers",
-      "more-info": "Meer informatie"
+      "more-info": "Meer informatie",
+      "show-all": "Toon alle"
     },
     "a11y": {
       "download": "Download",
