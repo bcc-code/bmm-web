@@ -7,7 +7,8 @@
     "messages": "Reden",
     "audiobooks": "Hörbücher",
     "search": "Suche",
-    "album": "Album"
+    "album": "Album",
+    "podcast": "Podcast"
   },
   "sidebar": {
     "playlists": {
@@ -24,17 +25,22 @@
     "theme-description": "Wähle das für die Benutzeroberfläche verwendete \"Thema\" aus.",
     "app-language": "Sprache",
     "interface-language": "Sprache der Benutzeroberfläche",
-    "interface-language-description": "Sprache der Benutzeroberfläche",
+    "interface-language-description": "Select the language used for the interface.",
     "select-language": "Sprache auswählen",
     "content-language": "Sprache für Audioinhalte",
     "content-language-description": "Die bevorzugte Sprache für den Inhalt, den du anhörst.",
+    "preference-language-1": "Preferred language",
+    "preference-language-2": "Second language",
+    "preference-language-3": "Third language",
+    "preference-language-4": "{count}th language",
     "uservoice": "User Voice",
     "contact": "Kontakt",
     "logout": "Ausloggen",
     "theme-dark": "Dunkel",
     "theme-light": "Hell",
     "theme-system": "Gleich wie System",
-    "done": "Fertig"
+    "done": "Fertig",
+    "add-another-language": "Add another language"
   },
   "error": {
     "page-not-found": {
@@ -80,7 +86,8 @@
       "add-to-playlist": "Zur Playlist hinzufügen",
       "share": "Titel teilen",
       "go-to-contributors": "Zur Person",
-      "more-info": "Mehr Informationen"
+      "more-info": "Mehr Informationen",
+      "show-all": "Alle anzeigen"
     },
     "a11y": {
       "download": "Herunterladen",
