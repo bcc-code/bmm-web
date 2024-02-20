@@ -52,9 +52,7 @@ const contentLanguages = ref(
 );
 const joinedContentLanguages = computed(() => {
   const list = contentLanguages.value;
-  return getLocalizedList(
-    list.map((x) => languageDictionary[x]?.NativeName ?? "Unknown"),
-  );
+  return getLocalizedList(list.map((x) => getLocalizedLanguageName(x)));
 });
 const nextUnusedContentLanguage = () =>
   availableContentLanguages.filter(
