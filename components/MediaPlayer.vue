@@ -302,15 +302,17 @@ const onPointerDownProgressBar = () => {
           </button>
         </div>
         <div class="flex justify-between absolute z-10 top-4 left-4 right-4">
-          <div
-            class="rounded-full border border-label-separator p-1.5 cursor-pointer"
-            @click.stop="open = !open"
-          >
-            <NuxtIcon name="icon.minify" filled class="text-xl" />
+          <div>
+            <div
+              class="rounded-full border border-label-separator p-1.5 cursor-pointer"
+              @click.stop="open = !open"
+            >
+              <NuxtIcon name="icon.minify" filled class="text-xl" />
+            </div>
           </div>
           <div
             v-if="(currentTrack?.languages?.length || 0) > 1"
-            class="rounded-full border border-label-separator px-3 py-1.5 cursor-pointer text-sm hover:bg-background-2 hover:text-label-1"
+            class="text-sm"
           >
             <TrackChangeLocale />
           </div>

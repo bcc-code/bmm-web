@@ -40,6 +40,10 @@ const getAvailableLanguages = () => {
 
   return returnLanguages;
 };
+const getRemainingLanguages = () => {
+  const userLanguages = getUserLanguages();
+  return trackLanguages.filter((lang) => !userLanguages.includes(lang));
+};
 </script>
 <template>
   <Menu
@@ -50,7 +54,7 @@ const getAvailableLanguages = () => {
     <MenuButton
       as="button"
       :aria-label="t('track.a11y.options')"
-      class="rounded-full p-1"
+      class="py-1.5 px-3 font-semibold hover:bg-background-2 rounded-full border border-label-separator"
     >
       {{
         currentTrack?.language
@@ -61,46 +65,58 @@ const getAvailableLanguages = () => {
 
     <MenuItems
       as="ul"
-      class="absolute right-0 top-10 z-30 w-52 rounded-xl p-1 shadow-md bg-background-3"
+      class="absolute right-[-100px] left-[-100px] mx-auto top-10 z-30 w-60 rounded-xl p-1 shadow-md bg-background-3 max-h-[500px] overflow-y-auto"
     >
       <div class="py-0">
         <MenuItem
-          v-for="(lang, i) in expanded || getAvailableLanguages().length <= 5
-            ? getAvailableLanguages()
-            : getUserLanguages()"
+          v-for="(lang, i) in getUserLanguages()"
           :key="`Lang${i}`"
           as="li"
-          class="block w-full cursor-pointer rounded-lg text-label-1 hover:bg-background-2 hover:text-black"
+          class="block w-full cursor-pointer rounded-lg text-label-1 hover:bg-background-2"
         >
           <button
-            class="flex w-full items-center justify-start gap-2 px-3 py-2"
+            class="flex w-full items-center justify-start gap-2 px-3 py-2.5 text-[15px]"
             @click="changeLanguage(lang)"
           >
             <span>{{ lang ? getLocalizedLanguageName(lang) : "" }}</span>
           </button>
         </MenuItem>
-        <divide-label-separator
-          v-if="expanded"
-          class="w-full h-0.5 bg-background-2"
-        ></divide-label-separator>
+        <div class="px-3">
+          <hr v-if="true" class="bg-label-separator text-label-separator" />
+        </div>
         <MenuItem
           v-if="!expanded && getAvailableLanguages().length > 5"
           as="li"
-          class="block w-full cursor-pointer rounded-lg text-label-1 hover:bg-background-2 hover:text-black"
+          class="block w-full cursor-pointer rounded-lg text-label-1 hover:bg-background-2"
           @click.stop
         >
           <button
-            class="flex w-full items-center justify-start gap-2 px-3 py-2"
+            class="flex w-full items-center justify-start gap-2 px-3 py-2.5 text-[15px]"
             @click.stop="expanded = true"
           >
             {{ t("track.dropdown.show-all") }}
             <NuxtIcon
               name="icon.chevron.down"
-              class="-mr-1 ml-2 h-5 w-5 text-violet-200 hover:text-violet-100"
+              class="ml-auto text-label-1 text-xl"
               aria-hidden="true"
             />
           </button>
         </MenuItem>
+        <template v-if="expanded || !(getAvailableLanguages().length > 5)">
+          <MenuItem
+            v-for="(lang, i) in getRemainingLanguages()"
+            :key="`Lang${i}`"
+            as="li"
+            class="block w-full cursor-pointer rounded-lg text-label-1 hover:bg-background-2"
+          >
+            <button
+              class="flex w-full items-center justify-start gap-2 px-3 py-2.5 text-[15px]"
+              @click="changeLanguage(lang)"
+            >
+              <span>{{ lang ? getLocalizedLanguageName(lang) : "" }}</span>
+            </button>
+          </MenuItem>
+        </template>
       </div>
     </MenuItems>
   </Menu>
