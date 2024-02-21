@@ -17,16 +17,11 @@ const onPressPlay = () => {
   }
 };
 
-const onPressShuffle = () => {
-  try {
-    const shuffledTracks = usePodcastShuffle(collectionId).data.value;
+const onPressShuffle = async () => {
+  const shuffledTracks = (await usePodcastShuffle(collectionId)).data.value;
 
-    if (shuffledTracks) {
-      setQueue(shuffledTracks);
-    }
-  } catch (error) {
-    // TODO: Show proper error message
-    console.error("Failed to fetch shuffle tracks (%s)", error);
+  if (shuffledTracks) {
+    setQueue(shuffledTracks);
   }
 };
 
@@ -50,12 +45,18 @@ const onPressShuffle = () => {
             </p>
           </div>
           <div class="flex gap-2">
-            <ButtonStyled intent="primary" @click.stop="onPressPlay">
-              <NuxtIcon name="icon.play" class="text-2xl" />
+            <ButtonStyled
+              intent="primary"
+              icon="icon.play"
+              @click.stop="onPressPlay"
+            >
               {{ t("podcast.action.play") }}
             </ButtonStyled>
-            <ButtonStyled intent="primary" @click.stop="onPressShuffle">
-              <NuxtIcon name="icon.shuffle" class="text-2xl" />
+            <ButtonStyled
+              intent="primary"
+              icon="icon.shuffle"
+              @click.stop="onPressShuffle"
+            >
               {{ t("playlist.action.shuffle") }}
             </ButtonStyled>
             <CopyToClipboard
@@ -64,9 +65,7 @@ const onPressShuffle = () => {
                 params: { id: collectionId },
               }"
             >
-              <ButtonStyled intent="secondary" class="h-full aspect-square">
-                <NuxtIcon name="icon.link" />
-              </ButtonStyled>
+              <ButtonStyled icon="icon.link" icon-only></ButtonStyled>
             </CopyToClipboard>
           </div>
         </div>

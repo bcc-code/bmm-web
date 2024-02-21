@@ -21,7 +21,7 @@ const logoutAndRedirect = async () => {
 };
 
 useHead({
-  titleTemplate: (chunk) => (chunk ? `${chunk} | BMM` : "BMM"),
+  titleTemplate: (chunk) => (chunk ? `BMM | ${chunk}` : "BMM"),
 });
 </script>
 

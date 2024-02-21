@@ -46,18 +46,19 @@ onBeforeMount(() => {
             </p>
           </div>
           <div class="flex gap-2">
-            <ButtonStyled intent="primary" @click.stop="shuffle">{{
-              t("playlist.action.shuffle")
-            }}</ButtonStyled>
-
+            <ButtonStyled
+              intent="primary"
+              icon="icon.shuffle"
+              @click.stop="shuffle"
+              >{{ t("playlist.action.shuffle") }}</ButtonStyled
+            >
             <CopyToClipboard
               :link="{
                 name: 'playlist-curated-id',
                 params: { id: playlistId },
               }"
             >
-              <ButtonStyled intent="secondary" class="h-full aspect-square">
-                <NuxtIcon name="icon.link" />
+              <ButtonStyled intent="secondary" icon="icon.link" icon-only>
               </ButtonStyled>
             </CopyToClipboard>
           </div>

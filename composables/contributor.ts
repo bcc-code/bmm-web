@@ -19,3 +19,10 @@ export function useContributorTracks(options: UseContributorOptions) {
     new ContributorApi().contributorIdTrackGet({ id }),
   );
 }
+
+export function useContributorShuffle(id: number) {
+  console.log("load for id", id);
+  return useAsyncData(`contributor-${id}-shuffle`, () =>
+    new ContributorApi().contributorIdRandomGet({ id }),
+  );
+}

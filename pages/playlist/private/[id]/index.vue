@@ -13,7 +13,7 @@ useHead({
 
 <template>
   <div>
-    <header class="mb-8 flex gap-6">
+    <header class="mb-12 flex gap-6">
       <template v-if="collection">
         <div>
           <PageHeading>{{ collection?.name }}</PageHeading>
