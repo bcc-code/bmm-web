@@ -102,7 +102,7 @@ const onPointerDownProgressBar = () => {
             v-if="isLoading"
             class="flex aspect-square w-12 text-2xl justify-center items-center"
           >
-            <NuxtIcon name="icon.loading (animation)" filled />
+            <NuxtIcon name="icon.loading.animation" filled />
           </button>
           <button
             v-if="!isLoading && status === MediaPlayerStatus.Playing"
@@ -261,7 +261,7 @@ const onPointerDownProgressBar = () => {
             v-if="isLoading"
             class="flex rounded-full aspect-square bg-background-2 w-14 text-2xl justify-center items-center"
           >
-            <NuxtIcon name="icon.loading (animation)" filled />
+            <NuxtIcon name="icon.loading.animation" filled />
           </button>
           <button
             v-if="!isLoading && status === MediaPlayerStatus.Playing"
@@ -384,7 +384,7 @@ const onPointerDownProgressBar = () => {
                   v-if="
                     queue.index === i && status !== MediaPlayerStatus.Stopped
                   "
-                  name="icon.playing (animation)"
+                  name="icon.playing.animation"
                   filled
                   class="text-2xl"
                   :class="{
