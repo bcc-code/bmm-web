@@ -2,6 +2,7 @@
 import type { TrackModel } from "@bcc-code/bmm-sdk-fetch";
 
 const { t } = useI18n();
+const { addNext, addToQueue } = useNuxtApp().$mediaPlayer;
 
 defineProps<{
   track: TrackModel;
@@ -18,6 +19,9 @@ const emit = defineEmits<{ "play-track": [] }>();
 function playTrack() {
   emit("play-track");
 }
+
+const showAddToPlaylist = ref(false);
+const selectedTrack: Ref<TrackModel | null> = ref(null);
 </script>
 
 <template>
@@ -87,22 +91,29 @@ function playTrack() {
       </div>
       <div class="flex items-center gap-1">
         <button
-          class="px-2 py-0 opacity-0 hover:bg-[red] hover:opacity-100 focus:opacity-100 group-hover:opacity-100 group-focus:opacity-100"
-          :aria-label="t('track.a11y.download')"
+          class="rounded-full p-2 opacity-0 hover:bg-label-separator hover:opacity-100 group-hover:opacity-100 group-focus:opacity-100"
+          @click="selectedTrack = track"
           @click.stop
         >
-          <NuxtIcon name="download" class="text-2xl" />
+          <NuxtIcon name="icon.category.playlist" class="text-2xl" />
         </button>
         <button
-          class="px-2 py-0 opacity-0 hover:bg-[red] hover:opacity-100 focus:opacity-100 group-hover:opacity-100 group-focus:opacity-100"
+          class="rounded-full p-2 opacity-0 hover:bg-label-separator hover:opacity-100 group-hover:opacity-100 group-focus:opacity-100"
           :aria-label="t('track.a11y.queue')"
+          @click="addToQueue(track)"
           @click.stop
         >
           <NuxtIcon name="queue" class="text-2xl" />
         </button>
-        <TrackMenu :track="track" button-class="px-2" />
+        <TrackMenu :track="track" button-class="p-2 hover:bg-label-separator" />
       </div>
     </div>
     <slot />
+
+    <TrackAddToPlaylist
+      v-if="selectedTrack"
+      :track-id="selectedTrack.id"
+      @close="selectedTrack = null"
+    ></TrackAddToPlaylist>
   </li>
 </template>
