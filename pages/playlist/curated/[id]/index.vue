@@ -9,15 +9,16 @@ const playlistId = Number(id);
 const { data: playlist } = useCuratedPlaylist({ id: playlistId });
 const { data: tracks, pending } = useCuratedPlaylistTracks({ id: playlistId });
 
-const { setQueue, queue } = useNuxtApp().$mediaPlayer;
+const { setQueueShuffled, setQueue } = useNuxtApp().$mediaPlayer;
 
+const onPressPlay = () => {
+  if (tracks.value) {
+    setQueue(tracks.value);
+  }
+};
 function shuffle() {
   if (tracks.value) {
-    // set the first track to a random number based on the current playlist length
-    const trackIndex = Math.floor(Math.random() * tracks.value.length);
-    setQueue(tracks.value, trackIndex);
-    queue.value.shuffle();
-
+    setQueueShuffled(tracks.value);
     $appInsights.event("Shuffle Playlist", { playlistId });
   }
 }
@@ -46,6 +47,13 @@ onBeforeMount(() => {
             </p>
           </div>
           <div class="flex gap-2">
+            <ButtonStyled
+              intent="primary"
+              icon="icon.play"
+              @click="onPressPlay()"
+            >
+              {{ t("podcast.action.play") }}
+            </ButtonStyled>
             <ButtonStyled
               intent="primary"
               icon="icon.shuffle"

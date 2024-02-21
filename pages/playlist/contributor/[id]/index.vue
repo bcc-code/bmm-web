@@ -8,9 +8,7 @@ const { data: tracks, pending: tracksPending } = useContributorTracks({
   id: contributorId,
 });
 
-toolbarTitleStore().setReactiveToolbarTitle(
-  () => contributor.value?.name || "",
-);
+toolbarTitleStore().setReactiveToolbarTitle(() => t("nav.contributor"));
 
 useHead({
   title: contributor.value?.name || "",

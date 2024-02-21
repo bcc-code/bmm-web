@@ -25,7 +25,7 @@ defineProps<{
           <ProtectedImage
             v-if="contributor.cover"
             :src="contributor.cover"
-            class="rounded-xl bg-background-2"
+            class="rounded-full bg-background-2"
           />
         </div>
         <div class="col-span-3 flex items-center">

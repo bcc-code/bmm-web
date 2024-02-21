@@ -5,6 +5,7 @@ import type { IUserData } from "../2.userData";
 import type { AppInsights } from "../3.applicationInsights";
 import MediaTrack from "./MediaTrack";
 import Queue from "./Queue";
+import { shuffle } from "cypress/types/lodash";
 
 export enum MediaPlayerStatus {
   Paused = "PAUSED",
@@ -29,6 +30,7 @@ export interface MediaPlayer {
   currentPosition: Ref<number>;
   currentTrackDuration: ComputedRef<number>;
   setQueue: (queue: TrackModel[], index?: number) => void;
+  setQueueShuffled: (queue: TrackModel[]) => void;
   addToQueue: (track: TrackModel) => void;
   addNext: (track: TrackModel) => void;
   replaceCurrent: (track: TrackModel) => void;
@@ -160,6 +162,13 @@ export const initMediaPlayer = (
     queue.value = new Queue(_queue, index);
   }
 
+  function setQueueShuffled(newQueue: TrackModel[]): void {
+    // set the first track to a random number based on the current playlist length
+    const trackIndex = Math.floor(Math.random() * newQueue.length);
+    setQueue(newQueue, trackIndex);
+    queue.value.shuffle();
+  }
+
   function addNext(track: TrackModel): void {
     queue.value.splice(queue.value.index + 1, 0, { ...track });
     continuePlayingNextIfEnded();
@@ -225,6 +234,7 @@ export const initMediaPlayer = (
     ),
     queue: computed(() => queue.value),
     setQueue,
+    setQueueShuffled,
     addToQueue,
     addNext,
     replaceCurrent,
