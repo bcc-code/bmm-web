@@ -85,7 +85,10 @@ const playSingleItem = (item: TrackModel) => {
         v-for="group in convertModels(props.items)"
         :key="group.header?.id || 0"
       >
-        <PageHeading v-if="group.header" :level="3" class="mt-12 mb-5">
+        <h2
+          v-if="group.header"
+          class="text-[28px] font-extrabold leading-tight text-label-1 mt-12 mb-5"
+        >
           <div class="flex items-center justify-between">
             <div>
               <NuxtLink
@@ -107,59 +110,63 @@ const playSingleItem = (item: TrackModel) => {
               </ButtonStyled>
             </NuxtLink>
           </div>
-        </PageHeading>
-        <div
-          v-if="group.useFlex"
-          class="flex flex-row flex-wrap gap-6 mt-3"
-          :class="
-            group.header && group.header?.useCoverCarousel && group.header?.link
-              ? 'overflow-hidden max-h-[27.5rem] lg:max-h-[13rem]'
-              : ''
-          "
-        >
-          <template v-for="item in group.items" :key="item.id">
-            <NuxtLink
-              v-if="item.type === 'album'"
-              :to="{ name: 'album-id', params: { id: item.id } }"
-            >
-              <ItemCard :item="item" />
-            </NuxtLink>
-            <NuxtLink
-              v-else-if="item.type === 'playlist'"
-              :to="{ name: 'playlist-curated-id', params: { id: item.id } }"
-            >
-              <ItemCard :item="item" />
-            </NuxtLink>
-            <NuxtLink
-              v-else-if="item.type === 'podcast'"
-              :to="{ name: 'playlist-podcast-id', params: { id: item.id } }"
-            >
-              <ItemCard :item="item" />
-            </NuxtLink>
+        </h2>
 
-            <TileItem
-              v-else-if="item.type === 'Tile' && item.track"
-              :item="item"
-              @play-track="playSingleItem(item.track)"
-            ></TileItem>
+        <div v-if="group.useFlex" class="mt-3 py-2">
+          <div
+            class="flex flex-row flex-wrap gap-6"
+            :class="
+              group.header &&
+              group.header?.useCoverCarousel &&
+              group.header?.link
+                ? 'overflow-hidden max-h-[27.5rem] lg:max-h-[13rem]'
+                : ''
+            "
+          >
+            <template v-for="item in group.items" :key="item.id">
+              <NuxtLink
+                v-if="item.type === 'album'"
+                :to="{ name: 'album-id', params: { id: item.id } }"
+              >
+                <ItemCard :item="item" />
+              </NuxtLink>
+              <NuxtLink
+                v-else-if="item.type === 'playlist'"
+                :to="{ name: 'playlist-curated-id', params: { id: item.id } }"
+              >
+                <ItemCard :item="item" />
+              </NuxtLink>
+              <NuxtLink
+                v-else-if="item.type === 'podcast'"
+                :to="{ name: 'playlist-podcast-id', params: { id: item.id } }"
+              >
+                <ItemCard :item="item" />
+              </NuxtLink>
 
-            <div
-              v-else
-              class="grid w-52 flex-shrink-0 basis-52 gap-4"
-              style="background-color: rgba(255, 0, 0, 0.4); color: red"
-            >
-              "{{ item.type }}" is not yet implemented ...
-            </div>
-          </template>
+              <TileItem
+                v-else-if="item.type === 'Tile' && item.track"
+                :item="item"
+                @play-track="playSingleItem(item.track)"
+              ></TileItem>
+
+              <div
+                v-else
+                class="grid w-52 flex-shrink-0 basis-52 gap-4"
+                style="background-color: rgba(255, 0, 0, 0.4); color: red"
+              >
+                "{{ item.type }}" is not yet implemented ...
+              </div>
+            </template>
+          </div>
         </div>
         <ol
           v-else
-          class="w-full divide-y divide-label-separator grid grid-cols-tracklist mt-3 lg:mt-6"
+          class="w-full divide-y divide-label-separator grid grid-cols-tracklist mt-3 lg:mt-4"
         >
           <template v-for="item in group.items" :key="item.id">
             <h2
               v-if="item.type === 'chapter_header'"
-              class="text-2xl font-extrabold pt-10 pb-4"
+              class="text-[28px] font-extrabold leading-tight pt-10 pb-4"
             >
               {{ item.title }}
             </h2>
