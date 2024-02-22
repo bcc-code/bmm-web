@@ -8,7 +8,8 @@
     "audiobooks": "Audiobooks",
     "search": "Search",
     "album": "Album",
-    "podcast": "Podcast"
+    "podcast": "Podcast",
+    "contributor": "Contributor"
   },
   "sidebar": {
     "playlists": {

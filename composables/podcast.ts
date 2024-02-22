@@ -35,9 +35,7 @@ export function usePodcasts() {
 }
 
 export function usePodcastShuffle(id: number) {
-  return reactiveApi(
-    useLazyAsyncData("podcastshuffle", () =>
-      new PodcastApi().podcastIdShuffleGet({ id }),
-    ),
+  return useAsyncData("podcastshuffle", () =>
+    new PodcastApi().podcastIdShuffleGet({ id }),
   );
 }
