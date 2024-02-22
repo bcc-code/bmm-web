@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { RoutesNamesList } from ".nuxt/typed-router";
+import type { RoutesNamesList } from "@typed-router";
 
 defineProps<{
   id: number;
