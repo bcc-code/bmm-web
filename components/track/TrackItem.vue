@@ -33,14 +33,11 @@ const selectedTrack: Ref<TrackModel | null> = ref(null);
     ></div>
 
     <div class="relative grid col-span-full grid-cols-subgrid">
-      <div
-        v-if="track.meta?.attachedPicture && showThumbnail"
-        class="flex items-center hidden lg:block"
-      >
+      <div v-if="showThumbnail" class="flex items-center hidden lg:block">
         <div class="relative aspect-square w-10">
-          <ProtectedImage
+          <CoverImage
             :src="track.meta?.attachedPicture"
-            class="rounded-md bg-background-2"
+            class="w-10 rounded-md"
           />
           <div class="absolute w-10 inset-0 opacity-0 group-hover:opacity-100">
             <div
@@ -54,10 +51,7 @@ const selectedTrack: Ref<TrackModel | null> = ref(null);
         </div>
       </div>
 
-      <div
-        v-if="!(track.meta?.attachedPicture && showThumbnail)"
-        class="relative hidden lg:block"
-      ></div>
+      <div v-if="!showThumbnail" class="relative hidden lg:block"></div>
       <div
         class="flex flex-col justify-center col-span-2 lg:col-span-1 min-w-0"
       >

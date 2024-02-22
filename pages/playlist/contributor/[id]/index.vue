@@ -31,11 +31,9 @@ const onPressShuffle = async () => {
 <template>
   <div>
     <header class="mb-12 flex gap-6">
-      <ProtectedImage
-        v-if="contributor?.cover"
-        :src="contributor?.cover"
-        class="bg-slate-100 aspect-square w-[240px] rounded-full mt-10"
-      />
+      <div class="mt-10">
+        <CoverImage :src="contributor?.cover" class="w-[240px] rounded-full" />
+      </div>
       <div class="flex flex-col justify-between px-6 pt-4">
         <div>
           <PageHeading>{{ contributor?.name }}</PageHeading>

@@ -22,11 +22,7 @@ defineProps<{
       ></div>
       <div class="relative grid col-span-full grid-cols-subgrid">
         <div class="aspect-square w-10">
-          <ProtectedImage
-            v-if="contributor.cover"
-            :src="contributor.cover"
-            class="rounded-full bg-background-2"
-          />
+          <CoverImage :src="contributor.cover" class="rounded-full" />
         </div>
         <div class="col-span-3 flex items-center">
           <h4

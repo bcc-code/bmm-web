@@ -21,13 +21,7 @@ defineProps<{
         class="absolute -inset-x-4 -inset-y-0 rounded-xl bg-background-2 opacity-0 group-hover:opacity-100"
       ></div>
       <div class="relative grid col-span-full grid-cols-subgrid">
-        <div class="aspect-square w-10">
-          <ProtectedImage
-            v-if="playlist.cover"
-            :src="playlist.cover"
-            class="rounded-xl bg-background-2"
-          />
-        </div>
+        <CoverImage :src="playlist.cover" class="rounded-xl w-10" />
         <div class="col-span-3 flex items-center">
           <h4
             class="overflow-hidden text-ellipsis whitespace-nowrap font-semibold"

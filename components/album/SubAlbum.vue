@@ -33,11 +33,7 @@ function expand() {
       v-if="album"
       class="relative flex items-center justify-between gap-2"
     >
-      <ProtectedImage
-        v-if="album.cover"
-        :src="album.cover"
-        class="bg-slate-100 aspect-square w-20 rounded-md"
-      />
+      <CoverImage :src="album.cover" class="w-20 rounded-md" />
       <p class="text-2xl font-bold">{{ album.title }}</p>
       <p v-if="album?.children" class="ml-auto">
         {{ t("collection.track-count", album?.children.length) }}
