@@ -176,17 +176,37 @@ const playSingleItem = (item: TrackModel) => {
               :is-track-type-known="true"
               show-thumbnail
               @play-track="playItem(item, group)"
-            ></TrackItem>
-            <ContributorListItem
-              v-else-if="item.type === 'contributor'"
-              :contributor="item"
-            ></ContributorListItem>
-            <AlbumItem v-else-if="item.type === 'album'" :album="item" />
-            <PlaylistItem
-              v-else-if="item.type === 'playlist'"
-              :playlist="item"
             />
-            <PodcastItem v-else-if="item.type === 'podcast'" :podcast="item" />
+            <GenericListItem
+              v-else-if="item.type === 'contributor'"
+              :id="item.id"
+              :route-name="'playlist-contributor-id'"
+              :cover="item.cover"
+              circle
+              :label="item.name"
+            />
+            <GenericListItem
+              v-else-if="item.type === 'album'"
+              :id="item.id"
+              :route-name="'album-id'"
+              :cover="item.cover"
+              :label="item.title"
+            />
+            <GenericListItem
+              v-else-if="item.type === 'playlist'"
+              :id="item.id"
+              :route-name="'playlist-curated-id'"
+              :cover="item.cover"
+              :label="item.title"
+            />
+            <GenericListItem
+              v-else-if="item.type === 'podcast'"
+              :id="item.id"
+              :route-name="'playlist-podcast-id'"
+              :cover="item.cover"
+              :label="item.title"
+            />
+
             <li v-else class="col-span-full">
               <div style="background-color: rgba(255, 0, 0, 0.4); color: red">
                 "{{ item.type }}" is not yet implemented ...
