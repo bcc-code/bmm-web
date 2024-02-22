@@ -3,6 +3,8 @@ import type { TrackModel } from "@bcc-code/bmm-sdk-fetch";
 export default class Queue extends Array<TrackModel> {
   public isShuffled = false;
 
+  public isRepeatEnabled = false;
+
   private i = 0;
 
   public get index() {

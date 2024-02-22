@@ -79,6 +79,9 @@
       "follow": "Follow"
     }
   },
+  "player": {
+    "queue": "Queue"
+  },
   "track": {
     "dropdown": {
       "play-next": "Play next",

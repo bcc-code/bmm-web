@@ -114,6 +114,8 @@ export const initMediaPlayer = (
 
         if (hasNext.value) {
           next();
+        } else if (queue.value.isRepeatEnabled) {
+          restart();
         } else {
           stop();
         }
@@ -141,9 +143,22 @@ export const initMediaPlayer = (
 
   const hasPrevious = computed(() => queue.value.index > 0);
 
+  function play() {
+    if (activeMedia.value) {
+      activeMedia.value.play();
+    } else {
+      initCurrentTrack();
+    }
+  }
+
   function previous() {
     if (!hasPrevious.value) return;
     queue.value.index -= 1;
+  }
+
+  function restart() {
+    if (queue.value.length === 1) play();
+    else queue.value.index = 0;
   }
 
   function continuePlayingNextIfEnded() {
@@ -201,13 +216,7 @@ export const initMediaPlayer = (
       if (activeMedia.value.paused) return MediaPlayerStatus.Paused;
       return MediaPlayerStatus.Playing;
     }),
-    play: () => {
-      if (activeMedia.value) {
-        activeMedia.value.play();
-      } else {
-        initCurrentTrack();
-      }
-    },
+    play,
     pause: () => {
       activeMedia.value?.pause();
     },
