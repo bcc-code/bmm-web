@@ -2,7 +2,7 @@
 import type { TrackModel } from "@bcc-code/bmm-sdk-fetch";
 
 const { t } = useI18n();
-const { addNext, addToQueue } = useNuxtApp().$mediaPlayer;
+const { addToQueue } = useNuxtApp().$mediaPlayer;
 
 defineProps<{
   track: TrackModel;
@@ -20,7 +20,6 @@ function playTrack() {
   emit("play-track");
 }
 
-const showAddToPlaylist = ref(false);
 const selectedTrack: Ref<TrackModel | null> = ref(null);
 </script>
 

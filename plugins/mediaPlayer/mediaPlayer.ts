@@ -5,7 +5,6 @@ import type { IUserData } from "../2.userData";
 import type { AppInsights } from "../3.applicationInsights";
 import MediaTrack from "./MediaTrack";
 import Queue from "./Queue";
-import { shuffle } from "cypress/types/lodash";
 
 export enum MediaPlayerStatus {
   Paused = "PAUSED",
