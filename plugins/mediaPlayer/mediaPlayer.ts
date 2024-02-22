@@ -85,6 +85,19 @@ export const initMediaPlayer = (
     activeMedia.value.registerEvents();
   }
 
+  function play() {
+    if (activeMedia.value) {
+      activeMedia.value.play();
+    } else {
+      initCurrentTrack();
+    }
+  }
+
+  function restart() {
+    if (queue.value.length === 1) play();
+    else queue.value.index = 0;
+  }
+
   watch(
     () => activeMedia.value?.ended,
     (ended) => {
@@ -143,22 +156,9 @@ export const initMediaPlayer = (
 
   const hasPrevious = computed(() => queue.value.index > 0);
 
-  function play() {
-    if (activeMedia.value) {
-      activeMedia.value.play();
-    } else {
-      initCurrentTrack();
-    }
-  }
-
   function previous() {
     if (!hasPrevious.value) return;
     queue.value.index -= 1;
-  }
-
-  function restart() {
-    if (queue.value.length === 1) play();
-    else queue.value.index = 0;
   }
 
   function continuePlayingNextIfEnded() {
