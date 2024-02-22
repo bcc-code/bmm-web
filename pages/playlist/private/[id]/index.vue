@@ -52,6 +52,7 @@ const onPressShuffle = () => {
           >
             {{ t("playlist.action.shuffle") }}
           </ButtonStyled>
+          <PrivatePlaylistMenu :playlist="collection"></PrivatePlaylistMenu>
         </div>
       </div>
     </header>

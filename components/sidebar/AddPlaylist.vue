@@ -1,19 +1,24 @@
 <script lang="ts" setup>
-const showInput = ref(false);
-const playlistName = ref("");
+const emit = defineEmits<{ "reload-playlists": [] }>();
 
-const toggleInput = () => {
+const playlistName = ref("");
+const showDialog = ref(false);
+
+const show = () => {
+  showDialog.value = true;
   playlistName.value = "";
-  showInput.value = !showInput.value;
 };
 
-const savePlaylist = async () => {
+const createPlaylist = async () => {
+  if (playlistName.value === "") return;
+
+  showDialog.value = false;
   try {
     await addPrivatePlaylist(playlistName.value);
-    toggleInput();
-    // TODO: Trigger a reload of the list of playlists
+    playlistName.value = "";
+    emit("reload-playlists");
   } catch (e) {
-    console.log(e);
+    console.error(e);
     /* TODO: Define what should happen now... */
   }
 };
@@ -21,18 +26,37 @@ const savePlaylist = async () => {
 
 <template>
   <div class="px-4 py-2 cursor-pointer text-label-3">
-    <div v-if="!showInput" class="group gap-2 flex" @click="toggleInput()">
+    <div class="group gap-2 flex" @click="show()">
       <NuxtIcon name="icon.add" class="text-xl" />
       <span class="transition-transform group-hover:translate-x-2">
         {{ $t("playlist.add") }}
       </span>
     </div>
-    <div v-else class="group gap-2 flex">
-      <NuxtIcon name="icon.close" class="text-xl" @click="toggleInput()" />
-      <span class="w-full">
-        <input v-model="playlistName" class="w-full" />
-      </span>
-      <NuxtIcon name="icon.checkmark" class="text-xl" @click="savePlaylist()" />
-    </div>
+    <DialogBase
+      :show="showDialog"
+      :title="$t('playlist.new-playlist')"
+      hide-button
+      @close="showDialog = false"
+    >
+      <div class="flex flex-col gap-4">
+        <input
+          v-model="playlistName"
+          class="text-[17px] min-w-[416px] grow leading-7 placeholder:text-label-3 text-label-1 font-medium bg-background-2 px-4 py-3 rounded-lg"
+          :placeholder="$t('playlist.name-your-playlist')"
+        />
+        <div class="flex gap-6 grow">
+          <ButtonStyled class="grow" @click.stop="showDialog = false">{{
+            $t("global.cancel")
+          }}</ButtonStyled>
+          <ButtonStyled
+            class="grow"
+            :class="playlistName === '' ? 'opacity-50' : ''"
+            intent="primary"
+            @click.stop="createPlaylist()"
+            >{{ $t("profile.done") }}</ButtonStyled
+          >
+        </div>
+      </div>
+    </DialogBase>
   </div>
 </template>
