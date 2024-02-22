@@ -34,11 +34,9 @@ onBeforeMount(() => {
   <div v-if="playlist">
     <div>
       <header class="mb-12 flex gap-6">
-        <ProtectedImage
-          v-if="playlist.cover"
-          :src="playlist.cover"
-          class="aspect-square w-[240px] rounded-2xl bg-background-2 mt-10"
-        />
+        <div class="mt-10">
+          <CoverImage :src="playlist.cover" class="w-[240px] rounded-2xl" />
+        </div>
         <div class="flex flex-col justify-between px-6 pt-4">
           <div>
             <PageHeading>{{ playlist.title }}</PageHeading>

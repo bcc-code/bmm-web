@@ -32,11 +32,9 @@ const onPressShuffle = async () => {
   <div v-if="podcast">
     <div>
       <header class="mb-12 flex gap-6">
-        <ProtectedImage
-          v-if="podcast.cover"
-          :src="podcast.cover"
-          class="aspect-square w-[240px] rounded-2xl bg-background-2 mt-10"
-        />
+        <div class="mt-10">
+          <CoverImage :src="podcast.cover" class="w-[240px] rounded-2xl" />
+        </div>
         <div class="flex flex-col justify-between px-6 pt-4">
           <div>
             <PageHeading>{{ podcast.title }}</PageHeading>
@@ -48,14 +46,14 @@ const onPressShuffle = async () => {
             <ButtonStyled
               intent="primary"
               icon="icon.play"
-              @click.stop="onPressPlay"
+              @click="onPressPlay"
             >
               {{ t("podcast.action.play") }}
             </ButtonStyled>
             <ButtonStyled
               intent="primary"
               icon="icon.shuffle"
-              @click.stop="onPressShuffle"
+              @click="onPressShuffle"
             >
               {{ t("playlist.action.shuffle") }}
             </ButtonStyled>

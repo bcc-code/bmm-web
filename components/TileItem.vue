@@ -39,11 +39,10 @@ const weekDay = (date: Date) => {
       :to="parseLink(item.showAllLink)"
       class="w-1/2 aspect-square rounded-l-2xl"
     >
-      <ProtectedImage
-        v-if="item.coverUrl"
+      <CoverImage
         :src="item.coverUrl"
         :alt="item.title"
-        class="aspect-square rounded-l-2xl"
+        class="rounded-l-2xl"
         no-border
       />
     </NuxtLink>

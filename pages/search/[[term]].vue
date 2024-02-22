@@ -166,23 +166,36 @@ const { setQueue } = useNuxtApp().$mediaPlayer;
                 :is-track-type-known="true"
                 show-thumbnail
                 @play-track="setQueue([item])"
-              ></TrackItem>
-              <ContributorListItem
+              />
+              <GenericListItem
                 v-else-if="item.type === 'contributor'"
-                :contributor="item"
-              ></ContributorListItem>
-              <AlbumItem
+                :id="item.id"
+                :route-name="'playlist-contributor-id'"
+                :cover="item.cover"
+                circle
+                :label="item.name"
+              />
+              <GenericListItem
                 v-else-if="item.type === 'album'"
-                :album="item"
-              ></AlbumItem>
-              <PlaylistItem
+                :id="item.id"
+                :route-name="'album-id'"
+                :cover="item.cover"
+                :label="item.title"
+              />
+              <GenericListItem
                 v-else-if="item.type === 'playlist'"
-                :playlist="item"
-              ></PlaylistItem>
-              <PodcastItem
+                :id="item.id"
+                :route-name="'playlist-curated-id'"
+                :cover="item.cover"
+                :label="item.title"
+              />
+              <GenericListItem
                 v-else-if="item.type === 'podcast'"
-                :podcast="item"
-              ></PodcastItem>
+                :id="item.id"
+                :route-name="'playlist-podcast-id'"
+                :cover="item.cover"
+                :label="item.title"
+              />
               <li v-else>
                 {{ ((a: never) => {})(item) }}
               </li>
