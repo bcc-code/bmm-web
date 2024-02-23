@@ -35,7 +35,6 @@ const languageDictionary: {
   ta: { EnglishName: "Tamil", NativeName: "தம\u0BBFழ\u0BCD" },
   tr: { EnglishName: "Turkish", NativeName: "Türkçe" },
   zh: { EnglishName: "Chinese (Simplified)", NativeName: "中文" },
-  uk: { EnglishName: "Ukrainian", NativeName: "українська" },
   yue: { EnglishName: "Cantonese", NativeName: "廣東話" },
 };
 
