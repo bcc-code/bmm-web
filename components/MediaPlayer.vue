@@ -237,12 +237,8 @@ const onPointerDownProgressBar = () => {
         </div>
         <div class="flex justify-evenly px-4 py-2">
           <button
-            :class="
-              currentPosition === 0 || isLoading
-                ? 'text-label-4 '
-                : 'hover:text-3xl border-background-2 border'
-            "
-            class="flex rounded-full aspect-square w-14 text-2xl transition-all duration-200 ease-out justify-center items-center"
+            :class="isLoading ? 'text-label-4 ' : 'hover:text-3xl border'"
+            class="flex rounded-full aspect-square w-14 text-2xl transition-all duration-200 ease-out justify-center items-center border-label-separator"
             @click.stop="rewind()"
           >
             <NuxtIcon name="icon.rewind.large" filled />
