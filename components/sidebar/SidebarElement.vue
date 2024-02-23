@@ -1,8 +1,7 @@
 <script lang="ts" setup>
 import { version } from "~/package.json";
 
-const playlists = usePrivatePlaylists();
-const { data: collections } = playlists;
+const { data: collections } = usePrivatePlaylists();
 </script>
 
 <template>
@@ -47,9 +46,7 @@ const { data: collections } = playlists;
           }"
           icon="icon.category.playlist"
         />
-        <SidebarAddPlaylist
-          @reload-playlists="playlists.refresh()"
-        ></SidebarAddPlaylist>
+        <SidebarAddPlaylist></SidebarAddPlaylist>
       </SidebarGroup>
     </div>
   </aside>

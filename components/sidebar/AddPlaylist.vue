@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-const emit = defineEmits<{ "reload-playlists": [] }>();
-
 const playlistName = ref("");
 const showDialog = ref(false);
 
@@ -14,9 +12,10 @@ const createPlaylist = async () => {
 
   showDialog.value = false;
   try {
-    await addPrivatePlaylist(playlistName.value);
+    const name = playlistName.value;
     playlistName.value = "";
-    emit("reload-playlists");
+    await addPrivatePlaylist(name);
+    refreshPrivatePlaylists();
   } catch (e) {
     console.error(e);
     /* TODO: Define what should happen now... */

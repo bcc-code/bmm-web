@@ -2,7 +2,11 @@
 import type { NuxtIconName } from "#build//nuxt-icons";
 import type { RoutesNamedLocations } from "#build/typed-router";
 import { TrackCollectionApi } from "@bcc-code/bmm-sdk-fetch";
-import type { GetTrackCollectionModel } from "@bcc-code/bmm-sdk-fetch";
+import type {
+  GetTrackCollectionModel,
+  TrackModel,
+  TrackReference,
+} from "@bcc-code/bmm-sdk-fetch";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/vue";
 
 const { t } = useI18n();
@@ -16,6 +20,7 @@ const props = withDefaults(
     buttonClass: "",
   },
 );
+const emit = defineEmits<{ "playlist-changed": [] }>();
 
 type DropdownMenuItem = {
   text: string;
@@ -26,26 +31,46 @@ const showEditDialog = ref(false);
 const showDeleteDialog = ref(false);
 const playlistName = ref("");
 
-const savePlaylist = () => {
-  new TrackCollectionApi().trackCollectionIdPut({
+const tracksToTrackReferences = (tracks: TrackModel[] | undefined | null) => {
+  const list: TrackReference[] = [];
+  if (!tracks) return list;
+
+  tracks.forEach((track) => {
+    if (track.id && track.language)
+      list.push({
+        id: track.id,
+        language: track.language,
+      });
+  });
+  return list;
+};
+
+const savePlaylist = async () => {
+  showEditDialog.value = false;
+  await new TrackCollectionApi().trackCollectionIdPut({
     id: props.playlist.id,
     updateTrackCollectionCommand: {
       id: props.playlist.id,
       name: playlistName.value,
+      trackReferences: tracksToTrackReferences(props.playlist.tracks),
     },
   });
-  showEditDialog.value = false;
+  emit("playlist-changed");
+  refreshPrivatePlaylists();
 };
-const deletePlaylist = () => {
-  new TrackCollectionApi().trackCollectionIdDelete({ id: props.playlist.id });
+const deletePlaylist = async () => {
   navigateTo();
+  await new TrackCollectionApi().trackCollectionIdDelete({
+    id: props.playlist.id,
+  });
+  refreshPrivatePlaylists();
 };
 
 const dropdownMenuItems = () => {
   const items: DropdownMenuItem[] = [];
 
   items.push({
-    icon: "icon.ai", // ToDo: get comment icon
+    // icon: "icon.ai", // ToDo: get comment icon
     text: t("edit.rename"),
     clickFunction: () => {
       playlistName.value = props.playlist.name || "";
