@@ -1,9 +1,13 @@
+import type availableContentLanguages from "./availableContentLanguages";
+
 type ILanguageInfo = {
   EnglishName: string;
   NativeName: string;
 };
 
-const languageDictionary: { [key: string]: ILanguageInfo } = {
+const languageDictionary: {
+  [key in (typeof availableContentLanguages)[number]]: ILanguageInfo;
+} = {
   af: { EnglishName: "Afrikaans", NativeName: "Afrikaans" },
   bg: { EnglishName: "Bulgarian", NativeName: "български" },
   cs: { EnglishName: "Czech", NativeName: "čeština" },
