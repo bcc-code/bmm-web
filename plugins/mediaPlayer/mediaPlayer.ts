@@ -159,16 +159,29 @@ export const initMediaPlayer = (
     },
   );
 
-  const hasPrevious = computed(
-    () =>
-      queue.value.index > 0 ||
-      (queue.value.isRepeatEnabled && queue.value.length > 1),
-  );
+  const currentPosition = computed({
+    get: () => (activeMedia.value ? activeMedia.value.position : NaN),
+    set: (value: any) => {
+      if (activeMedia.value) {
+        activeMedia.value.position = Number(value);
+      }
+    },
+  });
+
+  const hasPrevious = computed(() => queue.value.length > 0);
+
+  const jumpToPreviousThreshold = 5; // BMM Mobile & YouTube Music have 5s. Spotify has 3s.
 
   function previous() {
-    if (!hasPrevious.value) return;
-    if (queue.value.index > 0) queue.value.index -= 1;
-    else queue.value.index = queue.value.length - 1;
+    if (currentPosition.value > jumpToPreviousThreshold) {
+      currentPosition.value = 0;
+    } else if (queue.value.index > 0) {
+      queue.value.index -= 1;
+    } else if (queue.value.isRepeatEnabled && queue.value.length > 1) {
+      queue.value.index = queue.value.length - 1;
+    } else {
+      currentPosition.value = 0;
+    }
   }
 
   function continuePlayingNextIfEnded() {
@@ -239,14 +252,7 @@ export const initMediaPlayer = (
     hasNext,
     hasPrevious,
     currentTrack: computed(() => queue.value.currentTrack),
-    currentPosition: computed({
-      get: () => (activeMedia.value ? activeMedia.value.position : NaN),
-      set: (value: any) => {
-        if (activeMedia.value) {
-          activeMedia.value.position = Number(value);
-        }
-      },
-    }),
+    currentPosition,
     currentTrackDuration: computed(() =>
       activeMedia.value ? activeMedia.value.duration : NaN,
     ),
