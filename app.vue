@@ -1,6 +1,8 @@
 <script lang="ts" setup>
 import { useAuth0 } from "@auth0/auth0-vue";
 
+const { $appInsights } = useNuxtApp();
+
 const { isLoading, loginWithRedirect, isAuthenticated, error, logout } =
   useAuth0();
 
@@ -8,14 +10,39 @@ watch(
   isLoading,
   async (loading) => {
     if (loading) return;
+
     if (!isAuthenticated.value) {
+      $appInsights.event("auth0 - redirect to login", {});
       await loginWithRedirect();
     }
   },
   { immediate: true },
 );
 
+watch(error, async () => {
+  const e = error.value;
+  if (e) {
+    const errorCode = (e as any).error;
+    console.error(e.message, "\n\n\n", errorCode);
+    $appInsights.event("auth0 - error", {
+      error: errorCode,
+      message: e.message,
+      stack: e.stack,
+    });
+    if (errorCode === "missing_refresh_token") {
+      // For these errors we've identified that a logout & relogin likely will fix it.
+      await logout({ openUrl: false });
+      await loginWithRedirect();
+    }
+  }
+});
+
 const logoutAndRedirect = async () => {
+  $appInsights.event("auth0 - user clicked logoutAndRedirect()", {
+    error: (error.value as any).error,
+    message: error.value.message,
+    stack: error.value.stack,
+  });
   await logout({ openUrl: false });
   await loginWithRedirect();
 };
