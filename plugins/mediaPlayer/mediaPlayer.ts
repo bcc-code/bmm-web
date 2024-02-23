@@ -48,14 +48,19 @@ export const initMediaPlayer = (
 
   const queue = ref(new Queue([]));
 
-  const hasNext = computed(() => queue.value.length > queue.value.index + 1);
+  const hasNext = computed(
+    () =>
+      queue.value.length > queue.value.index + 1 ||
+      (queue.value.isRepeatEnabled && queue.value.length > 1),
+  );
   let trackTimestampStart: Date;
 
   let nextStartPosition = 0;
 
   function next() {
     if (!hasNext.value) return;
-    queue.value.index += 1;
+    if (queue.value.length > queue.value.index + 1) queue.value.index += 1;
+    else queue.value.index = 0;
   }
 
   function stop() {
@@ -154,11 +159,16 @@ export const initMediaPlayer = (
     },
   );
 
-  const hasPrevious = computed(() => queue.value.index > 0);
+  const hasPrevious = computed(
+    () =>
+      queue.value.index > 0 ||
+      (queue.value.isRepeatEnabled && queue.value.length > 1),
+  );
 
   function previous() {
     if (!hasPrevious.value) return;
-    queue.value.index -= 1;
+    if (queue.value.index > 0) queue.value.index -= 1;
+    else queue.value.index = queue.value.length - 1;
   }
 
   function continuePlayingNextIfEnded() {
