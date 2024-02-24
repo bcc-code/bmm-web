@@ -4,16 +4,28 @@ const router = useRouter();
 const { id, language } = useRoute<"track-id-language">().params;
 
 const options = { id: Number(id) };
-const request = language[0]
-  ? await useTrackIDWithLanguage(language[0], options)
-  : await useTrack(options);
-const track = request.data.value;
 
-if (track) {
-  setQueue([track]);
-  router.replace({ name: "album-id", params: { id: Number(track?.parentId) } });
-}
+const req = useTrackIDWithLanguage(language[0]!, options);
+req
+  .then(({ data }) => {
+    if (data.value) {
+      setQueue([data.value]);
+      router.replace({
+        name: "album-id",
+        params: { id: Number(data.value.parentId) },
+      });
+    }
+  })
+  .catch((error) => console.error(error));
 </script>
 <template>
-  <div></div>
+  <div>
+    <ul v-if="req.pending">
+      <li
+        v-for="index in 5"
+        :key="index"
+        class="my-6 h-11 w-full animate-pulse rounded-lg bg-background-2"
+      ></li>
+    </ul>
+  </div>
 </template>
