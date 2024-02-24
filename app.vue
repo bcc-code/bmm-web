@@ -20,6 +20,12 @@ const logoutAndRedirect = async () => {
   await loginWithRedirect();
 };
 
+const { locale } = useI18n();
+locale.value = useProfileStore().uiLanguage;
+useProfileStore().$subscribe((_, state) => {
+  locale.value = state.uiLanguage;
+});
+
 useHead({
   titleTemplate: (chunk) => (chunk ? `BMM | ${chunk}` : "BMM"),
 });

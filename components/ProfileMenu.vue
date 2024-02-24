@@ -40,9 +40,6 @@ const logout = async () => {
   }
 };
 
-const { locale } = useI18n();
-locale.value = profileStore.uiLanguage;
-
 const contentLanguages = ref(
   contentLanguageStore().contentLanguages.filter((x) => x !== "zxx"),
 );
@@ -51,10 +48,8 @@ const nextUnusedContentLanguage = computed(() =>
   availableContentLanguages.find((x) => !contentLanguages.value.includes(x)),
 );
 
-const saveAndCloseInterfaceLanguageDialog = () => {
+const closeInterfaceLanguageDialog = () => {
   showInterfaceLanguageDialog.value = false;
-
-  profileStore.uiLanguage = locale.value;
 };
 
 const saveAndCloseContentLanguageDialog = () => {
@@ -156,7 +151,7 @@ const saveAndCloseContentLanguageDialog = () => {
               >
                 <p>{{ $t("profile.app-language") }}</p>
                 <span class="text-label-2">
-                  {{ getLocalizedLanguageName(locale) }}
+                  {{ getLocalizedLanguageName(profileStore.uiLanguage) }}
                 </span>
               </button>
             </MenuItem>
@@ -252,7 +247,7 @@ const saveAndCloseContentLanguageDialog = () => {
       :show="showInterfaceLanguageDialog"
       :title="$t('profile.interface-language')"
       :description="$t('profile.interface-language-description')"
-      @close="saveAndCloseInterfaceLanguageDialog()"
+      @close="closeInterfaceLanguageDialog()"
     >
       <div class="bg-background-2 text-label-2 rounded-2xl p-3">
         <label class="self-center flex items-center gap-4 justify-between">
@@ -260,7 +255,7 @@ const saveAndCloseContentLanguageDialog = () => {
           <div
             class="text-label-1 bg-background-1 min-w-[100px] px-2 py-1.5 rounded-lg font-semibold shadow-[0_4px_12px_0_#0000000D,0_1px_4px_0_#0000000D,0_0_0_1px_#0000000D]"
           >
-            <select v-model="$i18n.locale" class="py-1">
+            <select v-model="profileStore.uiLanguage" class="py-1">
               <option
                 v-for="(lang, i) in $i18n.availableLocales"
                 :key="`Lang${i}`"
