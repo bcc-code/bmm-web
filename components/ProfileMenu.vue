@@ -30,9 +30,6 @@ const getColorModeName = (mode: string) => {
   }
 };
 const colorMode = useColorMode();
-const currentColorTheme = computed(() =>
-  getColorModeName(colorMode.preference),
-);
 
 const auth0 = useAuth0();
 const logout = async () => {
@@ -46,26 +43,24 @@ const logout = async () => {
 const { locale } = useI18n();
 locale.value = profileStore.uiLanguage;
 
-const languageName = computed(() => getLocalizedLanguageName(locale));
 const contentLanguages = ref(
   contentLanguageStore().contentLanguages.filter((x) => x !== "zxx"),
 );
-const joinedContentLanguages = computed(() => {
-  const list = contentLanguages.value;
-  return getLocalizedList(list.map((x) => getLocalizedLanguageName(x)));
-});
-const nextUnusedContentLanguage = () =>
-  availableContentLanguages.filter(
-    (x) => !contentLanguages.value.includes(x),
-  )[0];
 
-const closeInterfaceLanguageDialog = () => {
-  profileStore.uiLanguage = locale.value;
+const nextUnusedContentLanguage = computed(() =>
+  availableContentLanguages.find((x) => !contentLanguages.value.includes(x)),
+);
+
+const saveAndCloseInterfaceLanguageDialog = () => {
   showInterfaceLanguageDialog.value = false;
+
+  profileStore.uiLanguage = locale.value;
 };
-const closeContentLanguageDialog = () => {
+
+const saveAndCloseContentLanguageDialog = () => {
   showContentLanguageDialog.value = false;
-  const newLanguages = contentLanguages.value.concat(["zxx"]);
+
+  const newLanguages = ["zxx", ...contentLanguages.value];
   if (
     newLanguages.toString() !==
     contentLanguageStore().contentLanguages.toString()
@@ -147,7 +142,7 @@ const closeContentLanguageDialog = () => {
               >
                 <p>{{ $t("profile.theme") }}</p>
                 <span class="text-label-2">
-                  {{ currentColorTheme }}
+                  {{ getColorModeName(colorMode.preference) }}
                 </span>
               </button>
             </MenuItem>
@@ -161,7 +156,7 @@ const closeContentLanguageDialog = () => {
               >
                 <p>{{ $t("profile.app-language") }}</p>
                 <span class="text-label-2">
-                  {{ languageName }}
+                  {{ getLocalizedLanguageName(locale) }}
                 </span>
               </button>
             </MenuItem>
@@ -175,7 +170,11 @@ const closeContentLanguageDialog = () => {
               >
                 <p>{{ $t("profile.content-language") }}</p>
                 <span class="text-label-2">
-                  {{ joinedContentLanguages }}
+                  {{
+                    getLocalizedList(
+                      contentLanguages.map((x) => getLocalizedLanguageName(x)),
+                    )
+                  }}
                 </span>
               </button>
             </MenuItem>
@@ -253,7 +252,7 @@ const closeContentLanguageDialog = () => {
       :show="showInterfaceLanguageDialog"
       :title="$t('profile.interface-language')"
       :description="$t('profile.interface-language-description')"
-      @close="closeInterfaceLanguageDialog()"
+      @close="saveAndCloseInterfaceLanguageDialog()"
     >
       <div class="bg-background-2 text-label-2 rounded-2xl p-3">
         <label class="self-center flex items-center gap-4 justify-between">
@@ -267,9 +266,7 @@ const closeContentLanguageDialog = () => {
                 :key="`Lang${i}`"
                 :value="lang"
               >
-                {{
-                  `${languageDictionary[lang]?.NativeName} (${languageDictionary[lang]?.EnglishName})`
-                }}
+                {{ getLocalizedLanguageName(lang) }}
               </option>
             </select>
           </div>
@@ -281,7 +278,7 @@ const closeContentLanguageDialog = () => {
       :show="showContentLanguageDialog"
       :title="$t('profile.content-language')"
       :description="$t('profile.content-language-description')"
-      @close="closeContentLanguageDialog()"
+      @close="saveAndCloseContentLanguageDialog()"
     >
       <VueDraggable
         v-model="contentLanguages"
@@ -314,15 +311,16 @@ const closeContentLanguageDialog = () => {
           >
             <select v-model="contentLanguages[i]" class="py-1 w-full">
               <option
-                v-for="(lang, i) in availableContentLanguages
-                  .filter((x) => !contentLanguages.includes(x))
-                  .concat([item])"
-                :key="`Lang${i}`"
+                v-for="(lang, j) in [
+                  item,
+                  ...availableContentLanguages.filter(
+                    (x) => !contentLanguages.includes(x),
+                  ),
+                ]"
+                :key="`Lang${j}`"
                 :value="lang"
               >
-                {{
-                  `${languageDictionary[lang]?.NativeName} (${getLocalizedLanguageName(lang)})`
-                }}
+                {{ getLocalizedLanguageName(lang) }}
               </option>
             </select>
           </div>
@@ -337,11 +335,11 @@ const closeContentLanguageDialog = () => {
         </div>
       </VueDraggable>
       <div
-        v-if="nextUnusedContentLanguage()"
+        v-if="nextUnusedContentLanguage"
         class="text-label-3 p-3 flex flex-row gap-2 mt-4"
         @click="
           () => {
-            const next = nextUnusedContentLanguage();
+            const next = nextUnusedContentLanguage;
             if (next) contentLanguages.push(next);
           }
         "
