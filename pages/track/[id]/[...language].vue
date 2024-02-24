@@ -7,10 +7,10 @@ const options = { id: Number(id) };
 
 const req = useTrackIDWithLanguage(language[0]!, options);
 req
-  .then(({ data }) => {
+  .then(async ({ data }) => {
     if (data.value) {
       setQueue([data.value]);
-      router.replace({
+      await router.replace({
         name: "album-id",
         params: { id: Number(data.value.parentId) },
       });

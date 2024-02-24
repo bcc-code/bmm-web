@@ -5,10 +5,10 @@ const { id } = useRoute<"track-id">().params;
 
 const req = useTrack({ id: Number(id) });
 req
-  .then(({ data }) => {
+  .then(async ({ data }) => {
     if (data.value) {
       setQueue([data.value]);
-      router.replace({
+      await router.replace({
         name: "album-id",
         params: { id: Number(data.value.parentId) },
       });
