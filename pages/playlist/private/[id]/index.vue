@@ -17,7 +17,7 @@ const onPressPlay = () => {
 };
 const onPressShuffle = () => {
   if (collection.value?.tracks) {
-    setQueueShuffled(collection.value?.tracks);
+    setQueueShuffled(collection.value.tracks);
   }
 };
 </script>
