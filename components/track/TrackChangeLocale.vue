@@ -1,12 +1,11 @@
 <script setup lang="ts">
-import { LanguageEnum } from "@bcc-code/bmm-sdk-fetch";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/vue";
 
 const expanded = ref(false);
 const { currentTrack, replaceCurrent } = useNuxtApp().$mediaPlayer;
 const { t } = useI18n();
 
-const changeLanguage = async (lang: LanguageEnum) => {
+const changeLanguage = async (lang: string) => {
   expanded.value = false;
   if (!currentTrack.value) return;
 
@@ -21,11 +20,10 @@ const changeLanguage = async (lang: LanguageEnum) => {
   }
 };
 
-const trackLanguages = currentTrack?.value?.languages || [];
+const trackLanguages: string[] = currentTrack?.value?.languages || [];
 
 const getUserLanguages = () => {
-  const contentLangs = contentLanguageStore()
-    .contentLanguages as LanguageEnum[];
+  const contentLangs = contentLanguageStore().contentLanguages;
   return contentLangs.filter((lang) => trackLanguages.includes(lang));
 };
 
