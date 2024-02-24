@@ -23,23 +23,10 @@ const changeLanguage = async (lang: LanguageEnum) => {
 
 const trackLanguages = currentTrack?.value?.languages || [];
 
-const getUserLanguages = () => {
-  const contentLangs = contentLanguageStore()
-    .contentLanguages as LanguageEnum[];
-  return contentLangs.filter((lang) => trackLanguages.includes(lang));
-};
-
-const getAvailableLanguages = () => {
-  const returnLanguages = [...getUserLanguages()];
-  trackLanguages.forEach((lang) => {
-    if (returnLanguages.includes(lang)) {
-      return;
-    }
-    returnLanguages.push(lang);
-  });
-
-  return returnLanguages;
-};
+const getUserLanguages = () =>
+  contentLanguageStore().contentLanguages.filter((lang) =>
+    trackLanguages.includes(lang),
+  );
 const getRemainingLanguages = () => {
   const userLanguages = getUserLanguages();
   return trackLanguages.filter((lang) => !userLanguages.includes(lang));
@@ -56,11 +43,7 @@ const getRemainingLanguages = () => {
       :aria-label="t('track.a11y.options')"
       class="py-1.5 px-3 font-semibold hover:bg-background-2 rounded-full border border-label-separator"
     >
-      {{
-        currentTrack?.language
-          ? getLocalizedLanguageName(currentTrack.language)
-          : ""
-      }}
+      {{ getLocalizedLanguageName(currentTrack?.language || "") }}
     </MenuButton>
 
     <MenuItems
@@ -78,14 +61,14 @@ const getRemainingLanguages = () => {
             class="flex w-full items-center justify-start gap-2 px-3 py-2.5 text-[15px]"
             @click="changeLanguage(lang)"
           >
-            <span>{{ lang ? getLocalizedLanguageName(lang) : "" }}</span>
+            <span>{{ getLocalizedLanguageName(lang) }}</span>
           </button>
         </MenuItem>
         <div class="px-3">
-          <hr v-if="true" class="bg-label-separator text-label-separator" />
+          <hr class="bg-label-separator text-label-separator" />
         </div>
         <MenuItem
-          v-if="!expanded && getAvailableLanguages().length > 5"
+          v-if="!expanded && trackLanguages.length > 5"
           as="li"
           class="block w-full cursor-pointer rounded-lg text-label-1 hover:bg-background-2"
           @click.stop
@@ -102,7 +85,7 @@ const getRemainingLanguages = () => {
             />
           </button>
         </MenuItem>
-        <template v-if="expanded || !(getAvailableLanguages().length > 5)">
+        <template v-if="expanded || !(trackLanguages.length > 5)">
           <MenuItem
             v-for="(lang, i) in getRemainingLanguages()"
             :key="`Lang${i}`"
