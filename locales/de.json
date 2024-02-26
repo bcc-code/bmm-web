@@ -1,4 +1,7 @@
 {
+  "global": {
+    "cancel": "Abbrechen"
+  },
   "nav": {
     "home": "Start",
     "browse": "Stöbern",
@@ -69,6 +72,10 @@
   },
   "playlist": {
     "add": "Playlist hinzufügen",
+    "new-playlist": "Neue Playlist",
+    "name-your-playlist": "Name your playlist",
+    "delete-playlist": "Playlist löschen",
+    "delete-playlist-description": "Are you sure you want to the playlist? This action cannot be reversed.",
     "action": {
       "shuffle": "Zufällige Wiedergabe"
     }
@@ -78,6 +85,10 @@
       "play": "Abspielen",
       "follow": "Abonnieren"
     }
+  },
+  "edit": {
+    "rename": "Rename",
+    "delete": "Löschen"
   },
   "track": {
     "dropdown": {
