@@ -73,9 +73,9 @@
   "playlist": {
     "add": "Playlist hinzufügen",
     "new-playlist": "Neue Playlist",
-    "name-your-playlist": "Name your playlist",
+    "name-your-playlist": "Wiedergabeliste benennen",
     "delete-playlist": "Playlist löschen",
-    "delete-playlist-description": "Are you sure you want to the playlist? This action cannot be reversed.",
+    "delete-playlist-description": "Bist du sicher, dass du die Wiedergabeliste löschen möchtest? Diese Aktion kann nicht rückgängig gemacht werden.",
     "action": {
       "shuffle": "Zufällige Wiedergabe"
     }
@@ -90,7 +90,7 @@
     "queue": "Warteschlange"
   },
   "edit": {
-    "rename": "Rename",
+    "rename": "Umbenennen",
     "delete": "Löschen"
   },
   "track": {
