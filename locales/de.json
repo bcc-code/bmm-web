@@ -86,6 +86,9 @@
       "follow": "Abonnieren"
     }
   },
+  "player": {
+    "queue": "Warteschlange"
+  },
   "edit": {
     "rename": "Rename",
     "delete": "Löschen"
