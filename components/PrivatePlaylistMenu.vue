@@ -70,7 +70,7 @@ const dropdownMenuItems = () => {
   const items: DropdownMenuItem[] = [];
 
   items.push({
-    // icon: "icon.ai", // ToDo: get comment icon
+    icon: "icon.comment",
     text: t("edit.rename"),
     clickFunction: () => {
       playlistName.value = props.playlist.name || "";
