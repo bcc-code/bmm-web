@@ -1,4 +1,7 @@
 {
+  "global": {
+    "cancel": "Avbryt"
+  },
   "nav": {
     "home": "Hjem",
     "browse": "Utforsk",
@@ -8,7 +11,8 @@
     "audiobooks": "Lydbøker",
     "search": "Søk",
     "album": "Album",
-    "podcast": "Podcast"
+    "podcast": "Podcast",
+    "contributor": "Bidragsyter"
   },
   "sidebar": {
     "playlists": {
@@ -68,6 +72,10 @@
   },
   "playlist": {
     "add": "Add playlist",
+    "new-playlist": "Ny spilleliste",
+    "name-your-playlist": "Name your playlist",
+    "delete-playlist": "Slett spillelisten",
+    "delete-playlist-description": "Are you sure you want to the playlist? This action cannot be reversed.",
     "action": {
       "shuffle": "Shuffle"
     }
@@ -77,6 +85,13 @@
       "play": "Spill av",
       "follow": "Følg"
     }
+  },
+  "player": {
+    "queue": "Kø"
+  },
+  "edit": {
+    "rename": "Rename",
+    "delete": "Slett"
   },
   "track": {
     "dropdown": {
