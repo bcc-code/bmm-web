@@ -86,6 +86,9 @@
       "follow": "Følg"
     }
   },
+  "player": {
+    "queue": "Kø"
+  },
   "edit": {
     "rename": "Rename",
     "delete": "Slett"
