@@ -1,4 +1,7 @@
 {
+  "global": {
+    "cancel": "Avbryt"
+  },
   "nav": {
     "home": "Hjem",
     "browse": "Utforsk",
@@ -69,6 +72,10 @@
   },
   "playlist": {
     "add": "Add playlist",
+    "new-playlist": "Ny spilleliste",
+    "name-your-playlist": "Name your playlist",
+    "delete-playlist": "Slett spillelisten",
+    "delete-playlist-description": "Are you sure you want to the playlist? This action cannot be reversed.",
     "action": {
       "shuffle": "Shuffle"
     }
@@ -78,6 +85,10 @@
       "play": "Spill av",
       "follow": "Følg"
     }
+  },
+  "edit": {
+    "rename": "Rename",
+    "delete": "Slett"
   },
   "track": {
     "dropdown": {
