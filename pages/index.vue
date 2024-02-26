@@ -1,11 +1,8 @@
 <script lang="ts" setup>
-import type { DiscoverGetRequest } from "@bcc-code/bmm-sdk-fetch";
-
 const { t } = useI18n();
 toolbarTitleStore().setReactiveToolbarTitle(() => t("nav.home"));
 
-const parameters: DiscoverGetRequest = {};
-const { data: models, pending } = useDiscover(parameters);
+const { data: models, pending } = useDiscover({});
 </script>
 
 <template>
