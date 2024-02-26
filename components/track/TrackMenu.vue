@@ -112,7 +112,7 @@ const dropdownMenuItemsForTrack = (track: TrackModel) => {
 
     <MenuItems
       as="ul"
-      class="absolute right-0 top-10 z-30 w-52 rounded-xl p-1 shadow-md bg-background-3"
+      class="absolute right-0 top-10 z-30 w-52 rounded-xl p-1 bg-background-3 shadow-[0_4px_12px_0_#0000000D,0_1px_4px_0_#0000000D,0_0_0_1px_#0000000D]"
     >
       <div class="py-0">
         <MenuItem
@@ -142,7 +142,10 @@ const dropdownMenuItemsForTrack = (track: TrackModel) => {
     </MenuItems>
   </Menu>
   <DialogBase :show="showInfo" title="Track Details" @close="showInfo = false">
-    <TrackDetails :track="track"></TrackDetails>
+    <TrackDetails
+      class="md:w-[500px] lg:w-[600px]"
+      :track="track"
+    ></TrackDetails>
   </DialogBase>
   <DialogBase
     :show="showContributorsList"

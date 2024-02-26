@@ -13,6 +13,7 @@ defineProps<{
   show: boolean;
   title: string;
   description?: string;
+  hideButton?: boolean;
 }>();
 
 const emit = defineEmits<{
@@ -49,12 +50,13 @@ const emit = defineEmits<{
           leave-to="opacity-0 scale-95"
         >
           <DialogPanel
-            class="bg-background-1 text-black-1 dark:text-white-1 rounded-2xl md:w-[500px] lg:w-[600px]"
+            class="bg-background-1 text-black-1 dark:text-white-1 rounded-2xl"
             @click.stop
           >
             <div class="flex justify-between items-center mx-5">
               <DialogTitle class="py-4 font-semibold">{{ title }}</DialogTitle>
               <ButtonStyled
+                v-if="!hideButton"
                 intent="primary"
                 size="small"
                 @click.stop="emit('close')"
