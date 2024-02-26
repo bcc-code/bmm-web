@@ -12,7 +12,7 @@ export function useTracks(options: TrackGetRequest = {}) {
 
 export function useTrackIDWithLanguage(
   lang: string,
-  options: TrackIdGetRequest = { id: -1 },
+  options: TrackIdGetRequest,
 ) {
   return useAsyncData("tracks", () =>
     new TrackApi().trackIdGet(options, {

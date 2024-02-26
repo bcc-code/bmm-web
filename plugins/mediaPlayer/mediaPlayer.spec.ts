@@ -554,6 +554,32 @@ describe("plugin mediaPlayer MediaTrack", () => {
     });
   });
 
+  describe("setQueueShuffled()", () => {
+    it(
+      "replaces the current queue by a new one with a random index (2)",
+      async () => {
+        // Arrange
+        const mediaPlayer = ref(setupPlayer());
+
+        // Act
+        mediaPlayer.value.setQueueShuffled([
+          { id: 1, type: "track" },
+          { id: 2, type: "track" },
+          { id: 3, type: "track" },
+        ]);
+        await flushPromises();
+
+        // Assert
+        expect(mediaPlayer.value.queue).length(3);
+        expect(mediaPlayer.value.queue.index).eq(0);
+        expect(mediaPlayer.value.queue[0]?.id).eq(2);
+        expect(mediaPlayer.value.queue[1]?.id).eq(1);
+        expect(mediaPlayer.value.queue[2]?.id).eq(3);
+      },
+      { retry: 100 },
+    );
+  });
+
   describe("addToQueue()", () => {
     it("adds an element to the end of the queue if current element is set", async () => {
       // Arrange

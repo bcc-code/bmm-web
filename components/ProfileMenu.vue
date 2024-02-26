@@ -225,13 +225,13 @@ const closeContentLanguageDialog = () => {
 
     <DialogBase
       :show="showThemeDialog"
-      title="Theme"
+      :title="$t('profile.theme')"
       :description="$t('profile.theme-description')"
       @close="showThemeDialog = false"
     >
       <RadioGroup
         v-model="colorMode.preference"
-        class="bg-background-2 dark:bg-background-dark-2 rounded-lg font-semibold"
+        class="bg-background-2 dark:bg-background-dark-2 rounded-lg font-semibold md:w-[500px] lg:w-[600px]"
       >
         <RadioGroupOption
           v-for="mode in colorModes"
@@ -255,7 +255,9 @@ const closeContentLanguageDialog = () => {
       :description="$t('profile.interface-language-description')"
       @close="closeInterfaceLanguageDialog()"
     >
-      <div class="bg-background-2 text-label-2 rounded-2xl p-3">
+      <div
+        class="bg-background-2 text-label-2 rounded-2xl p-3 md:w-[500px] lg:w-[600px]"
+      >
         <label class="self-center flex items-center gap-4 justify-between">
           <span>{{ $t("profile.select-language") }}</span>
           <div
@@ -287,7 +289,7 @@ const closeContentLanguageDialog = () => {
         v-model="contentLanguages"
         handle=".handle"
         :animation="200"
-        class="bg-background-2 rounded-2xl divide-y divide-label-separator"
+        class="bg-background-2 rounded-2xl divide-y divide-label-separator md:w-[500px] lg:w-[600px]"
       >
         <div
           v-for="(item, i) in contentLanguages"

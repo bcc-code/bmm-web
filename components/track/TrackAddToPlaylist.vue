@@ -45,7 +45,7 @@ const selectList = async (playlistId: number, trackId: number) => {
     :title="t('track.dropdown.add-to-playlist')"
     @close="emit('close')"
   >
-    <div class="bg-background-2 rounded-lg">
+    <div class="bg-background-2 rounded-lg md:w-[500px] lg:w-[600px]">
       <div
         v-for="collection in playlists"
         :key="collection.id"
