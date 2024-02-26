@@ -1,4 +1,7 @@
 {
+  "global": {
+    "cancel": "Cancel"
+  },
   "nav": {
     "home": "Home",
     "browse": "Browse",
@@ -69,6 +72,10 @@
   },
   "playlist": {
     "add": "Add playlist",
+    "new-playlist": "New playlist",
+    "name-your-playlist": "Name your playlist",
+    "delete-playlist": "Delete playlist",
+    "delete-playlist-description": "Are you sure you want to the playlist? This action cannot be reversed.",
     "action": {
       "shuffle": "Shuffle"
     }
@@ -81,6 +88,10 @@
   },
   "player": {
     "queue": "Queue"
+  },
+  "edit": {
+    "rename": "Rename",
+    "delete": "Delete"
   },
   "track": {
     "dropdown": {

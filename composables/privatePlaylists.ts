@@ -1,8 +1,13 @@
 import { TrackCollectionApi } from "@bcc-code/bmm-sdk-fetch";
+import type { TrackCollectionDetails } from "@bcc-code/bmm-sdk-fetch";
+import type { AsyncData } from "nuxt/app";
 
 interface UseTrackCollectionOptions {
   id: number;
 }
+
+let playlistsRequest: AsyncData<TrackCollectionDetails[], Error | null> | null =
+  null;
 
 export function usePrivatePlaylist(options: UseTrackCollectionOptions) {
   const { id } = options;
@@ -15,11 +20,18 @@ export function usePrivatePlaylist(options: UseTrackCollectionOptions) {
 }
 
 export function usePrivatePlaylists() {
-  return reactiveApi(
+  if (playlistsRequest != null) return playlistsRequest;
+
+  playlistsRequest = reactiveApi(
     useLazyAsyncData("track-collections", () =>
       new TrackCollectionApi().trackCollectionGet(),
     ),
   );
+  return playlistsRequest;
+}
+
+export function refreshPrivatePlaylists() {
+  if (playlistsRequest != null) playlistsRequest.refresh();
 }
 
 export function addPrivatePlaylist(name: string) {

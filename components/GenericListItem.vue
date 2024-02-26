@@ -1,8 +1,14 @@
 <script lang="ts" setup>
-import type { ContributorModel } from "@bcc-code/bmm-sdk-fetch";
+import type { RoutesNamesList } from "@typed-router";
 
 defineProps<{
-  contributor: ContributorModel;
+  id: number;
+  routeName: RoutesNamesList;
+  cover: string | undefined | null;
+  circle?: boolean;
+  label: string | undefined | null;
+  subtitle?: string;
+  meta?: string;
 }>();
 </script>
 
@@ -13,27 +19,25 @@ defineProps<{
     <NuxtLink
       class="grid col-span-full grid-cols-subgrid"
       :to="{
-        name: 'playlist-contributor-id',
-        params: { id: contributor.id },
+        name: routeName,
+        params: { id: id },
       }"
     >
       <div
         class="absolute -inset-x-4 -inset-y-0 rounded-xl bg-background-2 opacity-0 group-hover:opacity-100"
       ></div>
       <div class="relative grid col-span-full grid-cols-subgrid">
-        <div class="aspect-square w-10">
-          <ProtectedImage
-            v-if="contributor.cover"
-            :src="contributor.cover"
-            class="rounded-full bg-background-2"
-          />
-        </div>
+        <CoverImage
+          :src="cover"
+          class="w-10"
+          :class="circle ? 'rounded-full' : 'rounded'"
+        />
         <div class="col-span-3 flex items-center">
           <h4
-            class="overflow-hidden text-ellipsis whitespace-nowrap font-semibold"
-            :title="contributor.name || ''"
+            class="block truncate text-[17px] leading-6 font-medium"
+            :title="label || ''"
           >
-            {{ contributor.name }}
+            {{ label }}
           </h4>
         </div>
         <div class="flex justify-end">

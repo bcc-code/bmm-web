@@ -63,12 +63,10 @@ const onPointerDownProgressBar = () => {
         class="shadow-player relative overflow-hidden flex flex-col rounded-2xl bg-background-1 p-3"
       >
         <div class="flex gap-4">
-          <div class="aspect-square h-[48px] rounded-md">
-            <ProtectedImage
-              v-if="currentTrack?.meta?.attachedPicture"
-              :src="currentTrack?.meta?.attachedPicture"
-            />
-          </div>
+          <CoverImage
+            :src="currentTrack?.meta?.attachedPicture"
+            class="rounded-md h-[48px]"
+          />
           <div
             class="flex gap-1 w-full flex-col overflow-hidden whitespace-nowrap"
           >
@@ -157,11 +155,12 @@ const onPointerDownProgressBar = () => {
     >
       <div class="px-3 py-6">
         <div class="flex items-center justify-center h-60">
-          <ProtectedImage
-            v-if="currentTrack?.meta?.attachedPicture"
-            :src="currentTrack?.meta?.attachedPicture"
-            class="relative z-10 overflow-hidden rounded-md w-40"
-          />
+          <div class="relative z-10 overflow-hidden">
+            <CoverImage
+              :src="currentTrack?.meta?.attachedPicture"
+              class="rounded-md w-40"
+            />
+          </div>
           <ProtectedImage
             v-if="currentTrack?.meta?.attachedPicture"
             :src="currentTrack?.meta?.attachedPicture"

@@ -200,7 +200,6 @@ export const initMediaPlayer = (
   }
 
   function setQueueShuffled(newQueue: TrackModel[]): void {
-    // set the first track to a random number based on the current playlist length
     const trackIndex = Math.floor(Math.random() * newQueue.length);
     setQueue(newQueue, trackIndex);
     queue.value.shuffle();

@@ -46,7 +46,7 @@ const { data: collections } = usePrivatePlaylists();
           }"
           icon="icon.category.playlist"
         />
-        <SidebarAddPlaylist />
+        <SidebarAddPlaylist></SidebarAddPlaylist>
       </SidebarGroup>
     </div>
   </aside>

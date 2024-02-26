@@ -12,11 +12,6 @@ defineProps<{
 
 <template>
   <div class="grid w-52 flex-shrink-0 basis-52 gap-4">
-    <ProtectedImage
-      v-if="item.cover"
-      :src="item.cover"
-      alt=""
-      class="aspect-square w-full rounded-2xl bg-background-2"
-    />
+    <CoverImage :src="item.cover" class="w-full rounded-2xl" />
   </div>
 </template>
