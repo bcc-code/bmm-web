@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { MediaPlayerStatus } from "~/plugins/mediaPlayer/mediaPlayer";
 
+const { t } = useI18n();
+
 const open = ref(false);
 
 const {
@@ -234,12 +236,8 @@ const onPointerDownProgressBar = () => {
         </div>
         <div class="flex justify-evenly px-4 py-2">
           <button
-            :class="
-              currentPosition === 0 || isLoading
-                ? 'text-label-4 '
-                : 'hover:text-3xl border-background-2 border'
-            "
-            class="flex rounded-full aspect-square w-14 text-2xl transition-all duration-200 ease-out justify-center items-center"
+            :class="isLoading ? 'text-label-4 ' : 'hover:text-3xl border'"
+            class="flex rounded-full aspect-square w-14 text-2xl transition-all duration-200 ease-out justify-center items-center border-label-separator"
             @click.stop="rewind()"
           >
             <NuxtIcon name="icon.rewind.large" filled />
@@ -327,25 +325,29 @@ const onPointerDownProgressBar = () => {
       <hr class="border-label-separator" />
       <div class="overflow-y-scroll">
         <div class="flex justify-between items-center pb-1 pt-4 px-6">
-          <div class="text-label-3">Queue</div>
+          <div class="text-label-3">{{ t("player.queue") }}</div>
           <div class="flex gap-2">
             <button
-              v-if="queue.isShuffled"
-              class="rounded-full bg-background-4 p-2 text-background-3 hover:bg-background-3 hover:text-background-4 transition-all duration-200 ease-out"
-              @click.stop="queue.unshuffle()"
+              class="rounded-full p-2 transition-all duration-200 ease-out hover:opacity-75"
+              :class="
+                queue.isShuffled
+                  ? 'bg-background-4 text-on-color-1'
+                  : 'text-label-1'
+              "
+              @click.stop="
+                () => (queue.isShuffled ? queue.unshuffle() : queue.shuffle())
+              "
             >
               <NuxtIcon name="icon.shuffle" class="text-2xl" />
             </button>
             <button
-              v-else
-              class="rounded-full bg-background-3 p-2 text-background-4 hover:bg-background-4 hover:text-background-3 transition-all duration-200 ease-out"
-              @click.stop="queue.shuffle()"
-            >
-              <NuxtIcon name="icon.shuffle" class="text-2xl" />
-            </button>
-            <button
-              class="rounded-full bg-background-3 p-2"
-              style="background-color: rgba(255, 0, 0, 0.4); color: red"
+              class="rounded-full p-2 transition-all duration-200 ease-out hover:opacity-75"
+              :class="
+                queue.isRepeatEnabled
+                  ? 'bg-background-4 text-on-color-1'
+                  : 'text-label-1'
+              "
+              @click.stop="queue.isRepeatEnabled = !queue.isRepeatEnabled"
             >
               <NuxtIcon name="icon.repeat" filled class="text-2xl" />
             </button>

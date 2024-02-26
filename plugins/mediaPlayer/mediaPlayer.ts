@@ -48,14 +48,19 @@ export const initMediaPlayer = (
 
   const queue = ref(new Queue([]));
 
-  const hasNext = computed(() => queue.value.length > queue.value.index + 1);
+  const hasNext = computed(
+    () =>
+      queue.value.length > queue.value.index + 1 ||
+      (queue.value.isRepeatEnabled && queue.value.length > 1),
+  );
   let trackTimestampStart: Date;
 
   let nextStartPosition = 0;
 
   function next() {
     if (!hasNext.value) return;
-    queue.value.index += 1;
+    if (queue.value.length > queue.value.index + 1) queue.value.index += 1;
+    else queue.value.index = 0;
   }
 
   function stop() {
@@ -83,6 +88,19 @@ export const initMediaPlayer = (
       createMedia(authorizedUrl(url, authToken.value)),
     );
     activeMedia.value.registerEvents();
+  }
+
+  function play() {
+    if (activeMedia.value) {
+      activeMedia.value.play();
+    } else {
+      initCurrentTrack();
+    }
+  }
+
+  function restart() {
+    if (queue.value.length === 1) play();
+    else queue.value.index = 0;
   }
 
   watch(
@@ -114,6 +132,8 @@ export const initMediaPlayer = (
 
         if (hasNext.value) {
           next();
+        } else if (queue.value.isRepeatEnabled) {
+          restart();
         } else {
           stop();
         }
@@ -139,11 +159,29 @@ export const initMediaPlayer = (
     },
   );
 
-  const hasPrevious = computed(() => queue.value.index > 0);
+  const currentPosition = computed({
+    get: () => (activeMedia.value ? activeMedia.value.position : NaN),
+    set: (value: any) => {
+      if (activeMedia.value) {
+        activeMedia.value.position = Number(value);
+      }
+    },
+  });
+
+  const hasPrevious = computed(() => queue.value.length > 0);
+
+  const jumpToPreviousThreshold = 5; // BMM Mobile & YouTube Music have 5s. Spotify has 3s.
 
   function previous() {
-    if (!hasPrevious.value) return;
-    queue.value.index -= 1;
+    if (currentPosition.value > jumpToPreviousThreshold) {
+      currentPosition.value = 0;
+    } else if (queue.value.index > 0) {
+      queue.value.index -= 1;
+    } else if (queue.value.isRepeatEnabled && queue.value.length > 1) {
+      queue.value.index = queue.value.length - 1;
+    } else {
+      currentPosition.value = 0;
+    }
   }
 
   function continuePlayingNextIfEnded() {
@@ -200,13 +238,7 @@ export const initMediaPlayer = (
       if (activeMedia.value.paused) return MediaPlayerStatus.Paused;
       return MediaPlayerStatus.Playing;
     }),
-    play: () => {
-      if (activeMedia.value) {
-        activeMedia.value.play();
-      } else {
-        initCurrentTrack();
-      }
-    },
+    play,
     pause: () => {
       activeMedia.value?.pause();
     },
@@ -219,14 +251,7 @@ export const initMediaPlayer = (
     hasNext,
     hasPrevious,
     currentTrack: computed(() => queue.value.currentTrack),
-    currentPosition: computed({
-      get: () => (activeMedia.value ? activeMedia.value.position : NaN),
-      set: (value: any) => {
-        if (activeMedia.value) {
-          activeMedia.value.position = Number(value);
-        }
-      },
-    }),
+    currentPosition,
     currentTrackDuration: computed(() =>
       activeMedia.value ? activeMedia.value.duration : NaN,
     ),
