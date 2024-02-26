@@ -86,6 +86,9 @@
       "follow": "Volg"
     }
   },
+  "player": {
+    "queue": "Wachtrij"
+  },
   "edit": {
     "rename": "Rename",
     "delete": "Verwijderen"
