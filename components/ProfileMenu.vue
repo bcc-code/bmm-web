@@ -262,7 +262,7 @@ const saveAndCloseContentLanguageDialog = () => {
                 :value="lang"
               >
                 {{ getLocalizedLanguageName(lang) }} ({{
-                  getLocalizedLanguageName(lang, lang)
+                  getLocalizedLanguageName(lang, true)
                 }})
               </option>
             </select>
@@ -318,7 +318,7 @@ const saveAndCloseContentLanguageDialog = () => {
                 :value="lang"
               >
                 {{ getLocalizedLanguageName(lang) }} ({{
-                  getLocalizedLanguageName(lang, lang)
+                  getLocalizedLanguageName(lang, true)
                 }})
               </option>
             </select>
