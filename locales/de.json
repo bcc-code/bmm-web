@@ -75,7 +75,7 @@
     "new-playlist": "Neue Playlist",
     "name-your-playlist": "Wiedergabeliste benennen",
     "delete-playlist": "Playlist löschen",
-    "delete-playlist-description": "Bist du sicher, dass du die Wiedergabeliste löschen möchtest? Diese Aktion kann nicht rückgängig gemacht werden.",
+    "delete-playlist-description": "Are you sure you want to delete the playlist? This action cannot be reversed.",
     "action": {
       "shuffle": "Zufällige Wiedergabe"
     }
