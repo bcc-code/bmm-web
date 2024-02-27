@@ -38,10 +38,14 @@ function getEnglishLanguageName(k: string) {
   return languageNames[k];
 }
 
-export default function getLocalizedLanguageName(key: MaybeRef<string>) {
+export default function getLocalizedLanguageName(
+  key: MaybeRef<string>,
+  languageRef?: MaybeRef<string>,
+) {
   const { locale } = useI18n();
   const k = unref(key);
-  const intl = new Intl.DisplayNames([locale.value], {
+  const language = unref(languageRef);
+  const intl = new Intl.DisplayNames([language ?? locale.value], {
     type: "language",
     fallback: "none", // No fallback, that the `of` function returns `undefined` if the browser doesn't support the language.
   });
