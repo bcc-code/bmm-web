@@ -75,7 +75,7 @@
     "new-playlist": "Ny spilleliste",
     "name-your-playlist": "Name your playlist",
     "delete-playlist": "Slett spillelisten",
-    "delete-playlist-description": "Are you sure you want to the playlist? This action cannot be reversed.",
+    "delete-playlist-description": "Are you sure you want to delete the playlist? This action cannot be reversed.",
     "action": {
       "shuffle": "Shuffle"
     }
