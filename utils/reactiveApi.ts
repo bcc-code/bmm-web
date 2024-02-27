@@ -8,6 +8,7 @@ export default function reactiveApi<Data, Error>(data: AsyncData<Data, Error>) {
     },
   );
 
+  // Todo: remove once bmm-api correctly calls onError()
   watch(data.error, async () => {
     if (data.error.value) {
       const e = data.error.value as any;

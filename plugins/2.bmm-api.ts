@@ -35,6 +35,15 @@ export default defineNuxtPlugin((nuxtApp) => {
 
           return ctx;
         },
+        onError: async (ctx) => {
+          const errorObject = await ctx.response?.json();
+          useNuxtApp().$appInsights.event("request failed", {
+            url: ctx.url,
+            errorCode: errorObject.code,
+            errorMessage: errorObject.message,
+            errorList: errorObject.errors,
+          });
+        },
       },
     ],
   });
