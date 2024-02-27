@@ -19,11 +19,10 @@ watch(
   { immediate: true },
 );
 
-watch(error, async () => {
-  const e = error.value;
+watch(error, async (e) => {
   if (e) {
-    const errorCode = (e as any).error;
-    console.error(e.message, "\n\n\n", errorCode);
+    const errorCode = e.error;
+    console.error(e.message, errorCode);
     $appInsights.event("auth0 - error", {
       error: errorCode,
       message: e.message,
@@ -39,7 +38,7 @@ watch(error, async () => {
 
 const logoutAndRedirect = async () => {
   $appInsights.event("auth0 - user clicked logoutAndRedirect()", {
-    error: (error.value as any).error,
+    error: error.value.error,
     message: error.value.message,
     stack: error.value.stack,
   });
