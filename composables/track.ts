@@ -10,11 +10,17 @@ export function useTracks(options: TrackGetRequest = {}) {
   );
 }
 
+export function useTrack(options: TrackIdGetRequest = { id: -1 }) {
+  return useAsyncData(`track-${options.id}`, () =>
+    new TrackApi().trackIdGet(options),
+  );
+}
+
 export function useTrackIDWithLanguage(
   lang: string,
-  options: TrackIdGetRequest = { id: -1 },
+  options: TrackIdGetRequest,
 ) {
-  return useAsyncData("tracks", () =>
+  return useAsyncData(`track-${options.id}-${lang}`, () =>
     new TrackApi().trackIdGet(options, {
       headers: { "Accept-Language": lang },
     }),

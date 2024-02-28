@@ -5,7 +5,8 @@ toolbarTitleStore().setReactiveToolbarTitle(() => t("nav.playlist"));
 
 const { id } = useRoute<"playlist-private-id">().params;
 const collectionId = Number(id);
-const { data: collection, pending } = usePrivatePlaylist({ id: collectionId });
+const request = usePrivatePlaylist({ id: collectionId });
+const { data: collection, pending } = request;
 
 useHead({
   title: collection.value?.name || "",
@@ -17,7 +18,7 @@ const onPressPlay = () => {
 };
 const onPressShuffle = () => {
   if (collection.value?.tracks) {
-    setQueueShuffled(collection.value?.tracks);
+    setQueueShuffled(collection.value.tracks);
   }
 };
 </script>
@@ -52,6 +53,10 @@ const onPressShuffle = () => {
           >
             {{ t("playlist.action.shuffle") }}
           </ButtonStyled>
+          <PrivatePlaylistMenu
+            :playlist="collection"
+            @playlist-changed="request.refresh()"
+          ></PrivatePlaylistMenu>
         </div>
       </div>
     </header>

@@ -306,7 +306,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
       expect(statusChanges).eql([MediaPlayerStatus.Stopped]);
       expect(mediaPlayer.value.isLoading).eq(false);
       expect(mediaPlayer.value.hasNext).eq(false);
-      expect(mediaPlayer.value.hasPrevious).eq(false);
+      expect(mediaPlayer.value.hasPrevious).eq(true);
       expect(mediaPlayer.value.queue.length).eq(1);
       expect(mediaPlayer.value.currentTrack).eql({ id: 1, type: "track" });
       expect(mediaPlayer.value.currentPosition).toBeNaN();
@@ -552,6 +552,32 @@ describe("plugin mediaPlayer MediaTrack", () => {
       expect(MockedMediaTrack).toHaveBeenCalledOnce();
       expect(currentTracks).eql([{ id: 2, type: "track" }]);
     });
+  });
+
+  describe("setQueueShuffled()", () => {
+    it(
+      "replaces the current queue by a new one with a random index (2)",
+      async () => {
+        // Arrange
+        const mediaPlayer = ref(setupPlayer());
+
+        // Act
+        mediaPlayer.value.setQueueShuffled([
+          { id: 1, type: "track" },
+          { id: 2, type: "track" },
+          { id: 3, type: "track" },
+        ]);
+        await flushPromises();
+
+        // Assert
+        expect(mediaPlayer.value.queue).length(3);
+        expect(mediaPlayer.value.queue.index).eq(0);
+        expect(mediaPlayer.value.queue[0]?.id).eq(2);
+        expect(mediaPlayer.value.queue[1]?.id).eq(1);
+        expect(mediaPlayer.value.queue[2]?.id).eq(3);
+      },
+      { retry: 100 },
+    );
   });
 
   describe("addToQueue()", () => {
@@ -1098,7 +1124,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
     });
 
     describe("hasPrevious", () => {
-      it("changes to true when switching to second track", async () => {
+      it("stays true when switching to second track", async () => {
         // Arrange
         const mediaPlayer = ref(setupPlayer());
 
@@ -1108,20 +1134,12 @@ describe("plugin mediaPlayer MediaTrack", () => {
         ]);
         await flushPromises();
 
-        const hasPreviousValues: Boolean[] = [];
-        watch(
-          () => mediaPlayer.value.hasPrevious,
-          (v) => {
-            hasPreviousValues.push(v);
-          },
-        );
-
         // Act
         mediaPlayer.value.next();
         await flushPromises();
 
         // Assert
-        expect(hasPreviousValues).eql([true]);
+        expect(mediaPlayer.value.hasPrevious).eql(true);
       });
 
       it("doesn't update again when switching to third track", async () => {
@@ -1153,7 +1171,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
         expect(hasPreviousValues).eql([]);
       });
 
-      it("changes to false if the index is changed to the beginning of the queue", async () => {
+      it("doesn't change if the index is changed to the beginning of the queue", async () => {
         // Arrange
         const mediaPlayer = ref(setupPlayer());
 
@@ -1179,7 +1197,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
         await flushPromises();
 
         // Assert
-        expect(hasPreviousValues).eql([false]);
+        expect(hasPreviousValues).eql([]);
       });
 
       it("changes to false if the new queue is empty", async () => {
