@@ -29,7 +29,7 @@ defineShortcuts({
       else pause();
     },
   },
-  ctrl_arrowleft: () => previous(), //on mac this is used to switch between spaces
+  ctrl_arrowleft: () => previous(), // on mac this shortcut is used to switch between spaces
   ctrl_shift_arrowleft: () => previous(),
   ctrl_arrowright: () => next(),
   ctrl_shift_arrowright: () => next(),
