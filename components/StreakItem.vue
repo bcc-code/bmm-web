@@ -1,6 +1,8 @@
 <script lang="ts" setup>
 import type { CurrentWeeksStreakVm } from "@bcc-code/bmm-sdk-fetch";
 
+const { t } = useI18n();
+
 const props = defineProps<{
   item: CurrentWeeksStreakVm;
 }>();
@@ -35,9 +37,9 @@ const getDays = (item: CurrentWeeksStreakVm) => {
 <template>
   <div class="col-span-full flex gap-6">
     <div class="flex flex-col">
-      <div class="font-semibold leading-5">Your streak this week</div>
+      <div class="font-semibold leading-5">{{ t("streak.your-streak") }}</div>
       <div class="text-label-3 text-[15px] leading-5">
-        {{ item.daysInARow }} days in a row
+        {{ t("streak.days-in-row", item.daysInARow ?? 0) }}
       </div>
     </div>
     <div class="flex flex-row items-center gap-1">
@@ -53,6 +55,5 @@ const getDays = (item: CurrentWeeksStreakVm) => {
         ></div>
       </div>
     </div>
-    {{ console.log(item) }}
   </div>
 </template>
