@@ -26,7 +26,7 @@ const convertModels = (models: IAllDocumentModels[]) => {
   models.forEach((el, i) => {
     if (el.type === "Tile") {
       if (!el.lastPositionInMs) tiles.push(el); // We currently don't support continuing from the position. Then it's better to hide it.
-    } else if (el.type === "project_box" || el.type === "listening_streak") {
+    } else if (el.type === "project_box") {
       console.log(
         `since we don't have a design for ${el.type} we don't render it.`,
       );
@@ -49,7 +49,7 @@ const convertModels = (models: IAllDocumentModels[]) => {
     }
   });
   if (tiles.length > 0) {
-    result.unshift({ header: null, items: tiles, useFlex: true });
+    result.splice(1, 0, { header: null, items: tiles, useFlex: true });
   }
   return result;
 };
@@ -205,6 +205,10 @@ const playSingleItem = (item: TrackModel) => {
               :route-name="'playlist-podcast-id'"
               :cover="item.cover"
               :label="item.title"
+            />
+            <StreakItem
+              v-else-if="item.type === 'listening_streak'"
+              :item="item"
             />
 
             <li v-else class="col-span-full">
