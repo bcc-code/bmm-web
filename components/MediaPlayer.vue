@@ -22,6 +22,19 @@ const {
   fastForward,
 } = useNuxtApp().$mediaPlayer;
 
+defineShortcuts({
+  " ": {
+    handler: () => {
+      if (status.value !== MediaPlayerStatus.Playing) play();
+      else pause();
+    },
+  },
+  ctrl_arrowleft: () => previous(), // on mac this shortcut is used to switch between spaces
+  ctrl_shift_arrowleft: () => previous(),
+  ctrl_arrowright: () => next(),
+  ctrl_shift_arrowright: () => next(),
+});
+
 const onPointerUpProgressBar = (event: PointerEvent) => {
   const rect = (event.currentTarget as Element)?.getBoundingClientRect();
   currentPosition.value =
