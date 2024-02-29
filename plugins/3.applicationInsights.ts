@@ -4,6 +4,7 @@
 
 /* eslint-disable no-nested-ternary */
 import { ApplicationInsights } from "@microsoft/applicationinsights-web";
+import { version } from "~/package.json";
 import type { IUserData } from "./2.userData";
 
 export interface AppInsights {
@@ -23,6 +24,7 @@ export default defineNuxtPlugin((nuxtApp) => {
       properties.personId = userData.personId;
       properties.age = userData.age;
     }
+    properties.version = version;
   };
 
   const formatComponentName = (vm: any, includeFile: boolean) => {
