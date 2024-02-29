@@ -142,5 +142,9 @@
     "no-results-yet": "No results yet",
     "no-results-found": "No results found",
     "result-count": "{count} results"
+  },
+  "streak": {
+    "your-streak": "Din streak denne uken",
+    "days-in-row": "{count} days in a row"
   }
 }
