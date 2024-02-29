@@ -3,35 +3,33 @@ import type { CurrentWeeksStreakVm } from "@bcc-code/bmm-sdk-fetch";
 
 const { t } = useI18n();
 
-const props = defineProps<{
+defineProps<{
   item: CurrentWeeksStreakVm;
 }>();
 
-const getDays = (item: CurrentWeeksStreakVm) => {
-  return [
-    {
-      listened: item.monday,
-      day: "Monday",
-      color: "#DBE459",
-    },
-    {
-      listened: item.tuesday,
-      day: "Tuesday",
-      color: "#B9CC68",
-    },
-    {
-      listened: item.wednesday,
-      day: "Wednesday",
-      color: "#83A174",
-    },
-    {
-      listened: item.thursday,
-      day: "Thursday",
-      color: "#4E7780",
-    },
-    { listened: item.friday, day: "Friday", color: "#265789" },
-  ];
-};
+const getDays = (item: CurrentWeeksStreakVm) => [
+  {
+    listened: item.monday,
+    day: "Monday",
+    color: "#DBE459",
+  },
+  {
+    listened: item.tuesday,
+    day: "Tuesday",
+    color: "#B9CC68",
+  },
+  {
+    listened: item.wednesday,
+    day: "Wednesday",
+    color: "#83A174",
+  },
+  {
+    listened: item.thursday,
+    day: "Thursday",
+    color: "#4E7780",
+  },
+  { listened: item.friday, day: "Friday", color: "#265789" },
+];
 </script>
 
 <template>
@@ -45,6 +43,7 @@ const getDays = (item: CurrentWeeksStreakVm) => {
     <div class="flex flex-row items-center gap-1">
       <div
         v-for="day in getDays(item)"
+        v-bind:key="day.day"
         class="rounded-full aspect-square p-2 flex items-center justify-center"
         :class="item.dayOfTheWeek === day.day ? 'bg-background-2' : ''"
       >
