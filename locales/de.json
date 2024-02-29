@@ -142,5 +142,9 @@
     "no-results-yet": "Noch keine Ergebnisse",
     "no-results-found": "Keine Ergebnisse gefunden",
     "result-count": "{count} Ergebnisse"
+  },
+  "streak": {
+    "your-streak": "Dein Status diese Woche",
+    "days-in-row": "{count} days in a row"
   }
 }
