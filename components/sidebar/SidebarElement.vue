@@ -12,7 +12,7 @@ const { data: collections } = usePrivatePlaylists();
       <SiteLogo size="small" />
       <span
         class="mx-2 mt-1 inline-block rounded-xl bg-tint px-[5px] text-[13px] leading-5 text-black-1"
-        >Alpha v{{ version }}</span
+        >Beta v{{ version }}</span
       >
     </div>
     <div class="flex-grow overflow-y-auto">
