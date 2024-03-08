@@ -84,9 +84,7 @@ export const initMediaPlayer = (
       nextStartPosition = 0;
     }
     const token = await getAccessToken();
-    activeMedia.value = new MediaTrack(
-      createMedia(authorizedUrl(url, token)),
-    );
+    activeMedia.value = new MediaTrack(createMedia(authorizedUrl(url, token)));
     activeMedia.value.registerEvents();
   }
 

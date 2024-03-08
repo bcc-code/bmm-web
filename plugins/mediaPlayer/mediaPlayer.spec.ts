@@ -19,7 +19,7 @@ vi.mock("./Queue", async (importOriginal) => {
 });
 
 const appInsights = {
-  event: (_: string, _2: any) => { },
+  event: (_: string, _2: any) => {},
 } as unknown as AppInsights;
 
 const userData: IUserData = { personId: null, age: null, os: "Test" };
