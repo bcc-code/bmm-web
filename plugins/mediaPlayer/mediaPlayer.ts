@@ -39,7 +39,7 @@ export const seekOffset = 15;
 
 export const initMediaPlayer = (
   createMedia: (src: string) => HTMLAudioElement,
-  getAccessToken: () => Promise<string>,
+  getAccessToken: () => Promise<string | undefined>,
   appInsights: AppInsights,
   user: IUserData,
 ): MediaPlayer => {
