@@ -35,12 +35,11 @@ export interface MediaPlayer {
   replaceCurrent: (track: TrackModel) => void;
 }
 
-export const authToken = ref<string | undefined>();
-
 export const seekOffset = 15;
 
 export const initMediaPlayer = (
   createMedia: (src: string) => HTMLAudioElement,
+  getAccessToken: () => Promise<string>,
   appInsights: AppInsights,
   user: IUserData,
 ): MediaPlayer => {
@@ -70,7 +69,7 @@ export const initMediaPlayer = (
     }
   }
 
-  function initCurrentTrack() {
+  async function initCurrentTrack() {
     const track = queue.value.currentTrack;
     if (!track) {
       stop();
@@ -84,8 +83,9 @@ export const initMediaPlayer = (
       url = `${url}#t=${new Date(nextStartPosition * 1000).toISOString().slice(11, 19)}`;
       nextStartPosition = 0;
     }
+    const token = await getAccessToken();
     activeMedia.value = new MediaTrack(
-      createMedia(authorizedUrl(url, authToken.value)),
+      createMedia(authorizedUrl(url, token)),
     );
     activeMedia.value.registerEvents();
   }

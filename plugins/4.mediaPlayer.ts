@@ -1,20 +1,10 @@
-import { authToken, initMediaPlayer } from "./mediaPlayer/mediaPlayer";
+import { useAuth0 } from "@auth0/auth0-vue";
+import { initMediaPlayer } from "./mediaPlayer/mediaPlayer";
 import type { AppInsights } from "./3.applicationInsights";
 import type { IUserData } from "./2.userData";
 
-export default defineNuxtPlugin((nuxtApp) => {
-  const { getAccessTokenSilently, isAuthenticated } =
-    nuxtApp.vueApp.config.globalProperties.$auth0;
-
-  watch(
-    isAuthenticated,
-    async (authenticated) => {
-      authToken.value = authenticated
-        ? await getAccessTokenSilently()
-        : undefined;
-    },
-    { immediate: true },
-  );
+export default defineNuxtPlugin((_) => {
+  const { getAccessTokenSilently } = useAuth0();
 
   const appInsights: AppInsights = useNuxtApp().$appInsights;
   const userData: IUserData = useNuxtApp().$userData;
@@ -23,6 +13,7 @@ export default defineNuxtPlugin((nuxtApp) => {
     provide: {
       mediaPlayer: initMediaPlayer(
         (src) => new Audio(src),
+        getAccessTokenSilently,
         appInsights,
         userData,
       ),
