@@ -145,6 +145,6 @@
   },
   "streak": {
     "your-streak": "Dein Status diese Woche",
-    "days-in-row": "{count} days in a row"
+    "days-in-row": "{count} Tage hintereinander"
   }
 }
