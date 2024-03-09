@@ -21,7 +21,7 @@ export const privateUseShortcuts = () => {
     );
 
     if (isUsingInput) {
-      return ((activeElement.value as any)?.name as string) || true;
+      return (activeElement.value as any)?.name || true;
     }
 
     return false;
