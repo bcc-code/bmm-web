@@ -5,7 +5,7 @@
  * https://developer.mozilla.org/en-US/docs/Web/API/HTMLAudioElement
  */
 export default class MediaTrack {
-  private audioElement: HTMLAudioElement;
+  protected audioElement: HTMLAudioElement;
 
   public loading = false;
 
@@ -51,8 +51,8 @@ export default class MediaTrack {
    * @param audioElement
    * @param debug Enables logging of all internal changes. Useful when debugging internals of this class.
    */
-  constructor(audioElement: HTMLAudioElement, debug = false) {
-    this.audioElement = audioElement;
+  constructor(debug = false) {
+    this.audioElement = new Audio();
     this.audioElement.autoplay = true;
 
     /* c8 ignore start */
@@ -125,6 +125,26 @@ export default class MediaTrack {
       );
     }
     /* c8 ignore stop */
+  }
+
+  /**
+   * Registering the source in a separate method is needed when
+   * you want to have the element reactive. This method
+   * has to be called after wrapping the object into `ref()`
+   * for `this` to be the proxy created for reactivity.
+   */
+  registerSource(src: Promise<string>) {
+    src
+      .then((_src) => {
+        if (!this.ended) {
+          this.audioElement.src = _src;
+        }
+      })
+      .catch((_) => {
+        // TODO: Define what to do when getting a token fails. For now, we report the track as "played to the end".
+        this.ended = true;
+        this.destroy();
+      });
   }
 
   /**

@@ -25,7 +25,7 @@ const appInsights = {
 const userData: IUserData = { personId: null, age: null, os: "Test" };
 const setupPlayer = () =>
   initMediaPlayer(
-    () => HTMLAudioElement as unknown as globalThis.HTMLAudioElement,
+    () => new MediaTrack(),
     () => Promise.resolve(undefined),
     appInsights as unknown as AppInsights,
     userData,

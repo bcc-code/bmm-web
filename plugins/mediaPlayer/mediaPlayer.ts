@@ -38,7 +38,7 @@ export interface MediaPlayer {
 export const seekOffset = 15;
 
 export const initMediaPlayer = (
-  createMedia: (src: string) => HTMLAudioElement,
+  createMediaTrack: () => MediaTrack,
   getAccessToken: () => Promise<string | undefined>,
   appInsights: AppInsights,
   user: IUserData,
@@ -69,7 +69,7 @@ export const initMediaPlayer = (
     }
   }
 
-  async function initCurrentTrack() {
+  function initCurrentTrack() {
     const track = queue.value.currentTrack;
     if (!track) {
       stop();
@@ -83,8 +83,10 @@ export const initMediaPlayer = (
       url = `${url}#t=${new Date(nextStartPosition * 1000).toISOString().slice(11, 19)}`;
       nextStartPosition = 0;
     }
-    const token = await getAccessToken();
-    activeMedia.value = new MediaTrack(createMedia(authorizedUrl(url, token)));
+    activeMedia.value = createMediaTrack();
+    activeMedia.value.registerSource(
+      getAccessToken().then((t) => authorizedUrl(url, t)),
+    );
     activeMedia.value.registerEvents();
   }
 

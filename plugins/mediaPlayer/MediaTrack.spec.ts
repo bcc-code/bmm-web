@@ -5,12 +5,21 @@ import { HTMLAudioElement, Event } from "happy-dom";
 import { flushPromises } from "@vue/test-utils";
 import MediaTrack from "./MediaTrack";
 
+class MediaTrackMock extends MediaTrack {
+  public get audioElementMock() {
+    return this.audioElement;
+  }
+
+  public set audioElementMock(audioElement) {
+    this.audioElement = audioElement;
+  }
+}
+
 describe("plugin mediaPlayer MediaTrack", () => {
   describe("init", () => {
     it("starts playing from the start without init-loading", () => {
       // Act
-      const audio = {} as unknown as globalThis.HTMLAudioElement;
-      const mT = new MediaTrack(audio);
+      const mT = new MediaTrackMock();
 
       // Assert
       expect(mT.duration).toBeNaN();
@@ -18,7 +27,44 @@ describe("plugin mediaPlayer MediaTrack", () => {
       expect(mT.loading).equal(false);
       expect(mT.paused).equal(false);
       expect(mT.position).equal(0);
-      expect(audio.autoplay).equal(true);
+      expect(mT.audioElementMock.autoplay).equal(true);
+      expect(mT.audioElementMock.src).equal("");
+    });
+  });
+
+  describe("registerSource", () => {
+    it("sets the source when the promise resolves", async () => {
+      // Arrange
+      const mT = new MediaTrackMock();
+
+      // Act
+      mT.registerSource(Promise.resolve("myTrack"));
+      await flushPromises();
+
+      // Assert
+      expect(mT.audioElementMock.src).equal("myTrack");
+      expect(mT.ended).equal(false);
+    });
+
+    it("ends the track if the src-promise rejects", async () => {
+      // Arrange
+      const mT = ref(new MediaTrackMock());
+      const endeds: boolean[] = [];
+      watch(
+        () => mT.value.ended,
+        (v) => {
+          endeds.push(v);
+        },
+      );
+
+      // Act
+      mT.value.registerSource(Promise.reject(new Error("Test")));
+      await flushPromises();
+
+      // Assert
+      expect(mT.value.audioElementMock.src).equal("");
+      expect(mT.value.ended).equal(true);
+      expect(endeds).eql([true]);
     });
   });
 
@@ -26,9 +72,9 @@ describe("plugin mediaPlayer MediaTrack", () => {
     it("reports the updated duration after its known or estimated", async () => {
       // Arrange
       const audio = new HTMLAudioElement();
-      const mT = ref(
-        new MediaTrack(audio as unknown as globalThis.HTMLAudioElement),
-      );
+      const mT = ref(new MediaTrackMock());
+      mT.value.audioElementMock =
+        audio as unknown as globalThis.HTMLAudioElement;
 
       const durations: number[] = [];
       watch(
@@ -60,9 +106,9 @@ describe("plugin mediaPlayer MediaTrack", () => {
     it("reports the updated duration as positive infinity if unknown", async () => {
       // Arrange
       const audio = new HTMLAudioElement();
-      const mT = ref(
-        new MediaTrack(audio as unknown as globalThis.HTMLAudioElement),
-      );
+      const mT = ref(new MediaTrackMock());
+      mT.value.audioElementMock =
+        audio as unknown as globalThis.HTMLAudioElement;
 
       const durations: number[] = [];
       watch(
@@ -96,9 +142,9 @@ describe("plugin mediaPlayer MediaTrack", () => {
     it("reports the updated duration after playback has started", async () => {
       // Arrange
       const audio = new HTMLAudioElement();
-      const mT = ref(
-        new MediaTrack(audio as unknown as globalThis.HTMLAudioElement),
-      );
+      const mT = ref(new MediaTrackMock());
+      mT.value.audioElementMock =
+        audio as unknown as globalThis.HTMLAudioElement;
 
       const positions: number[] = [];
       watch(
@@ -130,9 +176,9 @@ describe("plugin mediaPlayer MediaTrack", () => {
     it("only triggers one update if the internal position changes but not the official", async () => {
       // Arrange
       const audio = new HTMLAudioElement();
-      const mT = ref(
-        new MediaTrack(audio as unknown as globalThis.HTMLAudioElement),
-      );
+      const mT = ref(new MediaTrackMock());
+      mT.value.audioElementMock =
+        audio as unknown as globalThis.HTMLAudioElement;
 
       const positions: number[] = [];
       watch(
@@ -174,9 +220,9 @@ describe("plugin mediaPlayer MediaTrack", () => {
     it("allows the user to set the position (seek)", () => {
       // Arrange
       const audio = new HTMLAudioElement();
-      const mT = ref(
-        new MediaTrack(audio as unknown as globalThis.HTMLAudioElement),
-      );
+      const mT = ref(new MediaTrackMock());
+      mT.value.audioElementMock =
+        audio as unknown as globalThis.HTMLAudioElement;
 
       const positions: number[] = [];
       watch(
@@ -198,9 +244,9 @@ describe("plugin mediaPlayer MediaTrack", () => {
     it("skips setting the position (seek) if value is not a finite number", async () => {
       // Arrange
       const audio = new HTMLAudioElement();
-      const mT = ref(
-        new MediaTrack(audio as unknown as globalThis.HTMLAudioElement),
-      );
+      const mT = ref(new MediaTrackMock());
+      mT.value.audioElementMock =
+        audio as unknown as globalThis.HTMLAudioElement;
 
       const positions: number[] = [];
       watch(
@@ -230,9 +276,9 @@ describe("plugin mediaPlayer MediaTrack", () => {
       const audio: HTMLAudioElement & { srcObject?: {} | null } =
         new HTMLAudioElement();
       audio.srcObject = {};
-      const mT = new MediaTrack(
-        audio as unknown as globalThis.HTMLAudioElement,
-      );
+      const mT = new MediaTrackMock();
+      mT.audioElementMock = audio as unknown as globalThis.HTMLAudioElement;
+
       // Act
       mT.destroy();
 
@@ -244,9 +290,9 @@ describe("plugin mediaPlayer MediaTrack", () => {
       // Arrange
       const audio = new HTMLAudioElement();
       const pauseSpy = vi.spyOn(audio, "pause");
-      const mT = new MediaTrack(
-        audio as unknown as globalThis.HTMLAudioElement,
-      );
+      const mT = new MediaTrackMock();
+      mT.audioElementMock = audio as unknown as globalThis.HTMLAudioElement;
+
       // Act
       mT.destroy();
 
@@ -257,9 +303,9 @@ describe("plugin mediaPlayer MediaTrack", () => {
     it("sets `autoplay` to `false` (Chrome would restart playback if `srcObject` is set to `null`)", () => {
       // Arrange
       const audio = new HTMLAudioElement();
-      const mT = new MediaTrack(
-        audio as unknown as globalThis.HTMLAudioElement,
-      );
+      const mT = new MediaTrackMock();
+      mT.audioElementMock = audio as unknown as globalThis.HTMLAudioElement;
+
       // Act
       mT.destroy();
 
