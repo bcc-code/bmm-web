@@ -138,6 +138,70 @@ describe("plugin mediaPlayer MediaTrack", () => {
     });
   });
 
+  describe("paused", () => {
+    it("reports the updated paused-state if action is triggered", async () => {
+      // Arrange
+      const audio = new HTMLAudioElement();
+      const mT = ref(new MediaTrackMock());
+      mT.value.audioElementMock =
+        audio as unknown as globalThis.HTMLAudioElement;
+
+      const pauses: boolean[] = [];
+      watch(
+        () => mT.value.paused,
+        (v) => {
+          pauses.push(v);
+        },
+      );
+      mT.value.registerEvents();
+
+      // Act
+      await flushPromises();
+      audio.dispatchEvent(
+        new Event("pause", { bubbles: false, cancelable: false }),
+      );
+      await flushPromises();
+      audio.dispatchEvent(
+        new Event("play", { bubbles: false, cancelable: false }),
+      );
+      await flushPromises();
+
+      // Assert
+      expect(mT.value.paused).equal(false);
+      expect(pauses).eql([true, false]);
+    });
+  });
+
+  describe("ended", () => {
+    it("reports the updated ended-state if action is triggered", async () => {
+      // Arrange
+      const audio = new HTMLAudioElement();
+      const mT = ref(new MediaTrackMock());
+      mT.value.audioElementMock =
+        audio as unknown as globalThis.HTMLAudioElement;
+
+      const ends: boolean[] = [];
+      watch(
+        () => mT.value.ended,
+        (v) => {
+          ends.push(v);
+        },
+      );
+      mT.value.registerEvents();
+
+      // Act
+      await flushPromises();
+      audio.dispatchEvent(
+        new Event("ended", { bubbles: false, cancelable: false }),
+      );
+      await flushPromises();
+
+      // Assert
+      expect(mT.value.ended).equal(true);
+      expect(ends).eql([true]);
+    });
+  });
+
   describe("position", () => {
     it("reports the updated duration after playback has started", async () => {
       // Arrange
