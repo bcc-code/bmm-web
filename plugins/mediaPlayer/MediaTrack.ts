@@ -76,7 +76,7 @@ export default class MediaTrack {
         console.log("abort", e),
       );
       this.audioElement.addEventListener("error", (e) =>
-        console.log("error", e),
+        console.log("error", e, this.audioElement.error),
       );
       this.audioElement.addEventListener("emptied", (e) =>
         console.log("emptied", e),
