@@ -13,8 +13,10 @@ export default defineNuxtPlugin((_) => {
   return {
     provide: {
       mediaPlayer: initMediaPlayer(
-        () => new MediaTrack(),
-        getAccessTokenSilently,
+        (src) =>
+          new MediaTrack(() =>
+            getAccessTokenSilently().then((t) => authorizedUrl(src, t)),
+          ),
         appInsights,
         userData,
       ),

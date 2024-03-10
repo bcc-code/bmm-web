@@ -46,12 +46,16 @@ export default class MediaTrack {
     return this.d;
   }
 
+  private srcGenerator;
+
   /**
    *
    * @param audioElement
    * @param debug Enables logging of all internal changes. Useful when debugging internals of this class.
    */
-  constructor(debug = false) {
+  constructor(srcGen: () => Promise<string>, debug = false) {
+    this.srcGenerator = srcGen;
+
     this.audioElement = new Audio();
     this.audioElement.autoplay = true;
 
@@ -133,17 +137,15 @@ export default class MediaTrack {
    * has to be called after wrapping the object into `ref()`
    * for `this` to be the proxy created for reactivity.
    */
-  registerSource(src: Promise<string>) {
-    src
+  registerSource() {
+    this.srcGenerator()
       .then((_src) => {
         if (!this.ended) {
           this.audioElement.src = _src;
         }
       })
       .catch((_) => {
-        // TODO: Define what to do when getting a token fails. For now, we report the track as "played to the end".
-        this.ended = true;
-        this.destroy();
+        this.paused = true;
       });
   }
 
@@ -186,7 +188,11 @@ export default class MediaTrack {
   }
 
   play() {
-    this.audioElement.play();
+    if (this.audioElement.currentSrc) {
+      this.audioElement.play();
+    } else {
+      this.registerSource();
+    }
   }
 
   pause() {
