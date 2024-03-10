@@ -185,6 +185,25 @@ export default class MediaTrack {
     this.audioElement.addEventListener("ended", () => {
       this.ended = true;
     });
+    this.audioElement.addEventListener("error", () => {
+      /* The error https://developer.mozilla.org/en-US/docs/Web/API/MediaError
+        only contains an error code and an error message (the message is not
+        defined in the specs and could contain whatever the browser-vendor
+        wants it to contain), we have no chance to tell what exactly went
+        wrong. A DNS problem to us here looks the same as an 403 returned
+        when the token in the link expires. Therefore, pausing and letting
+        the user resume seems a good choice.
+      */
+      // On error, reset the audio instance.
+      this.audioElement = new Audio();
+      this.audioElement.autoplay = true;
+      this.registerEvents();
+      // Set the time to where the error was thrown, so the user can continue.
+      this.position = this.p;
+      // Pause so the user has to trigger an action. If we init the source, we might run into an infinite loop here.
+      this.paused = true;
+      this.loading = false;
+    });
   }
 
   play() {

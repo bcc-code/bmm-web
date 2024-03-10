@@ -30,6 +30,42 @@ describe("plugin mediaPlayer MediaTrack", () => {
       expect(mT.audioElementMock.autoplay).equal(true);
       expect(mT.audioElementMock.src).equal("");
     });
+
+    it("resets the player on error", async () => {
+      // Arrange
+      const audio = new HTMLAudioElement();
+      const mT = new MediaTrackMock(() => Promise.resolve("myTrack"));
+      mT.audioElementMock = audio as unknown as globalThis.HTMLAudioElement;
+
+      // Act
+      mT.registerEvents();
+      mT.registerSource();
+      mT.loading = true;
+      (audio as any).duration = 1000;
+      audio.dispatchEvent(
+        new Event("durationchange", { bubbles: false, cancelable: false }),
+      );
+      (audio as any).currentTime = 500;
+      audio.dispatchEvent(
+        new Event("timeupdate", { bubbles: false, cancelable: false }),
+      );
+      await flushPromises();
+      audio.dispatchEvent(
+        new Event("error", { bubbles: false, cancelable: false }),
+      );
+      await flushPromises();
+
+      // Assert
+      expect(mT.duration).equal(1000);
+      expect(mT.ended).equal(false);
+      expect(mT.loading).equal(false);
+      expect(mT.paused).equal(true);
+      expect(mT.position).equal(500);
+      expect(mT.audioElementMock).not.equal(audio);
+      expect(mT.audioElementMock.autoplay).equal(true);
+      expect(mT.audioElementMock.src).equal("");
+      expect(mT.audioElementMock.currentTime).equal(500);
+    });
   });
 
   describe("registerSource", () => {
