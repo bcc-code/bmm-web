@@ -48,13 +48,20 @@ export default class MediaTrack {
 
   private srcGenerator;
 
+  private onError;
+
   /**
    *
    * @param audioElement
    * @param debug Enables logging of all internal changes. Useful when debugging internals of this class.
    */
-  constructor(srcGen: () => Promise<string>, debug = false) {
+  constructor(
+    srcGen: () => Promise<string>,
+    onError: (e: MediaError | null) => void,
+    debug = false,
+  ) {
     this.srcGenerator = srcGen;
+    this.onError = onError;
 
     this.audioElement = new Audio();
     this.audioElement.autoplay = true;
@@ -186,6 +193,7 @@ export default class MediaTrack {
       this.ended = true;
     });
     this.audioElement.addEventListener("error", () => {
+      this.onError(this.audioElement.error);
       /* The error https://developer.mozilla.org/en-US/docs/Web/API/MediaError
         only contains an error code and an error message (the message is not
         defined in the specs and could contain whatever the browser-vendor
