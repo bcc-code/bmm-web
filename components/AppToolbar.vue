@@ -5,9 +5,17 @@ const showBackButton = computed(() => globalThis.history.length > 1 && route.nam
 <template>
   <header
     class="sticky top-0 z-20 flex justify-between border-b border-label-separator bg-white-2 backdrop-blur-md dark:bg-black-2"
+    style="
+      -webkit-app-region: drag;
+      -webkit-user-select: none;
+      user-select: none;
+    "
   >
     <div class="flex flex-row mx-5">
-      <div class="teleport ml-[-0.75rem]"></div>
+      <div
+        class="teleport ml-[-0.75rem]"
+        style="-webkit-app-region: no-drag"
+      ></div>
       <div
         v-if="showBackButton"
         class="p-4 cursor-pointer"
@@ -23,7 +31,7 @@ const showBackButton = computed(() => globalThis.history.length > 1 && route.nam
       </strong>
     </div>
 
-    <div class="flex flex-row mx-6 my-4">
+    <div class="flex flex-row mx-6 my-4" style="-webkit-app-region: no-drag">
       <ProfileMenu />
     </div>
   </header>

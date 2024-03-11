@@ -2,15 +2,24 @@
 import { version } from "~/package.json";
 
 const { data: collections } = usePrivatePlaylists();
+const isElectron = window.isElectron || false;
 </script>
 
 <template>
   <aside
     class="flex-none flex max-h-screen w-[300px] flex-col border-r border-label-separator bg-background-2"
   >
-    <div class="flex items-center p-3">
-      <SiteLogo size="small" />
+    <div
+      class="flex items-center p-3"
+      style="
+        -webkit-app-region: drag;
+        -webkit-user-select: none;
+        user-select: none;
+      "
+    >
+      <SiteLogo v-if="!isElectron" size="small" />
       <span
+        v-if="!isElectron"
         class="mx-2 mt-1 inline-block rounded-xl bg-tint px-[5px] text-[13px] leading-5 text-black-1"
         >Beta v{{ version }}</span
       >

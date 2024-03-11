@@ -10,6 +10,7 @@ import {
   RadioGroupOption,
 } from "@headlessui/vue";
 import { VueDraggable } from "vue-draggable-plus";
+import { version } from "~/package.json";
 
 const profileStore = useProfileStore();
 const { t } = useI18n();
@@ -132,11 +133,11 @@ const saveAndCloseContentLanguageDialog = () => {
                 :class="{
                   'bg-label-separator -separator': active,
                 }"
-                class="w-full rounded-lg px-3 py-2 text-left"
+                class="w-full rounded-lg px-3 py-2 text-left font-medium text-[15px]"
                 @click="showThemeDialog = true"
               >
                 <p>{{ $t("profile.theme") }}</p>
-                <span class="text-label-2">
+                <span class="text-label-3 text-[13px]">
                   {{ getColorModeName(colorMode.preference) }}
                 </span>
               </button>
@@ -146,11 +147,11 @@ const saveAndCloseContentLanguageDialog = () => {
                 :class="{
                   'bg-label-separator -separator': active,
                 }"
-                class="w-full rounded-lg px-3 py-2 text-left"
+                class="w-full rounded-lg px-3 py-2 text-left font-medium text-[15px]"
                 @click="showInterfaceLanguageDialog = true"
               >
                 <p>{{ $t("profile.app-language") }}</p>
-                <span class="text-label-2">
+                <span class="text-label-3 text-[13px]">
                   {{ getLocalizedLanguageName(profileStore.uiLanguage) }}
                 </span>
               </button>
@@ -160,11 +161,11 @@ const saveAndCloseContentLanguageDialog = () => {
                 :class="{
                   'bg-label-separator -separator': active,
                 }"
-                class="w-full rounded-lg px-3 py-2 text-left"
+                class="w-full rounded-lg px-3 py-2 text-left font-medium text-[15px]"
                 @click="showContentLanguageDialog = true"
               >
                 <p>{{ $t("profile.content-language") }}</p>
-                <span class="text-label-2">
+                <span class="text-label-2 text-[13px]">
                   {{
                     getLocalizedList(
                       contentLanguages.map((x) => getLocalizedLanguageName(x)),
@@ -180,7 +181,7 @@ const saveAndCloseContentLanguageDialog = () => {
                 :class="{
                   'bg-label-separator -separator': active,
                 }"
-                class="flex w-full rounded-lg px-3 py-2"
+                class="flex w-full rounded-lg px-3 py-2 font-medium text-[15px]"
                 href="https://uservoice.bcc.no/?tags=bmm"
                 target="_blank"
               >
@@ -192,11 +193,24 @@ const saveAndCloseContentLanguageDialog = () => {
                 :class="{
                   'bg-label-separator -separator': active,
                 }"
-                class="flex w-full rounded-lg px-3 py-2"
+                class="flex w-full rounded-lg px-3 py-2 font-medium text-[15px]"
                 href="mailto:bmm-support@bcc.no"
                 target="_blank"
               >
                 {{ $t("profile.contact") }}
+              </a>
+            </MenuItem>
+            <MenuItem v-slot="{ active }" as="div">
+              <a
+                :class="{
+                  'bg-label-separator -separator': active,
+                }"
+                class="block w-full rounded-lg px-3 py-2 font-medium text-[15px]"
+              >
+                <p>Version</p>
+                <span class="text-label-3 text-[13px]"
+                  >Beta v{{ version }}</span
+                >
               </a>
             </MenuItem>
           </div>
@@ -206,7 +220,7 @@ const saveAndCloseContentLanguageDialog = () => {
                 :class="{
                   'bg-label-separator -separator': active,
                 }"
-                class="w-full rounded-lg px-3 py-2 text-left"
+                class="w-full rounded-lg px-3 py-2 text-left font-medium text-[15px]"
                 @click="logout()"
               >
                 {{ $t("profile.logout") }}
