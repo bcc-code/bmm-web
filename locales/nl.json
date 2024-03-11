@@ -20,7 +20,7 @@
     }
   },
   "share": {
-    "link-copied-message": "Copied link to clipboard"
+    "link-copied-message": "Link gekopieerd naar klembord"
   },
   "profile": {
     "title": "Profiel",
@@ -29,14 +29,14 @@
     "theme-description": "Selecteer het te gebruiken thema",
     "app-language": "Taal",
     "interface-language": "Taal van de gebruikersinterface",
-    "interface-language-description": "Select the language used for the interface.",
+    "interface-language-description": "Selecteer de taal die wordt gebruikt voor de interface.",
     "select-language": "Kies taal",
     "content-language": "Taal van de content ",
     "content-language-description": "De voorkeurstaal voor de inhoud waarnaar je luistert.",
-    "preference-language-1": "Preferred language",
-    "preference-language-2": "Second language",
-    "preference-language-3": "Third language",
-    "preference-language-4": "{count}th language",
+    "preference-language-1": "Voorkeurstaal",
+    "preference-language-2": "Tweede taal",
+    "preference-language-3": "Derde taal",
+    "preference-language-4": "{count}e taal",
     "uservoice": "User Voice",
     "contact": "Contact",
     "logout": "Uitloggen",
@@ -44,7 +44,7 @@
     "theme-light": "Light",
     "theme-system": "Hetzelfde als apparaat",
     "done": "Gereed",
-    "add-another-language": "Add another language"
+    "add-another-language": "Een andere taal toevoegen"
   },
   "error": {
     "page-not-found": {
@@ -73,9 +73,9 @@
   "playlist": {
     "add": "Afspeellijst toevoegen",
     "new-playlist": "Nieuwe afspeellijst",
-    "name-your-playlist": "Name your playlist",
+    "name-your-playlist": "Geef je afspeellijst een naam",
     "delete-playlist": "Afspeellijst verwijderen",
-    "delete-playlist-description": "Are you sure you want to delete the playlist? This action cannot be reversed.",
+    "delete-playlist-description": "Weet je zeker dat je de afspeellijst wilt verwijderen? Deze actie kan niet ongedaan worden gemaakt.",
     "action": {
       "shuffle": "Shuffle"
     }
@@ -90,7 +90,7 @@
     "queue": "Wachtrij"
   },
   "edit": {
-    "rename": "Rename",
+    "rename": "Naam wijzigen",
     "delete": "Verwijderen"
   },
   "track": {
@@ -138,13 +138,13 @@
       "Playlists": "Afspeellijsten"
     },
     "input-placeholder": "Zoeken",
-    "loading-results": "loading results",
-    "no-results-yet": "No results yet",
-    "no-results-found": "No results found",
-    "result-count": "{count} results"
+    "loading-results": "laad resultaten",
+    "no-results-yet": "Nog geen resultaten",
+    "no-results-found": "Geen resultaten gevonden",
+    "result-count": "{count} resultaten"
   },
   "streak": {
     "your-streak": "Jouw Streak deze week",
-    "days-in-row": "{count} days in a row"
+    "days-in-row": "{count} dagen op rij"
   }
 }
