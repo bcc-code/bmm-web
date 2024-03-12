@@ -5,7 +5,7 @@
  * https://developer.mozilla.org/en-US/docs/Web/API/HTMLAudioElement
  */
 export default class MediaTrack {
-  private audioElement: HTMLAudioElement;
+  protected audioElement: HTMLAudioElement;
 
   public loading = false;
 
@@ -46,13 +46,17 @@ export default class MediaTrack {
     return this.d;
   }
 
+  private srcGenerator;
+
   /**
    *
    * @param audioElement
    * @param debug Enables logging of all internal changes. Useful when debugging internals of this class.
    */
-  constructor(audioElement: HTMLAudioElement, debug = false) {
-    this.audioElement = audioElement;
+  constructor(srcGen: () => Promise<string>, debug = false) {
+    this.srcGenerator = srcGen;
+
+    this.audioElement = new Audio();
     this.audioElement.autoplay = true;
 
     /* c8 ignore start */
@@ -128,6 +132,24 @@ export default class MediaTrack {
   }
 
   /**
+   * Registering the source in a separate method is needed when
+   * you want to have the element reactive. This method
+   * has to be called after wrapping the object into `ref()`
+   * for `this` to be the proxy created for reactivity.
+   */
+  registerSource() {
+    this.srcGenerator()
+      .then((_src) => {
+        if (!this.ended) {
+          this.audioElement.src = _src;
+        }
+      })
+      .catch((_) => {
+        this.paused = true;
+      });
+  }
+
+  /**
    * Registering the events in a separate method is needed when
    * you want to have the element reactive. This method
    * has to be called after wrapping the object into `ref()`
@@ -166,7 +188,11 @@ export default class MediaTrack {
   }
 
   play() {
-    this.audioElement.play();
+    if (this.audioElement.currentSrc) {
+      this.audioElement.play();
+    } else {
+      this.registerSource();
+    }
   }
 
   pause() {

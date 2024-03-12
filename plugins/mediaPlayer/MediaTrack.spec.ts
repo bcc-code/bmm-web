@@ -5,12 +5,21 @@ import { HTMLAudioElement, Event } from "happy-dom";
 import { flushPromises } from "@vue/test-utils";
 import MediaTrack from "./MediaTrack";
 
+class MediaTrackMock extends MediaTrack {
+  public get audioElementMock() {
+    return this.audioElement;
+  }
+
+  public set audioElementMock(audioElement) {
+    this.audioElement = audioElement;
+  }
+}
+
 describe("plugin mediaPlayer MediaTrack", () => {
   describe("init", () => {
     it("starts playing from the start without init-loading", () => {
       // Act
-      const audio = {} as unknown as globalThis.HTMLAudioElement;
-      const mT = new MediaTrack(audio);
+      const mT = new MediaTrackMock(() => Promise.resolve(""));
 
       // Assert
       expect(mT.duration).toBeNaN();
@@ -18,7 +27,46 @@ describe("plugin mediaPlayer MediaTrack", () => {
       expect(mT.loading).equal(false);
       expect(mT.paused).equal(false);
       expect(mT.position).equal(0);
-      expect(audio.autoplay).equal(true);
+      expect(mT.audioElementMock.autoplay).equal(true);
+      expect(mT.audioElementMock.src).equal("");
+    });
+  });
+
+  describe("registerSource", () => {
+    it("sets the source when the promise resolves", async () => {
+      // Arrange
+      const mT = new MediaTrackMock(() => Promise.resolve("myTrack"));
+
+      // Act
+      mT.registerSource();
+      await flushPromises();
+
+      // Assert
+      expect(mT.audioElementMock.src).equal("myTrack");
+      expect(mT.ended).equal(false);
+    });
+
+    it("sets the track to 'paused' if the src-promise rejects", async () => {
+      // Arrange
+      const mT = ref(
+        new MediaTrackMock(() => Promise.reject(new Error("Test"))),
+      );
+      const pauses: boolean[] = [];
+      watch(
+        () => mT.value.paused,
+        (v) => {
+          pauses.push(v);
+        },
+      );
+
+      // Act
+      mT.value.registerSource();
+      await flushPromises();
+
+      // Assert
+      expect(mT.value.audioElementMock.src).equal("");
+      expect(mT.value.paused).equal(true);
+      expect(pauses).eql([true]);
     });
   });
 
@@ -26,9 +74,9 @@ describe("plugin mediaPlayer MediaTrack", () => {
     it("reports the updated duration after its known or estimated", async () => {
       // Arrange
       const audio = new HTMLAudioElement();
-      const mT = ref(
-        new MediaTrack(audio as unknown as globalThis.HTMLAudioElement),
-      );
+      const mT = ref(new MediaTrackMock(() => Promise.resolve("")));
+      mT.value.audioElementMock =
+        audio as unknown as globalThis.HTMLAudioElement;
 
       const durations: number[] = [];
       watch(
@@ -60,9 +108,9 @@ describe("plugin mediaPlayer MediaTrack", () => {
     it("reports the updated duration as positive infinity if unknown", async () => {
       // Arrange
       const audio = new HTMLAudioElement();
-      const mT = ref(
-        new MediaTrack(audio as unknown as globalThis.HTMLAudioElement),
-      );
+      const mT = ref(new MediaTrackMock(() => Promise.resolve("myTrack")));
+      mT.value.audioElementMock =
+        audio as unknown as globalThis.HTMLAudioElement;
 
       const durations: number[] = [];
       watch(
@@ -92,13 +140,77 @@ describe("plugin mediaPlayer MediaTrack", () => {
     });
   });
 
+  describe("paused", () => {
+    it("reports the updated paused-state if action is triggered", async () => {
+      // Arrange
+      const audio = new HTMLAudioElement();
+      const mT = ref(new MediaTrackMock(() => Promise.resolve("myTrack")));
+      mT.value.audioElementMock =
+        audio as unknown as globalThis.HTMLAudioElement;
+
+      const pauses: boolean[] = [];
+      watch(
+        () => mT.value.paused,
+        (v) => {
+          pauses.push(v);
+        },
+      );
+      mT.value.registerEvents();
+
+      // Act
+      await flushPromises();
+      audio.dispatchEvent(
+        new Event("pause", { bubbles: false, cancelable: false }),
+      );
+      await flushPromises();
+      audio.dispatchEvent(
+        new Event("play", { bubbles: false, cancelable: false }),
+      );
+      await flushPromises();
+
+      // Assert
+      expect(mT.value.paused).equal(false);
+      expect(pauses).eql([true, false]);
+    });
+  });
+
+  describe("ended", () => {
+    it("reports the updated ended-state if action is triggered", async () => {
+      // Arrange
+      const audio = new HTMLAudioElement();
+      const mT = ref(new MediaTrackMock(() => Promise.resolve("myTrack")));
+      mT.value.audioElementMock =
+        audio as unknown as globalThis.HTMLAudioElement;
+
+      const ends: boolean[] = [];
+      watch(
+        () => mT.value.ended,
+        (v) => {
+          ends.push(v);
+        },
+      );
+      mT.value.registerEvents();
+
+      // Act
+      await flushPromises();
+      audio.dispatchEvent(
+        new Event("ended", { bubbles: false, cancelable: false }),
+      );
+      await flushPromises();
+
+      // Assert
+      expect(mT.value.ended).equal(true);
+      expect(ends).eql([true]);
+    });
+  });
+
   describe("position", () => {
     it("reports the updated duration after playback has started", async () => {
       // Arrange
       const audio = new HTMLAudioElement();
-      const mT = ref(
-        new MediaTrack(audio as unknown as globalThis.HTMLAudioElement),
-      );
+      const mT = ref(new MediaTrackMock(() => Promise.resolve("myTrack")));
+      mT.value.audioElementMock =
+        audio as unknown as globalThis.HTMLAudioElement;
 
       const positions: number[] = [];
       watch(
@@ -130,9 +242,9 @@ describe("plugin mediaPlayer MediaTrack", () => {
     it("only triggers one update if the internal position changes but not the official", async () => {
       // Arrange
       const audio = new HTMLAudioElement();
-      const mT = ref(
-        new MediaTrack(audio as unknown as globalThis.HTMLAudioElement),
-      );
+      const mT = ref(new MediaTrackMock(() => Promise.resolve("myTrack")));
+      mT.value.audioElementMock =
+        audio as unknown as globalThis.HTMLAudioElement;
 
       const positions: number[] = [];
       watch(
@@ -174,9 +286,9 @@ describe("plugin mediaPlayer MediaTrack", () => {
     it("allows the user to set the position (seek)", () => {
       // Arrange
       const audio = new HTMLAudioElement();
-      const mT = ref(
-        new MediaTrack(audio as unknown as globalThis.HTMLAudioElement),
-      );
+      const mT = ref(new MediaTrackMock(() => Promise.resolve("myTrack")));
+      mT.value.audioElementMock =
+        audio as unknown as globalThis.HTMLAudioElement;
 
       const positions: number[] = [];
       watch(
@@ -198,9 +310,9 @@ describe("plugin mediaPlayer MediaTrack", () => {
     it("skips setting the position (seek) if value is not a finite number", async () => {
       // Arrange
       const audio = new HTMLAudioElement();
-      const mT = ref(
-        new MediaTrack(audio as unknown as globalThis.HTMLAudioElement),
-      );
+      const mT = ref(new MediaTrackMock(() => Promise.resolve("myTrack")));
+      mT.value.audioElementMock =
+        audio as unknown as globalThis.HTMLAudioElement;
 
       const positions: number[] = [];
       watch(
@@ -224,15 +336,42 @@ describe("plugin mediaPlayer MediaTrack", () => {
     });
   });
 
+  describe("play", () => {
+    it("resumes an initialized audio-element without setting the source", async () => {
+      // Arrange
+      const mT = new MediaTrackMock(() => Promise.resolve("MyUrl"));
+      mT.audioElementMock.src = "Test";
+
+      // Act
+      mT.play();
+      await flushPromises();
+
+      // Assert
+      expect(mT.audioElementMock.src).equal("Test");
+    });
+
+    it("sets the source on a not-initialized audio-element", async () => {
+      // Arrange
+      const mT = new MediaTrackMock(() => Promise.resolve("MyUrl"));
+
+      // Act
+      mT.play();
+      await flushPromises();
+
+      // Assert
+      expect(mT.audioElementMock.src).equal("MyUrl");
+    });
+  });
+
   describe("destroy", () => {
     it("resets the option `srcObject` to `null` (best practice)", () => {
       // Arrange
       const audio: HTMLAudioElement & { srcObject?: {} | null } =
         new HTMLAudioElement();
       audio.srcObject = {};
-      const mT = new MediaTrack(
-        audio as unknown as globalThis.HTMLAudioElement,
-      );
+      const mT = new MediaTrackMock(() => Promise.resolve("myTrack"));
+      mT.audioElementMock = audio as unknown as globalThis.HTMLAudioElement;
+
       // Act
       mT.destroy();
 
@@ -244,9 +383,9 @@ describe("plugin mediaPlayer MediaTrack", () => {
       // Arrange
       const audio = new HTMLAudioElement();
       const pauseSpy = vi.spyOn(audio, "pause");
-      const mT = new MediaTrack(
-        audio as unknown as globalThis.HTMLAudioElement,
-      );
+      const mT = new MediaTrackMock(() => Promise.resolve("myTrack"));
+      mT.audioElementMock = audio as unknown as globalThis.HTMLAudioElement;
+
       // Act
       mT.destroy();
 
@@ -257,9 +396,9 @@ describe("plugin mediaPlayer MediaTrack", () => {
     it("sets `autoplay` to `false` (Chrome would restart playback if `srcObject` is set to `null`)", () => {
       // Arrange
       const audio = new HTMLAudioElement();
-      const mT = new MediaTrack(
-        audio as unknown as globalThis.HTMLAudioElement,
-      );
+      const mT = new MediaTrackMock(() => Promise.resolve("myTrack"));
+      mT.audioElementMock = audio as unknown as globalThis.HTMLAudioElement;
+
       // Act
       mT.destroy();
 
