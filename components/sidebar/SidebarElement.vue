@@ -2,7 +2,9 @@
 import { version } from "~/package.json";
 
 const { data: collections } = usePrivatePlaylists();
-const isElectron = window.isElectron || false;
+const runtimeConfig = useRuntimeConfig();
+const isElectronOnMac =
+  runtimeConfig.public.systemName === "Electron" && runtimeConfig.public.isMac;
 </script>
 
 <template>
@@ -10,16 +12,14 @@ const isElectron = window.isElectron || false;
     class="flex-none flex max-h-screen w-[300px] flex-col border-r border-label-separator bg-background-2"
   >
     <div
-      class="flex items-center p-3"
-      style="
-        -webkit-app-region: drag;
-        -webkit-user-select: none;
-        user-select: none;
-      "
+      class="flex items-center p-3 px-6"
+      :class="{
+        'pt-8 pb-1': isElectronOnMac,
+      }"
+      style="-webkit-app-region: drag"
     >
-      <SiteLogo v-if="!isElectron" size="small" />
+      <SiteLogo size="small" />
       <span
-        v-if="!isElectron"
         class="mx-2 mt-1 inline-block rounded-xl bg-tint px-[5px] text-[13px] leading-5 text-black-1"
         >Beta v{{ version }}</span
       >

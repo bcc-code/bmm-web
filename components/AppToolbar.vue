@@ -5,11 +5,7 @@ const showBackButton = computed(() => globalThis.history.length > 1 && route.nam
 <template>
   <header
     class="sticky top-0 z-20 flex justify-between border-b border-label-separator bg-white-2 backdrop-blur-md dark:bg-black-2"
-    style="
-      -webkit-app-region: drag;
-      -webkit-user-select: none;
-      user-select: none;
-    "
+    style="-webkit-app-region: drag"
   >
     <div class="flex flex-row mx-5">
       <div
@@ -19,6 +15,7 @@ const showBackButton = computed(() => globalThis.history.length > 1 && route.nam
       <div
         v-if="showBackButton"
         class="p-4 cursor-pointer"
+        style="-webkit-app-region: no-drag"
         @click="$router.back()"
       >
         <NuxtIcon name="icon.chevron.left-1" class="text-2xl" />

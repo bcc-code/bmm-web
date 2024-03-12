@@ -28,6 +28,7 @@ export default defineNuxtConfig({
       clientId: "L9891KdcqtoKmHg4r65lT7zbSjv55dNN",
       applicationInsights: "",
       systemName: process.env.ELECTRON ? "Electron" : "Web",
+      isMac: process.platform === "darwin",
     },
   },
   spaLoadingTemplate: "spa-loading-template.html",

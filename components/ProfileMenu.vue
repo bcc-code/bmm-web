@@ -200,19 +200,6 @@ const saveAndCloseContentLanguageDialog = () => {
                 {{ $t("profile.contact") }}
               </a>
             </MenuItem>
-            <MenuItem v-slot="{ active }" as="div">
-              <a
-                :class="{
-                  'bg-label-separator -separator': active,
-                }"
-                class="block w-full rounded-lg px-3 py-2 font-medium text-[15px]"
-              >
-                <p>Version</p>
-                <span class="text-label-3 text-[13px]"
-                  >Beta v{{ version }}</span
-                >
-              </a>
-            </MenuItem>
           </div>
           <div class="p-1">
             <MenuItem v-slot="{ active }" as="div">
