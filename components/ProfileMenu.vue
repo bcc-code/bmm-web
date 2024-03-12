@@ -10,7 +10,6 @@ import {
   RadioGroupOption,
 } from "@headlessui/vue";
 import { VueDraggable } from "vue-draggable-plus";
-import { version } from "~/package.json";
 
 const profileStore = useProfileStore();
 const { t } = useI18n();

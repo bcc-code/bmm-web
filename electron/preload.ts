@@ -1,6 +1,4 @@
-import { ipcRenderer, contextBridge } from "electron";
-
-contextBridge.exposeInMainWorld("isElectron", true);
+import { ipcRenderer } from "electron";
 
 window.addEventListener("DOMContentLoaded", () => {
   ipcRenderer.on("route-changed", (_event, url: string) => {
