@@ -48,13 +48,20 @@ export default class MediaTrack {
 
   private srcGenerator;
 
+  private onError;
+
   /**
    *
    * @param audioElement
    * @param debug Enables logging of all internal changes. Useful when debugging internals of this class.
    */
-  constructor(srcGen: () => Promise<string>, debug = false) {
+  constructor(
+    srcGen: () => Promise<string>,
+    onError: (e: MediaError | null) => void,
+    debug = false,
+  ) {
     this.srcGenerator = srcGen;
+    this.onError = onError;
 
     this.audioElement = new Audio();
     this.audioElement.autoplay = true;
@@ -76,7 +83,7 @@ export default class MediaTrack {
         console.log("abort", e),
       );
       this.audioElement.addEventListener("error", (e) =>
-        console.log("error", e),
+        console.log("error", e, this.audioElement.error),
       );
       this.audioElement.addEventListener("emptied", (e) =>
         console.log("emptied", e),
@@ -184,6 +191,26 @@ export default class MediaTrack {
     });
     this.audioElement.addEventListener("ended", () => {
       this.ended = true;
+    });
+    this.audioElement.addEventListener("error", () => {
+      this.onError(this.audioElement.error);
+      /* The error https://developer.mozilla.org/en-US/docs/Web/API/MediaError
+        only contains an error code and an error message (the message is not
+        defined in the specs and could contain whatever the browser-vendor
+        wants it to contain), we have no chance to tell what exactly went
+        wrong. A DNS problem to us here looks the same as an 403 returned
+        when the token in the link expires. Therefore, pausing and letting
+        the user resume seems a good choice.
+      */
+      // On error, reset the audio instance.
+      this.audioElement = new Audio();
+      this.audioElement.autoplay = true;
+      this.registerEvents();
+      // Set the time to where the error was thrown, so the user can continue.
+      this.position = this.p;
+      // Pause so the user has to trigger an action. If we init the source, we might run into an infinite loop here.
+      this.paused = true;
+      this.loading = false;
     });
   }
 

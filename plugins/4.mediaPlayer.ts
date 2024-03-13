@@ -14,8 +14,25 @@ export default defineNuxtPlugin((_) => {
     provide: {
       mediaPlayer: initMediaPlayer(
         (src) =>
-          new MediaTrack(() =>
-            getAccessTokenSilently().then((t) => authorizedUrl(src, t)),
+          new MediaTrack(
+            () =>
+              getAccessTokenSilently()
+                .then((t) => authorizedUrl(src, t))
+                .catch((e) => {
+                  useNuxtApp().$appInsights.event(
+                    "[Player] refreshing access token failed",
+                    {
+                      error: String(e),
+                    },
+                  );
+                  throw e;
+                }),
+            (e) => {
+              useNuxtApp().$appInsights.event("[Player] playing media failed", {
+                errorCode: e?.code || 0,
+                errorMessage: e?.message || "",
+              });
+            },
           ),
         appInsights,
         userData,
