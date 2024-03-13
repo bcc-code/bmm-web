@@ -2,13 +2,22 @@
 import { version } from "~/package.json";
 
 const { data: collections } = usePrivatePlaylists();
+const runtimeConfig = useRuntimeConfig();
+const isElectronOnMac =
+  runtimeConfig.public.systemName === "Electron" && runtimeConfig.public.isMac;
 </script>
 
 <template>
   <aside
     class="flex-none flex max-h-screen w-[300px] flex-col border-r border-label-separator bg-background-2"
   >
-    <div class="flex items-center p-3">
+    <div
+      class="flex items-center p-3 px-6"
+      :class="{
+        'pt-8 pb-1': isElectronOnMac,
+      }"
+      style="-webkit-app-region: drag"
+    >
       <SiteLogo size="small" />
       <span
         class="mx-2 mt-1 inline-block rounded-xl bg-tint px-[5px] text-[13px] leading-5 text-black-1"

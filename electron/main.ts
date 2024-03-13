@@ -37,6 +37,7 @@ const openWindow = (url: string) => {
     webPreferences: {
       preload: path.join(__dirname, "preload.js"),
     },
+    titleBarStyle: process.platform === "darwin" ? "hidden" : "default",
   });
 
   const bounds = store.get("bounds");

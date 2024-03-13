@@ -9,13 +9,19 @@ const onError = (error: any) => {
   console.error(error);
 };
 
+const runtimeConfig = useRuntimeConfig();
+const isElectron = runtimeConfig.public.systemName === "Electron";
+
 const { queue } = useNuxtApp().$mediaPlayer;
 </script>
 
 <template>
-  <div class="flex h-screen bg-background-1 text-black-1 dark:text-white-1">
+  <div
+    class="flex h-screen bg-background-1 text-black-1 dark:text-white-1"
+    :class="{ 'select-none': isElectron }"
+  >
     <SidebarElement />
-    <main class="relative flex-grow overflow-y-auto">
+    <main class="relative flex-grow overflow-y-scroll">
       <AppToolbar />
       <div class="flex flex-row">
         <NuxtErrorBoundary @error="onError">
