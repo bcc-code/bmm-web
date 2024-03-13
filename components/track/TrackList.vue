@@ -6,15 +6,18 @@ const props = withDefaults(
     showSkeleton?: boolean;
     skeletonCount?: number;
     tracks: TrackModel[] | null;
+    trackTypeIsKnown: boolean | null;
   }>(),
   {
     skeletonCount: 5,
+    trackTypeIsKnown: null,
   },
 );
 
 const { setQueue } = useNuxtApp().$mediaPlayer;
 
 const isTrackTypeKnown = () => {
+  if (props.trackTypeIsKnown !== null) return props.trackTypeIsKnown;
   const firstType = props.tracks?.[0]?.subtype;
   return (
     props.tracks?.every(
