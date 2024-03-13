@@ -52,7 +52,7 @@ const selectedTrack: Ref<TrackModel | null> = ref(null);
             class="absolute w-10 inset-0 opacity-0 group-hover:opacity-100"
           >
             <div
-              class="absolute inset-0 h-full w-full rounded-md bg-black-1 opacity-50 dark:bg-white-1"
+              class="absolute inset-0 h-full w-full rounded-md bg-black-3 opacity-50"
             ></div>
             <NuxtIcon
               name="play"
@@ -61,7 +61,7 @@ const selectedTrack: Ref<TrackModel | null> = ref(null);
           </div>
           <div v-if="isPlaying" class="absolute w-10 inset-0">
             <div
-              class="absolute inset-0 h-full w-full rounded-md bg-black-1 opacity-50 dark:bg-white-1"
+              class="absolute inset-0 h-full w-full rounded-md bg-black-3 opacity-50"
             ></div>
             <NuxtIcon
               name="icon.playing.animation"
@@ -138,7 +138,7 @@ const selectedTrack: Ref<TrackModel | null> = ref(null);
           :track="track"
           :button-class="
             'p-2 hover:bg-label-separator ' +
-            (isPlaying ? 'text-black-1' : 'text-label-1')
+            (isPlaying ? 'text-black-1 hover:text-black-1' : 'text-label-1')
           "
         />
       </div>
