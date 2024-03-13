@@ -1,10 +1,11 @@
 <script lang="ts" setup>
 import type { TrackModel } from "@bcc-code/bmm-sdk-fetch";
+import { MediaPlayerStatus } from "~/plugins/mediaPlayer/mediaPlayer";
 
 const { t } = useI18n();
-const { addToQueue } = useNuxtApp().$mediaPlayer;
+const { addToQueue, currentTrack, status } = useNuxtApp().$mediaPlayer;
 
-defineProps<{
+const props = defineProps<{
   track: TrackModel;
   showThumbnail?: boolean;
   isTrackTypeKnown: boolean;
@@ -20,6 +21,8 @@ function playTrack() {
   emit("play-track");
 }
 
+const isPlaying = computed(() => currentTrack.value?.id === props.track.id);
+
 const selectedTrack: Ref<TrackModel | null> = ref(null);
 </script>
 
@@ -32,6 +35,11 @@ const selectedTrack: Ref<TrackModel | null> = ref(null);
       class="absolute -inset-x-4 -inset-y-0 rounded-xl bg-background-2 opacity-0 group-hover:opacity-100"
     ></div>
 
+    <div
+      v-if="isPlaying"
+      class="absolute -inset-x-4 -inset-y-0 rounded-xl bg-tint"
+    ></div>
+
     <div class="relative grid col-span-full grid-cols-subgrid">
       <div v-if="showThumbnail" class="hidden lg:flex flex-col justify-center">
         <div class="relative aspect-square w-10">
@@ -39,13 +47,28 @@ const selectedTrack: Ref<TrackModel | null> = ref(null);
             :src="track.meta?.attachedPicture"
             class="w-10 rounded-md"
           />
-          <div class="absolute w-10 inset-0 opacity-0 group-hover:opacity-100">
+          <div
+            v-if="!isPlaying"
+            class="absolute w-10 inset-0 opacity-0 group-hover:opacity-100"
+          >
             <div
               class="absolute inset-0 h-full w-full rounded-md bg-black-1 opacity-50 dark:bg-white-1"
             ></div>
             <NuxtIcon
               name="play"
               class="absolute inset-0 flex items-center justify-center text-2xl text-white-1 dark:text-black-1"
+            />
+          </div>
+          <div v-if="isPlaying" class="absolute w-10 inset-0">
+            <div
+              class="absolute inset-0 h-full w-full rounded-md bg-black-1 opacity-50 dark:bg-white-1"
+            ></div>
+            <NuxtIcon
+              name="icon.playing.animation"
+              class="absolute inset-0 flex items-center justify-center text-2xl text-white-1 dark:text-black-1 ml-1.5"
+              :class="{
+                'animation-paused': status !== MediaPlayerStatus.Playing,
+              }"
             />
           </div>
         </div>
@@ -57,6 +80,7 @@ const selectedTrack: Ref<TrackModel | null> = ref(null);
       >
         <h4
           class="block truncate text-[17px] leading-6 font-medium"
+          :class="{ 'text-black-1': isPlaying }"
           :title="track.meta?.title || ''"
         >
           {{ track.meta?.title }}
@@ -64,16 +88,25 @@ const selectedTrack: Ref<TrackModel | null> = ref(null);
         <span
           v-if="track.meta?.artist"
           :title="track.meta?.artist"
-          class="block truncate text-label-2 text-[15px] leading-5"
+          class="block truncate text-[15px] leading-5"
+          :class="isPlaying ? 'text-black-1' : 'text-label-2'"
         >
           {{ track.meta?.artist }}
         </span>
       </div>
       <div v-if="!isTrackTypeKnown" class="flex items-center min-w-0">
-        <span class="text-label-3 truncate">{{ track.subtype }}</span>
+        <span
+          class="truncate"
+          :class="isPlaying ? 'text-black-1' : 'text-label-3'"
+          >{{ track.subtype }}</span
+        >
       </div>
       <div v-if="isTrackTypeKnown" class="flex items-center min-w-0">
-        <span class="text-label-3 truncate">{{ track.meta?.album }}</span>
+        <span
+          class="truncate"
+          :class="isPlaying ? 'text-black-1' : 'text-label-3'"
+          >{{ track.meta?.album }}</span
+        >
       </div>
       <div class="flex items-center">
         <span class="text-label-3">
@@ -82,7 +115,10 @@ const selectedTrack: Ref<TrackModel | null> = ref(null);
           ></TimeDuration>
         </span>
       </div>
-      <div class="flex items-center gap-1">
+      <div
+        class="flex items-center gap-1"
+        :class="isPlaying ? 'text-black-1' : 'text-label-1'"
+      >
         <button
           class="rounded-full p-2 opacity-0 hover:bg-label-separator hover:opacity-100 group-hover:opacity-100 group-focus:opacity-100"
           @click="selectedTrack = track"
@@ -98,7 +134,13 @@ const selectedTrack: Ref<TrackModel | null> = ref(null);
         >
           <NuxtIcon name="queue" class="text-2xl" />
         </button>
-        <TrackMenu :track="track" button-class="p-2 hover:bg-label-separator" />
+        <TrackMenu
+          :track="track"
+          :button-class="
+            'p-2 hover:bg-label-separator ' +
+            (isPlaying ? 'text-black-1' : 'text-label-1')
+          "
+        />
       </div>
     </div>
     <slot />
