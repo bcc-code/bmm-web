@@ -39,7 +39,7 @@ const childTracks = computed(() => {
       <div class="text-2xl font-extrabold">{{ album.title }}</div>
       <div
         v-if="album?.children && !active"
-        class="flex gap-1.5 ml-auto px-4 py-2 bg-background-2 rounded-3xl group-hover:button-shadow border-[1px] border-background-2 group-hover:border-label-separator"
+        class="flex gap-1.5 ml-auto px-4 py-2 bg-background-2 rounded-3xl border-[1px] border-background-2 group-hover:border-label-separator"
       >
         <span class="font-semibold text-lg leading-6">{{
           t("collection.track-count", album?.children.length)
@@ -93,18 +93,18 @@ const childTracks = computed(() => {
   </section>
 </template>
 <style scoped>
-.button-shadow {
-  box-shadow:
-    0px 4px 12px 0px #0000000d,
-    0px 1px 4px 0px #0000000d,
-    0px 0px 0px 1px #0000000d;
-}
-
 .album-shadow {
   box-shadow:
     0px 4px 80px 0px #0000001a,
     0px 4px 12px 0px #0000000d,
     0px 1px 4px 0px #0000000d,
     0px 0px 0px 1px #0000000d;
+}
+.dark .album-shadow {
+  box-shadow:
+    0px 4px 80px 0px #ffffff1a,
+    0px 4px 12px 0px #ffffff0d,
+    0px 1px 4px 0px #ffffff0d,
+    0px 0px 0px 1px #ffffff0d;
 }
 </style>
