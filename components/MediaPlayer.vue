@@ -244,7 +244,12 @@ const onPointerDownProgressBar = () => {
             ></span>
             <span>
               <TimeDuration
-                :duration="Math.floor(currentTrackDuration) - currentPosition"
+                :duration="
+                  Math.max(
+                    Math.floor(currentTrackDuration) - currentPosition,
+                    0,
+                  )
+                "
               ></TimeDuration
             ></span>
           </div>
