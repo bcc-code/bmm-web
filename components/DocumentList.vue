@@ -67,7 +67,6 @@ const convertModels = (models: IAllDocumentModels[]) => {
       currentSection.push(el);
     }
   });
-  console.log("models", result);
   return result;
 };
 
