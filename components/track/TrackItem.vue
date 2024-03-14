@@ -56,7 +56,7 @@ const selectedTrack: Ref<TrackModel | null> = ref(null);
             ></div>
             <NuxtIcon
               name="play"
-              class="absolute inset-0 flex items-center justify-center text-2xl text-white-1 dark:text-black-1"
+              class="absolute inset-0 flex items-center justify-center text-2xl text-white-1"
             />
           </div>
           <div v-if="isPlaying" class="absolute w-10 inset-0">
@@ -65,7 +65,7 @@ const selectedTrack: Ref<TrackModel | null> = ref(null);
             ></div>
             <NuxtIcon
               name="icon.playing.animation"
-              class="absolute inset-0 flex items-center justify-center text-2xl text-white-1 dark:text-black-1 ml-1.5"
+              class="absolute inset-0 flex items-center justify-center text-2xl text-white-1 ml-1.5"
               :class="{
                 'animation-paused': status !== MediaPlayerStatus.Playing,
               }"
