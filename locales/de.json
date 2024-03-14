@@ -124,7 +124,8 @@
   },
   "home": {
     "list": {
-      "see-all": "Alle sehen"
+      "see-all": "Alle sehen",
+      "recommended": "Empfohlen"
     }
   },
   "search": {
