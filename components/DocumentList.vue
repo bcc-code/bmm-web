@@ -4,6 +4,7 @@ import type {
   TrackModel,
   SectionHeaderModel,
 } from "@bcc-code/bmm-sdk-fetch";
+import RecommendationItem from "./RecommendationItem.vue";
 
 type IDiscoverableGroup = {
   header: SectionHeaderModel | null;
@@ -22,10 +23,28 @@ const convertModels = (models: IAllDocumentModels[]) => {
   let currentSection: IDiscoverableGroup["items"] = [];
   const result: IDiscoverableGroup[] = [];
   const tiles: IDiscoverableGroup["items"] = [];
+  let addedTiles: boolean = false;
 
   models.forEach((el, i) => {
     if (el.type === "Tile") {
-      if (!el.lastPositionInMs) tiles.push(el); // We currently don't support continuing from the position. Then it's better to hide it.
+      if (!el.lastPositionInMs) {
+        // We currently don't support continuing from the position. Then it's better to hide it.
+
+        tiles.push(el);
+        if (!addedTiles) {
+          result.push({ header: null, items: tiles, useFlex: true });
+          addedTiles = true;
+        }
+
+        if (currentSection.length > 0) {
+          currentSection = [];
+          result.push({
+            header: null,
+            items: currentSection,
+            useFlex: false,
+          });
+        }
+      }
     } else if (el.type === "project_box") {
       console.log(
         `since we don't have a design for ${el.type} we don't render it.`,
@@ -48,9 +67,6 @@ const convertModels = (models: IAllDocumentModels[]) => {
       currentSection.push(el);
     }
   });
-  if (tiles.length > 0) {
-    result.splice(1, 0, { header: null, items: tiles, useFlex: true });
-  }
   return result;
 };
 
@@ -180,7 +196,7 @@ const playSingleItem = (item: TrackModel) => {
             <GenericListItem
               v-else-if="item.type === 'contributor'"
               :id="item.id"
-              :route-name="'playlist-contributor-id'"
+              route-name="playlist-contributor-id"
               :cover="item.cover"
               circle
               :label="item.name"
@@ -188,26 +204,30 @@ const playSingleItem = (item: TrackModel) => {
             <GenericListItem
               v-else-if="item.type === 'album'"
               :id="item.id"
-              :route-name="'album-id'"
+              route-name="album-id"
               :cover="item.cover"
               :label="item.title"
             />
             <GenericListItem
               v-else-if="item.type === 'playlist'"
               :id="item.id"
-              :route-name="'playlist-curated-id'"
+              route-name="playlist-curated-id"
               :cover="item.cover"
               :label="item.title"
             />
             <GenericListItem
               v-else-if="item.type === 'podcast'"
               :id="item.id"
-              :route-name="'playlist-podcast-id'"
+              route-name="playlist-podcast-id"
               :cover="item.cover"
               :label="item.title"
             />
             <StreakItem
               v-else-if="item.type === 'listening_streak'"
+              :item="item"
+            />
+            <RecommendationItem
+              v-else-if="item.type === 'recommendation'"
               :item="item"
             />
 

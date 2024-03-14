@@ -9,7 +9,7 @@ export default defineNuxtPlugin((nuxtApp) => {
     cacheLocation: "localstorage",
     authorizationParams: {
       redirect_uri: window.location.origin,
-      audience: runtimeConfig.public.apiUrl,
+      audience: "https://bmm-api.brunstad.org",
     },
     useRefreshTokens: true,
   });
