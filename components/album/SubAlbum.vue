@@ -102,9 +102,9 @@ const childTracks = computed(() => {
 }
 .dark .album-shadow {
   box-shadow:
-    0px 4px 80px 0px #ffffff1a,
-    0px 4px 12px 0px #ffffff0d,
-    0px 1px 4px 0px #ffffff0d,
-    0px 0px 0px 1px #ffffff0d;
+    0px 4px 80px 0px #00000066,
+    0px 4px 12px 0px #00000040,
+    0px 1px 4px 0px #0000000d,
+    0px 0px 0px 1px #ffffff14;
 }
 </style>

@@ -4,7 +4,7 @@ const showBackButton = computed(() => globalThis.history.length > 1 && route.nam
 </script>
 <template>
   <header
-    class="sticky top-0 z-20 flex justify-between border-b border-label-separator bg-white-2 backdrop-blur-md dark:bg-black-2"
+    class="sticky top-0 z-20 flex justify-between border-b border-label-separator bg-background-toolbar backdrop-blur-md"
     style="-webkit-app-region: drag"
   >
     <div class="flex flex-row mx-5">
