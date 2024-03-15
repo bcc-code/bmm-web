@@ -4,5 +4,8 @@ setTitleOfDocumentList(models);
 </script>
 
 <template>
-  <DocumentList :items="models?.items" :pending="pending"></DocumentList>
+  <EndlessDocumentList
+    :items="models?.items"
+    :pending="pending"
+  ></EndlessDocumentList>
 </template>
