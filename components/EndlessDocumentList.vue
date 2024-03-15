@@ -1,30 +1,59 @@
 <script setup lang="ts">
 import type { IAllDocumentModels } from "@bcc-code/bmm-sdk-fetch";
-
 import { useInfiniteScroll } from "@vueuse/core";
-
-const { t } = useI18n();
 
 const props = defineProps<{
   items: IAllDocumentModels[] | null | undefined;
   pending: boolean;
+  load: (skip: number, take: number) => Promise<IAllDocumentModels[]>;
 }>();
 
-function onLoadMore() {
-  console.log("load more");
-}
-const el = ref<HTMLElement | null>(null);
-useInfiniteScroll(
-  el,
-  () => {
-    console.log("load more");
-  },
-  { distance: 2 },
-);
+const list = ref<IAllDocumentModels[]>([]);
+const loadingMore = ref(false);
+let position = 0;
+const fullyLoaded = ref(false);
+onMounted(() => {
+  const main = ref<HTMLElement | null>(document.querySelector("main"));
+  useInfiniteScroll(
+    main,
+    () => {
+      if (loadingMore.value || fullyLoaded.value) {
+        return;
+      }
+
+      loadingMore.value = true;
+      props
+        .load(position, 40)
+        .then((data) => {
+          position += 40;
+          if (data) {
+            if (data.length === 0) {
+              console.log(`list is fully loaded. position: ${position}`);
+              fullyLoaded.value = true;
+            }
+
+            list.value = list.value.concat(data);
+          }
+          loadingMore.value = false;
+        })
+        .catch((e) => {
+          console.error("error", e);
+        });
+    },
+    { distance: 10, interval: 500, canLoadMore: () => !fullyLoaded.value },
+  );
+});
 </script>
 
 <template>
-  <div ref="el">
-    <DocumentList :items="items" :pending="pending"></DocumentList>
+  <div>
+    <DocumentList :items="list" :pending="false" />
+    <ul v-if="loadingMore">
+      <li
+        v-for="index in 5"
+        :key="index"
+        class="my-6 h-11 w-full animate-pulse rounded-lg bg-background-2"
+      ></li>
+    </ul>
   </div>
 </template>
