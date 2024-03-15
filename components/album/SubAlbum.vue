@@ -27,7 +27,7 @@ const childTracks = computed(() => {
 <template>
   <section
     class="block relative mr-3 cursor-pointer gap-2 duration-150 my-4"
-    :class="active ? 'rounded-3xl p-6 album-shadow' : 'group'"
+    :class="active ? 'rounded-3xl p-6 large-shadow' : 'group'"
     @click.stop="expand"
   >
     <div
@@ -92,15 +92,15 @@ const childTracks = computed(() => {
     </section>
   </section>
 </template>
-<style scoped>
-.album-shadow {
+<style>
+.large-shadow {
   box-shadow:
     0px 4px 80px 0px #0000001a,
     0px 4px 12px 0px #0000000d,
     0px 1px 4px 0px #0000000d,
     0px 0px 0px 1px #0000000d;
 }
-.dark .album-shadow {
+.dark .large-shadow {
   box-shadow:
     0px 4px 80px 0px #00000066,
     0px 4px 12px 0px #00000040,
