@@ -1,38 +1,63 @@
 <script lang="ts" setup>
+import { BrowseApi } from "@bcc-code/bmm-sdk-fetch";
 import type { IAlbumOrChapterHeader } from "@bcc-code/bmm-sdk-fetch";
 import { useInfiniteScroll } from "@vueuse/core";
 
 const { data: models, pending } = useBrowseEvents();
 setTitleOfDocumentList(models);
 
-const main = ref<HTMLElement | null>(document.querySelector("main"));
-const el = ref<HTMLElement | null>(null);
-const blank: IAlbumOrChapterHeader[] = [];
-const list = ref(blank);
+const api = new BrowseApi();
+const list = ref<IAlbumOrChapterHeader[]>([]);
 const tries = ref(0);
-useInfiniteScroll(
-  main,
-  async () => {
-    console.log("load more");
-    if (models.value?.items) {
-      if (list.value.length === 0)
-        list.value = list.value.concat(models.value?.items);
-      else {
-        const data = await useBrowseEvents(list.value.length);
-        if (data.data.value?.items)
-          list.value = list.value.concat(data.data.value?.items);
+const loadingMore = ref(false);
+let position = 20;
+const fullyLoaded = ref(false);
+onMounted(() => {
+  const main = ref<HTMLElement | null>(document.querySelector("main"));
+  useInfiniteScroll(
+    main,
+    () => {
+      if (loadingMore.value) {
+        console.log("already loading more");
+        return;
       }
-      // list.value = list.value.concat(models.value?.items);
-      console.log("adding more", models.value);
-    } else console.log("nothing to add");
-    tries.value += 1;
-  },
-  { distance: 10, canLoadMore: () => !pending && tries.value < 10 },
-);
+      console.log(
+        `load more loadingMore: ${loadingMore.value} position: ${position}`,
+      );
+      if (models.value?.items) {
+        if (list.value.length === 0)
+          list.value = list.value.concat(models.value?.items);
+        else {
+          loadingMore.value = true;
+
+          api
+            .browseEventsGet({ skip: position, take: 40 })
+            .then((data) => {
+              position += 40;
+              if (data.items) {
+                if (data.items.length === 0) fullyLoaded.value = true;
+                for (let i = 0; i < data.items.length; i++) {
+                  const item = data.items[i];
+                  if (item) list.value.push(item);
+                }
+              }
+              loadingMore.value = false;
+            })
+            .catch((e) => {
+              console.error("error", e);
+            });
+        }
+      } else console.log("nothing to add");
+      tries.value += 1;
+    },
+    { distance: 10, interval: 1000, canLoadMore: () => !fullyLoaded.value }, //, canLoadMore: () => tries.value < 10 },
+  );
+});
 </script>
 
 <template>
-  <div ref="el">
+  <div>
     <DocumentList :items="list" :pending="pending" />
+    <div v-if="loadingMore" class="p-10">Loading more</div>
   </div>
 </template>
