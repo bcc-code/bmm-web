@@ -124,7 +124,8 @@
   },
   "home": {
     "list": {
-      "see-all": "Toon alles"
+      "see-all": "Toon alles",
+      "recommended": "Aanbevolen"
     }
   },
   "search": {
