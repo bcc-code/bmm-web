@@ -11,5 +11,5 @@ async function load(skip: number, take: number) {
 </script>
 
 <template>
-  <EndlessDocumentList :items="[]" :pending="false" :load="load" />
+  <EndlessDocumentList :load="load" />
 </template>

@@ -3,8 +3,6 @@ import type { IAllDocumentModels } from "@bcc-code/bmm-sdk-fetch";
 import { useInfiniteScroll } from "@vueuse/core";
 
 const props = defineProps<{
-  items: IAllDocumentModels[] | null | undefined;
-  pending: boolean;
   load: (skip: number, take: number) => Promise<IAllDocumentModels[]>;
 }>();
 
