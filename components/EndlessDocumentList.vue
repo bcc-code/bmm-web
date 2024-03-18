@@ -14,29 +14,27 @@ onMounted(() => {
   const main = ref<HTMLElement | null>(document.querySelector("main"));
   useInfiniteScroll(
     main,
-    () => {
+    async () => {
       if (loadingMore.value || fullyLoaded.value) {
         return;
       }
 
       loadingMore.value = true;
-      props
-        .load(position, 40)
-        .then((data) => {
-          position += 40;
-          if (data) {
-            if (data.length === 0) {
-              console.log(`list is fully loaded. position: ${position}`);
-              fullyLoaded.value = true;
-            }
-
-            list.value = list.value.concat(data);
+      try {
+        const data = await props.load(position, 40);
+        position += 40;
+        if (data) {
+          if (data.length === 0) {
+            console.log(`list is fully loaded. position: ${position}`);
+            fullyLoaded.value = true;
           }
-          loadingMore.value = false;
-        })
-        .catch((e) => {
-          console.error("error", e);
-        });
+
+          list.value = list.value.concat(data);
+        }
+        loadingMore.value = false;
+      } catch (ex) {
+        console.error("error", ex);
+      }
     },
     { distance: 10, interval: 500, canLoadMore: () => !fullyLoaded.value },
   );
@@ -44,9 +42,13 @@ onMounted(() => {
 watch(
   [useNuxtApp().$i18n.locale, () => contentLanguageStore().contentLanguages],
   async () => {
-    const data = await props.load(0, position);
-    list.value = data;
-    fullyLoaded.value = false;
+    try {
+      const data = await props.load(0, position);
+      list.value = data;
+      fullyLoaded.value = false;
+    } catch (ex) {
+      console.error(ex);
+    }
   },
 );
 </script>
