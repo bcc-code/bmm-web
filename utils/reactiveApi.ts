@@ -1,12 +1,16 @@
 import type { AsyncData } from "nuxt/app";
 
+export function reactiveDependencies() {
+  return [
+    useNuxtApp().$i18n.locale,
+    () => contentLanguageStore().contentLanguages,
+  ];
+}
+
 export default function reactiveApi<Data, Error>(data: AsyncData<Data, Error>) {
-  const stopHandler = watch(
-    [useNuxtApp().$i18n.locale, () => contentLanguageStore().contentLanguages],
-    () => {
-      data.refresh();
-    },
-  );
+  const stopHandler = watch(reactiveDependencies(), () => {
+    data.refresh();
+  });
 
   return { ...data, stopHandler };
 }

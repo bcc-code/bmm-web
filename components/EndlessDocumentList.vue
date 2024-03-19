@@ -39,18 +39,15 @@ onMounted(() => {
     { distance: 10, interval: 500, canLoadMore: () => !fullyLoaded.value },
   );
 });
-watch(
-  [useNuxtApp().$i18n.locale, () => contentLanguageStore().contentLanguages],
-  async () => {
-    try {
-      const data = await props.load(0, position);
-      list.value = data;
-      fullyLoaded.value = false;
-    } catch (ex) {
-      console.error(ex);
-    }
-  },
-);
+watch(reactiveDependencies(), async () => {
+  try {
+    const data = await props.load(0, position);
+    list.value = data;
+    fullyLoaded.value = false;
+  } catch (ex) {
+    console.error(ex);
+  }
+});
 </script>
 
 <template>
