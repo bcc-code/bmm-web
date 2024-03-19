@@ -73,7 +73,7 @@ const onPointerDownProgressBar = () => {
         />
       </svg>
       <div
-        class="shadow-player relative overflow-hidden flex flex-col rounded-2xl bg-background-1 p-3"
+        class="large-shadow relative overflow-hidden flex flex-col rounded-2xl bg-background-1 p-3"
       >
         <div class="flex gap-4">
           <CoverImage
@@ -164,7 +164,7 @@ const onPointerDownProgressBar = () => {
   >
     <div
       v-if="open"
-      class="shadow-player h-100 fixed bottom-5 right-5 flex flex-col rounded-2xl bg-background-1 w-[400px]"
+      class="player-height large-shadow h-100 fixed bottom-5 right-5 flex flex-col rounded-2xl bg-background-1 w-[400px]"
     >
       <div class="px-3 py-6">
         <div class="flex items-center justify-center h-60">
@@ -243,7 +243,14 @@ const onPointerDownProgressBar = () => {
               <TimeDuration :duration="currentPosition"></TimeDuration
             ></span>
             <span>
-              <TimeDuration :duration="currentTrackDuration"></TimeDuration
+              <TimeDuration
+                :duration="
+                  Math.max(
+                    Math.floor(currentTrackDuration) - currentPosition,
+                    0,
+                  )
+                "
+              ></TimeDuration
             ></span>
           </div>
         </div>
@@ -420,18 +427,7 @@ const onPointerDownProgressBar = () => {
 </template>
 
 <style scoped>
-.shadow-player {
+.player-height {
   max-height: calc(100vh - 1.25rem - 4.5rem);
-
-  box-shadow:
-    0px 4px 12px 0px rgba(0, 0, 0, 0.05),
-    0px 1px 4px 0px rgba(0, 0, 0, 0.05),
-    0px 0px 0px 1px rgba(0, 0, 0, 0.05);
-}
-.dark .shadow-player {
-  box-shadow:
-    0px 4px 12px 0px rgba(255, 255, 255, 0.05),
-    0px 1px 4px 0px rgba(255, 255, 255, 0.05),
-    0px 0px 0px 1px rgba(255, 255, 255, 0.05);
 }
 </style>

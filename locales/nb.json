@@ -124,7 +124,8 @@
   },
   "home": {
     "list": {
-      "see-all": "Vis alle"
+      "see-all": "Vis alle",
+      "recommended": "Anbefalt"
     }
   },
   "search": {

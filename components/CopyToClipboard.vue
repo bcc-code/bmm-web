@@ -36,7 +36,7 @@ defineExpose({
       {{ t("share.link-copied-message") }}
     </p>
   </div>
-  <div class="cursor-pointer" @click="copyToClipboard">
+  <div class="cursor-pointer" @click.stop="copyToClipboard">
     <slot />
   </div>
 </template>

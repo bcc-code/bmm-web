@@ -19,10 +19,20 @@ const toggleExpandedAlbum = (albumReference: string) => {
     expandedAlbum.value = albumReference;
   }
 };
+const childAlbums = computed(
+  () =>
+    album.value?.children?.filter((c): c is AlbumModel => c.type === "album") ||
+    [],
+);
+const childTracks = computed(
+  () =>
+    album.value?.children?.filter((c): c is TrackModel => c.type === "track") ||
+    [],
+);
 </script>
 
 <template>
-  <div v-if="album">
+  <div v-if="album" class="flex flex-col mb-[200px]">
     <header class="mb-12 flex gap-6">
       <div class="mt-10">
         <CoverImage
@@ -41,34 +51,26 @@ const toggleExpandedAlbum = (albumReference: string) => {
               params: { id: albumId },
             }"
           >
-            <ButtonStyled intent="secondary" class="h-full aspect-square">
-              <NuxtIcon name="icon.link" />
-            </ButtonStyled>
+            <ButtonStyled icon="icon.link" icon-only></ButtonStyled>
           </CopyToClipboard>
         </div>
       </div>
     </header>
-    <p v-if="album.children" class="p-2">
-      {{ t("collection.album-count", album.children.length) }}
+    <p v-if="album.children" class="py-2 text-label-3">
+      <template v-if="childAlbums.length > 0">
+        {{ t("collection.album-count", childAlbums.length) }}
+      </template>
+      <template v-else>
+        {{ t("collection.track-count", childTracks.length) }}
+      </template>
     </p>
-    <TrackList
-      :tracks="
-        album?.children?.filter((c): c is TrackModel => c.type === 'track') ||
-        []
-      "
-    >
-    </TrackList>
-    <div
-      v-for="(child, i) in album?.children?.filter(
-        (c): c is AlbumModel => c.type === 'album',
-      )"
-      :key="`${child.id}-${i}`"
-    >
+    <TrackList :tracks="childTracks"> </TrackList>
+    <template v-for="(child, i) in childAlbums" :key="`${child.id}-${i}`">
       <AlbumSubAlbum
         :id="child.id"
         :active="expandedAlbum === `${child.id}-${i}`"
         @expand="toggleExpandedAlbum(`${child.id}-${i}`)"
       ></AlbumSubAlbum>
-    </div>
+    </template>
   </div>
 </template>
