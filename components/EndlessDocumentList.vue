@@ -25,7 +25,6 @@ onMounted(() => {
         position += 40;
         if (data) {
           if (data.length === 0) {
-            console.log(`list is fully loaded. position: ${position}`);
             fullyLoaded.value = true;
           }
 
