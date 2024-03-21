@@ -179,7 +179,7 @@ const { setQueue } = useNuxtApp().$mediaPlayer;
               <template v-else>{{ t("search.no-results-found") }}</template>
             </template>
             <template v-else>
-              {{ t("search.result-count", list.length) }}
+              {{ t("search.result-count", results?.totalResults || 0) }}
             </template>
           </div>
           <ol
