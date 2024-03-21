@@ -12,7 +12,8 @@
     "search": "Search",
     "album": "Album",
     "podcast": "Podcast",
-    "contributor": "Contributor"
+    "contributor": "Contributor",
+    "contributors": "Contributors"
   },
   "sidebar": {
     "playlists": {
