@@ -1,6 +1,9 @@
 <script lang="ts" setup>
-import { SearchFilter } from "@bcc-code/bmm-sdk-fetch";
-import type { SearchResults } from "@bcc-code/bmm-sdk-fetch";
+import { SearchApi, SearchFilter } from "@bcc-code/bmm-sdk-fetch";
+import type {
+  IAlbumContributorPodcastPlaylistOrTrack,
+  SearchResults,
+} from "@bcc-code/bmm-sdk-fetch";
 
 const router = useRouter();
 const { t } = useI18n();
@@ -25,59 +28,84 @@ const searchFilter = ref<SearchFilter>(
 const urlTerm = termQuery ?? termParam;
 const searchTerm = ref<string>(typeof urlTerm === "string" ? urlTerm : "");
 
+const api = new SearchApi();
+
 const results = ref<SearchResults | null>(null);
+const list = ref<IAlbumContributorPodcastPlaylistOrTrack[]>([]);
 const loading = ref(true);
-
-let stopHandles: (() => void)[] = [];
-
+const loadingMore = ref(false);
+const fullyLoaded = ref(false);
 const isMounted = ref<boolean>(false);
-onMounted(() => (isMounted.value = true));
+let searchFingerprint = null;
 
-watchDebounced(
-  [searchTerm, searchFilter],
-  () => {
-    if (searchTerm.value === "") {
-      loading.value = false;
-      results.value = null;
-      return;
-    }
-
-    const searchOptions = {
+async function loadSearchResults() {
+  try {
+    searchFingerprint = Math.random();
+    const fingerprintAtLoad = searchFingerprint;
+    const data = await api.searchV2TermGet({
       term: searchTerm.value,
       filter: searchFilter.value,
-    };
-    const { data, pending, stopHandler } = useSearch(searchOptions);
-    stopHandles.forEach((el) => el());
+      from: results.value?.nextPageFromPosition || 0,
+      size: 30,
+    });
+    if (searchFingerprint === fingerprintAtLoad) {
+      loading.value = false;
+      if (data && data.items) {
+        results.value = data;
+        list.value = list.value.concat(data.items);
+        fullyLoaded.value = data.isFullyLoaded === true;
+      }
+      loadingMore.value = false;
+    }
+  } catch (ex) {
+    console.error("error", ex);
+  }
+}
 
-    stopHandles = [
-      stopHandler,
-      watch(
-        data,
-        (d) => {
-          results.value = d;
-          const routeParams = {
-            name: "search-term",
-            query:
-              searchFilter.value === "All"
-                ? { term: searchTerm.value }
-                : { term: searchTerm.value, filter: searchFilter.value },
-          };
+onMounted(() => {
+  isMounted.value = true;
+  const main = ref<HTMLElement | null>(document.querySelector("main"));
 
-          router.push(routeParams);
-        },
-        { immediate: true },
-      ),
-      watch(
-        pending,
-        (p) => {
-          loading.value = p;
-        },
-        { immediate: true },
-      ),
-    ];
-  },
-  { immediate: true, debounce: 200, maxWait: 5000 },
-);
+  watchDebounced(
+    [...reactiveDependencies(), searchTerm, searchFilter],
+    async () => {
+      results.value = null;
+      list.value = [];
+      if (searchTerm.value === "") {
+        loading.value = false;
+        return;
+      }
+
+      loading.value = true;
+
+      const routeParams = {
+        name: "search-term",
+        query:
+          searchFilter.value === "All"
+            ? { term: searchTerm.value }
+            : { term: searchTerm.value, filter: searchFilter.value },
+      };
+
+      router.push(routeParams);
+
+      await loadSearchResults();
+    },
+    { immediate: true, debounce: 200, maxWait: 5000 },
+  );
+
+  useInfiniteScroll(
+    main,
+    async () => {
+      if (loadingMore.value || fullyLoaded.value || loading.value) {
+        return;
+      }
+
+      loadingMore.value = true;
+      await loadSearchResults();
+    },
+    { distance: 10, interval: 500, canLoadMore: () => !fullyLoaded.value },
+  );
+});
 
 const tabs = [
   "All",
@@ -144,22 +172,20 @@ const { setQueue } = useNuxtApp().$mediaPlayer;
             <template v-if="loading">{{
               t("search.loading-results")
             }}</template>
-            <template
-              v-else-if="!results?.items || results?.items?.length === 0"
-            >
+            <template v-else-if="list.length === 0">
               <template v-if="results === null">{{
                 t("search.no-results-yet")
               }}</template>
               <template v-else>{{ t("search.no-results-found") }}</template>
             </template>
             <template v-else>
-              {{ t("search.result-count", results.items.length) }}
+              {{ t("search.result-count", results?.totalResults || 0) }}
             </template>
           </div>
           <ol
             class="grid grid-cols-tracklist grid-rows-1 w-full divide-y divide-label-separator"
           >
-            <template v-for="item in results?.items" :key="item.id">
+            <template v-for="item in list" :key="item.id">
               <TrackItem
                 v-if="item.type === 'track'"
                 :track="item"
@@ -200,6 +226,13 @@ const { setQueue } = useNuxtApp().$mediaPlayer;
                 {{ ((a: never) => {})(item) }}
               </li>
             </template>
+            <ul v-if="loadingMore" class="col-span-full">
+              <li
+                v-for="index in 5"
+                :key="index"
+                class="my-6 h-11 animate-pulse rounded-lg bg-background-2"
+              ></li>
+            </ul>
           </ol>
         </div>
       </div>

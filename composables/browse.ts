@@ -6,9 +6,11 @@ export function useBrowse() {
   );
 }
 
-export function useBrowseEvents() {
+export function useBrowseEvents(skip: number = 0) {
   return reactiveApi(
-    useLazyAsyncData("browse-events", () => new BrowseApi().browseEventsGet()),
+    useLazyAsyncData("browse-events", () =>
+      new BrowseApi().browseEventsGet({ skip }),
+    ),
   );
 }
 
