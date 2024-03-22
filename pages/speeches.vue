@@ -1,16 +1,24 @@
 <script lang="ts" setup>
-const { t } = useI18n();
-toolbarTitleStore().setReactiveToolbarTitle(() => t("nav.messages"));
+import { TrackApi } from "@bcc-code/bmm-sdk-fetch";
 
-const { data: speeches, pending } = useTracks({
-  contentType2: ["speech"],
-});
+const { t } = useI18n();
+const api = new TrackApi();
+toolbarTitleStore().setReactiveToolbarTitle(() => t("nav.recent-messages"));
+
+async function load(skip: number, take: number) {
+  const data = await api.trackGet({
+    from: skip,
+    size: take,
+    contentType2: ["speech"],
+  });
+  return data || [];
+}
 </script>
 
 <template>
   <div>
-    <PageHeading>{{ $t("nav.messages") }}</PageHeading>
-    <TrackList :skeleton-count="10" :show-skeleton="pending" :tracks="speeches">
-    </TrackList>
+    <PageHeading>{{ $t("nav.recent-messages") }}</PageHeading>
+
+    <EndlessDocumentList :load="load" />
   </div>
 </template>
