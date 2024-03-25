@@ -8,11 +8,14 @@
     "playlist": "Afspeellijst",
     "profile": "Profiel",
     "messages": "Toespraken",
+    "recent-messages": "Recente toespraken",
+    "recent-music": "Recente muziek",
     "audiobooks": "Audioboeken",
     "search": "Zoeken",
     "album": "Album",
     "podcast": "Podcast",
-    "contributor": "Bijdrager"
+    "contributor": "Bijdrager",
+    "contributors": "Bijdragers"
   },
   "sidebar": {
     "playlists": {
