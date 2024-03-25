@@ -2,6 +2,7 @@
 import type { RecommendationModel } from "@bcc-code/bmm-sdk-fetch";
 
 const { t } = useI18n();
+const { setQueue } = useNuxtApp().$mediaPlayer;
 
 defineProps<{
   item: RecommendationModel;
@@ -9,8 +10,7 @@ defineProps<{
 </script>
 
 <template>
-  <div class="col-span-full bg-background-2 my-2 rounded-2xl border-t-0">
-    {{ console.log("item", item) }}
+  <div class="col-span-full bg-background-2 rounded-2xl border-t-0">
     <div class="p-4">
       <div
         v-if="!item.title && !item.subtitle"
@@ -33,6 +33,7 @@ defineProps<{
           :track="item.track"
           is-track-type-known
           show-thumbnail
+          @play-track="setQueue([item.track])"
         />
         <GenericListItem
           v-else-if="item.album"

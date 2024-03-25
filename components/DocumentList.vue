@@ -56,7 +56,7 @@ const convertModels = (models: IAllDocumentModels[]) => {
         items: currentSection,
         useFlex: el.useCoverCarousel === true,
       });
-    } else if (i === 0) {
+    } else if (i === 0 || el.type === "recommendation") {
       currentSection = [el];
       result.push({
         header: null,
