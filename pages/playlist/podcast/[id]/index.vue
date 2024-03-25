@@ -1,19 +1,21 @@
 <script lang="ts" setup>
+import { PodcastApi } from "@bcc-code/bmm-sdk-fetch";
+import type { TrackModel } from "@bcc-code/bmm-sdk-fetch";
+
 const { t } = useI18n();
 toolbarTitleStore().setReactiveToolbarTitle(() => t("nav.podcast"));
 
+const api = new PodcastApi();
 const { setQueue } = useNuxtApp().$mediaPlayer;
 const { id } = useRoute<"playlist-podcast-id">().params;
 const collectionId = Number(id);
+let tracks: TrackModel[] = [];
 
 const { data: podcast } = usePodcast({ id: collectionId });
-const { data: tracks, pending: tracksPending } = usePodcastTracks({
-  id: collectionId,
-});
 
 const onPressPlay = () => {
-  if (tracks.value) {
-    setQueue(tracks.value);
+  if (tracks.length > 0) {
+    setQueue(tracks);
   }
 };
 
@@ -24,6 +26,17 @@ const onPressShuffle = async () => {
     setQueue(shuffledTracks);
   }
 };
+
+async function load(skip: number, take: number) {
+  const data = await api.podcastIdTrackGet({
+    id: collectionId,
+    from: skip,
+    size: take,
+  });
+  if (skip === 0) tracks = data;
+  else tracks = tracks.concat(data);
+  return data || [];
+}
 
 // TODO: Group episodes into weeks
 </script>
@@ -38,9 +51,6 @@ const onPressShuffle = async () => {
         <div class="flex flex-col justify-between px-6 pt-4">
           <div>
             <PageHeading>{{ podcast.title }}</PageHeading>
-            <p v-if="tracks">
-              {{ t("collection.track-count", tracks.length) }}
-            </p>
           </div>
           <div class="flex gap-2">
             <ButtonStyled
@@ -68,14 +78,8 @@ const onPressShuffle = async () => {
           </div>
         </div>
       </header>
-      <TrackList
-        :skeleton-count="10"
-        :show-skeleton="tracksPending"
-        :tracks="tracks"
-      />
-      <p style="color: red; background-color: rgb(255 0 0 / 0.1)" class="p-4">
-        "Load more" functionality is not yet implemented
-      </p>
+
+      <EndlessDocumentList :load="load" />
     </div>
   </div>
 </template>

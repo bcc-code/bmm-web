@@ -1,3 +1,9 @@
+<script lang="ts" setup>
+const { t } = useI18n();
+const { data: list, pending } = useContributors();
+toolbarTitleStore().setReactiveToolbarTitle(() => t("nav.contributors"));
+</script>
+
 <template>
-  <h1>The route {{ useRoute().name }} has not been implemented yet.</h1>
+  <DocumentList :items="list" :pending="pending"></DocumentList>
 </template>

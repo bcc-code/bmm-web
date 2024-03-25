@@ -96,7 +96,12 @@ onMounted(() => {
   useInfiniteScroll(
     main,
     async () => {
-      if (loadingMore.value || fullyLoaded.value || loading.value) {
+      if (
+        loadingMore.value ||
+        fullyLoaded.value ||
+        loading.value ||
+        !searchTerm.value
+      ) {
         return;
       }
 

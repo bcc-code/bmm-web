@@ -1,12 +1,14 @@
 <script lang="ts" setup>
+import { ContributorApi } from "@bcc-code/bmm-sdk-fetch";
+import type { TrackModel } from "@bcc-code/bmm-sdk-fetch";
+
 const { setQueue } = useNuxtApp().$mediaPlayer;
 const { t } = useI18n();
 const { id } = useRoute<"playlist-contributor-id">().params;
 const contributorId = Number(id);
 const { data: contributor } = useContributor({ id: contributorId });
-const { data: tracks, pending: tracksPending } = useContributorTracks({
-  id: contributorId,
-});
+let tracks: TrackModel[] = [];
+const api = new ContributorApi();
 
 toolbarTitleStore().setReactiveToolbarTitle(() => t("nav.contributor"));
 
@@ -14,8 +16,8 @@ useHead({
   title: contributor.value?.name || "",
 });
 const onPressPlay = () => {
-  if (tracks.value) {
-    setQueue(tracks.value);
+  if (tracks.length > 0) {
+    setQueue(tracks);
   }
 };
 const onPressShuffle = async () => {
@@ -26,6 +28,17 @@ const onPressShuffle = async () => {
     setQueue(shuffledTracks);
   }
 };
+
+async function load(skip: number, take: number) {
+  const data = await api.contributorIdTrackGet({
+    id: contributorId,
+    from: skip,
+    size: take,
+  });
+  if (skip === 0) tracks = data;
+  else tracks = tracks.concat(data);
+  return data || [];
+}
 </script>
 
 <template>
@@ -64,11 +77,7 @@ const onPressShuffle = async () => {
         </div>
       </div>
     </header>
-    <TrackList
-      :skeleton-count="5"
-      :show-skeleton="tracksPending"
-      :tracks="tracks"
-    >
-    </TrackList>
+
+    <EndlessDocumentList :load="load" />
   </div>
 </template>

@@ -12,17 +12,14 @@ export function useContributor(options: UseContributorOptions) {
   );
 }
 
-export function useContributorTracks(options: UseContributorOptions) {
-  const { id } = options;
-
-  return useLazyAsyncData(`contributor-${id}-tracks`, () =>
-    new ContributorApi().contributorIdTrackGet({ id }),
+export function useContributorShuffle(id: number) {
+  return useAsyncData(`contributor-${id}-shuffle`, () =>
+    new ContributorApi().contributorIdRandomGet({ id }),
   );
 }
 
-export function useContributorShuffle(id: number) {
-  console.log("load for id", id);
-  return useAsyncData(`contributor-${id}-shuffle`, () =>
-    new ContributorApi().contributorIdRandomGet({ id }),
+export function useContributors() {
+  return useLazyAsyncData("contributors", () =>
+    new ContributorApi().contributorGet(),
   );
 }
