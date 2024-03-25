@@ -14,7 +14,8 @@
     "search": "Suche",
     "album": "Album",
     "podcast": "Podcast",
-    "contributor": "Mitwirkender"
+    "contributor": "Mitwirkender",
+    "contributors": "Mitwirkende"
   },
   "sidebar": {
     "playlists": {
