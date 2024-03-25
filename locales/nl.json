@@ -14,7 +14,8 @@
     "search": "Zoeken",
     "album": "Album",
     "podcast": "Podcast",
-    "contributor": "Bijdrager"
+    "contributor": "Bijdrager",
+    "contributors": "Bijdragers"
   },
   "sidebar": {
     "playlists": {
