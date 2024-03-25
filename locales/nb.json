@@ -14,7 +14,8 @@
     "search": "Søk",
     "album": "Album",
     "podcast": "Podcast",
-    "contributor": "Bidragsyter"
+    "contributor": "Bidragsyter",
+    "contributors": "Bidragsytere"
   },
   "sidebar": {
     "playlists": {
