@@ -6,8 +6,6 @@ defineProps<{
   cover: string | undefined | null;
   circle?: boolean;
   label: string | undefined | null;
-  subtitle?: string;
-  meta?: string;
 }>();
 </script>
 
