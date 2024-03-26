@@ -49,7 +49,7 @@ const getRemainingLanguages = () => {
 
     <MenuItems
       as="ul"
-      class="absolute right-[-100px] left-[-100px] mx-auto top-10 z-30 w-60 rounded-xl p-1 shadow-md bg-background-3 max-h-[500px] overflow-y-auto"
+      class="absolute right-[-100px] left-[-100px] mx-auto top-10 z-30 whitespace-nowrap rounded-xl p-1 shadow-md bg-background-3 max-h-[500px] overflow-y-auto"
     >
       <div class="py-0">
         <MenuItem
