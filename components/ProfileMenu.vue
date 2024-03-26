@@ -36,6 +36,7 @@ const logout = async () => {
   try {
     await auth0.logout({ openUrl: false });
   } catch (e) {
+    // TODO: Show an error message to the user
     console.error(e);
   }
 };

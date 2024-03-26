@@ -46,24 +46,34 @@ const tracksToTrackReferences = (tracks: TrackModel[] | undefined | null) => {
 };
 
 const savePlaylist = async () => {
-  showEditDialog.value = false;
-  await new TrackCollectionApi().trackCollectionIdPut({
-    id: props.playlist.id,
-    updateTrackCollectionCommand: {
+  try {
+    showEditDialog.value = false;
+    await new TrackCollectionApi().trackCollectionIdPut({
       id: props.playlist.id,
-      name: playlistName.value,
-      trackReferences: tracksToTrackReferences(props.playlist.tracks),
-    },
-  });
-  emit("playlist-changed");
-  refreshPrivatePlaylists();
+      updateTrackCollectionCommand: {
+        id: props.playlist.id,
+        name: playlistName.value,
+        trackReferences: tracksToTrackReferences(props.playlist.tracks),
+      },
+    });
+    emit("playlist-changed");
+    refreshPrivatePlaylists();
+  } catch (e) {
+    // TODO: Show an error message to the user
+    console.error(e);
+  }
 };
 const deletePlaylist = async () => {
-  navigateTo();
-  await new TrackCollectionApi().trackCollectionIdDelete({
-    id: props.playlist.id,
-  });
-  refreshPrivatePlaylists();
+  try {
+    navigateTo();
+    await new TrackCollectionApi().trackCollectionIdDelete({
+      id: props.playlist.id,
+    });
+    refreshPrivatePlaylists();
+  } catch (e) {
+    // TODO: Show an error message to the user
+    console.error(e);
+  }
 };
 
 const dropdownMenuItems = () => {

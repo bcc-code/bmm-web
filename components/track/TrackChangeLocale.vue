@@ -16,6 +16,7 @@ const changeLanguage = async (lang: string) => {
     if (!reloadedTrack.data.value) return;
     replaceCurrent(reloadedTrack.data.value);
   } catch (error) {
+    // TODO: Show an error message to the user
     console.error(error);
   }
 };

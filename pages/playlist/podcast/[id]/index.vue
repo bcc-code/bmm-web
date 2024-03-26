@@ -20,10 +20,15 @@ const onPressPlay = () => {
 };
 
 const onPressShuffle = async () => {
-  const shuffledTracks = (await usePodcastShuffle(collectionId)).data.value;
+  try {
+    const shuffledTracks = (await usePodcastShuffle(collectionId)).data.value;
 
-  if (shuffledTracks) {
-    setQueue(shuffledTracks);
+    if (shuffledTracks) {
+      setQueue(shuffledTracks);
+    }
+  } catch (e) {
+    // TODO: Show an error message to the user
+    console.error("error", e);
   }
 };
 

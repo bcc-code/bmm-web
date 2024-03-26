@@ -32,6 +32,7 @@ onMounted(() => {
         }
         loadingMore.value = false;
       } catch (ex) {
+        // TODO: Show an error message to the user
         console.error("error", ex);
       }
     },
@@ -44,6 +45,7 @@ watch(reactiveDependencies(), async () => {
     list.value = data;
     fullyLoaded.value = false;
   } catch (ex) {
+    // TODO: Show an error message to the user
     console.error(ex);
   }
 });

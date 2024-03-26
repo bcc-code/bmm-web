@@ -21,11 +21,16 @@ const onPressPlay = () => {
   }
 };
 const onPressShuffle = async () => {
-  const shuffledTracks = (await useContributorShuffle(contributorId)).data
-    .value;
+  try {
+    const shuffledTracks = (await useContributorShuffle(contributorId)).data
+      .value;
 
-  if (shuffledTracks) {
-    setQueue(shuffledTracks);
+    if (shuffledTracks) {
+      setQueue(shuffledTracks);
+    }
+  } catch (e) {
+    // TODO: Show an error message to the user
+    console.error("error", e);
   }
 };
 

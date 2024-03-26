@@ -58,6 +58,7 @@ async function loadSearchResults() {
       loadingMore.value = false;
     }
   } catch (ex) {
+    // TODO: Show an error message to the user
     console.error("error", ex);
   }
 }
