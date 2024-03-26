@@ -54,11 +54,7 @@ const childTracks = computed(() => {
             params: { id: album.id },
           }"
         >
-          <ButtonStyled
-            icon="icon.link"
-            icon-only
-            class="bg-background-1"
-          ></ButtonStyled>
+          <ButtonStyled icon="icon.link" class="bg-background-1"></ButtonStyled>
         </CopyToClipboard>
 
         <ButtonStyled

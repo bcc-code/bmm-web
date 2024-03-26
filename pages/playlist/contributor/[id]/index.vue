@@ -72,7 +72,7 @@ async function load(skip: number, take: number) {
               params: { id: contributorId },
             }"
           >
-            <ButtonStyled icon="icon.link" icon-only></ButtonStyled>
+            <ButtonStyled icon="icon.link"></ButtonStyled>
           </CopyToClipboard>
         </div>
       </div>
