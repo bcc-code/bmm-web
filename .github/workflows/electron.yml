@@ -31,11 +31,11 @@ jobs:
 
       - name: Download certificate file
         run: |
-          echo $APPLE_DEVELOPER_ID_FILE | base64 --decode >> developer-id.privatekey.p12
+          echo $BCCM_APPLE_DEVELOPER_ID_FILE | base64 --decode >> developer-id.privatekey.p12
         if: matrix.os == 'macos-latest'
         shell: bash
         env:
-          APPLE_DEVELOPER_ID_FILE: ${{secrets.APPLE_DEVELOPER_ID_FILE}}
+          APPLE_DEVELOPER_ID_FILE: ${{secrets.BCCM_APPLE_DEVELOPER_ID_FILE}}
 
       - name: Build for production
         run: pnpm build:electron
@@ -47,7 +47,7 @@ jobs:
         if: matrix.os == 'macos-latest'
         env:
           CSC_LINK: developer-id.privatekey.p12
-          CSC_KEY_PASSWORD: ${{secrets.APPLE_DEVELOPER_ID_PASSWORD}}
+          CSC_KEY_PASSWORD: ${{secrets.BCCM_APPLE_DEVELOPER_ID_PASSWORD}}
           APPLE_APP_SPECIFIC_PASSWORD: ${{secrets.APPLE_APP_SPECIFIC_PASSWORD}}
           APPLE_ID: ${{secrets.APPLE_ID}}
           APPLE_ID_PASSWORD: ${{secrets.APPLE_ID_PASSWORD}}
