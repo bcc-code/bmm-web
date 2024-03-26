@@ -1,3 +1,4 @@
+import { relative, resolve } from 'node:path'
 /* eslint-disable import/no-extraneous-dependencies */
 import { defineNuxtModule } from "@nuxt/kit";
 import logSymbols from "log-symbols";
@@ -24,6 +25,7 @@ export default defineNuxtModule({
     }
 
     nuxt.hook("builder:watch", async (__, watchedPath) => {
+      watchedPath = relative(nuxt.options.srcDir, resolve(nuxt.options.srcDir, watchedPath))
       if (watchedPath === "assets/design-tokens/tokens.json") {
         await runConverter();
       }
