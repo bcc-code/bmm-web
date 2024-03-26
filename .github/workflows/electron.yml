@@ -48,9 +48,9 @@ jobs:
         env:
           CSC_LINK: developer-id.privatekey.p12
           CSC_KEY_PASSWORD: ${{secrets.BCCM_APPLE_DEVELOPER_ID_PASSWORD}}
-          APPLE_APP_SPECIFIC_PASSWORD: ${{secrets.APPLE_APP_SPECIFIC_PASSWORD}}
-          APPLE_ID: ${{secrets.APPLE_ID}}
-          APPLE_ID_PASSWORD: ${{secrets.APPLE_ID_PASSWORD}}
+          APPLE_APP_SPECIFIC_PASSWORD: ${{secrets.BCCM_APPLE_APP_SPECIFIC_PASSWORD}}
+          APPLE_ID: ${{secrets.BCCM_APPLE_ID_USERNAME}}
+          APPLE_ID_PASSWORD: ${{secrets.BCCM_APPLE_APP_SPECIFIC_PASSWORD}}
           APPLE_TEAM_ID: KJ6LCYQ3A8
 
       - name: Building the Electron app for Windows or Linux
