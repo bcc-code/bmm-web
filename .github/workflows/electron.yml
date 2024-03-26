@@ -31,7 +31,7 @@ jobs:
 
       - name: Download certificate file
         run: |
-          echo $BCCM_APPLE_DEVELOPER_ID_FILE | base64 --decode >> developer-id.privatekey.p12
+          echo $APPLE_DEVELOPER_ID_FILE | base64 --decode >> developer-id.privatekey.p12
         if: matrix.os == 'macos-latest'
         shell: bash
         env:
