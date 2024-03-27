@@ -20,6 +20,7 @@ const {
   hasPrevious,
   rewind,
   fastForward,
+  repeatStatus,
 } = useNuxtApp().$mediaPlayer;
 
 defineShortcuts({
@@ -363,11 +364,11 @@ const onPointerDownProgressBar = () => {
             <button
               class="rounded-full p-2 transition-all duration-200 ease-out hover:opacity-75"
               :class="
-                queue.isRepeatEnabled
+                repeatStatus
                   ? 'bg-background-4 text-on-color-1'
                   : 'text-label-1'
               "
-              @click.stop="queue.isRepeatEnabled = !queue.isRepeatEnabled"
+              @click.stop="repeatStatus = (repeatStatus + 1) % 2"
             >
               <NuxtIcon name="icon.repeat" filled class="text-2xl" />
             </button>

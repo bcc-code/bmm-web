@@ -12,6 +12,11 @@ export enum MediaPlayerStatus {
   Stopped = "STOPPED",
 }
 
+export enum RepeatStatus {
+  NoRepeat = 0,
+  RepeatQueue = 1,
+}
+
 export interface MediaPlayer {
   status: ComputedRef<MediaPlayerStatus>;
   play: () => void;
@@ -33,6 +38,7 @@ export interface MediaPlayer {
   addToQueue: (track: TrackModel) => void;
   addNext: (track: TrackModel) => void;
   replaceCurrent: (track: TrackModel) => void;
+  repeatStatus: Ref<RepeatStatus>;
 }
 
 export const seekOffset = 15;
@@ -43,23 +49,18 @@ export const initMediaPlayer = (
   user: IUserData,
 ): MediaPlayer => {
   const activeMedia = ref<MediaTrack | undefined>();
+  const repeatStatus = ref<RepeatStatus>(RepeatStatus.NoRepeat);
 
   const queue = ref(new Queue([]));
 
   const hasNext = computed(
     () =>
       queue.value.length > queue.value.index + 1 ||
-      (queue.value.isRepeatEnabled && queue.value.length > 1),
+      (queue.value.length > 0 && repeatStatus.value !== RepeatStatus.NoRepeat),
   );
   let trackTimestampStart: Date;
 
   let nextStartPosition = 0;
-
-  function next() {
-    if (!hasNext.value) return;
-    if (queue.value.length > queue.value.index + 1) queue.value.index += 1;
-    else queue.value.index = 0;
-  }
 
   function stop() {
     if (activeMedia.value) {
@@ -87,17 +88,31 @@ export const initMediaPlayer = (
     activeMedia.value.registerEvents();
   }
 
+  function restartTrack() {
+    // TODO: Can we somehow reset the media-track?
+    initCurrentTrack();
+    // activeMedia.value!.ended = false;
+    // activeMedia.value!.position = 0;
+    // activeMedia.value!.play()
+  }
+
+  function next() {
+    if (!hasNext.value) return;
+
+    // When playing the next track in a list where the only track is playing, the index doesn't change; so we have to restart playing the same track manually.
+    if (queue.value.length === 1 && queue.value.index === 0) {
+      restartTrack();
+    } else {
+      queue.value.index = (queue.value.index + 1) % queue.value.length;
+    }
+  }
+
   function play() {
     if (activeMedia.value) {
       activeMedia.value.play();
     } else {
       initCurrentTrack();
     }
-  }
-
-  function restart() {
-    if (queue.value.length === 1) play();
-    else queue.value.index = 0;
   }
 
   watch(
@@ -129,8 +144,6 @@ export const initMediaPlayer = (
 
         if (hasNext.value) {
           next();
-        } else if (queue.value.isRepeatEnabled) {
-          restart();
         } else {
           stop();
         }
@@ -174,7 +187,10 @@ export const initMediaPlayer = (
       currentPosition.value = 0;
     } else if (queue.value.index > 0) {
       queue.value.index -= 1;
-    } else if (queue.value.isRepeatEnabled && queue.value.length > 1) {
+    } else if (
+      repeatStatus.value === RepeatStatus.RepeatQueue &&
+      queue.value.length > 1
+    ) {
       queue.value.index = queue.value.length - 1;
     } else {
       currentPosition.value = 0;
@@ -258,5 +274,6 @@ export const initMediaPlayer = (
     addToQueue,
     addNext,
     replaceCurrent,
+    repeatStatus,
   };
 };
