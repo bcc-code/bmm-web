@@ -31,6 +31,7 @@ export default defineNuxtPlugin((_) => {
               useNuxtApp().$appInsights.event("[Player] playing media failed", {
                 errorCode: e?.code || 0,
                 errorMessage: e?.message || "",
+                url: src,
               });
             },
           ),

@@ -23,12 +23,15 @@ watch(error, async (e) => {
   if (e) {
     const errorCode = e.error;
     console.error(e.message, errorCode);
+    const tryLogoutAndRelogin =
+      errorCode === "missing_refresh_token" || errorCode === "invalid_grant";
     $appInsights.event("auth0 - error", {
       error: errorCode,
       message: e.message,
       stack: e.stack,
+      tryLogoutAndRelogin,
     });
-    if (errorCode === "missing_refresh_token") {
+    if (tryLogoutAndRelogin) {
       // For these errors we've identified that a logout & relogin likely will fix it.
       await logout({ openUrl: false });
       await loginWithRedirect();
