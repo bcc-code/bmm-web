@@ -36,20 +36,20 @@ const getRemainingLanguages = () => {
 <template>
   <Menu
     as="div"
-    class="relative text-left flex flex-col justify-center"
+    class="relative flex flex-col justify-center text-left"
     @click.stop
   >
     <MenuButton
       as="button"
       :aria-label="t('track.a11y.options')"
-      class="py-1.5 px-3 font-semibold hover:bg-background-2 rounded-full border border-label-separator"
+      class="rounded-full border border-label-separator px-3 py-1.5 font-semibold hover:bg-background-2"
     >
       {{ getLocalizedLanguageName(currentTrack?.language || "") }}
     </MenuButton>
 
     <MenuItems
       as="ul"
-      class="absolute right-[-100px] left-[-100px] mx-auto top-10 z-30 whitespace-nowrap rounded-xl p-1 shadow-md bg-background-3 max-h-[500px] overflow-y-auto"
+      class="absolute left-[-100px] right-[-100px] top-10 z-30 mx-auto max-h-[500px] overflow-y-auto whitespace-nowrap rounded-xl bg-background-3 p-1 shadow-md"
     >
       <div class="py-0">
         <MenuItem
@@ -81,7 +81,7 @@ const getRemainingLanguages = () => {
             {{ t("track.dropdown.show-all") }}
             <NuxtIcon
               name="icon.chevron.down"
-              class="ml-auto text-label-1 text-xl"
+              class="ml-auto text-xl text-label-1"
               aria-hidden="true"
             />
           </button>

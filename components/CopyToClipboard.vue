@@ -30,9 +30,9 @@ defineExpose({
 <template>
   <div
     v-if="showToast"
-    class="fixed inset-0 p-4 z-20 flex justify-center items-center bg-white-2 backdrop-blur-md dark:bg-black-4"
+    class="fixed inset-0 z-20 flex items-center justify-center bg-white-2 p-4 backdrop-blur-md dark:bg-black-4"
   >
-    <p class="bg-tint text-label-1 dark:text-black-1 px-10 py-6 rounded-xl">
+    <p class="rounded-xl bg-tint px-10 py-6 text-label-1 dark:text-black-1">
       {{ t("share.link-copied-message") }}
     </p>
   </div>

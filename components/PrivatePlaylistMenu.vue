@@ -100,14 +100,14 @@ const dropdownMenuItems = () => {
 <template>
   <Menu
     as="div"
-    class="relative text-left flex flex-col justify-center"
+    class="relative flex flex-col justify-center text-left"
     :class="$attrs.class"
     @click.stop
   >
     <MenuButton
       as="button"
       :aria-label="t('track.a11y.options')"
-      class="rounded-full p-2 bg-background-2 text-label-1"
+      class="rounded-full bg-background-2 p-2 text-label-1"
       :class="buttonClass"
     >
       <NuxtIcon name="options" class="text-2xl" />
@@ -115,14 +115,14 @@ const dropdownMenuItems = () => {
 
     <MenuItems
       as="ul"
-      class="absolute right-[-100px] left-[-100px] mx-auto top-12 z-30 whitespace-nowrap rounded-xl p-1 bg-background-3 shadow-[0_4px_12px_0_#0000000D,0_1px_4px_0_#0000000D,0_0_0_1px_#0000000D]"
+      class="absolute left-[-100px] right-[-100px] top-12 z-30 mx-auto whitespace-nowrap rounded-xl bg-background-3 p-1 shadow-[0_4px_12px_0_#0000000D,0_1px_4px_0_#0000000D,0_0_0_1px_#0000000D]"
     >
       <div class="py-0">
         <MenuItem
           v-for="item in dropdownMenuItems()"
           :key="item.text"
           as="li"
-          class="block w-full cursor-pointer rounded-lg text-label-1 hover:bg-background-2 hover:text-black"
+          class="hover:text-black block w-full cursor-pointer rounded-lg text-label-1 hover:bg-background-2"
         >
           <NuxtLink
             v-if="'link' in item"
@@ -153,10 +153,10 @@ const dropdownMenuItems = () => {
     <div class="flex flex-col gap-4">
       <input
         v-model="playlistName"
-        class="text-[17px] min-w-[416px] grow leading-7 placeholder:text-label-3 text-label-1 font-medium bg-background-2 px-4 py-3 rounded-lg"
+        class="min-w-[416px] grow rounded-lg bg-background-2 px-4 py-3 text-[17px] font-medium leading-7 text-label-1 placeholder:text-label-3"
         :placeholder="$t('playlist.name-your-playlist')"
       />
-      <div class="flex gap-6 grow">
+      <div class="flex grow gap-6">
         <ButtonStyled class="grow" @click.stop="showEditDialog = false">{{
           $t("global.cancel")
         }}</ButtonStyled>
@@ -178,7 +178,7 @@ const dropdownMenuItems = () => {
     @close="showDeleteDialog = false"
   >
     <div class="flex flex-col gap-4">
-      <div class="flex gap-6 grow">
+      <div class="flex grow gap-6">
         <ButtonStyled class="grow" @click.stop="showDeleteDialog = false">{{
           $t("global.cancel")
         }}</ButtonStyled>

@@ -6,7 +6,7 @@ defineProps<{
 }>();
 </script>
 <template>
-  <div class="bg-background-2 aspect-square">
+  <div class="aspect-square bg-background-2">
     <ProtectedImage
       v-if="src"
       :src="src"
@@ -17,7 +17,7 @@ defineProps<{
           ? $attrs.class
           : '' + noBorder
             ? ''
-            : ' outline outline-label-separator outline-1 outline-offset-[-1px]'
+            : ' outline outline-1 outline-offset-[-1px] outline-label-separator'
       "
     />
   </div>

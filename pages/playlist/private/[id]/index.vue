@@ -27,7 +27,7 @@ const onPressShuffle = () => {
   <div>
     <header class="mb-12 flex gap-6">
       <div
-        class="aspect-square w-[240px] rounded-2xl bg-background-2 mt-10 flex justify-center"
+        class="mt-10 flex aspect-square w-[240px] justify-center rounded-2xl bg-background-2"
       >
         <NuxtIcon name="icon.category.playlist" class="text-8xl"></NuxtIcon>
       </div>

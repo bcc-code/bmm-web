@@ -5,7 +5,7 @@ toolbarTitleStore().setReactiveToolbarTitle(() => t("track.details.copyright"));
 
 <template>
   <div>
-    <h2 class="font-extrabold text-[28px] pt-10 pb-4">
+    <h2 class="pb-4 pt-10 text-[28px] font-extrabold">
       {{ t("track.details.copyright") }}
       {{ new Date().getFullYear() }}, Stiftelsen Skjulte Skatters Forlag
     </h2>

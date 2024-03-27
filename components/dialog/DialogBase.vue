@@ -33,11 +33,11 @@ const emit = defineEmits<{
         leave-from="opacity-100"
         leave-to="opacity-0"
       >
-        <DialogBackdrop class="fixed z-30 inset-0 bg-background-4 opacity-40" />
+        <DialogBackdrop class="fixed inset-0 z-30 bg-background-4 opacity-40" />
       </TransitionChild>
 
       <div
-        class="fixed inset-0 flex items-center justify-center content-center"
+        class="fixed inset-0 flex content-center items-center justify-center"
         @click="emit('close')"
       >
         <TransitionChild
@@ -50,10 +50,10 @@ const emit = defineEmits<{
           leave-to="opacity-0 scale-95"
         >
           <DialogPanel
-            class="bg-background-1 text-black-1 dark:text-white-1 rounded-2xl"
+            class="rounded-2xl bg-background-1 text-black-1 dark:text-white-1"
             @click.stop
           >
-            <div class="flex justify-between items-center mx-5">
+            <div class="mx-5 flex items-center justify-between">
               <DialogTitle class="py-4 font-semibold">{{ title }}</DialogTitle>
               <ButtonStyled
                 v-if="!hideButton"
@@ -65,9 +65,9 @@ const emit = defineEmits<{
               </ButtonStyled>
             </div>
             <div
-              class="bg-label-1 dark:bg-label-dark-1 h-[1px] opacity-10"
+              class="dark:bg-label-dark-1 h-[1px] bg-label-1 opacity-10"
             ></div>
-            <div class="p-5 overflow-auto max-h-[80vh]">
+            <div class="max-h-[80vh] overflow-auto p-5">
               <DialogDescription v-if="description" class="mb-4 text-label-2">
                 {{ description }}
               </DialogDescription>

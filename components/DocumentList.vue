@@ -108,7 +108,7 @@ const playSingleItem = (item: TrackModel) => {
       >
         <h2
           v-if="group.header"
-          class="text-[28px] font-extrabold leading-tight text-label-1 mt-12 mb-5"
+          class="mb-5 mt-12 text-[28px] font-extrabold leading-tight text-label-1"
         >
           <div class="flex items-center justify-between">
             <div>
@@ -140,7 +140,7 @@ const playSingleItem = (item: TrackModel) => {
               group.header &&
               group.header?.useCoverCarousel &&
               group.header?.link
-                ? 'overflow-hidden max-h-[27.5rem] lg:max-h-[13rem]'
+                ? 'max-h-[27.5rem] overflow-hidden lg:max-h-[13rem]'
                 : ''
             "
           >
@@ -182,12 +182,12 @@ const playSingleItem = (item: TrackModel) => {
         </div>
         <ol
           v-else
-          class="w-full divide-y divide-label-separator grid grid-cols-tracklist mt-3 lg:mt-4"
+          class="mt-3 grid w-full grid-cols-tracklist divide-y divide-label-separator lg:mt-4"
         >
           <template v-for="item in group.items" :key="item.id">
             <h2
               v-if="item.type === 'chapter_header'"
-              class="text-[28px] font-extrabold leading-tight pt-10 pb-4"
+              class="pb-4 pt-10 text-[28px] font-extrabold leading-tight"
             >
               {{ item.title }}
             </h2>
@@ -236,7 +236,7 @@ const playSingleItem = (item: TrackModel) => {
             />
             <div
               v-else-if="item.type === 'InfoMessage'"
-              class="col-span-full bg-background-2 rounded-2xl p-4 flex gap-3 font-medium"
+              class="col-span-full flex gap-3 rounded-2xl bg-background-2 p-4 font-medium"
             >
               <div>
                 <NuxtIcon name="icon.alert" class="text-2xl" />

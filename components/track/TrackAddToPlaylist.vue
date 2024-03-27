@@ -45,11 +45,11 @@ const selectList = async (playlistId: number, trackId: number) => {
     :title="t('track.dropdown.add-to-playlist')"
     @close="emit('close')"
   >
-    <div class="bg-background-2 rounded-lg md:w-[500px] lg:w-[600px]">
+    <div class="rounded-lg bg-background-2 md:w-[500px] lg:w-[600px]">
       <div
         v-for="collection in playlists"
         :key="collection.id"
-        class="text-label-1 flex flow-row gap-3 p-2 px-5 cursor-pointer rounded-lg hover:bg-label-separator"
+        class="flow-row flex cursor-pointer gap-3 rounded-lg p-2 px-5 text-label-1 hover:bg-label-separator"
         @click="selectList(collection.id, trackId)"
       >
         <NuxtIcon name="icon.category.playlist"></NuxtIcon>

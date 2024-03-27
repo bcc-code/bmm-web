@@ -24,8 +24,8 @@ const createPlaylist = async () => {
 </script>
 
 <template>
-  <div class="px-4 py-2 cursor-pointer text-label-3">
-    <div class="group gap-2 flex" @click="show()">
+  <div class="cursor-pointer px-4 py-2 text-label-3">
+    <div class="group flex gap-2" @click="show()">
       <NuxtIcon name="icon.add" class="text-xl" />
       <span class="transition-transform group-hover:translate-x-2">
         {{ $t("playlist.add") }}
@@ -40,10 +40,10 @@ const createPlaylist = async () => {
       <div class="flex flex-col gap-4">
         <input
           v-model="playlistName"
-          class="text-[17px] min-w-[416px] grow leading-7 placeholder:text-label-3 text-label-1 font-medium bg-background-2 px-4 py-3 rounded-lg"
+          class="min-w-[416px] grow rounded-lg bg-background-2 px-4 py-3 text-[17px] font-medium leading-7 text-label-1 placeholder:text-label-3"
           :placeholder="$t('playlist.name-your-playlist')"
         />
-        <div class="flex gap-6 grow">
+        <div class="flex grow gap-6">
           <ButtonStyled class="grow" @click.stop="showDialog = false">{{
             $t("global.cancel")
           }}</ButtonStyled>

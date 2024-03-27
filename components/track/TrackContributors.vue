@@ -7,10 +7,10 @@ defineProps<{
 </script>
 
 <template>
-  <div class="bg-background-2 rounded-lg">
+  <div class="rounded-lg bg-background-2">
     <div v-for="(contributor, index) in track.contributors" :key="index">
       <NuxtLink
-        class="rounded-lg text-label-1 flex flow-row gap-3 p-2 px-5 hover:bg-label-separator"
+        class="flow-row flex gap-3 rounded-lg p-2 px-5 text-label-1 hover:bg-label-separator"
         :to="{
           name: 'playlist-contributor-id',
           params: { id: contributor.id ?? 0 },

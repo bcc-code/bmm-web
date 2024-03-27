@@ -36,7 +36,7 @@ const getDays = (item: CurrentWeeksStreakVm) => [
   <div class="col-span-full flex gap-6">
     <div class="flex flex-col">
       <div class="font-semibold leading-5">{{ t("streak.your-streak") }}</div>
-      <div class="text-label-3 text-[15px] leading-5">
+      <div class="text-[15px] leading-5 text-label-3">
         {{ t("streak.days-in-row", item.daysInARow ?? 0) }}
       </div>
     </div>
@@ -44,11 +44,11 @@ const getDays = (item: CurrentWeeksStreakVm) => [
       <div
         v-for="day in getDays(item)"
         v-bind:key="day.day"
-        class="rounded-full aspect-square p-2 flex items-center justify-center"
+        class="flex aspect-square items-center justify-center rounded-full p-2"
         :class="item.dayOfTheWeek === day.day ? 'bg-background-2' : ''"
       >
         <div
-          class="rounded-full aspect-square w-3"
+          class="aspect-square w-3 rounded-full"
           :class="day.listened ? 'bg-[#DBE459]' : ' border border-label-4'"
           :style="'background: ' + (day.listened ? day.color : 'none')"
         ></div>

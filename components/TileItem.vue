@@ -33,11 +33,11 @@ const weekDay = (date: Date) => {
 <template>
   <div
     v-if="item.showAllLink && item.track && item.title"
-    class="rounded-2xl bg- w-[400px] h-[200px] flex flex-row"
+    class="bg- flex h-[200px] w-[400px] flex-row rounded-2xl"
   >
     <NuxtLink
       :to="parseLink(item.showAllLink)"
-      class="w-1/2 aspect-square rounded-l-2xl"
+      class="aspect-square w-1/2 rounded-l-2xl"
     >
       <CoverImage
         :src="item.coverUrl"
@@ -47,25 +47,25 @@ const weekDay = (date: Date) => {
       />
     </NuxtLink>
     <div
-      class="w-1/2 p-6 rounded-r-2xl text-black-1 cursor-pointer flex flex-col"
+      class="flex w-1/2 cursor-pointer flex-col rounded-r-2xl p-6 text-black-1"
       :style="'background: ' + (item.backgroundColor ?? '#F5F6F7')"
       @click.stop="playTrack"
     >
       <div class="opacity-70">{{ item.title }}</div>
-      <div class="font-semibold text-lg">{{ item.label }}</div>
-      <div v-if="item.date" class="text-sm whitespace-nowrap">
+      <div class="text-lg font-semibold">{{ item.label }}</div>
+      <div v-if="item.date" class="whitespace-nowrap text-sm">
         {{ weekDay(item.date) }}
         <span class="opacity-70">{{ formatDate(item.date) }}</span>
       </div>
       <div v-else class="text-sm">
         {{ item.subtitle }}
       </div>
-      <div class="flex flex-row w-full mt-auto">
+      <div class="mt-auto flex w-full flex-row">
         <button
-          class="bg-black-1 rounded-full w-10 h-10"
+          class="h-10 w-10 rounded-full bg-black-1"
           @click.stop="playTrack"
         >
-          <NuxtIcon name="icon.play" class="text-white-1 text-2xl p-2" />
+          <NuxtIcon name="icon.play" class="p-2 text-2xl text-white-1" />
         </button>
         <TrackMenu :track="item.track" class="ml-auto"></TrackMenu>
       </div>

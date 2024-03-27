@@ -61,7 +61,7 @@ const onPointerDownProgressBar = () => {
       @click.stop="open = !open"
     >
       <svg
-        class="absolute left-0 top-0 opacity-0 group-hover:opacity-100 group-hover:-left-1 group-hover:-top-1 transition-all duration-200 ease-out"
+        class="absolute left-0 top-0 opacity-0 transition-all duration-200 ease-out group-hover:-left-1 group-hover:-top-1 group-hover:opacity-100"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
         width="11"
@@ -74,15 +74,15 @@ const onPointerDownProgressBar = () => {
         />
       </svg>
       <div
-        class="large-shadow relative overflow-hidden flex flex-col rounded-2xl bg-background-1 p-3"
+        class="large-shadow relative flex flex-col overflow-hidden rounded-2xl bg-background-1 p-3"
       >
         <div class="flex gap-4">
           <CoverImage
             :src="currentTrack?.meta?.attachedPicture"
-            class="rounded-md h-[48px]"
+            class="h-[48px] rounded-md"
           />
           <div
-            class="flex gap-1 w-full flex-col overflow-hidden whitespace-nowrap"
+            class="flex w-full flex-col gap-1 overflow-hidden whitespace-nowrap"
           >
             <div class="w-full truncate">
               <h3
@@ -114,20 +114,20 @@ const onPointerDownProgressBar = () => {
           </div>
           <button
             v-if="isLoading"
-            class="flex aspect-square w-12 text-2xl justify-center items-center"
+            class="flex aspect-square w-12 items-center justify-center text-2xl"
           >
             <NuxtIcon name="icon.loading.animation" filled />
           </button>
           <button
             v-if="!isLoading && status === MediaPlayerStatus.Playing"
-            class="flex aspect-square w-12 text-3xl transition-all duration-200 ease-out hover:text-4xl justify-center items-center"
+            class="flex aspect-square w-12 items-center justify-center text-3xl transition-all duration-200 ease-out hover:text-4xl"
             @click.stop="pause()"
           >
             <NuxtIcon name="icon.pause.large" />
           </button>
           <button
             v-if="!isLoading && status !== MediaPlayerStatus.Playing"
-            class="flex aspect-square w-12 text-3xl transition-all duration-200 ease-out hover:text-4xl justify-center items-center"
+            class="flex aspect-square w-12 items-center justify-center text-3xl transition-all duration-200 ease-out hover:text-4xl"
             @click.stop="play()"
           >
             <NuxtIcon name="play" />
@@ -136,7 +136,7 @@ const onPointerDownProgressBar = () => {
         <svg
           fill="none"
           xmlns="http://www.w3.org/2000/svg"
-          class="absolute bottom-0 left-1 right-1 w-full h-1 hover:h-1.5 transition-all duration-200 ease-out"
+          class="absolute bottom-0 left-1 right-1 h-1 w-full transition-all duration-200 ease-out hover:h-1.5"
           @pointerdown="onPointerDownProgressBar"
           @pointerup="onPointerUpProgressBar"
           @click.stop
@@ -156,7 +156,7 @@ const onPointerDownProgressBar = () => {
     </div>
   </Transition>
 
-  <div v-if="open" class="min-w-[400px] ml-5"></div>
+  <div v-if="open" class="ml-5 min-w-[400px]"></div>
   <Transition
     enter-active-class="transition-all duration-500 ease-out"
     enter-from-class="translate-y-[80vh]"
@@ -165,14 +165,14 @@ const onPointerDownProgressBar = () => {
   >
     <div
       v-if="open"
-      class="player-height large-shadow h-100 fixed bottom-5 right-5 flex flex-col rounded-2xl bg-background-1 w-[400px]"
+      class="player-height large-shadow h-100 fixed bottom-5 right-5 flex w-[400px] flex-col rounded-2xl bg-background-1"
     >
       <div class="px-3 py-6">
-        <div class="flex items-center justify-center h-60">
+        <div class="flex h-60 items-center justify-center">
           <div class="relative z-10 overflow-hidden">
             <CoverImage
               :src="currentTrack?.meta?.attachedPicture"
-              class="rounded-md w-40"
+              class="w-40 rounded-md"
             />
           </div>
           <ProtectedImage
@@ -183,7 +183,7 @@ const onPointerDownProgressBar = () => {
           />
         </div>
         <div
-          class="flex flex-col py-3 gap-1 overflow-x-hidden whitespace-nowrap"
+          class="flex flex-col gap-1 overflow-x-hidden whitespace-nowrap py-3"
         >
           <TextMarquee class="m-auto">
             <h3
@@ -218,11 +218,11 @@ const onPointerDownProgressBar = () => {
           </div>
         </div>
         <div class="px-4 py-2">
-          <div class="py-2 group h-3 flex items-center">
+          <div class="group flex h-3 items-center py-2">
             <svg
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
-              class="width-full rounded-full overflow-hidden w-full h-2 group-hover:h-3 transition-all duration-200 ease-out"
+              class="width-full h-2 w-full overflow-hidden rounded-full transition-all duration-200 ease-out group-hover:h-3"
               @pointerdown="onPointerDownProgressBar"
               @pointerup="onPointerUpProgressBar"
               @click.stop
@@ -257,8 +257,8 @@ const onPointerDownProgressBar = () => {
         </div>
         <div class="flex justify-evenly px-4 py-2">
           <button
-            :class="isLoading ? 'text-label-4 ' : 'hover:text-3xl border'"
-            class="flex rounded-full aspect-square w-14 text-2xl transition-all duration-200 ease-out justify-center items-center border-label-separator"
+            :class="isLoading ? 'text-label-4 ' : 'border hover:text-3xl'"
+            class="flex aspect-square w-14 items-center justify-center rounded-full border-label-separator text-2xl transition-all duration-200 ease-out"
             @click.stop="rewind()"
           >
             <NuxtIcon name="icon.rewind.large" filled />
@@ -267,9 +267,9 @@ const onPointerDownProgressBar = () => {
             :class="
               !hasPrevious || isLoading
                 ? 'text-label-4'
-                : 'hover:text-3xl bg-background-2'
+                : 'bg-background-2 hover:text-3xl'
             "
-            class="flex rounded-full aspect-square w-14 text-2xl transition-all duration-200 ease-out justify-center items-center"
+            class="flex aspect-square w-14 items-center justify-center rounded-full text-2xl transition-all duration-200 ease-out"
             @click.stop="previous()"
           >
             <NuxtIcon name="icon.previous.track.large" filled />
@@ -277,20 +277,20 @@ const onPointerDownProgressBar = () => {
 
           <button
             v-if="isLoading"
-            class="flex rounded-full aspect-square bg-background-2 w-14 text-2xl justify-center items-center"
+            class="flex aspect-square w-14 items-center justify-center rounded-full bg-background-2 text-2xl"
           >
             <NuxtIcon name="icon.loading.animation" filled />
           </button>
           <button
             v-if="!isLoading && status === MediaPlayerStatus.Playing"
-            class="flex rounded-full aspect-square bg-background-2 w-14 text-3xl transition-all duration-200 ease-out hover:text-4xl justify-center items-center"
+            class="flex aspect-square w-14 items-center justify-center rounded-full bg-background-2 text-3xl transition-all duration-200 ease-out hover:text-4xl"
             @click.stop="pause()"
           >
             <NuxtIcon name="icon.pause.large" />
           </button>
           <button
             v-if="!isLoading && status !== MediaPlayerStatus.Playing"
-            class="flex rounded-full aspect-square bg-background-2 w-14 text-3xl transition-all duration-200 ease-out hover:text-4xl justify-center items-center"
+            class="flex aspect-square w-14 items-center justify-center rounded-full bg-background-2 text-3xl transition-all duration-200 ease-out hover:text-4xl"
             @click.stop="play()"
           >
             <NuxtIcon name="play" />
@@ -299,9 +299,9 @@ const onPointerDownProgressBar = () => {
             :class="
               !hasNext || isLoading
                 ? 'text-label-4'
-                : 'hover:text-3xl bg-background-2'
+                : 'bg-background-2 hover:text-3xl'
             "
-            class="flex rounded-full aspect-square w-14 text-2xl transition-all duration-200 ease-out justify-center items-center"
+            class="flex aspect-square w-14 items-center justify-center rounded-full text-2xl transition-all duration-200 ease-out"
             @click.stop="next()"
           >
             <NuxtIcon name="icon.next.track.large" filled />
@@ -311,18 +311,18 @@ const onPointerDownProgressBar = () => {
             :class="
               currentPosition >= currentTrackDuration || isLoading
                 ? 'text-label-4'
-                : 'hover:text-3xl border-background-2 border'
+                : 'border border-background-2 hover:text-3xl'
             "
-            class="flex rounded-full aspect-square w-14 text-2xl transition-all duration-200 ease-out justify-center items-center"
+            class="flex aspect-square w-14 items-center justify-center rounded-full text-2xl transition-all duration-200 ease-out"
             @click.stop="fastForward()"
           >
             <NuxtIcon name="icon.skip.large" filled />
           </button>
         </div>
-        <div class="flex justify-between absolute z-10 top-4 left-4 right-4">
+        <div class="absolute left-4 right-4 top-4 z-10 flex justify-between">
           <div>
             <div
-              class="rounded-full border border-label-separator p-1.5 cursor-pointer"
+              class="cursor-pointer rounded-full border border-label-separator p-1.5"
               @click.stop="open = !open"
             >
               <NuxtIcon name="icon.minify" filled class="text-xl" />
@@ -345,7 +345,7 @@ const onPointerDownProgressBar = () => {
       </div>
       <hr class="border-label-separator" />
       <div class="overflow-y-scroll">
-        <div class="flex justify-between items-center pb-1 pt-4 px-6">
+        <div class="flex items-center justify-between px-6 pb-1 pt-4">
           <div class="text-label-3">{{ t("player.queue") }}</div>
           <div class="flex gap-2">
             <button
@@ -389,9 +389,9 @@ const onPointerDownProgressBar = () => {
           <li v-for="(item, i) in queue" :key="i" @click="queue.index = i">
             <div
               :class="
-                queue.index === i ? 'bg-tint hover:bg-tint text-black-1' : ''
+                queue.index === i ? 'bg-tint text-black-1 hover:bg-tint' : ''
               "
-              class="rounded-xl px-3 py-2 flex justify-between gap-2 cursor-pointer hover:bg-background-2 transition-all duration-500 ease-out"
+              class="flex cursor-pointer justify-between gap-2 rounded-xl px-3 py-2 transition-all duration-500 ease-out hover:bg-background-2"
             >
               <div class="truncate">
                 <div>{{ item.meta?.title || item.title }}</div>
