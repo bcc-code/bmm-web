@@ -10,11 +10,11 @@ defineProps<{
 </script>
 
 <template>
-  <div class="col-span-full bg-background-2 rounded-2xl border-t-0">
+  <div class="col-span-full rounded-2xl border-t-0 bg-background-2">
     <div class="p-4">
       <div
         v-if="!item.title && !item.subtitle"
-        class="text-[16px] font-semibold flex gap-1"
+        class="flex gap-1 text-[16px] font-semibold"
       >
         <NuxtIcon name="icon.fire" class="text-2xl" />
         {{ t("home.list.recommended") }}
@@ -26,8 +26,8 @@ defineProps<{
         {{ item.subtitle }}
       </div>
     </div>
-    <div class="bg-background-1 m-1 px-4 rounded-xl container-shadow">
-      <div class="w-full grid grid-cols-tracklist">
+    <div class="container-shadow m-1 rounded-xl bg-background-1 px-4">
+      <div class="grid w-full grid-cols-tracklist">
         <TrackItem
           v-if="item.track"
           :track="item.track"

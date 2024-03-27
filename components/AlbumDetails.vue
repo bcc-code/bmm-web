@@ -32,7 +32,7 @@ const childTracks = computed(
 </script>
 
 <template>
-  <div v-if="album" class="flex flex-col mb-[200px]">
+  <div v-if="album" class="mb-[200px] flex flex-col">
     <header class="mb-12 flex gap-6">
       <div class="mt-10">
         <CoverImage

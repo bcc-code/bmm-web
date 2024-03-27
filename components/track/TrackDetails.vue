@@ -86,10 +86,10 @@ const extractFields = (track: TrackModel) => {
   <div class="relative flex items-center justify-normal gap-4">
     <CoverImage :src="track.meta?.attachedPicture" class="w-24 rounded-md" />
     <div>
-      <h3 class="text-label-1 py-1 text-2xl font-extrabold">
+      <h3 class="py-1 text-2xl font-extrabold text-label-1">
         {{ track.title }}
       </h3>
-      <div class="text-label-2 text-[1.1rem]">
+      <div class="text-[1.1rem] text-label-2">
         {{ track.meta?.artist }}
       </div>
     </div>
@@ -97,7 +97,7 @@ const extractFields = (track: TrackModel) => {
   <br />
 
   <template v-if="track.externalRelations?.length ?? 0 > 0">
-    <hr class="bg-background-2 border-0 h-[2px]" />
+    <hr class="h-[2px] border-0 bg-background-2" />
     <div class="py-4 text-lg">
       <div>
         <b>{{ t("track.details.reference") }}</b>
@@ -107,7 +107,7 @@ const extractFields = (track: TrackModel) => {
           v-for="reference in track.externalRelations?.filter((x) => x.url)"
           :key="reference.url"
           :to="parseLink(reference.url || '')"
-          class="bg-background-2 my-2 p-3 rounded-2xl flex flex-row gap-2 text-2xl"
+          class="my-2 flex flex-row gap-2 rounded-2xl bg-background-2 p-3 text-2xl"
         >
           <NuxtIcon
             :name="reference.hasListened ? 'icon.checkmark' : 'icon.link'"
@@ -125,12 +125,12 @@ const extractFields = (track: TrackModel) => {
         </NuxtLink>
       </div>
     </div>
-    <hr class="bg-background-2 border-0 h-[2px]" />
+    <hr class="h-[2px] border-0 bg-background-2" />
   </template>
 
   <template v-for="(field, index) in extractFields(track)" :key="index">
-    <hr class="bg-background-2 border-0 h-[2px]" />
-    <div class="py-4 text-lg flex">
+    <hr class="h-[2px] border-0 bg-background-2" />
+    <div class="flex py-4 text-lg">
       <div class="w-40 shrink-0">
         <b>{{ field.label }}</b>
       </div>

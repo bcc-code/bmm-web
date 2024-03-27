@@ -91,14 +91,14 @@ const saveAndCloseContentLanguageDialog = () => {
         leave-to-class="transform scale-95 opacity-0"
       >
         <MenuItems
-          class="absolute right-0 mt-2 whitespace-nowrap min-w-56 origin-top-right divide-y divide-label-separator rounded-xl bg-background-3 text-sm shadow-lg ring-1 ring-label-separator focus-visible:outline-none -separator"
+          class="-separator absolute right-0 mt-2 min-w-56 origin-top-right divide-y divide-label-separator whitespace-nowrap rounded-xl bg-background-3 text-sm shadow-lg ring-1 ring-label-separator focus-visible:outline-none"
         >
           <div class="p-1">
             <!-- Todo: #284 implement autoplay behavior -->
             <MenuItem v-if="false" v-slot="{ active }">
               <button
                 :class="{
-                  'bg-label-separator -separator': active,
+                  '-separator bg-label-separator': active,
                 }"
                 class="flex w-full items-center justify-between rounded-lg px-3 py-2"
                 @click="
@@ -131,13 +131,13 @@ const saveAndCloseContentLanguageDialog = () => {
             <MenuItem v-slot="{ active }">
               <button
                 :class="{
-                  'bg-label-separator -separator': active,
+                  '-separator bg-label-separator': active,
                 }"
-                class="w-full rounded-lg px-3 py-2 text-left font-medium text-[15px]"
+                class="w-full rounded-lg px-3 py-2 text-left text-[15px] font-medium"
                 @click="showThemeDialog = true"
               >
                 <p>{{ $t("profile.theme") }}</p>
-                <span class="text-label-3 text-[13px]">
+                <span class="text-[13px] text-label-3">
                   {{ getColorModeName(colorMode.preference) }}
                 </span>
               </button>
@@ -145,13 +145,13 @@ const saveAndCloseContentLanguageDialog = () => {
             <MenuItem v-slot="{ active }" as="div">
               <button
                 :class="{
-                  'bg-label-separator -separator': active,
+                  '-separator bg-label-separator': active,
                 }"
-                class="w-full rounded-lg px-3 py-2 text-left font-medium text-[15px]"
+                class="w-full rounded-lg px-3 py-2 text-left text-[15px] font-medium"
                 @click="showInterfaceLanguageDialog = true"
               >
                 <p>{{ $t("profile.app-language") }}</p>
-                <span class="text-label-3 text-[13px]">
+                <span class="text-[13px] text-label-3">
                   {{ getLocalizedLanguageName(profileStore.uiLanguage) }}
                 </span>
               </button>
@@ -159,13 +159,13 @@ const saveAndCloseContentLanguageDialog = () => {
             <MenuItem v-slot="{ active }" as="div">
               <button
                 :class="{
-                  'bg-label-separator -separator': active,
+                  '-separator bg-label-separator': active,
                 }"
-                class="w-full rounded-lg px-3 py-2 text-left font-medium text-[15px]"
+                class="w-full rounded-lg px-3 py-2 text-left text-[15px] font-medium"
                 @click="showContentLanguageDialog = true"
               >
                 <p>{{ $t("profile.content-language") }}</p>
-                <span class="text-label-2 text-[13px] whitespace-normal">
+                <span class="whitespace-normal text-[13px] text-label-2">
                   {{
                     getLocalizedList(
                       contentLanguages.map((x) => getLocalizedLanguageName(x)),
@@ -179,9 +179,9 @@ const saveAndCloseContentLanguageDialog = () => {
             <MenuItem v-slot="{ active }" as="div">
               <a
                 :class="{
-                  'bg-label-separator -separator': active,
+                  '-separator bg-label-separator': active,
                 }"
-                class="flex w-full rounded-lg px-3 py-2 font-medium text-[15px]"
+                class="flex w-full rounded-lg px-3 py-2 text-[15px] font-medium"
                 href="https://uservoice.bcc.no/?tags=bmm"
                 target="_blank"
               >
@@ -191,9 +191,9 @@ const saveAndCloseContentLanguageDialog = () => {
             <MenuItem v-slot="{ active }" as="div">
               <a
                 :class="{
-                  'bg-label-separator -separator': active,
+                  '-separator bg-label-separator': active,
                 }"
-                class="flex w-full rounded-lg px-3 py-2 font-medium text-[15px]"
+                class="flex w-full rounded-lg px-3 py-2 text-[15px] font-medium"
                 href="mailto:bmm-support@bcc.no"
                 target="_blank"
               >
@@ -205,9 +205,9 @@ const saveAndCloseContentLanguageDialog = () => {
             <MenuItem v-slot="{ active }" as="div">
               <button
                 :class="{
-                  'bg-label-separator -separator': active,
+                  '-separator bg-label-separator': active,
                 }"
-                class="w-full rounded-lg px-3 py-2 text-left font-medium text-[15px]"
+                class="w-full rounded-lg px-3 py-2 text-left text-[15px] font-medium"
                 @click="logout()"
               >
                 {{ $t("profile.logout") }}
@@ -226,19 +226,19 @@ const saveAndCloseContentLanguageDialog = () => {
     >
       <RadioGroup
         v-model="colorMode.preference"
-        class="bg-background-2 dark:bg-background-dark-2 rounded-lg font-semibold md:w-[500px] lg:w-[600px]"
+        class="dark:bg-background-dark-2 rounded-lg bg-background-2 font-semibold md:w-[500px] lg:w-[600px]"
       >
         <RadioGroupOption
           v-for="mode in colorModes"
           :key="mode"
           :value="mode"
-          class="flex justify-between px-4 py-3 cursor-pointer hover:bg-label-separator w-full rounded-lg"
+          class="flex w-full cursor-pointer justify-between rounded-lg px-4 py-3 hover:bg-label-separator"
         >
           <span>{{ getColorModeName(mode) }}</span>
           <NuxtIcon
             v-if="mode == colorMode.preference"
             name="icon.selected"
-            class="text-2xl group-hover:text-4xl inline-block"
+            class="inline-block text-2xl group-hover:text-4xl"
           />
         </RadioGroupOption>
       </RadioGroup>
@@ -251,12 +251,12 @@ const saveAndCloseContentLanguageDialog = () => {
       @close="closeInterfaceLanguageDialog()"
     >
       <div
-        class="bg-background-2 text-label-2 rounded-2xl p-3 md:w-[500px] lg:w-[600px]"
+        class="rounded-2xl bg-background-2 p-3 text-label-2 md:w-[500px] lg:w-[600px]"
       >
-        <label class="self-center flex items-center gap-4 justify-between">
+        <label class="flex items-center justify-between gap-4 self-center">
           <span>{{ $t("profile.select-language") }}</span>
           <div
-            class="text-label-1 bg-background-1 min-w-[100px] px-2 py-1.5 rounded-lg font-semibold shadow-[0_4px_12px_0_#0000000D,0_1px_4px_0_#0000000D,0_0_0_1px_#0000000D]"
+            class="min-w-[100px] rounded-lg bg-background-1 px-2 py-1.5 font-semibold text-label-1 shadow-[0_4px_12px_0_#0000000D,0_1px_4px_0_#0000000D,0_0_0_1px_#0000000D]"
           >
             <select v-model="profileStore.uiLanguage" class="py-1">
               <option
@@ -284,12 +284,12 @@ const saveAndCloseContentLanguageDialog = () => {
         v-model="contentLanguages"
         handle=".handle"
         :animation="200"
-        class="bg-background-2 rounded-2xl divide-y divide-label-separator md:w-[500px] lg:w-[600px]"
+        class="divide-y divide-label-separator rounded-2xl bg-background-2 md:w-[500px] lg:w-[600px]"
       >
         <div
           v-for="(item, i) in contentLanguages"
           :key="item"
-          class="grid grid-cols-[24px_1fr_1.5fr_24px] items-center px-4 py-3 gap-4 w-full first:rounded-t-2xl last:rounded-b-2xl"
+          class="grid w-full grid-cols-[24px_1fr_1.5fr_24px] items-center gap-4 px-4 py-3 first:rounded-t-2xl last:rounded-b-2xl"
         >
           <button class="handle text-label-4">
             <svg
@@ -307,9 +307,9 @@ const saveAndCloseContentLanguageDialog = () => {
             {{ t("profile.preference-language-" + Math.min(i + 1, 4), i + 1) }}
           </div>
           <div
-            class="text-label-1 bg-background-1 min-w-min px-2 py-1.5 rounded-lg font-semibold shadow-[0_4px_12px_0_#0000000D,0_1px_4px_0_#0000000D,0_0_0_1px_#0000000D]"
+            class="min-w-min rounded-lg bg-background-1 px-2 py-1.5 font-semibold text-label-1 shadow-[0_4px_12px_0_#0000000D,0_1px_4px_0_#0000000D,0_0_0_1px_#0000000D]"
           >
-            <select v-model="contentLanguages[i]" class="py-1 w-full">
+            <select v-model="contentLanguages[i]" class="w-full py-1">
               <option
                 v-for="(lang, j) in [
                   item,
@@ -338,7 +338,7 @@ const saveAndCloseContentLanguageDialog = () => {
       </VueDraggable>
       <div
         v-if="nextUnusedContentLanguage"
-        class="text-label-3 p-3 flex flex-row gap-2 mt-4"
+        class="mt-4 flex flex-row gap-2 p-3 text-label-3"
         @click="
           () => {
             const next = nextUnusedContentLanguage;

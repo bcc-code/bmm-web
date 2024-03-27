@@ -28,7 +28,7 @@ const selectedTrack: Ref<TrackModel | null> = ref(null);
 
 <template>
   <li
-    class="group grid col-span-full relative grid-cols-subgrid cursor-pointer gap-3 py-3"
+    class="group relative col-span-full grid cursor-pointer grid-cols-subgrid gap-3 py-3"
     @click.stop="playTrack"
   >
     <div
@@ -40,8 +40,8 @@ const selectedTrack: Ref<TrackModel | null> = ref(null);
       class="absolute -inset-x-4 -inset-y-0 rounded-xl bg-tint"
     ></div>
 
-    <div class="relative grid col-span-full grid-cols-subgrid">
-      <div v-if="showThumbnail" class="hidden lg:flex flex-col justify-center">
+    <div class="relative col-span-full grid grid-cols-subgrid">
+      <div v-if="showThumbnail" class="hidden flex-col justify-center lg:flex">
         <div class="relative aspect-square w-10">
           <CoverImage
             :src="track.meta?.attachedPicture"
@@ -49,7 +49,7 @@ const selectedTrack: Ref<TrackModel | null> = ref(null);
           />
           <div
             v-if="!isPlaying"
-            class="absolute w-10 inset-0 opacity-0 group-hover:opacity-100"
+            class="absolute inset-0 w-10 opacity-0 group-hover:opacity-100"
           >
             <div
               class="absolute inset-0 h-full w-full rounded-md bg-black-3 opacity-50"
@@ -59,13 +59,13 @@ const selectedTrack: Ref<TrackModel | null> = ref(null);
               class="absolute inset-0 flex items-center justify-center text-2xl text-white-1"
             />
           </div>
-          <div v-if="isPlaying" class="absolute w-10 inset-0">
+          <div v-if="isPlaying" class="absolute inset-0 w-10">
             <div
               class="absolute inset-0 h-full w-full rounded-md bg-black-3 opacity-50"
             ></div>
             <NuxtIcon
               name="icon.playing.animation"
-              class="absolute inset-0 flex items-center justify-center text-2xl text-white-1 ml-1.5"
+              class="absolute inset-0 ml-1.5 flex items-center justify-center text-2xl text-white-1"
               :class="{
                 'animation-paused': status !== MediaPlayerStatus.Playing,
               }"
@@ -76,10 +76,10 @@ const selectedTrack: Ref<TrackModel | null> = ref(null);
 
       <div v-if="!showThumbnail" class="relative hidden lg:block"></div>
       <div
-        class="flex flex-col justify-center col-span-2 lg:col-span-1 min-w-0"
+        class="col-span-2 flex min-w-0 flex-col justify-center lg:col-span-1"
       >
         <h4
-          class="block truncate text-[17px] leading-6 font-medium"
+          class="block truncate text-[17px] font-medium leading-6"
           :class="{ 'text-black-1': isPlaying }"
           :title="track.meta?.title || ''"
         >
@@ -94,14 +94,14 @@ const selectedTrack: Ref<TrackModel | null> = ref(null);
           {{ track.meta?.artist }}
         </span>
       </div>
-      <div v-if="!isTrackTypeKnown" class="flex items-center min-w-0">
+      <div v-if="!isTrackTypeKnown" class="flex min-w-0 items-center">
         <span
           class="truncate"
           :class="isPlaying ? 'text-black-1' : 'text-label-3'"
           >{{ track.subtype }}</span
         >
       </div>
-      <div v-if="isTrackTypeKnown" class="flex items-center min-w-0">
+      <div v-if="isTrackTypeKnown" class="flex min-w-0 items-center">
         <span
           class="truncate"
           :class="isPlaying ? 'text-black-1' : 'text-label-3'"

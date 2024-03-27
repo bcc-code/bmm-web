@@ -130,21 +130,21 @@ const { setQueue } = useNuxtApp().$mediaPlayer;
   <div>
     <Teleport v-if="isMounted" to="header .teleport">
       <div
-        class="inline-block rounded-lg bg-background-2 focus-within:bg-background-1 mt-2 focus-within:shadow-[0_4px_12px_0_#0000000D,0_1px_4px_0_#0000000D,0_0_0_1px_#0000000D]"
+        class="mt-2 inline-block rounded-lg bg-background-2 focus-within:bg-background-1 focus-within:shadow-[0_4px_12px_0_#0000000D,0_1px_4px_0_#0000000D,0_0_0_1px_#0000000D]"
         :class="searchTerm === '' ? '' : 'bg-background-'"
       >
         <div class="flex w-80 items-center px-3 py-2">
-          <NuxtIcon name="nav.search" class="text-label-1 text-xl" />
+          <NuxtIcon name="nav.search" class="text-xl text-label-1" />
           <input
             v-model="searchTerm"
             type="text"
             :placeholder="t('search.input-placeholder')"
-            class="w-auto flex-grow bg-background-2 focus-within:bg-background-1 px-2 outline-none text-label-1 text-[17px] placeholder:text-label-3"
+            class="w-auto flex-grow bg-background-2 px-2 text-[17px] text-label-1 outline-none placeholder:text-label-3 focus-within:bg-background-1"
           />
           <NuxtIcon
             v-if="searchTerm !== ''"
             name="icon.close.small"
-            class="text-label-1 text-2xl cursor-pointer"
+            class="cursor-pointer text-2xl text-label-1"
             @click="searchTerm = ''"
           ></NuxtIcon>
         </div>
@@ -160,7 +160,7 @@ const { setQueue } = useNuxtApp().$mediaPlayer;
           <div
             class="py-[16px]"
             :class="{
-              'border-b-2 pb-[14px] border-label-1 text-label-1':
+              'border-b-2 border-label-1 pb-[14px] text-label-1':
                 searchFilter === tab,
               'text-label-3': searchFilter !== tab,
             }"
@@ -174,7 +174,7 @@ const { setQueue } = useNuxtApp().$mediaPlayer;
     <div class="w-full">
       <div class="py-4">
         <div>
-          <div class="text-2xl font-extrabold pt-6 pb-4">
+          <div class="pb-4 pt-6 text-2xl font-extrabold">
             <template v-if="loading">{{
               t("search.loading-results")
             }}</template>
@@ -189,7 +189,7 @@ const { setQueue } = useNuxtApp().$mediaPlayer;
             </template>
           </div>
           <ol
-            class="grid grid-cols-tracklist grid-rows-1 w-full divide-y divide-label-separator"
+            class="grid w-full grid-cols-tracklist grid-rows-1 divide-y divide-label-separator"
           >
             <template v-for="item in list" :key="item.id">
               <TrackItem

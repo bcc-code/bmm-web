@@ -9,12 +9,12 @@ const isElectronOnMac =
 
 <template>
   <aside
-    class="flex-none flex max-h-screen w-[300px] flex-col border-r border-label-separator bg-background-2"
+    class="flex max-h-screen w-[300px] flex-none flex-col border-r border-label-separator bg-background-2"
   >
     <div
       class="flex items-center p-3 px-6"
       :class="{
-        'pt-8 pb-1': isElectronOnMac,
+        'pb-1 pt-8': isElectronOnMac,
       }"
       style="-webkit-app-region: drag"
     >

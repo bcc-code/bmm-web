@@ -11,13 +11,13 @@ defineProps<{
 
 <template>
   <li
-    class="group grid col-span-full relative grid-cols-subgrid cursor-pointer gap-3 py-3"
+    class="group relative col-span-full grid cursor-pointer grid-cols-subgrid gap-3 py-3"
   >
-    <NuxtLink class="grid col-span-full grid-cols-subgrid" :to="route">
+    <NuxtLink class="col-span-full grid grid-cols-subgrid" :to="route">
       <div
         class="absolute -inset-x-4 -inset-y-0 rounded-xl bg-background-2 opacity-0 group-hover:opacity-100"
       ></div>
-      <div class="relative grid col-span-full grid-cols-subgrid">
+      <div class="relative col-span-full grid grid-cols-subgrid">
         <CoverImage
           :src="cover"
           class="w-10"
@@ -25,7 +25,7 @@ defineProps<{
         />
         <div class="col-span-3 flex items-center">
           <h4
-            class="block truncate text-[17px] leading-6 font-medium"
+            class="block truncate text-[17px] font-medium leading-6"
             :title="label || ''"
           >
             {{ label }}

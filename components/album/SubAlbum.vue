@@ -26,28 +26,28 @@ const childTracks = computed(() => {
 
 <template>
   <section
-    class="block relative mr-3 cursor-pointer gap-2 duration-150 my-4"
-    :class="active ? 'rounded-3xl p-6 large-shadow' : 'group'"
+    class="relative my-4 mr-3 block cursor-pointer gap-2 duration-150"
+    :class="active ? 'large-shadow rounded-3xl p-6' : 'group'"
     @click.stop="expand"
   >
     <div
       v-if="!active"
-      class="absolute -inset-4 opacity-0 group-hover:opacity-100 bg-background-2 rounded-2xl"
+      class="absolute -inset-4 rounded-2xl bg-background-2 opacity-0 group-hover:opacity-100"
     ></div>
     <section v-if="album" class="relative flex items-center gap-4">
       <CoverImage :src="album.cover" class="w-[68px] rounded-md" />
       <div class="text-2xl font-extrabold">{{ album.title }}</div>
       <div
         v-if="album?.children && !active"
-        class="flex gap-1.5 ml-auto px-4 py-2 bg-background-2 rounded-3xl border-[1px] border-background-2 group-hover:border-label-separator"
+        class="ml-auto flex gap-1.5 rounded-3xl border-[1px] border-background-2 bg-background-2 px-4 py-2 group-hover:border-label-separator"
       >
-        <span class="font-semibold text-lg leading-6">{{
+        <span class="text-lg font-semibold leading-6">{{
           t("collection.track-count", album?.children.length)
         }}</span>
         <NuxtIcon name="icon.chevron.down" class="text-2xl" />
       </div>
 
-      <div v-if="active && album.children" class="flex gap-2 ml-auto">
+      <div v-if="active && album.children" class="ml-auto flex gap-2">
         <CopyToClipboard
           :link="{
             name: 'album-id',
@@ -70,7 +70,7 @@ const childTracks = computed(() => {
       :class="active ? 'active relative max-h-fit' : 'h-0 overflow-hidden'"
     >
       <div
-        class="py-3 mt-2 text-label-3 border-b-[1px] border-b-label-separator"
+        class="mt-2 border-b-[1px] border-b-label-separator py-3 text-label-3"
       >
         {{ t("collection.track-count", album?.children?.length) }}
       </div>
