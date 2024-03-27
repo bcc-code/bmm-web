@@ -15,6 +15,7 @@ export enum MediaPlayerStatus {
 export enum RepeatStatus {
   NoRepeat = 0,
   RepeatQueue = 1,
+  RepeatTrack = 2,
 }
 
 export interface MediaPlayer {
@@ -142,7 +143,9 @@ export const initMediaPlayer = (
           });
         }
 
-        if (hasNext.value) {
+        if (repeatStatus.value === RepeatStatus.RepeatTrack) {
+          restartTrack();
+        } else if (hasNext.value) {
           next();
         } else {
           stop();

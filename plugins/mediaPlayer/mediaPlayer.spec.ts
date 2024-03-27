@@ -1620,5 +1620,63 @@ describe("plugin mediaPlayer MediaTrack", () => {
       expect(currentTrackDurations).eql([NaN]);
       expect(statusValues).eql([MediaPlayerStatus.Stopped]);
     });
+
+    it("restarts the current track if repeat-mode is set to 'repeatTrack'", async () => {
+      // Arrange
+      const mediaPlayer = ref(setupPlayer());
+
+      mediaPlayer.value.setQueue([
+        { id: 1, type: "track" },
+        { id: 2, type: "track" },
+      ]);
+      mediaPlayer.value.repeatStatus = RepeatStatus.RepeatTrack;
+      await flushPromises();
+
+      MockedMediaTrack.mock.results[0]!.value.obj!.position = 100;
+      MockedMediaTrack.mock.results[0]!.value.obj!.d = 100;
+      await flushPromises();
+
+      const currentTracks: (TrackModel | undefined)[] = [];
+      watch(
+        () => mediaPlayer.value.currentTrack,
+        (v) => {
+          currentTracks.push(v);
+        },
+      );
+
+      const currentPositions: number[] = [];
+      watch(
+        () => mediaPlayer.value.currentPosition,
+        (v) => {
+          currentPositions.push(v);
+        },
+      );
+
+      const currentTrackDurations: number[] = [];
+      watch(
+        () => mediaPlayer.value.currentTrackDuration,
+        (v) => {
+          currentTrackDurations.push(v);
+        },
+      );
+
+      const statusValues: MediaPlayerStatus[] = [];
+      watch(
+        () => mediaPlayer.value.status,
+        (v) => {
+          statusValues.push(v);
+        },
+      );
+
+      // Act
+      MockedMediaTrack.mock.results[0]!.value.obj!.ended = true;
+      await flushPromises();
+
+      // Assert
+      expect(currentTracks).eql([]); // The current track shouldn't change.
+      expect(currentPositions).eql([0]);
+      expect(currentTrackDurations).eql([NaN]);
+      expect(statusValues).eql([]); // Status doesn't change because we remain playing
+    });
   });
 });

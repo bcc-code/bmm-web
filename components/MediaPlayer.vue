@@ -368,9 +368,20 @@ const onPointerDownProgressBar = () => {
                   ? 'bg-background-4 text-on-color-1'
                   : 'text-label-1'
               "
-              @click.stop="repeatStatus = (repeatStatus + 1) % 2"
+              @click.stop="repeatStatus = (repeatStatus + 1) % 3"
             >
-              <NuxtIcon name="icon.repeat" filled class="text-2xl" />
+              <NuxtIcon
+                v-if="repeatStatus < 2"
+                name="icon.repeat"
+                filled
+                class="text-2xl"
+              />
+              <NuxtIcon
+                v-else
+                name="icon.repeat.single"
+                filled
+                class="text-2xl"
+              />
             </button>
           </div>
         </div>
