@@ -442,6 +442,39 @@ describe("plugin mediaPlayer MediaTrack", () => {
       expect(mediaPlayer.value.currentTrack).eql({ id: 1, type: "track" });
     });
 
+    it("sets repeat-mode to 'RepeatQueue' if it was 'RepeatTrack'", async () => {
+      // Arrange
+      const mediaPlayer = ref(setupPlayer());
+
+      mediaPlayer.value.repeatStatus = RepeatStatus.RepeatTrack;
+      mediaPlayer.value.setQueue(
+        [
+          { id: 1, type: "track" },
+          { id: 2, type: "track" },
+        ],
+        1,
+      );
+      await flushPromises();
+      MockedMediaTrack.mockClear();
+
+      const currentTracks: (TrackModel | undefined)[] = [];
+      watch(
+        () => mediaPlayer.value.currentTrack,
+        (v) => {
+          currentTracks.push(v);
+        },
+      );
+
+      // Act
+      mediaPlayer.value.next();
+      await flushPromises();
+
+      // Assert
+      expect(MockedMediaTrack).toHaveBeenCalledOnce();
+      expect(currentTracks).eql([{ id: 1, type: "track" }]);
+      expect(mediaPlayer.value.repeatStatus).eq(RepeatStatus.RepeatQueue);
+    });
+
     it("destroys the old element when initializing the new", async () => {
       // Arrange
       const mediaPlayer = ref(setupPlayer());

@@ -100,6 +100,10 @@ export const initMediaPlayer = (
   function next() {
     if (!hasNext.value) return;
 
+    if (repeatStatus.value === RepeatStatus.RepeatTrack) {
+      repeatStatus.value = RepeatStatus.RepeatQueue;
+    }
+
     // When playing the next track in a list where the only track is playing, the index doesn't change; so we have to restart playing the same track manually.
     if (queue.value.length === 1 && queue.value.index === 0) {
       restartTrack();
