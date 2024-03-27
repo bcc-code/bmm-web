@@ -1,3 +1,4 @@
+import { relative, resolve } from "node:path";
 /* eslint-disable import/prefer-default-export */
 /* eslint import/no-extraneous-dependencies: ["error", {"devDependencies": true}] */
 import type { Nuxt } from "@nuxt/schema";
@@ -21,8 +22,12 @@ export async function CreateTypedIcons({
   try {
     if (!isHookCall) {
       if (location) {
-        nuxt.hook("builder:watch", (_, watchedPath) => {
-          if (watchedPath.startsWith(location)) {
+        nuxt.hook("builder:watch", (_, path) => {
+          const relativePath = relative(
+            nuxt.options.srcDir,
+            resolve(nuxt.options.srcDir, path),
+          );
+          if (relativePath.startsWith(location)) {
             CreateTypedIcons({
               nuxt,
               location,
