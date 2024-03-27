@@ -56,7 +56,12 @@ const convertModels = (models: IAllDocumentModels[]) => {
         items: currentSection,
         useFlex: el.useCoverCarousel === true,
       });
-    } else if (i === 0 || el.type === "recommendation") {
+    } else if (
+      i === 0 ||
+      el.type === "recommendation" ||
+      el.type === "InfoMessage" ||
+      el.type === "listening_streak"
+    ) {
       currentSection = [el];
       result.push({
         header: null,
@@ -229,6 +234,15 @@ const playSingleItem = (item: TrackModel) => {
               v-else-if="item.type === 'recommendation'"
               :item="item"
             />
+            <div
+              v-else-if="item.type === 'InfoMessage'"
+              class="col-span-full bg-background-2 rounded-2xl p-4 flex gap-3 font-medium"
+            >
+              <div>
+                <NuxtIcon name="icon.alert" class="text-2xl" />
+              </div>
+              {{ item.translatedMessage }}
+            </div>
 
             <li v-else class="col-span-full">
               <div style="background-color: rgba(255, 0, 0, 0.4); color: red">
