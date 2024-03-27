@@ -64,8 +64,7 @@ onBeforeMount(() => {
                 params: { id: playlistId },
               }"
             >
-              <ButtonStyled intent="secondary" icon="icon.link" icon-only>
-              </ButtonStyled>
+              <ButtonStyled intent="secondary" icon="icon.link"> </ButtonStyled>
             </CopyToClipboard>
           </div>
         </div>

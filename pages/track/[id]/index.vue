@@ -14,7 +14,10 @@ req
       });
     }
   })
-  .catch((error) => console.error(error));
+  .catch(
+    // TODO: Show an error message to the user
+    (error) => console.error(error),
+  );
 </script>
 <template>
   <div>

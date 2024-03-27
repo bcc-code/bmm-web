@@ -1,14 +1,11 @@
 <script lang="ts" setup>
-import type { RoutesNamesList } from "@typed-router";
+import type { RoutesNamedLocations } from "@typed-router";
 
 defineProps<{
-  id: number;
-  routeName: RoutesNamesList;
+  route: RoutesNamedLocations;
   cover: string | undefined | null;
   circle?: boolean;
   label: string | undefined | null;
-  subtitle?: string;
-  meta?: string;
 }>();
 </script>
 
@@ -16,13 +13,7 @@ defineProps<{
   <li
     class="group grid col-span-full relative grid-cols-subgrid cursor-pointer gap-3 py-3"
   >
-    <NuxtLink
-      class="grid col-span-full grid-cols-subgrid"
-      :to="{
-        name: routeName,
-        params: { id: id },
-      }"
-    >
+    <NuxtLink class="grid col-span-full grid-cols-subgrid" :to="route">
       <div
         class="absolute -inset-x-4 -inset-y-0 rounded-xl bg-background-2 opacity-0 group-hover:opacity-100"
       ></div>

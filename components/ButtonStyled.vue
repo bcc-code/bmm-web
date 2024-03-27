@@ -2,18 +2,17 @@
 import { cva } from "class-variance-authority";
 import type { NuxtIconName } from "#build/nuxt-icons";
 
-const props = withDefaults(
+const slots = useSlots();
+withDefaults(
   defineProps<{
     intent?: "primary" | "secondary";
     size?: "large" | "medium" | "small";
     icon?: NuxtIconName | null;
-    iconOnly?: boolean;
   }>(),
   {
     intent: "secondary",
     size: "medium",
     icon: null,
-    iconOnly: false,
   },
 );
 
@@ -30,7 +29,7 @@ const className = cva("rounded-full flex gap-1 justify-center items-center", {
     size: {
       large: "text-xl py-3 px-6",
       medium: `leading-6 text-lg font-semibold ${
-        props.iconOnly ? "p-2" : "px-4 py-2"
+        !slots.default ? "p-2" : "px-4 py-2"
       }`,
       small: "text-sm py-1.5 px-3",
     },
@@ -42,12 +41,12 @@ const className = cva("rounded-full flex gap-1 justify-center items-center", {
 </script>
 
 <template>
-  <button :class="className({ iconOnly, intent, size })">
+  <button :class="className({ iconOnly: !slots.default, intent, size })">
     <NuxtIcon
       v-if="icon"
       :name="icon"
       class="text-2xl leading-none"
-      :class="!iconOnly ? 'ml-[-6px]' : ''"
+      :class="!!slots.default ? '-ml-1.5' : ''"
     />
     <slot />
   </button>
