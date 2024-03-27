@@ -24,6 +24,7 @@ const isElectronOnMac =
         >Beta v{{ version }}</span
       >
     </div>
+    <div @click="throw new Error('throwing an error');">Throw error</div>
     <div class="flex-grow overflow-y-auto">
       <SidebarGroup>
         <SidebarItem

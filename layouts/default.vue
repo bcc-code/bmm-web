@@ -24,12 +24,9 @@ const { queue } = useNuxtApp().$mediaPlayer;
     <main class="relative flex-grow overflow-y-scroll">
       <AppToolbar />
       <div class="flex flex-row">
-        <NuxtErrorBoundary @error="onError">
+        <Suspense>
           <slot />
-          <template #error="{ error }">
-            <ErrorMsg :error="error.value" />
-          </template>
-        </NuxtErrorBoundary>
+        </Suspense>
 
         <transition
           enter-active-class="transition-all duration-200 ease-out"
