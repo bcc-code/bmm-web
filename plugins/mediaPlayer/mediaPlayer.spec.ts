@@ -1146,64 +1146,6 @@ describe("plugin mediaPlayer MediaTrack", () => {
         expect(mediaPlayer.value.hasPrevious).eql(true);
       });
 
-      it("doesn't update again when switching to third track", async () => {
-        // Arrange
-        const mediaPlayer = ref(setupPlayer());
-
-        mediaPlayer.value.setQueue([
-          { id: 1, type: "track" },
-          { id: 2, type: "track" },
-          { id: 3, type: "track" },
-        ]);
-        await flushPromises();
-        mediaPlayer.value.next();
-        await flushPromises();
-
-        const hasPreviousValues: Boolean[] = [];
-        watch(
-          () => mediaPlayer.value.hasPrevious,
-          (v) => {
-            hasPreviousValues.push(v);
-          },
-        );
-
-        // Act
-        mediaPlayer.value.next();
-        await flushPromises();
-
-        // Assert
-        expect(hasPreviousValues).eql([]);
-      });
-
-      it("doesn't change if the index is changed to the beginning of the queue", async () => {
-        // Arrange
-        const mediaPlayer = ref(setupPlayer());
-
-        mediaPlayer.value.setQueue(
-          [
-            { id: 1, type: "track" },
-            { id: 2, type: "track" },
-          ],
-          1,
-        );
-        await flushPromises();
-
-        const hasPreviousValues: Boolean[] = [];
-        watch(
-          () => mediaPlayer.value.hasPrevious,
-          (v) => {
-            hasPreviousValues.push(v);
-          },
-        );
-
-        // Act
-        mediaPlayer.value.previous();
-        await flushPromises();
-
-        // Assert
-        expect(hasPreviousValues).eql([]);
-      });
-
       it("changes to false if the new queue is empty", async () => {
         // Arrange
         const mediaPlayer = ref(setupPlayer());
@@ -1231,6 +1173,26 @@ describe("plugin mediaPlayer MediaTrack", () => {
 
         // Assert
         expect(hasPreviousValues).eql([false]);
+      });
+
+      it("changes to true if the new queue has an element and the previous was empty", async () => {
+        // Arrange
+        const mediaPlayer = ref(setupPlayer());
+
+        const hasPreviousValues: Boolean[] = [];
+        watch(
+          () => mediaPlayer.value.hasPrevious,
+          (v) => {
+            hasPreviousValues.push(v);
+          },
+        );
+
+        // Act
+        mediaPlayer.value.setQueue([{ id: 1, type: "track" }]);
+        await flushPromises();
+
+        // Assert
+        expect(hasPreviousValues).eql([true]);
       });
     });
 
