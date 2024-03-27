@@ -21,11 +21,16 @@ const onPressPlay = () => {
   }
 };
 const onPressShuffle = async () => {
-  const shuffledTracks = (await useContributorShuffle(contributorId)).data
-    .value;
+  try {
+    const shuffledTracks = (await useContributorShuffle(contributorId)).data
+      .value;
 
-  if (shuffledTracks) {
-    setQueue(shuffledTracks);
+    if (shuffledTracks) {
+      setQueue(shuffledTracks);
+    }
+  } catch (e) {
+    // TODO: Show an error message to the user
+    console.error("error", e);
   }
 };
 
@@ -72,7 +77,7 @@ async function load(skip: number, take: number) {
               params: { id: contributorId },
             }"
           >
-            <ButtonStyled icon="icon.link" icon-only></ButtonStyled>
+            <ButtonStyled icon="icon.link"></ButtonStyled>
           </CopyToClipboard>
         </div>
       </div>

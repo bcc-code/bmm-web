@@ -37,22 +37,25 @@ defineProps<{
         />
         <GenericListItem
           v-else-if="item.album"
-          :id="item.album.id"
-          route-name="album-id"
+          :route="{ name: 'album-id', params: { id: item.album.id } }"
           :cover="item.album.cover"
           :label="item.album.title"
         />
         <GenericListItem
           v-else-if="item.contributor"
-          :id="item.contributor.id"
-          route-name="playlist-contributor-id"
+          :route="{
+            name: 'playlist-contributor-id',
+            params: { id: item.contributor.id },
+          }"
           :cover="item.contributor.cover"
           :label="item.contributor.name"
         />
         <GenericListItem
           v-else-if="item.playlist"
-          :id="item.playlist.id"
-          route-name="playlist-curated-id"
+          :route="{
+            name: 'playlist-curated-id',
+            params: { id: item.playlist.id },
+          }"
           :cover="item.playlist.cover"
           :label="item.playlist.title"
         />

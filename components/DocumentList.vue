@@ -195,30 +195,29 @@ const playSingleItem = (item: TrackModel) => {
             />
             <GenericListItem
               v-else-if="item.type === 'contributor'"
-              :id="item.id"
-              route-name="playlist-contributor-id"
+              :route="{
+                name: 'playlist-contributor-id',
+                params: { id: item.id },
+              }"
               :cover="item.cover"
               circle
               :label="item.name"
             />
             <GenericListItem
               v-else-if="item.type === 'album'"
-              :id="item.id"
-              route-name="album-id"
+              :route="{ name: 'album-id', params: { id: item.id } }"
               :cover="item.cover"
               :label="item.title"
             />
             <GenericListItem
               v-else-if="item.type === 'playlist'"
-              :id="item.id"
-              route-name="playlist-curated-id"
+              :route="{ name: 'playlist-curated-id', params: { id: item.id } }"
               :cover="item.cover"
               :label="item.title"
             />
             <GenericListItem
               v-else-if="item.type === 'podcast'"
-              :id="item.id"
-              route-name="playlist-podcast-id"
+              :route="{ name: 'playlist-podcast-id', params: { id: item.id } }"
               :cover="item.cover"
               :label="item.title"
             />

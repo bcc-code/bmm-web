@@ -46,24 +46,34 @@ const tracksToTrackReferences = (tracks: TrackModel[] | undefined | null) => {
 };
 
 const savePlaylist = async () => {
-  showEditDialog.value = false;
-  await new TrackCollectionApi().trackCollectionIdPut({
-    id: props.playlist.id,
-    updateTrackCollectionCommand: {
+  try {
+    showEditDialog.value = false;
+    await new TrackCollectionApi().trackCollectionIdPut({
       id: props.playlist.id,
-      name: playlistName.value,
-      trackReferences: tracksToTrackReferences(props.playlist.tracks),
-    },
-  });
-  emit("playlist-changed");
-  refreshPrivatePlaylists();
+      updateTrackCollectionCommand: {
+        id: props.playlist.id,
+        name: playlistName.value,
+        trackReferences: tracksToTrackReferences(props.playlist.tracks),
+      },
+    });
+    emit("playlist-changed");
+    refreshPrivatePlaylists();
+  } catch (e) {
+    // TODO: Show an error message to the user
+    console.error(e);
+  }
 };
 const deletePlaylist = async () => {
-  navigateTo();
-  await new TrackCollectionApi().trackCollectionIdDelete({
-    id: props.playlist.id,
-  });
-  refreshPrivatePlaylists();
+  try {
+    navigateTo();
+    await new TrackCollectionApi().trackCollectionIdDelete({
+      id: props.playlist.id,
+    });
+    refreshPrivatePlaylists();
+  } catch (e) {
+    // TODO: Show an error message to the user
+    console.error(e);
+  }
 };
 
 const dropdownMenuItems = () => {
@@ -105,7 +115,7 @@ const dropdownMenuItems = () => {
 
     <MenuItems
       as="ul"
-      class="absolute right-[-100px] left-[-100px] mx-auto top-12 z-30 w-52 rounded-xl p-1 bg-background-3 shadow-[0_4px_12px_0_#0000000D,0_1px_4px_0_#0000000D,0_0_0_1px_#0000000D]"
+      class="absolute right-[-100px] left-[-100px] mx-auto top-12 z-30 whitespace-nowrap rounded-xl p-1 bg-background-3 shadow-[0_4px_12px_0_#0000000D,0_1px_4px_0_#0000000D,0_0_0_1px_#0000000D]"
     >
       <div class="py-0">
         <MenuItem

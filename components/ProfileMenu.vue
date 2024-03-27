@@ -36,6 +36,7 @@ const logout = async () => {
   try {
     await auth0.logout({ openUrl: false });
   } catch (e) {
+    // TODO: Show an error message to the user
     console.error(e);
   }
 };
@@ -90,7 +91,7 @@ const saveAndCloseContentLanguageDialog = () => {
         leave-to-class="transform scale-95 opacity-0"
       >
         <MenuItems
-          class="absolute right-0 mt-2 w-56 origin-top-right divide-y divide-label-separator rounded-xl bg-background-3 text-sm shadow-lg ring-1 ring-label-separator focus-visible:outline-none -separator"
+          class="absolute right-0 mt-2 whitespace-nowrap min-w-56 origin-top-right divide-y divide-label-separator rounded-xl bg-background-3 text-sm shadow-lg ring-1 ring-label-separator focus-visible:outline-none -separator"
         >
           <div class="p-1">
             <!-- Todo: #284 implement autoplay behavior -->
@@ -164,7 +165,7 @@ const saveAndCloseContentLanguageDialog = () => {
                 @click="showContentLanguageDialog = true"
               >
                 <p>{{ $t("profile.content-language") }}</p>
-                <span class="text-label-2 text-[13px]">
+                <span class="text-label-2 text-[13px] whitespace-normal">
                   {{
                     getLocalizedList(
                       contentLanguages.map((x) => getLocalizedLanguageName(x)),
