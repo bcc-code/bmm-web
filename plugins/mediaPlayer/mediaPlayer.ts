@@ -91,10 +91,14 @@ export const initMediaPlayer = (
 
   function restartTrack() {
     // TODO: Can we somehow reset the media-track?
+    // Might already be enough to set
+    // activeMedia.value.ended = false;
+    // activeMedia.value.position = 0;
+    // and call
+    // activeMedia.value.play()
+    // ... but additional testing and better understanding of what this implies is needed.
+
     initCurrentTrack();
-    // activeMedia.value!.ended = false;
-    // activeMedia.value!.position = 0;
-    // activeMedia.value!.play()
   }
 
   function next() {
