@@ -104,7 +104,7 @@
     "@intlify/vue-i18n/no-dynamic-keys": "warn",
     "@intlify/vue-i18n/no-unused-keys": [
       "warn",
-      { "extensions": [".json", ".vue", ".ts"] }
+      { "extensions": [".vue", ".ts"] }
     ]
   },
   "settings": {
