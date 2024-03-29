@@ -57,7 +57,7 @@ export default class MediaTrack {
    */
   constructor(
     srcGen: () => Promise<string>,
-    onError: (e: MediaError | null) => void,
+    onError: (e: MediaError | DOMException | unknown | null) => void,
     debug = false,
   ) {
     this.srcGenerator = srcGen;
@@ -226,6 +226,9 @@ export default class MediaTrack {
       // Set this track to paused on error. This error can occur for multiple reasons.
       // See https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/play#exceptions
       this.paused = true;
+
+      // DOMException (NotAllowedError or NotSupportedError) or any other the browser might choose.
+      this.onError(e);
     });
   }
 
