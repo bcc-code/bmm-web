@@ -110,7 +110,7 @@
   "settings": {
     "import/core-modules": ["#app"],
     "vue-i18n": {
-      "localeDir": "./src/locales/*.{json,json5,yaml,yml}"
+      "localeDir": "./locales/*.json"
     }
   }
 }
