@@ -57,7 +57,7 @@ export default class MediaTrack {
    */
   constructor(
     srcGen: () => Promise<string>,
-    onError: (e: MediaError | null) => void,
+    onError: (e: MediaError | DOMException | unknown | null) => void,
     debug = false,
   ) {
     this.srcGenerator = srcGen;
@@ -149,6 +149,13 @@ export default class MediaTrack {
       .then((_src) => {
         if (!this.ended) {
           this.audioElement.src = _src;
+
+          // This is to check whether a track can actually play after a source has been registered. Was implemented
+          // See: https://www.chromium.org/audio-video/autoplay/ and https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/play#exceptions
+          // The guide https://developer.mozilla.org/en-US/docs/Web/Media/Autoplay_guide cannot really be used because the there listed function Navigator.getAutoplayPolicy() is only available on Firefox.
+          if (this.audioElement.autoplay) {
+            this.playAudioElement();
+          }
         }
       })
       .catch((_) => {
@@ -214,9 +221,20 @@ export default class MediaTrack {
     });
   }
 
+  playAudioElement() {
+    this.audioElement.play().catch((e: unknown) => {
+      // Set this track to paused on error. This error can occur for multiple reasons.
+      // See https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/play#exceptions
+      this.paused = true;
+
+      // DOMException (NotAllowedError or NotSupportedError) or any other the browser might choose.
+      this.onError(e);
+    });
+  }
+
   play() {
     if (this.audioElement.currentSrc) {
-      this.audioElement.play();
+      this.playAudioElement();
     } else {
       this.registerSource();
     }

@@ -28,11 +28,41 @@ export default defineNuxtPlugin((_) => {
                   throw e;
                 }),
             (e) => {
-              useNuxtApp().$appInsights.event("[Player] playing media failed", {
-                errorCode: e?.code || 0,
-                errorMessage: e?.message || "",
-                url: src,
-              });
+              if (e instanceof MediaError) {
+                useNuxtApp().$appInsights.event(
+                  "[Player] playing media failed",
+                  {
+                    errorType: "MediaError",
+                    errorCode: e.code,
+                    errorMessage: e.message,
+                    url: src,
+                  },
+                );
+              } else if (e instanceof Error) {
+                if (e instanceof DOMException && e.name === "NotAllowedError") {
+                  // Ignore. This is an error the user has to resolve. See: https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/play#exceptions
+                  return;
+                }
+
+                useNuxtApp().$appInsights.event(
+                  "[Player] playing media failed",
+                  {
+                    errorType: e.constructor.name,
+                    errorName: e.name,
+                    errorMessage: e.message,
+                    url: src,
+                  },
+                );
+              } else {
+                useNuxtApp().$appInsights.event(
+                  "[Player] playing media failed",
+                  {
+                    errorType: e?.constructor.name || "",
+                    error: String(e),
+                    url: src,
+                  },
+                );
+              }
             },
           ),
         appInsights,
