@@ -44,6 +44,10 @@ async function load(skip: number, take: number) {
 }
 
 // TODO: Group episodes into weeks
+
+useHead({
+  title: computed(() => podcast.value?.title || t("nav.podcast")),
+});
 </script>
 
 <template>

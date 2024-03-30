@@ -14,6 +14,7 @@
     "search": "Search",
     "album": "Album",
     "podcast": "Podcast",
+    "unknown": "Unknown route",
     "contributor": "Contributor",
     "contributors": "Contributors"
   },
