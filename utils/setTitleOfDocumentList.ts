@@ -7,6 +7,9 @@ export default function setTitleOfDocumentList(
     data,
     () => {
       toolbarTitleStore().setToolbarTitle(data.value?.title ?? " ");
+      useHead({
+        title: computed(() => data.value?.title ?? ""),
+      });
     },
     { immediate: true },
   );

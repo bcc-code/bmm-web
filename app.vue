@@ -102,7 +102,7 @@ useProfileStore().$subscribe((_, state) => {
 });
 
 useHead({
-  titleTemplate: (chunk) => (chunk ? `BMM | ${chunk}` : "BMM"),
+  titleTemplate: (chunk) => (chunk ? `BMM - ${chunk}` : "BMM"),
 });
 </script>
 

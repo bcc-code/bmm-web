@@ -2,6 +2,9 @@
 const { t } = useI18n();
 const { data: list, pending } = useContributors();
 toolbarTitleStore().setReactiveToolbarTitle(() => t("nav.contributors"));
+useHead({
+  title: computed(() => t("nav.contributors")),
+});
 </script>
 
 <template>

@@ -5,6 +5,10 @@ toolbarTitleStore().setReactiveToolbarTitle(() => t("nav.album"));
 const { id } = useRoute<"album-id">().params;
 const albumId = Number(id);
 const { pending, data: album } = useAlbum({ id: albumId });
+
+useHead({
+  title: computed(() => album.value?.title || t("nav.album")),
+});
 </script>
 
 <template>
