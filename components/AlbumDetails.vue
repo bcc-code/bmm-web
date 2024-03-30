@@ -53,15 +53,17 @@ const childTracks = computed(
         </div>
       </div>
     </header>
-    <p v-if="album.children" class="py-2 text-label-3">
-      <template v-if="childAlbums.length > 0">
-        {{ t("collection.album-count", childAlbums.length) }}
-      </template>
-      <template v-else>
-        {{ t("collection.track-count", childTracks.length) }}
-      </template>
+    <p v-if="childTracks.length" class="py-2 text-label-3">
+      {{ t("collection.track-count", childTracks.length) }}
     </p>
     <TrackList :tracks="childTracks"> </TrackList>
+    <p
+      v-if="childAlbums.length"
+      class="py-2 text-label-3"
+      :class="{ 'mt-6': childAlbums.length }"
+    >
+      {{ t("collection.album-count", childAlbums.length) }}
+    </p>
     <template v-for="(child, i) in childAlbums" :key="`${child.id}-${i}`">
       <AlbumSubAlbum
         :id="child.id"
