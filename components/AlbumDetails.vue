@@ -4,11 +4,8 @@ import type { AlbumModel, TrackModel } from "@bcc-code/bmm-sdk-fetch";
 const { t } = useI18n();
 
 const props = defineProps<{
-  albumId: number;
+  album: AlbumModel;
 }>();
-
-const albumId = Number(props.albumId);
-const { data: album } = useAlbum({ id: albumId });
 
 const expandedAlbum = ref<string | null>(null);
 
@@ -21,12 +18,12 @@ const toggleExpandedAlbum = (albumReference: string) => {
 };
 const childAlbums = computed(
   () =>
-    album.value?.children?.filter((c): c is AlbumModel => c.type === "album") ||
+    props.album.children?.filter((c): c is AlbumModel => c.type === "album") ||
     [],
 );
 const childTracks = computed(
   () =>
-    album.value?.children?.filter((c): c is TrackModel => c.type === "track") ||
+    props.album.children?.filter((c): c is TrackModel => c.type === "track") ||
     [],
 );
 </script>
@@ -48,7 +45,7 @@ const childTracks = computed(
           <CopyToClipboard
             :link="{
               name: 'album-id',
-              params: { id: albumId },
+              params: { id: album.id },
             }"
           >
             <ButtonStyled icon="icon.link"></ButtonStyled>
