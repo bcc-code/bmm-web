@@ -33,7 +33,7 @@ const emit = defineEmits<{
         leave-from="opacity-100"
         leave-to="opacity-0"
       >
-        <DialogBackdrop class="fixed inset-0 z-30 bg-background-4 opacity-40" />
+        <DialogBackdrop class="fixed inset-0 z-30 bg-[#000000]/[0.6]" />
       </TransitionChild>
 
       <div
@@ -50,7 +50,7 @@ const emit = defineEmits<{
           leave-to="opacity-0 scale-95"
         >
           <DialogPanel
-            class="rounded-2xl bg-background-1 text-black-1 dark:text-white-1"
+            class="dialog-shadow rounded-2xl bg-background-1 text-label-1"
             @click.stop
           >
             <div class="mx-5 flex items-center justify-between">
@@ -79,3 +79,12 @@ const emit = defineEmits<{
     </Dialog>
   </TransitionRoot>
 </template>
+
+<style scoped>
+.dialog-shadow {
+  box-shadow:
+    0px 0px 0px 0.5px #0000000d,
+    0px 0px 1px 1px #0000000d,
+    0px 20px 52px 0px #00000040;
+}
+</style>

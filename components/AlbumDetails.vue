@@ -4,11 +4,8 @@ import type { AlbumModel, TrackModel } from "@bcc-code/bmm-sdk-fetch";
 const { t } = useI18n();
 
 const props = defineProps<{
-  albumId: number;
+  album: AlbumModel;
 }>();
-
-const albumId = Number(props.albumId);
-const { data: album } = useAlbum({ id: albumId });
 
 const expandedAlbum = ref<string | null>(null);
 
@@ -21,12 +18,12 @@ const toggleExpandedAlbum = (albumReference: string) => {
 };
 const childAlbums = computed(
   () =>
-    album.value?.children?.filter((c): c is AlbumModel => c.type === "album") ||
+    props.album.children?.filter((c): c is AlbumModel => c.type === "album") ||
     [],
 );
 const childTracks = computed(
   () =>
-    album.value?.children?.filter((c): c is TrackModel => c.type === "track") ||
+    props.album.children?.filter((c): c is TrackModel => c.type === "track") ||
     [],
 );
 </script>
@@ -48,7 +45,7 @@ const childTracks = computed(
           <CopyToClipboard
             :link="{
               name: 'album-id',
-              params: { id: albumId },
+              params: { id: album.id },
             }"
           >
             <ButtonStyled icon="icon.link"></ButtonStyled>
@@ -56,15 +53,17 @@ const childTracks = computed(
         </div>
       </div>
     </header>
-    <p v-if="album.children" class="py-2 text-label-3">
-      <template v-if="childAlbums.length > 0">
-        {{ t("collection.album-count", childAlbums.length) }}
-      </template>
-      <template v-else>
-        {{ t("collection.track-count", childTracks.length) }}
-      </template>
+    <p v-if="childTracks.length" class="py-2 text-label-3">
+      {{ t("collection.track-count", childTracks.length) }}
     </p>
     <TrackList :tracks="childTracks"> </TrackList>
+    <p
+      v-if="childAlbums.length"
+      class="py-2 text-label-3"
+      :class="{ 'mt-6': childAlbums.length }"
+    >
+      {{ t("collection.album-count", childAlbums.length) }}
+    </p>
     <template v-for="(child, i) in childAlbums" :key="`${child.id}-${i}`">
       <AlbumSubAlbum
         :id="child.id"

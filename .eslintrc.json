@@ -98,16 +98,19 @@
   },
   "plugins": ["vue", "@typescript-eslint", "vitest"],
   "rules": {
+    "@intlify/vue-i18n/valid-message-syntax": "warn",
+    "@intlify/vue-i18n/no-duplicate-keys-in-locale": "warn",
     "@intlify/vue-i18n/no-missing-keys-in-other-locales": "warn",
+    "@intlify/vue-i18n/no-dynamic-keys": "warn",
     "@intlify/vue-i18n/no-unused-keys": [
       "warn",
-      { "extensions": [".json", ".vue", ".ts"] }
+      { "extensions": [".vue", ".ts"] }
     ]
   },
   "settings": {
     "import/core-modules": ["#app"],
     "vue-i18n": {
-      "localeDir": "./src/locales/*.{json,json5,yaml,yml}"
+      "localeDir": "./locales/*.json"
     }
   }
 }
