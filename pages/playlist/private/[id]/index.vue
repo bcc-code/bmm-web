@@ -25,7 +25,6 @@ const onPressShuffle = () => {
   }
 };
 const addDropdownItems = (items: DropdownMenuItem[], track: TrackModel) => {
-  console.log("testing");
   items.push({
     icon: "icon.close.small",
     text: t("track.dropdown.remove-from-playlist"),
