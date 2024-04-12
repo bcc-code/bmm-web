@@ -9,12 +9,16 @@ const { sharingsecret } = useRoute<"playlist-shared-sharingsecret">().params;
 const request = useSharedPrivatePlaylist(sharingsecret);
 const { data: collection, pending } = request;
 
+const hasBeenAdded = ref(false);
 useHead({
   title: collection.value?.name || "",
 });
-const onAdd = () => {
+const onAdd = async () => {
   const api = new SharedPlaylistApi();
-  api.sharedPlaylistSharingSecretFollowPost({ sharingSecret: sharingsecret });
+  await api.sharedPlaylistSharingSecretFollowPost({
+    sharingSecret: sharingsecret,
+  });
+  hasBeenAdded.value = true;
 };
 const onPressShuffle = () => {
   if (collection.value?.tracks) {
@@ -45,7 +49,12 @@ const onPressShuffle = () => {
           </div>
         </div>
         <div class="flex gap-2">
-          <ButtonStyled icon="icon.add" intent="primary" @click="onAdd()">
+          <ButtonStyled
+            v-if="!hasBeenAdded"
+            icon="icon.add"
+            intent="primary"
+            @click="onAdd()"
+          >
             {{ t("playlist.action.add-to-my-playlists") }}
           </ButtonStyled>
           <ButtonStyled icon="icon.shuffle" @click="onPressShuffle()">
