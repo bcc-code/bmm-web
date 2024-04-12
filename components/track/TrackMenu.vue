@@ -13,7 +13,9 @@ const props = withDefaults(
   defineProps<{
     track: TrackModel;
     buttonClass?: string;
-    addDropdownItems?: (items: DropdownMenuItem[], track: TrackModel) => void;
+    addDropdownItems?:
+      | ((items: DropdownMenuItem[], track: TrackModel) => void)
+      | undefined;
   }>(),
   {
     buttonClass: "",

@@ -9,7 +9,9 @@ const props = defineProps<{
   track: TrackModel;
   showThumbnail?: boolean;
   isTrackTypeKnown: boolean;
-  addDropdownItems?: (items: DropdownMenuItem[], track: TrackModel) => void;
+  addDropdownItems?:
+    | ((items: DropdownMenuItem[], track: TrackModel) => void)
+    | undefined;
 }>();
 
 defineSlots<{
