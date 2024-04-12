@@ -21,6 +21,10 @@ const onPressShuffle = () => {
     setQueueShuffled(collection.value.tracks);
   }
 };
+const extractSecret = (link: string) => {
+  const parts = link.split("/");
+  return parts[parts.length - 1] || "";
+};
 </script>
 
 <template>
@@ -37,7 +41,7 @@ const onPressShuffle = () => {
         <div>
           <PageHeading>{{ collection?.name }}</PageHeading>
 
-          <div>
+          <div v-if="collection.authorName && !collection.canEdit">
             {{ t("playlist.by-x", { name: collection.authorName }) }}
           </div>
           <div v-if="collection?.tracks">
@@ -62,7 +66,16 @@ const onPressShuffle = () => {
           <PrivatePlaylistMenu
             :playlist="collection"
             @playlist-changed="request.refresh()"
-          ></PrivatePlaylistMenu>
+          />
+          <CopyToClipboard
+            v-if="collection.shareLink && collection.canEdit"
+            :link="{
+              name: 'playlist-shared-sharingsecret',
+              params: { sharingsecret: extractSecret(collection.shareLink) },
+            }"
+          >
+            <ButtonStyled icon="icon.link"></ButtonStyled>
+          </CopyToClipboard>
         </div>
       </div>
     </header>
