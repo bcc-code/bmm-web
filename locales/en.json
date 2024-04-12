@@ -105,7 +105,8 @@
       "share": "Share track",
       "go-to-contributors": "Go to contributors",
       "more-info": "More information",
-      "show-all": "Show all"
+      "show-all": "Show all",
+      "remove-from-playlist": "Remove from playlist"
     },
     "a11y": {
       "download": "Download",

@@ -9,6 +9,7 @@ const props = defineProps<{
   track: TrackModel;
   showThumbnail?: boolean;
   isTrackTypeKnown: boolean;
+  addDropdownItems?: (items: DropdownMenuItem[], track: TrackModel) => void;
 }>();
 
 defineSlots<{
@@ -140,6 +141,7 @@ const selectedTrack: Ref<TrackModel | null> = ref(null);
             'p-2 hover:bg-label-separator ' +
             (isPlaying ? 'text-black-1 hover:text-black-1' : 'text-label-1')
           "
+          :add-dropdown-items="props.addDropdownItems"
         />
       </div>
     </div>
