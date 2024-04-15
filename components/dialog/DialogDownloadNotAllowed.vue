@@ -6,8 +6,10 @@ defineEmits<{
   close: [];
 }>();
 
+const runtimeConfig = useRuntimeConfig();
+const email = runtimeConfig.public.mediaSupportEmail;
 const contact = () => {
-  window.location.href = "mailto:support@bcc.media";
+  window.location.href = `mailto:${email}`;
 };
 </script>
 
@@ -34,7 +36,7 @@ const contact = () => {
         <template #content>
           <div class="rounded-2xl bg-background-1 px-5 py-3 shadow-md">
             <p class="text-sm text-label-2">
-              {{ $t("download.sendEmailTo", ["support@bcc.media"]) }}
+              {{ $t("download.sendEmailTo", [email]) }}
             </p>
           </div>
         </template>
