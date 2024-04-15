@@ -1,9 +1,8 @@
 <script lang="ts" setup>
-import type { NuxtIconName } from "#build//nuxt-icons";
-import type { RoutesNamedLocations } from "#build/typed-router";
 import type { TrackModel } from "@bcc-code/bmm-sdk-fetch";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/vue";
 
+const runtimeConfig = useRuntimeConfig();
 const { t } = useI18n();
 const { addNext, addToQueue } = useNuxtApp().$mediaPlayer;
 
@@ -11,24 +10,25 @@ const copyToClipboardComponent = ref<null | { copyToClipboard: () => void }>(
   null,
 );
 
-withDefaults(
+const props = withDefaults(
   defineProps<{
     track: TrackModel;
     buttonClass?: string;
+    addDropdownItems?:
+      | ((items: DropdownMenuItem[], track: TrackModel) => void)
+      | undefined;
   }>(),
   {
     buttonClass: "",
   },
 );
 
-type DropdownMenuItem = {
-  text: string;
-  icon?: NuxtIconName;
-} & ({ link: RoutesNamedLocations } | { clickFunction: Function });
-
 const showInfo = ref(false);
 const showAddToPlaylist = ref(false);
 const showContributorsList = ref(false);
+
+const { download } = useWebDownload();
+const showDownloadDialog = ref(false);
 
 const dropdownMenuItemsForTrack = (track: TrackModel) => {
   const items: DropdownMenuItem[] = [];
@@ -44,6 +44,19 @@ const dropdownMenuItemsForTrack = (track: TrackModel) => {
       icon: "icon.category.album",
       text: t("track.dropdown.go-to-album"),
       link: { name: "album-id", params: { id: track.meta.parent.id } },
+    });
+  }
+
+  if (runtimeConfig.public.systemName !== "Electron") {
+    items.push({
+      icon: "icon.download",
+      text: t("track.dropdown.download"),
+      clickFunction: async () => {
+        const result = await download(track);
+        if (result === "no-permission") {
+          showDownloadDialog.value = true;
+        }
+      },
     });
   }
 
@@ -89,6 +102,10 @@ const dropdownMenuItemsForTrack = (track: TrackModel) => {
       showInfo.value = true;
     },
   });
+
+  if (props.addDropdownItems) {
+    props.addDropdownItems(items, track);
+  }
 
   return items;
 };
@@ -154,6 +171,10 @@ const dropdownMenuItemsForTrack = (track: TrackModel) => {
   >
     <TrackContributors :track="track"></TrackContributors>
   </DialogBase>
+  <DialogDownloadNotAllowed
+    :show="showDownloadDialog"
+    @close="showDownloadDialog = false"
+  />
   <CopyToClipboard
     ref="copyToClipboardComponent"
     :link="{ name: 'track-id', params: { id: track.id } }"

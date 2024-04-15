@@ -9,6 +9,9 @@ const props = defineProps<{
   track: TrackModel;
   showThumbnail?: boolean;
   isTrackTypeKnown: boolean;
+  addDropdownItems?:
+    | ((items: DropdownMenuItem[], track: TrackModel) => void)
+    | undefined;
 }>();
 
 defineSlots<{
@@ -111,7 +114,7 @@ const selectedTrack: Ref<TrackModel | null> = ref(null);
       <div class="flex items-center">
         <span class="text-label-3">
           <TimeDuration
-            :duration="((track.media || [])[0]?.files || [])[0]?.duration || 0"
+            :duration="defaultFileForTrack(track)?.duration || 0"
           ></TimeDuration>
         </span>
       </div>
@@ -140,6 +143,7 @@ const selectedTrack: Ref<TrackModel | null> = ref(null);
             'p-2 hover:bg-label-separator ' +
             (isPlaying ? 'text-black-1 hover:text-black-1' : 'text-label-1')
           "
+          :add-dropdown-items="props.addDropdownItems"
         />
       </div>
     </div>
