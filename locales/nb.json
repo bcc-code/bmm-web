@@ -105,7 +105,8 @@
       "share": "Del spor",
       "go-to-contributors": "Vis bidragsytere",
       "more-info": "Mer informasjon",
-      "show-all": "Vis alle"
+      "show-all": "Vis alle",
+      "remove-from-playlist": "Slett fra spilleliste"
     },
     "a11y": {
       "download": "Last ned",
