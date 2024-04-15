@@ -29,6 +29,7 @@ const extractSecret = (link: string) => {
   return parts[parts.length - 1] || "";
 };
 const addDropdownItems = (items: DropdownMenuItem[], track: TrackModel) => {
+  if (!collection.value || !collection.value.canEdit) return;
   items.push({
     icon: "icon.close.small",
     text: t("track.dropdown.remove-from-playlist"),
