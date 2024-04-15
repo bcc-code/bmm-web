@@ -111,7 +111,7 @@ const selectedTrack: Ref<TrackModel | null> = ref(null);
       <div class="flex items-center">
         <span class="text-label-3">
           <TimeDuration
-            :duration="((track.media || [])[0]?.files || [])[0]?.duration || 0"
+            :duration="defaultFileForTrack(track)?.duration || 0"
           ></TimeDuration>
         </span>
       </div>

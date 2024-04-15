@@ -73,6 +73,15 @@
       "redirect-link": "click to try again"
     }
   },
+  "download": {
+    "download": "Download",
+    "download-track": "Download track",
+    "messages-not-allowed": {
+      "title": "Download of messages unavailable",
+      "description": "The ability to download messages from BMM is no longer available. If you need a message for a specific use, please contact us and explain your needs."
+    },
+    "sendEmailTo": "Send email to {0}"
+  },
   "playlist": {
     "add": "Add playlist",
     "new-playlist": "New playlist",
@@ -99,6 +108,7 @@
   "track": {
     "dropdown": {
       "play-next": "Play next",
+      "download": "Download",
       "go-to-album": "Go to album",
       "add-to-queue": "Add to queue",
       "add-to-playlist": "Add to playlist",
