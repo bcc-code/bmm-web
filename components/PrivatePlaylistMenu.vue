@@ -71,7 +71,7 @@ const dropdownMenuItems = () => {
   } else {
     items.push({
       icon: "icon.close.small",
-      text: "Remove playlist",
+      text: t("playlist.action.remove-shared-playlist"),
       clickFunction: async () => {
         const api = new TrackCollectionApi();
         await api.trackCollectionIdUnfollowPost({
