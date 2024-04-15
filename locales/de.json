@@ -105,7 +105,8 @@
       "share": "Titel teilen",
       "go-to-contributors": "Zur Person",
       "more-info": "Mehr Informationen",
-      "show-all": "Alle anzeigen"
+      "show-all": "Alle anzeigen",
+      "remove-from-playlist": "Aus der Playlist entfernen"
     },
     "a11y": {
       "download": "Herunterladen",
