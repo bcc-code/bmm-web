@@ -8,9 +8,6 @@ defineEmits<{
 
 const runtimeConfig = useRuntimeConfig();
 const email = runtimeConfig.public.mediaSupportEmail;
-const contact = () => {
-  window.location.href = `mailto:${email}`;
-};
 </script>
 
 <template>
@@ -30,9 +27,11 @@ const contact = () => {
         {{ $t("download.messages-not-allowed.description") }}
       </p>
       <TooltipBase placement="top" :offset="8" class="mb-3 mt-5">
-        <ButtonStyled intent="primary" @click="contact">
-          {{ $t("profile.contact") }}
-        </ButtonStyled>
+        <a :href="`mailto:${email}`">
+          <ButtonStyled intent="primary">
+            {{ $t("profile.contact") }}
+          </ButtonStyled>
+        </a>
         <template #content>
           <div class="rounded-2xl bg-background-1 px-5 py-3 shadow-md">
             <p class="text-sm text-label-2">
