@@ -1,6 +1,4 @@
 <script lang="ts" setup>
-import type { NuxtIconName } from "#build//nuxt-icons";
-import type { RoutesNamedLocations } from "#build/typed-router";
 import type { TrackModel } from "@bcc-code/bmm-sdk-fetch";
 import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/vue";
 
@@ -12,20 +10,18 @@ const copyToClipboardComponent = ref<null | { copyToClipboard: () => void }>(
   null,
 );
 
-withDefaults(
+const props = withDefaults(
   defineProps<{
     track: TrackModel;
     buttonClass?: string;
+    addDropdownItems?:
+      | ((items: DropdownMenuItem[], track: TrackModel) => void)
+      | undefined;
   }>(),
   {
     buttonClass: "",
   },
 );
-
-type DropdownMenuItem = {
-  text: string;
-  icon?: NuxtIconName;
-} & ({ link: RoutesNamedLocations } | { clickFunction: Function });
 
 const showInfo = ref(false);
 const showAddToPlaylist = ref(false);
@@ -106,6 +102,10 @@ const dropdownMenuItemsForTrack = (track: TrackModel) => {
       showInfo.value = true;
     },
   });
+
+  if (props.addDropdownItems) {
+    props.addDropdownItems(items, track);
+  }
 
   return items;
 };

@@ -1,4 +1,7 @@
 <script lang="ts" setup>
+import { TrackCollectionApi } from "@bcc-code/bmm-sdk-fetch";
+import type { TrackModel } from "@bcc-code/bmm-sdk-fetch";
+
 const { t } = useI18n();
 const { setQueue, setQueueShuffled } = useNuxtApp().$mediaPlayer;
 toolbarTitleStore().setReactiveToolbarTitle(() => t("nav.playlist"));
@@ -20,6 +23,26 @@ const onPressShuffle = () => {
   if (collection.value?.tracks) {
     setQueueShuffled(collection.value.tracks);
   }
+};
+const addDropdownItems = (items: DropdownMenuItem[], track: TrackModel) => {
+  items.push({
+    icon: "icon.close.small",
+    text: t("track.dropdown.remove-from-playlist"),
+    clickFunction: async () => {
+      if (!collection.value) return;
+      await new TrackCollectionApi().trackCollectionIdPut({
+        id: collectionId,
+        updateTrackCollectionCommand: {
+          id: collectionId,
+          name: collection.value.name || "",
+          trackReferences: tracksToTrackReferences(
+            collection.value?.tracks?.filter((x) => x !== track),
+          ),
+        },
+      });
+      request.refresh();
+    },
+  });
 };
 </script>
 
@@ -64,6 +87,7 @@ const onPressShuffle = () => {
       :skeleton-count="5"
       :show-skeleton="pending"
       :tracks="collection?.tracks || null"
+      :add-dropdown-items="addDropdownItems"
     >
     </TrackList>
   </div>
