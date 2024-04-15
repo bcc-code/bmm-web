@@ -89,8 +89,11 @@
     "delete-playlist": "Delete playlist",
     "delete-playlist-description": "Are you sure you want to delete the playlist? This action cannot be reversed.",
     "action": {
-      "shuffle": "Shuffle"
-    }
+      "shuffle": "Shuffle",
+      "add-to-my-playlists": "Add to my playlists",
+      "remove-shared-playlist": "Remove playlist"
+    },
+    "by-x": "by {name}"
   },
   "podcast": {
     "action": {

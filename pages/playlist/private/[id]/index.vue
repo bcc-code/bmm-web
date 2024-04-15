@@ -24,7 +24,12 @@ const onPressShuffle = () => {
     setQueueShuffled(collection.value.tracks);
   }
 };
+const extractSecret = (link: string) => {
+  const parts = link.split("/");
+  return parts[parts.length - 1] || "";
+};
 const addDropdownItems = (items: DropdownMenuItem[], track: TrackModel) => {
+  if (!collection.value || !collection.value.canEdit) return;
   items.push({
     icon: "icon.close.small",
     text: t("track.dropdown.remove-from-playlist"),
@@ -49,19 +54,25 @@ const addDropdownItems = (items: DropdownMenuItem[], track: TrackModel) => {
 <template>
   <div>
     <header class="mb-12 flex gap-6">
-      <div
-        class="mt-10 flex aspect-square w-[240px] justify-center rounded-2xl bg-background-2"
-      >
-        <NuxtIcon name="icon.category.playlist" class="text-8xl"></NuxtIcon>
+      <div class="mt-10 w-[240px] shrink-0">
+        <div
+          class="flex aspect-square w-[240px] shrink-0 justify-center rounded-2xl bg-background-2"
+        >
+          <NuxtIcon name="icon.category.playlist" class="text-8xl"></NuxtIcon>
+        </div>
       </div>
       <div v-if="collection" class="flex flex-col justify-between px-6 pt-4">
         <div>
           <PageHeading>{{ collection?.name }}</PageHeading>
+
+          <div v-if="collection.authorName && !collection.canEdit">
+            {{ t("playlist.by-x", { name: collection.authorName }) }}
+          </div>
           <div v-if="collection?.tracks">
             {{ t("collection.track-count", collection.tracks.length) }}
           </div>
         </div>
-        <div class="flex gap-2">
+        <div class="mt-2 flex gap-2">
           <ButtonStyled
             intent="primary"
             icon="icon.play"
@@ -79,7 +90,16 @@ const addDropdownItems = (items: DropdownMenuItem[], track: TrackModel) => {
           <PrivatePlaylistMenu
             :playlist="collection"
             @playlist-changed="request.refresh()"
-          ></PrivatePlaylistMenu>
+          />
+          <CopyToClipboard
+            v-if="collection.shareLink && collection.canEdit"
+            :link="{
+              name: 'playlist-shared-sharingsecret',
+              params: { sharingsecret: extractSecret(collection.shareLink) },
+            }"
+          >
+            <ButtonStyled icon="icon.link"></ButtonStyled>
+          </CopyToClipboard>
         </div>
       </div>
     </header>

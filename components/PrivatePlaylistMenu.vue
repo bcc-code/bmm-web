@@ -54,19 +54,34 @@ const deletePlaylist = async () => {
 const dropdownMenuItems = () => {
   const items: DropdownMenuItem[] = [];
 
-  items.push({
-    icon: "icon.comment",
-    text: t("edit.rename"),
-    clickFunction: () => {
-      playlistName.value = props.playlist.name || "";
-      showEditDialog.value = true;
-    },
-  });
-  items.push({
-    icon: "icon.close.small",
-    text: t("edit.delete"),
-    clickFunction: () => (showDeleteDialog.value = true),
-  });
+  if (props.playlist.canEdit) {
+    items.push({
+      icon: "icon.comment",
+      text: t("edit.rename"),
+      clickFunction: () => {
+        playlistName.value = props.playlist.name || "";
+        showEditDialog.value = true;
+      },
+    });
+    items.push({
+      icon: "icon.close.small",
+      text: t("edit.delete"),
+      clickFunction: () => (showDeleteDialog.value = true),
+    });
+  } else {
+    items.push({
+      icon: "icon.close.small",
+      text: t("playlist.action.remove-shared-playlist"),
+      clickFunction: async () => {
+        const api = new TrackCollectionApi();
+        await api.trackCollectionIdUnfollowPost({
+          id: props.playlist.id,
+        });
+        navigateTo();
+        refreshPrivatePlaylists();
+      },
+    });
+  }
 
   return items;
 };
