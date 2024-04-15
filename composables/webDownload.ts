@@ -11,7 +11,7 @@ function downloadTrack(track: TrackModel, accessToken: string) {
 }
 
 export type DownloadResult = "no-permission" | "downloaded";
-export function useTrackDownloader() {
+export function useWebDownload() {
   const { getAccessTokenSilently } = useAuth0();
   const currentUser = useCurrentUser();
 

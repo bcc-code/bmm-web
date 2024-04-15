@@ -27,7 +27,7 @@ const showInfo = ref(false);
 const showAddToPlaylist = ref(false);
 const showContributorsList = ref(false);
 
-const { download } = useTrackDownloader();
+const { download } = useWebDownload();
 const showDownloadDialog = ref(false);
 
 const dropdownMenuItemsForTrack = (track: TrackModel) => {
