@@ -19,6 +19,14 @@ const onAdd = async () => {
     sharingSecret: sharingsecret,
   });
   hasBeenAdded.value = true;
+  refreshPrivatePlaylists();
+
+  if (collection.value) {
+    navigateTo({
+      name: "playlist-private-id",
+      params: { id: collection.value.id },
+    });
+  }
 };
 const onPressShuffle = () => {
   if (collection.value?.tracks) {
