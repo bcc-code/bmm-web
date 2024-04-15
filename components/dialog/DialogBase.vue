@@ -54,7 +54,9 @@ const emit = defineEmits<{
             @click.stop
           >
             <div class="mx-5 flex items-center justify-between">
-              <DialogTitle class="py-4 font-semibold">{{ title }}</DialogTitle>
+              <DialogTitle class="mr-2 py-4 font-semibold">
+                {{ title }}
+              </DialogTitle>
               <ButtonStyled
                 v-if="!hideButton"
                 intent="primary"

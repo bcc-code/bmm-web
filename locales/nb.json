@@ -99,6 +99,7 @@
   "track": {
     "dropdown": {
       "play-next": "Spill av som neste",
+      "download": "Last ned",
       "go-to-album": "Gå til albumet",
       "add-to-queue": "Legg til i køen",
       "add-to-playlist": "Legg til i spilleliste",

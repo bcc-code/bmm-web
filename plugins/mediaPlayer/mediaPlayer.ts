@@ -79,7 +79,7 @@ export const initMediaPlayer = (
 
     activeMedia.value?.destroy();
 
-    let url = track.media?.[0]?.files?.[0]?.url || "";
+    let url = defaultFileForTrack(track)?.url || "";
     if (nextStartPosition > 0) {
       url = `${url}#t=${new Date(nextStartPosition * 1000).toISOString().slice(11, 19)}`;
       nextStartPosition = 0;
