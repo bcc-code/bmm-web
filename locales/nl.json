@@ -73,6 +73,15 @@
       "redirect-link": "Klik om opnieuw te proberen"
     }
   },
+  "download": {
+    "download": "Download",
+    "download-track": "Nummer downloaden",
+    "messages-not-allowed": {
+      "title": "Download of messages unavailable",
+      "description": "Er is geen mogelijkheid meer om via BMM toespraken te downloaden. Als je een toespraak nodig hebt voor een specifiek doel, neem dan contact op met ons om je wensen te bespreken."
+    },
+    "sendEmailTo": "Send email to {0}"
+  },
   "playlist": {
     "add": "Afspeellijst toevoegen",
     "new-playlist": "Nieuwe afspeellijst",
@@ -80,8 +89,11 @@
     "delete-playlist": "Afspeellijst verwijderen",
     "delete-playlist-description": "Weet je zeker dat je de afspeellijst wilt verwijderen? Deze actie kan niet ongedaan worden gemaakt.",
     "action": {
-      "shuffle": "Shuffle"
-    }
+      "shuffle": "Shuffle",
+      "add-to-my-playlists": "Toevoegen aan mijn afspeellijst",
+      "remove-shared-playlist": "Afspeellijst verwijderen"
+    },
+    "by-x": "by {name}"
   },
   "podcast": {
     "action": {
@@ -99,6 +111,7 @@
   "track": {
     "dropdown": {
       "play-next": "Volgende afspelen",
+      "download": "Download",
       "go-to-album": "Ga naar album",
       "add-to-queue": "Toevoegen aan wachtrij",
       "add-to-playlist": "Toevoegen aan afspeellijst",
