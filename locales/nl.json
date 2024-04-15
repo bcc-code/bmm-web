@@ -77,10 +77,10 @@
     "download": "Download",
     "download-track": "Nummer downloaden",
     "messages-not-allowed": {
-      "title": "Download of messages unavailable",
+      "title": "Het downloaden van toespraken is niet beschikbaar",
       "description": "Er is geen mogelijkheid meer om via BMM toespraken te downloaden. Als je een toespraak nodig hebt voor een specifiek doel, neem dan contact op met ons om je wensen te bespreken."
     },
-    "sendEmailTo": "Send email to {0}"
+    "sendEmailTo": "Stuur een e-mail naar {0}"
   },
   "playlist": {
     "add": "Afspeellijst toevoegen",
@@ -93,7 +93,7 @@
       "add-to-my-playlists": "Toevoegen aan mijn afspeellijst",
       "remove-shared-playlist": "Afspeellijst verwijderen"
     },
-    "by-x": "by {name}"
+    "by-x": "door {name}"
   },
   "podcast": {
     "action": {
