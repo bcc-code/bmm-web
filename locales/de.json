@@ -19,7 +19,7 @@
   },
   "sidebar": {
     "playlists": {
-      "title": "Playlists"
+      "title": "Wiedergabelisten"
     }
   },
   "share": {
@@ -73,15 +73,27 @@
       "redirect-link": "Klicken, um es erneut zu versuchen"
     }
   },
+  "download": {
+    "download": "Herunterladen",
+    "download-track": "Titel herunterladen",
+    "messages-not-allowed": {
+      "title": "Herunterladen von Reden nicht möglich",
+      "description": "Es nicht länger möglich Reden von BMM herunterzuladen. Falls du eine Rede aus einem bestimmten Grund brauchst, schreibe uns und erkläre warum du die Rede brauchst."
+    },
+    "sendEmailTo": "E-Mail senden an {0}"
+  },
   "playlist": {
     "add": "Playlist hinzufügen",
-    "new-playlist": "Neue Playlist",
+    "new-playlist": "Neue Wiedergabeliste",
     "name-your-playlist": "Wiedergabeliste benennen",
     "delete-playlist": "Playlist löschen",
     "delete-playlist-description": "Bist du sicher, dass du die Wiedergabeliste löschen möchtest? Diese Aktion kann nicht rückgängig gemacht werden.",
     "action": {
-      "shuffle": "Zufällige Wiedergabe"
-    }
+      "shuffle": "Zufällige Wiedergabe",
+      "add-to-my-playlists": "Zu meinen Wiedergabelisten hinzufügen",
+      "remove-shared-playlist": "Wiedergabeliste entfernen"
+    },
+    "by-x": "von {name}"
   },
   "podcast": {
     "action": {
@@ -99,6 +111,7 @@
   "track": {
     "dropdown": {
       "play-next": "Als nächstes abspielen",
+      "download": "Herunterladen",
       "go-to-album": "Album öffnen",
       "add-to-queue": "Zur Warteschlange hinzufügen",
       "add-to-playlist": "Zur Playlist hinzufügen",
@@ -106,7 +119,7 @@
       "go-to-contributors": "Zur Person",
       "more-info": "Mehr Informationen",
       "show-all": "Alle anzeigen",
-      "remove-from-playlist": "Aus der Playlist entfernen"
+      "remove-from-playlist": "Aus Wiedergabeliste entfernen"
     },
     "a11y": {
       "download": "Herunterladen",
