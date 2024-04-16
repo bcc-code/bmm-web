@@ -4,6 +4,7 @@ import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/vue";
 
 const runtimeConfig = useRuntimeConfig();
 const { t } = useI18n();
+const { $appInsights } = useNuxtApp();
 const { addNext, addToQueue } = useNuxtApp().$mediaPlayer;
 
 const copyToClipboardComponent = ref<null | { copyToClipboard: () => void }>(
@@ -54,7 +55,10 @@ const dropdownMenuItemsForTrack = (track: TrackModel) => {
       clickFunction: async () => {
         const result = await download(track);
         if (result === "no-permission") {
+          $appInsights.event("denied downloading track", { trackId: track.id });
           showDownloadDialog.value = true;
+        } else {
+          $appInsights.event("track downloaded", { trackId: track.id });
         }
       },
     });
