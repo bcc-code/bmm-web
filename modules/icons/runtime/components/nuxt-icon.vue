@@ -43,6 +43,7 @@ watchEffect(getIcon);
 .nuxt-icon {
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 .nuxt-icon svg {
   width: 1em;

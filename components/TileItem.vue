@@ -1,14 +1,27 @@
 <script lang="ts" setup>
-import type { TileModel } from "@bcc-code/bmm-sdk-fetch";
+import { PodcastApi, type TileModel } from "@bcc-code/bmm-sdk-fetch";
 
-defineProps<{
+const props = defineProps<{
   item: TileModel;
 }>();
 
-const emit = defineEmits<{ "play-track": [] }>();
+const { setQueue } = useNuxtApp().$mediaPlayer;
 
 function playTrack() {
-  emit("play-track");
+  if (!props.item.track) return;
+  if (props.item.lastPositionInMs)
+    setQueue([props.item.track], 0, props.item.lastPositionInMs / 1000);
+  else setQueue([props.item.track]);
+  // ToDo: load linked album (from showAllLink) and add remaining items to the queue
+}
+
+async function shufflePodcast() {
+  if (props.item.shufflePodcastId) {
+    const tracks = await new PodcastApi().podcastIdShuffleGet({
+      id: props.item.shufflePodcastId,
+    });
+    setQueue(tracks);
+  }
 }
 
 const { locale } = useI18n();
@@ -65,12 +78,22 @@ const weekDay = (date: Date) => {
       <div v-else class="text-sm">
         {{ item.subtitle }}
       </div>
-      <div class="mt-auto flex w-full flex-row pt-1.5">
+      <div class="mt-auto flex w-full flex-row gap-3.5 pt-1.5">
         <button
           class="h-10 w-10 rounded-full bg-black-1"
           @click.stop="playTrack"
         >
           <NuxtIcon name="icon.play" class="p-2 text-2xl text-white-1" />
+        </button>
+        <button
+          v-if="item.shufflePodcastId"
+          class="h-10 w-10 rounded-full border-[1px] border-label-separator"
+          @click.stop="shufflePodcast"
+        >
+          <NuxtIcon
+            name="icon.shuffle"
+            class="aspect-square p-1 text-xl text-black-1"
+          />
         </button>
         <TrackMenu :track="item.track" class="ml-auto"></TrackMenu>
       </div>

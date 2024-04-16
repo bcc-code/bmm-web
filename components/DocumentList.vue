@@ -94,13 +94,6 @@ const playItem = (item: TrackModel, group: IDiscoverableGroup) => {
     items.findIndex((track) => track.id === item.id),
   );
 };
-const playSingleItem = (item: TileModel) => {
-  if (!item.track) return;
-  if (item.lastPositionInMs)
-    setQueue([item.track], 0, item.lastPositionInMs / 1000);
-  else setQueue([item.track]);
-  // ToDo: load linked album (from showAllLink) and add remaining items to the queue
-};
 </script>
 
 <template>
@@ -154,7 +147,6 @@ const playSingleItem = (item: TileModel) => {
             <TileItem
               v-if="item.type === 'Tile' && item.track"
               :item="item"
-              @play-track="playSingleItem(item)"
             ></TileItem>
           </template>
         </div>
