@@ -33,26 +33,31 @@ const weekDay = (date: Date) => {
 <template>
   <div
     v-if="item.showAllLink && item.track && item.title"
-    class="bg- flex h-[200px] w-[400px] flex-row rounded-2xl"
+    class="flex w-full max-w-[480px] flex-col gap-4 rounded-2xl p-4 md:aspect-[2/1] md:flex-row md:gap-0 md:p-0"
+    :style="'background: ' + (item.backgroundColor ?? '#F5F6F7')"
   >
     <NuxtLink
       :to="parseLink(item.showAllLink)"
-      class="aspect-square w-1/2 rounded-l-2xl"
+      class="aspect-square w-[120px] rounded-2xl md:w-1/2 md:rounded-none md:rounded-l-2xl"
     >
       <CoverImage
         :src="item.coverUrl"
         :alt="item.title"
-        class="rounded-l-2xl"
+        class="rounded-2xl md:rounded-none md:rounded-l-2xl"
         no-border
       />
     </NuxtLink>
     <div
-      class="flex w-1/2 cursor-pointer flex-col rounded-r-2xl p-6 text-black-1"
+      class="flex grow cursor-pointer flex-col gap-0.5 rounded-r-2xl p-0 text-black-1 md:w-1/2 md:p-4"
       :style="'background: ' + (item.backgroundColor ?? '#F5F6F7')"
       @click.stop="playTrack"
     >
-      <div class="opacity-70">{{ item.title }}</div>
-      <div class="text-lg font-semibold">{{ item.label }}</div>
+      <div class="truncate leading-5 opacity-70">{{ item.title }}</div>
+      <div
+        class="max-h-[48px] overflow-hidden text-[16px] font-semibold leading-5 lg:text-lg lg:leading-6"
+      >
+        {{ item.label }}
+      </div>
       <div v-if="item.date" class="whitespace-nowrap text-sm">
         {{ weekDay(item.date) }}
         <span class="opacity-70">{{ formatDate(item.date) }}</span>
@@ -60,7 +65,7 @@ const weekDay = (date: Date) => {
       <div v-else class="text-sm">
         {{ item.subtitle }}
       </div>
-      <div class="mt-auto flex w-full flex-row">
+      <div class="mt-auto flex w-full flex-row pt-1.5">
         <button
           class="h-10 w-10 rounded-full bg-black-1"
           @click.stop="playTrack"

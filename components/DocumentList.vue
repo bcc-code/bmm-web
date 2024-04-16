@@ -10,6 +10,7 @@ type IDiscoverableGroup = {
   header: SectionHeaderModel | null;
   items: Exclude<IAllDocumentModels, SectionHeaderModel>[];
   useFlex: boolean;
+  isTileContainer: boolean;
 };
 
 const { t } = useI18n();
@@ -32,7 +33,12 @@ const convertModels = (models: IAllDocumentModels[]) => {
 
         tiles.push(el);
         if (!addedTiles) {
-          result.push({ header: null, items: tiles, useFlex: true });
+          result.push({
+            header: null,
+            items: tiles,
+            useFlex: false,
+            isTileContainer: true,
+          });
           addedTiles = true;
         }
 
@@ -42,6 +48,7 @@ const convertModels = (models: IAllDocumentModels[]) => {
             header: null,
             items: currentSection,
             useFlex: false,
+            isTileContainer: false,
           });
         }
       }
@@ -55,6 +62,7 @@ const convertModels = (models: IAllDocumentModels[]) => {
         header: el,
         items: currentSection,
         useFlex: el.useCoverCarousel === true,
+        isTileContainer: false,
       });
     } else if (
       i === 0 ||
@@ -67,6 +75,7 @@ const convertModels = (models: IAllDocumentModels[]) => {
         header: null,
         items: currentSection,
         useFlex: false,
+        isTileContainer: false,
       });
     } else {
       currentSection.push(el);
@@ -133,7 +142,20 @@ const playSingleItem = (item: TrackModel) => {
           </div>
         </h2>
 
-        <div v-if="group.useFlex" class="mt-3 py-2">
+        <div
+          v-if="group.isTileContainer"
+          class="grid-cols-tilesNarrow md:grid-cols-tilesWide mt-3 grid w-full gap-4 md:gap-6"
+        >
+          <template v-for="item in group.items" :key="item.id">
+            <TileItem
+              v-if="item.type === 'Tile' && item.track"
+              :item="item"
+              @play-track="playSingleItem(item.track)"
+            ></TileItem>
+          </template>
+        </div>
+
+        <div v-else-if="group.useFlex" class="mt-3 py-2">
           <div
             class="flex flex-row flex-wrap gap-6"
             :class="

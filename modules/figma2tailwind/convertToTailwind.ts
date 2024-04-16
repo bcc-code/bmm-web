@@ -23,7 +23,9 @@ const config: Partial<Config> = {
     colors,
     extend: {  
       gridTemplateColumns: {
-        tracklist: "min-content auto auto auto min-content"
+        tracklist: "min-content auto auto auto min-content",
+        tilesWide: "repeat(auto-fit, minmax(350px, 1fr))",
+        tilesNarrow: "repeat(auto-fit, minmax(200px, 1fr))"
       }
     }
   },
