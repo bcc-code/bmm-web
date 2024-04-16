@@ -1,5 +1,6 @@
 <script lang="ts" setup>
-import { PodcastApi, type TileModel } from "@bcc-code/bmm-sdk-fetch";
+import { PodcastApi } from "@bcc-code/bmm-sdk-fetch";
+import type { TileModel } from "@bcc-code/bmm-sdk-fetch";
 
 const props = defineProps<{
   item: TileModel;
