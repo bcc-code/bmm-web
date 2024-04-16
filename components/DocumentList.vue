@@ -136,7 +136,7 @@ const playItem = (item: TrackModel, group: IDiscoverableGroup) => {
 
         <div
           v-if="group.isTileContainer"
-          class="grid-cols-tilesNarrow lg:grid-cols-tilesWide mt-3 grid w-full gap-4 md:gap-6"
+          class="mt-3 grid w-full grid-cols-tilesNarrow gap-4 md:gap-6 lg:grid-cols-tilesWide"
         >
           <template v-for="item in group.items" :key="item.id">
             <TileItem
