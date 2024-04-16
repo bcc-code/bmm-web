@@ -33,28 +33,28 @@ const weekDay = (date: Date) => {
 <template>
   <div
     v-if="item.showAllLink && item.track && item.title"
-    class="flex w-full max-w-[480px] flex-col gap-4 rounded-2xl p-4 md:aspect-[2/1] md:flex-row md:gap-0 md:p-0"
+    class="flex w-full max-w-[480px] flex-col gap-4 rounded-2xl p-4 lg:aspect-[2/1] lg:flex-row lg:gap-0 lg:p-0"
     :style="'background: ' + (item.backgroundColor ?? '#F5F6F7')"
   >
     <NuxtLink
       :to="parseLink(item.showAllLink)"
-      class="aspect-square w-[120px] rounded-2xl md:w-1/2 md:rounded-none md:rounded-l-2xl"
+      class="aspect-square w-[120px] rounded-2xl lg:w-1/2 lg:rounded-none lg:rounded-l-2xl"
     >
       <CoverImage
         :src="item.coverUrl"
         :alt="item.title"
-        class="rounded-2xl md:rounded-none md:rounded-l-2xl"
+        class="rounded-2xl lg:rounded-none lg:rounded-l-2xl"
         no-border
       />
     </NuxtLink>
     <div
-      class="flex grow cursor-pointer flex-col gap-0.5 rounded-r-2xl p-0 text-black-1 md:w-1/2 md:p-4"
+      class="flex grow cursor-pointer flex-col gap-0.5 rounded-r-2xl p-0 text-black-1 lg:w-1/2 lg:p-4"
       :style="'background: ' + (item.backgroundColor ?? '#F5F6F7')"
       @click.stop="playTrack"
     >
       <div class="truncate leading-5 opacity-70">{{ item.title }}</div>
       <div
-        class="max-h-[48px] overflow-hidden text-[16px] font-semibold leading-5 lg:text-lg lg:leading-6"
+        class="max-h-[40px] overflow-hidden text-[16px] font-semibold leading-5 xl:max-h-[48px] xl:text-lg xl:leading-6"
       >
         {{ item.label }}
       </div>
