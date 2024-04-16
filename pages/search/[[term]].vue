@@ -1,8 +1,10 @@
 <script lang="ts" setup>
 import { SearchApi, SearchFilter } from "@bcc-code/bmm-sdk-fetch";
 import type {
+  Highlighting,
   IAlbumContributorPodcastPlaylistOrTrack,
   SearchResults,
+  TrackModel,
 } from "@bcc-code/bmm-sdk-fetch";
 
 const router = useRouter();
@@ -32,6 +34,7 @@ const api = new SearchApi();
 
 const results = ref<SearchResults | null>(null);
 const list = ref<IAlbumContributorPodcastPlaylistOrTrack[]>([]);
+const highlightings = ref<Highlighting[]>([]);
 const loading = ref(true);
 const loadingMore = ref(false);
 const fullyLoaded = ref(false);
@@ -53,6 +56,8 @@ async function loadSearchResults() {
       if (data && data.items) {
         results.value = data;
         list.value = list.value.concat(data.items);
+        if (data.highlightings)
+          highlightings.value = highlightings.value.concat(data.highlightings);
         fullyLoaded.value = data.isFullyLoaded === true;
       }
       loadingMore.value = false;
@@ -72,6 +77,7 @@ onMounted(() => {
     async () => {
       results.value = null;
       list.value = [];
+      highlightings.value = [];
       if (searchTerm.value === "") {
         loading.value = false;
         return;
@@ -124,6 +130,20 @@ const tabs = [
 ] as const;
 
 const { setQueue } = useNuxtApp().$mediaPlayer;
+
+function selectHighlighting(trackId: number) {
+  const test = highlightings.value.find((x) => x.id === `track_${trackId}`);
+  return test;
+}
+
+function playTrack(item: TrackModel) {
+  const highlighting = selectHighlighting(item.id);
+  if (highlighting && highlighting.startPositionInSeconds) {
+    setQueue([item], 0, highlighting.startPositionInSeconds);
+  } else {
+    setQueue([item]);
+  }
+}
 </script>
 
 <template>
@@ -197,7 +217,8 @@ const { setQueue } = useNuxtApp().$mediaPlayer;
                 :track="item"
                 :is-track-type-known="true"
                 show-thumbnail
-                @play-track="setQueue([item])"
+                :highlight="selectHighlighting(item.id)"
+                @play-track="playTrack(item)"
               />
               <GenericListItem
                 v-else-if="item.type === 'contributor'"
