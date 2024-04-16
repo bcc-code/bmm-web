@@ -3,6 +3,7 @@ import type {
   IAllDocumentModels,
   TrackModel,
   SectionHeaderModel,
+  TileModel,
 } from "@bcc-code/bmm-sdk-fetch";
 import RecommendationItem from "./RecommendationItem.vue";
 
@@ -28,7 +29,7 @@ const convertModels = (models: IAllDocumentModels[]) => {
 
   models.forEach((el, i) => {
     if (el.type === "Tile") {
-      if (!el.lastPositionInMs) {
+      if (!el.lastPositionInMs || true) {
         // We currently don't support continuing from the position. Then it's better to hide it.
 
         tiles.push(el);
@@ -93,8 +94,11 @@ const playItem = (item: TrackModel, group: IDiscoverableGroup) => {
     items.findIndex((track) => track.id === item.id),
   );
 };
-const playSingleItem = (item: TrackModel) => {
-  setQueue([item], 0); // ToDo: read item.lastPositionInMs and go to specific location
+const playSingleItem = (item: TileModel) => {
+  if (!item.track) return;
+  if (item.lastPositionInMs)
+    setQueue([item.track], 0, item.lastPositionInMs / 1000);
+  else setQueue([item.track]);
   // ToDo: load linked album (from showAllLink) and add remaining items to the queue
 };
 </script>
@@ -144,13 +148,13 @@ const playSingleItem = (item: TrackModel) => {
 
         <div
           v-if="group.isTileContainer"
-          class="grid-cols-tilesNarrow md:grid-cols-tilesWide mt-3 grid w-full gap-4 md:gap-6"
+          class="grid-cols-tilesNarrow lg:grid-cols-tilesWide mt-3 grid w-full gap-4 md:gap-6"
         >
           <template v-for="item in group.items" :key="item.id">
             <TileItem
               v-if="item.type === 'Tile' && item.track"
               :item="item"
-              @play-track="playSingleItem(item.track)"
+              @play-track="playSingleItem(item)"
             ></TileItem>
           </template>
         </div>
@@ -185,12 +189,6 @@ const playSingleItem = (item: TrackModel) => {
               >
                 <ItemCard :item="item" />
               </NuxtLink>
-
-              <TileItem
-                v-else-if="item.type === 'Tile' && item.track"
-                :item="item"
-                @play-track="playSingleItem(item.track)"
-              ></TileItem>
 
               <div
                 v-else

@@ -34,7 +34,11 @@ export interface MediaPlayer {
   currentTrack: ComputedRef<UnwrapRef<TrackModel> | undefined>;
   currentPosition: Ref<number>;
   currentTrackDuration: ComputedRef<number>;
-  setQueue: (queue: TrackModel[], index?: number) => void;
+  setQueue: (
+    queue: TrackModel[],
+    index?: number,
+    startPosition?: number | null,
+  ) => void;
   setQueueShuffled: (queue: TrackModel[]) => void;
   addToQueue: (track: TrackModel) => void;
   addNext: (track: TrackModel) => void;
@@ -219,7 +223,12 @@ export const initMediaPlayer = (
     continuePlayingNextIfEnded();
   }
 
-  function setQueue(_queue: TrackModel[], index = 0): void {
+  function setQueue(
+    _queue: TrackModel[],
+    index = 0,
+    startPosition: number | null = null,
+  ): void {
+    if (startPosition != null) nextStartPosition = startPosition;
     queue.value = new Queue(_queue, index);
   }
 
