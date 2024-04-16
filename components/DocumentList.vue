@@ -3,7 +3,6 @@ import type {
   IAllDocumentModels,
   TrackModel,
   SectionHeaderModel,
-  TileModel,
 } from "@bcc-code/bmm-sdk-fetch";
 import RecommendationItem from "./RecommendationItem.vue";
 
@@ -29,29 +28,25 @@ const convertModels = (models: IAllDocumentModels[]) => {
 
   models.forEach((el, i) => {
     if (el.type === "Tile") {
-      if (!el.lastPositionInMs || true) {
-        // We currently don't support continuing from the position. Then it's better to hide it.
+      tiles.push(el);
+      if (!addedTiles) {
+        result.push({
+          header: null,
+          items: tiles,
+          useFlex: false,
+          isTileContainer: true,
+        });
+        addedTiles = true;
+      }
 
-        tiles.push(el);
-        if (!addedTiles) {
-          result.push({
-            header: null,
-            items: tiles,
-            useFlex: false,
-            isTileContainer: true,
-          });
-          addedTiles = true;
-        }
-
-        if (currentSection.length > 0) {
-          currentSection = [];
-          result.push({
-            header: null,
-            items: currentSection,
-            useFlex: false,
-            isTileContainer: false,
-          });
-        }
+      if (currentSection.length > 0) {
+        currentSection = [];
+        result.push({
+          header: null,
+          items: currentSection,
+          useFlex: false,
+          isTileContainer: false,
+        });
       }
     } else if (el.type === "project_box") {
       console.log(
