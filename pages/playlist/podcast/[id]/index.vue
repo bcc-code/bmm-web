@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { PodcastApi } from "@bcc-code/bmm-sdk-fetch";
-import type { TrackModel } from "@bcc-code/bmm-sdk-fetch";
+import type { TrackModel, IAllDocumentModels } from "@bcc-code/bmm-sdk-fetch";
 
 const { t } = useI18n();
 toolbarTitleStore().setReactiveToolbarTitle(() => t("nav.podcast"));
@@ -32,18 +32,77 @@ const onPressShuffle = async () => {
   }
 };
 
+type Week = {
+  week: number;
+  year: number;
+};
+
+function weekOfYear(date: Date) {
+  console.log(date, date.getUTCDate());
+
+  const onejan = new Date(date.getFullYear(), 0, 1);
+  const yearWeek = Math.ceil(
+    ((date.getTime() - onejan.getTime()) / 86400000 + onejan.getDay() + 1) / 7,
+  );
+  console.log(yearWeek);
+  const week: Week = { week: yearWeek, year: date.getFullYear() };
+  return week;
+}
+
+function parseWeek(input: string) {
+  const [year, week] = input.split("_");
+  return { year: Number(year), week: Number(week) };
+}
+
+let lastWeek: Week = { week: 0, year: 0 };
+
+function groupByWeek(data: TrackModel[]) {
+  const models: IAllDocumentModels[] = [];
+  const weeks = Map.groupBy(data, (track) => {
+    const week = track.publishedAt
+      ? weekOfYear(track.publishedAt)
+      : { week: 0, year: 0 };
+    return `${week.year}_${week.week}`;
+  });
+  weeks.forEach((weekTracks, weekString) => {
+    const week = parseWeek(weekString);
+    const now = weekOfYear(new Date());
+    const isThisWeek = now.week === week.week && now.year === week.year;
+    const isPreviousWeek = now.week === week.week + 1 && now.year === week.year;
+    if (lastWeek.year !== week.year || lastWeek.week !== week.week)
+      models.push({
+        type: "section_header",
+        id: week.year * 100 + week.week,
+        // eslint-disable-next-line no-nested-ternary
+        title: isThisWeek
+          ? "This week"
+          : isPreviousWeek
+            ? "Last week"
+            : `Week ${week.week}`,
+      });
+    models.push(...weekTracks);
+    lastWeek = week;
+  });
+  return models;
+}
+
 async function load(skip: number, take: number) {
   const data = await api.podcastIdTrackGet({
     id: collectionId,
     from: skip,
     size: take,
   });
+  const models: IAllDocumentModels[] = [];
+  if (data?.length > 0) {
+    if (collectionId === 1 || collectionId === 55)
+      models.push(...groupByWeek(data));
+    else models.push(...data);
+  }
+
   if (skip === 0) tracks = data;
   else tracks = tracks.concat(data);
-  return data || [];
+  return models;
 }
-
-// TODO: Group episodes into weeks
 </script>
 
 <template>
