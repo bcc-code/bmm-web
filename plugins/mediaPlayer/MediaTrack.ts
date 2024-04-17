@@ -1,3 +1,13 @@
+import type { TrackModel } from "@bcc-code/bmm-sdk-fetch";
+import type { AppInsights } from "../3.applicationInsights";
+
+type ListenedPortion = {
+  start: number;
+  startTime: Date;
+  end: number;
+  endTime: Date;
+};
+
 /**
  * Changes should always be done with the specification for HTMLAudioElement in mind.
  * This class should be a simple wrapper making the HTML element vue-agnostic.
@@ -15,6 +25,16 @@ export default class MediaTrack {
 
   private p = 0;
 
+  private appInsights: AppInsights;
+
+  private portions: ListenedPortion[] = [];
+
+  private currentStart: number | undefined;
+
+  private currentStartTime: Date | undefined;
+
+  private track: TrackModel;
+
   /**
    * Returns only relative numbers
    */
@@ -29,6 +49,12 @@ export default class MediaTrack {
     if (!Number.isFinite(v)) {
       return; // Ignore
     }
+
+    console.log(
+      "***** seeking",
+      this.audioElement.paused ? "paused" : "playing",
+    );
+    if (!this.audioElement.paused) this.endPortion();
 
     this.p = v;
     this.audioElement.currentTime = v;
@@ -58,10 +84,16 @@ export default class MediaTrack {
   constructor(
     srcGen: () => Promise<string>,
     onError: (e: MediaError | DOMException | unknown | null) => void,
+    appInsights: AppInsights,
+    track: TrackModel,
     debug = false,
   ) {
     this.srcGenerator = srcGen;
     this.onError = onError;
+    this.appInsights = appInsights;
+    this.track = track;
+
+    console.log("constructor", track);
 
     this.audioElement = new Audio();
     this.audioElement.autoplay = true;
@@ -71,68 +103,75 @@ export default class MediaTrack {
       // Log all events an audio-element has according to https://html.spec.whatwg.org/multipage/media.html#mediaevents
       // This can be done without a separate method because it doesn't use `this`
       this.audioElement.addEventListener("loadstart", (e) =>
-        console.log("loadstart", e),
+        console.debug(
+          "loadstart",
+          this.audioElement.currentTime,
+          this.audioElement.currentTime,
+          e,
+        ),
       );
       this.audioElement.addEventListener("progress", (e) =>
-        console.log("progress", e),
+        console.debug("progress", this.audioElement.currentTime, e),
       );
       this.audioElement.addEventListener("suspend", (e) =>
-        console.log("suspend", e),
+        console.debug("suspend", this.audioElement.currentTime, e),
       );
       this.audioElement.addEventListener("abort", (e) =>
-        console.log("abort", e),
+        console.debug("abort", this.audioElement.currentTime, e),
       );
       this.audioElement.addEventListener("error", (e) =>
-        console.log("error", e, this.audioElement.error),
+        console.debug("error", e, this.audioElement.error),
       );
       this.audioElement.addEventListener("emptied", (e) =>
-        console.log("emptied", e),
+        console.debug("emptied", this.audioElement.currentTime, e),
       );
       this.audioElement.addEventListener("stalled", (e) =>
-        console.log("stalled", e),
+        console.debug("stalled", this.audioElement.currentTime, e),
       );
       this.audioElement.addEventListener("loadedmetadata", (e) =>
-        console.log("loadedmetadata", e),
+        console.debug("loadedmetadata", this.audioElement.currentTime, e),
       );
       this.audioElement.addEventListener("loadeddata", (e) =>
-        console.log("loadeddata", e),
+        console.debug("loadeddata", this.audioElement.currentTime, e),
       );
       this.audioElement.addEventListener("canplay", (e) =>
-        console.log("canplay", e),
+        console.debug("canplay", this.audioElement.currentTime, e),
       );
       this.audioElement.addEventListener("canplaythrough", (e) =>
-        console.log("canplaythrough", e),
+        console.debug("canplaythrough", this.audioElement.currentTime, e),
       );
       this.audioElement.addEventListener("playing", (e) =>
-        console.log("playing", e),
+        console.debug("playing", this.audioElement.currentTime, e),
       );
       this.audioElement.addEventListener("waiting", (e) =>
-        console.log("waiting", e),
+        console.debug("waiting", this.audioElement.currentTime, e),
       );
       this.audioElement.addEventListener("seeking", (e) =>
-        console.log("seeking", e),
+        console.debug("seeking", this.audioElement.currentTime, e),
       );
       this.audioElement.addEventListener("seeked", (e) =>
-        console.log("seeked", e),
+        console.debug("seeked", this.audioElement.currentTime, e),
       );
       this.audioElement.addEventListener("ended", (e) =>
-        console.log("ended", e),
+        console.debug("ended", this.audioElement.currentTime, e),
       );
       this.audioElement.addEventListener("durationchange", (e) =>
-        console.log("durationchange", e),
+        console.debug("durationchange", this.audioElement.currentTime, e),
       );
-      this.audioElement.addEventListener("timeupdate", (e) =>
-        console.log("timeupdate", e),
+      // this.audioElement.addEventListener("timeupdate", (e) =>
+      //   console.debug("timeupdate", e),
+      // );
+      this.audioElement.addEventListener("play", (e) =>
+        console.debug("play", e),
       );
-      this.audioElement.addEventListener("play", (e) => console.log("play", e));
       this.audioElement.addEventListener("pause", (e) =>
-        console.log("pause", e),
+        console.debug("pause", this.audioElement.currentTime, e),
       );
       this.audioElement.addEventListener("ratechange", (e) =>
-        console.log("ratechange", e),
+        console.debug("ratechange", this.audioElement.currentTime, e),
       );
       this.audioElement.addEventListener("volumechange", (e) =>
-        console.log("volumechange", e),
+        console.debug("volumechange", this.audioElement.currentTime, e),
       );
     }
     /* c8 ignore stop */
@@ -185,6 +224,7 @@ export default class MediaTrack {
     });
     this.audioElement.addEventListener("pause", () => {
       this.paused = true;
+      this.endPortion();
     });
     this.audioElement.addEventListener("loadstart", () => {
       this.loading = true;
@@ -196,10 +236,23 @@ export default class MediaTrack {
       this.paused = false;
       this.ended = false;
     });
+    this.audioElement.addEventListener("playing", () => {
+      this.currentStart = this.audioElement.currentTime;
+      this.currentStartTime = new Date();
+    });
+    // this.audioElement.addEventListener("seeking", () => {
+    //   this.endPortion();
+    // });
+    this.audioElement.addEventListener("stalled", () => {
+      this.endPortion();
+    });
     this.audioElement.addEventListener("ended", () => {
       this.ended = true;
+      this.endPortion();
+      this.sendTrackPlayed();
     });
     this.audioElement.addEventListener("error", () => {
+      this.endPortion();
       this.onError(this.audioElement.error);
       /* The error https://developer.mozilla.org/en-US/docs/Web/API/MediaError
         only contains an error code and an error message (the message is not
@@ -244,10 +297,73 @@ export default class MediaTrack {
     this.audioElement.pause();
   }
 
+  endPortion() {
+    const time = this.audioElement.currentTime;
+    const now = new Date();
+    if (
+      this.currentStart === undefined ||
+      this.currentStartTime === undefined ||
+      time === this.currentStart ||
+      time === 0 ||
+      this.currentStart >= time
+    )
+      return;
+    this.portions.push({
+      start: this.currentStart,
+      startTime: this.currentStartTime,
+      end: time,
+      endTime: now,
+    });
+    console.log("|| portion", {
+      trackId: this.track.id,
+      start: this.currentStart,
+      end: time,
+    });
+    this.currentStart = time;
+    this.currentStartTime = now;
+  }
+
+  sendTrackPlayed() {
+    this.endPortion();
+    if (this.portions.length === 0) {
+      console.log("|| no portions");
+      return;
+    }
+
+    let timeSpent = 0;
+    this.portions.forEach((portion) => {
+      timeSpent += portion.end - portion.start;
+    });
+    let uniqueSeconds = 0;
+    let lastEnd = 0;
+    this.portions
+      .sort((a, b) => a.start - b.start)
+      .forEach((portion) => {
+        if (portion.start >= lastEnd) {
+          uniqueSeconds += portion.end - Math.max(portion.start, lastEnd);
+          lastEnd = portion.end;
+        }
+      });
+
+    console.log("sendTrackPlayed()", this.portions);
+    const values = {
+      trackId: this.track.id,
+      timeSpent,
+      uniqueSeconds,
+      tags: this.track.tags,
+    };
+    this.appInsights.event("track played", values);
+    console.log("|| track played", values);
+    this.portions = [];
+  }
+
   destroy() {
+    console.warn("destroying media track");
+    this.endPortion();
     // https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Client-side_web_APIs/Video_and_audio_APIs#stopping_the_video, https://html.spec.whatwg.org/multipage/media.html#best-practices-for-authors-using-media-elements
     this.audioElement.autoplay = false;
     this.audioElement.pause();
     this.audioElement.srcObject = null;
+    this.sendTrackPlayed();
   }
 }
