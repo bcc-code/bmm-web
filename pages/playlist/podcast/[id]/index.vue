@@ -9,8 +9,7 @@ const api = new PodcastApi();
 const { setQueue } = useNuxtApp().$mediaPlayer;
 const { id } = useRoute<"playlist-podcast-id">().params;
 const collectionId = Number(id);
-const isDailyPodcast =
-  collectionId === 1 || collectionId === 55 || collectionId === 54;
+const isDailyPodcast = [1, 53, 54, 55].includes(collectionId);
 let tracks: TrackModel[] = [];
 
 const { data: podcast } = usePodcast({ id: collectionId });
@@ -49,23 +48,16 @@ function weekOfYear(date: Date) {
   return week;
 }
 
-function parseWeek(input: string) {
-  const [year, week] = input.split("_");
-  return { year: Number(year), week: Number(week) };
-}
-
 let lastWeek: Week = { week: 0, year: 0 };
 
 function groupByWeek(data: TrackModel[]) {
   const models: IAllDocumentModels[] = [];
-  const weeks = Map.groupBy(data, (track) => {
+
+  data.forEach((track) => {
     const week = track.publishedAt
       ? weekOfYear(track.publishedAt)
       : { week: 0, year: 0 };
-    return `${week.year}_${week.week}`;
-  });
-  weeks.forEach((weekTracks, weekString) => {
-    const week = parseWeek(weekString);
+
     const now = weekOfYear(new Date());
     const isThisWeek = now.week === week.week && now.year === week.year;
     const isPreviousWeek = now.week === week.week + 1 && now.year === week.year;
@@ -80,9 +72,10 @@ function groupByWeek(data: TrackModel[]) {
             ? "Last week"
             : `Week ${week.week}`,
       });
-    models.push(...weekTracks);
+    models.push(track);
     lastWeek = week;
   });
+
   return models;
 }
 
