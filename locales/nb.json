@@ -73,6 +73,15 @@
       "redirect-link": "click to try again"
     }
   },
+  "download": {
+    "download": "Last ned",
+    "download-track": "Last ned spor",
+    "messages-not-allowed": {
+      "title": "Download of messages unavailable",
+      "description": "Muligheten til å laste ned taler fra BMM er ikke lenger tilgjengelig. Hvis du trenger en tale for en spesifikk bruk, ta kontakt med oss og beskriv ditt behov."
+    },
+    "sendEmailTo": "Send email to {0}"
+  },
   "playlist": {
     "add": "Add playlist",
     "new-playlist": "Ny spilleliste",
@@ -80,8 +89,11 @@
     "delete-playlist": "Slett spillelisten",
     "delete-playlist-description": "Are you sure you want to delete the playlist? This action cannot be reversed.",
     "action": {
-      "shuffle": "Shuffle"
-    }
+      "shuffle": "Shuffle",
+      "add-to-my-playlists": "Legg til mine spillelister",
+      "remove-shared-playlist": "Fjern spillelisten"
+    },
+    "by-x": "by {name}"
   },
   "podcast": {
     "action": {
@@ -99,13 +111,15 @@
   "track": {
     "dropdown": {
       "play-next": "Spill av som neste",
+      "download": "Last ned",
       "go-to-album": "Gå til albumet",
       "add-to-queue": "Legg til i køen",
       "add-to-playlist": "Legg til i spilleliste",
       "share": "Del spor",
       "go-to-contributors": "Vis bidragsytere",
       "more-info": "Mer informasjon",
-      "show-all": "Vis alle"
+      "show-all": "Vis alle",
+      "remove-from-playlist": "Slett fra spilleliste"
     },
     "a11y": {
       "download": "Last ned",

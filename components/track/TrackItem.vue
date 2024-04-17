@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { TrackModel } from "@bcc-code/bmm-sdk-fetch";
+import type { Highlighting, TrackModel } from "@bcc-code/bmm-sdk-fetch";
 import { MediaPlayerStatus } from "~/plugins/mediaPlayer/mediaPlayer";
 
 const { t } = useI18n();
@@ -9,6 +9,7 @@ const props = defineProps<{
   track: TrackModel;
   showThumbnail?: boolean;
   isTrackTypeKnown: boolean;
+  highlight?: Highlighting | undefined;
   addDropdownItems?:
     | ((items: DropdownMenuItem[], track: TrackModel) => void)
     | undefined;
@@ -22,6 +23,30 @@ const emit = defineEmits<{ "play-track": [] }>();
 
 function playTrack() {
   emit("play-track");
+}
+
+function ensureHighlightedWordIsVisible(text: string) {
+  const firstHit = text.indexOf("**|");
+  if (firstHit > 90) {
+    const parts = text.split(" ");
+    let letters = 0;
+    for (let i = 0; i < parts.length; i += 1) {
+      const part = parts[i];
+      if (part === undefined) break;
+      if (letters + part.length > firstHit) {
+        return `...${parts.slice(Math.max(i - 3, 0)).join(" ")}`;
+      }
+      letters += part.length + 1;
+    }
+  }
+  return text;
+}
+
+function adjustHighlightText(highlight: Highlighting) {
+  if (!highlight.text) return "";
+  return ensureHighlightedWordIsVisible(highlight.text)
+    .replaceAll("**|", '<span class="text-utility-auto">')
+    .replaceAll("**/", "</span>");
 }
 
 const isPlaying = computed(() => currentTrack.value?.id === props.track.id);
@@ -104,17 +129,27 @@ const selectedTrack: Ref<TrackModel | null> = ref(null);
           >{{ track.subtype }}</span
         >
       </div>
-      <div v-if="isTrackTypeKnown" class="flex min-w-0 items-center">
+      <div
+        v-if="isTrackTypeKnown"
+        class="flex min-w-0 items-center"
+        :class="highlight ? 'xl:hidden' : ''"
+      >
         <span
           class="truncate"
           :class="isPlaying ? 'text-black-1' : 'text-label-3'"
           >{{ track.meta?.album }}</span
         >
       </div>
+      <div v-if="highlight" class="hidden min-w-0 items-center xl:flex">
+        <span class="flex gap-1 truncate rounded-3xl bg-[#81888F1A] px-3 py-2">
+          <NuxtIcon name="icon.ai" class="text-utility-auto" />
+          <div class="truncate" v-html="adjustHighlightText(highlight)"></div>
+        </span>
+      </div>
       <div class="flex items-center">
         <span class="text-label-3">
           <TimeDuration
-            :duration="((track.media || [])[0]?.files || [])[0]?.duration || 0"
+            :duration="defaultFileForTrack(track)?.duration || 0"
           ></TimeDuration>
         </span>
       </div>
@@ -147,6 +182,19 @@ const selectedTrack: Ref<TrackModel | null> = ref(null);
         />
       </div>
     </div>
+
+    <div v-if="highlight" class="relative col-span-full xl:hidden">
+      <div
+        class="col-span-full flex max-w-full gap-1 rounded-3xl bg-[#81888F1A] px-3 py-2"
+      >
+        <NuxtIcon name="icon.ai" class="text-utility-auto" />
+        <div
+          class="truncat max-h-6 overflow-hidden"
+          v-html="adjustHighlightText(highlight)"
+        ></div>
+      </div>
+    </div>
+
     <slot />
 
     <TrackAddToPlaylist
