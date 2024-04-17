@@ -10,24 +10,6 @@ const emit = defineEmits<{ "play-track": [] }>();
 function playTrack() {
   emit("play-track");
 }
-
-const { locale } = useI18n();
-const formatDate = (date: Date) => {
-  const options: Intl.DateTimeFormatOptions = {
-    year: "numeric",
-    month: "short",
-    day: "numeric",
-    timeZone: "UTC",
-  };
-  return new Intl.DateTimeFormat(locale.value, options).format(dateToUtc(date));
-};
-const weekDay = (date: Date) => {
-  const options: Intl.DateTimeFormatOptions = {
-    weekday: "long",
-    timeZone: "UTC",
-  };
-  return new Intl.DateTimeFormat(locale.value, options).format(dateToUtc(date));
-};
 </script>
 
 <template>

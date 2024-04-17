@@ -8,7 +8,7 @@ import RecommendationItem from "./RecommendationItem.vue";
 
 type IDiscoverableGroup = {
   header: SectionHeaderModel | null;
-  items: Exclude<IAllDocumentModels, SectionHeaderModel>[];
+  items: IAllDocumentModels[];
   useFlex: boolean;
 };
 
@@ -17,6 +17,7 @@ const { t } = useI18n();
 const props = defineProps<{
   items: IAllDocumentModels[] | null | undefined;
   pending: boolean;
+  useDailyPodcastView?: boolean | undefined;
 }>();
 
 const convertModels = (models: IAllDocumentModels[]) => {
@@ -49,7 +50,7 @@ const convertModels = (models: IAllDocumentModels[]) => {
       console.log(
         `since we don't have a design for ${el.type} we don't render it.`,
       );
-    } else if (el.type === "section_header") {
+    } else if (el.type === "section_header" && !props.useDailyPodcastView) {
       currentSection = [];
       result.push({
         header: el,
@@ -184,6 +185,9 @@ const playSingleItem = (item: TrackModel) => {
           v-else
           class="mt-3 grid w-full grid-cols-tracklist divide-y divide-label-separator lg:mt-4"
         >
+          {{
+            console.log(group.items)
+          }}
           <template v-for="item in group.items" :key="item.id">
             <h2
               v-if="item.type === 'chapter_header'"
@@ -191,10 +195,28 @@ const playSingleItem = (item: TrackModel) => {
             >
               {{ item.title }}
             </h2>
+            <h2
+              v-else-if="item.type === 'section_header'"
+              class="type-heading-2 col-span-full pb-5 pt-12 text-label-1"
+            >
+              <div class="flex items-center justify-between">
+                <div>
+                  {{ item.title }}
+                </div>
+                <NuxtLink v-if="item.link" :to="parseLink(item.link)">
+                  <ButtonStyled intent="secondary" size="small">
+                    <span class="whitespace-nowrap">
+                      {{ t("home.list.see-all") }}
+                    </span>
+                  </ButtonStyled>
+                </NuxtLink>
+              </div>
+            </h2>
             <TrackItem
               v-else-if="item.type === 'track'"
               :track="item"
               :is-track-type-known="true"
+              :use-daily-podcast-view="useDailyPodcastView"
               show-thumbnail
               @play-track="playItem(item, group)"
             />

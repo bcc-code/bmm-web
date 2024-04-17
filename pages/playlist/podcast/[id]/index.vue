@@ -9,6 +9,8 @@ const api = new PodcastApi();
 const { setQueue } = useNuxtApp().$mediaPlayer;
 const { id } = useRoute<"playlist-podcast-id">().params;
 const collectionId = Number(id);
+const isDailyPodcast =
+  collectionId === 1 || collectionId === 55 || collectionId === 54;
 let tracks: TrackModel[] = [];
 
 const { data: podcast } = usePodcast({ id: collectionId });
@@ -38,13 +40,11 @@ type Week = {
 };
 
 function weekOfYear(date: Date) {
-  console.log(date, date.getUTCDate());
-
-  const onejan = new Date(date.getFullYear(), 0, 1);
+  const janFirst = new Date(date.getFullYear(), 0, 1);
   const yearWeek = Math.ceil(
-    ((date.getTime() - onejan.getTime()) / 86400000 + onejan.getDay() + 1) / 7,
+    ((date.getTime() - janFirst.getTime()) / 86400000 + janFirst.getDay() + 1) /
+      7,
   );
-  console.log(yearWeek);
   const week: Week = { week: yearWeek, year: date.getFullYear() };
   return week;
 }
@@ -94,8 +94,7 @@ async function load(skip: number, take: number) {
   });
   const models: IAllDocumentModels[] = [];
   if (data?.length > 0) {
-    if (collectionId === 1 || collectionId === 55)
-      models.push(...groupByWeek(data));
+    if (isDailyPodcast) models.push(...groupByWeek(data));
     else models.push(...data);
   }
 
@@ -143,7 +142,10 @@ async function load(skip: number, take: number) {
         </div>
       </header>
 
-      <EndlessDocumentList :load="load" />
+      <EndlessDocumentList
+        :load="load"
+        :use-daily-podcast-view="isDailyPodcast"
+      />
     </div>
   </div>
 </template>
