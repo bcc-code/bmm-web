@@ -49,7 +49,22 @@ export default defineNuxtConfig({
   },
   app: {
     pageTransition: { name: "page", mode: "out-in" },
-    head: { base: { href: "/" } },
+    head: {
+      base: { href: "/" },
+
+      link: [
+        { href: "https://fonts.googleapis.com", rel: "preconnect" },
+        {
+          href: "https://fonts.gstatic.com",
+          rel: "preconnect",
+          crossorigin: "anonymous",
+        },
+        {
+          href: "https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800&display=swap",
+          rel: "stylesheet",
+        },
+      ],
+    },
   },
   router: {
     options: {
