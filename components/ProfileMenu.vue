@@ -338,7 +338,7 @@ const saveAndCloseContentLanguageDialog = () => {
       </VueDraggable>
       <div
         v-if="nextUnusedContentLanguage"
-        class="mt-4 flex flex-row gap-2 p-3 text-label-3"
+        class="type-subtitle-1 mt-4 flex cursor-pointer flex-row gap-2 p-3 text-label-3"
         @click="
           () => {
             const next = nextUnusedContentLanguage;
