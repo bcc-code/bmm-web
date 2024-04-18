@@ -96,6 +96,9 @@
     "by-x": "by {name}"
   },
   "podcast": {
+    "this-week": "Denne uken",
+    "last-week": "Siste uke",
+    "week-x": "Week {count}",
     "action": {
       "play": "Spill av",
       "follow": "Følg"
