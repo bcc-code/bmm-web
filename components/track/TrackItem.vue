@@ -9,6 +9,7 @@ const props = defineProps<{
   track: TrackModel;
   showThumbnail?: boolean;
   isTrackTypeKnown: boolean;
+  useDailyPodcastView?: boolean | undefined;
   highlight?: Highlighting | undefined;
   addDropdownItems?:
     | ((items: DropdownMenuItem[], track: TrackModel) => void)
@@ -114,15 +115,36 @@ const selectedTrack: Ref<TrackModel | null> = ref(null);
           {{ track.meta?.title }}
         </h4>
         <span
-          v-if="track.meta?.artist"
-          :title="track.meta?.artist"
+          v-if="track.meta?.artist || useDailyPodcastView"
+          :title="track.meta?.artist || ''"
           class="block truncate text-[15px] leading-5"
           :class="isPlaying ? 'text-black-1' : 'text-label-2'"
         >
-          {{ track.meta?.artist }}
+          {{
+            useDailyPodcastView
+              ? weekDay(track.publishedAt)
+              : track.meta?.artist
+          }}
         </span>
       </div>
-      <div v-if="!isTrackTypeKnown" class="flex min-w-0 items-center">
+
+      <div v-if="highlight" class="hidden min-w-0 items-center xl:flex">
+        <span class="flex gap-1 truncate rounded-3xl bg-[#81888F1A] px-3 py-2">
+          <NuxtIcon name="icon.ai" class="text-utility-auto" />
+          <div class="truncate" v-html="adjustHighlightText(highlight)"></div>
+        </span>
+      </div>
+      <div
+        v-else-if="useDailyPodcastView && track.publishedAt"
+        class="flex min-w-0 items-center"
+      >
+        <span
+          class="truncate"
+          :class="isPlaying ? 'text-black-1' : 'text-label-3'"
+          >{{ formatDate(track.publishedAt) }}</span
+        >
+      </div>
+      <div v-else-if="!isTrackTypeKnown" class="flex min-w-0 items-center">
         <span
           class="truncate"
           :class="isPlaying ? 'text-black-1' : 'text-label-3'"
@@ -130,7 +152,7 @@ const selectedTrack: Ref<TrackModel | null> = ref(null);
         >
       </div>
       <div
-        v-if="isTrackTypeKnown"
+        v-else
         class="flex min-w-0 items-center"
         :class="highlight ? 'xl:hidden' : ''"
       >
@@ -139,12 +161,6 @@ const selectedTrack: Ref<TrackModel | null> = ref(null);
           :class="isPlaying ? 'text-black-1' : 'text-label-3'"
           >{{ track.meta?.album }}</span
         >
-      </div>
-      <div v-if="highlight" class="hidden min-w-0 items-center xl:flex">
-        <span class="flex gap-1 truncate rounded-3xl bg-[#81888F1A] px-3 py-2">
-          <NuxtIcon name="icon.ai" class="text-utility-auto" />
-          <div class="truncate" v-html="adjustHighlightText(highlight)"></div>
-        </span>
       </div>
       <div class="flex items-center">
         <span class="text-label-3">
