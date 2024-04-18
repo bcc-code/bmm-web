@@ -26,6 +26,22 @@ const appInsights = {
   event: (_: string, _2: any) => {},
 } as unknown as AppInsights;
 
+const now = new Date();
+function track(id: number) {
+  const t: TrackModel = {
+    id,
+    type: "track",
+    parentId: 123,
+    publishedAt: now,
+    recordedAt: now,
+    tags: [],
+    subtype: "song",
+    language: "nb",
+    meta: {},
+  };
+  return t;
+}
+
 const userData: IUserData = { personId: null, age: null, os: "Test" };
 const setupPlayer = () =>
   initMediaPlayer(
@@ -33,6 +49,8 @@ const setupPlayer = () =>
       new MediaTrack(
         () => Promise.resolve(src),
         () => {},
+        () => {},
+        appInsights,
       ),
     appInsights as unknown as AppInsights,
     userData,
@@ -107,7 +125,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
       // Arrange
       const mediaPlayer = setupPlayer();
       await flushPromises();
-      mediaPlayer.setQueue([{ id: 1, type: "track" }]);
+      mediaPlayer.setQueue([track(1)]);
       await flushPromises();
 
       // Act
@@ -122,7 +140,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
       // Arrange
       const mediaPlayer = setupPlayer();
       await flushPromises();
-      mediaPlayer.setQueue([{ id: 1, type: "track" }]);
+      mediaPlayer.setQueue([track(1)]);
       await flushPromises();
 
       // Act
@@ -152,7 +170,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
       // Arrange
       const mediaPlayer = setupPlayer();
       await flushPromises();
-      mediaPlayer.setQueue([{ id: 1, type: "track" }]);
+      mediaPlayer.setQueue([track(1)]);
       await flushPromises();
       mediaPlayer.currentPosition.value = 100;
       await flushPromises();
@@ -184,7 +202,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
       // Arrange
       const mediaPlayer = setupPlayer();
       await flushPromises();
-      mediaPlayer.setQueue([{ id: 1, type: "track" }]);
+      mediaPlayer.setQueue([track(1)]);
       await flushPromises();
       mediaPlayer.currentPosition.value = 100;
       await flushPromises();
@@ -216,7 +234,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
       // Arrange
       const mediaPlayer = ref(setupPlayer());
 
-      mediaPlayer.value.setQueue([{ id: 1, type: "track" }]);
+      mediaPlayer.value.setQueue([track(1)]);
       await flushPromises();
       mediaPlayer.value.pause();
       playMocks[0]!.mockClear();
@@ -233,7 +251,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
     it("inits a new current element if no current element having a non-empty queue", async () => {
       // Arrange
       const mediaPlayer = ref(setupPlayer());
-      mediaPlayer.value.setQueue([{ id: 1, type: "track" }]);
+      mediaPlayer.value.setQueue([track(1)]);
       await flushPromises();
       mediaPlayer.value.stop();
       await flushPromises();
@@ -265,7 +283,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
       // Arrange
       const mediaPlayer = ref(setupPlayer());
 
-      mediaPlayer.value.setQueue([{ id: 1, type: "track" }]);
+      mediaPlayer.value.setQueue([track(1)]);
       await flushPromises();
       pauseMocks[0]!.mockClear();
 
@@ -296,7 +314,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
       // Arrange
       const mediaPlayer = ref(setupPlayer());
 
-      mediaPlayer.value.setQueue([{ id: 1, type: "track" }]);
+      mediaPlayer.value.setQueue([track(1)]);
       await flushPromises();
       const statusChanges: MediaPlayerStatus[] = [];
       watch(
@@ -317,7 +335,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
       expect(mediaPlayer.value.hasNext).eq(false);
       expect(mediaPlayer.value.hasPrevious).eq(true);
       expect(mediaPlayer.value.queue.length).eq(1);
-      expect(mediaPlayer.value.currentTrack).eql({ id: 1, type: "track" });
+      expect(mediaPlayer.value.currentTrack).eql(track(1));
       expect(mediaPlayer.value.currentPosition).toBeNaN();
       expect(mediaPlayer.value.currentTrackDuration).toBeNaN();
     });
@@ -328,10 +346,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
       // Arrange
       const mediaPlayer = ref(setupPlayer());
 
-      mediaPlayer.value.setQueue([
-        { id: 1, type: "track" },
-        { id: 2, type: "track" },
-      ]);
+      mediaPlayer.value.setQueue([track(1), track(2)]);
       await flushPromises();
       MockedMediaTrack.mockClear();
 
@@ -349,20 +364,14 @@ describe("plugin mediaPlayer MediaTrack", () => {
 
       // Assert
       expect(MockedMediaTrack).toHaveBeenCalledOnce();
-      expect(currentTracks).eql([{ id: 2, type: "track" }]);
+      expect(currentTracks).eql([track(2)]);
     });
 
     it("skips the action if there is no next element", async () => {
       // Arrange
       const mediaPlayer = ref(setupPlayer());
 
-      mediaPlayer.value.setQueue(
-        [
-          { id: 1, type: "track" },
-          { id: 2, type: "track" },
-        ],
-        1,
-      );
+      mediaPlayer.value.setQueue([track(1), track(2)], 1);
       await flushPromises();
       MockedMediaTrack.mockClear();
 
@@ -388,13 +397,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
       const mediaPlayer = ref(setupPlayer());
 
       mediaPlayer.value.repeatStatus = RepeatStatus.RepeatQueue;
-      mediaPlayer.value.setQueue(
-        [
-          { id: 1, type: "track" },
-          { id: 2, type: "track" },
-        ],
-        1,
-      );
+      mediaPlayer.value.setQueue([track(1), track(2)], 1);
       await flushPromises();
       MockedMediaTrack.mockClear();
 
@@ -412,7 +415,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
 
       // Assert
       expect(MockedMediaTrack).toHaveBeenCalledOnce();
-      expect(currentTracks).eql([{ id: 1, type: "track" }]);
+      expect(currentTracks).eql([track(1)]);
     });
 
     it("restarts the track if repeat-mode is not 'NoRepeat' and queue has only one item", async () => {
@@ -420,7 +423,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
       const mediaPlayer = ref(setupPlayer());
 
       mediaPlayer.value.repeatStatus = RepeatStatus.RepeatQueue;
-      mediaPlayer.value.setQueue([{ id: 1, type: "track" }]);
+      mediaPlayer.value.setQueue([track(1)]);
       await flushPromises();
       MockedMediaTrack.mockClear();
 
@@ -439,7 +442,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
       // Assert
       expect(MockedMediaTrack).toHaveBeenCalledOnce();
       expect(currentTracks).eql([]);
-      expect(mediaPlayer.value.currentTrack).eql({ id: 1, type: "track" });
+      expect(mediaPlayer.value.currentTrack).eql(track(1));
     });
 
     it("sets repeat-mode to 'RepeatQueue' if it was 'RepeatTrack'", async () => {
@@ -447,13 +450,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
       const mediaPlayer = ref(setupPlayer());
 
       mediaPlayer.value.repeatStatus = RepeatStatus.RepeatTrack;
-      mediaPlayer.value.setQueue(
-        [
-          { id: 1, type: "track" },
-          { id: 2, type: "track" },
-        ],
-        1,
-      );
+      mediaPlayer.value.setQueue([track(1), track(2)], 1);
       await flushPromises();
       MockedMediaTrack.mockClear();
 
@@ -471,7 +468,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
 
       // Assert
       expect(MockedMediaTrack).toHaveBeenCalledOnce();
-      expect(currentTracks).eql([{ id: 1, type: "track" }]);
+      expect(currentTracks).eql([track(1)]);
       expect(mediaPlayer.value.repeatStatus).eq(RepeatStatus.RepeatQueue);
     });
 
@@ -479,10 +476,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
       // Arrange
       const mediaPlayer = ref(setupPlayer());
 
-      mediaPlayer.value.setQueue([
-        { id: 1, type: "track" },
-        { id: 2, type: "track" },
-      ]);
+      mediaPlayer.value.setQueue([track(1), track(2)]);
       await flushPromises();
 
       // Act
@@ -501,13 +495,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
       // Arrange
       const mediaPlayer = ref(setupPlayer());
 
-      mediaPlayer.value.setQueue(
-        [
-          { id: 1, type: "track" },
-          { id: 2, type: "track" },
-        ],
-        1,
-      );
+      mediaPlayer.value.setQueue([track(1), track(2)], 1);
       await flushPromises();
       MockedMediaTrack.mockClear();
 
@@ -525,20 +513,14 @@ describe("plugin mediaPlayer MediaTrack", () => {
 
       // Assert
       expect(MockedMediaTrack).toHaveBeenCalledOnce();
-      expect(currentTracks).eql([{ id: 1, type: "track" }]);
+      expect(currentTracks).eql([track(1)]);
     });
 
     it("skips the action if there is no previous element", async () => {
       // Arrange
       const mediaPlayer = ref(setupPlayer());
 
-      mediaPlayer.value.setQueue(
-        [
-          { id: 1, type: "track" },
-          { id: 2, type: "track" },
-        ],
-        0,
-      );
+      mediaPlayer.value.setQueue([track(1), track(2)], 0);
       await flushPromises();
       MockedMediaTrack.mockClear();
 
@@ -563,13 +545,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
       // Arrange
       const mediaPlayer = ref(setupPlayer());
 
-      mediaPlayer.value.setQueue(
-        [
-          { id: 1, type: "track" },
-          { id: 2, type: "track" },
-        ],
-        1,
-      );
+      mediaPlayer.value.setQueue([track(1), track(2)], 1);
       await flushPromises();
 
       // Act
@@ -586,13 +562,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
       // Arrange
       const mediaPlayer = ref(setupPlayer());
 
-      mediaPlayer.value.setQueue(
-        [
-          { id: 1, type: "track" },
-          { id: 2, type: "track" },
-        ],
-        0,
-      );
+      mediaPlayer.value.setQueue([track(1), track(2)], 0);
       mediaPlayer.value.repeatStatus = RepeatStatus.RepeatQueue;
       await flushPromises();
       MockedMediaTrack.mockClear();
@@ -611,7 +581,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
 
       // Assert
       expect(MockedMediaTrack).toHaveBeenCalledOnce();
-      expect(currentTracks).eql([{ id: 2, type: "track" }]);
+      expect(currentTracks).eql([track(2)]);
     });
   });
 
@@ -632,10 +602,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
       );
 
       // Act
-      mediaPlayer.value.setQueue([
-        { id: 1, type: "track" },
-        { id: 2, type: "track" },
-      ]);
+      mediaPlayer.value.setQueue([track(1), track(2)]);
       await flushPromises();
 
       // Assert
@@ -651,13 +618,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
       const mediaPlayer = ref(setupPlayer());
 
       // Act
-      mediaPlayer.value.setQueue(
-        [
-          { id: 1, type: "track" },
-          { id: 2, type: "track" },
-        ],
-        1,
-      );
+      mediaPlayer.value.setQueue([track(1), track(2)], 1);
       await flushPromises();
 
       // Assert
@@ -678,18 +639,12 @@ describe("plugin mediaPlayer MediaTrack", () => {
       MockedMediaTrack.mockClear();
 
       // Act
-      mediaPlayer.value.setQueue(
-        [
-          { id: 1, type: "track" },
-          { id: 2, type: "track" },
-        ],
-        1,
-      );
+      mediaPlayer.value.setQueue([track(1), track(2)], 1);
       await flushPromises();
 
       // Assert
       expect(MockedMediaTrack).toHaveBeenCalledOnce();
-      expect(currentTracks).eql([{ id: 2, type: "track" }]);
+      expect(currentTracks).eql([track(2)]);
     });
   });
 
@@ -701,11 +656,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
         const mediaPlayer = ref(setupPlayer());
 
         // Act
-        mediaPlayer.value.setQueueShuffled([
-          { id: 1, type: "track" },
-          { id: 2, type: "track" },
-          { id: 3, type: "track" },
-        ]);
+        mediaPlayer.value.setQueueShuffled([track(1), track(2), track(3)]);
         await flushPromises();
 
         // Assert
@@ -724,10 +675,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
       // Arrange
       const mediaPlayer = ref(setupPlayer());
 
-      mediaPlayer.value.setQueue([
-        { id: 1, type: "track" },
-        { id: 2, type: "track" },
-      ]);
+      mediaPlayer.value.setQueue([track(1), track(2)]);
       await flushPromises();
 
       const currentTracks: (TrackModel | undefined)[] = [];
@@ -740,17 +688,13 @@ describe("plugin mediaPlayer MediaTrack", () => {
       MockedMediaTrack.mockClear();
 
       // Act
-      mediaPlayer.value.addToQueue({ id: 3, type: "track" });
+      mediaPlayer.value.addToQueue(track(3));
       await flushPromises();
 
       // Assert
       expect(MockedMediaTrack).toHaveBeenCalledTimes(0);
       expect(currentTracks).eql([]);
-      expect(mediaPlayer.value.queue).eql([
-        { id: 1, type: "track" },
-        { id: 2, type: "track" },
-        { id: 3, type: "track" },
-      ]);
+      expect(mediaPlayer.value.queue).eql([track(1), track(2), track(3)]);
     });
 
     it("adds an element to the queue and start playing if queue is empty", async () => {
@@ -767,26 +711,20 @@ describe("plugin mediaPlayer MediaTrack", () => {
       MockedMediaTrack.mockClear();
 
       // Act
-      mediaPlayer.value.addToQueue({ id: 3, type: "track" });
+      mediaPlayer.value.addToQueue(track(3));
       await flushPromises();
 
       // Assert
       expect(MockedMediaTrack).toHaveBeenCalledTimes(1);
-      expect(currentTracks).eql([{ id: 3, type: "track" }]);
-      expect(mediaPlayer.value.queue).eql([{ id: 3, type: "track" }]);
+      expect(currentTracks).eql([track(3)]);
+      expect(mediaPlayer.value.queue).eql([track(3)]);
     });
 
     it("adds an element to the queue and start playing if queue has finished playing", async () => {
       // Arrange
       const mediaPlayer = ref(setupPlayer());
 
-      mediaPlayer.value.setQueue(
-        [
-          { id: 1, type: "track" },
-          { id: 2, type: "track" },
-        ],
-        1,
-      );
+      mediaPlayer.value.setQueue([track(1), track(2)], 1);
       await flushPromises();
 
       MockedMediaTrack.mock.results[0]!.value.obj!.paused = true;
@@ -803,17 +741,13 @@ describe("plugin mediaPlayer MediaTrack", () => {
       MockedMediaTrack.mockClear();
 
       // Act
-      mediaPlayer.value.addToQueue({ id: 3, type: "track" });
+      mediaPlayer.value.addToQueue(track(3));
       await flushPromises();
 
       // Assert
       expect(MockedMediaTrack).toHaveBeenCalledTimes(1);
-      expect(currentTracks).eql([{ id: 3, type: "track" }]);
-      expect(mediaPlayer.value.queue).eql([
-        { id: 1, type: "track" },
-        { id: 2, type: "track" },
-        { id: 3, type: "track" },
-      ]);
+      expect(currentTracks).eql([track(3)]);
+      expect(mediaPlayer.value.queue).eql([track(1), track(2), track(3)]);
     });
   });
 
@@ -822,10 +756,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
       // Arrange
       const mediaPlayer = ref(setupPlayer());
 
-      mediaPlayer.value.setQueue([
-        { id: 1, type: "track" },
-        { id: 3, type: "track" },
-      ]);
+      mediaPlayer.value.setQueue([track(1), track(3)]);
       await flushPromises();
 
       const currentTracks: (TrackModel | undefined)[] = [];
@@ -838,40 +769,33 @@ describe("plugin mediaPlayer MediaTrack", () => {
       MockedMediaTrack.mockClear();
 
       // Act
-      mediaPlayer.value.addNext({ id: 2, type: "track" });
+      mediaPlayer.value.addNext(track(2));
       await flushPromises();
 
       // Assert
       expect(MockedMediaTrack).toHaveBeenCalledTimes(0);
       expect(currentTracks).eql([]);
-      expect(mediaPlayer.value.queue).eql([
-        { id: 1, type: "track" },
-        { id: 2, type: "track" },
-        { id: 3, type: "track" },
-      ]);
+      expect(mediaPlayer.value.queue).eql([track(1), track(2), track(3)]);
     });
 
     it("adds an element to the queue next to the current element if another track has been added and current element is set", async () => {
       // Arrange
       const mediaPlayer = ref(setupPlayer());
 
-      mediaPlayer.value.setQueue([
-        { id: 1, type: "track" },
-        { id: 4, type: "track" },
-      ]);
+      mediaPlayer.value.setQueue([track(1), track(4)]);
       await flushPromises();
 
       // Act
-      mediaPlayer.value.addNext({ id: 3, type: "track" });
-      mediaPlayer.value.addNext({ id: 2, type: "track" });
+      mediaPlayer.value.addNext(track(3));
+      mediaPlayer.value.addNext(track(2));
       await flushPromises();
 
       // Assert
       expect(mediaPlayer.value.queue).eql([
-        { id: 1, type: "track" },
-        { id: 2, type: "track" },
-        { id: 3, type: "track" },
-        { id: 4, type: "track" },
+        track(1),
+        track(2),
+        track(3),
+        track(4),
       ]);
     });
 
@@ -889,26 +813,20 @@ describe("plugin mediaPlayer MediaTrack", () => {
       MockedMediaTrack.mockClear();
 
       // Act
-      mediaPlayer.value.addNext({ id: 3, type: "track" });
+      mediaPlayer.value.addNext(track(3));
       await flushPromises();
 
       // Assert
       expect(MockedMediaTrack).toHaveBeenCalledTimes(1);
-      expect(currentTracks).eql([{ id: 3, type: "track" }]);
-      expect(mediaPlayer.value.queue).eql([{ id: 3, type: "track" }]);
+      expect(currentTracks).eql([track(3)]);
+      expect(mediaPlayer.value.queue).eql([track(3)]);
     });
 
     it("adds an element to the queue next to the current element and start playing if queue has finished playing", async () => {
       // Arrange
       const mediaPlayer = ref(setupPlayer());
 
-      mediaPlayer.value.setQueue(
-        [
-          { id: 1, type: "track" },
-          { id: 2, type: "track" },
-        ],
-        1,
-      );
+      mediaPlayer.value.setQueue([track(1), track(2)], 1);
       await flushPromises();
 
       MockedMediaTrack.mock.results[0]!.value.obj!.paused = true;
@@ -925,17 +843,13 @@ describe("plugin mediaPlayer MediaTrack", () => {
       MockedMediaTrack.mockClear();
 
       // Act
-      mediaPlayer.value.addNext({ id: 3, type: "track" });
+      mediaPlayer.value.addNext(track(3));
       await flushPromises();
 
       // Assert
       expect(MockedMediaTrack).toHaveBeenCalledTimes(1);
-      expect(currentTracks).eql([{ id: 3, type: "track" }]);
-      expect(mediaPlayer.value.queue).eql([
-        { id: 1, type: "track" },
-        { id: 2, type: "track" },
-        { id: 3, type: "track" },
-      ]);
+      expect(currentTracks).eql([track(3)]);
+      expect(mediaPlayer.value.queue).eql([track(1), track(2), track(3)]);
     });
   });
 
@@ -956,7 +870,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
         );
 
         // Act
-        mediaPlayer.value.setQueue([{ id: 1, type: "track" }]);
+        mediaPlayer.value.setQueue([track(1)]);
         await flushPromises();
         MockedMediaTrack.mock.results[0]!.value.obj!.position = 100;
         await flushPromises();
@@ -973,7 +887,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
         // Arrange
         const mediaPlayer = ref(setupPlayer());
 
-        mediaPlayer.value.setQueue([{ id: 1, type: "track" }]);
+        mediaPlayer.value.setQueue([track(1)]);
         await flushPromises();
 
         MockedMediaTrack.mock.results[0]!.value.obj!.position = 100;
@@ -988,7 +902,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
         );
 
         // Act
-        mediaPlayer.value.setQueue([{ id: 1, type: "track" }]);
+        mediaPlayer.value.setQueue([track(1)]);
         await flushPromises();
 
         // Assert
@@ -1002,7 +916,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
         // Arrange
         const mediaPlayer = ref(setupPlayer());
 
-        mediaPlayer.value.setQueue([{ id: 1, type: "track" }]);
+        mediaPlayer.value.setQueue([track(1)]);
         await flushPromises();
 
         MockedMediaTrack.mock.results[0]!.value.obj!.position = 100;
@@ -1032,7 +946,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
         // Arrange
         const mediaPlayer = ref(setupPlayer());
 
-        mediaPlayer.value.setQueue([{ id: 1, type: "track" }]);
+        mediaPlayer.value.setQueue([track(1)]);
         await flushPromises();
 
         const statusValues: MediaPlayerStatus[] = [];
@@ -1055,7 +969,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
         // Arrange
         const mediaPlayer = ref(setupPlayer());
 
-        mediaPlayer.value.setQueue([{ id: 1, type: "track" }]);
+        mediaPlayer.value.setQueue([track(1)]);
         await flushPromises();
         MockedMediaTrack.mock.results[0]!.value.obj!.paused = true;
         await flushPromises();
@@ -1082,7 +996,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
         // Arrange
         const mediaPlayer = ref(setupPlayer());
 
-        mediaPlayer.value.setQueue([{ id: 1, type: "track" }]);
+        mediaPlayer.value.setQueue([track(1)]);
         await flushPromises();
 
         const isLoadingValues: Boolean[] = [];
@@ -1105,7 +1019,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
         // Arrange
         const mediaPlayer = ref(setupPlayer());
 
-        mediaPlayer.value.setQueue([{ id: 1, type: "track" }]);
+        mediaPlayer.value.setQueue([track(1)]);
         await flushPromises();
         MockedMediaTrack.mock.results[0]!.value.obj!.loading = true;
         await flushPromises();
@@ -1143,10 +1057,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
         );
 
         // Act
-        mediaPlayer.value.setQueue([
-          { id: 1, type: "track" },
-          { id: 2, type: "track" },
-        ]);
+        mediaPlayer.value.setQueue([track(1), track(2)]);
         await flushPromises();
 
         // Assert
@@ -1157,11 +1068,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
         // Arrange
         const mediaPlayer = ref(setupPlayer());
 
-        mediaPlayer.value.setQueue([
-          { id: 1, type: "track" },
-          { id: 2, type: "track" },
-          { id: 3, type: "track" },
-        ]);
+        mediaPlayer.value.setQueue([track(1), track(2), track(3)]);
         await flushPromises();
 
         const hasNextValues: Boolean[] = [];
@@ -1184,10 +1091,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
         // Arrange
         const mediaPlayer = ref(setupPlayer());
 
-        mediaPlayer.value.setQueue([
-          { id: 1, type: "track" },
-          { id: 2, type: "track" },
-        ]);
+        mediaPlayer.value.setQueue([track(1), track(2)]);
         await flushPromises();
 
         const hasNextValues: Boolean[] = [];
@@ -1210,13 +1114,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
         // Arrange
         const mediaPlayer = ref(setupPlayer());
 
-        mediaPlayer.value.setQueue(
-          [
-            { id: 1, type: "track" },
-            { id: 2, type: "track" },
-          ],
-          1,
-        );
+        mediaPlayer.value.setQueue([track(1), track(2)], 1);
         await flushPromises();
 
         const hasNextValues: Boolean[] = [];
@@ -1228,7 +1126,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
         );
 
         // Act
-        mediaPlayer.value.addToQueue({ id: 3, type: "track" });
+        mediaPlayer.value.addToQueue(track(3));
         await flushPromises();
 
         // Assert
@@ -1239,10 +1137,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
         // Arrange
         const mediaPlayer = ref(setupPlayer());
 
-        mediaPlayer.value.setQueue([
-          { id: 1, type: "track" },
-          { id: 2, type: "track" },
-        ]);
+        mediaPlayer.value.setQueue([track(1), track(2)]);
         await flushPromises();
 
         const hasNextValues: Boolean[] = [];
@@ -1265,10 +1160,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
         // Arrange
         const mediaPlayer = ref(setupPlayer());
 
-        mediaPlayer.value.setQueue([
-          { id: 1, type: "track" },
-          { id: 2, type: "track" },
-        ]);
+        mediaPlayer.value.setQueue([track(1), track(2)]);
         mediaPlayer.value.repeatStatus = RepeatStatus.RepeatQueue;
         await flushPromises();
 
@@ -1292,10 +1184,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
         // Arrange
         const mediaPlayer = ref(setupPlayer());
 
-        mediaPlayer.value.setQueue([
-          { id: 1, type: "track" },
-          { id: 2, type: "track" },
-        ]);
+        mediaPlayer.value.setQueue([track(1), track(2)]);
         mediaPlayer.value.repeatStatus = RepeatStatus.RepeatQueue;
         await flushPromises();
 
@@ -1321,10 +1210,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
         // Arrange
         const mediaPlayer = ref(setupPlayer());
 
-        mediaPlayer.value.setQueue([
-          { id: 1, type: "track" },
-          { id: 2, type: "track" },
-        ]);
+        mediaPlayer.value.setQueue([track(1), track(2)]);
         await flushPromises();
 
         // Act
@@ -1339,13 +1225,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
         // Arrange
         const mediaPlayer = ref(setupPlayer());
 
-        mediaPlayer.value.setQueue(
-          [
-            { id: 1, type: "track" },
-            { id: 2, type: "track" },
-          ],
-          1,
-        );
+        mediaPlayer.value.setQueue([track(1), track(2)], 1);
         await flushPromises();
 
         const hasPreviousValues: Boolean[] = [];
@@ -1377,7 +1257,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
         );
 
         // Act
-        mediaPlayer.value.setQueue([{ id: 1, type: "track" }]);
+        mediaPlayer.value.setQueue([track(1)]);
         await flushPromises();
 
         // Assert
@@ -1399,15 +1279,9 @@ describe("plugin mediaPlayer MediaTrack", () => {
         );
 
         // Act
-        mediaPlayer.value.setQueue([
-          { id: 1, type: "track" },
-          { id: 2, type: "track" },
-        ]);
+        mediaPlayer.value.setQueue([track(1), track(2)]);
         await flushPromises();
-        mediaPlayer.value.setQueue([
-          { id: 3, type: "track" },
-          { id: 4, type: "track" },
-        ]);
+        mediaPlayer.value.setQueue([track(3), track(4)]);
         await flushPromises();
 
         // Assert
@@ -1420,13 +1294,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
         // Arrange
         const mediaPlayer = ref(setupPlayer());
 
-        mediaPlayer.value.setQueue(
-          [
-            { id: 1, type: "track" },
-            { id: 2, type: "track" },
-          ],
-          1,
-        );
+        mediaPlayer.value.setQueue([track(1), track(2)], 1);
         await flushPromises();
         MockedMediaTrack.mockClear();
 
@@ -1506,11 +1374,11 @@ describe("plugin mediaPlayer MediaTrack", () => {
       );
 
       // Act
-      mediaPlayer.value.setQueue([{ id: 1, type: "track" }]);
+      mediaPlayer.value.setQueue([track(1)]);
       await flushPromises();
 
       // Assert
-      expect(currentTracks).eql([{ id: 1, type: "track" }]);
+      expect(currentTracks).eql([track(1)]);
       expect(currentPositions).eql([0]);
       expect(currentTrackDurations).eql([]); // Value remains NaN
       expect(statusValues).eql([MediaPlayerStatus.Playing]);
@@ -1520,7 +1388,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
       // Arrange
       const mediaPlayer = ref(setupPlayer());
 
-      mediaPlayer.value.setQueue([{ id: 1, type: "track" }]);
+      mediaPlayer.value.setQueue([track(1)]);
       await flushPromises();
 
       const currentTrackDurations: number[] = [];
@@ -1547,10 +1415,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
       // Arrange
       const mediaPlayer = ref(setupPlayer());
 
-      mediaPlayer.value.setQueue([
-        { id: 1, type: "track" },
-        { id: 2, type: "track" },
-      ]);
+      mediaPlayer.value.setQueue([track(1), track(2)]);
       await flushPromises();
 
       MockedMediaTrack.mock.results[0]!.value.obj!.position = 100;
@@ -1594,7 +1459,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
       await flushPromises();
 
       // Assert
-      expect(currentTracks).eql([{ id: 2, type: "track" }]);
+      expect(currentTracks).eql([track(2)]);
       expect(currentPositions).eql([0]);
       expect(currentTrackDurations).eql([NaN]);
       expect(statusValues).eql([]); // Status doesn't change because we remain playing
@@ -1604,7 +1469,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
       // Arrange
       const mediaPlayer = ref(setupPlayer());
 
-      mediaPlayer.value.setQueue([{ id: 1, type: "track" }]);
+      mediaPlayer.value.setQueue([track(1)]);
       await flushPromises();
 
       MockedMediaTrack.mock.results[0]!.value.obj!.position = 100;
@@ -1658,10 +1523,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
       // Arrange
       const mediaPlayer = ref(setupPlayer());
 
-      mediaPlayer.value.setQueue([
-        { id: 1, type: "track" },
-        { id: 2, type: "track" },
-      ]);
+      mediaPlayer.value.setQueue([track(1), track(2)]);
       mediaPlayer.value.repeatStatus = RepeatStatus.RepeatTrack;
       await flushPromises();
 

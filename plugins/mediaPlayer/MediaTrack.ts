@@ -1,4 +1,3 @@
-import type { TrackModel } from "@bcc-code/bmm-sdk-fetch";
 import type { AppInsights } from "../3.applicationInsights";
 
 type ListenedPortion = {

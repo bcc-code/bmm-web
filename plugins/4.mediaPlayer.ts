@@ -106,7 +106,6 @@ export default defineNuxtPlugin((_) => {
                 });
             },
             appInsights,
-            true,
           ),
         appInsights,
         userData,

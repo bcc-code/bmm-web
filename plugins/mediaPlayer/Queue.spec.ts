@@ -5,6 +5,22 @@ import { flushPromises } from "@vue/test-utils";
 import type { TrackModel } from "@bcc-code/bmm-sdk-fetch";
 import Queue from "./Queue";
 
+const now = new Date();
+function track(id: number) {
+  const t: TrackModel = {
+    id,
+    type: "track",
+    parentId: 123,
+    publishedAt: now,
+    recordedAt: now,
+    tags: [],
+    subtype: "song",
+    language: "nb",
+    meta: {},
+  };
+  return t;
+}
+
 describe("plugin mediaPlayer Queue", () => {
   describe("init", () => {
     it("is unshuffled and has an index of -1 on empty initialization", () => {
@@ -47,20 +63,7 @@ describe("plugin mediaPlayer Queue", () => {
 
     it("is unshuffled and has an index of 0 on non-empty initialization", () => {
       // Act
-      const q = new Queue([
-        {
-          type: "track",
-          id: 1,
-        },
-        {
-          type: "track",
-          id: 2,
-        },
-        {
-          type: "track",
-          id: 3,
-        },
-      ]);
+      const q = new Queue([track(1), track(2), track(3)]);
 
       // Assert
       expect(q.isShuffled).equal(false);
@@ -71,23 +74,7 @@ describe("plugin mediaPlayer Queue", () => {
 
     it("is unshuffled and has an index of 1 on non-empty initialization with index of 1", () => {
       // Act
-      const q = new Queue(
-        [
-          {
-            type: "track",
-            id: 1,
-          },
-          {
-            type: "track",
-            id: 2,
-          },
-          {
-            type: "track",
-            id: 3,
-          },
-        ],
-        1,
-      );
+      const q = new Queue([track(1), track(2), track(3)], 1);
 
       // Assert
       expect(q.isShuffled).equal(false);
@@ -98,23 +85,7 @@ describe("plugin mediaPlayer Queue", () => {
 
     it("is unshuffled and has an index of 0 on non-empty initialization with index of -99", () => {
       // Act
-      const q = new Queue(
-        [
-          {
-            type: "track",
-            id: 1,
-          },
-          {
-            type: "track",
-            id: 2,
-          },
-          {
-            type: "track",
-            id: 3,
-          },
-        ],
-        -99,
-      );
+      const q = new Queue([track(1), track(2), track(3)], -99);
 
       // Assert
       expect(q.isShuffled).equal(false);
@@ -125,23 +96,7 @@ describe("plugin mediaPlayer Queue", () => {
 
     it("is unshuffled and has an index of the highest element on non-empty initialization with index of 99 (too high)", () => {
       // Act
-      const q = new Queue(
-        [
-          {
-            type: "track",
-            id: 1,
-          },
-          {
-            type: "track",
-            id: 2,
-          },
-          {
-            type: "track",
-            id: 3,
-          },
-        ],
-        99,
-      );
+      const q = new Queue([track(1), track(2), track(3)], 99);
 
       // Assert
       expect(q.isShuffled).equal(false);
@@ -156,12 +111,7 @@ describe("plugin mediaPlayer Queue", () => {
       "shuffles the elements if method `shuffle` is called and sets isShuffled to `true`",
       () => {
         // Arrange
-        const q = new Queue(
-          new Array(50).fill(0).map((_, i) => ({
-            id: i,
-            type: "track",
-          })),
-        );
+        const q = new Queue(new Array(50).fill(0).map((_, i) => track(i)));
 
         // Act
         q.shuffle();
@@ -177,12 +127,7 @@ describe("plugin mediaPlayer Queue", () => {
       "unshuffles the elements if method `unshuffle` is called after shuffling and sets isShuffled to `false`",
       () => {
         // Arrange
-        const q = new Queue(
-          new Array(50).fill(0).map((_, i) => ({
-            id: i,
-            type: "track",
-          })),
-        );
+        const q = new Queue(new Array(50).fill(0).map((_, i) => track(i)));
 
         // Act
         q.shuffle();
@@ -215,10 +160,7 @@ describe("plugin mediaPlayer Queue", () => {
       );
 
       qObject.value = new Queue(
-        new Array(50).fill(0).map((_, i) => ({
-          id: i,
-          type: "track",
-        })),
+        new Array(50).fill(0).map((_, i) => track(i)),
         20,
       );
 
@@ -231,7 +173,7 @@ describe("plugin mediaPlayer Queue", () => {
 
       // Assert
       expect(indexes).eql([20, 0, 20]);
-      expect(tracks).eql([{ id: 20, type: "track" }]);
+      expect(tracks).eql([track(20)]);
     });
   });
 
@@ -256,10 +198,7 @@ describe("plugin mediaPlayer Queue", () => {
       );
 
       qObject.value = new Queue(
-        new Array(50).fill(0).map((_, i) => ({
-          id: i,
-          type: "track",
-        })),
+        new Array(50).fill(0).map((_, i) => track(i)),
         20,
       );
 
@@ -270,10 +209,7 @@ describe("plugin mediaPlayer Queue", () => {
 
       // Assert
       expect(indexes).eql([20, 10]);
-      expect(tracks).eql([
-        { id: 20, type: "track" },
-        { id: 10, type: "track" },
-      ]);
+      expect(tracks).eql([track(20), track(10)]);
     });
 
     it("updates the current track and index to first track if it is changed below the range", async () => {
@@ -296,10 +232,7 @@ describe("plugin mediaPlayer Queue", () => {
       );
 
       qObject.value = new Queue(
-        new Array(50).fill(0).map((_, i) => ({
-          id: i,
-          type: "track",
-        })),
+        new Array(50).fill(0).map((_, i) => track(i)),
         20,
       );
 
@@ -310,10 +243,7 @@ describe("plugin mediaPlayer Queue", () => {
 
       // Assert
       expect(indexes).eql([20, 0]);
-      expect(tracks).eql([
-        { id: 20, type: "track" },
-        { id: 0, type: "track" },
-      ]);
+      expect(tracks).eql([track(20), track(0)]);
     });
 
     it("updates the current track and index to last track if it is changed above the range", async () => {
@@ -336,10 +266,7 @@ describe("plugin mediaPlayer Queue", () => {
       );
 
       qObject.value = new Queue(
-        new Array(50).fill(0).map((_, i) => ({
-          id: i,
-          type: "track",
-        })),
+        new Array(50).fill(0).map((_, i) => track(i)),
         20,
       );
 
@@ -350,10 +277,7 @@ describe("plugin mediaPlayer Queue", () => {
 
       // Assert
       expect(indexes).eql([20, 49]);
-      expect(tracks).eql([
-        { id: 20, type: "track" },
-        { id: 49, type: "track" },
-      ]);
+      expect(tracks).eql([track(20), track(49)]);
     });
 
     it("doesn't the current track and index if index is changed below the range while on first", async () => {
@@ -376,10 +300,7 @@ describe("plugin mediaPlayer Queue", () => {
       );
 
       qObject.value = new Queue(
-        new Array(50).fill(0).map((_, i) => ({
-          id: i,
-          type: "track",
-        })),
+        new Array(50).fill(0).map((_, i) => track(i)),
         0,
       );
 
@@ -390,7 +311,7 @@ describe("plugin mediaPlayer Queue", () => {
 
       // Assert
       expect(indexes).eql([0]);
-      expect(tracks).eql([{ id: 0, type: "track" }]);
+      expect(tracks).eql([track(0)]);
     });
 
     it("doesn't the current track and index if index is changed above the range while on last", async () => {
@@ -413,10 +334,7 @@ describe("plugin mediaPlayer Queue", () => {
       );
 
       qObject.value = new Queue(
-        new Array(50).fill(0).map((_, i) => ({
-          id: i,
-          type: "track",
-        })),
+        new Array(50).fill(0).map((_, i) => track(i)),
         49,
       );
 
@@ -427,7 +345,7 @@ describe("plugin mediaPlayer Queue", () => {
 
       // Assert
       expect(indexes).eql([49]);
-      expect(tracks).eql([{ id: 49, type: "track" }]);
+      expect(tracks).eql([track(49)]);
     });
   });
 });
