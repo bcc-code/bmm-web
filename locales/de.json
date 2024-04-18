@@ -96,6 +96,9 @@
     "by-x": "von {name}"
   },
   "podcast": {
+    "this-week": "Diese Woche",
+    "last-week": "Letzte Woche",
+    "week-x": "Week {count}",
     "action": {
       "play": "Abspielen",
       "follow": "Abonnieren"
