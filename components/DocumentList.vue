@@ -185,9 +185,6 @@ const playSingleItem = (item: TrackModel) => {
           v-else
           class="mt-3 grid w-full grid-cols-tracklist divide-y divide-label-separator lg:mt-4"
         >
-          {{
-            console.log(group.items)
-          }}
           <template v-for="item in group.items" :key="item.id">
             <h2
               v-if="item.type === 'chapter_header'"

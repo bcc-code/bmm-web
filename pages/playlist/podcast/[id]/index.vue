@@ -67,10 +67,10 @@ function groupByWeek(data: TrackModel[]) {
         id: week.year * 100 + week.week,
         // eslint-disable-next-line no-nested-ternary
         title: isThisWeek
-          ? "This week"
+          ? t("podcast.this-week")
           : isPreviousWeek
-            ? "Last week"
-            : `Week ${week.week}`,
+            ? t("podcast.last-week")
+            : t("podcast.week-x", week.week),
       });
     models.push(track);
     lastWeek = week;
