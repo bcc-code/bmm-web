@@ -1,14 +1,28 @@
 <script lang="ts" setup>
+import { PodcastApi } from "@bcc-code/bmm-sdk-fetch";
 import type { TileModel } from "@bcc-code/bmm-sdk-fetch";
 
-defineProps<{
+const props = defineProps<{
   item: TileModel;
 }>();
 
-const emit = defineEmits<{ "play-track": [] }>();
+const { setQueue } = useNuxtApp().$mediaPlayer;
 
 function playTrack() {
-  emit("play-track");
+  if (!props.item.track) return;
+  if (props.item.lastPositionInMs)
+    setQueue([props.item.track], 0, props.item.lastPositionInMs / 1000);
+  else setQueue([props.item.track]);
+  // ToDo: load linked album (from showAllLink) and add remaining items to the queue
+}
+
+async function shufflePodcast() {
+  if (props.item.shufflePodcastId) {
+    const tracks = await new PodcastApi().podcastIdShuffleGet({
+      id: props.item.shufflePodcastId,
+    });
+    setQueue(tracks);
+  }
 }
 
 const { locale } = useI18n();
@@ -33,26 +47,31 @@ const weekDay = (date: Date) => {
 <template>
   <div
     v-if="item.showAllLink && item.track && item.title"
-    class="bg- flex h-[200px] w-[400px] flex-row rounded-2xl"
+    class="flex w-full max-w-[480px] flex-col gap-4 rounded-2xl p-4 lg:aspect-[2/1] lg:flex-row lg:gap-0 lg:p-0"
+    :style="'background: ' + (item.backgroundColor ?? '#F5F6F7')"
   >
     <NuxtLink
       :to="parseLink(item.showAllLink)"
-      class="aspect-square w-1/2 rounded-l-2xl"
+      class="aspect-square w-[120px] rounded-2xl lg:w-1/2 lg:rounded-none lg:rounded-l-2xl"
     >
       <CoverImage
         :src="item.coverUrl"
         :alt="item.title"
-        class="rounded-l-2xl"
+        class="rounded-2xl lg:rounded-none lg:rounded-l-2xl"
         no-border
       />
     </NuxtLink>
     <div
-      class="flex w-1/2 cursor-pointer flex-col rounded-r-2xl p-6 text-black-1"
+      class="flex grow cursor-pointer flex-col gap-0.5 rounded-r-2xl p-0 text-black-1 lg:w-1/2 lg:p-4"
       :style="'background: ' + (item.backgroundColor ?? '#F5F6F7')"
       @click.stop="playTrack"
     >
-      <div class="opacity-70">{{ item.title }}</div>
-      <div class="text-lg font-semibold">{{ item.label }}</div>
+      <div class="truncate leading-5 opacity-70">{{ item.title }}</div>
+      <div
+        class="max-h-[40px] overflow-hidden text-[16px] font-semibold leading-5 xl:max-h-[48px] xl:text-lg xl:leading-6"
+      >
+        {{ item.label }}
+      </div>
       <div v-if="item.date" class="whitespace-nowrap text-sm">
         {{ weekDay(item.date) }}
         <span class="opacity-70">{{ formatDate(item.date) }}</span>
@@ -60,12 +79,22 @@ const weekDay = (date: Date) => {
       <div v-else class="text-sm">
         {{ item.subtitle }}
       </div>
-      <div class="mt-auto flex w-full flex-row">
+      <div class="mt-auto flex w-full flex-row gap-3.5 pt-1.5">
         <button
           class="h-10 w-10 rounded-full bg-black-1"
           @click.stop="playTrack"
         >
           <NuxtIcon name="icon.play" class="p-2 text-2xl text-white-1" />
+        </button>
+        <button
+          v-if="item.shufflePodcastId"
+          class="h-10 w-10 rounded-full border-[1px] border-label-separator"
+          @click.stop="shufflePodcast"
+        >
+          <NuxtIcon
+            name="icon.shuffle"
+            class="aspect-square p-1 text-xl text-black-1"
+          />
         </button>
         <TrackMenu :track="item.track" class="ml-auto"></TrackMenu>
       </div>

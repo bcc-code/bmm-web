@@ -10,6 +10,7 @@ type IDiscoverableGroup = {
   header: SectionHeaderModel | null;
   items: Exclude<IAllDocumentModels, SectionHeaderModel>[];
   useFlex: boolean;
+  isTileContainer: boolean;
 };
 
 const { t } = useI18n();
@@ -27,23 +28,25 @@ const convertModels = (models: IAllDocumentModels[]) => {
 
   models.forEach((el, i) => {
     if (el.type === "Tile") {
-      if (!el.lastPositionInMs) {
-        // We currently don't support continuing from the position. Then it's better to hide it.
+      tiles.push(el);
+      if (!addedTiles) {
+        result.push({
+          header: null,
+          items: tiles,
+          useFlex: false,
+          isTileContainer: true,
+        });
+        addedTiles = true;
+      }
 
-        tiles.push(el);
-        if (!addedTiles) {
-          result.push({ header: null, items: tiles, useFlex: true });
-          addedTiles = true;
-        }
-
-        if (currentSection.length > 0) {
-          currentSection = [];
-          result.push({
-            header: null,
-            items: currentSection,
-            useFlex: false,
-          });
-        }
+      if (currentSection.length > 0) {
+        currentSection = [];
+        result.push({
+          header: null,
+          items: currentSection,
+          useFlex: false,
+          isTileContainer: false,
+        });
       }
     } else if (el.type === "project_box") {
       console.log(
@@ -55,6 +58,7 @@ const convertModels = (models: IAllDocumentModels[]) => {
         header: el,
         items: currentSection,
         useFlex: el.useCoverCarousel === true,
+        isTileContainer: false,
       });
     } else if (
       i === 0 ||
@@ -67,6 +71,7 @@ const convertModels = (models: IAllDocumentModels[]) => {
         header: null,
         items: currentSection,
         useFlex: false,
+        isTileContainer: false,
       });
     } else {
       currentSection.push(el);
@@ -83,10 +88,6 @@ const playItem = (item: TrackModel, group: IDiscoverableGroup) => {
     items,
     items.findIndex((track) => track.id === item.id),
   );
-};
-const playSingleItem = (item: TrackModel) => {
-  setQueue([item], 0); // ToDo: read item.lastPositionInMs and go to specific location
-  // ToDo: load linked album (from showAllLink) and add remaining items to the queue
 };
 </script>
 
@@ -133,7 +134,19 @@ const playSingleItem = (item: TrackModel) => {
           </div>
         </h2>
 
-        <div v-if="group.useFlex" class="mt-3 py-2">
+        <div
+          v-if="group.isTileContainer"
+          class="mt-3 grid w-full grid-cols-tilesNarrow gap-4 md:gap-6 lg:grid-cols-tilesWide"
+        >
+          <template v-for="item in group.items" :key="item.id">
+            <TileItem
+              v-if="item.type === 'Tile' && item.track"
+              :item="item"
+            ></TileItem>
+          </template>
+        </div>
+
+        <div v-else-if="group.useFlex" class="mt-3 py-2">
           <div
             class="flex flex-row flex-wrap gap-6"
             :class="
@@ -163,12 +176,6 @@ const playSingleItem = (item: TrackModel) => {
               >
                 <ItemCard :item="item" />
               </NuxtLink>
-
-              <TileItem
-                v-else-if="item.type === 'Tile' && item.track"
-                :item="item"
-                @play-track="playSingleItem(item.track)"
-              ></TileItem>
 
               <div
                 v-else
