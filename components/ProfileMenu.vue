@@ -69,7 +69,7 @@ const saveAndCloseContentLanguageDialog = () => {
     <Menu as="div" class="relative">
       <div>
         <MenuButton
-          class="flex items-center gap-2 font-bold text-label-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-label-1"
+          class="type-subtitle-1 flex items-center gap-2 text-label-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-label-1"
         >
           <span>{{ $t("profile.title") }}</span>
           <img
@@ -133,11 +133,11 @@ const saveAndCloseContentLanguageDialog = () => {
                 :class="{
                   '-separator bg-label-separator': active,
                 }"
-                class="w-full rounded-lg px-3 py-2 text-left text-[15px] font-medium"
+                class="type-subtitle-2 w-full rounded-lg px-3 py-2 text-left"
                 @click="showThemeDialog = true"
               >
                 <p>{{ $t("profile.theme") }}</p>
-                <span class="text-[13px] text-label-3">
+                <span class="type-subtitle-3 text-label-3">
                   {{ getColorModeName(colorMode.preference) }}
                 </span>
               </button>
@@ -147,11 +147,11 @@ const saveAndCloseContentLanguageDialog = () => {
                 :class="{
                   '-separator bg-label-separator': active,
                 }"
-                class="w-full rounded-lg px-3 py-2 text-left text-[15px] font-medium"
+                class="type-subtitle-2 w-full rounded-lg px-3 py-2 text-left"
                 @click="showInterfaceLanguageDialog = true"
               >
                 <p>{{ $t("profile.app-language") }}</p>
-                <span class="text-[13px] text-label-3">
+                <span class="type-subtitle-3 text-label-3">
                   {{ getLocalizedLanguageName(profileStore.uiLanguage) }}
                 </span>
               </button>
@@ -161,11 +161,11 @@ const saveAndCloseContentLanguageDialog = () => {
                 :class="{
                   '-separator bg-label-separator': active,
                 }"
-                class="w-full rounded-lg px-3 py-2 text-left text-[15px] font-medium"
+                class="type-subtitle-2 w-full rounded-lg px-3 py-2 text-left"
                 @click="showContentLanguageDialog = true"
               >
                 <p>{{ $t("profile.content-language") }}</p>
-                <span class="whitespace-normal text-[13px] text-label-2">
+                <span class="type-subtitle-3 whitespace-normal text-label-2">
                   {{
                     getLocalizedList(
                       contentLanguages.map((x) => getLocalizedLanguageName(x)),
@@ -181,7 +181,7 @@ const saveAndCloseContentLanguageDialog = () => {
                 :class="{
                   '-separator bg-label-separator': active,
                 }"
-                class="flex w-full rounded-lg px-3 py-2 text-[15px] font-medium"
+                class="type-subtitle-2 flex w-full rounded-lg px-3 py-2"
                 href="https://uservoice.bcc.no/?tags=bmm"
                 target="_blank"
               >
@@ -193,7 +193,7 @@ const saveAndCloseContentLanguageDialog = () => {
                 :class="{
                   '-separator bg-label-separator': active,
                 }"
-                class="flex w-full rounded-lg px-3 py-2 text-[15px] font-medium"
+                class="type-subtitle-2 flex w-full rounded-lg px-3 py-2"
                 href="mailto:bmm-support@bcc.no"
                 target="_blank"
               >
@@ -207,7 +207,7 @@ const saveAndCloseContentLanguageDialog = () => {
                 :class="{
                   '-separator bg-label-separator': active,
                 }"
-                class="w-full rounded-lg px-3 py-2 text-left text-[15px] font-medium"
+                class="type-subtitle-2 w-full rounded-lg px-3 py-2 text-left"
                 @click="logout()"
               >
                 {{ $t("profile.logout") }}
@@ -226,7 +226,7 @@ const saveAndCloseContentLanguageDialog = () => {
     >
       <RadioGroup
         v-model="colorMode.preference"
-        class="dark:bg-background-dark-2 rounded-lg bg-background-2 font-semibold md:w-[500px] lg:w-[600px]"
+        class="dark:bg-background-dark-2 type-title-2 rounded-lg bg-background-2 md:w-[500px] lg:w-[600px]"
       >
         <RadioGroupOption
           v-for="mode in colorModes"
@@ -256,7 +256,7 @@ const saveAndCloseContentLanguageDialog = () => {
         <label class="flex items-center justify-between gap-4 self-center">
           <span>{{ $t("profile.select-language") }}</span>
           <div
-            class="min-w-[100px] rounded-lg bg-background-1 px-2 py-1.5 font-semibold text-label-1 shadow-[0_4px_12px_0_#0000000D,0_1px_4px_0_#0000000D,0_0_0_1px_#0000000D]"
+            class="type-title-2 min-w-[100px] rounded-lg bg-background-1 px-2 py-1.5 text-label-1 shadow-[0_4px_12px_0_#0000000D,0_1px_4px_0_#0000000D,0_0_0_1px_#0000000D]"
           >
             <select v-model="profileStore.uiLanguage" class="py-1">
               <option
@@ -307,7 +307,7 @@ const saveAndCloseContentLanguageDialog = () => {
             {{ t("profile.preference-language-" + Math.min(i + 1, 4), i + 1) }}
           </div>
           <div
-            class="min-w-min rounded-lg bg-background-1 px-2 py-1.5 font-semibold text-label-1 shadow-[0_4px_12px_0_#0000000D,0_1px_4px_0_#0000000D,0_0_0_1px_#0000000D]"
+            class="type-title-2 min-w-min rounded-lg bg-background-1 px-2 py-1.5 text-label-1 shadow-[0_4px_12px_0_#0000000D,0_1px_4px_0_#0000000D,0_0_0_1px_#0000000D]"
           >
             <select v-model="contentLanguages[i]" class="w-full py-1">
               <option
@@ -338,7 +338,7 @@ const saveAndCloseContentLanguageDialog = () => {
       </VueDraggable>
       <div
         v-if="nextUnusedContentLanguage"
-        class="mt-4 flex flex-row gap-2 p-3 text-label-3"
+        class="type-subtitle-1 mt-4 flex cursor-pointer flex-row gap-2 p-3 text-label-3"
         @click="
           () => {
             const next = nextUnusedContentLanguage;

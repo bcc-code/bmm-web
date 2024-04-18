@@ -54,7 +54,7 @@ const emit = defineEmits<{
             @click.stop
           >
             <div class="mx-5 flex items-center justify-between">
-              <DialogTitle class="mr-2 py-4 font-semibold">
+              <DialogTitle class="type-title-1 mr-2 py-4">
                 {{ title }}
               </DialogTitle>
               <ButtonStyled
