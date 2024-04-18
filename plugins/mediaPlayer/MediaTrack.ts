@@ -8,6 +8,14 @@ type ListenedPortion = {
   endTime: Date;
 };
 
+export type PlayMeasurement = {
+  uniqueSecondsListened: number;
+  timestampStart: Date;
+  timestampEnd: Date;
+  spentTime: number;
+  lastPosition: number;
+};
+
 /**
  * Changes should always be done with the specification for HTMLAudioElement in mind.
  * This class should be a simple wrapper making the HTML element vue-agnostic.
@@ -33,8 +41,6 @@ export default class MediaTrack {
 
   private currentStartTime: Date | undefined;
 
-  private track: TrackModel;
-
   /**
    * Returns only relative numbers
    */
@@ -50,10 +56,6 @@ export default class MediaTrack {
       return; // Ignore
     }
 
-    console.log(
-      "***** seeking",
-      this.audioElement.paused ? "paused" : "playing",
-    );
     if (!this.audioElement.paused) this.endPortion();
 
     this.p = v;
@@ -76,6 +78,8 @@ export default class MediaTrack {
 
   private onError;
 
+  private onTrackPlayed;
+
   /**
    *
    * @param audioElement
@@ -84,16 +88,14 @@ export default class MediaTrack {
   constructor(
     srcGen: () => Promise<string>,
     onError: (e: MediaError | DOMException | unknown | null) => void,
+    onTrackPlayed: (play: PlayMeasurement) => void,
     appInsights: AppInsights,
-    track: TrackModel,
     debug = false,
   ) {
     this.srcGenerator = srcGen;
     this.onError = onError;
+    this.onTrackPlayed = onTrackPlayed;
     this.appInsights = appInsights;
-    this.track = track;
-
-    console.log("constructor", track);
 
     this.audioElement = new Audio();
     this.audioElement.autoplay = true;
@@ -158,9 +160,9 @@ export default class MediaTrack {
       this.audioElement.addEventListener("durationchange", (e) =>
         console.debug("durationchange", this.audioElement.currentTime, e),
       );
-      // this.audioElement.addEventListener("timeupdate", (e) =>
-      //   console.debug("timeupdate", e),
-      // );
+      this.audioElement.addEventListener("timeupdate", (e) =>
+        console.debug("timeupdate", e),
+      );
       this.audioElement.addEventListener("play", (e) =>
         console.debug("play", e),
       );
@@ -314,51 +316,49 @@ export default class MediaTrack {
       end: time,
       endTime: now,
     });
-    console.log("|| portion", {
-      trackId: this.track.id,
-      start: this.currentStart,
-      end: time,
-    });
     this.currentStart = time;
     this.currentStartTime = now;
   }
 
   sendTrackPlayed() {
     this.endPortion();
-    if (this.portions.length === 0) {
-      console.log("|| no portions");
-      return;
-    }
 
-    let timeSpent = 0;
+    if (this.portions.length === 0) return;
+    const firstPortion: ListenedPortion | undefined = this.portions.at(0);
+    const lastPortion: ListenedPortion | undefined = this.portions.at(
+      this.portions.length - 1,
+    );
+    if (firstPortion === undefined || lastPortion === undefined) return;
+
+    let spentTime = 0;
     this.portions.forEach((portion) => {
-      timeSpent += portion.end - portion.start;
+      spentTime += portion.end - portion.start;
     });
-    let uniqueSeconds = 0;
+    let uniqueSecondsListened = 0;
     let lastEnd = 0;
     this.portions
       .sort((a, b) => a.start - b.start)
       .forEach((portion) => {
         if (portion.start >= lastEnd) {
-          uniqueSeconds += portion.end - Math.max(portion.start, lastEnd);
+          uniqueSecondsListened +=
+            portion.end - Math.max(portion.start, lastEnd);
           lastEnd = portion.end;
         }
       });
 
-    console.log("sendTrackPlayed()", this.portions);
-    const values = {
-      trackId: this.track.id,
-      timeSpent,
-      uniqueSeconds,
-      tags: this.track.tags,
+    const values: PlayMeasurement = {
+      uniqueSecondsListened,
+      timestampStart: firstPortion.startTime,
+      timestampEnd: lastPortion.endTime,
+      spentTime,
+      lastPosition: lastPortion.end,
     };
-    this.appInsights.event("track played", values);
-    console.log("|| track played", values);
+    this.onTrackPlayed(values);
+
     this.portions = [];
   }
 
   destroy() {
-    console.warn("destroying media track");
     this.endPortion();
     // https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Client-side_web_APIs/Video_and_audio_APIs#stopping_the_video, https://html.spec.whatwg.org/multipage/media.html#best-practices-for-authors-using-media-elements
     this.audioElement.autoplay = false;
