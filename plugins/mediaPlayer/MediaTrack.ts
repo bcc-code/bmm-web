@@ -241,9 +241,6 @@ export default class MediaTrack {
       this.currentStart = this.audioElement.currentTime;
       this.currentStartTime = new Date();
     });
-    // this.audioElement.addEventListener("seeking", () => {
-    //   this.endPortion();
-    // });
     this.audioElement.addEventListener("stalled", () => {
       this.endPortion();
     });
