@@ -96,8 +96,14 @@ export default defineNuxtPlugin((_) => {
               };
 
               useNuxtApp().$appInsights.event("track played", values);
-              console.log("|| track played", values);
-              new StatisticsApi().statisticsTrackPlayedPost(values);
+              new StatisticsApi()
+                .statisticsTrackPlayedPost(values)
+                .catch((e) => {
+                  useNuxtApp().$appInsights.event(
+                    "sending TrackPlayed failed",
+                    { error: String(e), values },
+                  );
+                });
             },
             appInsights,
             true,
