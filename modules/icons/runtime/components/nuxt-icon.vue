@@ -14,7 +14,8 @@ const icon = ref<string | Record<string, any>>("");
 async function getIcon() {
   try {
     const iconsImport = import.meta.glob("assets/icons/**/**.svg", {
-      as: "raw",
+      query: "?raw",
+      import: "default",
       eager: false,
     });
     const rawIcon = await iconsImport[`/assets/icons/${props.name}.svg`]?.();
@@ -42,6 +43,7 @@ watchEffect(getIcon);
 .nuxt-icon {
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 .nuxt-icon svg {
   width: 1em;

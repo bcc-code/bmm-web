@@ -42,7 +42,7 @@ const extractFields = (track: TrackModel) => {
 
   items.push({
     label: t("track.details.duration"),
-    text: formatTime(((track.media || [])[0]?.files || [])[0]?.duration || 0),
+    text: formatTime(defaultFileForTrack(track)?.duration || 0),
   });
   if (track.songbookRelations && track.songbookRelations.length > 0)
     items.push({

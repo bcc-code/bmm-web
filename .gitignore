@@ -10,10 +10,6 @@ dist-electron
 dist-app
 coverage
 
-# Generated files
-assets/colors.css
-tailwind.config.ts
-
 cypress.env.json
 cypress/videos/*
 
