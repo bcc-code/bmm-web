@@ -16,9 +16,9 @@ class MediaTrackMock extends MediaTrack {
   }
 }
 
-const appInsights = {
+const appInsights: AppInsights = {
   event: (_: string, _2: any) => {},
-} as unknown as AppInsights;
+};
 
 describe("plugin mediaPlayer MediaTrack", () => {
   describe("init", () => {

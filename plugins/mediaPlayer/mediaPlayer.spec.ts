@@ -22,9 +22,9 @@ vi.mock("./Queue", async (importOriginal) => {
   };
 });
 
-const appInsights = {
+const appInsights: AppInsights = {
   event: (_: string, _2: any) => {},
-} as unknown as AppInsights;
+};
 
 const now = new Date();
 function track(id: number) {
