@@ -1,7 +1,12 @@
 <script setup lang="ts">
-defineProps({
+const { t } = useI18n();
+const { $appInsights } = useNuxtApp();
+
+const props = defineProps({
   error: Object,
 });
+
+$appInsights.event("error page shown", props.error);
 
 function handleError() {
   clearError();
@@ -13,15 +18,30 @@ function handleError() {
     <NuxtLayout>
       <div class="relative font-sans">
         <div class="max-w-200 container mx-auto px-4 py-10">
-          <h1>{{ error?.message }}</h1>
-          There was an error 😱
+          <h1 class="type-display-3">{{ error?.message }}</h1>
+          <p class="pt-2">
+            That should not have happened. If this keeps happening feel free to
+            <a
+              class="underline"
+              href="mailto:bmm-support@bcc.no"
+              target="_blank"
+              >contact support</a
+            >.
+          </p>
+          <br />
 
-          <br />
-          <button @click="handleError">Clear error</button>
-          <br />
-          <NuxtLink to="/404"> Trigger another error </NuxtLink>
-          <br />
-          <NuxtLink class="text-primary" to="/"> Navigate home </NuxtLink>
+          <div class="flex gap-2">
+            <ButtonStyled intent="primary" @click="handleError">{{
+              t("global.try-again")
+            }}</ButtonStyled>
+
+            <NuxtLink
+              class="type-title-1 rounded-3xl bg-background-2 px-4 py-2"
+              to="/"
+            >
+              Go to homepage
+            </NuxtLink>
+          </div>
         </div>
       </div>
     </NuxtLayout>
