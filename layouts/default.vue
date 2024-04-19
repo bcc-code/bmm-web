@@ -5,10 +5,6 @@ defineSlots<{
   default: (props: {}) => any;
 }>();
 
-const onError = (error: any) => {
-  console.error(error);
-};
-
 const runtimeConfig = useRuntimeConfig();
 const isElectron = runtimeConfig.public.systemName === "Electron";
 
