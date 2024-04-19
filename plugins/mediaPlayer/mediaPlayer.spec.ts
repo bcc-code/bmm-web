@@ -52,7 +52,7 @@ const setupPlayer = () =>
         () => {},
         appInsights,
       ),
-    appInsights as unknown as AppInsights,
+    appInsights,
     userData,
   );
 
