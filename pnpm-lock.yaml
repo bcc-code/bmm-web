@@ -9,8 +9,8 @@ dependencies:
     specifier: ^2.3.3
     version: 2.3.3(typescript@5.3.3)(vue-router@4.2.5)
   '@bcc-code/bmm-sdk-fetch':
-    specifier: ^7.4.0
-    version: 7.4.0
+    specifier: ^7.6.0
+    version: 7.6.0
   '@floating-ui/vue':
     specifier: ^1.0.6
     version: 1.0.6(vue@3.4.19)
@@ -536,8 +536,8 @@ packages:
       '@babel/helper-validator-identifier': 7.22.20
       to-fast-properties: 2.0.0
 
-  /@bcc-code/bmm-sdk-fetch@7.4.0:
-    resolution: {integrity: sha512-Bi0WIzRKdjZsfffI22a4WZAsesNeOEkumZ3G92J+qcBtwAEV+Y7lKB+Xq7M5b6P82/HsgFKrMwQtZJBD65tBeA==}
+  /@bcc-code/bmm-sdk-fetch@7.6.0:
+    resolution: {integrity: sha512-btm4747sLG6PDlUz1i4cEMWoEY/Ne+CDRyDtpj1X46+iM99R5QMgIy5LUWdNu7/csv5vOM2n0rHFecQwh5fobQ==}
     dev: false
 
   /@bcoe/v8-coverage@0.2.3:

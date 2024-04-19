@@ -1,19 +1,23 @@
 import { useAuth0 } from "@auth0/auth0-vue";
+import { StatisticsApi } from "@bcc-code/bmm-sdk-fetch";
+import type { StatisticsTrackPlayedPostRequest } from "@bcc-code/bmm-sdk-fetch";
 import { initMediaPlayer } from "./mediaPlayer/mediaPlayer";
 import type { AppInsights } from "./3.applicationInsights";
 import type { IUserData } from "./2.userData";
 import MediaTrack from "./mediaPlayer/MediaTrack";
+import type { PlayMeasurement } from "./mediaPlayer/MediaTrack";
 
 export default defineNuxtPlugin((_) => {
   const { getAccessTokenSilently } = useAuth0();
 
   const appInsights: AppInsights = useNuxtApp().$appInsights;
   const userData: IUserData = useNuxtApp().$userData;
+  const runtimeConfig = useRuntimeConfig();
 
   return {
     provide: {
       mediaPlayer: initMediaPlayer(
-        (src) =>
+        (src, track) =>
           new MediaTrack(
             () =>
               getAccessTokenSilently()
@@ -64,6 +68,44 @@ export default defineNuxtPlugin((_) => {
                 );
               }
             },
+            (play: PlayMeasurement) => {
+              const file = defaultFileForTrack(track);
+              const trackLength = file?.duration || 0;
+              const values: StatisticsTrackPlayedPostRequest = {
+                createTrackPlayedEventsCommandEvent: [
+                  {
+                    ...play,
+                    personId: userData.personId,
+                    trackId: track.id,
+                    percentage:
+                      trackLength > 0
+                        ? (play.uniqueSecondsListened * 100) / trackLength
+                        : 0,
+                    trackLength,
+                    typeOfTrack: track.subtype,
+                    availability: "Remote",
+                    albumId: track.parentId,
+                    tags: track.tags,
+                    sentAfterStartup: false,
+                    language: track.language,
+                    playbackOrigin: "",
+                    adjustedPlaybackSpeed: 1,
+                    client: runtimeConfig.public.systemName,
+                  },
+                ],
+              };
+
+              useNuxtApp().$appInsights.event("track played", values);
+              new StatisticsApi()
+                .statisticsTrackPlayedPost(values)
+                .catch((e) => {
+                  useNuxtApp().$appInsights.event(
+                    "sending TrackPlayed failed",
+                    { error: String(e), values },
+                  );
+                });
+            },
+            appInsights,
           ),
         appInsights,
         userData,

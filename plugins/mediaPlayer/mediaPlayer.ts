@@ -49,7 +49,7 @@ export interface MediaPlayer {
 export const seekOffset = 15;
 
 export const initMediaPlayer = (
-  createMediaTrack: (src: string) => MediaTrack,
+  createMediaTrack: (src: string, track: TrackModel) => MediaTrack,
   appInsights: AppInsights,
   user: IUserData,
 ): MediaPlayer => {
@@ -88,7 +88,7 @@ export const initMediaPlayer = (
       url = `${url}#t=${new Date(nextStartPosition * 1000).toISOString().slice(11, 19)}`;
       nextStartPosition = 0;
     }
-    activeMedia.value = createMediaTrack(url);
+    activeMedia.value = createMediaTrack(url, track);
     activeMedia.value.registerSource();
     activeMedia.value.registerEvents();
   }
