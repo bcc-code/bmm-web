@@ -98,7 +98,7 @@
   "podcast": {
     "this-week": "Diese Woche",
     "last-week": "Letzte Woche",
-    "week-x": "Week {count}",
+    "week-x": "Woche {count}",
     "action": {
       "play": "Abspielen",
       "follow": "Abonnieren"
