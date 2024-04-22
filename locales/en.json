@@ -1,6 +1,7 @@
 {
   "global": {
-    "cancel": "Cancel"
+    "cancel": "Cancel",
+    "try-again": "Try again"
   },
   "nav": {
     "home": "Home",
