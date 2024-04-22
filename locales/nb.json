@@ -1,6 +1,7 @@
 {
   "global": {
-    "cancel": "Avbryt"
+    "cancel": "Avbryt",
+    "try-again": "Try again"
   },
   "nav": {
     "home": "Hjem",
