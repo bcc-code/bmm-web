@@ -89,7 +89,7 @@ jobs:
         run: dotnet publish --property PublishDir='${{ github.workspace }}/output/'
 
       - name: copy dist files
-        run: cp -r '${{ github.workspace }}/dist/' '${{ github.workspace }}/output/wwwroot'
+        run: cp -r '${{ github.workspace }}/dist/*' '${{ github.workspace }}/output/wwwroot'
 
       - uses: actions/upload-artifact@v3
         with:
