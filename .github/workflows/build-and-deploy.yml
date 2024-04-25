@@ -71,7 +71,7 @@ jobs:
         with:
           name: code-coverage-report
           path: coverage
-  
+
   build_dotnet:
     runs-on: windows-latest
     needs:
@@ -90,7 +90,7 @@ jobs:
 
       - name: copy dist files
         run: cp -r '${{ github.workspace }}/dist' '${{ github.workspace }}/output/wwwroot'
-      
+
       - uses: actions/upload-artifact@v3
         with:
           path: ${{ github.workspace }}/output/
