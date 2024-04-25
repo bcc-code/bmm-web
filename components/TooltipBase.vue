@@ -24,6 +24,7 @@ const { floatingStyles } = useFloating(trigger, floating, {
   middleware: [floatingOffset(offset)],
 });
 
+// work-around to make transition work on download dialog (fast fade-in vs instant)
 const initialTick = ref(false);
 nextTick(() => {
   initialTick.value = true;
