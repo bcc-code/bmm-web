@@ -58,14 +58,14 @@ jobs:
         if: matrix.os != 'macos-latest'
 
       - name: Archive production artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v3
         with:
           name: app
           path: |
             dist-app/BMM*
 
       - name: Archive Debian packages
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v3
         if: matrix.os == 'ubuntu-latest'
         with:
           name: app
