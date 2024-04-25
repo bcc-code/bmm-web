@@ -91,7 +91,7 @@ jobs:
       - name: copy dist files
         run: cp -r '${{ github.workspace }}/dist' '${{ github.workspace }}/output/wwwroot'
 
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           path: ${{ github.workspace }}/output/
           name: WebApp
