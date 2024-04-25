@@ -10,7 +10,7 @@ public class HtmlResult : IResult
     private string _title = "bmm";
     private string _description = "Listen to edifying music and messages";
     private string _coverUrl = "https://bmm.brunstad.org/bmm-logo.jpg";
-    private const string Placeholder = "<!-- {{MetadataPlaceholder}} -->";
+    private const string Placeholder = "<meta name=\"description\" content=\"{{MetadataPlaceholder}}\">";
 
     public HtmlResult(string indexHtml)
     {

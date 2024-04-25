@@ -51,6 +51,9 @@ export default defineNuxtConfig({
     pageTransition: { name: "page", mode: "out-in" },
     head: {
       base: { href: "/" },
+      meta: [
+        { name: 'description', content: '{{MetadataPlaceholder}}' }
+      ],
 
       link: [
         { href: "https://fonts.googleapis.com", rel: "preconnect" },
