@@ -24,6 +24,12 @@ const { floatingStyles } = useFloating(trigger, floating, {
   middleware: [floatingOffset(offset)],
 });
 
+// work-around to make transition work on download dialog (fast fade-in vs instant)
+const initialTick = ref(false);
+nextTick(() => {
+  initialTick.value = true;
+});
+
 const triggerHover = useElementHover(trigger);
 const floatingHover = useElementHover(floating);
 
@@ -46,7 +52,13 @@ watch(hovering, (value) => {
   <div ref="trigger">
     <slot />
     <Teleport to="body">
-      <div v-show="show" ref="floating" :style="floatingStyles" class="z-40">
+      <div
+        v-if="initialTick"
+        v-show="show"
+        ref="floating"
+        :style="floatingStyles"
+        class="z-40"
+      >
         <Transition
           enter-active-class="duration-200 ease-out"
           enter-from-class="opacity-0 scale-95"
