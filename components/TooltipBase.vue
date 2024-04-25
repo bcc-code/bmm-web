@@ -56,7 +56,8 @@ watch(hovering, (value) => {
         v-show="show"
         ref="floating"
         :style="floatingStyles"
-        class="z-40" >
+        class="z-40"
+      >
         <Transition
           enter-active-class="duration-200 ease-out"
           enter-from-class="opacity-0 scale-95"
