@@ -4,6 +4,7 @@ import { useInfiniteScroll } from "@vueuse/core";
 
 const props = defineProps<{
   load: (skip: number, take: number) => Promise<IAllDocumentModels[]>;
+  useDailyPodcastView?: boolean | undefined;
 }>();
 
 const list = ref<IAllDocumentModels[]>([]);
@@ -53,7 +54,11 @@ watch(reactiveDependencies(), async () => {
 
 <template>
   <div>
-    <DocumentList :items="list" :pending="false" />
+    <DocumentList
+      :items="list"
+      :pending="false"
+      :use-daily-podcast-view="useDailyPodcastView"
+    />
     <ul v-if="loadingMore">
       <li
         v-for="index in 5"

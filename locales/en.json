@@ -1,6 +1,7 @@
 {
   "global": {
-    "cancel": "Cancel"
+    "cancel": "Cancel",
+    "try-again": "Try again"
   },
   "nav": {
     "home": "Home",
@@ -96,6 +97,9 @@
     "by-x": "by {name}"
   },
   "podcast": {
+    "this-week": "This week",
+    "last-week": "Last week",
+    "week-x": "Week {count}",
     "action": {
       "play": "Play",
       "follow": "Follow"

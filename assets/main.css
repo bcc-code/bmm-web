@@ -1,4 +1,4 @@
-@import "colors.css";
+@import "design-tokens/colors.generated.css";
 @import "icons/playing.animation.css";
 
 html,
@@ -9,6 +9,12 @@ body,
 	 * at least the full screen height 
 	 */
   height: 100%;
+}
+
+html {
+  /** This makes typography look as designed. Has the biggest effect on macOS. **/
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 .large-shadow {

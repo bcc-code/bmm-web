@@ -34,7 +34,11 @@ export interface MediaPlayer {
   currentTrack: ComputedRef<UnwrapRef<TrackModel> | undefined>;
   currentPosition: Ref<number>;
   currentTrackDuration: ComputedRef<number>;
-  setQueue: (queue: TrackModel[], index?: number) => void;
+  setQueue: (
+    queue: TrackModel[],
+    index?: number,
+    startPosition?: number | null,
+  ) => void;
   setQueueShuffled: (queue: TrackModel[]) => void;
   addToQueue: (track: TrackModel) => void;
   addNext: (track: TrackModel) => void;
@@ -45,7 +49,7 @@ export interface MediaPlayer {
 export const seekOffset = 15;
 
 export const initMediaPlayer = (
-  createMediaTrack: (src: string) => MediaTrack,
+  createMediaTrack: (src: string, track: TrackModel) => MediaTrack,
   appInsights: AppInsights,
   user: IUserData,
 ): MediaPlayer => {
@@ -84,7 +88,7 @@ export const initMediaPlayer = (
       url = `${url}#t=${new Date(nextStartPosition * 1000).toISOString().slice(11, 19)}`;
       nextStartPosition = 0;
     }
-    activeMedia.value = createMediaTrack(url);
+    activeMedia.value = createMediaTrack(url, track);
     activeMedia.value.registerSource();
     activeMedia.value.registerEvents();
   }
@@ -219,7 +223,12 @@ export const initMediaPlayer = (
     continuePlayingNextIfEnded();
   }
 
-  function setQueue(_queue: TrackModel[], index = 0): void {
+  function setQueue(
+    _queue: TrackModel[],
+    index = 0,
+    startPosition: number | null = null,
+  ): void {
+    if (startPosition != null) nextStartPosition = startPosition;
     queue.value = new Queue(_queue, index);
   }
 

@@ -1,6 +1,7 @@
 {
   "global": {
-    "cancel": "Avbryt"
+    "cancel": "Avbryt",
+    "try-again": "Try again"
   },
   "nav": {
     "home": "Hjem",
@@ -96,6 +97,9 @@
     "by-x": "by {name}"
   },
   "podcast": {
+    "this-week": "Denne uken",
+    "last-week": "Siste uke",
+    "week-x": "Week {count}",
     "action": {
       "play": "Spill av",
       "follow": "Følg"
