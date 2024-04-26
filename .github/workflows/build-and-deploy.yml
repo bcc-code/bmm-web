@@ -214,7 +214,6 @@ jobs:
     environment:
       name: "Production"
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
-      Api.BaseUrl: https://bmm-api.brunstad.org
     permissions:
       id-token: write #This is required for requesting the JWT
 
