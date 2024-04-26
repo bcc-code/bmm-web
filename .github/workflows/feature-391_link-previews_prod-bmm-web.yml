@@ -1,9 +1,6 @@
 name: Build and deploy ASP.Net Core app to Azure Web App - PROD-BMM-Web
 
 on:
-  push:
-    branches:
-      - feature/391_link-previews
   workflow_dispatch:
 
 jobs:
