@@ -244,13 +244,3 @@ jobs:
           app-name: "PROD-BMM-Web"
           slot-name: "Production"
           package: .
-
-      - name: Tag git commit
-        uses: "marvinpinto/action-automatic-releases@latest"
-        with:
-          repo_token: "${{ secrets.GITHUB_TOKEN }}"
-          automatic_release_tag: "currently-deployed-to-production"
-          prerelease: false
-          title: "Production Build"
-          files: |
-            *
