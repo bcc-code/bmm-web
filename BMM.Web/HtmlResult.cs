@@ -45,7 +45,8 @@ public class HtmlResult : IResult
         var metaTags =
             $"<meta property=\"og:title\" content=\"{_title}\">" +
             $"<meta property=\"og:description\" content=\"{_description}\">" +
-            $"<meta property=\"og:image\" content=\"{_coverUrl}\" />\n";
+            $"<meta property=\"og:image\" content=\"{_coverUrl}\" />\n"+
+            "<meta property=\"og:type\" content=\"website\" />\n<meta property=\"og:site_name\" content=\"bmm\" />\n<meta property=\"og:image:width\" content=\"640\" />\n<meta property=\"og:image:height\" content=\"640\" />";
         var adjustedHtml = _indexHtml.Replace(Placeholder, metaTags);
 
         httpContext.Response.Headers.Append("Cache-Control", "no-store");
