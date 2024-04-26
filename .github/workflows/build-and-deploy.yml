@@ -230,9 +230,12 @@ jobs:
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_A32CD6483CB445F297444070FE5EF919 }}
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_DB4176995538469B9FA4C19882AD1779 }}
 
-      - uses: microsoft/variable-substitution@v1
-        with:
-          files: "/WebApp/*.json"
+      - name: debug
+        run: ls -la
+
+      # - uses: microsoft/variable-substitution@v1
+      #   with:
+      #     files: "/WebApp/*.json"
 
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
