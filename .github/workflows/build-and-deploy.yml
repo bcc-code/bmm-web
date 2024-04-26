@@ -94,7 +94,7 @@ jobs:
         run: dotnet publish -c Release -o ${{env.DOTNET_ROOT}}/myapp
 
       - name: copy dist files
-        run: cp -r '${{ github.workspace }}/dist/' '${{env.DOTNET_ROOT}}/myapp/wwwroot'
+        run: cp -r '${{ github.workspace }}/dist/.' '${{env.DOTNET_ROOT}}/myapp/wwwroot'
 
       - uses: actions/upload-artifact@v3
         with:
