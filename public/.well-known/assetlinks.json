@@ -1,0 +1,9 @@
+[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target": {
+    "namespace": "android_app",
+    "package_name": "org.brunstad.bmm",
+    "sha256_cert_fingerprints":
+    ["BA:64:35:2E:0A:45:74:42:A8:62:6E:D0:58:59:94:F3:EE:5F:5A:35:66:28:7E:73:FB:25:33:2F:B2:62:7B:59"]
+  }
+}]
