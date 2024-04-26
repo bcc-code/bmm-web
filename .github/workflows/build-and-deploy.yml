@@ -233,9 +233,9 @@ jobs:
       - name: debug
         run: ls -la
 
-      # - uses: microsoft/variable-substitution@v1
-      #   with:
-      #     files: "/WebApp/*.json"
+      - uses: microsoft/variable-substitution@v1
+        with:
+          files: "*.json"
 
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
@@ -243,7 +243,7 @@ jobs:
         with:
           app-name: "PROD-BMM-Web"
           slot-name: "Production"
-          package: ${{ github.workspace }}/WebApp
+          package: .
 
       - name: Tag git commit
         uses: "marvinpinto/action-automatic-releases@latest"
@@ -253,4 +253,4 @@ jobs:
           prerelease: false
           title: "Production Build"
           files: |
-            WebApp/*
+            *
