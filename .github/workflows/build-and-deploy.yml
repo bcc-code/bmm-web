@@ -216,6 +216,8 @@ jobs:
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
     permissions:
       id-token: write #This is required for requesting the JWT
+    env:
+      Api.BaseUrl: https://bmm-api.brunstad.org
 
     steps:
       - name: Download artifact from build job
@@ -233,9 +235,9 @@ jobs:
       - name: debug
         run: ls -la
 
-      # - uses: microsoft/variable-substitution@v1
-      #   with:
-      #     files: "appsettings.json"
+      - uses: microsoft/variable-substitution@v1
+        with:
+          files: "appsettings.json"
 
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
