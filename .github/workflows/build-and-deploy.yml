@@ -233,9 +233,9 @@ jobs:
       - name: debug
         run: ls -la
 
-      - uses: microsoft/variable-substitution@v1
-        with:
-          files: "*.json"
+      # - uses: microsoft/variable-substitution@v1
+      #   with:
+      #     files: "appsettings.json"
 
       - name: Deploy to Azure Web App
         id: deploy-to-webapp
