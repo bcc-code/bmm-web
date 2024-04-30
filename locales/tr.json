@@ -1,0 +1,172 @@
+{
+  "global": {
+    "cancel": "İptal",
+    "try-again": "Try again"
+  },
+  "nav": {
+    "home": "Ana sayfa",
+    "browse": "Gözat",
+    "playlist": "Çalma Listesi",
+    "profile": "Profil",
+    "messages": "Mesajlar",
+    "recent-messages": "Son Mesajlar",
+    "recent-music": "En Yeni Müzikler",
+    "audiobooks": "Sesli Kitaplar",
+    "search": "Ara",
+    "album": "Albüm",
+    "podcast": "Podcast",
+    "contributor": "Katkıda Bulunan",
+    "contributors": "Katkı Yapanlar"
+  },
+  "sidebar": {
+    "playlists": {
+      "title": "Çalma Listesi"
+    }
+  },
+  "share": {
+    "link-copied-message": "Copied link to clipboard"
+  },
+  "profile": {
+    "title": "Profil",
+    "autoplay": "Auto Play",
+    "theme": "Theme",
+    "theme-description": "Select the theme used for the interface.",
+    "app-language": "Language",
+    "interface-language": "Interface Language",
+    "interface-language-description": "Select the language used for the interface.",
+    "select-language": "Select language",
+    "content-language": "Content Language",
+    "content-language-description": "The preferred language for the content you are listening to.",
+    "preference-language-1": "Preferred language",
+    "preference-language-2": "Second language",
+    "preference-language-3": "Third language",
+    "preference-language-4": "{count}th language",
+    "uservoice": "Kullanıcı Sesi",
+    "contact": "İletişim",
+    "logout": "Sign out",
+    "theme-dark": "Karanlık",
+    "theme-light": "Işık",
+    "theme-system": "Same as system",
+    "done": "Bitti",
+    "add-another-language": "Add another language"
+  },
+  "error": {
+    "page-not-found": {
+      "headline": "Error",
+      "text": "Sorry. We can't find the page \"{path}\"."
+    }
+  },
+  "collection": {
+    "track-count": "{count} track | {count} tracks",
+    "album-count": "{count} album | {count} albums"
+  },
+  "login": {
+    "error-message": {
+      "contact-info": "Should this error persist, {0}.",
+      "contact-link": "please get in contact with us",
+      "logout-and-redirect-info": "Something regarding the login went wrong:",
+      "manual-logout-and-redirect-info": "Please {0}.",
+      "logout-and-redirect-link": "try to log in again"
+    },
+    "redirect-message": {
+      "redirect-info": "You will be redirected to the login page.",
+      "manual-redirect-info": "Please wait or {0}.",
+      "redirect-link": "click to try again"
+    }
+  },
+  "download": {
+    "download": "İndir",
+    "download-track": "Parça İndir",
+    "messages-not-allowed": {
+      "title": "Download of messages unavailable",
+      "description": "BMM'den mesaj indirme özelliği artık kullanılamıyor. Belirli bir kullanıma yönelik bir mesaja ihtiyacınız varsa lütfen bizimle iletişime geçin ve ihtiyaçlarınızı açıklayın."
+    },
+    "sendEmailTo": "Send email to {0}"
+  },
+  "playlist": {
+    "add": "Add playlist",
+    "new-playlist": "Yeni çalma listesi",
+    "name-your-playlist": "Name your playlist",
+    "delete-playlist": "Çalma Listesini Sil",
+    "delete-playlist-description": "Are you sure you want to delete the playlist? This action cannot be reversed.",
+    "action": {
+      "shuffle": "Karıştır",
+      "add-to-my-playlists": "Çalma listelerime ekle",
+      "remove-shared-playlist": "Oynatma listesini kaldır"
+    },
+    "by-x": "by {name}"
+  },
+  "podcast": {
+    "this-week": "Bu hafta",
+    "last-week": "Geçen hafta",
+    "week-x": "Week {count}",
+    "action": {
+      "play": "Oynat",
+      "follow": "İzleyin"
+    }
+  },
+  "player": {
+    "queue": "Sıralı"
+  },
+  "edit": {
+    "rename": "Rename",
+    "delete": "Sil"
+  },
+  "track": {
+    "dropdown": {
+      "play-next": "Sonrakini çal",
+      "download": "İndir",
+      "go-to-album": "Albüm' e Git",
+      "add-to-queue": "Sıraya Ekle",
+      "add-to-playlist": "Çalma listesine ekle",
+      "share": "Parçayı paylaş",
+      "go-to-contributors": "Kullanıcılara Git",
+      "more-info": "Daha bilgi",
+      "show-all": "Listele",
+      "remove-from-playlist": "Çalma listesinden çıkar"
+    },
+    "a11y": {
+      "download": "İndir",
+      "queue": "Sıraya Ekle",
+      "options": "Show options"
+    },
+    "details": {
+      "reference": "Reference",
+      "duration": "Süre",
+      "publish-date": "Publish Date",
+      "album": "Albüm",
+      "publisher": "Publisher",
+      "copyright": "Telif Hakkı",
+      "song-number": "Şarkı numarası",
+      "arranger": "Aranjör",
+      "composer": "Besteci",
+      "lyricist": "Söz Yazarı"
+    }
+  },
+  "home": {
+    "list": {
+      "see-all": "See all",
+      "recommended": "Önerilen"
+    }
+  },
+  "search": {
+    "search-filter": {
+      "All": "Tüm",
+      "Speeches": "Konuşmalar",
+      "Music": "Müzik",
+      "Albums": "Albums",
+      "Contributors": "Katkı Yapanlar",
+      "Podcasts": "Podcast",
+      "Playlists": "Çalma Listesi"
+    },
+    "input-placeholder": "Ara",
+    "loading-results": "loading results",
+    "no-results-yet": "No results yet",
+    "no-results-found": "No results found",
+    "result-count": "{count} results"
+  },
+  "streak": {
+    "your-streak": "Bu haftaki Streakınız.",
+    "days-in-row": "{count} days in a row"
+  }
+}
