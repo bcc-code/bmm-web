@@ -1,0 +1,172 @@
+{
+  "global": {
+    "cancel": "ரத்து செய்",
+    "try-again": "Try again"
+  },
+  "nav": {
+    "home": "முகப்பு ",
+    "browse": "உலாவு",
+    "playlist": "பிளேலிஸ்ட்",
+    "profile": "சுயவிவரம்",
+    "messages": "செய்திகள்",
+    "recent-messages": "சமீபத்திய செய்திகள்",
+    "recent-music": "சமீபத்திய இசை",
+    "audiobooks": "ஆடியோ புத்தகங்கள்",
+    "search": "தேடு",
+    "album": "ஆல்பம்",
+    "podcast": "பாட்காஸ்ட்",
+    "contributor": "பங்களிப்பாளர்",
+    "contributors": "பங்களிப்பாளர்கள்"
+  },
+  "sidebar": {
+    "playlists": {
+      "title": "பிளேலிஸ்ட்கள்"
+    }
+  },
+  "share": {
+    "link-copied-message": "Copied link to clipboard"
+  },
+  "profile": {
+    "title": "சுயவிவரம்",
+    "autoplay": "தானியங்கி",
+    "theme": "தீம்",
+    "theme-description": "இடைமுகத்திற்குப் பயன்படுத்தப்படும் தீம்மை தேர்ந்தெடுக்கவும்.",
+    "app-language": "மொழி",
+    "interface-language": "இடைமுக மொழி",
+    "interface-language-description": "Select the language used for the interface.",
+    "select-language": "மொழியை தேர்ந்தெடுங்கள்",
+    "content-language": "உள்ளடக்க மொழி",
+    "content-language-description": "நீங்கள் கேட்கும் உள்ளடக்கத்திற்கான விருப்பமான மொழி.",
+    "preference-language-1": "Preferred language",
+    "preference-language-2": "Second language",
+    "preference-language-3": "Third language",
+    "preference-language-4": "{count}th language",
+    "uservoice": "பயனர் குரல்",
+    "contact": "தொடர்பு கொள்ளவும்",
+    "logout": "வெளியேறு",
+    "theme-dark": "இருள் (டார்க்)",
+    "theme-light": "ஒளி (லைட்)",
+    "theme-system": "அமைப்பு போலவே",
+    "done": "முடிந்தது",
+    "add-another-language": "Add another language"
+  },
+  "error": {
+    "page-not-found": {
+      "headline": "பிழை",
+      "text": "மன்னிக்கவும். \"{path}\" பக்கத்தை எங்களால் கண்டுபிடிக்க முடியவில்லை."
+    }
+  },
+  "collection": {
+    "track-count": "{count} ட்ராக்| {count} டிராக்குகள்",
+    "album-count": "{count} ஆல்பம் | {count} ஆல்பங்கள்"
+  },
+  "login": {
+    "error-message": {
+      "contact-info": "இந்தப் பிழை தொடர்ந்தால், {0}.",
+      "contact-link": "தயவுசெய்து எங்களை தொடர்பு கொள்ளவும்",
+      "logout-and-redirect-info": "உள்நுழைவு தொடர்பாக ஏதோ தவறாகிவிட்டது:",
+      "manual-logout-and-redirect-info": "தயவுசெய்து {0}.",
+      "logout-and-redirect-link": "மீண்டும் உள்நுழைய முயற்சிக்கவும்"
+    },
+    "redirect-message": {
+      "redirect-info": "நீங்கள் உள்நுழைவு பக்கத்திற்கு திருப்பி விடப்படுவீர்கள்.",
+      "manual-redirect-info": "காத்திருக்கவும் அல்லது {0}.",
+      "redirect-link": "மீண்டும் முயற்சிக்க கிளிக் செய்யவும்"
+    }
+  },
+  "download": {
+    "download": "பதிவிறக்கு ",
+    "download-track": "டிராக்கைப் பதிவிறக்கவும்",
+    "messages-not-allowed": {
+      "title": "Download of messages unavailable",
+      "description": "BMM இலிருந்து செய்திகளைப் பதிவிறக்கும் திறன் இனி கிடைக்காது. குறிப்பிட்ட பயன்பாட்டிற்கான செய்தி உங்களுக்குத் தேவைப்பட்டால், தயவுசெய்து எங்களைத் தொடர்புகொண்டு உங்கள் தேவைகளை விளக்கவும்."
+    },
+    "sendEmailTo": "Send email to {0}"
+  },
+  "playlist": {
+    "add": "பிளேலிஸ்ட்டைச் சேர்க்கவும்",
+    "new-playlist": "புதிய பிளேலிஸ்ட்",
+    "name-your-playlist": "Name your playlist",
+    "delete-playlist": "பிளேலிஸ்ட்டை நீக்கு",
+    "delete-playlist-description": "Are you sure you want to delete the playlist? This action cannot be reversed.",
+    "action": {
+      "shuffle": "கலக்கு",
+      "add-to-my-playlists": "எனது பிளேலிஸ்ட்களில் சேர்",
+      "remove-shared-playlist": "பிளேலிஸ்ட்டை அகற்று"
+    },
+    "by-x": "by {name}"
+  },
+  "podcast": {
+    "this-week": "இந்த வாரம்",
+    "last-week": "கடந்த வாரம்",
+    "week-x": "Week {count}",
+    "action": {
+      "play": "பிளே",
+      "follow": "பின்பற்றவும்"
+    }
+  },
+  "player": {
+    "queue": "வரிசை"
+  },
+  "edit": {
+    "rename": "Rename",
+    "delete": "அழி"
+  },
+  "track": {
+    "dropdown": {
+      "play-next": "அடுத்தது பிளே செய் ",
+      "download": "பதிவிறக்கு ",
+      "go-to-album": "ஆல்பத்திற்குச் செல்லவும்",
+      "add-to-queue": "வரிசையில் சேர்",
+      "add-to-playlist": "பிளேலிஸ்ட்டில் சேர்",
+      "share": "டிராக்கைப் பகிரவும்",
+      "go-to-contributors": "பங்களிப்பாளர்களிடம் செல்லவும்",
+      "more-info": "மேலும் தகவல்",
+      "show-all": "அனைத்தையும் காட்டு",
+      "remove-from-playlist": "பிளேலிஸ்ட்டில் இருந்து அகற்று"
+    },
+    "a11y": {
+      "download": "பதிவிறக்கு ",
+      "queue": "வரிசையில் சேர்",
+      "options": "விருப்பங்களைக் காட்டு"
+    },
+    "details": {
+      "reference": "Reference",
+      "duration": "கால அளவு",
+      "publish-date": "Publish Date",
+      "album": "ஆல்பம்",
+      "publisher": "பதிப்பகத்தார்",
+      "copyright": "காப்புரிமை",
+      "song-number": "பாடல் எண்",
+      "arranger": "ஏற்பாடு செய்பவர்",
+      "composer": "இசையமைப்பாளர்",
+      "lyricist": "பாடலாசிரியர்"
+    }
+  },
+  "home": {
+    "list": {
+      "see-all": "அனைத்தையும் பார்",
+      "recommended": "பரிந்துரைக்கப்படுகிறது"
+    }
+  },
+  "search": {
+    "search-filter": {
+      "All": "அனைத்து",
+      "Speeches": "பேச்சுக்கள்",
+      "Music": "இசை",
+      "Albums": "ஆல்பங்கள்",
+      "Contributors": "பங்களிப்பாளர்கள்",
+      "Podcasts": "பாட்காஸ்ட்கள்",
+      "Playlists": "பிளேலிஸ்ட்கள்"
+    },
+    "input-placeholder": "தேடு",
+    "loading-results": "loading results",
+    "no-results-yet": "No results yet",
+    "no-results-found": "No results found",
+    "result-count": "{count} results"
+  },
+  "streak": {
+    "your-streak": "இந்த வாரம் உங்கள் ஸ்ட்ரீக்",
+    "days-in-row": "{count} days in a row"
+  }
+}
