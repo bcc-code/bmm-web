@@ -1,0 +1,172 @@
+{
+  "global": {
+    "cancel": "Peruuta",
+    "try-again": "Try again"
+  },
+  "nav": {
+    "home": "Koti",
+    "browse": "Selaa",
+    "playlist": "Soittolista",
+    "profile": "Profiili",
+    "messages": "Puheet",
+    "recent-messages": "Uusimmat puheet",
+    "recent-music": "Uusimmat kappaleet",
+    "audiobooks": "Äänikirjat",
+    "search": "Haku",
+    "album": "Albumi",
+    "podcast": "Podcast",
+    "contributor": "Tekijä",
+    "contributors": "Tekijät"
+  },
+  "sidebar": {
+    "playlists": {
+      "title": "Soittolistat"
+    }
+  },
+  "share": {
+    "link-copied-message": "Copied link to clipboard"
+  },
+  "profile": {
+    "title": "Profiili",
+    "autoplay": "Auto Play",
+    "theme": "Theme",
+    "theme-description": "Select the theme used for the interface.",
+    "app-language": "Language",
+    "interface-language": "Interface Language",
+    "interface-language-description": "Select the language used for the interface.",
+    "select-language": "Select language",
+    "content-language": "Content Language",
+    "content-language-description": "The preferred language for the content you are listening to.",
+    "preference-language-1": "Preferred language",
+    "preference-language-2": "Second language",
+    "preference-language-3": "Third language",
+    "preference-language-4": "{count}th language",
+    "uservoice": "Palautteet",
+    "contact": "Yhteydenotto",
+    "logout": "Sign out",
+    "theme-dark": "Pimeä",
+    "theme-light": "Valoisa",
+    "theme-system": "Same as system",
+    "done": "Valmis",
+    "add-another-language": "Add another language"
+  },
+  "error": {
+    "page-not-found": {
+      "headline": "Error",
+      "text": "Sorry. We can't find the page \"{path}\"."
+    }
+  },
+  "collection": {
+    "track-count": "{count} track | {count} tracks",
+    "album-count": "{count} album | {count} albums"
+  },
+  "login": {
+    "error-message": {
+      "contact-info": "Should this error persist, {0}.",
+      "contact-link": "please get in contact with us",
+      "logout-and-redirect-info": "Something regarding the login went wrong:",
+      "manual-logout-and-redirect-info": "Please {0}.",
+      "logout-and-redirect-link": "try to log in again"
+    },
+    "redirect-message": {
+      "redirect-info": "You will be redirected to the login page.",
+      "manual-redirect-info": "Please wait or {0}.",
+      "redirect-link": "click to try again"
+    }
+  },
+  "download": {
+    "download": "Lataa",
+    "download-track": "Lataa kappale",
+    "messages-not-allowed": {
+      "title": "Download of messages unavailable",
+      "description": "Puheita ei voi enää ladata BMM:stä. Jos tarvitset tiettyä puhetta johonkin, ota yhteyttä ja kerro perustelut."
+    },
+    "sendEmailTo": "Send email to {0}"
+  },
+  "playlist": {
+    "add": "Add playlist",
+    "new-playlist": "Uusi soittolista",
+    "name-your-playlist": "Name your playlist",
+    "delete-playlist": "Poista soittolista",
+    "delete-playlist-description": "Are you sure you want to delete the playlist? This action cannot be reversed.",
+    "action": {
+      "shuffle": "Sekoita",
+      "add-to-my-playlists": "Lisää soittolistoihini",
+      "remove-shared-playlist": "Poista soittolista"
+    },
+    "by-x": "by {name}"
+  },
+  "podcast": {
+    "this-week": "Tämä viikko",
+    "last-week": "Viime viikko",
+    "week-x": "Week {count}",
+    "action": {
+      "play": "Toista",
+      "follow": "Seuraa"
+    }
+  },
+  "player": {
+    "queue": "Jono"
+  },
+  "edit": {
+    "rename": "Rename",
+    "delete": "Poista"
+  },
+  "track": {
+    "dropdown": {
+      "play-next": "Seuraava kappale",
+      "download": "Lataa",
+      "go-to-album": "Siirry albumiin",
+      "add-to-queue": "Lisää jonoon",
+      "add-to-playlist": "Lisää soittolistaan",
+      "share": "Jaa kappale",
+      "go-to-contributors": "Lauluntekijät",
+      "more-info": "Lisätietoja",
+      "show-all": "Näytä kaikki",
+      "remove-from-playlist": "Poista soittolistalta"
+    },
+    "a11y": {
+      "download": "Lataa",
+      "queue": "Lisää jonoon",
+      "options": "Show options"
+    },
+    "details": {
+      "reference": "Reference",
+      "duration": "Kesto",
+      "publish-date": "Publish Date",
+      "album": "Albumi",
+      "publisher": "Julkaisija",
+      "copyright": "Tekijänoikeudet",
+      "song-number": "Laulun numero",
+      "arranger": "Sovittaja",
+      "composer": "Säveltäjä",
+      "lyricist": "Sanoittaja"
+    }
+  },
+  "home": {
+    "list": {
+      "see-all": "See all",
+      "recommended": "Suositellut"
+    }
+  },
+  "search": {
+    "search-filter": {
+      "All": "Kaikki",
+      "Speeches": "Puheet",
+      "Music": "Musiikki",
+      "Albums": "Albumit",
+      "Contributors": "Tekijät",
+      "Podcasts": "Podcastit",
+      "Playlists": "Soittolistat"
+    },
+    "input-placeholder": "Haku",
+    "loading-results": "loading results",
+    "no-results-yet": "No results yet",
+    "no-results-found": "No results found",
+    "result-count": "{count} results"
+  },
+  "streak": {
+    "your-streak": "Viikon suorituksesi",
+    "days-in-row": "{count} days in a row"
+  }
+}
