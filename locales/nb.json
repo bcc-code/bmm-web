@@ -42,6 +42,7 @@
     "preference-language-3": "Third language",
     "preference-language-4": "{count}th language",
     "uservoice": "User Voice",
+    "privacy-policy": "Personvernerklæring",
     "contact": "Kontakt",
     "logout": "Logg ut",
     "theme-dark": "Dark",
@@ -76,7 +77,15 @@
   },
   "download": {
     "download": "Last ned",
+    "download-bmm-app": "Download the BMM app",
     "download-track": "Last ned spor",
+    "mobile": "Mobile",
+    "desktop": "Desktop",
+    "os": {
+      "windows": "Windows",
+      "mac_intel": "Mac with Intel CPU (produced before 2021)",
+      "mac_arm": "newer Mac (M1, M2, M3, ...)"
+    },
     "messages-not-allowed": {
       "title": "Download of messages unavailable",
       "description": "Muligheten til å laste ned taler fra BMM er ikke lenger tilgjengelig. Hvis du trenger en tale for en spesifikk bruk, ta kontakt med oss og beskriv ditt behov."
