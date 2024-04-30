@@ -1,7 +1,7 @@
 {
   "global": {
     "cancel": "İptal",
-    "try-again": "Try again"
+    "try-again": "Tekrar dene"
   },
   "nav": {
     "home": "Ana sayfa",
@@ -24,82 +24,82 @@
     }
   },
   "share": {
-    "link-copied-message": "Copied link to clipboard"
+    "link-copied-message": "Panoya kopyalandı"
   },
   "profile": {
     "title": "Profil",
-    "autoplay": "Auto Play",
-    "theme": "Theme",
-    "theme-description": "Select the theme used for the interface.",
-    "app-language": "Language",
-    "interface-language": "Interface Language",
-    "interface-language-description": "Select the language used for the interface.",
-    "select-language": "Select language",
-    "content-language": "Content Language",
-    "content-language-description": "The preferred language for the content you are listening to.",
-    "preference-language-1": "Preferred language",
-    "preference-language-2": "Second language",
-    "preference-language-3": "Third language",
-    "preference-language-4": "{count}th language",
+    "autoplay": "Otomatik oynatma",
+    "theme": "Tema",
+    "theme-description": "Arayüz için kullanılan temayı seçin.",
+    "app-language": "Dil",
+    "interface-language": "Arayüz Dili",
+    "interface-language-description": "Arayüz için kullanılan temayı seçin.",
+    "select-language": "Seçilen Dil",
+    "content-language": "İçerik Dili",
+    "content-language-description": "Dinlediğiniz içerik için tercih edilen dil.",
+    "preference-language-1": "Seçilen Dil",
+    "preference-language-2": "Ses dili",
+    "preference-language-3": "Ses dili",
+    "preference-language-4": "{count}inci dil",
     "uservoice": "Kullanıcı Sesi",
     "contact": "İletişim",
-    "logout": "Sign out",
+    "logout": "oturumu Kapat",
     "theme-dark": "Karanlık",
     "theme-light": "Işık",
-    "theme-system": "Same as system",
+    "theme-system": "Sistem ile aynı",
     "done": "Bitti",
-    "add-another-language": "Add another language"
+    "add-another-language": "Başka bir dil ekle"
   },
   "error": {
     "page-not-found": {
-      "headline": "Error",
-      "text": "Sorry. We can't find the page \"{path}\"."
+      "headline": "Hata",
+      "text": "Üzgünüm. \"{path}\" sayfasını bulamıyoruz."
     }
   },
   "collection": {
-    "track-count": "{count} track | {count} tracks",
-    "album-count": "{count} album | {count} albums"
+    "track-count": "{count} parça | {count} parçalar",
+    "album-count": "{count} albüm | {count} albümler"
   },
   "login": {
     "error-message": {
-      "contact-info": "Should this error persist, {0}.",
-      "contact-link": "please get in contact with us",
-      "logout-and-redirect-info": "Something regarding the login went wrong:",
-      "manual-logout-and-redirect-info": "Please {0}.",
-      "logout-and-redirect-link": "try to log in again"
+      "contact-info": "Bu hata devam ederse, {0}.",
+      "contact-link": "lütfen bizimle iletişime geçin",
+      "logout-and-redirect-info": "Oturum açmayla ilgili bir şeyler ters gitti:",
+      "manual-logout-and-redirect-info": "Lütfen {0}.",
+      "logout-and-redirect-link": "tekrar giriş yapmayı deneyin"
     },
     "redirect-message": {
-      "redirect-info": "You will be redirected to the login page.",
-      "manual-redirect-info": "Please wait or {0}.",
-      "redirect-link": "click to try again"
+      "redirect-info": "Giriş sayfasına yönlendirileceksiniz.",
+      "manual-redirect-info": "Lütfen bekleyin veya {0}.",
+      "redirect-link": "tekrar denemek için tıklayın"
     }
   },
   "download": {
     "download": "İndir",
     "download-track": "Parça İndir",
     "messages-not-allowed": {
-      "title": "Download of messages unavailable",
+      "title": "Mesajların indirilmesi kullanılamıyor",
       "description": "BMM'den mesaj indirme özelliği artık kullanılamıyor. Belirli bir kullanıma yönelik bir mesaja ihtiyacınız varsa lütfen bizimle iletişime geçin ve ihtiyaçlarınızı açıklayın."
     },
-    "sendEmailTo": "Send email to {0}"
+    "sendEmailTo": "{0}adresine e-posta gönder"
   },
   "playlist": {
-    "add": "Add playlist",
+    "add": "Çalma listesine ekle",
     "new-playlist": "Yeni çalma listesi",
-    "name-your-playlist": "Name your playlist",
+    "name-your-playlist": "Çalma listenizi adlandırın",
     "delete-playlist": "Çalma Listesini Sil",
-    "delete-playlist-description": "Are you sure you want to delete the playlist? This action cannot be reversed.",
+    "delete-playlist-description": "Çalma listesini silmek istediğinizden emin misiniz? Bu eylem geri alınamaz.",
     "action": {
       "shuffle": "Karıştır",
       "add-to-my-playlists": "Çalma listelerime ekle",
       "remove-shared-playlist": "Oynatma listesini kaldır"
     },
-    "by-x": "by {name}"
+    "by-x": "{name}tarafından"
   },
   "podcast": {
     "this-week": "Bu hafta",
     "last-week": "Geçen hafta",
-    "week-x": "Week {count}",
+    "week-x": "Hafta {count}",
     "action": {
       "play": "Oynat",
       "follow": "İzleyin"
@@ -109,7 +109,7 @@
     "queue": "Sıralı"
   },
   "edit": {
-    "rename": "Rename",
+    "rename": "Yeniden adlandır",
     "delete": "Sil"
   },
   "track": {
@@ -128,14 +128,14 @@
     "a11y": {
       "download": "İndir",
       "queue": "Sıraya Ekle",
-      "options": "Show options"
+      "options": "Seçenekleri göster"
     },
     "details": {
-      "reference": "Reference",
+      "reference": "Referans",
       "duration": "Süre",
-      "publish-date": "Publish Date",
+      "publish-date": "Yayın Tarihi",
       "album": "Albüm",
-      "publisher": "Publisher",
+      "publisher": "Yayımcı",
       "copyright": "Telif Hakkı",
       "song-number": "Şarkı numarası",
       "arranger": "Aranjör",
@@ -145,7 +145,7 @@
   },
   "home": {
     "list": {
-      "see-all": "See all",
+      "see-all": "Hepsini gör",
       "recommended": "Önerilen"
     }
   },
@@ -154,19 +154,19 @@
       "All": "Tüm",
       "Speeches": "Konuşmalar",
       "Music": "Müzik",
-      "Albums": "Albums",
+      "Albums": "Albümler",
       "Contributors": "Katkı Yapanlar",
       "Podcasts": "Podcast",
       "Playlists": "Çalma Listesi"
     },
     "input-placeholder": "Ara",
-    "loading-results": "loading results",
-    "no-results-yet": "No results yet",
-    "no-results-found": "No results found",
-    "result-count": "{count} results"
+    "loading-results": "Loading results",
+    "no-results-yet": "Sonuç yok",
+    "no-results-found": "Sonuç bulunamadı",
+    "result-count": "{count} sonuçlar"
   },
   "streak": {
     "your-streak": "Bu haftaki Streakınız.",
-    "days-in-row": "{count} days in a row"
+    "days-in-row": "{count} gün üst üste"
   }
 }
