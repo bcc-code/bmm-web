@@ -42,6 +42,7 @@
     "preference-language-3": "Third language",
     "preference-language-4": "{count}th language",
     "uservoice": "Потребителски глас",
+    "privacy-policy": "Privacy Policy",
     "contact": "Контакти",
     "logout": "Sign out",
     "theme-dark": "Тъмно",
@@ -76,7 +77,15 @@
   },
   "download": {
     "download": "Изтегли",
+    "download-bmm-app": "Download the BMM app",
     "download-track": "Изтегляне на песен/реч",
+    "mobile": "Mobile",
+    "desktop": "Desktop",
+    "os": {
+      "windows": "Windows",
+      "mac_intel": "Mac with Intel CPU (produced before 2021)",
+      "mac_arm": "newer Mac (M1, M2, M3, ...)"
+    },
     "messages-not-allowed": {
       "title": "Download of messages unavailable",
       "description": "Възможността за изтегляне на съобщения от BMM вече не е налична. Ако имате нужда от съобщение за конкретна употреба, моля свържете се с нас и обяснете вашите нужди."
