@@ -21,5 +21,5 @@ watch(
 );
 </script>
 <template>
-  <img :src="source" :alt="alt || ''" loading="lazy" />
+  <FadeInImage :src="source" :alt="alt" />
 </template>
