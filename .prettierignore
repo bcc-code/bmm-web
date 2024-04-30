@@ -11,6 +11,7 @@ coverage
 pnpm-lock.yaml
 .vscode
 public/staticwebapp.config.json
+BMM.Web
 
 # Generated files
 *.generated.*
