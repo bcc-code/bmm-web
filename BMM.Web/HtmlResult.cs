@@ -1,5 +1,6 @@
 using System.Net.Mime;
 using System.Text;
+using Microsoft.AspNetCore.Http.Extensions;
 
 namespace BMM.Website;
 
@@ -25,6 +26,14 @@ public class HtmlResult : IResult
     
     public async Task ExecuteAsync(HttpContext httpContext)
     {
+        var oldHost = "bmm-web.brunstad.org";
+        if (httpContext.Request.Host.ToString() == oldHost)
+        {
+            // Redirect to new domain for testers that still use the old host.
+            httpContext.Response.Redirect(httpContext.Request.GetDisplayUrl().Replace(oldHost, "bmm.bcc.media"), true);
+            return;
+        }
+        
         if (_path != null)
         {
             try
