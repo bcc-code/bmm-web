@@ -79,6 +79,8 @@
     "download": "Download",
     "download-bmm-app": "Download the BMM app",
     "download-track": "Download track",
+    "mobile": "Mobile",
+    "desktop": "Desktop",
     "os": {
       "windows": "Windows",
       "mac_intel": "Mac with Intel CPU (produced before 2021)",

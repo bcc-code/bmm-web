@@ -22,7 +22,7 @@ function isAppleSilicon() {
   }
 }
 
-function linkForArchitecture() {
+function linkForOperatingSystem() {
   const { device } = UAParser(navigator.userAgent);
 
   if (device.type === "mobile") {
@@ -40,29 +40,35 @@ function linkForArchitecture() {
     <h2 class="pb-4 pt-10 text-[28px] font-extrabold">
       {{ t("download.download-bmm-app") }}
     </h2>
-    <NuxtLink :to="linkForArchitecture()">
+    <NuxtLink :to="linkForOperatingSystem() || ''">
       <ButtonStyled intent="primary" class="mb-4"
         >{{ t("download.download") }}
       </ButtonStyled>
     </NuxtLink>
 
-    <h3 class="pt-3 text-[20px] font-bold">Mobile</h3>
+    <h3 class="pt-3 text-[20px] font-bold">{{ t("download.mobile") }}</h3>
 
     <div class="flex">
-      <NuxtLink :to="links.ios" target="_blank" class="pt-[15px]">
+      <NuxtLink :to="links.ios || ''" target="_blank" class="pt-[15px]">
         <img src="/appstore_en.svg" width="190" />
       </NuxtLink>
 
-      <NuxtLink :to="links.android" target="_blank">
+      <NuxtLink :to="links.android || ''" target="_blank">
         <img src="/google-play-badge.png" width="240" />
       </NuxtLink>
     </div>
 
-    <h3 class="pt-3 text-[20px] font-bold">Desktop</h3>
+    <h3 class="pt-3 text-[20px] font-bold">{{ t("download.desktop") }}</h3>
     <div class="flex gap-6 underline">
-      <NuxtLink :to="links.windows">{{ t("download.os.windows") }}</NuxtLink>
-      <NuxtLink :to="links.macIntel">{{ t("download.os.mac_intel") }}</NuxtLink>
-      <NuxtLink :to="links.macArm">{{ t("download.os.mac_arm") }}</NuxtLink>
+      <NuxtLink :to="links.windows || ''">{{
+        t("download.os.windows")
+      }}</NuxtLink>
+      <NuxtLink :to="links.macIntel || ''">{{
+        t("download.os.mac_intel")
+      }}</NuxtLink>
+      <NuxtLink :to="links.macArm || ''">{{
+        t("download.os.mac_arm")
+      }}</NuxtLink>
     </div>
   </div>
 </template>
