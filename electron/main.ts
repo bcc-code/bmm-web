@@ -6,7 +6,7 @@ import ElectronStore from "electron-store";
 
 const PRODUCTION_APP_PROTOCOL = "bmm";
 const PRODUCTION_APP_PATH = path.join(__dirname);
-const defaultUrl = `${PRODUCTION_APP_PROTOCOL}://bmm.brunstad.org`;
+const defaultUrl = `${PRODUCTION_APP_PROTOCOL}://bmm.bcc.media`;
 let initUrl = defaultUrl;
 let appReadyHasRun = false;
 
@@ -45,8 +45,11 @@ const openWindow = (url: string) => {
   if (bounds) window.setBounds(bounds);
 
   window.webContents.on("will-navigate", (e, _url) => {
-    // Some links from the API have the fixed domain `bmm.brunstad.org` on the `http(s)` protocol. Use our router instead of navigating (which means reloading the "app").
-    if (/^https?:\/\/bmm\.brunstad\.org\//.test(_url)) {
+    // Some links from the API have the fixed domain `bmm.bcc.media` on the `http(s)` protocol. Use our router instead of navigating (which means reloading the "app").
+    if (
+      /^https?:\/\/bmm\.brunstad\.org\//.test(_url) ||
+      /^https?:\/\/bmm\.bcc\.media\//.test(_url)
+    ) {
       e.preventDefault();
       navigateToUri(window!, removeUrlOrigin(_url));
       return;

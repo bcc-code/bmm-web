@@ -11,28 +11,27 @@ toolbarTitleStore().setReactiveToolbarTitle(() => t("track.details.copyright"));
     </h2>
     <p>
       © Worldwide Copyright Stiftelsen Skjulte Skatters Forlag, N-3168
-      Melsomvik, Norge. All tale, sang, musikk og film på bmm.brunstad.org er
-      kun til internt og privat bruk for slike som regner seg som med i Den
+      Melsomvik, Norge. All tale, sang, musikk og film på bmm.bcc.media er kun
+      til internt og privat bruk for slike som regner seg som med i Den
       Kristelige Menighet, heretter kalt ”DKM” og/eller Brunstad Christian
       Church, N-3168 Stokke, Norge, heretter kalt ”BCC”, worldwide.
       Videresending, kopiering eller annen form for distribusjon enn til eget,
       privat bruk er ikke tillatt, uansett i hvilket format eller form dette
-      skjer. Dersom det er spørsmål rundt bruk av innholdet på
-      bmm.brunstadworld.org eller noe som er publisert av Stiftelsen Skjulte
-      Skatters Forlag, heretter kalt 'SSSF', BMM MultiMedia Service GmbH,
-      D-32602 Vlotho-Exter, heretter kalt 'BMM' eller disses internasjonale
-      datterselskaper, avdelinger, filialer, foreninger og/eller stiftelser, må
-      det skriftlig tas kontakt med BMM eller SSSF. All annen bruk enn til eget
-      personlig formål for slike som regner seg som med i DKM/BCC worldwide, er
-      ikke tillatt uten skriftlig tillatelse fra SSSF/BMM. SSSF eller SSSFs
-      respektive datterselskaper, avdelinger, filialer, foreninger og/eller
-      stiftelser har opphavsrett til alt materiale sendt inn til og alt arbeid
-      utført for SSSF/BMM eller disses internasjonale datterselskaper,
-      avdelinger, filialer, foreninger og/eller stiftelser, uavhengig av
-      utgivelsessted eller -språk. Dette gjelder også taler, sang og
-      fremføringer hos BCC, eller i en av DKMs lokalmenigheter eller
-      stevnesteder worldwide. Alle moralske rettigheter frafalles.SSSF eller
-      SSSFs respektive datterselskaper, avdelinger, filialer, foreninger
+      skjer. Dersom det er spørsmål rundt bruk av innholdet på bmm.bcc.media
+      eller noe som er publisert av Stiftelsen Skjulte Skatters Forlag, heretter
+      kalt 'SSSF', BMM MultiMedia Service GmbH, D-32602 Vlotho-Exter, heretter
+      kalt 'BMM' eller disses internasjonale datterselskaper, avdelinger,
+      filialer, foreninger og/eller stiftelser, må det skriftlig tas kontakt med
+      BMM eller SSSF. All annen bruk enn til eget personlig formål for slike som
+      regner seg som med i DKM/BCC worldwide, er ikke tillatt uten skriftlig
+      tillatelse fra SSSF/BMM. SSSF eller SSSFs respektive datterselskaper,
+      avdelinger, filialer, foreninger og/eller stiftelser har opphavsrett til
+      alt materiale sendt inn til og alt arbeid utført for SSSF/BMM eller disses
+      internasjonale datterselskaper, avdelinger, filialer, foreninger og/eller
+      stiftelser, uavhengig av utgivelsessted eller -språk. Dette gjelder også
+      taler, sang og fremføringer hos BCC, eller i en av DKMs lokalmenigheter
+      eller stevnesteder worldwide. Alle moralske rettigheter frafalles.SSSF
+      eller SSSFs respektive datterselskaper, avdelinger, filialer, foreninger
       og/eller stiftelser innehar derfor den globale opphavsrett til det
       oppførte og/eller tilsendte materiale, uavhengig av utgivelsesmedium eller
       av hvorvidt materialet er publisert eller ikke. Du må for øvrig gjøre deg

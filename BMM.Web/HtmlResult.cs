@@ -1,5 +1,6 @@
 using System.Net.Mime;
 using System.Text;
+using Microsoft.AspNetCore.Http.Extensions;
 
 namespace BMM.Website;
 
@@ -9,7 +10,7 @@ public class HtmlResult : IResult
     private readonly string? _path;
     private string _title = "bmm";
     private string _description = "Listen to edifying music and messages";
-    private string _coverUrl = "https://bmm.brunstad.org/bmm-logo.jpg";
+    private string _coverUrl = "https://bmm.bcc.media/bmm-logo.jpg";
     private const string Placeholder = "<meta name=\"description\" content=\"{{MetadataPlaceholder}}\">";
 
     public HtmlResult(string indexHtml)
@@ -25,6 +26,14 @@ public class HtmlResult : IResult
     
     public async Task ExecuteAsync(HttpContext httpContext)
     {
+        var oldHost = "bmm-web.brunstad.org";
+        if (httpContext.Request.Host.ToString() == oldHost)
+        {
+            // Redirect to new domain for testers that still use the old host.
+            httpContext.Response.Redirect(httpContext.Request.GetDisplayUrl().Replace(oldHost, "bmm.bcc.media"), true);
+            return;
+        }
+        
         if (_path != null)
         {
             try
