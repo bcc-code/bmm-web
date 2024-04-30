@@ -1,7 +1,7 @@
 {
   "global": {
     "cancel": "Annuleren",
-    "try-again": "Try again"
+    "try-again": "Probeer opnieuw"
   },
   "nav": {
     "home": "Home",
@@ -160,7 +160,7 @@
       "Playlists": "Afspeellijsten"
     },
     "input-placeholder": "Zoeken",
-    "loading-results": "laad resultaten",
+    "loading-results": "Loading results",
     "no-results-yet": "Nog geen resultaten",
     "no-results-found": "Geen resultaten gevonden",
     "result-count": "{count} resultaten"

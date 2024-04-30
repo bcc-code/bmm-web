@@ -1,58 +1,58 @@
 {
   "global": {
-    "cancel": "Avbryt",
+    "cancel": "Cancel",
     "try-again": "Try again"
   },
   "nav": {
-    "home": "Hjem",
-    "browse": "Utforsk",
-    "playlist": "Spilleliste",
-    "profile": "Min profil",
-    "messages": "Taler",
-    "recent-messages": "Nye taler",
-    "recent-music": "Ny musikk",
-    "audiobooks": "Lydbøker",
-    "search": "Søk",
-    "album": "Album",
+    "home": "Home",
+    "browse": "Browse",
+    "playlist": "Playlist",
+    "profile": "Profile",
+    "messages": "Μυνήματα",
+    "recent-messages": "Recent Messages",
+    "recent-music": "Recent Music",
+    "audiobooks": "Ηχογραφημένα βιβλία",
+    "search": "Αναζήτηση",
+    "album": "Άλμπουμ",
     "podcast": "Podcast",
-    "contributor": "Bidragsyter",
-    "contributors": "Bidragsytere"
+    "contributor": "Συνεργάτης (?)",
+    "contributors": "Συνεργάτες"
   },
   "sidebar": {
     "playlists": {
-      "title": "Spillelister"
+      "title": "Λίστες αναπαραγωγής"
     }
   },
   "share": {
     "link-copied-message": "Copied link to clipboard"
   },
   "profile": {
-    "title": "Min profil",
-    "autoplay": "Automatisk avspilling",
-    "theme": "Tema",
+    "title": "Profile",
+    "autoplay": "Auto Play",
+    "theme": "Theme",
     "theme-description": "Select the theme used for the interface.",
-    "app-language": "Språk",
+    "app-language": "Language",
     "interface-language": "Interface Language",
     "interface-language-description": "Select the language used for the interface.",
     "select-language": "Select language",
-    "content-language": "Innholdsspråk",
+    "content-language": "Content Language",
     "content-language-description": "The preferred language for the content you are listening to.",
     "preference-language-1": "Preferred language",
     "preference-language-2": "Second language",
     "preference-language-3": "Third language",
     "preference-language-4": "{count}th language",
     "uservoice": "User Voice",
-    "contact": "Kontakt",
-    "logout": "Logg ut",
+    "contact": "Contact",
+    "logout": "Sign out",
     "theme-dark": "Dark",
     "theme-light": "Light",
     "theme-system": "Same as system",
-    "done": "Ferdig",
+    "done": "Done",
     "add-another-language": "Add another language"
   },
   "error": {
     "page-not-found": {
-      "headline": "Feil",
+      "headline": "Error",
       "text": "Sorry. We can't find the page \"{path}\"."
     }
   },
@@ -75,98 +75,98 @@
     }
   },
   "download": {
-    "download": "Last ned",
-    "download-track": "Last ned spor",
+    "download": "Λήψη",
+    "download-track": "Download track",
     "messages-not-allowed": {
       "title": "Download of messages unavailable",
-      "description": "Muligheten til å laste ned taler fra BMM er ikke lenger tilgjengelig. Hvis du trenger en tale for en spesifikk bruk, ta kontakt med oss og beskriv ditt behov."
+      "description": "The ability to download messages from BMM is no longer available. If you need a message for a specific use, please contact us and explain your needs."
     },
     "sendEmailTo": "Send email to {0}"
   },
   "playlist": {
     "add": "Add playlist",
-    "new-playlist": "Ny spilleliste",
+    "new-playlist": "Νέα λίστα αναπαραγωγής",
     "name-your-playlist": "Name your playlist",
-    "delete-playlist": "Slett spillelisten",
+    "delete-playlist": "Delete playlist",
     "delete-playlist-description": "Are you sure you want to delete the playlist? This action cannot be reversed.",
     "action": {
       "shuffle": "Shuffle",
-      "add-to-my-playlists": "Legg til mine spillelister",
-      "remove-shared-playlist": "Fjern spillelisten"
+      "add-to-my-playlists": "Add to my playlists",
+      "remove-shared-playlist": "Remove playlist"
     },
     "by-x": "by {name}"
   },
   "podcast": {
-    "this-week": "Denne uken",
-    "last-week": "Siste uke",
+    "this-week": "This week",
+    "last-week": "Last week",
     "week-x": "Week {count}",
     "action": {
-      "play": "Spill av",
-      "follow": "Følg"
+      "play": "Αναπαραγωγή / Play",
+      "follow": "Follow"
     }
   },
   "player": {
-    "queue": "Kø"
+    "queue": "Queue"
   },
   "edit": {
     "rename": "Rename",
-    "delete": "Slett"
+    "delete": "Διαγραφή"
   },
   "track": {
     "dropdown": {
-      "play-next": "Spill av som neste",
-      "download": "Last ned",
-      "go-to-album": "Gå til albumet",
-      "add-to-queue": "Legg til i køen",
-      "add-to-playlist": "Legg til i spilleliste",
-      "share": "Del spor",
-      "go-to-contributors": "Vis bidragsytere",
-      "more-info": "Mer informasjon",
-      "show-all": "Vis alle",
-      "remove-from-playlist": "Slett fra spilleliste"
+      "play-next": "Play next",
+      "download": "Λήψη",
+      "go-to-album": "Πήγαινε στο άλμπουμ",
+      "add-to-queue": "Add to queue",
+      "add-to-playlist": "Προσθήκη στη λίστα αναπαραγωγής",
+      "share": "Share track",
+      "go-to-contributors": "Go to contributors",
+      "more-info": "More information",
+      "show-all": "Show all",
+      "remove-from-playlist": "Remove from playlist"
     },
     "a11y": {
-      "download": "Last ned",
-      "queue": "Legg til i køen",
+      "download": "Λήψη",
+      "queue": "Add to queue",
       "options": "Show options"
     },
     "details": {
       "reference": "Reference",
-      "duration": "Varighet",
-      "publish-date": "Publiseringsdato",
-      "album": "Album",
-      "publisher": "Forlegger",
-      "copyright": "Opphavsrett",
-      "song-number": "Sangnummer",
-      "arranger": "Arrangør",
-      "composer": "Komponist",
-      "lyricist": "Tekstforfatter"
+      "duration": "Διάρκεια",
+      "publish-date": "Publish Date",
+      "album": "Άλμπουμ",
+      "publisher": "Publisher",
+      "copyright": "Πνευματικά δικαιώματα",
+      "song-number": "Song number",
+      "arranger": "Ενορχηστρωτής",
+      "composer": "Συνθέτης",
+      "lyricist": "Στιχουργός"
     }
   },
   "home": {
     "list": {
-      "see-all": "Vis alle",
-      "recommended": "Anbefalt"
+      "see-all": "See all",
+      "recommended": "Προτεινόμενα"
     }
   },
   "search": {
     "search-filter": {
-      "All": "Alle",
-      "Speeches": "Taler",
-      "Music": "Musikk",
-      "Albums": "Album",
-      "Contributors": "Bidragsytere",
-      "Podcasts": "Podcaster",
-      "Playlists": "Spillelister"
+      "All": "All",
+      "Speeches": "Speeches",
+      "Music": "Μουσικη",
+      "Albums": "Albums",
+      "Contributors": "Συνεργάτες",
+      "Podcasts": "Podcasts",
+      "Playlists": "Λίστες αναπαραγωγής"
     },
-    "input-placeholder": "Søk",
+    "input-placeholder": "Αναζήτηση",
     "loading-results": "Loading results",
     "no-results-yet": "No results yet",
     "no-results-found": "No results found",
     "result-count": "{count} results"
   },
   "streak": {
-    "your-streak": "Din streak denne uken",
+    "your-streak": "Your streak this week",
     "days-in-row": "{count} days in a row"
   }
 }
