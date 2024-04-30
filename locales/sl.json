@@ -1,33 +1,33 @@
 {
   "global": {
-    "cancel": "Cancel",
+    "cancel": "Prekliči",
     "try-again": "Try again"
   },
   "nav": {
-    "home": "Home",
-    "browse": "Browse",
-    "playlist": "Playlist",
-    "profile": "Profile",
-    "messages": "Messages",
-    "recent-messages": "Recent Messages",
-    "recent-music": "Recent Music",
-    "audiobooks": "Audiobooks",
-    "search": "Search",
+    "home": "Domov",
+    "browse": "Razišči",
+    "playlist": "Seznam predvajanja",
+    "profile": "Profil",
+    "messages": "Govori",
+    "recent-messages": "Najnovejši govori",
+    "recent-music": "Najnovejša glasba",
+    "audiobooks": "Zvočne knjige",
+    "search": "Išči",
     "album": "Album",
     "podcast": "Podcast",
-    "contributor": "Contributor",
-    "contributors": "Contributors"
+    "contributor": "Ustvarjalec",
+    "contributors": "Ustvarjalci"
   },
   "sidebar": {
     "playlists": {
-      "title": "Playlists"
+      "title": "Seznam predvajanja"
     }
   },
   "share": {
     "link-copied-message": "Copied link to clipboard"
   },
   "profile": {
-    "title": "Profile",
+    "title": "Profil",
     "autoplay": "Auto Play",
     "theme": "Theme",
     "theme-description": "Select the theme used for the interface.",
@@ -41,14 +41,13 @@
     "preference-language-2": "Second language",
     "preference-language-3": "Third language",
     "preference-language-4": "{count}th language",
-    "uservoice": "User Voice",
-    "privacy-policy": "Privacy Policy",
-    "contact": "Contact",
+    "uservoice": "User voice",
+    "contact": "Kontakt",
     "logout": "Sign out",
-    "theme-dark": "Dark",
-    "theme-light": "Light",
+    "theme-dark": "Temno",
+    "theme-light": "Svetlo",
     "theme-system": "Same as system",
-    "done": "Done",
+    "done": "Končano",
     "add-another-language": "Add another language"
   },
   "error": {
@@ -76,104 +75,98 @@
     }
   },
   "download": {
-    "download": "Download",
-    "download-bmm-app": "Download the BMM app",
-    "download-track": "Download track",
-    "os": {
-      "windows": "Windows",
-      "mac_intel": "Mac with Intel CPU (produced before 2021)",
-      "mac_arm": "newer Mac (M1, M2, M3, ...)"
-    },
+    "download": "Prenesi",
+    "download-track": "Prenesi skladbo",
     "messages-not-allowed": {
       "title": "Download of messages unavailable",
-      "description": "The ability to download messages from BMM is no longer available. If you need a message for a specific use, please contact us and explain your needs."
+      "description": "Možnost prenosa govorov BMM ni več na voljo. Če potrebuješ govor za določen namen, nas kontaktiraj in razloži svojo željo."
     },
     "sendEmailTo": "Send email to {0}"
   },
   "playlist": {
     "add": "Add playlist",
-    "new-playlist": "New playlist",
+    "new-playlist": "Novi seznam predvajanja",
     "name-your-playlist": "Name your playlist",
-    "delete-playlist": "Delete playlist",
+    "delete-playlist": "Izbriši seznam predvajanja",
     "delete-playlist-description": "Are you sure you want to delete the playlist? This action cannot be reversed.",
     "action": {
-      "shuffle": "Shuffle",
-      "add-to-my-playlists": "Add to my playlists",
-      "remove-shared-playlist": "Remove playlist"
+      "shuffle": "Naključno",
+      "add-to-my-playlists": "Dodaj na moje sezname predvajanja",
+      "remove-shared-playlist": "Odstrani seznam predvajanja"
     },
     "by-x": "by {name}"
   },
   "podcast": {
-    "this-week": "This week",
-    "last-week": "Last week",
+    "this-week": "Ta teden",
+    "last-week": "Prejšnji teden",
     "week-x": "Week {count}",
     "action": {
-      "play": "Play",
-      "follow": "Follow"
+      "play": "Predvajaj",
+      "follow": "Sledi"
     }
   },
   "player": {
-    "queue": "Queue"
+    "queue": "Čakalna vrsta"
   },
   "edit": {
     "rename": "Rename",
-    "delete": "Delete"
+    "delete": "Izbriši"
   },
   "track": {
     "dropdown": {
-      "play-next": "Play next",
-      "download": "Download",
-      "go-to-album": "Go to album",
-      "add-to-queue": "Add to queue",
-      "add-to-playlist": "Add to playlist",
-      "share": "Share track",
-      "go-to-contributors": "Go to contributors",
-      "more-info": "More information",
-      "show-all": "Show all",
-      "remove-from-playlist": "Remove from playlist"
+      "play-next": "Predvajaj naslednje",
+      "download": "Prenesi",
+      "go-to-album": "Pojdi na album",
+      "add-to-queue": "Dodaj v čakalno vrsto",
+      "add-to-playlist": "Dodaj na seznam predvajanja",
+      "share": "Deli skladbo",
+      "go-to-contributors": "Pojdi na ustvarjalce",
+      "more-info": "Več informacij",
+      "show-all": "Prikaži vse",
+      "remove-from-playlist": "Odstrani s seznama predvajanja"
     },
     "a11y": {
-      "download": "Download",
-      "queue": "Add to queue",
+      "download": "Prenesi",
+      "queue": "Dodaj v čakalno vrsto",
       "options": "Show options"
     },
     "details": {
       "reference": "Reference",
-      "duration": "Duration",
+      "duration": "Trajanje",
       "publish-date": "Publish Date",
       "album": "Album",
-      "publisher": "Publisher",
-      "copyright": "Copyright",
-      "song-number": "Song number",
-      "arranger": "Arranger",
-      "composer": "Composer",
-      "lyricist": "Lyricist"
+      "publisher": "Založnik",
+      "copyright": "Avtorske pravice",
+      "song-number": "Številka pesmi",
+      "arranger": "Aranžer",
+      "composer": "Skladatelj",
+      "lyricist": "Avtor besedila"
     }
   },
   "home": {
     "list": {
       "see-all": "See all",
-      "recommended": "Recommended"
+      "recommended": "Priporočeno"
     }
   },
   "search": {
     "search-filter": {
-      "All": "All",
-      "Speeches": "Speeches",
-      "Music": "Music",
-      "Albums": "Albums",
-      "Contributors": "Contributors",
-      "Podcasts": "Podcasts",
-      "Playlists": "Playlists"
+      "All": "Vse",
+      "Speeches": "Govori",
+      "Music": "Glasba",
+      "Albums": "Albumi",
+      "Contributors": "Ustvarjalci",
+      "Podcasts": "Podcasti",
+      "Playlists": "Seznam predvajanja"
     },
-    "input-placeholder": "Search",
+    "input-placeholder": "Išči",
     "loading-results": "Loading results",
     "no-results-yet": "No results yet",
     "no-results-found": "No results found",
     "result-count": "{count} results"
   },
   "streak": {
-    "your-streak": "Your streak this week",
+    "your-streak": "Tvoj  niz ta teden",
     "days-in-row": "{count} days in a row"
   }
 }

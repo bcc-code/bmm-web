@@ -1,7 +1,7 @@
 {
   "global": {
     "cancel": "Abbrechen",
-    "try-again": "Try again"
+    "try-again": "Versuche es erneut"
   },
   "nav": {
     "home": "Start",
@@ -57,21 +57,21 @@
     }
   },
   "collection": {
-    "track-count": "Titel",
-    "album-count": "Album | Alben"
+    "track-count": "{count} Titel | {count} Titel",
+    "album-count": "{count} Album | {count} Alben"
   },
   "login": {
     "error-message": {
       "contact-info": "Sollte dieser Fehler weiterhin bestehen, {0}.",
-      "contact-link": "Bitte nimm Kontakt mit uns auf",
+      "contact-link": "nimm bitte Kontakt mit uns auf",
       "logout-and-redirect-info": "Bei der Anmeldung ist ein Fehler aufgetreten:",
       "manual-logout-and-redirect-info": "Bitte {0}.",
-      "logout-and-redirect-link": "Versuch noch ein Mal, dich anzumelden"
+      "logout-and-redirect-link": "versuche dich erneut anzumelden"
     },
     "redirect-message": {
       "redirect-info": "Du wirst zur Anmeldeseite weitergeleitet.",
-      "manual-redirect-info": "Bitte warten oder ",
-      "redirect-link": "Klicken, um es erneut zu versuchen"
+      "manual-redirect-info": "Bitte warten oder {0}.",
+      "redirect-link": "klicken, um es erneut zu versuchen"
     }
   },
   "download": {
@@ -86,7 +86,7 @@
   "playlist": {
     "add": "Playlist hinzufügen",
     "new-playlist": "Neue Wiedergabeliste",
-    "name-your-playlist": "Wiedergabeliste benennen",
+    "name-your-playlist": "Gib deiner Wiedergabeliste einen Namen",
     "delete-playlist": "Playlist löschen",
     "delete-playlist-description": "Bist du sicher, dass du die Wiedergabeliste löschen möchtest? Diese Aktion kann nicht rückgängig gemacht werden.",
     "action": {
@@ -120,20 +120,20 @@
       "add-to-queue": "Zur Warteschlange hinzufügen",
       "add-to-playlist": "Zur Playlist hinzufügen",
       "share": "Titel teilen",
-      "go-to-contributors": "Zur Person",
-      "more-info": "Mehr Informationen",
+      "go-to-contributors": "Zu den Mitwirkenden",
+      "more-info": "Weitere Informationen",
       "show-all": "Alle anzeigen",
       "remove-from-playlist": "Aus Wiedergabeliste entfernen"
     },
     "a11y": {
       "download": "Herunterladen",
       "queue": "Zur Warteschlange hinzufügen",
-      "options": "Zeige Optionen"
+      "options": "Optionen anzeigen"
     },
     "details": {
       "reference": "Referenz",
       "duration": "Dauer",
-      "publish-date": "Veröffentlichung",
+      "publish-date": "Datum der Veröffentlichung",
       "album": "Album",
       "publisher": "Herausgeber",
       "copyright": "Copyright",
@@ -160,7 +160,7 @@
       "Playlists": "Playlists"
     },
     "input-placeholder": "Suche",
-    "loading-results": "Laden von Ergebnissen",
+    "loading-results": "Loading results",
     "no-results-yet": "Noch keine Ergebnisse",
     "no-results-found": "Keine Ergebnisse gefunden",
     "result-count": "{count} Ergebnisse"

@@ -1,33 +1,33 @@
 {
   "global": {
-    "cancel": "Cancel",
+    "cancel": "Peruuta",
     "try-again": "Try again"
   },
   "nav": {
-    "home": "Home",
-    "browse": "Browse",
-    "playlist": "Playlist",
-    "profile": "Profile",
-    "messages": "Messages",
-    "recent-messages": "Recent Messages",
-    "recent-music": "Recent Music",
-    "audiobooks": "Audiobooks",
-    "search": "Search",
-    "album": "Album",
+    "home": "Koti",
+    "browse": "Selaa",
+    "playlist": "Soittolista",
+    "profile": "Profiili",
+    "messages": "Puheet",
+    "recent-messages": "Uusimmat puheet",
+    "recent-music": "Uusimmat kappaleet",
+    "audiobooks": "Äänikirjat",
+    "search": "Haku",
+    "album": "Albumi",
     "podcast": "Podcast",
-    "contributor": "Contributor",
-    "contributors": "Contributors"
+    "contributor": "Tekijä",
+    "contributors": "Tekijät"
   },
   "sidebar": {
     "playlists": {
-      "title": "Playlists"
+      "title": "Soittolistat"
     }
   },
   "share": {
     "link-copied-message": "Copied link to clipboard"
   },
   "profile": {
-    "title": "Profile",
+    "title": "Profiili",
     "autoplay": "Auto Play",
     "theme": "Theme",
     "theme-description": "Select the theme used for the interface.",
@@ -41,14 +41,13 @@
     "preference-language-2": "Second language",
     "preference-language-3": "Third language",
     "preference-language-4": "{count}th language",
-    "uservoice": "User Voice",
-    "privacy-policy": "Privacy Policy",
-    "contact": "Contact",
+    "uservoice": "Palautteet",
+    "contact": "Yhteydenotto",
     "logout": "Sign out",
-    "theme-dark": "Dark",
-    "theme-light": "Light",
+    "theme-dark": "Pimeä",
+    "theme-light": "Valoisa",
     "theme-system": "Same as system",
-    "done": "Done",
+    "done": "Valmis",
     "add-another-language": "Add another language"
   },
   "error": {
@@ -76,104 +75,98 @@
     }
   },
   "download": {
-    "download": "Download",
-    "download-bmm-app": "Download the BMM app",
-    "download-track": "Download track",
-    "os": {
-      "windows": "Windows",
-      "mac_intel": "Mac with Intel CPU (produced before 2021)",
-      "mac_arm": "newer Mac (M1, M2, M3, ...)"
-    },
+    "download": "Lataa",
+    "download-track": "Lataa kappale",
     "messages-not-allowed": {
       "title": "Download of messages unavailable",
-      "description": "The ability to download messages from BMM is no longer available. If you need a message for a specific use, please contact us and explain your needs."
+      "description": "Puheita ei voi enää ladata BMM:stä. Jos tarvitset tiettyä puhetta johonkin, ota yhteyttä ja kerro perustelut."
     },
     "sendEmailTo": "Send email to {0}"
   },
   "playlist": {
     "add": "Add playlist",
-    "new-playlist": "New playlist",
+    "new-playlist": "Uusi soittolista",
     "name-your-playlist": "Name your playlist",
-    "delete-playlist": "Delete playlist",
+    "delete-playlist": "Poista soittolista",
     "delete-playlist-description": "Are you sure you want to delete the playlist? This action cannot be reversed.",
     "action": {
-      "shuffle": "Shuffle",
-      "add-to-my-playlists": "Add to my playlists",
-      "remove-shared-playlist": "Remove playlist"
+      "shuffle": "Sekoita",
+      "add-to-my-playlists": "Lisää soittolistoihini",
+      "remove-shared-playlist": "Poista soittolista"
     },
     "by-x": "by {name}"
   },
   "podcast": {
-    "this-week": "This week",
-    "last-week": "Last week",
+    "this-week": "Tämä viikko",
+    "last-week": "Viime viikko",
     "week-x": "Week {count}",
     "action": {
-      "play": "Play",
-      "follow": "Follow"
+      "play": "Toista",
+      "follow": "Seuraa"
     }
   },
   "player": {
-    "queue": "Queue"
+    "queue": "Jono"
   },
   "edit": {
     "rename": "Rename",
-    "delete": "Delete"
+    "delete": "Poista"
   },
   "track": {
     "dropdown": {
-      "play-next": "Play next",
-      "download": "Download",
-      "go-to-album": "Go to album",
-      "add-to-queue": "Add to queue",
-      "add-to-playlist": "Add to playlist",
-      "share": "Share track",
-      "go-to-contributors": "Go to contributors",
-      "more-info": "More information",
-      "show-all": "Show all",
-      "remove-from-playlist": "Remove from playlist"
+      "play-next": "Seuraava kappale",
+      "download": "Lataa",
+      "go-to-album": "Siirry albumiin",
+      "add-to-queue": "Lisää jonoon",
+      "add-to-playlist": "Lisää soittolistaan",
+      "share": "Jaa kappale",
+      "go-to-contributors": "Lauluntekijät",
+      "more-info": "Lisätietoja",
+      "show-all": "Näytä kaikki",
+      "remove-from-playlist": "Poista soittolistalta"
     },
     "a11y": {
-      "download": "Download",
-      "queue": "Add to queue",
+      "download": "Lataa",
+      "queue": "Lisää jonoon",
       "options": "Show options"
     },
     "details": {
       "reference": "Reference",
-      "duration": "Duration",
+      "duration": "Kesto",
       "publish-date": "Publish Date",
-      "album": "Album",
-      "publisher": "Publisher",
-      "copyright": "Copyright",
-      "song-number": "Song number",
-      "arranger": "Arranger",
-      "composer": "Composer",
-      "lyricist": "Lyricist"
+      "album": "Albumi",
+      "publisher": "Julkaisija",
+      "copyright": "Tekijänoikeudet",
+      "song-number": "Laulun numero",
+      "arranger": "Sovittaja",
+      "composer": "Säveltäjä",
+      "lyricist": "Sanoittaja"
     }
   },
   "home": {
     "list": {
       "see-all": "See all",
-      "recommended": "Recommended"
+      "recommended": "Suositellut"
     }
   },
   "search": {
     "search-filter": {
-      "All": "All",
-      "Speeches": "Speeches",
-      "Music": "Music",
-      "Albums": "Albums",
-      "Contributors": "Contributors",
-      "Podcasts": "Podcasts",
-      "Playlists": "Playlists"
+      "All": "Kaikki",
+      "Speeches": "Puheet",
+      "Music": "Musiikki",
+      "Albums": "Albumit",
+      "Contributors": "Tekijät",
+      "Podcasts": "Podcastit",
+      "Playlists": "Soittolistat"
     },
-    "input-placeholder": "Search",
+    "input-placeholder": "Haku",
     "loading-results": "Loading results",
     "no-results-yet": "No results yet",
     "no-results-found": "No results found",
     "result-count": "{count} results"
   },
   "streak": {
-    "your-streak": "Your streak this week",
+    "your-streak": "Viikon suorituksesi",
     "days-in-row": "{count} days in a row"
   }
 }

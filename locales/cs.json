@@ -42,7 +42,6 @@
     "preference-language-3": "Third language",
     "preference-language-4": "{count}th language",
     "uservoice": "User Voice",
-    "privacy-policy": "Privacy Policy",
     "contact": "Contact",
     "logout": "Sign out",
     "theme-dark": "Dark",
@@ -77,13 +76,7 @@
   },
   "download": {
     "download": "Download",
-    "download-bmm-app": "Download the BMM app",
     "download-track": "Download track",
-    "os": {
-      "windows": "Windows",
-      "mac_intel": "Mac with Intel CPU (produced before 2021)",
-      "mac_arm": "newer Mac (M1, M2, M3, ...)"
-    },
     "messages-not-allowed": {
       "title": "Download of messages unavailable",
       "description": "The ability to download messages from BMM is no longer available. If you need a message for a specific use, please contact us and explain your needs."

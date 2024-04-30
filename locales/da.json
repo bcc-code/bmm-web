@@ -1,33 +1,33 @@
 {
   "global": {
-    "cancel": "Cancel",
+    "cancel": "Annuller",
     "try-again": "Try again"
   },
   "nav": {
-    "home": "Home",
-    "browse": "Browse",
-    "playlist": "Playlist",
-    "profile": "Profile",
-    "messages": "Messages",
-    "recent-messages": "Recent Messages",
-    "recent-music": "Recent Music",
-    "audiobooks": "Audiobooks",
-    "search": "Search",
+    "home": "Hjem",
+    "browse": "Gennemse",
+    "playlist": "Spilleliste",
+    "profile": "Profil",
+    "messages": "Beskeder",
+    "recent-messages": "Seneste taler",
+    "recent-music": "Nyeste musik",
+    "audiobooks": "Lydbøger",
+    "search": "Søg",
     "album": "Album",
     "podcast": "Podcast",
-    "contributor": "Contributor",
-    "contributors": "Contributors"
+    "contributor": "Medvirkende",
+    "contributors": "Bidragydere"
   },
   "sidebar": {
     "playlists": {
-      "title": "Playlists"
+      "title": "Spillelister"
     }
   },
   "share": {
     "link-copied-message": "Copied link to clipboard"
   },
   "profile": {
-    "title": "Profile",
+    "title": "Profil",
     "autoplay": "Auto Play",
     "theme": "Theme",
     "theme-description": "Select the theme used for the interface.",
@@ -42,13 +42,12 @@
     "preference-language-3": "Third language",
     "preference-language-4": "{count}th language",
     "uservoice": "User Voice",
-    "privacy-policy": "Privacy Policy",
-    "contact": "Contact",
+    "contact": "Kontakt",
     "logout": "Sign out",
-    "theme-dark": "Dark",
-    "theme-light": "Light",
+    "theme-dark": "Mørk",
+    "theme-light": "Lys",
     "theme-system": "Same as system",
-    "done": "Done",
+    "done": "Færdig",
     "add-another-language": "Add another language"
   },
   "error": {
@@ -77,103 +76,97 @@
   },
   "download": {
     "download": "Download",
-    "download-bmm-app": "Download the BMM app",
-    "download-track": "Download track",
-    "os": {
-      "windows": "Windows",
-      "mac_intel": "Mac with Intel CPU (produced before 2021)",
-      "mac_arm": "newer Mac (M1, M2, M3, ...)"
-    },
+    "download-track": "Download",
     "messages-not-allowed": {
       "title": "Download of messages unavailable",
-      "description": "The ability to download messages from BMM is no longer available. If you need a message for a specific use, please contact us and explain your needs."
+      "description": "Muligheden for at downloade taler fra BMM er ikke længere tilgængelig. Hvis du har brug for en tale til et specifikt formål, bedes du kontakte os og forklare dine behov."
     },
     "sendEmailTo": "Send email to {0}"
   },
   "playlist": {
     "add": "Add playlist",
-    "new-playlist": "New playlist",
+    "new-playlist": "Ny spilleliste",
     "name-your-playlist": "Name your playlist",
-    "delete-playlist": "Delete playlist",
+    "delete-playlist": "Slet spillelisten",
     "delete-playlist-description": "Are you sure you want to delete the playlist? This action cannot be reversed.",
     "action": {
-      "shuffle": "Shuffle",
-      "add-to-my-playlists": "Add to my playlists",
-      "remove-shared-playlist": "Remove playlist"
+      "shuffle": "Afspil blandet",
+      "add-to-my-playlists": "Tilføj til mine spillelister",
+      "remove-shared-playlist": "Slet spilleliste"
     },
     "by-x": "by {name}"
   },
   "podcast": {
-    "this-week": "This week",
-    "last-week": "Last week",
+    "this-week": "Denne uge",
+    "last-week": "Sidste uge",
     "week-x": "Week {count}",
     "action": {
-      "play": "Play",
-      "follow": "Follow"
+      "play": "Afspil",
+      "follow": "Følg"
     }
   },
   "player": {
-    "queue": "Queue"
+    "queue": "Spillekø"
   },
   "edit": {
     "rename": "Rename",
-    "delete": "Delete"
+    "delete": "Slet"
   },
   "track": {
     "dropdown": {
-      "play-next": "Play next",
+      "play-next": "Afspil som næste",
       "download": "Download",
-      "go-to-album": "Go to album",
-      "add-to-queue": "Add to queue",
-      "add-to-playlist": "Add to playlist",
-      "share": "Share track",
-      "go-to-contributors": "Go to contributors",
-      "more-info": "More information",
-      "show-all": "Show all",
-      "remove-from-playlist": "Remove from playlist"
+      "go-to-album": "Gå til album",
+      "add-to-queue": "Føj til spillekø",
+      "add-to-playlist": "Tilføj til spilleliste",
+      "share": "Del",
+      "go-to-contributors": "Vis bidragsydere",
+      "more-info": "Mere information",
+      "show-all": "Vis alle",
+      "remove-from-playlist": "Slet fra spilleliste"
     },
     "a11y": {
       "download": "Download",
-      "queue": "Add to queue",
+      "queue": "Føj til spillekø",
       "options": "Show options"
     },
     "details": {
       "reference": "Reference",
-      "duration": "Duration",
+      "duration": "Varighed",
       "publish-date": "Publish Date",
       "album": "Album",
-      "publisher": "Publisher",
-      "copyright": "Copyright",
-      "song-number": "Song number",
-      "arranger": "Arranger",
-      "composer": "Composer",
-      "lyricist": "Lyricist"
+      "publisher": "Udgiver",
+      "copyright": "Rettigheder",
+      "song-number": "Sangnummer",
+      "arranger": "Arrangør",
+      "composer": "Komponist",
+      "lyricist": "Forfatter"
     }
   },
   "home": {
     "list": {
       "see-all": "See all",
-      "recommended": "Recommended"
+      "recommended": "Anbefalede"
     }
   },
   "search": {
     "search-filter": {
-      "All": "All",
-      "Speeches": "Speeches",
-      "Music": "Music",
-      "Albums": "Albums",
-      "Contributors": "Contributors",
+      "All": "Alle",
+      "Speeches": "Taler",
+      "Music": "Musik",
+      "Albums": "Album",
+      "Contributors": "Bidragydere",
       "Podcasts": "Podcasts",
-      "Playlists": "Playlists"
+      "Playlists": "Spillelister"
     },
-    "input-placeholder": "Search",
+    "input-placeholder": "Søg",
     "loading-results": "Loading results",
     "no-results-yet": "No results yet",
     "no-results-found": "No results found",
     "result-count": "{count} results"
   },
   "streak": {
-    "your-streak": "Your streak this week",
+    "your-streak": "Din streak denne uge",
     "days-in-row": "{count} days in a row"
   }
 }

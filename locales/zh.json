@@ -1,33 +1,33 @@
 {
   "global": {
-    "cancel": "Cancel",
+    "cancel": "取消",
     "try-again": "Try again"
   },
   "nav": {
-    "home": "Home",
-    "browse": "Browse",
-    "playlist": "Playlist",
-    "profile": "Profile",
-    "messages": "Messages",
-    "recent-messages": "Recent Messages",
-    "recent-music": "Recent Music",
-    "audiobooks": "Audiobooks",
+    "home": "主页",
+    "browse": "浏览",
+    "playlist": "播放列表",
+    "profile": "个人",
+    "messages": "信息",
+    "recent-messages": "最新消息",
+    "recent-music": "最新音乐",
+    "audiobooks": "有声读物",
     "search": "Search",
-    "album": "Album",
-    "podcast": "Podcast",
+    "album": "专辑",
+    "podcast": "播客",
     "contributor": "Contributor",
     "contributors": "Contributors"
   },
   "sidebar": {
     "playlists": {
-      "title": "Playlists"
+      "title": "播放列表"
     }
   },
   "share": {
     "link-copied-message": "Copied link to clipboard"
   },
   "profile": {
-    "title": "Profile",
+    "title": "个人",
     "autoplay": "Auto Play",
     "theme": "Theme",
     "theme-description": "Select the theme used for the interface.",
@@ -41,14 +41,13 @@
     "preference-language-2": "Second language",
     "preference-language-3": "Third language",
     "preference-language-4": "{count}th language",
-    "uservoice": "User Voice",
-    "privacy-policy": "Privacy Policy",
-    "contact": "Contact",
+    "uservoice": "用户声音",
+    "contact": "联系方式",
     "logout": "Sign out",
-    "theme-dark": "Dark",
-    "theme-light": "Light",
+    "theme-dark": "深色",
+    "theme-light": "浅色",
     "theme-system": "Same as system",
-    "done": "Done",
+    "done": "完成",
     "add-another-language": "Add another language"
   },
   "error": {
@@ -76,95 +75,89 @@
     }
   },
   "download": {
-    "download": "Download",
-    "download-bmm-app": "Download the BMM app",
-    "download-track": "Download track",
-    "os": {
-      "windows": "Windows",
-      "mac_intel": "Mac with Intel CPU (produced before 2021)",
-      "mac_arm": "newer Mac (M1, M2, M3, ...)"
-    },
+    "download": "下载",
+    "download-track": "下载曲目",
     "messages-not-allowed": {
       "title": "Download of messages unavailable",
-      "description": "The ability to download messages from BMM is no longer available. If you need a message for a specific use, please contact us and explain your needs."
+      "description": "不再提供从 BMM 下载信息的功能。如果您需要特定用途的信息，请联系我们并说明您的需求。"
     },
     "sendEmailTo": "Send email to {0}"
   },
   "playlist": {
     "add": "Add playlist",
-    "new-playlist": "New playlist",
+    "new-playlist": "新的播放列表",
     "name-your-playlist": "Name your playlist",
-    "delete-playlist": "Delete playlist",
+    "delete-playlist": "删除播放列表",
     "delete-playlist-description": "Are you sure you want to delete the playlist? This action cannot be reversed.",
     "action": {
-      "shuffle": "Shuffle",
-      "add-to-my-playlists": "Add to my playlists",
-      "remove-shared-playlist": "Remove playlist"
+      "shuffle": "随机",
+      "add-to-my-playlists": "添加到我的播放列表",
+      "remove-shared-playlist": "移除播放列表"
     },
     "by-x": "by {name}"
   },
   "podcast": {
-    "this-week": "This week",
-    "last-week": "Last week",
+    "this-week": "本周",
+    "last-week": "上周",
     "week-x": "Week {count}",
     "action": {
-      "play": "Play",
-      "follow": "Follow"
+      "play": "播放",
+      "follow": "关注"
     }
   },
   "player": {
-    "queue": "Queue"
+    "queue": "列队"
   },
   "edit": {
     "rename": "Rename",
-    "delete": "Delete"
+    "delete": "删除"
   },
   "track": {
     "dropdown": {
-      "play-next": "Play next",
-      "download": "Download",
-      "go-to-album": "Go to album",
-      "add-to-queue": "Add to queue",
-      "add-to-playlist": "Add to playlist",
-      "share": "Share track",
-      "go-to-contributors": "Go to contributors",
-      "more-info": "More information",
-      "show-all": "Show all",
-      "remove-from-playlist": "Remove from playlist"
+      "play-next": "播放下一个",
+      "download": "下载",
+      "go-to-album": "转到专辑",
+      "add-to-queue": "添加到队列",
+      "add-to-playlist": "添加到播放列表",
+      "share": "分享曲目",
+      "go-to-contributors": "转到贡献者",
+      "more-info": "更多信息",
+      "show-all": "显示全部",
+      "remove-from-playlist": "从播放列表中移除"
     },
     "a11y": {
-      "download": "Download",
-      "queue": "Add to queue",
+      "download": "下载",
+      "queue": "添加到队列",
       "options": "Show options"
     },
     "details": {
       "reference": "Reference",
-      "duration": "Duration",
+      "duration": "持续时间",
       "publish-date": "Publish Date",
-      "album": "Album",
+      "album": "专辑",
       "publisher": "Publisher",
       "copyright": "Copyright",
-      "song-number": "Song number",
-      "arranger": "Arranger",
-      "composer": "Composer",
-      "lyricist": "Lyricist"
+      "song-number": "歌曲编号",
+      "arranger": "编曲",
+      "composer": "作曲家",
+      "lyricist": "作词家"
     }
   },
   "home": {
     "list": {
       "see-all": "See all",
-      "recommended": "Recommended"
+      "recommended": "推荐"
     }
   },
   "search": {
     "search-filter": {
-      "All": "All",
-      "Speeches": "Speeches",
-      "Music": "Music",
+      "All": "全部",
+      "Speeches": "演讲",
+      "Music": "音乐",
       "Albums": "Albums",
       "Contributors": "Contributors",
       "Podcasts": "Podcasts",
-      "Playlists": "Playlists"
+      "Playlists": "播放列表"
     },
     "input-placeholder": "Search",
     "loading-results": "Loading results",
@@ -173,7 +166,7 @@
     "result-count": "{count} results"
   },
   "streak": {
-    "your-streak": "Your streak this week",
+    "your-streak": "您本周的连续记录",
     "days-in-row": "{count} days in a row"
   }
 }

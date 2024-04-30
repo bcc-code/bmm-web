@@ -6,12 +6,12 @@
   "nav": {
     "home": "Home",
     "browse": "Browse",
-    "playlist": "Playlist",
+    "playlist": "Popis za reproduciranje",
     "profile": "Profile",
-    "messages": "Messages",
+    "messages": "Poruke",
     "recent-messages": "Recent Messages",
     "recent-music": "Recent Music",
-    "audiobooks": "Audiobooks",
+    "audiobooks": "Audioknjige",
     "search": "Search",
     "album": "Album",
     "podcast": "Podcast",
@@ -20,7 +20,7 @@
   },
   "sidebar": {
     "playlists": {
-      "title": "Playlists"
+      "title": "Popis liste za slušanje"
     }
   },
   "share": {
@@ -42,8 +42,7 @@
     "preference-language-3": "Third language",
     "preference-language-4": "{count}th language",
     "uservoice": "User Voice",
-    "privacy-policy": "Privacy Policy",
-    "contact": "Contact",
+    "contact": "Kontakt",
     "logout": "Sign out",
     "theme-dark": "Dark",
     "theme-light": "Light",
@@ -76,14 +75,8 @@
     }
   },
   "download": {
-    "download": "Download",
-    "download-bmm-app": "Download the BMM app",
+    "download": "Preuzimanje datoteka",
     "download-track": "Download track",
-    "os": {
-      "windows": "Windows",
-      "mac_intel": "Mac with Intel CPU (produced before 2021)",
-      "mac_arm": "newer Mac (M1, M2, M3, ...)"
-    },
     "messages-not-allowed": {
       "title": "Download of messages unavailable",
       "description": "The ability to download messages from BMM is no longer available. If you need a message for a specific use, please contact us and explain your needs."
@@ -92,7 +85,7 @@
   },
   "playlist": {
     "add": "Add playlist",
-    "new-playlist": "New playlist",
+    "new-playlist": "Novi popis za slušanje",
     "name-your-playlist": "Name your playlist",
     "delete-playlist": "Delete playlist",
     "delete-playlist-description": "Are you sure you want to delete the playlist? This action cannot be reversed.",
@@ -122,18 +115,18 @@
   "track": {
     "dropdown": {
       "play-next": "Play next",
-      "download": "Download",
-      "go-to-album": "Go to album",
+      "download": "Preuzimanje datoteka",
+      "go-to-album": "Idi na album",
       "add-to-queue": "Add to queue",
-      "add-to-playlist": "Add to playlist",
+      "add-to-playlist": "Dodavanje na listu",
       "share": "Share track",
       "go-to-contributors": "Go to contributors",
       "more-info": "More information",
-      "show-all": "Show all",
+      "show-all": "Pokaži sve",
       "remove-from-playlist": "Remove from playlist"
     },
     "a11y": {
-      "download": "Download",
+      "download": "Preuzimanje datoteka",
       "queue": "Add to queue",
       "options": "Show options"
     },
@@ -143,7 +136,7 @@
       "publish-date": "Publish Date",
       "album": "Album",
       "publisher": "Publisher",
-      "copyright": "Copyright",
+      "copyright": "Autorska prava",
       "song-number": "Song number",
       "arranger": "Arranger",
       "composer": "Composer",
@@ -160,11 +153,11 @@
     "search-filter": {
       "All": "All",
       "Speeches": "Speeches",
-      "Music": "Music",
+      "Music": "Glazba",
       "Albums": "Albums",
       "Contributors": "Contributors",
       "Podcasts": "Podcasts",
-      "Playlists": "Playlists"
+      "Playlists": "Popis liste za slušanje"
     },
     "input-placeholder": "Search",
     "loading-results": "Loading results",
