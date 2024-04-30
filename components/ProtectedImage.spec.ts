@@ -6,7 +6,6 @@ import { AUTH0_INJECTION_KEY } from "@auth0/auth0-vue";
 import type { Auth0VueClient } from "@auth0/auth0-vue";
 import ProtectedImage from "./ProtectedImage.vue";
 
-describe("component ProtectedImage", () => {
 describe("component ProtectedImage // tests suddenly stopped working", () => {
   it("should add the access token to the given path", async () => {
     return;
