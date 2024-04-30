@@ -42,6 +42,7 @@
     "preference-language-3": "Third language",
     "preference-language-4": "{count}th language",
     "uservoice": "用户声音",
+    "privacy-policy": "Privacy Policy",
     "contact": "联系方式",
     "logout": "Sign out",
     "theme-dark": "深色",
@@ -76,7 +77,15 @@
   },
   "download": {
     "download": "下载",
+    "download-bmm-app": "Download the BMM app",
     "download-track": "下载曲目",
+    "mobile": "Mobile",
+    "desktop": "Desktop",
+    "os": {
+      "windows": "Windows",
+      "mac_intel": "Mac with Intel CPU (produced before 2021)",
+      "mac_arm": "newer Mac (M1, M2, M3, ...)"
+    },
     "messages-not-allowed": {
       "title": "Download of messages unavailable",
       "description": "不再提供从 BMM 下载信息的功能。如果您需要特定用途的信息，请联系我们并说明您的需求。"
