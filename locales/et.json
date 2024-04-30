@@ -1,0 +1,172 @@
+{
+  "global": {
+    "cancel": "Tühista",
+    "try-again": "Try again"
+  },
+  "nav": {
+    "home": "Home",
+    "browse": "Browse",
+    "playlist": "Esitusloend",
+    "profile": "Profile",
+    "messages": "Sõnumid",
+    "recent-messages": "Recent Messages",
+    "recent-music": "Recent Music",
+    "audiobooks": "Audioraamatud",
+    "search": "Otsi",
+    "album": "Album",
+    "podcast": "Taskuhääling",
+    "contributor": "Kaastegija",
+    "contributors": "Kaastegijad"
+  },
+  "sidebar": {
+    "playlists": {
+      "title": "Esitusloendid"
+    }
+  },
+  "share": {
+    "link-copied-message": "Copied link to clipboard"
+  },
+  "profile": {
+    "title": "Profile",
+    "autoplay": "Auto Play",
+    "theme": "Theme",
+    "theme-description": "Select the theme used for the interface.",
+    "app-language": "Language",
+    "interface-language": "Interface Language",
+    "interface-language-description": "Select the language used for the interface.",
+    "select-language": "Select language",
+    "content-language": "Content Language",
+    "content-language-description": "The preferred language for the content you are listening to.",
+    "preference-language-1": "Preferred language",
+    "preference-language-2": "Second language",
+    "preference-language-3": "Third language",
+    "preference-language-4": "{count}th language",
+    "uservoice": "User Voice",
+    "contact": "Kontakt",
+    "logout": "Sign out",
+    "theme-dark": "Dark",
+    "theme-light": "Light",
+    "theme-system": "Same as system",
+    "done": "Done",
+    "add-another-language": "Add another language"
+  },
+  "error": {
+    "page-not-found": {
+      "headline": "Error",
+      "text": "Sorry. We can't find the page \"{path}\"."
+    }
+  },
+  "collection": {
+    "track-count": "{count} track | {count} tracks",
+    "album-count": "{count} album | {count} albums"
+  },
+  "login": {
+    "error-message": {
+      "contact-info": "Should this error persist, {0}.",
+      "contact-link": "please get in contact with us",
+      "logout-and-redirect-info": "Something regarding the login went wrong:",
+      "manual-logout-and-redirect-info": "Please {0}.",
+      "logout-and-redirect-link": "try to log in again"
+    },
+    "redirect-message": {
+      "redirect-info": "You will be redirected to the login page.",
+      "manual-redirect-info": "Please wait or {0}.",
+      "redirect-link": "click to try again"
+    }
+  },
+  "download": {
+    "download": "Lae alla",
+    "download-track": "Lae pala alla",
+    "messages-not-allowed": {
+      "title": "Download of messages unavailable",
+      "description": "The ability to download messages from BMM is no longer available. If you need a message for a specific use, please contact us and explain your needs."
+    },
+    "sendEmailTo": "Send email to {0}"
+  },
+  "playlist": {
+    "add": "Add playlist",
+    "new-playlist": "Uus esitusloend",
+    "name-your-playlist": "Name your playlist",
+    "delete-playlist": "Kustuta esitusloend",
+    "delete-playlist-description": "Are you sure you want to delete the playlist? This action cannot be reversed.",
+    "action": {
+      "shuffle": "Shuffle",
+      "add-to-my-playlists": "Add to my playlists",
+      "remove-shared-playlist": "Remove playlist"
+    },
+    "by-x": "by {name}"
+  },
+  "podcast": {
+    "this-week": "This week",
+    "last-week": "Last week",
+    "week-x": "Week {count}",
+    "action": {
+      "play": "Esita",
+      "follow": "Järgige"
+    }
+  },
+  "player": {
+    "queue": "Järjekord"
+  },
+  "edit": {
+    "rename": "Rename",
+    "delete": "Kustuta"
+  },
+  "track": {
+    "dropdown": {
+      "play-next": "Play next",
+      "download": "Lae alla",
+      "go-to-album": "Mine albumisse",
+      "add-to-queue": "Lisa järjekorda",
+      "add-to-playlist": "Lisa esitlusloendisse",
+      "share": "Share track",
+      "go-to-contributors": "Mine kaastegijate ossa",
+      "more-info": "Rohkem infot",
+      "show-all": "Näita kõiki",
+      "remove-from-playlist": "Kustuta esitusloendist"
+    },
+    "a11y": {
+      "download": "Lae alla",
+      "queue": "Lisa järjekorda",
+      "options": "Show options"
+    },
+    "details": {
+      "reference": "Reference",
+      "duration": "Kestus",
+      "publish-date": "Publish Date",
+      "album": "Album",
+      "publisher": "Publisher",
+      "copyright": "Autoriõigused",
+      "song-number": "Song number",
+      "arranger": "Korraldajalt",
+      "composer": "Helilooja",
+      "lyricist": "Sõnade autor"
+    }
+  },
+  "home": {
+    "list": {
+      "see-all": "See all",
+      "recommended": "Soovitatud"
+    }
+  },
+  "search": {
+    "search-filter": {
+      "All": "All",
+      "Speeches": "Speeches",
+      "Music": "Muusika",
+      "Albums": "Albums",
+      "Contributors": "Kaastegijad",
+      "Podcasts": "Saated",
+      "Playlists": "Esitusloendid"
+    },
+    "input-placeholder": "Otsi",
+    "loading-results": "loading results",
+    "no-results-yet": "No results yet",
+    "no-results-found": "No results found",
+    "result-count": "{count} results"
+  },
+  "streak": {
+    "your-streak": "Your streak this week",
+    "days-in-row": "{count} days in a row"
+  }
+}
