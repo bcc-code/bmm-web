@@ -1,0 +1,172 @@
+{
+  "global": {
+    "cancel": "Mégse",
+    "try-again": "Try again"
+  },
+  "nav": {
+    "home": "Főoldal",
+    "browse": "Böngész",
+    "playlist": "Lejátszási lista",
+    "profile": "Profil",
+    "messages": "Üzenetek",
+    "recent-messages": "Legújabb üzenetek",
+    "recent-music": "Legújabb zene",
+    "audiobooks": "Hangoskönyvek",
+    "search": "Keresés",
+    "album": "Album",
+    "podcast": "Podcast",
+    "contributor": "Közreműködő",
+    "contributors": "Közreműködők"
+  },
+  "sidebar": {
+    "playlists": {
+      "title": "Lejátszási listák"
+    }
+  },
+  "share": {
+    "link-copied-message": "Copied link to clipboard"
+  },
+  "profile": {
+    "title": "Profil",
+    "autoplay": "Auto Play",
+    "theme": "Theme",
+    "theme-description": "Select the theme used for the interface.",
+    "app-language": "Language",
+    "interface-language": "Interface Language",
+    "interface-language-description": "Select the language used for the interface.",
+    "select-language": "Select language",
+    "content-language": "Content Language",
+    "content-language-description": "The preferred language for the content you are listening to.",
+    "preference-language-1": "Preferred language",
+    "preference-language-2": "Second language",
+    "preference-language-3": "Third language",
+    "preference-language-4": "{count}th language",
+    "uservoice": "Felhasználói hang",
+    "contact": "Kapcsolat",
+    "logout": "Sign out",
+    "theme-dark": "Sötét",
+    "theme-light": "Világos",
+    "theme-system": "Same as system",
+    "done": "Kész",
+    "add-another-language": "Add another language"
+  },
+  "error": {
+    "page-not-found": {
+      "headline": "Error",
+      "text": "Sorry. We can't find the page \"{path}\"."
+    }
+  },
+  "collection": {
+    "track-count": "{count} track | {count} tracks",
+    "album-count": "{count} album | {count} albums"
+  },
+  "login": {
+    "error-message": {
+      "contact-info": "Should this error persist, {0}.",
+      "contact-link": "please get in contact with us",
+      "logout-and-redirect-info": "Something regarding the login went wrong:",
+      "manual-logout-and-redirect-info": "Please {0}.",
+      "logout-and-redirect-link": "try to log in again"
+    },
+    "redirect-message": {
+      "redirect-info": "You will be redirected to the login page.",
+      "manual-redirect-info": "Please wait or {0}.",
+      "redirect-link": "click to try again"
+    }
+  },
+  "download": {
+    "download": "Letöltés",
+    "download-track": "Zeneszám letöltse",
+    "messages-not-allowed": {
+      "title": "Download of messages unavailable",
+      "description": "A BMM-ből származó üzenetek letöltésének lehetősége már nem áll rendelkezésre. Ha egy üzenetre van szükséged egy adott felhasználási célra, kérjük, lépj velünk kapcsolatba, és ismertesd igényeidet."
+    },
+    "sendEmailTo": "Send email to {0}"
+  },
+  "playlist": {
+    "add": "Add playlist",
+    "new-playlist": "Új lejátszási lista",
+    "name-your-playlist": "Name your playlist",
+    "delete-playlist": "Lejátszási lista törlése",
+    "delete-playlist-description": "Are you sure you want to delete the playlist? This action cannot be reversed.",
+    "action": {
+      "shuffle": "Keverés",
+      "add-to-my-playlists": "Hozzáadás lejátszási listámhoz",
+      "remove-shared-playlist": "Lejátszási lista törlése"
+    },
+    "by-x": "by {name}"
+  },
+  "podcast": {
+    "this-week": "Ez a hét",
+    "last-week": "Elöző hét",
+    "week-x": "Week {count}",
+    "action": {
+      "play": "Lejátszás",
+      "follow": "Kövesse"
+    }
+  },
+  "player": {
+    "queue": "Várólista"
+  },
+  "edit": {
+    "rename": "Rename",
+    "delete": "Törlés"
+  },
+  "track": {
+    "dropdown": {
+      "play-next": "Lejátszás következőként",
+      "download": "Letöltés",
+      "go-to-album": "Váltás erre az albumra",
+      "add-to-queue": "Hozzáadás várólistához",
+      "add-to-playlist": "Hozzáadás lejátszási listához",
+      "share": "Zeneszám megosztása",
+      "go-to-contributors": "Váltás közreműködőkhöz",
+      "more-info": "További információ",
+      "show-all": "Mutasd mind",
+      "remove-from-playlist": "Eltávolítás lejátszási listáról"
+    },
+    "a11y": {
+      "download": "Letöltés",
+      "queue": "Hozzáadás várólistához",
+      "options": "Show options"
+    },
+    "details": {
+      "reference": "Reference",
+      "duration": "Időtartam",
+      "publish-date": "Publish Date",
+      "album": "Album",
+      "publisher": "Kiadó",
+      "copyright": "Szerzői jog",
+      "song-number": "Ének száma",
+      "arranger": "Rendező",
+      "composer": "Zeneszerző",
+      "lyricist": "Szövegíró"
+    }
+  },
+  "home": {
+    "list": {
+      "see-all": "See all",
+      "recommended": "Ajánlott"
+    }
+  },
+  "search": {
+    "search-filter": {
+      "All": "Összes",
+      "Speeches": "Beszéd",
+      "Music": "Zene",
+      "Albums": "Album(ok)",
+      "Contributors": "Közreműködők",
+      "Podcasts": "Podcastok",
+      "Playlists": "Lejátszási listák"
+    },
+    "input-placeholder": "Keresés",
+    "loading-results": "loading results",
+    "no-results-yet": "No results yet",
+    "no-results-found": "No results found",
+    "result-count": "{count} results"
+  },
+  "streak": {
+    "your-streak": "E heti sorozatod",
+    "days-in-row": "{count} days in a row"
+  }
+}
