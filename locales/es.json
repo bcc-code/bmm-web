@@ -1,0 +1,172 @@
+{
+  "global": {
+    "cancel": "Cancelar",
+    "try-again": "Try again"
+  },
+  "nav": {
+    "home": "Inicio",
+    "browse": "Buscar",
+    "playlist": "Lista de reproducción",
+    "profile": "Perfil",
+    "messages": "Mensajes",
+    "recent-messages": "Lo más reciente",
+    "recent-music": "Música reciente",
+    "audiobooks": "Libros audio",
+    "search": "Buscar",
+    "album": "Álbum",
+    "podcast": "podcast",
+    "contributor": "Colaborador",
+    "contributors": "Colaboradores"
+  },
+  "sidebar": {
+    "playlists": {
+      "title": "Listas de reproducción"
+    }
+  },
+  "share": {
+    "link-copied-message": "Copied link to clipboard"
+  },
+  "profile": {
+    "title": "Perfil",
+    "autoplay": "Auto Play",
+    "theme": "Theme",
+    "theme-description": "Select the theme used for the interface.",
+    "app-language": "Language",
+    "interface-language": "Interface Language",
+    "interface-language-description": "Select the language used for the interface.",
+    "select-language": "Select language",
+    "content-language": "Content Language",
+    "content-language-description": "The preferred language for the content you are listening to.",
+    "preference-language-1": "Preferred language",
+    "preference-language-2": "Second language",
+    "preference-language-3": "Third language",
+    "preference-language-4": "{count}th language",
+    "uservoice": "Voz de Usuario",
+    "contact": "Contacto",
+    "logout": "Sign out",
+    "theme-dark": "Oscuro",
+    "theme-light": "Claro",
+    "theme-system": "Same as system",
+    "done": "Listo",
+    "add-another-language": "Add another language"
+  },
+  "error": {
+    "page-not-found": {
+      "headline": "Error",
+      "text": "Sorry. We can't find the page \"{path}\"."
+    }
+  },
+  "collection": {
+    "track-count": "{count} track | {count} tracks",
+    "album-count": "{count} album | {count} albums"
+  },
+  "login": {
+    "error-message": {
+      "contact-info": "Should this error persist, {0}.",
+      "contact-link": "please get in contact with us",
+      "logout-and-redirect-info": "Something regarding the login went wrong:",
+      "manual-logout-and-redirect-info": "Please {0}.",
+      "logout-and-redirect-link": "try to log in again"
+    },
+    "redirect-message": {
+      "redirect-info": "You will be redirected to the login page.",
+      "manual-redirect-info": "Please wait or {0}.",
+      "redirect-link": "click to try again"
+    }
+  },
+  "download": {
+    "download": "Descarga",
+    "download-track": "Descargar pista",
+    "messages-not-allowed": {
+      "title": "Download of messages unavailable",
+      "description": "La posibilidad de descargar mensajes de BMM ya no está disponible. Si necesita un mensaje para un uso específico, póngase en contacto con nosotros y explíquenos sus necesidades."
+    },
+    "sendEmailTo": "Send email to {0}"
+  },
+  "playlist": {
+    "add": "Add playlist",
+    "new-playlist": "Nueva lista de reproducción",
+    "name-your-playlist": "Name your playlist",
+    "delete-playlist": "Borrar lista de reproducción",
+    "delete-playlist-description": "Are you sure you want to delete the playlist? This action cannot be reversed.",
+    "action": {
+      "shuffle": "Aleatorio",
+      "add-to-my-playlists": "Añadir a mis listas de reproducción",
+      "remove-shared-playlist": "Eliminar lista de reproducción"
+    },
+    "by-x": "by {name}"
+  },
+  "podcast": {
+    "this-week": "Esta semana",
+    "last-week": "Semana pasada",
+    "week-x": "Week {count}",
+    "action": {
+      "play": "Reproducir",
+      "follow": "Siga"
+    }
+  },
+  "player": {
+    "queue": "Cola"
+  },
+  "edit": {
+    "rename": "Rename",
+    "delete": "Eliminar"
+  },
+  "track": {
+    "dropdown": {
+      "play-next": "Reproducir lo siguiente",
+      "download": "Descarga",
+      "go-to-album": "Ir al álbum",
+      "add-to-queue": "Agregar a la cola",
+      "add-to-playlist": "Añadir a la lista de reproducción",
+      "share": "Compartir pista",
+      "go-to-contributors": "Ir a colaboradores",
+      "more-info": "Más información",
+      "show-all": "Mostrar todos",
+      "remove-from-playlist": "Eliminar de lista de reproducción"
+    },
+    "a11y": {
+      "download": "Descarga",
+      "queue": "Agregar a la cola",
+      "options": "Show options"
+    },
+    "details": {
+      "reference": "Reference",
+      "duration": "Duración",
+      "publish-date": "Publish Date",
+      "album": "Álbum",
+      "publisher": "Editor",
+      "copyright": "Derechos de autor",
+      "song-number": "Número de canción",
+      "arranger": "Organizador",
+      "composer": "Compositor",
+      "lyricist": "Letrista"
+    }
+  },
+  "home": {
+    "list": {
+      "see-all": "See all",
+      "recommended": "Recomendado"
+    }
+  },
+  "search": {
+    "search-filter": {
+      "All": "Todo",
+      "Speeches": "Mensajes",
+      "Music": "Música",
+      "Albums": "Álbumes",
+      "Contributors": "Colaboradores",
+      "Podcasts": "Podcasts",
+      "Playlists": "Listas de reproducción"
+    },
+    "input-placeholder": "Buscar",
+    "loading-results": "loading results",
+    "no-results-yet": "No results yet",
+    "no-results-found": "No results found",
+    "result-count": "{count} results"
+  },
+  "streak": {
+    "your-streak": "Tu racha de esta semana",
+    "days-in-row": "{count} days in a row"
+  }
+}
