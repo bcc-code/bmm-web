@@ -42,6 +42,7 @@
     "preference-language-3": "Derde taal",
     "preference-language-4": "{count}e taal",
     "uservoice": "User Voice",
+    "privacy-policy": "Privacybeleid",
     "contact": "Contact",
     "logout": "Uitloggen",
     "theme-dark": "Dark",
@@ -76,7 +77,15 @@
   },
   "download": {
     "download": "Download",
+    "download-bmm-app": "Download the BMM app",
     "download-track": "Nummer downloaden",
+    "mobile": "Mobile",
+    "desktop": "Desktop",
+    "os": {
+      "windows": "Windows",
+      "mac_intel": "Mac with Intel CPU (produced before 2021)",
+      "mac_arm": "newer Mac (M1, M2, M3, ...)"
+    },
     "messages-not-allowed": {
       "title": "Het downloaden van toespraken is niet beschikbaar",
       "description": "Er is geen mogelijkheid meer om via BMM toespraken te downloaden. Als je een toespraak nodig hebt voor een specifiek doel, neem dan contact op met ons om je wensen te bespreken."
