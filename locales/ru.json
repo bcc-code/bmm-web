@@ -42,6 +42,7 @@
     "preference-language-3": "Third language",
     "preference-language-4": "{count}th language",
     "uservoice": "Голос пользователя",
+    "privacy-policy": "Privacy Policy",
     "contact": "Контакт",
     "logout": "Sign out",
     "theme-dark": "Темный",
@@ -76,7 +77,15 @@
   },
   "download": {
     "download": "Скачать",
+    "download-bmm-app": "Download the BMM app",
     "download-track": "Скачать трек",
+    "mobile": "Mobile",
+    "desktop": "Desktop",
+    "os": {
+      "windows": "Windows",
+      "mac_intel": "Mac with Intel CPU (produced before 2021)",
+      "mac_arm": "newer Mac (M1, M2, M3, ...)"
+    },
     "messages-not-allowed": {
       "title": "Download of messages unavailable",
       "description": "Возможность скачивания проповедедей из BMM больше не доступна. Если вам нужна проповедь для конкретного случая, пожалуйста, свяжитесь с нами и расскажите о цели использования."
