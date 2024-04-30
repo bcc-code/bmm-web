@@ -72,7 +72,7 @@ const saveAndCloseContentLanguageDialog = () => {
           class="type-subtitle-1 flex items-center gap-2 text-label-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-label-1"
         >
           <span>{{ $t("profile.title") }}</span>
-          <img
+          <FadeInImage
             v-if="auth0.user.value?.picture"
             :src="auth0.user.value.picture"
             :alt="auth0.user.value.name || ''"
