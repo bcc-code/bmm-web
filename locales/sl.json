@@ -1,7 +1,7 @@
 {
   "global": {
     "cancel": "Prekliči",
-    "try-again": "Try again"
+    "try-again": "Poskusi znova"
   },
   "nav": {
     "home": "Domov",
@@ -24,18 +24,18 @@
     }
   },
   "share": {
-    "link-copied-message": "Copied link to clipboard"
+    "link-copied-message": "Link je kopiran v odložišče"
   },
   "profile": {
     "title": "Profil",
-    "autoplay": "Auto Play",
-    "theme": "Theme",
-    "theme-description": "Select the theme used for the interface.",
-    "app-language": "Language",
-    "interface-language": "Interface Language",
-    "interface-language-description": "Select the language used for the interface.",
-    "select-language": "Select language",
-    "content-language": "Content Language",
+    "autoplay": "Samodejno predvajanje",
+    "theme": "Tema",
+    "theme-description": "Izberi temo, ki se uporablja za vmesnik.",
+    "app-language": "Jezik",
+    "interface-language": "Jezik vmesnika",
+    "interface-language-description": "Izberi jezik, ki se uporablja za vmesnik.",
+    "select-language": "Izbrani jezik",
+    "content-language": "Jezik vsebine",
     "content-language-description": "The preferred language for the content you are listening to.",
     "preference-language-1": "Preferred language",
     "preference-language-2": "Second language",
