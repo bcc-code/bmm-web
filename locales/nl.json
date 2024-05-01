@@ -77,14 +77,14 @@
   },
   "download": {
     "download": "Download",
-    "download-bmm-app": "Download the BMM app",
+    "download-bmm-app": "Download de BMM-app",
     "download-track": "Nummer downloaden",
-    "mobile": "Mobile",
+    "mobile": "Mobiel",
     "desktop": "Desktop",
     "os": {
       "windows": "Windows",
-      "mac_intel": "Mac with Intel CPU (produced before 2021)",
-      "mac_arm": "newer Mac (M1, M2, M3, ...)"
+      "mac_intel": "Mac met Intel CPU (geproduceerd vóór 2021)",
+      "mac_arm": "nieuwere Mac (M1, M2, M3, ...)"
     },
     "messages-not-allowed": {
       "title": "Het downloaden van toespraken is niet beschikbaar",
@@ -169,7 +169,7 @@
       "Playlists": "Afspeellijsten"
     },
     "input-placeholder": "Zoeken",
-    "loading-results": "Loading results",
+    "loading-results": "Resultaten laden",
     "no-results-yet": "Nog geen resultaten",
     "no-results-found": "Geen resultaten gevonden",
     "result-count": "{count} resultaten"
