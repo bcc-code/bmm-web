@@ -77,14 +77,14 @@
   },
   "download": {
     "download": "Herunterladen",
-    "download-bmm-app": "Download the BMM app",
+    "download-bmm-app": "Lade die BMM-App herunter",
     "download-track": "Titel herunterladen",
-    "mobile": "Mobile",
+    "mobile": "Mobil",
     "desktop": "Desktop",
     "os": {
       "windows": "Windows",
-      "mac_intel": "Mac with Intel CPU (produced before 2021)",
-      "mac_arm": "newer Mac (M1, M2, M3, ...)"
+      "mac_intel": "Mac mit Intel-CPU (vor 2021 hergestellt)",
+      "mac_arm": "neuerer Mac (M1, M2, M3, ...)"
     },
     "messages-not-allowed": {
       "title": "Herunterladen von Reden nicht möglich",
