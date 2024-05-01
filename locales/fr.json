@@ -77,14 +77,14 @@
   },
   "download": {
     "download": "Télécharger",
-    "download-bmm-app": "Download the BMM app",
+    "download-bmm-app": "Télécharger l'application BMM",
     "download-track": "Télécharger piste",
     "mobile": "Mobile",
-    "desktop": "Desktop",
+    "desktop": "Bureau",
     "os": {
       "windows": "Windows",
-      "mac_intel": "Mac with Intel CPU (produced before 2021)",
-      "mac_arm": "newer Mac (M1, M2, M3, ...)"
+      "mac_intel": "Mac avec processeur Intel (produit avant 2021)",
+      "mac_arm": "Mac plus récent (M1, M2, M3, ...)"
     },
     "messages-not-allowed": {
       "title": "Download of messages unavailable",
