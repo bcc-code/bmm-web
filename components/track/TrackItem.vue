@@ -188,7 +188,6 @@ const selectedTrack: Ref<TrackModel | null> = ref(null);
           <NuxtIcon name="queue" class="text-2xl" />
         </button>
         <TrackMenu
-          v-if="!isPlaying"
           :track="track"
           :button-class="
             'p-2 hover:bg-label-separator ' +
