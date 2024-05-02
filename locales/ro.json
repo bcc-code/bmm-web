@@ -42,6 +42,7 @@
     "preference-language-3": "Third language",
     "preference-language-4": "{count}th language",
     "uservoice": "User Voice",
+    "privacy-policy": "Politica de confidențialitate",
     "contact": "Contact",
     "logout": "Sign out",
     "theme-dark": "Întunecat",
@@ -76,7 +77,15 @@
   },
   "download": {
     "download": "Descarcă",
+    "download-bmm-app": "Download the BMM app",
     "download-track": "Descarcă piesă",
+    "mobile": "Mobile",
+    "desktop": "Desktop",
+    "os": {
+      "windows": "Windows",
+      "mac_intel": "Mac with Intel CPU (produced before 2021)",
+      "mac_arm": "newer Mac (M1, M2, M3, ...)"
+    },
     "messages-not-allowed": {
       "title": "Download of messages unavailable",
       "description": "Abilitatea de a descărca vorbiri de pe BMM nu mai este disponibilă. Dacă aveți nevoie de o vorbire pentru o anumită utilizare, vă rugăm să ne contactați și să ne explicați nevoile."

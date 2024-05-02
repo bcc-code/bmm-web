@@ -42,6 +42,7 @@
     "preference-language-3": "Dritte Sprache",
     "preference-language-4": "{count}. Sprache",
     "uservoice": "User Voice",
+    "privacy-policy": "Datenschutzrichtlinie",
     "contact": "Kontakt",
     "logout": "Ausloggen",
     "theme-dark": "Dunkel",
@@ -76,7 +77,15 @@
   },
   "download": {
     "download": "Herunterladen",
+    "download-bmm-app": "Lade die BMM-App herunter",
     "download-track": "Titel herunterladen",
+    "mobile": "Mobil",
+    "desktop": "Desktop",
+    "os": {
+      "windows": "Windows",
+      "mac_intel": "Mac mit Intel-CPU (vor 2021 hergestellt)",
+      "mac_arm": "neuerer Mac (M1, M2, M3, ...)"
+    },
     "messages-not-allowed": {
       "title": "Herunterladen von Reden nicht möglich",
       "description": "Es nicht länger möglich Reden von BMM herunterzuladen. Falls du eine Rede aus einem bestimmten Grund brauchst, schreibe uns und erkläre warum du die Rede brauchst."
@@ -160,7 +169,7 @@
       "Playlists": "Playlists"
     },
     "input-placeholder": "Suche",
-    "loading-results": "Loading results",
+    "loading-results": "Ergebnisse werden geladen",
     "no-results-yet": "Noch keine Ergebnisse",
     "no-results-found": "Keine Ergebnisse gefunden",
     "result-count": "{count} Ergebnisse"

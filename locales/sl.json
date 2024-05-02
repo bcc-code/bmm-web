@@ -1,7 +1,7 @@
 {
   "global": {
     "cancel": "Prekliči",
-    "try-again": "Try again"
+    "try-again": "Poskusi znova"
   },
   "nav": {
     "home": "Domov",
@@ -24,35 +24,36 @@
     }
   },
   "share": {
-    "link-copied-message": "Copied link to clipboard"
+    "link-copied-message": "Link je kopiran v odložišče"
   },
   "profile": {
     "title": "Profil",
-    "autoplay": "Auto Play",
-    "theme": "Theme",
-    "theme-description": "Select the theme used for the interface.",
-    "app-language": "Language",
-    "interface-language": "Interface Language",
-    "interface-language-description": "Select the language used for the interface.",
-    "select-language": "Select language",
-    "content-language": "Content Language",
-    "content-language-description": "The preferred language for the content you are listening to.",
-    "preference-language-1": "Preferred language",
-    "preference-language-2": "Second language",
-    "preference-language-3": "Third language",
-    "preference-language-4": "{count}th language",
+    "autoplay": "Samodejno predvajanje",
+    "theme": "Tema",
+    "theme-description": "Izberi temo, ki se uporablja za vmesnik.",
+    "app-language": "Jezik",
+    "interface-language": "Jezik vmesnika",
+    "interface-language-description": "Izberi jezik, ki se uporablja za vmesnik.",
+    "select-language": "Izbrani jezik",
+    "content-language": "Jezik vsebine",
+    "content-language-description": "Željeni jezik vsebine, ki jo poslušaš.",
+    "preference-language-1": "Željeni jezik",
+    "preference-language-2": "Drugi jezik",
+    "preference-language-3": "Tretji jezik",
+    "preference-language-4": "{count} jezik",
     "uservoice": "User voice",
+    "privacy-policy": "Pravilnik o zasebnosti",
     "contact": "Kontakt",
-    "logout": "Sign out",
+    "logout": "Odjava",
     "theme-dark": "Temno",
     "theme-light": "Svetlo",
-    "theme-system": "Same as system",
+    "theme-system": "Enako kot sistem",
     "done": "Končano",
-    "add-another-language": "Add another language"
+    "add-another-language": "Dodaj jezik"
   },
   "error": {
     "page-not-found": {
-      "headline": "Error",
+      "headline": "Napaka",
       "text": "Sorry. We can't find the page \"{path}\"."
     }
   },
@@ -65,41 +66,49 @@
       "contact-info": "Should this error persist, {0}.",
       "contact-link": "please get in contact with us",
       "logout-and-redirect-info": "Something regarding the login went wrong:",
-      "manual-logout-and-redirect-info": "Please {0}.",
-      "logout-and-redirect-link": "try to log in again"
+      "manual-logout-and-redirect-info": "Prosim {0}.",
+      "logout-and-redirect-link": "poskusi se prijaviti znova "
     },
     "redirect-message": {
-      "redirect-info": "You will be redirected to the login page.",
-      "manual-redirect-info": "Please wait or {0}.",
-      "redirect-link": "click to try again"
+      "redirect-info": "Preusmerjen boš na stran za prijavo.",
+      "manual-redirect-info": "Prosim počakaj ali {0}.",
+      "redirect-link": "klikni za ponovni poskus"
     }
   },
   "download": {
     "download": "Prenesi",
+    "download-bmm-app": "Prenesi aplikacijo BMM",
     "download-track": "Prenesi skladbo",
+    "mobile": "Mobile",
+    "desktop": "Desktop",
+    "os": {
+      "windows": "Windows",
+      "mac_intel": "Mac with Intel CPU (produced before 2021)",
+      "mac_arm": "newer Mac (M1, M2, M3, ...)"
+    },
     "messages-not-allowed": {
       "title": "Download of messages unavailable",
       "description": "Možnost prenosa govorov BMM ni več na voljo. Če potrebuješ govor za določen namen, nas kontaktiraj in razloži svojo željo."
     },
-    "sendEmailTo": "Send email to {0}"
+    "sendEmailTo": "Pošlji e-pošto na {0}"
   },
   "playlist": {
-    "add": "Add playlist",
+    "add": "Dodaj seznam predvajanja",
     "new-playlist": "Novi seznam predvajanja",
-    "name-your-playlist": "Name your playlist",
+    "name-your-playlist": "Poimenuj svoj seznam predvajanja",
     "delete-playlist": "Izbriši seznam predvajanja",
-    "delete-playlist-description": "Are you sure you want to delete the playlist? This action cannot be reversed.",
+    "delete-playlist-description": "Ali si prepričan, da želiš izbrisati seznam predvajanja? Tega dejanja ni mogoče razveljaviti.",
     "action": {
       "shuffle": "Naključno",
       "add-to-my-playlists": "Dodaj na moje sezname predvajanja",
       "remove-shared-playlist": "Odstrani seznam predvajanja"
     },
-    "by-x": "by {name}"
+    "by-x": "od {name}"
   },
   "podcast": {
     "this-week": "Ta teden",
     "last-week": "Prejšnji teden",
-    "week-x": "Week {count}",
+    "week-x": "Teden {count}",
     "action": {
       "play": "Predvajaj",
       "follow": "Sledi"
@@ -109,7 +118,7 @@
     "queue": "Čakalna vrsta"
   },
   "edit": {
-    "rename": "Rename",
+    "rename": "Preimenuj",
     "delete": "Izbriši"
   },
   "track": {
@@ -128,7 +137,7 @@
     "a11y": {
       "download": "Prenesi",
       "queue": "Dodaj v čakalno vrsto",
-      "options": "Show options"
+      "options": "Pokaži možnosti"
     },
     "details": {
       "reference": "Reference",
@@ -145,7 +154,7 @@
   },
   "home": {
     "list": {
-      "see-all": "See all",
+      "see-all": "Poglej vse",
       "recommended": "Priporočeno"
     }
   },
@@ -160,8 +169,8 @@
       "Playlists": "Seznam predvajanja"
     },
     "input-placeholder": "Išči",
-    "loading-results": "Loading results",
-    "no-results-yet": "No results yet",
+    "loading-results": "Nalaganje rezultatov",
+    "no-results-yet": "Ni še rezultatov",
     "no-results-found": "No results found",
     "result-count": "{count} results"
   },
