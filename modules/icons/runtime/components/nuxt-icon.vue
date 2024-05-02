@@ -30,7 +30,7 @@ async function getIcon() {
   }
 }
 
-await getIcon();
+getIcon();
 
 watchEffect(getIcon);
 </script>
