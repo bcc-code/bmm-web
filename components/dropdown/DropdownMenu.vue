@@ -7,7 +7,7 @@ import {
   autoUpdate,
   hide,
 } from "@floating-ui/vue";
-import type { Placement, UseFloatingOptions } from "@floating-ui/vue";
+import type { Placement } from "@floating-ui/vue";
 import {
   Menu,
   MenuButton,
@@ -17,19 +17,14 @@ import {
 } from "@headlessui/vue";
 
 const props = defineProps<{
-  placement?: UseFloatingOptions["placement"];
+  placement?: Placement;
 }>();
+
 const buttonRef = ref<null | any>(null);
 const panelRef = ref<null | any>(null);
 
 const buttonEl = computed(() => buttonRef.value?.el);
 const panelEl = computed(() => panelRef.value?.el);
-
-// work-around to make transition work on download dialog (fast fade-in vs instant)
-const initialTick = ref(false);
-nextTick(() => {
-  initialTick.value = true;
-});
 
 const { floatingStyles, middlewareData } = useFloating(buttonEl, panelEl, {
   middleware: [
@@ -48,14 +43,6 @@ const { floatingStyles, middlewareData } = useFloating(buttonEl, panelEl, {
   ],
   whileElementsMounted: autoUpdate,
   placement: props.placement,
-  open: initialTick,
-});
-
-const lastPlacement = ref<Placement | null>(null);
-watch(middlewareData, (data) => {
-  if (data.offset?.placement) {
-    lastPlacement.value = data.offset.placement;
-  }
 });
 </script>
 <template>

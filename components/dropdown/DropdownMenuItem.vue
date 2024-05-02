@@ -11,12 +11,13 @@ const props = defineProps<{
   href?: string;
 }>();
 
+const nuxtLink = resolveComponent("NuxtLink");
 const component = computed(() =>
-  props.to || props.href ? resolveComponent("NuxtLink") : "button",
+  props.to || props.href ? nuxtLink : "button",
 );
 </script>
 <template>
-  <MenuItem v-slot="{ active }" as="template">
+  <MenuItem v-slot="{ active, close }" as="template">
     <component
       :is="component"
       :to="to"
@@ -27,7 +28,7 @@ const component = computed(() =>
       class="type-subtitle-2 flex w-full items-center justify-between rounded-lg px-3 py-2 text-left"
     >
       <slot :active="active">
-        <div class="flex-1">
+        <div class="flex-1" @click="to && close()">
           <span class="flex items-center gap-2">
             <NuxtIcon v-if="icon" :name="icon" />
             {{ title }}
