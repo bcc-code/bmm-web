@@ -77,14 +77,14 @@
   },
   "download": {
     "download": "Lataa",
-    "download-bmm-app": "Download the BMM app",
+    "download-bmm-app": "Lataa BMM-sovellus",
     "download-track": "Lataa kappale",
-    "mobile": "Mobile",
-    "desktop": "Desktop",
+    "mobile": "Kännykkä",
+    "desktop": "Pöytäkone",
     "os": {
       "windows": "Windows",
-      "mac_intel": "Mac with Intel CPU (produced before 2021)",
-      "mac_arm": "newer Mac (M1, M2, M3, ...)"
+      "mac_intel": "Intel-suorittimella varustettu Mac (valmistettu ennen vuotta 2021)",
+      "mac_arm": "Uudempi Mac (M1, M2, M3...)"
     },
     "messages-not-allowed": {
       "title": "Download of messages unavailable",
