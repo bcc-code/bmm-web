@@ -51,7 +51,7 @@ const getRemainingLanguages = () => {
       </DropdownMenuGroup>
       <DropdownMenuGroup
         v-if="trackLanguages.length > 5"
-        class="ease-out-expo transition-all duration-500"
+        class="transition-all duration-500 ease-out-expo"
         :class="{
           'h-12 max-h-12': !expanded,
           'h-96 max-h-96': expanded,
@@ -65,7 +65,7 @@ const getRemainingLanguages = () => {
           <template #right>
             <NuxtIcon
               name="icon.chevron.down"
-              class="ease-out-expo ml-auto text-xl text-label-1 transition-transform duration-200"
+              class="ml-auto text-xl text-label-1 transition-transform duration-200 ease-out-expo"
               aria-hidden="true"
               :class="{ 'rotate-180 transform': expanded }"
             />
