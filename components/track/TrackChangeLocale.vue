@@ -49,7 +49,14 @@ const getRemainingLanguages = () => {
           @click="changeLanguage(lang)"
         />
       </DropdownMenuGroup>
-      <DropdownMenuGroup v-if="trackLanguages.length > 5" class="max-h-96">
+      <DropdownMenuGroup
+        v-if="trackLanguages.length > 5"
+        class="ease-out-expo transition-all duration-500"
+        :class="{
+          'h-12 max-h-12': !expanded,
+          'h-96 max-h-96': expanded,
+        }"
+      >
         <DropdownMenuItem
           v-if="trackLanguages.length > 5"
           :title="t('track.dropdown.show-all')"
@@ -58,7 +65,7 @@ const getRemainingLanguages = () => {
           <template #right>
             <NuxtIcon
               name="icon.chevron.down"
-              class="ml-auto text-xl text-label-1 transition-transform duration-200 ease-out-expo"
+              class="ease-out-expo ml-auto text-xl text-label-1 transition-transform duration-200"
               aria-hidden="true"
               :class="{ 'rotate-180 transform': expanded }"
             />

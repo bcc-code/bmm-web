@@ -113,9 +113,3 @@ const onPointerDownProgressBar = () => {
     </svg>
   </div>
 </template>
-
-<style scoped>
-.player-height {
-  max-height: calc(100vh - 1.25rem - 4.5rem);
-}
-</style>
