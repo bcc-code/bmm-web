@@ -9,6 +9,8 @@ const props = defineProps<{
 const source = ref<string>("");
 const { getAccessTokenSilently } = useAuth0();
 
+source.value = authorizedUrl(props.src, await getAccessTokenSilently());
+
 watch(
   () => props.src,
   async () => {
