@@ -29,6 +29,7 @@ export default defineNuxtModule<ModuleOptions>({
     addComponent({
       name: "nuxt-icon",
       global: true,
+      prefetch: true,
       filePath: resolve("./runtime/components/nuxt-icon.vue"),
     });
 

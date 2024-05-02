@@ -7,12 +7,11 @@ const props = withDefaults(
     skeletonCount?: number;
     tracks: TrackModel[] | null;
     trackTypeIsKnown?: boolean;
-    addDropdownItems?:
-      | ((items: DropdownMenuItem[], track: TrackModel) => void)
-      | undefined;
+    addDropdownItems?: (items: DropdownMenuItem[], track: TrackModel) => void;
   }>(),
   {
     skeletonCount: 5,
+    addDropdownItems: undefined,
   },
 );
 

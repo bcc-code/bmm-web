@@ -411,8 +411,8 @@ const onPointerDownProgressBar = () => {
                 </div>
               </div>
 
-              <div class="flex justify-between gap-2">
-                <TrackMenu :track="item"></TrackMenu>
+              <div class="flex items-center justify-between gap-2">
+                <TrackMenu :track="item" />
                 <NuxtIcon
                   v-if="
                     queue.index === i && status !== MediaPlayerStatus.Stopped

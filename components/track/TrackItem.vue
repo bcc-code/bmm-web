@@ -11,9 +11,7 @@ const props = defineProps<{
   isTrackTypeKnown: boolean;
   useDailyPodcastView?: boolean | undefined;
   highlight?: Highlighting | undefined;
-  addDropdownItems?:
-    | ((items: DropdownMenuItem[], track: TrackModel) => void)
-    | undefined;
+  addDropdownItems?: (items: DropdownMenuItem[], track: TrackModel) => void;
 }>();
 
 defineSlots<{
@@ -69,6 +67,7 @@ const selectedTrack: Ref<TrackModel | null> = ref(null);
       class="absolute -inset-x-4 -inset-y-0 rounded-xl bg-tint"
     ></div>
 
+    <!-- eslint-disable vue/no-v-html -->
     <div class="relative col-span-full grid grid-cols-subgrid">
       <div v-if="showThumbnail" class="hidden flex-col justify-center lg:flex">
         <div class="relative aspect-square w-10">
@@ -189,6 +188,7 @@ const selectedTrack: Ref<TrackModel | null> = ref(null);
           <NuxtIcon name="queue" class="text-2xl" />
         </button>
         <TrackMenu
+          v-if="!isPlaying"
           :track="track"
           :button-class="
             'p-2 hover:bg-label-separator ' +
@@ -207,7 +207,7 @@ const selectedTrack: Ref<TrackModel | null> = ref(null);
         <div
           class="truncat max-h-6 overflow-hidden"
           v-html="adjustHighlightText(highlight)"
-        ></div>
+        />
       </div>
     </div>
 

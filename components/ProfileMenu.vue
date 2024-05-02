@@ -1,14 +1,6 @@
 <script setup lang="ts">
 import { useAuth0 } from "@auth0/auth0-vue";
-import {
-  Menu,
-  MenuButton,
-  MenuItem,
-  MenuItems,
-  Switch,
-  RadioGroup,
-  RadioGroupOption,
-} from "@headlessui/vue";
+import { Switch, RadioGroup, RadioGroupOption } from "@headlessui/vue";
 import { VueDraggable } from "vue-draggable-plus";
 
 const profileStore = useProfileStore();
@@ -66,184 +58,99 @@ const saveAndCloseContentLanguageDialog = () => {
 </script>
 <template>
   <div>
-    <Menu as="div" class="relative">
-      <div>
-        <MenuButton
-          class="type-subtitle-1 flex items-center gap-2 text-label-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-label-1"
-        >
-          <span>{{ $t("profile.title") }}</span>
-          <FadeInImage
-            v-if="auth0.user.value?.picture"
-            :src="auth0.user.value.picture"
-            :alt="auth0.user.value.name || ''"
-            class="aspect-square w-6 rounded-full object-cover"
-          />
-          <NuxtIcon v-else name="nav.profile" class="ml-1 text-xl" />
-        </MenuButton>
-      </div>
-
-      <transition
-        enter-active-class="transition duration-100 ease-out"
-        enter-from-class="transform scale-95 opacity-0"
-        enter-to-class="transform scale-100 opacity-100"
-        leave-active-class="transition duration-75 ease-in"
-        leave-from-class="transform scale-100 opacity-100"
-        leave-to-class="transform scale-95 opacity-0"
+    <DropdownMenu placement="bottom-end">
+      <button
+        class="type-subtitle-1 flex items-center gap-2 rounded-full px-4 py-2 text-label-1 outline-label-separator hover:bg-background-2 hover:outline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-label-1"
       >
-        <MenuItems
-          class="-separator absolute right-0 mt-2 min-w-56 origin-top-right divide-y divide-label-separator whitespace-nowrap rounded-xl bg-background-3 text-sm shadow-lg ring-1 ring-label-separator focus-visible:outline-none"
-        >
-          <div class="p-1">
-            <!-- Todo: #284 implement autoplay behavior -->
-            <MenuItem v-if="false" v-slot="{ active }">
-              <button
-                :class="{
-                  '-separator bg-label-separator': active,
-                }"
-                class="flex w-full items-center justify-between rounded-lg px-3 py-2"
-                @click="
-                  (e: MouseEvent) => {
-                    e.preventDefault();
-                    profileStore.autoplay = !profileStore.autoplay;
-                  }
-                "
+        <span>{{ $t("profile.title") }}</span>
+        <FadeInImage
+          v-if="auth0.user.value?.picture"
+          :src="auth0.user.value.picture"
+          :alt="auth0.user.value.name || ''"
+          class="aspect-square w-6 rounded-full object-cover"
+        />
+        <NuxtIcon v-else name="nav.profile" class="ml-1 text-xl" />
+      </button>
+
+      <template #items>
+        <DropdownMenuGroup>
+          <!-- Todo: #284 implement autoplay behavior -->
+          <DropdownMenuItem
+            v-if="false"
+            :title="$t('profile.autoplay')"
+            @click="
+              (e: MouseEvent) => {
+                e.preventDefault();
+                profileStore.autoplay = !profileStore.autoplay;
+              }
+            "
+          >
+            <template #right>
+              <Switch
+                v-model="profileStore.autoplay"
+                :class="profileStore.autoplay ? 'bg-tint ' : 'bg-background-2 '"
+                class="relative inline-flex h-6 w-10 shrink-0 cursor-pointer rounded-full p-1 transition-colors duration-200 ease-in-out focus:outline-none"
               >
-                <span>{{ $t("profile.autoplay") }}</span>
-                <Switch
-                  v-model="profileStore.autoplay"
+                <span
+                  aria-hidden="true"
                   :class="
-                    profileStore.autoplay ? 'bg-tint ' : 'bg-background-2 '
+                    profileStore.autoplay ? 'translate-x-full' : 'translate-x-0'
                   "
-                  class="relative inline-flex h-6 w-10 shrink-0 cursor-pointer rounded-full p-1 transition-colors duration-200 ease-in-out focus:outline-none"
-                >
-                  <span
-                    aria-hidden="true"
-                    :class="
-                      profileStore.autoplay
-                        ? 'translate-x-full'
-                        : 'translate-x-0'
-                    "
-                    class="pointer-events-none inline-block aspect-square w-4 transform rounded-full bg-white-1 shadow-lg ring-1 ring-black-separator transition duration-200 ease-in-out"
-                  />
-                </Switch>
-              </button>
-            </MenuItem>
-            <MenuItem v-slot="{ active }">
-              <button
-                :class="{
-                  '-separator bg-label-separator': active,
-                }"
-                class="type-subtitle-2 w-full rounded-lg px-3 py-2 text-left"
-                @click="showThemeDialog = true"
-              >
-                <p>{{ $t("profile.theme") }}</p>
-                <span class="type-subtitle-3 text-label-3">
-                  {{ getColorModeName(colorMode.preference) }}
-                </span>
-              </button>
-            </MenuItem>
-            <MenuItem v-slot="{ active }" as="div">
-              <button
-                :class="{
-                  '-separator bg-label-separator': active,
-                }"
-                class="type-subtitle-2 w-full rounded-lg px-3 py-2 text-left"
-                @click="showInterfaceLanguageDialog = true"
-              >
-                <p>{{ $t("profile.app-language") }}</p>
-                <span class="type-subtitle-3 text-label-3">
-                  {{ getLocalizedLanguageName(profileStore.uiLanguage) }}
-                </span>
-              </button>
-            </MenuItem>
-            <MenuItem v-slot="{ active }" as="div">
-              <button
-                :class="{
-                  '-separator bg-label-separator': active,
-                }"
-                class="type-subtitle-2 w-full rounded-lg px-3 py-2 text-left"
-                @click="showContentLanguageDialog = true"
-              >
-                <p>{{ $t("profile.content-language") }}</p>
-                <span class="type-subtitle-3 whitespace-normal text-label-2">
-                  {{
-                    getLocalizedList(
-                      contentLanguages.map((x) => getLocalizedLanguageName(x)),
-                    )
-                  }}
-                </span>
-              </button>
-            </MenuItem>
-          </div>
-          <div class="p-1">
-            <MenuItem v-slot="{ active }" as="div">
-              <a
-                :class="{
-                  '-separator bg-label-separator': active,
-                }"
-                class="type-subtitle-2 flex w-full rounded-lg px-3 py-2"
-                href="https://uservoice.bcc.no/?tags=bmm"
-                target="_blank"
-              >
-                {{ $t("profile.uservoice") }}
-              </a>
-            </MenuItem>
-            <MenuItem v-slot="{ active }" as="div">
-              <a
-                :class="{
-                  '-separator bg-label-separator': active,
-                }"
-                class="type-subtitle-2 flex w-full rounded-lg px-3 py-2"
-                href="mailto:bmm-support@bcc.no"
-                target="_blank"
-              >
-                {{ $t("profile.contact") }}
-              </a>
-            </MenuItem>
-            <MenuItem v-slot="{ active }" as="div">
-              <NuxtLink
-                :to="
-                  profileStore.uiLanguage === 'nb'
-                    ? 'https://bcc.media/no/personvern/'
-                    : 'https://bcc.media/en/privacy/'
-                "
-                target="_blank"
-                class="type-subtitle-2 flex w-full rounded-lg px-3 py-2"
-                :class="{
-                  '-separator bg-label-separator': active,
-                }"
-              >
-                {{ $t("profile.privacy-policy") }}
-              </NuxtLink>
-            </MenuItem>
-            <MenuItem v-slot="{ active }" as="div">
-              <NuxtLink
-                :to="{ name: 'copyright' }"
-                class="type-subtitle-2 flex w-full rounded-lg px-3 py-2"
-                :class="{
-                  '-separator bg-label-separator': active,
-                }"
-              >
-                {{ $t("track.details.copyright") }}
-              </NuxtLink>
-            </MenuItem>
-          </div>
-          <div class="p-1">
-            <MenuItem v-slot="{ active }" as="div">
-              <button
-                :class="{
-                  '-separator bg-label-separator': active,
-                }"
-                class="type-subtitle-2 w-full rounded-lg px-3 py-2 text-left"
-                @click="logout()"
-              >
-                {{ $t("profile.logout") }}
-              </button>
-            </MenuItem>
-          </div>
-        </MenuItems>
-      </transition>
-    </Menu>
+                  class="pointer-events-none inline-block aspect-square w-4 transform rounded-full bg-white-1 shadow-lg ring-1 ring-black-separator transition duration-200 ease-in-out"
+                />
+              </Switch>
+            </template>
+          </DropdownMenuItem>
+          <DropdownMenuItem
+            :title="$t('profile.theme')"
+            :secondary-title="getColorModeName(colorMode.preference)"
+            @click="showThemeDialog = true"
+          />
+          <DropdownMenuItem
+            :title="$t('profile.app-language')"
+            :secondary-title="getLocalizedLanguageName(profileStore.uiLanguage)"
+            @click="showInterfaceLanguageDialog = true"
+          />
+          <DropdownMenuItem
+            :title="$t('profile.content-language')"
+            :secondary-title="
+              getLocalizedList(
+                contentLanguages.map((x) => getLocalizedLanguageName(x)),
+              )
+            "
+            @click="showContentLanguageDialog = true"
+          />
+        </DropdownMenuGroup>
+        <DropdownMenuGroup>
+          <DropdownMenuItem
+            :title="$t('profile.uservoice')"
+            href="https://uservoice.bcc.no/?tags=bmm"
+            target="_blank"
+          />
+          <DropdownMenuItem
+            :title="$t('profile.contact')"
+            href="mailto:bmm-support@bcc.no"
+            target="_blank"
+          />
+          <DropdownMenuItem
+            :title="$t('profile.privacy-policy')"
+            :href="
+              profileStore.uiLanguage === 'nb'
+                ? 'https://bcc.media/no/personvern/'
+                : 'https://bcc.media/en/privacy/'
+            "
+            target="_blank"
+          />
+          <DropdownMenuItem
+            :title="$t('track.details.copyright')"
+            :to="{ name: 'copyright' }"
+          />
+        </DropdownMenuGroup>
+        <DropdownMenuGroup>
+          <DropdownMenuItem :title="$t('profile.logout')" @click="logout()" />
+        </DropdownMenuGroup>
+      </template>
+    </DropdownMenu>
 
     <DialogBase
       :show="showThemeDialog"
