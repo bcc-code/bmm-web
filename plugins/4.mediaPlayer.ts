@@ -1,6 +1,5 @@
 import { useAuth0 } from "@auth0/auth0-vue";
 import { ResourceAvailability, StatisticsApi } from "@bcc-code/bmm-sdk-fetch";
-import type { StatisticsTrackPlayedPostRequest } from "@bcc-code/bmm-sdk-fetch";
 import { initMediaPlayer } from "./mediaPlayer/mediaPlayer";
 import type { AppInsights } from "./3.applicationInsights";
 import type { IUserData } from "./2.userData";
