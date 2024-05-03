@@ -6,6 +6,15 @@ const { $appInsights } = useNuxtApp();
 const { isLoading, loginWithRedirect, isAuthenticated, error, logout } =
   useAuth0();
 
+// Redirect to new domain for testers that still use the old host name.
+const oldDomain = "bmm-web.brunstad.org";
+if (window.location.origin.endsWith(oldDomain)) {
+  const newPath = window.location
+    .toString()
+    .replace(oldDomain, "bmm.bcc.media");
+  window.location.href = newPath;
+}
+
 watch(
   isLoading,
   async (loading) => {
