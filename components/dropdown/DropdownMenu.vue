@@ -20,8 +20,8 @@ const props = defineProps<{
   placement?: Placement;
 }>();
 
-const buttonRef = ref<null | any>(null);
-const panelRef = ref<null | any>(null);
+const buttonRef = ref<null | VNode<HTMLElement>>(null);
+const panelRef = ref<null | VNode<HTMLElement>>(null);
 
 const buttonEl = computed(() => buttonRef.value?.el);
 const panelEl = computed(() => panelRef.value?.el);
