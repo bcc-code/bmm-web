@@ -29,7 +29,7 @@ async function shufflePodcast() {
 <template>
   <div
     v-if="item.showAllLink && item.track && item.title"
-    class="flex w-full max-w-[480px] flex-col gap-4 rounded-2xl p-4 lg:aspect-[2/1] lg:flex-row lg:gap-0 lg:p-0"
+    class="flex w-full flex-col gap-4 rounded-2xl p-4 lg:aspect-[2/1] lg:flex-row lg:gap-0 lg:p-0"
     :style="'background: ' + (item.backgroundColor ?? '#F5F6F7')"
   >
     <NuxtLink
