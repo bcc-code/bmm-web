@@ -11,7 +11,7 @@ defineProps<{
 </script>
 
 <template>
-  <div class="grid w-52 flex-shrink-0 basis-52 gap-4">
+  <div class="">
     <CoverImage :src="item.cover" class="w-full rounded-2xl" />
   </div>
 </template>

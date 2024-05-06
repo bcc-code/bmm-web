@@ -17,6 +17,7 @@ const config: Partial<Config> = {
         tracklist: "min-content auto auto auto min-content",
         tilesWide: "repeat(auto-fit, minmax(350px, 1fr))",
         tilesNarrow: "repeat(auto-fit, minmax(200px, 1fr))",
+        coverList: "repeat(auto-fit, minmax(158px, 1fr))",
       },
     },
   },

@@ -147,13 +147,17 @@ const playItem = (item: TrackModel, group: IDiscoverableGroup) => {
           </template>
         </div>
 
-        <div v-else-if="group.useFlex" class="mt-3 py-2">
+        <div
+          v-else-if="group.useFlex"
+          class="relative mt-3 w-full overflow-hidden py-2"
+        >
           <div
-            class="flex flex-row flex-wrap gap-6"
+            class="grid-cols-coverList grid w-full gap-6"
             :class="
               group.header &&
               group.header?.useCoverCarousel &&
-              group.header?.link
+              group.header?.link &&
+              false
                 ? 'max-h-[27.5rem] overflow-hidden lg:max-h-[13rem]'
                 : ''
             "
@@ -161,18 +165,21 @@ const playItem = (item: TrackModel, group: IDiscoverableGroup) => {
             <template v-for="item in group.items" :key="item.id">
               <NuxtLink
                 v-if="item.type === 'album'"
+                class="aspect-square max-w-[250px]"
                 :to="{ name: 'album-id', params: { id: item.id } }"
               >
                 <ItemCard :item="item" />
               </NuxtLink>
               <NuxtLink
                 v-else-if="item.type === 'playlist'"
+                class="aspect-square max-w-[250px]"
                 :to="{ name: 'playlist-curated-id', params: { id: item.id } }"
               >
                 <ItemCard :item="item" />
               </NuxtLink>
               <NuxtLink
                 v-else-if="item.type === 'podcast'"
+                class="aspect-square max-w-[250px]"
                 :to="{ name: 'playlist-podcast-id', params: { id: item.id } }"
               >
                 <ItemCard :item="item" />
@@ -180,7 +187,7 @@ const playItem = (item: TrackModel, group: IDiscoverableGroup) => {
 
               <div
                 v-else
-                class="grid w-52 flex-shrink-0 basis-52 gap-4"
+                class="aspect-square max-w-[250px]"
                 style="background-color: rgba(255, 0, 0, 0.4); color: red"
               >
                 "{{ item.type }}" is not yet implemented ...
