@@ -11,34 +11,38 @@ const list = ref<IAllDocumentModels[]>([]);
 const loadingMore = ref(false);
 let position = 0;
 const fullyLoaded = ref(false);
+
+const maybeLoad = async () => {
+  if (loadingMore.value || fullyLoaded.value) {
+    return;
+  }
+
+  loadingMore.value = true;
+  try {
+    const data = await props.load(position, 40);
+    position += 40;
+    if (data) {
+      if (data.length === 0) {
+        fullyLoaded.value = true;
+      }
+
+      list.value = list.value.concat(data);
+    }
+    loadingMore.value = false;
+  } catch (ex) {
+    // TODO: Show an error message to the user
+    console.error("error", ex);
+  }
+};
+
 onMounted(() => {
   const main = ref<HTMLElement | null>(document.querySelector("main"));
-  useInfiniteScroll(
-    main,
-    async () => {
-      if (loadingMore.value || fullyLoaded.value) {
-        return;
-      }
-
-      loadingMore.value = true;
-      try {
-        const data = await props.load(position, 40);
-        position += 40;
-        if (data) {
-          if (data.length === 0) {
-            fullyLoaded.value = true;
-          }
-
-          list.value = list.value.concat(data);
-        }
-        loadingMore.value = false;
-      } catch (ex) {
-        // TODO: Show an error message to the user
-        console.error("error", ex);
-      }
-    },
-    { distance: 10, interval: 500, canLoadMore: () => !fullyLoaded.value },
-  );
+  useInfiniteScroll(main, maybeLoad, {
+    distance: 10,
+    interval: 500,
+    canLoadMore: () => !fullyLoaded.value,
+  });
+  maybeLoad();
 });
 watch(reactiveDependencies(), async () => {
   try {

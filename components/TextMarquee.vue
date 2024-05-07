@@ -18,9 +18,11 @@ watch(contentIsTooLarge, () => {
 
   if (contentIsTooLarge.value) {
     setTimeout(() => {
+      if (!elRef.value) return;
       elRef.value!.style.animation = `vue-component-text-marquee ${scrollWidth * (1 / speed)}s linear infinite`;
     }, delay);
   } else {
+    if (!elRef.value) return;
     elRef.value!.style.animation = "";
   }
 });

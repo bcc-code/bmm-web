@@ -7,6 +7,7 @@ const props = withDefaults(
     skeletonCount?: number;
     tracks: TrackModel[] | null;
     trackTypeIsKnown?: boolean;
+    showThumbnails?: boolean;
     addDropdownItems?: (items: DropdownMenuItem[], track: TrackModel) => void;
   }>(),
   {
@@ -48,7 +49,7 @@ const isTrackTypeKnown = () => {
         :key="track.id"
         :track="track"
         :is-track-type-known="isTrackTypeKnown()"
-        show-thumbnail
+        :show-thumbnail="showThumbnails"
         :add-dropdown-items="props.addDropdownItems"
         @play-track="setQueue(tracks, i)"
       >

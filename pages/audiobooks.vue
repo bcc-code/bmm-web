@@ -11,6 +11,7 @@ const { data: audiobooks, pending } = useTracks({
   <div>
     <PageHeading>{{ $t("nav.audiobooks") }}</PageHeading>
     <TrackList
+      show-thumbnails
       :skeleton-count="10"
       :show-skeleton="pending"
       :tracks="audiobooks"
