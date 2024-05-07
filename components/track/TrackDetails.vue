@@ -83,7 +83,7 @@ const extractFields = (track: TrackModel) => {
 </script>
 
 <template>
-  <div class="relative flex items-center justify-normal gap-4">
+  <div class="relative flex items-center justify-normal gap-4" v-bind="$attrs">
     <CoverImage :src="track.meta?.attachedPicture" class="w-24 rounded-md" />
     <div>
       <h3 class="py-1 text-2xl font-extrabold text-label-1">

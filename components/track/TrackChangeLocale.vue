@@ -49,7 +49,14 @@ const getRemainingLanguages = () => {
           @click="changeLanguage(lang)"
         />
       </DropdownMenuGroup>
-      <DropdownMenuGroup v-if="trackLanguages.length > 5" class="max-h-96">
+      <DropdownMenuGroup
+        v-if="trackLanguages.length > 5"
+        class="transition-all duration-500 ease-out-expo"
+        :class="{
+          'h-12 max-h-12': !expanded,
+          'h-96 max-h-96': expanded,
+        }"
+      >
         <DropdownMenuItem
           v-if="trackLanguages.length > 5"
           :title="t('track.dropdown.show-all')"
