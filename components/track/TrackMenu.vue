@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import type { TrackModel } from "@bcc-code/bmm-sdk-fetch";
-import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/vue";
 
 const runtimeConfig = useRuntimeConfig();
 const { t } = useI18n();
@@ -15,12 +14,11 @@ const props = withDefaults(
   defineProps<{
     track: TrackModel;
     buttonClass?: string;
-    addDropdownItems?:
-      | ((items: DropdownMenuItem[], track: TrackModel) => void)
-      | undefined;
+    addDropdownItems?: (items: DropdownMenuItem[], track: TrackModel) => void;
   }>(),
   {
     buttonClass: "",
+    addDropdownItems: undefined,
   },
 );
 
@@ -116,52 +114,29 @@ const dropdownMenuItemsForTrack = (track: TrackModel) => {
 </script>
 
 <template>
-  <Menu
-    as="div"
-    class="relative flex flex-col justify-center text-left"
-    :class="$attrs.class"
-    @click.stop
-  >
-    <MenuButton
-      as="button"
+  <DropdownMenu placement="bottom-end" v-bind="$attrs" @click.stop>
+    <button
       :aria-label="t('track.a11y.options')"
       class="rounded-full p-1 hover:bg-background-2 hover:text-label-1"
       :class="buttonClass"
     >
       <NuxtIcon name="options" class="text-xl" />
-    </MenuButton>
+    </button>
 
-    <MenuItems
-      as="ul"
-      class="absolute right-0 top-10 z-30 whitespace-nowrap rounded-xl bg-background-3 p-1 shadow-[0_4px_12px_0_#0000000D,0_1px_4px_0_#0000000D,0_0_0_1px_#0000000D]"
-    >
-      <div class="py-0">
-        <MenuItem
+    <template #items>
+      <DropdownMenuGroup>
+        <DropdownMenuItem
           v-for="item in dropdownMenuItemsForTrack(track)"
           :key="item.text"
-          as="li"
-          class="hover:text-black block w-full cursor-pointer rounded-lg text-label-1 hover:bg-background-2"
-        >
-          <NuxtLink
-            v-if="'link' in item"
-            class="flex w-full items-center justify-start gap-2 px-3 py-2"
-            :to="item.link"
-          >
-            <NuxtIcon v-if="item.icon" :name="item.icon" />
-            <span>{{ item.text }}</span>
-          </NuxtLink>
-          <button
-            v-else
-            class="flex w-full items-center justify-start gap-2 px-3 py-2"
-            @click="item.clickFunction?.()"
-          >
-            <NuxtIcon v-if="item.icon" :name="item.icon" />
-            <span>{{ item.text }}</span>
-          </button>
-        </MenuItem>
-      </div>
-    </MenuItems>
-  </Menu>
+          :icon="item.icon"
+          :title="item.text"
+          :to="'link' in item ? item.link : undefined"
+          @click="'clickFunction' in item ? item.clickFunction() : undefined"
+        />
+      </DropdownMenuGroup>
+    </template>
+  </DropdownMenu>
+
   <DialogBase :show="showInfo" title="Track Details" @close="showInfo = false">
     <TrackDetails
       class="md:w-[500px] lg:w-[600px]"

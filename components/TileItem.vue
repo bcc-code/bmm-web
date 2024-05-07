@@ -61,7 +61,7 @@ async function shufflePodcast() {
       <div v-else class="text-sm">
         {{ item.subtitle }}
       </div>
-      <div class="mt-auto flex w-full flex-row gap-3.5 pt-1.5">
+      <div class="mt-auto flex w-full flex-row items-center gap-3.5 pt-1.5">
         <button
           class="h-10 w-10 rounded-full bg-black-1"
           @click.stop="playTrack"
@@ -78,7 +78,7 @@ async function shufflePodcast() {
             class="aspect-square p-1 text-xl text-black-1"
           />
         </button>
-        <TrackMenu :track="item.track" class="ml-auto"></TrackMenu>
+        <TrackMenu :track="item.track" class="ml-auto" />
       </div>
     </div>
   </div>

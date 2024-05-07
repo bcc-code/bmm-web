@@ -28,7 +28,10 @@ const showBackButton = computed(() => globalThis.history.length > 1 && route.nam
       </strong>
     </div>
 
-    <div class="mx-6 my-4 flex flex-row" style="-webkit-app-region: no-drag">
+    <div
+      class="mx-6 flex flex-row items-center"
+      style="-webkit-app-region: no-drag"
+    >
       <ProfileMenu />
     </div>
   </header>
