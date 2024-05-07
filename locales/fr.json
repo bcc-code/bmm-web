@@ -1,7 +1,7 @@
 {
   "global": {
     "cancel": "Annuler",
-    "try-again": "Try again"
+    "try-again": "Réessayer"
   },
   "nav": {
     "home": "Accueil",
@@ -24,55 +24,55 @@
     }
   },
   "share": {
-    "link-copied-message": "Copied link to clipboard"
+    "link-copied-message": "Copie du lien dans le presse-papiers"
   },
   "profile": {
     "title": "Profil",
-    "autoplay": "Auto Play",
-    "theme": "Theme",
-    "theme-description": "Select the theme used for the interface.",
-    "app-language": "Language",
-    "interface-language": "Interface Language",
-    "interface-language-description": "Select the language used for the interface.",
-    "select-language": "Select language",
-    "content-language": "Content Language",
-    "content-language-description": "The preferred language for the content you are listening to.",
-    "preference-language-1": "Preferred language",
-    "preference-language-2": "Second language",
-    "preference-language-3": "Third language",
-    "preference-language-4": "{count}th language",
+    "autoplay": "Lecture automatique",
+    "theme": "Thème",
+    "theme-description": "Sélectionnez le thème utilisé pour l'interface.",
+    "app-language": "Langue",
+    "interface-language": "Langue de l'interface",
+    "interface-language-description": "Sélectionnez la langue utilisée pour l'interface.",
+    "select-language": "Sélection de la langue",
+    "content-language": "Langue du contenu",
+    "content-language-description": "La langue préférée pour le contenu que vous écoutez.",
+    "preference-language-1": "Langue préférée",
+    "preference-language-2": "Seconde langue",
+    "preference-language-3": "Troisième langue",
+    "preference-language-4": "{count}ème langue",
     "uservoice": "Guide de l'utilisateur",
     "privacy-policy": "Politique de confidentialité",
     "contact": "Contact",
-    "logout": "Sign out",
+    "logout": "Se déconnecter",
     "theme-dark": "Sombre",
     "theme-light": "Clair",
-    "theme-system": "Same as system",
+    "theme-system": "Identique au système",
     "done": "Terminé",
-    "add-another-language": "Add another language"
+    "add-another-language": "Ajouter une autre langue"
   },
   "error": {
     "page-not-found": {
-      "headline": "Error",
-      "text": "Sorry. We can't find the page \"{path}\"."
+      "headline": "Erreur",
+      "text": "Désolé. Nous ne trouvons pas la page «{path}»."
     }
   },
   "collection": {
-    "track-count": "{count} track | {count} tracks",
+    "track-count": "{count} piste | {count} pistes",
     "album-count": "{count} album | {count} albums"
   },
   "login": {
     "error-message": {
-      "contact-info": "Should this error persist, {0}.",
-      "contact-link": "please get in contact with us",
-      "logout-and-redirect-info": "Something regarding the login went wrong:",
-      "manual-logout-and-redirect-info": "Please {0}.",
-      "logout-and-redirect-link": "try to log in again"
+      "contact-info": "Si l'erreur persiste, {0}.",
+      "contact-link": "veuillez nous contacter",
+      "logout-and-redirect-info": "Une erreur s'est produite lors de la connexion :",
+      "manual-logout-and-redirect-info": "Veuillez  {0}.",
+      "logout-and-redirect-link": "essayer de vous connecter à nouveau"
     },
     "redirect-message": {
-      "redirect-info": "You will be redirected to the login page.",
-      "manual-redirect-info": "Please wait or {0}.",
-      "redirect-link": "click to try again"
+      "redirect-info": "Vous serez redirigé vers la page de connexion.",
+      "manual-redirect-info": "Veuillez patienter ou {0}.",
+      "redirect-link": "cliquez pour réessayer"
     }
   },
   "download": {
@@ -87,28 +87,28 @@
       "mac_arm": "Mac plus récent (M1, M2, M3, ...)"
     },
     "messages-not-allowed": {
-      "title": "Download of messages unavailable",
+      "title": "Téléchargement des messages indisponible",
       "description": "La fonctionnalité de téléchargement des messages de BMM n'est plus disponible. Si vous avez besoin d'un message pour un usage spécifique, veuillez nous contacter et nous expliquer vos besoins."
     },
-    "sendEmailTo": "Send email to {0}"
+    "sendEmailTo": "Envoyer un courriel à {0}"
   },
   "playlist": {
-    "add": "Add playlist",
+    "add": "Ajouter une liste de lecture",
     "new-playlist": "Nouvelle playlist",
-    "name-your-playlist": "Name your playlist",
+    "name-your-playlist": "Nommez votre liste de lecture",
     "delete-playlist": "Supprimer la liste de lecture",
-    "delete-playlist-description": "Are you sure you want to delete the playlist? This action cannot be reversed.",
+    "delete-playlist-description": "Êtes-vous sûr de vouloir supprimer la liste de lecture ? Cette action ne peut pas être annulée.",
     "action": {
       "shuffle": "Aléatoire",
       "add-to-my-playlists": "Ajouter à mes playlists",
       "remove-shared-playlist": "Supprimer la playlist"
     },
-    "by-x": "by {name}"
+    "by-x": "par {name}"
   },
   "podcast": {
     "this-week": "Cette semaine",
     "last-week": "Semaine dernière",
-    "week-x": "Week {count}",
+    "week-x": "Semaine {count}",
     "action": {
       "play": "Lecture",
       "follow": "Suivre"
@@ -118,7 +118,7 @@
     "queue": "File d'attente"
   },
   "edit": {
-    "rename": "Rename",
+    "rename": "Renommer",
     "delete": "Supprimer"
   },
   "track": {
@@ -137,12 +137,12 @@
     "a11y": {
       "download": "Télécharger",
       "queue": "Ajouter à la file d'attente",
-      "options": "Show options"
+      "options": "Afficher les options"
     },
     "details": {
-      "reference": "Reference",
+      "reference": "Référence",
       "duration": "Durée",
-      "publish-date": "Publish Date",
+      "publish-date": "Date de publication",
       "album": "Album",
       "publisher": "Éditeur",
       "copyright": "Droits d'auteur",
@@ -154,7 +154,7 @@
   },
   "home": {
     "list": {
-      "see-all": "See all",
+      "see-all": "Voir tout",
       "recommended": "Recommandé"
     }
   },
@@ -169,13 +169,13 @@
       "Playlists": "Listes de lecture"
     },
     "input-placeholder": "Recherche",
-    "loading-results": "Loading results",
-    "no-results-yet": "No results yet",
-    "no-results-found": "No results found",
-    "result-count": "{count} results"
+    "loading-results": "Chargement des résultats",
+    "no-results-yet": "Aucun résultat pour l'instant",
+    "no-results-found": "Aucun résultat trouvé",
+    "result-count": "{count} résultats"
   },
   "streak": {
     "your-streak": "Enchaînement de la semaine",
-    "days-in-row": "{count} days in a row"
+    "days-in-row": "{count} jours d'affilée"
   }
 }
