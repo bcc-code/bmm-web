@@ -15,6 +15,7 @@
           { "/": "/album/*" },
           { "/": "/track/*" },
           { "/": "/playlist/*" },
+          { "/": "/search/*" },
           { "/": "/copyright" },
           { "/": "/daily-fra-kaare" },
           { "/": "/messages" },

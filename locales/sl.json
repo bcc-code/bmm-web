@@ -54,18 +54,18 @@
   "error": {
     "page-not-found": {
       "headline": "Napaka",
-      "text": "Sorry. We can't find the page \"{path}\"."
+      "text": "Se opravičujemo. Ne moremo najti strani \"{path}\"."
     }
   },
   "collection": {
-    "track-count": "{count} track | {count} tracks",
-    "album-count": "{count} album | {count} albums"
+    "track-count": "{count} skladba | skladbe: {count} ",
+    "album-count": "{count} album | albumi: {count} "
   },
   "login": {
     "error-message": {
-      "contact-info": "Should this error persist, {0}.",
-      "contact-link": "please get in contact with us",
-      "logout-and-redirect-info": "Something regarding the login went wrong:",
+      "contact-info": "Če se ta napaka ne odpravi, {0}.",
+      "contact-link": "stopite v stik z nami",
+      "logout-and-redirect-info": "Nekaj v zvezi s prijavo je šlo narobe:",
       "manual-logout-and-redirect-info": "Prosim {0}.",
       "logout-and-redirect-link": "poskusi se prijaviti znova "
     },
@@ -79,15 +79,15 @@
     "download": "Prenesi",
     "download-bmm-app": "Prenesi aplikacijo BMM",
     "download-track": "Prenesi skladbo",
-    "mobile": "Mobile",
-    "desktop": "Desktop",
+    "mobile": "telefon",
+    "desktop": "namizje",
     "os": {
       "windows": "Windows",
-      "mac_intel": "Mac with Intel CPU (produced before 2021)",
-      "mac_arm": "newer Mac (M1, M2, M3, ...)"
+      "mac_intel": "Mac s procesorjem Intel (izdelan pred letom 2021)",
+      "mac_arm": "novejši Mac (M1, M2, M3, ...)"
     },
     "messages-not-allowed": {
-      "title": "Download of messages unavailable",
+      "title": "Prenos govorov ni na voljo",
       "description": "Možnost prenosa govorov BMM ni več na voljo. Če potrebuješ govor za določen namen, nas kontaktiraj in razloži svojo željo."
     },
     "sendEmailTo": "Pošlji e-pošto na {0}"
@@ -140,9 +140,9 @@
       "options": "Pokaži možnosti"
     },
     "details": {
-      "reference": "Reference",
+      "reference": "Referenca",
       "duration": "Trajanje",
-      "publish-date": "Publish Date",
+      "publish-date": "Datum objave",
       "album": "Album",
       "publisher": "Založnik",
       "copyright": "Avtorske pravice",
@@ -171,11 +171,11 @@
     "input-placeholder": "Išči",
     "loading-results": "Nalaganje rezultatov",
     "no-results-yet": "Ni še rezultatov",
-    "no-results-found": "No results found",
-    "result-count": "{count} results"
+    "no-results-found": "Ni najdenih rezultatov",
+    "result-count": "Rezultati: {count} "
   },
   "streak": {
     "your-streak": "Tvoj  niz ta teden",
-    "days-in-row": "{count} days in a row"
+    "days-in-row": "Zaporedni dnevi: {count} "
   }
 }
