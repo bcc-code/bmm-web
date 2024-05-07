@@ -238,6 +238,7 @@ const saveAndCloseContentLanguageDialog = () => {
             </svg>
           </button>
           <div>
+            <!-- eslint-disable-next-line @intlify/vue-i18n/no-dynamic-keys -->
             {{ t("profile.preference-language-" + Math.min(i + 1, 4), i + 1) }}
           </div>
           <div
