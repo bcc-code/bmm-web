@@ -4,14 +4,16 @@ import nb from "./locales/nb.json";
 import nl from "./locales/nl.json";
 import sl from "./locales/sl.json";
 import tr from "./locales/tr.json";
+import fr from "./locales/fr.json";
 
 export default defineI18nConfig(() => ({
   legacy: false,
   messages: {
-    de,
-    en,
     nb,
+    en,
+    de,
     nl,
+    fr,
     sl,
     tr,
   },
