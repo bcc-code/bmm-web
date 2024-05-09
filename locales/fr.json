@@ -65,7 +65,7 @@
     "error-message": {
       "contact-info": "Si l'erreur persiste, {0}.",
       "contact-link": "veuillez nous contacter",
-      "logout-and-redirect-info": "Une erreur s'est produite lors de la connexion :",
+      "logout-and-redirect-info": "Une erreur s'est produite lors de la connexion :",
       "manual-logout-and-redirect-info": "Veuillez  {0}.",
       "logout-and-redirect-link": "essayer de vous connecter à nouveau"
     },
