@@ -14,7 +14,7 @@ module.exports = async function (configuration) {
 
   try {
     execSync(
-      `AzureSignTool.exe sign -du "https://bmm.bcc.media" -kvu "https://bccm-code-sign2.vault.azure.net" -kvt ${directoryId} -kvi ${clientId} -kvs ${clientSecret} -kvc "HSM-CS" -tr "http://timestamp.digicert.com" -v ${filePath}`,
+      `AzureSignTool.exe sign -du "https://bmm.bcc.media" -kvu "https://bccm-code-sign2.vault.azure.net" -kvt ${directoryId} -kvi ${clientId} -kvs ${clientSecret} -kvc "HSM-CS" -tr "http://timestamp.digicert.com" -v '${filePath}'`,
       { stdio: "inherit" },
     );
     console.log(`Successfully signed ${filePath}`);
