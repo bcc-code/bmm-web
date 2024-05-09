@@ -35,6 +35,10 @@ const config = {
   },
   win: {
     target: ["nsis", "zip"],
+    signingHashAlgorithms: ["sha256"],
+    sign: "./electron_sign_exe.js",
+    publisherName: "BCC MEDIA STI",
+    legalTrademarks: "(C) 2024 BCC MEDIA STI",
   },
   linux: {
     category: "Audio;Player",
