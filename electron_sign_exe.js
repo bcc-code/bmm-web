@@ -1,9 +1,7 @@
 const { execSync } = require("child_process");
 
 module.exports = async function (configuration) {
-  console.log("Signing executable");
   if (!configuration.path.includes(configuration.name + " Setup")) {
-    console.log(`Skipping signing of ${configuration.path}`);
     return;
   }
 
@@ -11,8 +9,6 @@ module.exports = async function (configuration) {
   const directoryId = process.env.WINDOWS_DIRECTORY_ID;
   const clientId = process.env.WINDOWS_CLIENT_ID;
   const clientSecret = process.env.WINDOWS_CLIENT_SECRET;
-
-  console.log(`try signing '${filePath}'`);
 
   try {
     execSync(
