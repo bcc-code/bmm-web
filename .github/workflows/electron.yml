@@ -69,7 +69,6 @@ jobs:
           WINDOWS_DIRECTORY_ID: ${{ secrets.BCCM_WINDOWS_DIRECTORY_ID }}
           WINDOWS_CLIENT_ID: ${{ secrets.BCCM_WINDOWS_CLIENT_ID }}
           WINDOWS_CLIENT_SECRET: ${{ secrets.BCCM_WINDOWS_CLIENT_SECRET }}
-          PUBLISH_FOR_PULL_REQUEST: true
 
       - name: Archive production artifacts
         uses: actions/upload-artifact@v3
