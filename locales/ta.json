@@ -1,7 +1,7 @@
 {
   "global": {
     "cancel": "ரத்து செய்",
-    "try-again": "Try again"
+    "try-again": "மீண்டும் முயற்சி செய்"
   },
   "nav": {
     "home": "முகப்பு ",
@@ -24,7 +24,7 @@
     }
   },
   "share": {
-    "link-copied-message": "Copied link to clipboard"
+    "link-copied-message": "கிளிப்போர்டுக்கு நகலெடுக்கப்பட்டது"
   },
   "profile": {
     "title": "சுயவிவரம்",
@@ -33,14 +33,14 @@
     "theme-description": "இடைமுகத்திற்குப் பயன்படுத்தப்படும் தீம்மை தேர்ந்தெடுக்கவும்.",
     "app-language": "மொழி",
     "interface-language": "இடைமுக மொழி",
-    "interface-language-description": "Select the language used for the interface.",
+    "interface-language-description": "இடைமுகத்திற்குப் பயன்படுத்தப்படும் மொழியைத் தேர்ந்தெடுக்கவும்.",
     "select-language": "மொழியை தேர்ந்தெடுங்கள்",
     "content-language": "உள்ளடக்க மொழி",
     "content-language-description": "நீங்கள் கேட்கும் உள்ளடக்கத்திற்கான விருப்பமான மொழி.",
-    "preference-language-1": "Preferred language",
-    "preference-language-2": "Second language",
-    "preference-language-3": "Third language",
-    "preference-language-4": "{count}th language",
+    "preference-language-1": "விருப்பமான மொழிகள்",
+    "preference-language-2": "இரண்டாம் மொழி",
+    "preference-language-3": "மூன்றாம் மொழி",
+    "preference-language-4": "{count}வது மொழி",
     "uservoice": "பயனர் குரல்",
     "privacy-policy": "தனியுரிமைக் கொள்கை",
     "contact": "தொடர்பு கொள்ளவும்",
@@ -49,7 +49,7 @@
     "theme-light": "ஒளி (லைட்)",
     "theme-system": "அமைப்பு போலவே",
     "done": "முடிந்தது",
-    "add-another-language": "Add another language"
+    "add-another-language": "மற்றொரு மொழியைச் சேர்க்கவும்"
   },
   "error": {
     "page-not-found": {
@@ -77,38 +77,38 @@
   },
   "download": {
     "download": "பதிவிறக்கு ",
-    "download-bmm-app": "Download the BMM app",
+    "download-bmm-app": "BMM செயலியை பதிவிறக்கவும்",
     "download-track": "டிராக்கைப் பதிவிறக்கவும்",
-    "mobile": "Mobile",
-    "desktop": "Desktop",
+    "mobile": "மொபைல்",
+    "desktop": "டெஸ்க்டாப்",
     "os": {
-      "windows": "Windows",
-      "mac_intel": "Mac with Intel CPU (produced before 2021)",
-      "mac_arm": "newer Mac (M1, M2, M3, ...)"
+      "windows": "விண்டோஸ்",
+      "mac_intel": "இன்டெல் CPU உடன் Mac (2021 க்கு முன் தயாரிக்கப்பட்டது)",
+      "mac_arm": "புதிய மேக் (M1, M2, M3, ...)"
     },
     "messages-not-allowed": {
-      "title": "Download of messages unavailable",
+      "title": "செய்திகளின் பதிவிறக்கம் கிடைக்கவில்லை",
       "description": "BMM இலிருந்து செய்திகளைப் பதிவிறக்கும் திறன் இனி கிடைக்காது. குறிப்பிட்ட பயன்பாட்டிற்கான செய்தி உங்களுக்குத் தேவைப்பட்டால், தயவுசெய்து எங்களைத் தொடர்புகொண்டு உங்கள் தேவைகளை விளக்கவும்."
     },
-    "sendEmailTo": "Send email to {0}"
+    "sendEmailTo": "{0}க்கு மின்னஞ்சல் அனுப்பவும்"
   },
   "playlist": {
     "add": "பிளேலிஸ்ட்டைச் சேர்க்கவும்",
     "new-playlist": "புதிய பிளேலிஸ்ட்",
-    "name-your-playlist": "Name your playlist",
+    "name-your-playlist": "உங்கள் பிளேலிஸ்ட்டிற்கு பெயரிடவும்",
     "delete-playlist": "பிளேலிஸ்ட்டை நீக்கு",
-    "delete-playlist-description": "Are you sure you want to delete the playlist? This action cannot be reversed.",
+    "delete-playlist-description": "பிளேலிஸ்ட்டை நிச்சயமாக நீக்க விரும்புகிறீர்களா? இந்த செயலை மாற்ற முடியாது.",
     "action": {
       "shuffle": "கலக்கு",
       "add-to-my-playlists": "எனது பிளேலிஸ்ட்களில் சேர்",
       "remove-shared-playlist": "பிளேலிஸ்ட்டை அகற்று"
     },
-    "by-x": "by {name}"
+    "by-x": "மூலம் {name}"
   },
   "podcast": {
     "this-week": "இந்த வாரம்",
     "last-week": "கடந்த வாரம்",
-    "week-x": "Week {count}",
+    "week-x": "வாரம் {count}",
     "action": {
       "play": "பிளே",
       "follow": "பின்பற்றவும்"
@@ -118,7 +118,7 @@
     "queue": "வரிசை"
   },
   "edit": {
-    "rename": "Rename",
+    "rename": "மறுபெயரிடவும்",
     "delete": "அழி"
   },
   "track": {
@@ -140,9 +140,9 @@
       "options": "விருப்பங்களைக் காட்டு"
     },
     "details": {
-      "reference": "Reference",
+      "reference": "குறிப்பு",
       "duration": "கால அளவு",
-      "publish-date": "Publish Date",
+      "publish-date": "வெளியிடும் தேதி",
       "album": "ஆல்பம்",
       "publisher": "பதிப்பகத்தார்",
       "copyright": "காப்புரிமை",
@@ -169,13 +169,13 @@
       "Playlists": "பிளேலிஸ்ட்கள்"
     },
     "input-placeholder": "தேடு",
-    "loading-results": "Loading results",
-    "no-results-yet": "No results yet",
-    "no-results-found": "No results found",
-    "result-count": "{count} results"
+    "loading-results": "முடிவுகளை ஏற்றுகிறது",
+    "no-results-yet": "இன்னும் முடிவுகள் இல்லை",
+    "no-results-found": "முடிவுகள் எதுவும் இல்லை",
+    "result-count": "{count} முடிவுகள்"
   },
   "streak": {
     "your-streak": "இந்த வாரம் உங்கள் ஸ்ட்ரீக்",
-    "days-in-row": "{count} days in a row"
+    "days-in-row": "{count} நாட்கள் தொடர்ச்சியாக"
   }
 }
