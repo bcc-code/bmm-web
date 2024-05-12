@@ -5,6 +5,7 @@ import nl from "./locales/nl.json";
 import sl from "./locales/sl.json";
 import tr from "./locales/tr.json";
 import fr from "./locales/fr.json";
+import ta from "./locales/ta.json";
 
 export default defineI18nConfig(() => ({
   legacy: false,
@@ -16,5 +17,6 @@ export default defineI18nConfig(() => ({
     fr,
     sl,
     tr,
+    ta
   },
 }));
