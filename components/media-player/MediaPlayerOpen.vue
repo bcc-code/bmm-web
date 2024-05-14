@@ -187,6 +187,35 @@ const onPointerDownProgressBar = () => {
           <NuxtIcon name="icon.skip.large" filled />
         </button>
       </div>
+      <div class="px-4 pb-2 pt-5">
+        <div
+          class="flex items-center gap-3 rounded-3xl border border-label-separator px-[16px] py-1.5"
+        >
+          <NuxtIcon name="icon.audio.off" class="text-2xl" />
+          <div class="group flex h-3 items-center py-2">
+            <svg
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+              class="width-full h-2 w-full overflow-hidden rounded-full transition-all duration-200 ease-out group-hover:h-3"
+              @pointerdown="onPointerDownProgressBar"
+              @pointerup="onPointerUpProgressBar"
+              @click.stop
+            >
+              <rect width="100%" height="100%" class="fill-background-2" />
+              <rect
+                v-if="
+                  Number.isFinite(currentPosition) &&
+                  Number.isFinite(currentTrackDuration)
+                "
+                :width="(currentPosition / currentTrackDuration) * 100 + '%'"
+                height="100%"
+                class="fill-label-1"
+              />
+            </svg>
+          </div>
+          <NuxtIcon name="icon.audio.on" class="text-2xl" />
+        </div>
+      </div>
       <div class="absolute left-4 right-4 top-4 z-10 flex justify-between">
         <div>
           <div
