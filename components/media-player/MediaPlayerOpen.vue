@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { MediaPlayerStatus } from "~/plugins/mediaPlayer/mediaPlayer";
+import * as slider from "@zag-js/slider";
+import { normalizeProps, useMachine } from "@zag-js/vue";
 
 const { t } = useI18n();
 
@@ -26,6 +28,29 @@ const {
   repeatStatus,
   volume,
 } = useNuxtApp().$mediaPlayer;
+
+const [state, send] = useMachine(
+  slider.machine({
+    id: "volume",
+    value: [volume.value * 100],
+    onValueChange(details) {
+      const [value] = details.value;
+      if (value) volume.value = value / 100;
+      console.log("value is changing to: ", value);
+    },
+    onValueChangeEnd(details) {
+      const [value] = details.value;
+      console.log("value has changed to: ", value);
+    },
+  }),
+);
+const volumeSlider = computed(() =>
+  slider.connect(state.value, send, normalizeProps),
+);
+const setVolume = (value: number) => {
+  volume.value = value;
+  volumeSlider.value.setValue([value * 100]);
+};
 
 let trackMouseForPosition = false;
 const newPosition = ref<number | null>(null);
@@ -64,33 +89,10 @@ const currentOrNewPosition = computed(() =>
     ? currentPosition.value
     : newPosition.value * currentTrackDuration.value,
 );
-
-let trackMouseForVolume = false;
-const volumeSvg = ref<HTMLElement | null>(null);
-const updateVolume = (event: PointerEvent) => {
-  if (!volumeSvg.value) return;
-  const rect = volumeSvg.value?.getBoundingClientRect();
-  const newValue = (event.clientX - rect.left) / rect.width;
-  volume.value = Math.min(1, Math.max(newValue, 0));
-};
-const onPointerMoveVolumeBar = (event: PointerEvent) => {
-  if (trackMouseForVolume) updateVolume(event);
-};
-const onPointerCancelVolumeBar = () => {
-  trackMouseForVolume = false;
-};
-const onPointerDownVolumeBar = (event: PointerEvent) => {
-  trackMouseForVolume = true;
-  updateVolume(event);
-};
-const onPointerUpVolumeBar = (event: PointerEvent) => {
-  trackMouseForVolume = false;
-  updateVolume(event);
-};
 </script>
 
 <template>
-  <div>
+  <div v-bind="volumeSlider.rootProps">
     <div class="px-3 py-6">
       <div class="flex h-60 items-center justify-center">
         <div class="relative z-10 overflow-hidden">
@@ -250,38 +252,41 @@ const onPointerUpVolumeBar = (event: PointerEvent) => {
       <div class="px-4 pb-2 pt-5">
         <div
           class="group/volume flex items-center gap-3 rounded-3xl border border-label-separator px-[16px] py-1.5"
-          @pointermove="onPointerMoveVolumeBar"
-          @pointercancel="onPointerCancelVolumeBar"
-          @pointerleave="onPointerCancelVolumeBar"
         >
           <NuxtIcon
             name="icon.audio.off"
             class="cursor-pointer text-2xl"
-            @click.stop="volume = 0"
+            @click.stop="setVolume(0)"
           />
-          <div class="flex h-3 items-center py-2">
-            <svg
-              ref="volumeSvg"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              class="width-full h-2 w-full cursor-pointer overflow-hidden rounded-full transition-all duration-200 ease-out group-hover/volume:h-3"
-              @pointerup="onPointerUpVolumeBar"
-              @pointerdown="onPointerDownVolumeBar"
-              @click.stop
+          <div
+            class="h-2 w-full cursor-pointer transition-all duration-200 ease-out group-hover/volume:h-3"
+          >
+            <div
+              v-bind="volumeSlider.controlProps"
+              class="h-full overflow-hidden rounded-full"
             >
-              <rect width="100%" height="100%" class="fill-background-2" />
-              <rect
-                v-if="Number.isFinite(volume)"
-                :width="volume * 100 + '%'"
-                height="100%"
-                class="fill-label-1"
-              />
-            </svg>
+              <div
+                v-bind="volumeSlider.trackProps"
+                class="h-full bg-background-2"
+              >
+                <div
+                  v-bind="volumeSlider.rangeProps"
+                  class="h-full bg-label-1"
+                />
+              </div>
+              <div
+                v-for="(_, index) in volumeSlider.value"
+                :key="index"
+                v-bind="volumeSlider.getThumbProps({ index })"
+              >
+                <input v-bind="volumeSlider.getHiddenInputProps({ index })" />
+              </div>
+            </div>
           </div>
           <NuxtIcon
             name="icon.audio.on"
             class="cursor-pointer text-2xl"
-            @click.stop="volume = 1"
+            @click.stop="setVolume(1)"
           />
         </div>
       </div>
