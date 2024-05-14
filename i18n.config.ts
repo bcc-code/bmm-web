@@ -17,6 +17,6 @@ export default defineI18nConfig(() => ({
     fr,
     sl,
     tr,
-    ta
+    ta,
   },
 }));
