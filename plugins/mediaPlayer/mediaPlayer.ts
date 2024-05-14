@@ -34,6 +34,7 @@ export interface MediaPlayer {
   currentTrack: ComputedRef<UnwrapRef<TrackModel> | undefined>;
   currentPosition: Ref<number>;
   currentTrackDuration: ComputedRef<number>;
+  volume: Ref<number>;
   setQueue: (
     queue: TrackModel[],
     index?: number,
@@ -67,6 +68,8 @@ export const initMediaPlayer = (
 
   let nextStartPosition = 0;
 
+  let volume = ref(1);
+
   function stop() {
     if (activeMedia.value) {
       activeMedia.value.destroy();
@@ -89,6 +92,7 @@ export const initMediaPlayer = (
       nextStartPosition = 0;
     }
     activeMedia.value = createMediaTrack(url, track);
+    activeMedia.value.setVolume(volume.value);
     activeMedia.value.registerSource();
     activeMedia.value.registerEvents();
   }
@@ -193,6 +197,16 @@ export const initMediaPlayer = (
     },
   });
 
+  const volumeComputed = computed({
+    get: () => volume.value,
+    set: (value: number) => {
+      volume.value = value;
+      if (activeMedia.value) {
+        activeMedia.value.setVolume(value);
+      }
+    },
+  });
+
   const hasPrevious = computed(() => queue.value.length > 0);
 
   const jumpToPreviousThreshold = 5; // BMM Mobile & YouTube Music have 5s. Spotify has 3s.
@@ -288,6 +302,7 @@ export const initMediaPlayer = (
     currentTrackDuration: computed(() =>
       activeMedia.value ? activeMedia.value.duration : NaN,
     ),
+    volume: volumeComputed,
     queue: computed(() => queue.value),
     setQueue,
     setQueueShuffled,

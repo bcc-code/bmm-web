@@ -24,6 +24,7 @@ const {
   rewind,
   fastForward,
   repeatStatus,
+  volume,
 } = useNuxtApp().$mediaPlayer;
 
 const onPointerUpProgressBar = (event: PointerEvent) => {
@@ -35,6 +36,10 @@ const onPointerDownProgressBar = () => {
   // TODO: let user drag the progress-bar on mouse-down,
   // update the time while keeping the song playing,
   // and update the players position only on mouse-up.
+};
+const onPointerUpVolumeBar = (event: PointerEvent) => {
+  const rect = (event.currentTarget as Element)?.getBoundingClientRect();
+  volume.value = (event.clientX - rect.left) / rect.width;
 };
 </script>
 
@@ -93,7 +98,7 @@ const onPointerDownProgressBar = () => {
           <svg
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
-            class="width-full h-2 w-full overflow-hidden rounded-full transition-all duration-200 ease-out group-hover:h-3"
+            class="width-full h-2 w-full cursor-pointer overflow-hidden rounded-full transition-all duration-200 ease-out group-hover:h-3"
             @pointerdown="onPointerDownProgressBar"
             @pointerup="onPointerUpProgressBar"
             @click.stop
@@ -191,29 +196,33 @@ const onPointerDownProgressBar = () => {
         <div
           class="flex items-center gap-3 rounded-3xl border border-label-separator px-[16px] py-1.5"
         >
-          <NuxtIcon name="icon.audio.off" class="text-2xl" />
+          <NuxtIcon
+            name="icon.audio.off"
+            class="cursor-pointer text-2xl"
+            @click.stop="volume = 0"
+          />
           <div class="group flex h-3 items-center py-2">
             <svg
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
-              class="width-full h-2 w-full overflow-hidden rounded-full transition-all duration-200 ease-out group-hover:h-3"
-              @pointerdown="onPointerDownProgressBar"
-              @pointerup="onPointerUpProgressBar"
+              class="width-full h-2 w-full cursor-pointer overflow-hidden rounded-full transition-all duration-200 ease-out group-hover:h-3"
+              @pointerup="onPointerUpVolumeBar"
               @click.stop
             >
               <rect width="100%" height="100%" class="fill-background-2" />
               <rect
-                v-if="
-                  Number.isFinite(currentPosition) &&
-                  Number.isFinite(currentTrackDuration)
-                "
-                :width="(currentPosition / currentTrackDuration) * 100 + '%'"
+                v-if="Number.isFinite(volume)"
+                :width="volume * 100 + '%'"
                 height="100%"
                 class="fill-label-1"
               />
             </svg>
           </div>
-          <NuxtIcon name="icon.audio.on" class="text-2xl" />
+          <NuxtIcon
+            name="icon.audio.on"
+            class="cursor-pointer text-2xl"
+            @click.stop="volume = 1"
+          />
         </div>
       </div>
       <div class="absolute left-4 right-4 top-4 z-10 flex justify-between">
