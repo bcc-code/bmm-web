@@ -27,19 +27,65 @@ const {
   volume,
 } = useNuxtApp().$mediaPlayer;
 
-const onPointerUpProgressBar = (event: PointerEvent) => {
-  const rect = (event.currentTarget as Element)?.getBoundingClientRect();
-  currentPosition.value =
-    ((event.clientX - rect.left) / rect.width) * currentTrackDuration.value;
+let trackMouseForPosition = false;
+const newPosition = ref<number | null>(null);
+const positionSvg = ref<HTMLElement | null>(null);
+const updatePosition = (event: PointerEvent) => {
+  if (!positionSvg.value) return;
+  const rect = positionSvg.value?.getBoundingClientRect();
+  const newValue = (event.clientX - rect.left) / rect.width;
+  newPosition.value = Math.min(1, Math.max(newValue, 0));
 };
-const onPointerDownProgressBar = () => {
-  // TODO: let user drag the progress-bar on mouse-down,
-  // update the time while keeping the song playing,
-  // and update the players position only on mouse-up.
+
+const positionOnPointerMove = (event: PointerEvent) => {
+  if (trackMouseForPosition) updatePosition(event);
+};
+const positionOnPointerCancel = () => {
+  trackMouseForPosition = false;
+  if (newPosition.value !== null) {
+    currentPosition.value = newPosition.value * currentTrackDuration.value;
+    newPosition.value = null;
+  }
+};
+const positionOnPointerDown = (event: PointerEvent) => {
+  trackMouseForPosition = true;
+  updatePosition(event);
+};
+const positionOnPointerUp = (event: PointerEvent) => {
+  trackMouseForPosition = false;
+  updatePosition(event);
+  if (newPosition.value !== null) {
+    currentPosition.value = newPosition.value * currentTrackDuration.value;
+    newPosition.value = null;
+  }
+};
+const currentOrNewPosition = computed(() =>
+  newPosition.value === null
+    ? currentPosition.value
+    : newPosition.value * currentTrackDuration.value,
+);
+
+let trackMouseForVolume = false;
+const volumeSvg = ref<HTMLElement | null>(null);
+const updateVolume = (event: PointerEvent) => {
+  if (!volumeSvg.value) return;
+  const rect = volumeSvg.value?.getBoundingClientRect();
+  const newValue = (event.clientX - rect.left) / rect.width;
+  volume.value = Math.min(1, Math.max(newValue, 0));
+};
+const onPointerMoveVolumeBar = (event: PointerEvent) => {
+  if (trackMouseForVolume) updateVolume(event);
+};
+const onPointerCancelVolumeBar = () => {
+  trackMouseForVolume = false;
+};
+const onPointerDownVolumeBar = (event: PointerEvent) => {
+  trackMouseForVolume = true;
+  updateVolume(event);
 };
 const onPointerUpVolumeBar = (event: PointerEvent) => {
-  const rect = (event.currentTarget as Element)?.getBoundingClientRect();
-  volume.value = (event.clientX - rect.left) / rect.width;
+  trackMouseForVolume = false;
+  updateVolume(event);
 };
 </script>
 
@@ -93,23 +139,29 @@ const onPointerUpVolumeBar = (event: PointerEvent) => {
           </TextMarquee>
         </div>
       </div>
-      <div class="px-4 py-2">
-        <div class="group flex h-3 items-center py-2">
+      <div
+        class="group/position px-4 py-2"
+        @pointermove="positionOnPointerMove"
+        @pointercancel="positionOnPointerCancel"
+        @pointerleave="positionOnPointerCancel"
+      >
+        <div class="flex h-3 items-center py-2">
           <svg
+            ref="positionSvg"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
-            class="width-full h-2 w-full cursor-pointer overflow-hidden rounded-full transition-all duration-200 ease-out group-hover:h-3"
-            @pointerdown="onPointerDownProgressBar"
-            @pointerup="onPointerUpProgressBar"
+            class="width-full h-2 w-full cursor-pointer overflow-hidden rounded-full transition-all duration-200 ease-out group-hover/position:h-3"
+            @pointerdown="positionOnPointerDown"
+            @pointerup="positionOnPointerUp"
             @click.stop
           >
             <rect width="100%" height="100%" class="fill-background-2" />
             <rect
               v-if="
-                Number.isFinite(currentPosition) &&
+                Number.isFinite(currentOrNewPosition) &&
                 Number.isFinite(currentTrackDuration)
               "
-              :width="(currentPosition / currentTrackDuration) * 100 + '%'"
+              :width="(currentOrNewPosition / currentTrackDuration) * 100 + '%'"
               height="100%"
               class="fill-label-1"
             />
@@ -117,12 +169,15 @@ const onPointerUpVolumeBar = (event: PointerEvent) => {
         </div>
         <div class="flex justify-between py-0.5 text-sm">
           <span>
-            <TimeDuration :duration="currentPosition"></TimeDuration
+            <TimeDuration :duration="currentOrNewPosition"></TimeDuration
           ></span>
           <span>
             <TimeDuration
               :duration="
-                Math.max(Math.floor(currentTrackDuration) - currentPosition, 0)
+                Math.max(
+                  Math.floor(currentTrackDuration) - currentOrNewPosition,
+                  0,
+                )
               "
             ></TimeDuration
           ></span>
@@ -194,19 +249,24 @@ const onPointerUpVolumeBar = (event: PointerEvent) => {
       </div>
       <div class="px-4 pb-2 pt-5">
         <div
-          class="flex items-center gap-3 rounded-3xl border border-label-separator px-[16px] py-1.5"
+          class="group/volume flex items-center gap-3 rounded-3xl border border-label-separator px-[16px] py-1.5"
+          @pointermove="onPointerMoveVolumeBar"
+          @pointercancel="onPointerCancelVolumeBar"
+          @pointerleave="onPointerCancelVolumeBar"
         >
           <NuxtIcon
             name="icon.audio.off"
             class="cursor-pointer text-2xl"
             @click.stop="volume = 0"
           />
-          <div class="group flex h-3 items-center py-2">
+          <div class="flex h-3 items-center py-2">
             <svg
+              ref="volumeSvg"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
-              class="width-full h-2 w-full cursor-pointer overflow-hidden rounded-full transition-all duration-200 ease-out group-hover:h-3"
+              class="width-full h-2 w-full cursor-pointer overflow-hidden rounded-full transition-all duration-200 ease-out group-hover/volume:h-3"
               @pointerup="onPointerUpVolumeBar"
+              @pointerdown="onPointerDownVolumeBar"
               @click.stop
             >
               <rect width="100%" height="100%" class="fill-background-2" />
