@@ -36,11 +36,6 @@ const [state, send] = useMachine(
     onValueChange(details) {
       const [value] = details.value;
       if (value) volume.value = value / 100;
-      console.log("value is changing to: ", value);
-    },
-    onValueChangeEnd(details) {
-      const [value] = details.value;
-      console.log("value has changed to: ", value);
     },
   }),
 );
@@ -251,28 +246,30 @@ const currentOrNewPosition = computed(() =>
       </div>
       <div class="px-4 pb-2 pt-5">
         <div
-          class="group/volume flex items-center gap-3 rounded-3xl border border-label-separator px-[16px] py-1.5"
+          class="group/volume flex items-center gap-3 rounded-3xl border border-label-separator px-[16px] py-[1px]"
         >
           <NuxtIcon
             name="icon.audio.off"
-            class="cursor-pointer text-2xl"
+            class="my-1.5 cursor-pointer text-2xl"
             @click.stop="setVolume(0)"
           />
           <div
-            class="h-2 w-full cursor-pointer transition-all duration-200 ease-out group-hover/volume:h-3"
+            class="h-8 w-full transition-all duration-200 group-hover/volume:h-9"
           >
             <div
               v-bind="volumeSlider.controlProps"
-              class="h-full overflow-hidden rounded-full"
+              class="h-full cursor-pointer py-3"
             >
-              <div
-                v-bind="volumeSlider.trackProps"
-                class="h-full bg-background-2"
-              >
+              <div class="h-full overflow-hidden rounded-full">
                 <div
-                  v-bind="volumeSlider.rangeProps"
-                  class="h-full bg-label-1"
-                />
+                  v-bind="volumeSlider.trackProps"
+                  class="h-full cursor-pointer bg-background-2"
+                >
+                  <div
+                    v-bind="volumeSlider.rangeProps"
+                    class="h-full cursor-pointer bg-label-1"
+                  />
+                </div>
               </div>
               <div
                 v-for="(_, index) in volumeSlider.value"
