@@ -68,7 +68,7 @@ export const initMediaPlayer = (
 
   let nextStartPosition = 0;
 
-  let volume = ref(1);
+  const volume = ref(1);
 
   function stop() {
     if (activeMedia.value) {

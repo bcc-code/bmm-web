@@ -97,7 +97,6 @@ export default class MediaTrack {
     this.appInsights = appInsights;
 
     this.audioElement = new Audio();
-    this.audioElement.volume = 0.1;
     this.audioElement.autoplay = true;
 
     /* c8 ignore start */
