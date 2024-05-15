@@ -13,7 +13,7 @@ const [positionState, positionSend] = useMachine(
     onValueChange(details) {
       const [value] = details.value;
       if (value) newPosition.value = value;
-      console.log("position is changing to: ", value);
+      console.log("position is changing to: ", value, newPosition.value);
     },
     onValueChangeEnd(details) {
       const [value] = details.value;
@@ -21,7 +21,7 @@ const [positionState, positionSend] = useMachine(
         currentPosition.value = (value / 100) * currentTrackDuration.value;
         newPosition.value = null;
       }
-      console.log("position has changed to: ", value);
+      console.log("position has changed to: ", value, newPosition.value);
     },
   }),
 );
@@ -34,6 +34,15 @@ const currentOrNewPosition = computed(() =>
     ? currentPosition.value
     : (newPosition.value / 100) * currentTrackDuration.value,
 );
+
+watch([currentPosition, currentTrackDuration], () => {
+  if (newPosition.value === null) {
+    const value = (currentPosition.value / currentTrackDuration.value) * 100;
+    console.log("watching position", value, newPosition.value);
+    positionSlider.value.setValue([value]);
+    newPosition.value = null;
+  }
+});
 </script>
 
 <template>
