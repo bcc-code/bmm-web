@@ -28,7 +28,7 @@ const {
 </script>
 
 <template>
-  <div>
+  <div class="flex max-h-full flex-col">
     <div class="px-3 py-6">
       <div class="flex h-60 items-center justify-center">
         <div class="relative z-10 overflow-hidden">
