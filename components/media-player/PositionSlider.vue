@@ -13,7 +13,6 @@ const [positionState, positionSend] = useMachine(
     onValueChange(details) {
       const [value] = details.value;
       if (value) newPosition.value = value;
-      console.log("position is changing to: ", value, newPosition.value);
     },
     onValueChangeEnd(details) {
       const [value] = details.value;
@@ -21,7 +20,6 @@ const [positionState, positionSend] = useMachine(
         currentPosition.value = (value / 100) * currentTrackDuration.value;
         newPosition.value = null;
       }
-      console.log("position has changed to: ", value, newPosition.value);
     },
   }),
 );
@@ -38,7 +36,6 @@ const currentOrNewPosition = computed(() =>
 watch([currentPosition, currentTrackDuration], () => {
   if (newPosition.value === null) {
     const value = (currentPosition.value / currentTrackDuration.value) * 100;
-    console.log("watching position", value, newPosition.value);
     positionSlider.value.setValue([value]);
     newPosition.value = null;
   }
@@ -47,30 +44,33 @@ watch([currentPosition, currentTrackDuration], () => {
 
 <template>
   <div class="group/position px-4 py-2" v-bind="positionSlider.rootProps">
-    <div
-      class="h-6 w-full transition-all duration-200 group-hover/position:h-7"
-    >
+    <div class="flex items-center">
+      <div class="h-7"></div>
       <div
-        v-bind="positionSlider.controlProps"
-        class="h-full cursor-pointer py-2"
+        class="h-6 w-full transition-all duration-200 group-hover/position:h-7"
       >
-        <div class="h-full overflow-hidden rounded-full">
-          <div
-            v-bind="positionSlider.trackProps"
-            class="h-full cursor-pointer bg-background-2"
-          >
-            <div
-              v-bind="positionSlider.rangeProps"
-              class="h-full cursor-pointer bg-label-1"
-            />
-          </div>
-        </div>
         <div
-          v-for="(_, index) in positionSlider.value"
-          :key="index"
-          v-bind="positionSlider.getThumbProps({ index })"
+          v-bind="positionSlider.controlProps"
+          class="h-full cursor-pointer py-2"
         >
-          <input v-bind="positionSlider.getHiddenInputProps({ index })" />
+          <div class="h-full overflow-hidden rounded-full">
+            <div
+              v-bind="positionSlider.trackProps"
+              class="h-full cursor-pointer bg-background-2"
+            >
+              <div
+                v-bind="positionSlider.rangeProps"
+                class="h-full cursor-pointer bg-label-1"
+              />
+            </div>
+          </div>
+          <div
+            v-for="(_, index) in positionSlider.value"
+            :key="index"
+            v-bind="positionSlider.getThumbProps({ index })"
+          >
+            <input v-bind="positionSlider.getHiddenInputProps({ index })" />
+          </div>
         </div>
       </div>
     </div>
