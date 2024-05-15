@@ -1,7 +1,5 @@
 <script setup lang="ts">
 import { MediaPlayerStatus } from "~/plugins/mediaPlayer/mediaPlayer";
-import * as slider from "@zag-js/slider";
-import { normalizeProps, useMachine } from "@zag-js/vue";
 
 const { t } = useI18n();
 
@@ -26,68 +24,11 @@ const {
   rewind,
   fastForward,
   repeatStatus,
-  volume,
 } = useNuxtApp().$mediaPlayer;
-
-const [state, send] = useMachine(
-  slider.machine({
-    id: "volume",
-    value: [volume.value * 100],
-    onValueChange(details) {
-      const [value] = details.value;
-      if (value) volume.value = value / 100;
-    },
-  }),
-);
-const volumeSlider = computed(() =>
-  slider.connect(state.value, send, normalizeProps),
-);
-const setVolume = (value: number) => {
-  volume.value = value;
-  volumeSlider.value.setValue([value * 100]);
-};
-
-let trackMouseForPosition = false;
-const newPosition = ref<number | null>(null);
-const positionSvg = ref<HTMLElement | null>(null);
-const updatePosition = (event: PointerEvent) => {
-  if (!positionSvg.value) return;
-  const rect = positionSvg.value?.getBoundingClientRect();
-  const newValue = (event.clientX - rect.left) / rect.width;
-  newPosition.value = Math.min(1, Math.max(newValue, 0));
-};
-
-const positionOnPointerMove = (event: PointerEvent) => {
-  if (trackMouseForPosition) updatePosition(event);
-};
-const positionOnPointerCancel = () => {
-  trackMouseForPosition = false;
-  if (newPosition.value !== null) {
-    currentPosition.value = newPosition.value * currentTrackDuration.value;
-    newPosition.value = null;
-  }
-};
-const positionOnPointerDown = (event: PointerEvent) => {
-  trackMouseForPosition = true;
-  updatePosition(event);
-};
-const positionOnPointerUp = (event: PointerEvent) => {
-  trackMouseForPosition = false;
-  updatePosition(event);
-  if (newPosition.value !== null) {
-    currentPosition.value = newPosition.value * currentTrackDuration.value;
-    newPosition.value = null;
-  }
-};
-const currentOrNewPosition = computed(() =>
-  newPosition.value === null
-    ? currentPosition.value
-    : newPosition.value * currentTrackDuration.value,
-);
 </script>
 
 <template>
-  <div v-bind="volumeSlider.rootProps">
+  <div>
     <div class="px-3 py-6">
       <div class="flex h-60 items-center justify-center">
         <div class="relative z-10 overflow-hidden">
@@ -136,50 +77,9 @@ const currentOrNewPosition = computed(() =>
           </TextMarquee>
         </div>
       </div>
-      <div
-        class="group/position px-4 py-2"
-        @pointermove="positionOnPointerMove"
-        @pointercancel="positionOnPointerCancel"
-        @pointerleave="positionOnPointerCancel"
-      >
-        <div class="flex h-3 items-center py-2">
-          <svg
-            ref="positionSvg"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            class="width-full h-2 w-full cursor-pointer overflow-hidden rounded-full transition-all duration-200 ease-out group-hover/position:h-3"
-            @pointerdown="positionOnPointerDown"
-            @pointerup="positionOnPointerUp"
-            @click.stop
-          >
-            <rect width="100%" height="100%" class="fill-background-2" />
-            <rect
-              v-if="
-                Number.isFinite(currentOrNewPosition) &&
-                Number.isFinite(currentTrackDuration)
-              "
-              :width="(currentOrNewPosition / currentTrackDuration) * 100 + '%'"
-              height="100%"
-              class="fill-label-1"
-            />
-          </svg>
-        </div>
-        <div class="flex justify-between py-0.5 text-sm">
-          <span>
-            <TimeDuration :duration="currentOrNewPosition"></TimeDuration
-          ></span>
-          <span>
-            <TimeDuration
-              :duration="
-                Math.max(
-                  Math.floor(currentTrackDuration) - currentOrNewPosition,
-                  0,
-                )
-              "
-            ></TimeDuration
-          ></span>
-        </div>
-      </div>
+
+      <MediaPlayerPositionSlider />
+
       <div class="flex justify-evenly px-4 py-2">
         <button
           :class="isLoading ? 'text-label-4 ' : 'border hover:text-3xl'"
@@ -244,49 +144,9 @@ const currentOrNewPosition = computed(() =>
           <NuxtIcon name="icon.skip.large" filled />
         </button>
       </div>
-      <div class="px-4 pb-2 pt-5">
-        <div
-          class="group/volume flex items-center gap-3 rounded-3xl border border-label-separator px-[16px] py-[1px]"
-        >
-          <NuxtIcon
-            name="icon.audio.off"
-            class="my-1.5 cursor-pointer text-2xl"
-            @click.stop="setVolume(0)"
-          />
-          <div
-            class="h-8 w-full transition-all duration-200 group-hover/volume:h-9"
-          >
-            <div
-              v-bind="volumeSlider.controlProps"
-              class="h-full cursor-pointer py-3"
-            >
-              <div class="h-full overflow-hidden rounded-full">
-                <div
-                  v-bind="volumeSlider.trackProps"
-                  class="h-full cursor-pointer bg-background-2"
-                >
-                  <div
-                    v-bind="volumeSlider.rangeProps"
-                    class="h-full cursor-pointer bg-label-1"
-                  />
-                </div>
-              </div>
-              <div
-                v-for="(_, index) in volumeSlider.value"
-                :key="index"
-                v-bind="volumeSlider.getThumbProps({ index })"
-              >
-                <input v-bind="volumeSlider.getHiddenInputProps({ index })" />
-              </div>
-            </div>
-          </div>
-          <NuxtIcon
-            name="icon.audio.on"
-            class="cursor-pointer text-2xl"
-            @click.stop="setVolume(1)"
-          />
-        </div>
-      </div>
+
+      <MediaPlayerVolumeSlider />
+
       <div class="absolute left-4 right-4 top-4 z-10 flex justify-between">
         <div>
           <div
