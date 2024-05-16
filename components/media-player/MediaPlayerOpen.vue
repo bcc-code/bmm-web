@@ -25,21 +25,10 @@ const {
   fastForward,
   repeatStatus,
 } = useNuxtApp().$mediaPlayer;
-
-const onPointerUpProgressBar = (event: PointerEvent) => {
-  const rect = (event.currentTarget as Element)?.getBoundingClientRect();
-  currentPosition.value =
-    ((event.clientX - rect.left) / rect.width) * currentTrackDuration.value;
-};
-const onPointerDownProgressBar = () => {
-  // TODO: let user drag the progress-bar on mouse-down,
-  // update the time while keeping the song playing,
-  // and update the players position only on mouse-up.
-};
 </script>
 
 <template>
-  <div>
+  <div class="flex max-h-full flex-col">
     <div class="px-3 py-6">
       <div class="flex h-60 items-center justify-center">
         <div class="relative z-10 overflow-hidden">
@@ -88,41 +77,9 @@ const onPointerDownProgressBar = () => {
           </TextMarquee>
         </div>
       </div>
-      <div class="px-4 py-2">
-        <div class="group flex h-3 items-center py-2">
-          <svg
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            class="width-full h-2 w-full overflow-hidden rounded-full transition-all duration-200 ease-out group-hover:h-3"
-            @pointerdown="onPointerDownProgressBar"
-            @pointerup="onPointerUpProgressBar"
-            @click.stop
-          >
-            <rect width="100%" height="100%" class="fill-background-2" />
-            <rect
-              v-if="
-                Number.isFinite(currentPosition) &&
-                Number.isFinite(currentTrackDuration)
-              "
-              :width="(currentPosition / currentTrackDuration) * 100 + '%'"
-              height="100%"
-              class="fill-label-1"
-            />
-          </svg>
-        </div>
-        <div class="flex justify-between py-0.5 text-sm">
-          <span>
-            <TimeDuration :duration="currentPosition"></TimeDuration
-          ></span>
-          <span>
-            <TimeDuration
-              :duration="
-                Math.max(Math.floor(currentTrackDuration) - currentPosition, 0)
-              "
-            ></TimeDuration
-          ></span>
-        </div>
-      </div>
+
+      <MediaPlayerPositionSlider />
+
       <div class="flex justify-evenly px-4 py-2">
         <button
           :class="isLoading ? 'text-label-4 ' : 'border hover:text-3xl'"
@@ -187,6 +144,9 @@ const onPointerDownProgressBar = () => {
           <NuxtIcon name="icon.skip.large" filled />
         </button>
       </div>
+
+      <MediaPlayerVolumeSlider />
+
       <div class="absolute left-4 right-4 top-4 z-10 flex justify-between">
         <div>
           <div

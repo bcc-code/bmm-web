@@ -295,6 +295,10 @@ export default class MediaTrack {
     this.audioElement.pause();
   }
 
+  setVolume(volume: number) {
+    this.audioElement.volume = volume;
+  }
+
   endPortion() {
     const time = this.audioElement.currentTime;
     const now = new Date();
