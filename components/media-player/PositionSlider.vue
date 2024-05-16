@@ -34,7 +34,7 @@ const currentOrNewPosition = computed(() =>
 );
 
 watch([currentPosition, currentTrackDuration], () => {
-  if (newPosition.value === null) {
+  if (newPosition.value === null && currentTrackDuration.value > 0) {
     const value = (currentPosition.value / currentTrackDuration.value) * 100;
     positionSlider.value.setValue([value]);
     newPosition.value = null;
