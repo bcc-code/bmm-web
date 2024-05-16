@@ -16,7 +16,7 @@ const [positionState, positionSend] = useMachine(
     },
     onValueChangeEnd(details) {
       const [value] = details.value;
-      if (value) {
+      if (value !== undefined) {
         currentPosition.value = (value / 100) * currentTrackDuration.value;
         newPosition.value = null;
       }

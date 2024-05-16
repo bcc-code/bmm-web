@@ -10,7 +10,7 @@ const [volumeState, volumeSend] = useMachine(
     value: [volume.value * 100],
     onValueChange(details) {
       const [value] = details.value;
-      if (value) volume.value = value / 100;
+      if (value !== undefined) volume.value = value / 100;
     },
   }),
 );
