@@ -13,6 +13,7 @@ const props = withDefaults(
   {
     skeletonCount: 5,
     addDropdownItems: undefined,
+    trackTypeIsKnown: undefined,
   },
 );
 
