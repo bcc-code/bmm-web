@@ -48,6 +48,16 @@ function adjustHighlightText(highlight: Highlighting) {
     .replaceAll("**/", "</span>");
 }
 
+function getSongNumber(track: TrackModel) {
+  if (track.songbookRelations && track.songbookRelations.length > 0) {
+    const rel = track.songbookRelations[0];
+    if (rel) {
+      return `${songbookName(rel.name)} ${rel.id}`;
+    }
+  }
+  return null;
+}
+
 const isPlaying = computed(() => currentTrack.value?.id === props.track.id);
 
 const selectedTrack: Ref<TrackModel | null> = ref(null);
@@ -114,7 +124,9 @@ const selectedTrack: Ref<TrackModel | null> = ref(null);
           {{ track.meta?.title }}
         </h4>
         <span
-          v-if="track.meta?.artist || useDailyPodcastView"
+          v-if="
+            track.meta?.artist || getSongNumber(track) || useDailyPodcastView
+          "
           :title="track.meta?.artist || ''"
           class="block truncate text-[15px] leading-5"
           :class="isPlaying ? 'text-black-1' : 'text-label-2'"
@@ -122,7 +134,13 @@ const selectedTrack: Ref<TrackModel | null> = ref(null);
           {{
             useDailyPodcastView
               ? weekDay(track.publishedAt)
-              : track.meta?.artist
+              : [
+                  getSongNumber(track),
+                  track.meta?.artist,
+                  !isTrackTypeKnown ? track.meta?.album : null,
+                ]
+                  .filter((t) => t)
+                  .join(" - ")
           }}
         </span>
       </div>
