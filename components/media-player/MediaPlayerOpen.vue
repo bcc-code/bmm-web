@@ -222,10 +222,23 @@ const {
                 class="text-sm"
                 :class="queue.index === i ? 'text-black-2' : 'text-label-2'"
               >
-                <span v-if="item?.meta?.artist">
+                <span
+                  v-if="
+                    item?.meta?.artist &&
+                    item?.meta?.artist !== item.meta?.title
+                  "
+                >
                   {{ item.meta?.artist }}
                 </span>
-                <span v-if="item?.meta?.artist && item?.meta?.album"> - </span>
+                <span
+                  v-if="
+                    item?.meta?.artist &&
+                    item?.meta?.artist !== item.meta?.title &&
+                    item?.meta?.album
+                  "
+                >
+                  -
+                </span>
                 <span v-if="item?.meta?.album">
                   {{ item.meta?.album }}
                 </span>
