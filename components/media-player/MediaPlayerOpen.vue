@@ -37,10 +37,13 @@ const {
             class="w-40 rounded-md"
           />
         </div>
+
+        <!-- translate3d is needed to fix flickering in Safari: https://graffino.com/til/how-to-fix-filter-blur-performance-issue-in-safari -->
         <ProtectedImage
           v-if="currentTrack?.meta?.attachedPicture"
           :src="currentTrack?.meta?.attachedPicture"
-          class="absolute top-[59px] z-0 w-[160px] blur-[80px]"
+          class="absolute z-0 w-[160px] blur-[80px]"
+          style="transform: translate3d(0, 0, 0)"
           no-border
         />
       </div>
