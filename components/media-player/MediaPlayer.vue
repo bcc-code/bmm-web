@@ -22,7 +22,7 @@ defineShortcuts({
 <template>
   <div class="shrink-0" :class="{ 'w-[400px]': open }">
     <div
-      class="large-shadow group fixed bottom-5 right-5 flex w-[400px] flex-col overflow-hidden rounded-2xl bg-background-1 transition-all duration-700 ease-out-expo"
+      class="large-shadow group fixed bottom-5 right-5 z-30 flex w-[400px] flex-col overflow-hidden rounded-2xl bg-background-1 transition-all duration-700 ease-out-expo"
       :style="{
         height: open ? 'calc(100vh - 6rem)' : '4.5rem',
       }"
