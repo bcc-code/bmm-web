@@ -1,10 +1,18 @@
 import type { TrackModel } from "@bcc-code/bmm-sdk-fetch";
 
-export default function trackFields(track: TrackModel) {
-  const songBook = track.songbookRelations?.map(
+export function trackSongNumber(track: TrackModel) {
+  return track.songbookRelations?.map(
     (r) => `${songbookName(r.name)} ${r.id}`,
   )[0];
-  const parts = [track.title, songBook, track.meta.artist, track.meta.album];
+}
+
+export default function trackFields(track: TrackModel) {
+  const parts = [
+    track.title,
+    trackSongNumber(track),
+    track.meta.artist,
+    track.meta.album,
+  ];
   const filtered = parts.filter((part) => part);
   return {
     title: filtered[0],
