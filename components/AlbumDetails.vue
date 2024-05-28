@@ -78,7 +78,7 @@ const childTracks = computed(
     <p v-if="childTracks.length" class="py-2 text-label-3">
       {{ t("collection.track-count", childTracks.length) }}
     </p>
-    <TrackList :tracks="childTracks"> </TrackList>
+    <TrackList :tracks="childTracks" album-is-known> </TrackList>
     <p
       v-if="childAlbums.length"
       class="py-2 text-label-3"

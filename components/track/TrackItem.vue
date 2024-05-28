@@ -5,14 +5,20 @@ import { MediaPlayerStatus } from "~/plugins/mediaPlayer/mediaPlayer";
 const { t } = useI18n();
 const { addToQueue, currentTrack, status } = useNuxtApp().$mediaPlayer;
 
-const props = defineProps<{
-  track: TrackModel;
-  showThumbnail?: boolean;
-  isTrackTypeKnown: boolean;
-  useDailyPodcastView?: boolean | undefined;
-  highlight?: Highlighting | undefined;
-  addDropdownItems?: (items: DropdownMenuItem[], track: TrackModel) => void;
-}>();
+const props = withDefaults(
+  defineProps<{
+    track: TrackModel;
+    showThumbnail?: boolean;
+    isTrackTypeKnown: boolean;
+    useDailyPodcastView?: boolean | undefined;
+    highlight?: Highlighting | undefined;
+    addDropdownItems?: (items: DropdownMenuItem[], track: TrackModel) => void;
+    isAlbumKnown?: boolean;
+  }>(),
+  {
+    isAlbumKnown: false,
+  },
+);
 
 defineSlots<{
   default: (props: {}) => any;
@@ -53,7 +59,9 @@ const fields = computed(() => {
     props.track.title,
     trackSongNumber(props.track),
     props.track.meta.artist,
-    props.isTrackTypeKnown ? null : props.track.meta.album,
+    props.isTrackTypeKnown || props.isAlbumKnown
+      ? null
+      : props.track.meta.album,
   ];
   const filtered = parts.filter((part) => part);
 
