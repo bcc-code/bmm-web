@@ -48,6 +48,33 @@ function adjustHighlightText(highlight: Highlighting) {
     .replaceAll("**/", "</span>");
 }
 
+const fields = computed(() => {
+  const parts = [
+    props.track.title,
+    trackSongNumber(props.track),
+    props.track.meta.artist,
+    props.isTrackTypeKnown ? null : props.track.meta.album,
+  ];
+  const filtered = parts.filter((part) => part);
+
+  if (props.useDailyPodcastView) {
+    return {
+      title: filtered[0],
+      subtitle: weekDay(props.track.publishedAt),
+      third: formatDate(props.track.publishedAt),
+    };
+  }
+
+  const third = props.isTrackTypeKnown
+    ? props.track.meta.album
+    : props.track.subtype;
+  return {
+    title: filtered[0],
+    subtitle: filtered.slice(1).join(" - "),
+    third,
+  };
+});
+
 const isPlaying = computed(() => currentTrack.value?.id === props.track.id);
 
 const selectedTrack: Ref<TrackModel | null> = ref(null);
@@ -109,29 +136,17 @@ const selectedTrack: Ref<TrackModel | null> = ref(null);
         <h4
           class="block truncate text-[17px] font-medium leading-6"
           :class="{ 'text-black-1': isPlaying }"
-          :title="track.meta?.title || ''"
+          :title="fields.title || ''"
         >
-          {{ track.meta?.title }}
+          {{ fields.title }}
         </h4>
         <span
-          v-if="
-            track.meta?.artist || trackSongNumber(track) || useDailyPodcastView
-          "
-          :title="track.meta?.artist || ''"
+          v-if="fields.subtitle"
+          :title="fields.subtitle"
           class="block truncate text-[15px] leading-5"
           :class="isPlaying ? 'text-black-1' : 'text-label-2'"
         >
-          {{
-            useDailyPodcastView
-              ? weekDay(track.publishedAt)
-              : [
-                  trackSongNumber(track),
-                  track.meta?.artist,
-                  !isTrackTypeKnown ? track.meta?.album : null,
-                ]
-                  .filter((t) => t)
-                  .join(" - ")
-          }}
+          {{ fields.subtitle }}
         </span>
       </div>
 
@@ -142,23 +157,6 @@ const selectedTrack: Ref<TrackModel | null> = ref(null);
         </span>
       </div>
       <div
-        v-else-if="useDailyPodcastView && track.publishedAt"
-        class="flex min-w-0 items-center"
-      >
-        <span
-          class="truncate"
-          :class="isPlaying ? 'text-black-1' : 'text-label-3'"
-          >{{ formatDate(track.publishedAt) }}</span
-        >
-      </div>
-      <div v-else-if="!isTrackTypeKnown" class="flex min-w-0 items-center">
-        <span
-          class="truncate"
-          :class="isPlaying ? 'text-black-1' : 'text-label-3'"
-          >{{ track.subtype }}</span
-        >
-      </div>
-      <div
         v-else
         class="flex min-w-0 items-center"
         :class="highlight ? 'xl:hidden' : ''"
@@ -166,7 +164,7 @@ const selectedTrack: Ref<TrackModel | null> = ref(null);
         <span
           class="truncate"
           :class="isPlaying ? 'text-black-1' : 'text-label-3'"
-          >{{ track.meta?.album }}</span
+          >{{ fields.third }}</span
         >
       </div>
       <div class="flex items-center">
