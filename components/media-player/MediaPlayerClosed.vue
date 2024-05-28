@@ -34,26 +34,15 @@ const onPointerDownProgressBar = () => {
         class="flex min-w-0 flex-1 flex-col gap-1 truncate whitespace-nowrap"
       >
         <h3
+          v-if="currentTrack"
           class="truncate text-lg font-semibold leading-tight"
-          :title="currentTrack?.title || ''"
+          :title="trackTitleField(currentTrack)"
         >
-          {{ currentTrack?.title }}
+          {{ trackTitleField(currentTrack) }}
         </h3>
         <div class="min-w-0 truncate text-base leading-snug text-label-2">
-          <span
-            v-if="currentTrack?.meta?.artist"
-            :title="currentTrack?.meta?.artist"
-          >
-            {{ currentTrack.meta?.artist }}
-          </span>
-          <span v-if="currentTrack?.meta?.artist && currentTrack?.meta?.album">
-            -
-          </span>
-          <span
-            v-if="currentTrack?.meta?.album"
-            :title="currentTrack?.meta?.album"
-          >
-            {{ currentTrack.meta?.album }}
+          <span v-if="currentTrack" :title="trackSubtitleField(currentTrack)">
+            {{ trackSubtitleField(currentTrack) }}
           </span>
         </div>
       </div>

@@ -50,32 +50,19 @@ const {
       <div class="flex flex-col gap-1 overflow-x-hidden whitespace-nowrap py-3">
         <TextMarquee class="m-auto">
           <h3
+            v-if="currentTrack"
             class="text-lg font-semibold leading-tight"
-            :title="currentTrack?.title || ''"
+            :title="trackTitleField(currentTrack)"
           >
-            {{ currentTrack?.title }}
+            {{ trackTitleField(currentTrack) }}
           </h3>
         </TextMarquee>
         <div
           class="overflow-x-hidden whitespace-nowrap text-base leading-snug text-label-2"
         >
           <TextMarquee class="m-auto">
-            <span
-              v-if="currentTrack?.meta?.artist"
-              :title="currentTrack?.meta?.artist"
-            >
-              {{ currentTrack.meta?.artist }}
-            </span>
-            <span
-              v-if="currentTrack?.meta?.artist && currentTrack?.meta?.album"
-            >
-              -
-            </span>
-            <span
-              v-if="currentTrack?.meta?.album"
-              :title="currentTrack?.meta?.album"
-            >
-              {{ currentTrack.meta?.album }}
+            <span v-if="currentTrack" :title="trackSubtitleField(currentTrack)">
+              {{ trackSubtitleField(currentTrack) }}
             </span>
           </TextMarquee>
         </div>
@@ -220,30 +207,13 @@ const {
             class="flex cursor-pointer justify-between gap-2 rounded-xl px-3 py-2 transition-all duration-500 ease-out hover:bg-background-2"
           >
             <div class="truncate">
-              <div>{{ item.meta?.title || item.title }}</div>
+              <div>{{ trackTitleField(item) }}</div>
               <div
                 class="text-sm"
                 :class="queue.index === i ? 'text-black-2' : 'text-label-2'"
               >
-                <span
-                  v-if="
-                    item?.meta?.artist &&
-                    item?.meta?.artist !== item.meta?.title
-                  "
-                >
-                  {{ item.meta?.artist }}
-                </span>
-                <span
-                  v-if="
-                    item?.meta?.artist &&
-                    item?.meta?.artist !== item.meta?.title &&
-                    item?.meta?.album
-                  "
-                >
-                  -
-                </span>
-                <span v-if="item?.meta?.album">
-                  {{ item.meta?.album }}
+                <span>
+                  {{ trackSubtitleField(item) }}
                 </span>
               </div>
             </div>

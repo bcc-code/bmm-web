@@ -18,11 +18,6 @@ const formatDate = (date: Date) => {
   };
   return new Intl.DateTimeFormat(locale.value, options).format(dateToUtc(date));
 };
-const songbook = (apiName: string | null | undefined) => {
-  if (apiName === "herrens_veier") return "HV";
-  if (apiName === "mandelblomsten") return "FMB";
-  return apiName;
-};
 
 type Field = {
   label: string;
@@ -48,7 +43,7 @@ const extractFields = (track: TrackModel) => {
     items.push({
       label: t("track.details.song-number"),
       text: track.songbookRelations
-        ?.map((r) => `${songbook(r.name)} ${r.id}`)
+        ?.map((r) => `${songbookName(r.name)} ${r.id}`)
         .join(", "),
     });
   if (track.contributors) {
