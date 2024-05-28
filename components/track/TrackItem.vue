@@ -63,7 +63,7 @@ const fields = computed(() => {
       ? null
       : props.track.meta.album,
   ];
-  const filtered = parts.filter((part) => part);
+  const filtered = parts.filter(Boolean);
 
   if (props.useDailyPodcastView) {
     return {

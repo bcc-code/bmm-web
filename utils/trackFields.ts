@@ -13,7 +13,7 @@ export default function trackFields(track: TrackModel) {
     track.meta.artist,
     track.meta.album,
   ];
-  const filtered = parts.filter((part) => part);
+  const filtered = parts.filter(Boolean);
   return {
     title: filtered[0],
     subtitle: filtered.slice(1).join(" - "),
