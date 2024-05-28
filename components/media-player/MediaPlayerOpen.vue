@@ -37,10 +37,13 @@ const {
             class="w-40 rounded-md"
           />
         </div>
+
+        <!-- translate3d is needed to fix flickering in Safari: https://graffino.com/til/how-to-fix-filter-blur-performance-issue-in-safari -->
         <ProtectedImage
           v-if="currentTrack?.meta?.attachedPicture"
           :src="currentTrack?.meta?.attachedPicture"
-          class="absolute top-[59px] z-0 w-[160px] blur-[80px]"
+          class="absolute z-0 w-[160px] blur-[80px]"
+          style="transform: translate3d(0, 0, 0)"
           no-border
         />
       </div>
@@ -222,10 +225,23 @@ const {
                 class="text-sm"
                 :class="queue.index === i ? 'text-black-2' : 'text-label-2'"
               >
-                <span v-if="item?.meta?.artist">
+                <span
+                  v-if="
+                    item?.meta?.artist &&
+                    item?.meta?.artist !== item.meta?.title
+                  "
+                >
                   {{ item.meta?.artist }}
                 </span>
-                <span v-if="item?.meta?.artist && item?.meta?.album"> - </span>
+                <span
+                  v-if="
+                    item?.meta?.artist &&
+                    item?.meta?.artist !== item.meta?.title &&
+                    item?.meta?.album
+                  "
+                >
+                  -
+                </span>
                 <span v-if="item?.meta?.album">
                   {{ item.meta?.album }}
                 </span>
