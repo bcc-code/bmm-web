@@ -50,7 +50,7 @@ const openWindow = (url: string) => {
   });
 
   const previousTrack = {
-    tooltip: "Previous",
+    tooltip: "Previous", // TODO: figure out how to translate the tooltips
     icon: nativeImage.createFromPath(
       path.join(__dirname, "../electron/icons/icon.previous.track.png"),
     ),
