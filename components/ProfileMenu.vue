@@ -58,7 +58,7 @@ const saveAndCloseContentLanguageDialog = () => {
 };
 
 const currentUser = useCurrentUser();
-let user: UserModel = null;
+let user: UserModel | null = null;
 currentUser
   .then((response) => {
     user = response.data.value;
