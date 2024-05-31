@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useAuth0 } from "@auth0/auth0-vue";
+import type { UserModel } from "@bcc-code/bmm-sdk-fetch";
 import { Switch, RadioGroup, RadioGroupOption } from "@headlessui/vue";
 import { VueDraggable } from "vue-draggable-plus";
 
@@ -55,6 +56,14 @@ const saveAndCloseContentLanguageDialog = () => {
   )
     contentLanguageStore().contentLanguages = newLanguages;
 };
+
+const currentUser = useCurrentUser();
+let user: UserModel = null;
+currentUser
+  .then((response) => {
+    user = response.data.value;
+  })
+  .catch((_) => {});
 </script>
 <template>
   <div>
@@ -119,6 +128,13 @@ const saveAndCloseContentLanguageDialog = () => {
               )
             "
             @click="showContentLanguageDialog = true"
+          />
+        </DropdownMenuGroup>
+        <DropdownMenuGroup v-if="user && isUploader(user)">
+          <DropdownMenuItem
+            title="Admin"
+            href="https://bmm.brunstad.org/admin"
+            target="_blank"
           />
         </DropdownMenuGroup>
         <DropdownMenuGroup>
