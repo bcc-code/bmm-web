@@ -1,4 +1,12 @@
-import { app, protocol, shell, dialog, BrowserWindow, net } from "electron";
+import {
+  app,
+  protocol,
+  shell,
+  dialog,
+  BrowserWindow,
+  nativeImage,
+  net,
+} from "electron";
 import * as path from "path";
 import * as fs from "fs/promises";
 import { autoUpdater } from "electron-updater";
@@ -39,6 +47,45 @@ const openWindow = (url: string) => {
     },
     titleBarStyle: process.platform === "darwin" ? "hidden" : "default",
   });
+
+  window.setThumbarButtons([
+    {
+      tooltip: "Previous",
+      icon: nativeImage.createFromPath(
+        path.join(__dirname, "../electron/icon.chevron.double.left.png"),
+      ),
+      click() {
+        window.webContents.send("previous-track");
+      },
+    },
+    {
+      tooltip: "Play",
+      icon: nativeImage.createFromPath(
+        path.join(__dirname, "../electron/icon.play.png"),
+      ),
+      click() {
+        window.webContents.send("play-track");
+      },
+    },
+    {
+      tooltip: "Pause",
+      icon: nativeImage.createFromPath(
+        path.join(__dirname, "../electron/icon.pause.png"),
+      ),
+      click() {
+        window.webContents.send("pause-track");
+      },
+    },
+    {
+      tooltip: "Next",
+      icon: nativeImage.createFromPath(
+        path.join(__dirname, "../electron/icon.chevron.double.right.png"),
+      ),
+      click() {
+        window.webContents.send("next-track");
+      },
+    },
+  ]);
 
   const bounds = store.get("bounds");
   // restoring settings works fine on Mac. Maybe other environments need additional code to deal with changing monitor setups. See https://github.com/electron/electron/issues/526

@@ -82,5 +82,23 @@ export default defineNuxtPlugin(() => {
     navigator.mediaSession.setActionHandler("nexttrack", () => {
       $mediaPlayer.next();
     });
+
+    // Listen to custom events from the main process
+
+    window.addEventListener("previousTrack", () => {
+      $mediaPlayer.previous();
+    });
+
+    window.addEventListener("playTrack", () => {
+      $mediaPlayer.play();
+    });
+
+    window.addEventListener("pauseTrack", () => {
+      $mediaPlayer.pause();
+    });
+
+    window.addEventListener("nextTrack", () => {
+      $mediaPlayer.next();
+    });
   }
 });
