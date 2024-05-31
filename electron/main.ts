@@ -49,21 +49,13 @@ const openWindow = (url: string) => {
     titleBarStyle: process.platform === "darwin" ? "hidden" : "default",
   });
 
-  ipcMain.on("set-thumbar-btns", (event, mode: string) => {
-    if (mode == "playing") {
-      window.setThumbarButtons([previousTrack, pauseTrack, nextTrack]);
-    } else {
-      window.setThumbarButtons([previousTrack, playTrack, nextTrack]);
-    }
-  });
-
   const previousTrack = {
     tooltip: "Previous",
     icon: nativeImage.createFromPath(
       path.join(__dirname, "../electron/icons/icon.previous.track.png"),
     ),
     click() {
-      window.webContents.send("previous-track");
+      window?.webContents.send("previous-track");
     },
   };
 
@@ -73,7 +65,7 @@ const openWindow = (url: string) => {
       path.join(__dirname, "../electron/icons/icon.play.png"),
     ),
     click() {
-      window.webContents.send("play-track");
+      window?.webContents.send("play-track");
     },
   };
 
@@ -83,7 +75,7 @@ const openWindow = (url: string) => {
       path.join(__dirname, "../electron/icons/icon.pause.png"),
     ),
     click() {
-      window.webContents.send("pause-track");
+      window?.webContents.send("pause-track");
     },
   };
 
@@ -93,9 +85,17 @@ const openWindow = (url: string) => {
       path.join(__dirname, "../electron/icons/icon.next.track.png"),
     ),
     click() {
-      window.webContents.send("next-track");
+      window?.webContents.send("next-track");
     },
   };
+
+  ipcMain.on("set-thumbar-btns", (_, mode: string) => {
+    if (mode === "playing") {
+      window?.setThumbarButtons([previousTrack, pauseTrack, nextTrack]);
+    } else {
+      window?.setThumbarButtons([previousTrack, playTrack, nextTrack]);
+    }
+  });
 
   const bounds = store.get("bounds");
   // restoring settings works fine on Mac. Maybe other environments need additional code to deal with changing monitor setups. See https://github.com/electron/electron/issues/526
