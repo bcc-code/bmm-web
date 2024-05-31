@@ -52,7 +52,7 @@ const openWindow = (url: string) => {
     {
       tooltip: "Previous",
       icon: nativeImage.createFromPath(
-        path.join(__dirname, "../electron/icon.chevron.double.left.png"),
+        path.join(__dirname, "../electron/icon.previous.track.png"),
       ),
       click() {
         window.webContents.send("previous-track");
@@ -79,7 +79,7 @@ const openWindow = (url: string) => {
     {
       tooltip: "Next",
       icon: nativeImage.createFromPath(
-        path.join(__dirname, "../electron/icon.chevron.double.right.png"),
+        path.join(__dirname, "../electron/icon.next.track.png"),
       ),
       click() {
         window.webContents.send("next-track");
