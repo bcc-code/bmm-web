@@ -1,4 +1,13 @@
-import { app, protocol, shell, dialog, BrowserWindow, net } from "electron";
+import {
+  app,
+  protocol,
+  shell,
+  dialog,
+  BrowserWindow,
+  nativeImage,
+  net,
+  ipcMain,
+} from "electron";
 import * as path from "path";
 import * as fs from "fs/promises";
 import { autoUpdater } from "electron-updater";
@@ -38,6 +47,54 @@ const openWindow = (url: string) => {
       preload: path.join(__dirname, "preload.js"),
     },
     titleBarStyle: process.platform === "darwin" ? "hidden" : "default",
+  });
+
+  const previousTrack = {
+    tooltip: "Previous", // TODO: figure out how to translate the tooltips
+    icon: nativeImage.createFromPath(
+      path.join(__dirname, "../electron/icons/icon.previous.track.png"),
+    ),
+    click() {
+      window?.webContents.send("previous-track");
+    },
+  };
+
+  const playTrack = {
+    tooltip: "Play",
+    icon: nativeImage.createFromPath(
+      path.join(__dirname, "../electron/icons/icon.play.png"),
+    ),
+    click() {
+      window?.webContents.send("play-track");
+    },
+  };
+
+  const pauseTrack = {
+    tooltip: "Pause",
+    icon: nativeImage.createFromPath(
+      path.join(__dirname, "../electron/icons/icon.pause.png"),
+    ),
+    click() {
+      window?.webContents.send("pause-track");
+    },
+  };
+
+  const nextTrack = {
+    tooltip: "Next",
+    icon: nativeImage.createFromPath(
+      path.join(__dirname, "../electron/icons/icon.next.track.png"),
+    ),
+    click() {
+      window?.webContents.send("next-track");
+    },
+  };
+
+  ipcMain.on("set-thumb-bar-buttons", (_, mode: string) => {
+    if (mode === "playing") {
+      window?.setThumbarButtons([previousTrack, pauseTrack, nextTrack]);
+    } else {
+      window?.setThumbarButtons([previousTrack, playTrack, nextTrack]);
+    }
   });
 
   const bounds = store.get("bounds");
