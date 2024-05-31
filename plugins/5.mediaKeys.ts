@@ -37,9 +37,11 @@ export default defineNuxtPlugin(() => {
         switch (state) {
           case MediaPlayerStatus.Paused:
             navigator.mediaSession.playbackState = "paused";
+            window.electronAPI.setThumbarBtns("paused");
             break;
           case MediaPlayerStatus.Playing:
             navigator.mediaSession.playbackState = "playing";
+            window.electronAPI.setThumbarBtns("playing");
             break;
           case MediaPlayerStatus.Stopped:
             navigator.mediaSession.playbackState = "none";

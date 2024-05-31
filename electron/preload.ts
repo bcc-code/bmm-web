@@ -1,4 +1,4 @@
-import { ipcRenderer } from "electron";
+import { contextBridge, ipcRenderer } from "electron";
 
 window.addEventListener("DOMContentLoaded", () => {
   ipcRenderer.on("route-changed", (_event, url: string) => {
@@ -20,4 +20,10 @@ window.addEventListener("DOMContentLoaded", () => {
   ipcRenderer.on("next-track", () => {
     window.dispatchEvent(new Event("nextTrack"));
   });
+});
+
+contextBridge.exposeInMainWorld("electronAPI", {
+  setThumbarBtns: (mode: string) => {
+    ipcRenderer.send("set-thumbar-btns", mode);
+  },
 });
