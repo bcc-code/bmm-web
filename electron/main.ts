@@ -89,7 +89,7 @@ const openWindow = (url: string) => {
     },
   };
 
-  ipcMain.on("set-thumbar-btns", (_, mode: string) => {
+  ipcMain.on("set-thumb-bar-buttons", (_, mode: string) => {
     if (mode === "playing") {
       window?.setThumbarButtons([previousTrack, pauseTrack, nextTrack]);
     } else {

@@ -23,7 +23,7 @@ window.addEventListener("DOMContentLoaded", () => {
 });
 
 contextBridge.exposeInMainWorld("electronAPI", {
-  setThumbarBtns: (mode: string) => {
-    ipcRenderer.send("set-thumbar-btns", mode);
+  setThumbBarButtons: (mode: string) => {
+    ipcRenderer.send("set-thumb-bar-buttons", mode);
   },
 });

@@ -1,5 +1,5 @@
 export interface IElectronAPI {
-  setThumbarBtns: (mode: string) => Promise<void>;
+  setThumbBarButtons: (mode: string) => Promise<void>;
 }
 
 declare global {
