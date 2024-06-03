@@ -55,6 +55,8 @@ const saveAndCloseContentLanguageDialog = () => {
   )
     contentLanguageStore().contentLanguages = newLanguages;
 };
+
+const { data: user } = useCurrentUser();
 </script>
 <template>
   <div>
@@ -119,6 +121,13 @@ const saveAndCloseContentLanguageDialog = () => {
               )
             "
             @click="showContentLanguageDialog = true"
+          />
+        </DropdownMenuGroup>
+        <DropdownMenuGroup v-if="user && isUploader(user)">
+          <DropdownMenuItem
+            title="Admin"
+            href="https://bmm.brunstad.org/admin"
+            target="_blank"
           />
         </DropdownMenuGroup>
         <DropdownMenuGroup>
