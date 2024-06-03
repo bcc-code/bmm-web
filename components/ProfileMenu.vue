@@ -57,13 +57,7 @@ const saveAndCloseContentLanguageDialog = () => {
     contentLanguageStore().contentLanguages = newLanguages;
 };
 
-const currentUser = useCurrentUser();
-let user: UserModel | null = null;
-currentUser
-  .then((response) => {
-    user = response.data.value;
-  })
-  .catch((_) => {});
+const { data: user } = useCurrentUser();
 </script>
 <template>
   <div>
