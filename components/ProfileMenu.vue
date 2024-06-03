@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import { useAuth0 } from "@auth0/auth0-vue";
-import type { UserModel } from "@bcc-code/bmm-sdk-fetch";
 import { Switch, RadioGroup, RadioGroupOption } from "@headlessui/vue";
 import { VueDraggable } from "vue-draggable-plus";
 
