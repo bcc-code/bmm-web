@@ -1,6 +1,6 @@
 <script setup type="ts">
 const route = useRoute();
-const hasHistory = () => window.history.length > 1; // using a computed() doesn't work on inital load in the Electron app. No idea why.
+const hasHistory = () => window.history.length > 1; // using a computed() doesn't work on inital load in the Electron app. No idea why. See PR #433
 </script>
 <template>
   <header
