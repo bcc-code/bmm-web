@@ -87,7 +87,7 @@ const dropdownMenuItemsForTrack = (track: TrackModel) => {
     icon: "icon.person",
     text: t("track.dropdown.go-to-contributors"),
     clickFunction: () => {
-      if (track.contributors && track.contributors.length > 1) {
+      if (track.contributors && uniqueItems(track.contributors).length > 1) {
         showContributorsList.value = true;
       } else if (track.contributors?.[0]?.id) {
         navigateTo({
