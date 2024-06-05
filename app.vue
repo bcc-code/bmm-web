@@ -5,6 +5,8 @@ const { $appInsights } = useNuxtApp();
 
 const { isLoading, loginWithRedirect, isAuthenticated, error, logout } =
   useAuth0();
+const runtimeConfig = useRuntimeConfig();
+const isElectron = runtimeConfig.public.systemName === "Electron";
 
 // Redirect to new domain for testers that still use the old host name.
 const oldDomain = "bmm-web.brunstad.org";
@@ -13,6 +15,41 @@ if (window.location.origin.endsWith(oldDomain)) {
     .toString()
     .replace(oldDomain, "bmm.bcc.media");
   window.location.href = newPath;
+}
+
+const promptToOpenInDesktopApp = (url: string) =>
+  new Promise((resolve) => {
+    // create temp frame where url will be opened
+    const frame = document.createElement("iframe");
+    frame.name = `_invoker_${Math.random()}`;
+
+    // create temp link and set it's target to temp frame
+    const link = document.createElement("a");
+    link.href = url;
+    link.target = frame.name;
+
+    // frame must be appended to body otherwise link will open in new tab, and might trigger popup blocker
+    document.body.appendChild(frame);
+
+    setTimeout(() => {
+      frame?.parentNode?.removeChild(frame);
+      resolve(null);
+    }, 2000);
+
+    // a simple link.click() did not work in firefox hence we're using dispatchEvent
+    link.dispatchEvent(new MouseEvent("click"));
+  });
+
+if (!isElectron && window.location.pathname.startsWith("/track/")) {
+  // Links to tracks account for 90% of the links shared in the app.
+  // Other links can be annoying when hitting refresh in the browser, since it will prompt the user again.
+  // But /track/* will redirect the user to the album and hitting refresh doesn't cause the prompt to happen again.
+  // As far as I can tell, Spotify also only opens the app for links to tracks.
+  const adjustedLink = window.location
+    .toString()
+    .replace("https://", "bmm://")
+    .replace("http://", "bmm://");
+  promptToOpenInDesktopApp(adjustedLink);
 }
 
 watch(
