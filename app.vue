@@ -113,7 +113,11 @@ useHead({
         <NuxtPage />
       </div>
     </NuxtLayout>
-    <div v-else-if="!isAuthenticated" class="flex h-screen text-center">
+    <div
+      v-else-if="!isAuthenticated"
+      class="flex h-screen text-center"
+      style="-webkit-app-region: drag"
+    >
       <div class="m-auto">
         <SiteLogo size="medium"></SiteLogo>
         <div>{{ $t("login.redirect-message.redirect-info") }}</div>
@@ -127,7 +131,11 @@ useHead({
         </i18n-t>
       </div>
     </div>
-    <div v-else class="flex h-screen text-center">
+    <div
+      v-else
+      class="flex h-screen text-center"
+      style="-webkit-app-region: drag"
+    >
       <div class="m-auto">
         <SiteLogo size="medium"></SiteLogo>
         <div>{{ $t("login.error-message.logout-and-redirect-info") }}</div>
