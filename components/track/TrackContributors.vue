@@ -7,8 +7,14 @@ defineProps<{
 </script>
 
 <template>
-  <div class="rounded-lg bg-background-2">
-    <div v-for="(contributor, index) in track.contributors" :key="index">
+  <div
+    v-if="track.contributors && track.contributors.length > 0"
+    class="rounded-lg bg-background-2"
+  >
+    <div
+      v-for="(contributor, index) in uniqueItems(track.contributors)"
+      :key="index"
+    >
       <NuxtLink
         class="flow-row flex gap-3 rounded-lg p-2 px-5 text-label-1 hover:bg-label-separator"
         :to="{

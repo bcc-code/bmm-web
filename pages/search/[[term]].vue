@@ -138,10 +138,14 @@ function selectHighlighting(trackId: number) {
 
 function playTrack(item: TrackModel) {
   const highlighting = selectHighlighting(item.id);
+  const tracks: TrackModel[] = list.value.filter(
+    (x): x is TrackModel => x.type === "track",
+  );
+  const index = tracks.findIndex((x: TrackModel) => x === item);
   if (highlighting && highlighting.startPositionInSeconds) {
-    setQueue([item], 0, highlighting.startPositionInSeconds);
+    setQueue(tracks, index, highlighting.startPositionInSeconds);
   } else {
-    setQueue([item]);
+    setQueue(tracks, index);
   }
 }
 </script>
