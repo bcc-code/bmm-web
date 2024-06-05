@@ -47,8 +47,8 @@ if (!isElectron && window.location.pathname.startsWith("/track/")) {
   // As far as I can tell, Spotify also only opens the app for links to tracks.
   const adjustedLink = window.location
     .toString()
-    .replace("https://", "bmm://")
-    .replace("http://", "bmm://");
+    .replace("https://", `${config.appProtocol}://`)
+    .replace("http://", `${config.appProtocol}://`);
   promptToOpenInDesktopApp(adjustedLink);
 }
 
