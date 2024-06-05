@@ -11,13 +11,14 @@ toolbarTitleStore().setReactiveToolbarTitle(() => t("track.details.copyright"));
     </h2>
     <p>
       © Worldwide Copyright Stiftelsen Skjulte Skatters Forlag, N-3168
-      Melsomvik, Norge. All tale, sang, musikk og film på bmm.bcc.media er kun
-      til internt og privat bruk for slike som regner seg som med i Den
-      Kristelige Menighet, heretter kalt ”DKM” og/eller Brunstad Christian
-      Church, N-3168 Stokke, Norge, heretter kalt ”BCC”, worldwide.
-      Videresending, kopiering eller annen form for distribusjon enn til eget,
-      privat bruk er ikke tillatt, uansett i hvilket format eller form dette
-      skjer. Dersom det er spørsmål rundt bruk av innholdet på bmm.bcc.media
+      Melsomvik, Norge. All tale, sang, musikk og film på
+      {{ config.websiteDomain }} er kun til internt og privat bruk for slike som
+      regner seg som med i Den Kristelige Menighet, heretter kalt ”DKM” og/eller
+      Brunstad Christian Church, N-3168 Stokke, Norge, heretter kalt ”BCC”,
+      worldwide. Videresending, kopiering eller annen form for distribusjon enn
+      til eget, privat bruk er ikke tillatt, uansett i hvilket format eller form
+      dette skjer. Dersom det er spørsmål rundt bruk av innholdet på
+      {{ config.websiteDomain }}
       eller noe som er publisert av Stiftelsen Skjulte Skatters Forlag, heretter
       kalt 'SSSF', BMM MultiMedia Service GmbH, D-32602 Vlotho-Exter, heretter
       kalt 'BMM' eller disses internasjonale datterselskaper, avdelinger,

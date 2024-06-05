@@ -13,7 +13,7 @@ const oldDomain = "bmm-web.brunstad.org";
 if (window.location.origin.endsWith(oldDomain)) {
   const newPath = window.location
     .toString()
-    .replace(oldDomain, "bmm.bcc.media");
+    .replace(oldDomain, config.websiteDomain);
   window.location.href = newPath;
 }
 
