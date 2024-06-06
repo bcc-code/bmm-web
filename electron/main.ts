@@ -12,10 +12,11 @@ import * as path from "path";
 import * as fs from "fs/promises";
 import { autoUpdater } from "electron-updater";
 import ElectronStore from "electron-store";
+import config from "../utils/config";
 
-const PRODUCTION_APP_PROTOCOL = "bmm";
+const PRODUCTION_APP_PROTOCOL = config.appProtocol;
 const PRODUCTION_APP_PATH = path.join(__dirname);
-const defaultUrl = `${PRODUCTION_APP_PROTOCOL}://bmm.bcc.media`;
+const defaultUrl = `${PRODUCTION_APP_PROTOCOL}://${config.websiteDomain}`;
 let initUrl = defaultUrl;
 let appReadyHasRun = false;
 
