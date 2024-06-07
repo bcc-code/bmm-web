@@ -132,6 +132,10 @@ const { data: user } = useCurrentUser();
         </DropdownMenuGroup>
         <DropdownMenuGroup>
           <DropdownMenuItem
+            :title="$t('download.download')"
+            :to="{ name: 'download' }"
+          />
+          <DropdownMenuItem
             :title="$t('profile.uservoice')"
             href="https://uservoice.bcc.no/?tags=bmm"
             target="_blank"

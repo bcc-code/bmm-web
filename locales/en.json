@@ -76,7 +76,9 @@
     }
   },
   "download": {
+    "get-for-desktop": "Get the BMM app directly on your desktop",
     "download": "Download",
+    "download-now": "Download now",
     "download-bmm-app": "Download the BMM app",
     "download-track": "Download track",
     "mobile": "Mobile",
