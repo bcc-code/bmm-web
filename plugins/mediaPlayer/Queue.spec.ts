@@ -348,4 +348,35 @@ describe("plugin mediaPlayer Queue", () => {
       expect(tracks).eql([track(49)]);
     });
   });
+
+  describe("reordering", () => {
+    it("can reorder the queue", async () => {
+      // Arrange
+      const qObject = ref<Queue | undefined>();
+      const indexes: (number | undefined)[] = [];
+
+      watch(
+        () => qObject.value?.index,
+        (v) => {
+          indexes.push(v);
+        }
+      );
+
+      qObject.value = new Queue(
+        new Array(50).fill(0).map((_, i) => track(i)),
+        0,
+      );
+
+      // Act
+      await flushPromises();
+      const t = qObject.value.at(0);
+      await flushPromises();
+      qObject.value.moveTrack(0, 3);
+      await flushPromises();
+
+      // Assert
+      expect(indexes).eql([0, 3]);
+      expect(qObject.value.at(3)).eql(t)
+    });
+  })
 });
