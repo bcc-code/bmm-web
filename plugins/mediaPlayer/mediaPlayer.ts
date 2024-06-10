@@ -45,7 +45,6 @@ export interface MediaPlayer {
   addNext: (track: TrackModel) => void;
   replaceCurrent: (track: TrackModel) => void;
   repeatStatus: Ref<RepeatStatus>;
-  moveTrack(fromIndex: number, toIndex: number): void;
 }
 
 export const seekOffset = 15;
@@ -280,14 +279,6 @@ export const initMediaPlayer = (
     }
   }
 
-  function moveTrack(fromIndex: number, toIndex: number) {
-    const fromTrack = queue.value.at(fromIndex);
-    if (!fromTrack) return;
-
-    queue.value.splice(fromIndex, 1);
-    queue.value.splice(toIndex, 0, fromTrack);
-  }
-
   return {
     status: computed(() => {
       if (!activeMedia.value) return MediaPlayerStatus.Stopped;
@@ -319,6 +310,5 @@ export const initMediaPlayer = (
     addNext,
     replaceCurrent,
     repeatStatus,
-    moveTrack
   };
 };

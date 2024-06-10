@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { MediaPlayerStatus } from "~/plugins/mediaPlayer/mediaPlayer";
 import { useDraggable } from "vue-draggable-plus";
-import type { TrackModel } from "@bcc-code/bmm-sdk-fetch";
 
 const { t } = useI18n();
 
@@ -26,11 +25,10 @@ const {
   rewind,
   fastForward,
   repeatStatus,
-  moveTrack
 } = useNuxtApp().$mediaPlayer;
 
-function isCurrentTrack(track: TrackModel) {
-  return track.id === currentTrack.value?.id;
+function isCurrentTrack(index: number) {
+  return queue.value.index === index
 }
 
 const queueListElement = ref<HTMLUListElement>()
@@ -40,7 +38,7 @@ useDraggable(queueListElement, queue, {
   onSort({ oldIndex, newIndex }) {
     if(oldIndex === undefined || newIndex === undefined) return
 
-    moveTrack(oldIndex, newIndex)
+    queue.value.moveTrack(oldIndex, newIndex)
   }
 }) 
 </script>
@@ -220,7 +218,7 @@ useDraggable(queueListElement, queue, {
         <li v-for="(item, i) in queue" :key="item.id" @click="queue.index = i">
           <div
             :class="
-              isCurrentTrack(item) ? 'bg-tint text-black-1 hover:bg-tint' : ''
+              isCurrentTrack(i) ? 'bg-tint text-black-1 hover:bg-tint' : ''
             "
             class="flex cursor-pointer justify-between gap-2 rounded-xl px-3 py-2 transition-all duration-500 ease-out hover:bg-background-2"
           >
@@ -228,7 +226,7 @@ useDraggable(queueListElement, queue, {
               <div>{{ trackTitleField(item) }}</div>
               <div
                 class="text-sm"
-                :class="isCurrentTrack(item) ? 'text-black-2' : 'text-label-2'"
+                :class="isCurrentTrack(i) ? 'text-black-2' : 'text-label-2'"
               >
                 <span>
                   {{ trackSubtitleField(item) }}
@@ -239,7 +237,7 @@ useDraggable(queueListElement, queue, {
             <div class="flex items-center justify-between gap-2">
               <TrackMenu :track="item" />
               <NuxtIcon
-                v-if="isCurrentTrack(item) && status !== MediaPlayerStatus.Stopped"
+                v-if="isCurrentTrack(i) && status !== MediaPlayerStatus.Stopped"
                 name="icon.playing.animation"
                 filled
                 class="text-2xl"
@@ -251,7 +249,7 @@ useDraggable(queueListElement, queue, {
           </div>
 
           <hr
-            v-if="!(queue.index - 1 === i || isCurrentTrack(item))"
+            v-if="!(queue.index - 1 === i || isCurrentTrack(i))"
             class="border-label-separator"
           />
         </li>

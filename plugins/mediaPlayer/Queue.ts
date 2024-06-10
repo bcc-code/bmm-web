@@ -44,10 +44,14 @@ export default class Queue extends Array<TrackModel> {
     this.index = index;
   }
 
+  private reevaluateIndex() {
+    this.i = this.findIndex(v => v === this.currentTrack) || 0;
+  }
+
   public shuffle() {
     if (this.sortedArray) return;
 
-    const playingTrack = this.currentTrack;
+
     this.sortedArray = [...this];
     this.sort((a, b) => {
       if (a === this.currentTrack) return -1;
@@ -55,18 +59,29 @@ export default class Queue extends Array<TrackModel> {
       return Math.random() - 0.5;
     });
     this.isShuffled = true;
-    this.i = this.findIndex((v) => v === playingTrack) || 0;
+    
+    this.reevaluateIndex()
   }
 
   public unshuffle() {
     if (!this.sortedArray) return;
 
-    const playingTrack = this.currentTrack;
     this.sortedArray.forEach((el, i) => {
       this[i] = el;
     });
     this.sortedArray = undefined;
     this.isShuffled = false;
-    this.i = this.findIndex((v) => v === playingTrack) || 0;
+
+    this.reevaluateIndex()
+  }
+
+  public moveTrack(fromIndex: number, toIndex: number) {
+    const fromTrack = this.at(fromIndex);
+    if (!fromTrack) return;
+
+    this.splice(fromIndex, 1);
+    this.splice(toIndex, 0, fromTrack);
+
+    this.reevaluateIndex()
   }
 }
