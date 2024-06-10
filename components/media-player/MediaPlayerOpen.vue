@@ -28,19 +28,19 @@ const {
 } = useNuxtApp().$mediaPlayer;
 
 function isCurrentTrack(index: number) {
-  return queue.value.index === index
+  return queue.value.index === index;
 }
 
-const queueListElement = ref<HTMLUListElement>()
+const queueListElement = ref<HTMLUListElement>();
 
 useDraggable(queueListElement, queue, {
   animation: 200,
   onSort({ oldIndex, newIndex }) {
-    if(oldIndex === undefined || newIndex === undefined) return
+    if (oldIndex === undefined || newIndex === undefined) return;
 
-    queue.value.moveTrack(oldIndex, newIndex)
-  }
-}) 
+    queue.value.moveTrack(oldIndex, newIndex);
+  },
+});
 </script>
 
 <template>

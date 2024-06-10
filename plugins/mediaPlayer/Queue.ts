@@ -45,12 +45,11 @@ export default class Queue extends Array<TrackModel> {
   }
 
   private reevaluateIndex() {
-    this.i = this.findIndex(v => v === this.currentTrack) || 0;
+    this.i = this.findIndex((v) => v === this.currentTrack) || 0;
   }
 
   public shuffle() {
     if (this.sortedArray) return;
-
 
     this.sortedArray = [...this];
     this.sort((a, b) => {
@@ -59,8 +58,8 @@ export default class Queue extends Array<TrackModel> {
       return Math.random() - 0.5;
     });
     this.isShuffled = true;
-    
-    this.reevaluateIndex()
+
+    this.reevaluateIndex();
   }
 
   public unshuffle() {
@@ -72,7 +71,7 @@ export default class Queue extends Array<TrackModel> {
     this.sortedArray = undefined;
     this.isShuffled = false;
 
-    this.reevaluateIndex()
+    this.reevaluateIndex();
   }
 
   public moveTrack(fromIndex: number, toIndex: number) {
@@ -82,6 +81,6 @@ export default class Queue extends Array<TrackModel> {
     this.splice(fromIndex, 1);
     this.splice(toIndex, 0, fromTrack);
 
-    this.reevaluateIndex()
+    this.reevaluateIndex();
   }
 }

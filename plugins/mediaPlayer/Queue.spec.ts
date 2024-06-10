@@ -359,7 +359,7 @@ describe("plugin mediaPlayer Queue", () => {
         () => qObject.value?.index,
         (v) => {
           indexes.push(v);
-        }
+        },
       );
 
       qObject.value = new Queue(
@@ -376,7 +376,7 @@ describe("plugin mediaPlayer Queue", () => {
 
       // Assert
       expect(indexes).eql([0, 3]);
-      expect(qObject.value.at(3)).eql(t)
+      expect(qObject.value.at(3)).eql(t);
     });
-  })
+  });
 });
