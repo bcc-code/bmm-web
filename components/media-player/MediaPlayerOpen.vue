@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { MediaPlayerStatus } from "~/plugins/mediaPlayer/mediaPlayer";
+import { useDraggable } from "vue-draggable-plus";
 
 const { t } = useI18n();
 
@@ -25,6 +26,21 @@ const {
   fastForward,
   repeatStatus,
 } = useNuxtApp().$mediaPlayer;
+
+function isCurrentTrack(index: number) {
+  return queue.value.index === index;
+}
+
+const queueListElement = ref<HTMLUListElement>();
+
+useDraggable(queueListElement, queue, {
+  animation: 200,
+  onSort({ oldIndex, newIndex }) {
+    if (oldIndex === undefined || newIndex === undefined) return;
+
+    queue.value.moveTrack(oldIndex, newIndex);
+  },
+});
 </script>
 
 <template>
@@ -198,19 +214,19 @@ const {
           </button>
         </div>
       </div>
-      <ul class="px-3 pb-3">
-        <li v-for="(item, i) in queue" :key="i" @click="queue.index = i">
+      <ul ref="queueListElement" class="px-3 pb-3">
+        <li v-for="(item, i) in queue" :key="item.id" @click="queue.index = i">
           <div
             :class="
-              queue.index === i ? 'bg-tint text-black-1 hover:bg-tint' : ''
+              isCurrentTrack(i) ? 'bg-tint text-black-1 hover:bg-tint' : ''
             "
-            class="flex cursor-pointer justify-between gap-2 rounded-xl px-3 py-2 transition-all duration-500 ease-out hover:bg-background-2"
+            class="flex cursor-row-resize justify-between gap-2 rounded-xl px-3 py-2 transition-all duration-500 ease-out hover:bg-background-2"
           >
             <div class="truncate">
               <div>{{ trackTitleField(item) }}</div>
               <div
                 class="text-sm"
-                :class="queue.index === i ? 'text-black-2' : 'text-label-2'"
+                :class="isCurrentTrack(i) ? 'text-black-2' : 'text-label-2'"
               >
                 <span>
                   {{ trackSubtitleField(item) }}
@@ -221,7 +237,7 @@ const {
             <div class="flex items-center justify-between gap-2">
               <TrackMenu :track="item" />
               <NuxtIcon
-                v-if="queue.index === i && status !== MediaPlayerStatus.Stopped"
+                v-if="isCurrentTrack(i) && status !== MediaPlayerStatus.Stopped"
                 name="icon.playing.animation"
                 filled
                 class="text-2xl"
@@ -233,7 +249,7 @@ const {
           </div>
 
           <hr
-            v-if="!(queue.index - 1 === i || queue.index === i)"
+            v-if="!(queue.index - 1 === i || isCurrentTrack(i))"
             class="border-label-separator"
           />
         </li>
