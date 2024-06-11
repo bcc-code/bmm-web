@@ -37,9 +37,11 @@ export default defineNuxtPlugin(() => {
         switch (state) {
           case MediaPlayerStatus.Paused:
             navigator.mediaSession.playbackState = "paused";
+            window.electronAPI?.setThumbBarButtons("paused");
             break;
           case MediaPlayerStatus.Playing:
             navigator.mediaSession.playbackState = "playing";
+            window.electronAPI?.setThumbBarButtons("playing");
             break;
           case MediaPlayerStatus.Stopped:
             navigator.mediaSession.playbackState = "none";
@@ -80,6 +82,24 @@ export default defineNuxtPlugin(() => {
       $mediaPlayer.previous();
     });
     navigator.mediaSession.setActionHandler("nexttrack", () => {
+      $mediaPlayer.next();
+    });
+
+    // Listen to custom events from the main process
+
+    window.addEventListener("previousTrack", () => {
+      $mediaPlayer.previous();
+    });
+
+    window.addEventListener("playTrack", () => {
+      $mediaPlayer.play();
+    });
+
+    window.addEventListener("pauseTrack", () => {
+      $mediaPlayer.pause();
+    });
+
+    window.addEventListener("nextTrack", () => {
       $mediaPlayer.next();
     });
   }

@@ -1,0 +1,181 @@
+{
+  "global": {
+    "cancel": "Prekliči",
+    "try-again": "Poskusi znova"
+  },
+  "nav": {
+    "home": "Domov",
+    "browse": "Razišči",
+    "playlist": "Seznam predvajanja",
+    "profile": "Profil",
+    "messages": "Govori",
+    "recent-messages": "Najnovejši govori",
+    "recent-music": "Najnovejša glasba",
+    "audiobooks": "Zvočne knjige",
+    "search": "Išči",
+    "album": "Album",
+    "podcast": "Podcast",
+    "contributor": "Ustvarjalec",
+    "contributors": "Ustvarjalci"
+  },
+  "sidebar": {
+    "playlists": {
+      "title": "Seznam predvajanja"
+    }
+  },
+  "share": {
+    "link-copied-message": "Link je kopiran v odložišče"
+  },
+  "profile": {
+    "title": "Profil",
+    "autoplay": "Samodejno predvajanje",
+    "theme": "Tema",
+    "theme-description": "Izberi temo, ki se uporablja za vmesnik.",
+    "app-language": "Jezik",
+    "interface-language": "Jezik vmesnika",
+    "interface-language-description": "Izberi jezik, ki se uporablja za vmesnik.",
+    "select-language": "Izbrani jezik",
+    "content-language": "Jezik vsebine",
+    "content-language-description": "Željeni jezik vsebine, ki jo poslušaš.",
+    "preference-language-1": "Željeni jezik",
+    "preference-language-2": "Drugi jezik",
+    "preference-language-3": "Tretji jezik",
+    "preference-language-4": "{count} jezik",
+    "uservoice": "User voice",
+    "privacy-policy": "Pravilnik o zasebnosti",
+    "contact": "Kontakt",
+    "logout": "Odjava",
+    "theme-dark": "Temno",
+    "theme-light": "Svetlo",
+    "theme-system": "Enako kot sistem",
+    "done": "Končano",
+    "add-another-language": "Dodaj jezik"
+  },
+  "error": {
+    "page-not-found": {
+      "headline": "Napaka",
+      "text": "Se opravičujemo. Ne moremo najti strani \"{path}\"."
+    }
+  },
+  "collection": {
+    "track-count": "{count} skladba | skladbe: {count} ",
+    "album-count": "{count} album | albumi: {count} "
+  },
+  "login": {
+    "error-message": {
+      "contact-info": "Če se ta napaka ne odpravi, {0}.",
+      "contact-link": "stopite v stik z nami",
+      "logout-and-redirect-info": "Nekaj v zvezi s prijavo je šlo narobe:",
+      "manual-logout-and-redirect-info": "Prosim {0}.",
+      "logout-and-redirect-link": "poskusi se prijaviti znova "
+    },
+    "redirect-message": {
+      "redirect-info": "Preusmerjen boš na stran za prijavo.",
+      "manual-redirect-info": "Prosim počakaj ali {0}.",
+      "redirect-link": "klikni za ponovni poskus"
+    }
+  },
+  "download": {
+    "download": "Prenesi",
+    "download-bmm-app": "Prenesi aplikacijo BMM",
+    "download-track": "Prenesi skladbo",
+    "mobile": "telefon",
+    "desktop": "namizje",
+    "os": {
+      "windows": "Windows",
+      "mac_intel": "Mac s procesorjem Intel (izdelan pred letom 2021)",
+      "mac_arm": "novejši Mac (M1, M2, M3, ...)"
+    },
+    "messages-not-allowed": {
+      "title": "Prenos govorov ni na voljo",
+      "description": "Možnost prenosa govorov BMM ni več na voljo. Če potrebuješ govor za določen namen, nas kontaktiraj in razloži svojo željo."
+    },
+    "sendEmailTo": "Pošlji e-pošto na {0}"
+  },
+  "playlist": {
+    "add": "Dodaj seznam predvajanja",
+    "new-playlist": "Novi seznam predvajanja",
+    "name-your-playlist": "Poimenuj svoj seznam predvajanja",
+    "delete-playlist": "Izbriši seznam predvajanja",
+    "delete-playlist-description": "Ali si prepričan, da želiš izbrisati seznam predvajanja? Tega dejanja ni mogoče razveljaviti.",
+    "action": {
+      "shuffle": "Naključno",
+      "add-to-my-playlists": "Dodaj na moje sezname predvajanja",
+      "remove-shared-playlist": "Odstrani seznam predvajanja"
+    },
+    "by-x": "od {name}"
+  },
+  "podcast": {
+    "this-week": "Ta teden",
+    "last-week": "Prejšnji teden",
+    "week-x": "Teden {count}",
+    "action": {
+      "play": "Predvajaj",
+      "follow": "Sledi"
+    }
+  },
+  "player": {
+    "queue": "Čakalna vrsta"
+  },
+  "edit": {
+    "rename": "Preimenuj",
+    "delete": "Izbriši"
+  },
+  "track": {
+    "dropdown": {
+      "play-next": "Predvajaj naslednje",
+      "download": "Prenesi",
+      "go-to-album": "Pojdi na album",
+      "add-to-queue": "Dodaj v čakalno vrsto",
+      "add-to-playlist": "Dodaj na seznam predvajanja",
+      "share": "Deli skladbo",
+      "go-to-contributors": "Pojdi na ustvarjalce",
+      "more-info": "Več informacij",
+      "show-all": "Prikaži vse",
+      "remove-from-playlist": "Odstrani s seznama predvajanja"
+    },
+    "a11y": {
+      "download": "Prenesi",
+      "queue": "Dodaj v čakalno vrsto",
+      "options": "Pokaži možnosti"
+    },
+    "details": {
+      "reference": "Referenca",
+      "duration": "Trajanje",
+      "publish-date": "Datum objave",
+      "album": "Album",
+      "publisher": "Založnik",
+      "copyright": "Avtorske pravice",
+      "song-number": "Številka pesmi",
+      "arranger": "Aranžer",
+      "composer": "Skladatelj",
+      "lyricist": "Avtor besedila"
+    }
+  },
+  "home": {
+    "list": {
+      "see-all": "Poglej vse",
+      "recommended": "Priporočeno"
+    }
+  },
+  "search": {
+    "search-filter": {
+      "All": "Vse",
+      "Speeches": "Govori",
+      "Music": "Glasba",
+      "Albums": "Albumi",
+      "Contributors": "Ustvarjalci",
+      "Podcasts": "Podcasti",
+      "Playlists": "Seznam predvajanja"
+    },
+    "input-placeholder": "Išči",
+    "loading-results": "Nalaganje rezultatov",
+    "no-results-yet": "Ni še rezultatov",
+    "no-results-found": "Ni najdenih rezultatov",
+    "result-count": "Rezultati: {count} "
+  },
+  "streak": {
+    "your-streak": "Tvoj  niz ta teden",
+    "days-in-row": "Zaporedni dnevi: {count} "
+  }
+}

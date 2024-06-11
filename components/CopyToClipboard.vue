@@ -6,6 +6,8 @@ const props = defineProps<{
 }>();
 
 const { t } = useI18n();
+const runtimeConfig = useRuntimeConfig();
+const isElectron = runtimeConfig.public.systemName === "Electron";
 
 const router = useRouter();
 const showToast = ref(false);
@@ -13,8 +15,12 @@ const showToast = ref(false);
 const copyToClipboard = () => {
   showToast.value = true;
 
+  const domain = isElectron
+    ? `https://${config.websiteDomain}`
+    : window.location.origin;
+
   navigator.clipboard.writeText(
-    `${window.location.origin}${router.resolve(props.link).href}`,
+    `${domain}${router.resolve(props.link).href.replace("/./", "/")}`, // not sure why Electron adds /. at the beginning
   );
 
   setTimeout(() => {

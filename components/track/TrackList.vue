@@ -6,18 +6,23 @@ const props = withDefaults(
     showSkeleton?: boolean;
     skeletonCount?: number;
     tracks: TrackModel[] | null;
-    trackTypeIsKnown: boolean | null;
+    trackTypeIsKnown?: boolean;
+    albumIsKnown?: boolean;
+    showThumbnails?: boolean;
+    addDropdownItems?: (items: DropdownMenuItem[], track: TrackModel) => void;
   }>(),
   {
     skeletonCount: 5,
-    trackTypeIsKnown: null,
+    addDropdownItems: undefined,
+    trackTypeIsKnown: undefined,
+    albumIsKnown: false,
   },
 );
 
 const { setQueue } = useNuxtApp().$mediaPlayer;
 
 const isTrackTypeKnown = () => {
-  if (props.trackTypeIsKnown !== null) return props.trackTypeIsKnown;
+  if (props.trackTypeIsKnown !== undefined) return props.trackTypeIsKnown;
   const firstType = props.tracks?.[0]?.subtype;
   return (
     props.tracks?.every(
@@ -47,7 +52,9 @@ const isTrackTypeKnown = () => {
         :key="track.id"
         :track="track"
         :is-track-type-known="isTrackTypeKnown()"
-        show-thumbnail
+        :show-thumbnail="showThumbnails"
+        :add-dropdown-items="props.addDropdownItems"
+        :is-album-known="props.albumIsKnown"
         @play-track="setQueue(tracks, i)"
       >
       </TrackItem>

@@ -42,7 +42,7 @@ jobs:
         env:
           NUXT_PUBLIC_APPLICATION_INSIGHTS: ${{ vars.NUXT_PUBLIC_APPLICATION_INSIGHTS }}
 
-      - name: Building the Electron app for Mac
+      - name: Package the Electron app for Mac
         run: pnpm package:electron
         if: matrix.os == 'macos-latest'
         env:
@@ -53,9 +53,22 @@ jobs:
           APPLE_ID_PASSWORD: ${{secrets.BCCM_APPLE_APP_SPECIFIC_PASSWORD}}
           APPLE_TEAM_ID: KJ6LCYQ3A8
 
-      - name: Building the Electron app for Windows or Linux
+      - name: Package the Electron app for Linux
         run: pnpm package:electron
-        if: matrix.os != 'macos-latest'
+        if: matrix.os == 'ubuntu-latest'
+
+      - name: Install AzureSignTool
+        run: dotnet tool install -g AzureSignTool
+        if: matrix.os == 'windows-latest'
+        shell: bash
+
+      - name: Package the Electron app for Windows
+        run: pnpm package:electron
+        if: matrix.os == 'windows-latest'
+        env:
+          WINDOWS_DIRECTORY_ID: ${{ secrets.BCCM_WINDOWS_DIRECTORY_ID }}
+          WINDOWS_CLIENT_ID: ${{ secrets.BCCM_WINDOWS_CLIENT_ID }}
+          WINDOWS_CLIENT_SECRET: ${{ secrets.BCCM_WINDOWS_CLIENT_SECRET }}
 
       - name: Archive production artifacts
         uses: actions/upload-artifact@v3

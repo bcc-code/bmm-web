@@ -1,12 +1,22 @@
-import { app, protocol, shell, dialog, BrowserWindow, net } from "electron";
+import {
+  app,
+  protocol,
+  shell,
+  dialog,
+  BrowserWindow,
+  nativeImage,
+  net,
+  ipcMain,
+} from "electron";
 import * as path from "path";
 import * as fs from "fs/promises";
 import { autoUpdater } from "electron-updater";
 import ElectronStore from "electron-store";
+import config from "../utils/config";
 
-const PRODUCTION_APP_PROTOCOL = "bmm";
+const PRODUCTION_APP_PROTOCOL = config.appProtocol;
 const PRODUCTION_APP_PATH = path.join(__dirname);
-const defaultUrl = `${PRODUCTION_APP_PROTOCOL}://bmm.brunstad.org`;
+const defaultUrl = `${PRODUCTION_APP_PROTOCOL}://${config.websiteDomain}`;
 let initUrl = defaultUrl;
 let appReadyHasRun = false;
 
@@ -40,13 +50,64 @@ const openWindow = (url: string) => {
     titleBarStyle: process.platform === "darwin" ? "hidden" : "default",
   });
 
+  const previousTrack = {
+    tooltip: "Previous", // TODO: figure out how to translate the tooltips
+    icon: nativeImage.createFromPath(
+      path.join(__dirname, "../electron/icons/icon.previous.track.png"),
+    ),
+    click() {
+      window?.webContents.send("previous-track");
+    },
+  };
+
+  const playTrack = {
+    tooltip: "Play",
+    icon: nativeImage.createFromPath(
+      path.join(__dirname, "../electron/icons/icon.play.png"),
+    ),
+    click() {
+      window?.webContents.send("play-track");
+    },
+  };
+
+  const pauseTrack = {
+    tooltip: "Pause",
+    icon: nativeImage.createFromPath(
+      path.join(__dirname, "../electron/icons/icon.pause.png"),
+    ),
+    click() {
+      window?.webContents.send("pause-track");
+    },
+  };
+
+  const nextTrack = {
+    tooltip: "Next",
+    icon: nativeImage.createFromPath(
+      path.join(__dirname, "../electron/icons/icon.next.track.png"),
+    ),
+    click() {
+      window?.webContents.send("next-track");
+    },
+  };
+
+  ipcMain.on("set-thumb-bar-buttons", (_, mode: string) => {
+    if (mode === "playing") {
+      window?.setThumbarButtons([previousTrack, pauseTrack, nextTrack]);
+    } else {
+      window?.setThumbarButtons([previousTrack, playTrack, nextTrack]);
+    }
+  });
+
   const bounds = store.get("bounds");
   // restoring settings works fine on Mac. Maybe other environments need additional code to deal with changing monitor setups. See https://github.com/electron/electron/issues/526
   if (bounds) window.setBounds(bounds);
 
   window.webContents.on("will-navigate", (e, _url) => {
-    // Some links from the API have the fixed domain `bmm.brunstad.org` on the `http(s)` protocol. Use our router instead of navigating (which means reloading the "app").
-    if (/^https?:\/\/bmm\.brunstad\.org\//.test(_url)) {
+    // Some links from the API have the fixed domain `bmm.bcc.media` on the `http(s)` protocol. Use our router instead of navigating (which means reloading the "app").
+    if (
+      /^https?:\/\/bmm\.brunstad\.org\//.test(_url) ||
+      /^https?:\/\/bmm\.bcc\.media\//.test(_url)
+    ) {
       e.preventDefault();
       navigateToUri(window!, removeUrlOrigin(_url));
       return;

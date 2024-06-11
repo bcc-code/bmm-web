@@ -1,6 +1,7 @@
 {
   "global": {
-    "cancel": "Cancel"
+    "cancel": "Cancel",
+    "try-again": "Try again"
   },
   "nav": {
     "home": "Home",
@@ -42,6 +43,7 @@
     "preference-language-3": "Third language",
     "preference-language-4": "{count}th language",
     "uservoice": "User Voice",
+    "privacy-policy": "Privacy Policy",
     "contact": "Contact",
     "logout": "Sign out",
     "theme-dark": "Dark",
@@ -74,6 +76,23 @@
       "redirect-link": "click to try again"
     }
   },
+  "download": {
+    "download": "Download",
+    "download-bmm-app": "Download the BMM app",
+    "download-track": "Download track",
+    "mobile": "Mobile",
+    "desktop": "Desktop",
+    "os": {
+      "windows": "Windows",
+      "mac_intel": "Mac with Intel CPU (produced before 2021)",
+      "mac_arm": "newer Mac (M1, M2, M3, ...)"
+    },
+    "messages-not-allowed": {
+      "title": "Download of messages unavailable",
+      "description": "The ability to download messages from BMM is no longer available. If you need a message for a specific use, please contact us and explain your needs."
+    },
+    "sendEmailTo": "Send email to {0}"
+  },
   "playlist": {
     "add": "Add playlist",
     "new-playlist": "New playlist",
@@ -81,10 +100,16 @@
     "delete-playlist": "Delete playlist",
     "delete-playlist-description": "Are you sure you want to delete the playlist? This action cannot be reversed.",
     "action": {
-      "shuffle": "Shuffle"
-    }
+      "shuffle": "Shuffle",
+      "add-to-my-playlists": "Add to my playlists",
+      "remove-shared-playlist": "Remove playlist"
+    },
+    "by-x": "by {name}"
   },
   "podcast": {
+    "this-week": "This week",
+    "last-week": "Last week",
+    "week-x": "Week {count}",
     "action": {
       "play": "Play",
       "follow": "Follow"
@@ -100,13 +125,15 @@
   "track": {
     "dropdown": {
       "play-next": "Play next",
+      "download": "Download",
       "go-to-album": "Go to album",
       "add-to-queue": "Add to queue",
       "add-to-playlist": "Add to playlist",
       "share": "Share track",
       "go-to-contributors": "Go to contributors",
       "more-info": "More information",
-      "show-all": "Show all"
+      "show-all": "Show all",
+      "remove-from-playlist": "Remove from playlist"
     },
     "a11y": {
       "download": "Download",
@@ -143,7 +170,7 @@
       "Playlists": "Playlists"
     },
     "input-placeholder": "Search",
-    "loading-results": "loading results",
+    "loading-results": "Loading results",
     "no-results-yet": "No results yet",
     "no-results-found": "No results found",
     "result-count": "{count} results"

@@ -22,7 +22,7 @@ const selectList = async (playlistId: number, trackId: number) => {
     if (e instanceof ResponseError && e.response instanceof Response) {
       const res = await e.response.text();
       if (res.includes("TrackAlreadyInTrackCollection:")) {
-        console.error("The track is alreday in the playlist");
+        console.error("The track is already in the playlist");
       } else {
         console.error(
           "The server responded with an error when adding a track to a playlist.",

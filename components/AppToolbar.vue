@@ -1,6 +1,6 @@
 <script setup type="ts">
 const route = useRoute();
-const showBackButton = computed(() => globalThis.history.length > 1 && route.name !== "index" && route.name !== "search-term" && route.name !== "browse");
+const hasHistory = () => window.history.length > 1; // using a computed() doesn't work on inital load in the Electron app. No idea why. See PR #433
 </script>
 <template>
   <header
@@ -13,7 +13,12 @@ const showBackButton = computed(() => globalThis.history.length > 1 && route.nam
         style="-webkit-app-region: no-drag"
       ></div>
       <div
-        v-if="showBackButton"
+        v-if="
+          hasHistory &&
+          route.name !== 'index' &&
+          route.name !== 'search-term' &&
+          route.name !== 'browse'
+        "
         class="cursor-pointer p-4"
         style="-webkit-app-region: no-drag"
         @click="$router.back()"
@@ -28,7 +33,10 @@ const showBackButton = computed(() => globalThis.history.length > 1 && route.nam
       </strong>
     </div>
 
-    <div class="mx-6 my-4 flex flex-row" style="-webkit-app-region: no-drag">
+    <div
+      class="mx-6 flex flex-row items-center"
+      style="-webkit-app-region: no-drag"
+    >
       <ProfileMenu />
     </div>
   </header>

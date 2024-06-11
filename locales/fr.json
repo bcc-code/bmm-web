@@ -1,0 +1,181 @@
+{
+  "global": {
+    "cancel": "Annuler",
+    "try-again": "Réessayer"
+  },
+  "nav": {
+    "home": "Accueil",
+    "browse": "Parcourir",
+    "playlist": "Liste de lecture",
+    "profile": "Profil",
+    "messages": "Messages",
+    "recent-messages": "Derniers Messages",
+    "recent-music": "Musique récente",
+    "audiobooks": "Livres audio",
+    "search": "Recherche",
+    "album": "Album",
+    "podcast": "Podcast",
+    "contributor": "Contributeur",
+    "contributors": "Contributeurs"
+  },
+  "sidebar": {
+    "playlists": {
+      "title": "Listes de lecture"
+    }
+  },
+  "share": {
+    "link-copied-message": "Copie du lien dans le presse-papiers"
+  },
+  "profile": {
+    "title": "Profil",
+    "autoplay": "Lecture automatique",
+    "theme": "Thème",
+    "theme-description": "Sélectionnez le thème utilisé pour l'interface.",
+    "app-language": "Langue",
+    "interface-language": "Langue de l'interface",
+    "interface-language-description": "Sélectionnez la langue utilisée pour l'interface.",
+    "select-language": "Sélection de la langue",
+    "content-language": "Langue du contenu",
+    "content-language-description": "La langue préférée pour le contenu que vous écoutez.",
+    "preference-language-1": "Langue préférée",
+    "preference-language-2": "Seconde langue",
+    "preference-language-3": "Troisième langue",
+    "preference-language-4": "{count}ème langue",
+    "uservoice": "Guide de l'utilisateur",
+    "privacy-policy": "Politique de confidentialité",
+    "contact": "Contact",
+    "logout": "Se déconnecter",
+    "theme-dark": "Sombre",
+    "theme-light": "Clair",
+    "theme-system": "Identique au système",
+    "done": "Terminé",
+    "add-another-language": "Ajouter une autre langue"
+  },
+  "error": {
+    "page-not-found": {
+      "headline": "Erreur",
+      "text": "Désolé. Nous ne trouvons pas la page «{path}»."
+    }
+  },
+  "collection": {
+    "track-count": "{count} piste | {count} pistes",
+    "album-count": "{count} album | {count} albums"
+  },
+  "login": {
+    "error-message": {
+      "contact-info": "Si l'erreur persiste, {0}.",
+      "contact-link": "veuillez nous contacter",
+      "logout-and-redirect-info": "Une erreur s'est produite lors de la connexion :",
+      "manual-logout-and-redirect-info": "Veuillez  {0}.",
+      "logout-and-redirect-link": "essayer de vous connecter à nouveau"
+    },
+    "redirect-message": {
+      "redirect-info": "Vous serez redirigé vers la page de connexion.",
+      "manual-redirect-info": "Veuillez patienter ou {0}.",
+      "redirect-link": "cliquez pour réessayer"
+    }
+  },
+  "download": {
+    "download": "Télécharger",
+    "download-bmm-app": "Télécharger l'application BMM",
+    "download-track": "Télécharger piste",
+    "mobile": "Mobile",
+    "desktop": "Bureau",
+    "os": {
+      "windows": "Windows",
+      "mac_intel": "Mac avec processeur Intel (produit avant 2021)",
+      "mac_arm": "Mac plus récent (M1, M2, M3, ...)"
+    },
+    "messages-not-allowed": {
+      "title": "Téléchargement des messages indisponible",
+      "description": "La fonctionnalité de téléchargement des messages de BMM n'est plus disponible. Si vous avez besoin d'un message pour un usage spécifique, veuillez nous contacter et nous expliquer vos besoins."
+    },
+    "sendEmailTo": "Envoyer un courriel à {0}"
+  },
+  "playlist": {
+    "add": "Ajouter une liste de lecture",
+    "new-playlist": "Nouvelle playlist",
+    "name-your-playlist": "Nommez votre liste de lecture",
+    "delete-playlist": "Supprimer la liste de lecture",
+    "delete-playlist-description": "Êtes-vous sûr de vouloir supprimer la liste de lecture ? Cette action ne peut pas être annulée.",
+    "action": {
+      "shuffle": "Aléatoire",
+      "add-to-my-playlists": "Ajouter à mes playlists",
+      "remove-shared-playlist": "Supprimer la playlist"
+    },
+    "by-x": "par {name}"
+  },
+  "podcast": {
+    "this-week": "Cette semaine",
+    "last-week": "Semaine dernière",
+    "week-x": "Semaine {count}",
+    "action": {
+      "play": "Lecture",
+      "follow": "Suivre"
+    }
+  },
+  "player": {
+    "queue": "File d'attente"
+  },
+  "edit": {
+    "rename": "Renommer",
+    "delete": "Supprimer"
+  },
+  "track": {
+    "dropdown": {
+      "play-next": "Lecture suivante",
+      "download": "Télécharger",
+      "go-to-album": "Aller à l'album",
+      "add-to-queue": "Ajouter à la file d'attente",
+      "add-to-playlist": "Ajouter à la liste de lecture",
+      "share": "Partager le titre",
+      "go-to-contributors": "Aller à l'artiste",
+      "more-info": "Plus d'informations",
+      "show-all": "Tout afficher",
+      "remove-from-playlist": "Supprimer de la liste de lecture"
+    },
+    "a11y": {
+      "download": "Télécharger",
+      "queue": "Ajouter à la file d'attente",
+      "options": "Afficher les options"
+    },
+    "details": {
+      "reference": "Référence",
+      "duration": "Durée",
+      "publish-date": "Date de publication",
+      "album": "Album",
+      "publisher": "Éditeur",
+      "copyright": "Droits d'auteur",
+      "song-number": "Numéro de chant",
+      "arranger": "Arrangement",
+      "composer": "Compositeur",
+      "lyricist": "Auteur"
+    }
+  },
+  "home": {
+    "list": {
+      "see-all": "Voir tout",
+      "recommended": "Recommandé"
+    }
+  },
+  "search": {
+    "search-filter": {
+      "All": "Tous",
+      "Speeches": "Discours",
+      "Music": "Musique",
+      "Albums": "Albums",
+      "Contributors": "Contributeurs",
+      "Podcasts": "Podcasts",
+      "Playlists": "Listes de lecture"
+    },
+    "input-placeholder": "Recherche",
+    "loading-results": "Chargement des résultats",
+    "no-results-yet": "Aucun résultat pour l'instant",
+    "no-results-found": "Aucun résultat trouvé",
+    "result-count": "{count} résultats"
+  },
+  "streak": {
+    "your-streak": "Enchaînement de la semaine",
+    "days-in-row": "{count} jours d'affilée"
+  }
+}

@@ -43,7 +43,7 @@ const getDays = (item: CurrentWeeksStreakVm) => [
     <div class="flex flex-row items-center gap-1">
       <div
         v-for="day in getDays(item)"
-        v-bind:key="day.day"
+        :key="day.day"
         class="flex aspect-square items-center justify-center rounded-full p-2"
         :class="item.dayOfTheWeek === day.day ? 'bg-background-2' : ''"
       >

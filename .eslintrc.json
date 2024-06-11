@@ -101,11 +101,13 @@
     "@intlify/vue-i18n/valid-message-syntax": "warn",
     "@intlify/vue-i18n/no-duplicate-keys-in-locale": "warn",
     "@intlify/vue-i18n/no-missing-keys-in-other-locales": "warn",
+    "@intlify/vue-i18n/no-raw-text": "warn",
     "@intlify/vue-i18n/no-dynamic-keys": "warn",
     "@intlify/vue-i18n/no-unused-keys": [
       "warn",
       { "extensions": [".vue", ".ts"] }
-    ]
+    ],
+    "vue/no-v-html": "off"
   },
   "settings": {
     "import/core-modules": ["#app"],

@@ -1,34 +1,33 @@
 <script lang="ts" setup>
-import type { NuxtIconName } from "#build//nuxt-icons";
-import type { RoutesNamedLocations } from "#build/typed-router";
 import type { TrackModel } from "@bcc-code/bmm-sdk-fetch";
-import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/vue";
 
+const runtimeConfig = useRuntimeConfig();
 const { t } = useI18n();
+const { $appInsights } = useNuxtApp();
 const { addNext, addToQueue } = useNuxtApp().$mediaPlayer;
 
 const copyToClipboardComponent = ref<null | { copyToClipboard: () => void }>(
   null,
 );
 
-withDefaults(
+const props = withDefaults(
   defineProps<{
     track: TrackModel;
     buttonClass?: string;
+    addDropdownItems?: (items: DropdownMenuItem[], track: TrackModel) => void;
   }>(),
   {
     buttonClass: "",
+    addDropdownItems: undefined,
   },
 );
-
-type DropdownMenuItem = {
-  text: string;
-  icon?: NuxtIconName;
-} & ({ link: RoutesNamedLocations } | { clickFunction: Function });
 
 const showInfo = ref(false);
 const showAddToPlaylist = ref(false);
 const showContributorsList = ref(false);
+
+const { download } = useWebDownload();
+const showDownloadDialog = ref(false);
 
 const dropdownMenuItemsForTrack = (track: TrackModel) => {
   const items: DropdownMenuItem[] = [];
@@ -44,6 +43,22 @@ const dropdownMenuItemsForTrack = (track: TrackModel) => {
       icon: "icon.category.album",
       text: t("track.dropdown.go-to-album"),
       link: { name: "album-id", params: { id: track.meta.parent.id } },
+    });
+  }
+
+  if (runtimeConfig.public.systemName !== "Electron") {
+    items.push({
+      icon: "icon.download",
+      text: t("track.dropdown.download"),
+      clickFunction: async () => {
+        const result = await download(track);
+        if (result === "no-permission") {
+          $appInsights.event("denied downloading track", { trackId: track.id });
+          showDownloadDialog.value = true;
+        } else {
+          $appInsights.event("track downloaded", { trackId: track.id });
+        }
+      },
     });
   }
 
@@ -72,7 +87,7 @@ const dropdownMenuItemsForTrack = (track: TrackModel) => {
     icon: "icon.person",
     text: t("track.dropdown.go-to-contributors"),
     clickFunction: () => {
-      if (track.contributors && track.contributors.length > 1) {
+      if (track.contributors && uniqueItems(track.contributors).length > 1) {
         showContributorsList.value = true;
       } else if (track.contributors?.[0]?.id) {
         navigateTo({
@@ -90,57 +105,38 @@ const dropdownMenuItemsForTrack = (track: TrackModel) => {
     },
   });
 
+  if (props.addDropdownItems) {
+    props.addDropdownItems(items, track);
+  }
+
   return items;
 };
 </script>
 
 <template>
-  <Menu
-    as="div"
-    class="relative flex flex-col justify-center text-left"
-    :class="$attrs.class"
-    @click.stop
-  >
-    <MenuButton
-      as="button"
+  <DropdownMenu placement="bottom-end" v-bind="$attrs" @click.stop>
+    <button
       :aria-label="t('track.a11y.options')"
       class="rounded-full p-1 hover:bg-background-2 hover:text-label-1"
       :class="buttonClass"
     >
       <NuxtIcon name="options" class="text-xl" />
-    </MenuButton>
+    </button>
 
-    <MenuItems
-      as="ul"
-      class="absolute right-0 top-10 z-30 whitespace-nowrap rounded-xl bg-background-3 p-1 shadow-[0_4px_12px_0_#0000000D,0_1px_4px_0_#0000000D,0_0_0_1px_#0000000D]"
-    >
-      <div class="py-0">
-        <MenuItem
+    <template #items>
+      <DropdownMenuGroup>
+        <DropdownMenuItem
           v-for="item in dropdownMenuItemsForTrack(track)"
           :key="item.text"
-          as="li"
-          class="hover:text-black block w-full cursor-pointer rounded-lg text-label-1 hover:bg-background-2"
-        >
-          <NuxtLink
-            v-if="'link' in item"
-            class="flex w-full items-center justify-start gap-2 px-3 py-2"
-            :to="item.link"
-          >
-            <NuxtIcon v-if="item.icon" :name="item.icon" />
-            <span>{{ item.text }}</span>
-          </NuxtLink>
-          <button
-            v-else
-            class="flex w-full items-center justify-start gap-2 px-3 py-2"
-            @click="item.clickFunction?.()"
-          >
-            <NuxtIcon v-if="item.icon" :name="item.icon" />
-            <span>{{ item.text }}</span>
-          </button>
-        </MenuItem>
-      </div>
-    </MenuItems>
-  </Menu>
+          :icon="item.icon"
+          :title="item.text"
+          :to="'link' in item ? item.link : undefined"
+          @click="'clickFunction' in item ? item.clickFunction() : undefined"
+        />
+      </DropdownMenuGroup>
+    </template>
+  </DropdownMenu>
+
   <DialogBase :show="showInfo" title="Track Details" @close="showInfo = false">
     <TrackDetails
       class="md:w-[500px] lg:w-[600px]"
@@ -154,6 +150,10 @@ const dropdownMenuItemsForTrack = (track: TrackModel) => {
   >
     <TrackContributors :track="track"></TrackContributors>
   </DialogBase>
+  <DialogDownloadNotAllowed
+    :show="showDownloadDialog"
+    @close="showDownloadDialog = false"
+  />
   <CopyToClipboard
     ref="copyToClipboardComponent"
     :link="{ name: 'track-id', params: { id: track.id } }"

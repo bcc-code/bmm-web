@@ -1,0 +1,181 @@
+{
+  "global": {
+    "cancel": "Annuller",
+    "try-again": "Prøv igen"
+  },
+  "nav": {
+    "home": "Hjem",
+    "browse": "Gennemse",
+    "playlist": "Spilleliste",
+    "profile": "Profil",
+    "messages": "Beskeder",
+    "recent-messages": "Seneste taler",
+    "recent-music": "Nyeste musik",
+    "audiobooks": "Lydbøger",
+    "search": "Søg",
+    "album": "Album",
+    "podcast": "Podcast",
+    "contributor": "Medvirkende",
+    "contributors": "Bidragydere"
+  },
+  "sidebar": {
+    "playlists": {
+      "title": "Spillelister"
+    }
+  },
+  "share": {
+    "link-copied-message": "Link kopieret til udklipsholder"
+  },
+  "profile": {
+    "title": "Profil",
+    "autoplay": "Automatisk afspilning",
+    "theme": "Tema",
+    "theme-description": "Vælg det tema, der bruges til grænsefladen.",
+    "app-language": "Sprog",
+    "interface-language": "Sprog på grænseflade",
+    "interface-language-description": "Vælg det sprog, der bruges til grænsefladen.",
+    "select-language": "Vælg sprog",
+    "content-language": "Indholdssprog",
+    "content-language-description": "Det foretrukne sprog for det indhold, du lytter til.",
+    "preference-language-1": "Foretrukket sprog",
+    "preference-language-2": "Andet sprog",
+    "preference-language-3": "Tredje sprog",
+    "preference-language-4": "{count}. sprog",
+    "uservoice": "User Voice",
+    "privacy-policy": "Fortrolighedspolitik",
+    "contact": "Kontakt",
+    "logout": "Log ud",
+    "theme-dark": "Mørk",
+    "theme-light": "Lys",
+    "theme-system": "Samme som system",
+    "done": "Færdig",
+    "add-another-language": "Tilføj et sprog"
+  },
+  "error": {
+    "page-not-found": {
+      "headline": "Fejl",
+      "text": "Beklager, vi kan ikke finde siden \"{path}\"."
+    }
+  },
+  "collection": {
+    "track-count": "{count} spor | {count} spor",
+    "album-count": "{count} album | {count} albummer"
+  },
+  "login": {
+    "error-message": {
+      "contact-info": "Hvis denne fejl fortsætter, {0}.",
+      "contact-link": "kontakt os venligst",
+      "logout-and-redirect-info": "Noget i forbindelse med login gik galt:",
+      "manual-logout-and-redirect-info": "Venligst {0}.",
+      "logout-and-redirect-link": "prøv at logge ind igen"
+    },
+    "redirect-message": {
+      "redirect-info": "Du vil blive omdirigeret til login-siden.",
+      "manual-redirect-info": "Vent venligst eller {0}.",
+      "redirect-link": "klik for at prøve igen"
+    }
+  },
+  "download": {
+    "download": "Download",
+    "download-bmm-app": "Download BMM-appen",
+    "download-track": "Download",
+    "mobile": "Mobil",
+    "desktop": "Skrivebord",
+    "os": {
+      "windows": "Windows",
+      "mac_intel": "Mac med Intel CPU (produceret før 2021)",
+      "mac_arm": "nyere Mac (M1, M2, M3, ...)"
+    },
+    "messages-not-allowed": {
+      "title": "Download af taler ikke tilgængelig",
+      "description": "Muligheden for at downloade taler fra BMM er ikke længere tilgængelig. Hvis du har brug for en tale til et specifikt formål, bedes du kontakte os og forklare dine behov."
+    },
+    "sendEmailTo": "Send e-mail til {0}"
+  },
+  "playlist": {
+    "add": "Tilføj spilleliste",
+    "new-playlist": "Ny spilleliste",
+    "name-your-playlist": "Navngiv spilleliste",
+    "delete-playlist": "Slet spilleliste",
+    "delete-playlist-description": "Er du sikker på, at du vil slette spillelisten? Denne handling kan ikke fortrydes.",
+    "action": {
+      "shuffle": "Afspil blandet",
+      "add-to-my-playlists": "Tilføj til mine spillelister",
+      "remove-shared-playlist": "Slet spilleliste"
+    },
+    "by-x": "af {name}"
+  },
+  "podcast": {
+    "this-week": "Denne uge",
+    "last-week": "Sidste uge",
+    "week-x": "Uge {count}",
+    "action": {
+      "play": "Afspil",
+      "follow": "Følg"
+    }
+  },
+  "player": {
+    "queue": "Spillekø"
+  },
+  "edit": {
+    "rename": "Omdøb",
+    "delete": "Slet"
+  },
+  "track": {
+    "dropdown": {
+      "play-next": "Afspil som næste",
+      "download": "Download",
+      "go-to-album": "Gå til album",
+      "add-to-queue": "Føj til spillekø",
+      "add-to-playlist": "Tilføj til spilleliste",
+      "share": "Del",
+      "go-to-contributors": "Vis bidragsydere",
+      "more-info": "Mere information",
+      "show-all": "Vis alle",
+      "remove-from-playlist": "Slet fra spilleliste"
+    },
+    "a11y": {
+      "download": "Download",
+      "queue": "Føj til spillekø",
+      "options": "Vis muligheder"
+    },
+    "details": {
+      "reference": "Reference",
+      "duration": "Varighed",
+      "publish-date": "Publiseringsdato",
+      "album": "Album",
+      "publisher": "Udgiver",
+      "copyright": "Rettigheder",
+      "song-number": "Sangnummer",
+      "arranger": "Arrangør",
+      "composer": "Komponist",
+      "lyricist": "Forfatter"
+    }
+  },
+  "home": {
+    "list": {
+      "see-all": "Se alle",
+      "recommended": "Anbefalede"
+    }
+  },
+  "search": {
+    "search-filter": {
+      "All": "Alle",
+      "Speeches": "Taler",
+      "Music": "Musik",
+      "Albums": "Album",
+      "Contributors": "Bidragydere",
+      "Podcasts": "Podcasts",
+      "Playlists": "Spillelister"
+    },
+    "input-placeholder": "Søg",
+    "loading-results": "Indlæser resultater",
+    "no-results-yet": "Ingen resultater",
+    "no-results-found": "Ingen resultater fundet",
+    "result-count": "{count} resultater"
+  },
+  "streak": {
+    "your-streak": "Din streak denne uge",
+    "days-in-row": "{count} dage i stræk\n"
+  }
+}

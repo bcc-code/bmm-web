@@ -31,7 +31,7 @@ const className = cva("rounded-full flex gap-1 justify-center items-center", {
       medium: `leading-6 text-lg font-semibold ${
         !slots.default ? "p-2" : "px-4 py-2"
       }`,
-      small: "text-sm py-1.5 px-3",
+      small: "type-title-3 py-1.5 px-3",
     },
     iconOnly: {
       true: "aspect-square",

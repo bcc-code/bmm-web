@@ -18,11 +18,6 @@ const formatDate = (date: Date) => {
   };
   return new Intl.DateTimeFormat(locale.value, options).format(dateToUtc(date));
 };
-const songbook = (apiName: string | null | undefined) => {
-  if (apiName === "herrens_veier") return "HV";
-  if (apiName === "mandelblomsten") return "FMB";
-  return apiName;
-};
 
 type Field = {
   label: string;
@@ -42,13 +37,13 @@ const extractFields = (track: TrackModel) => {
 
   items.push({
     label: t("track.details.duration"),
-    text: formatTime(((track.media || [])[0]?.files || [])[0]?.duration || 0),
+    text: formatTime(defaultFileForTrack(track)?.duration || 0),
   });
   if (track.songbookRelations && track.songbookRelations.length > 0)
     items.push({
       label: t("track.details.song-number"),
       text: track.songbookRelations
-        ?.map((r) => `${songbook(r.name)} ${r.id}`)
+        ?.map((r) => `${songbookName(r.name)} ${r.id}`)
         .join(", "),
     });
   if (track.contributors) {
@@ -83,7 +78,7 @@ const extractFields = (track: TrackModel) => {
 </script>
 
 <template>
-  <div class="relative flex items-center justify-normal gap-4">
+  <div class="relative flex items-center justify-normal gap-4" v-bind="$attrs">
     <CoverImage :src="track.meta?.attachedPicture" class="w-24 rounded-md" />
     <div>
       <h3 class="py-1 text-2xl font-extrabold text-label-1">
@@ -105,7 +100,7 @@ const extractFields = (track: TrackModel) => {
       <div>
         <NuxtLink
           v-for="reference in track.externalRelations?.filter((x) => x.url)"
-          :key="reference.url"
+          :key="reference.url || ''"
           :to="parseLink(reference.url || '')"
           class="my-2 flex flex-row gap-2 rounded-2xl bg-background-2 p-3 text-2xl"
         >

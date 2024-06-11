@@ -34,7 +34,12 @@ export interface MediaPlayer {
   currentTrack: ComputedRef<UnwrapRef<TrackModel> | undefined>;
   currentPosition: Ref<number>;
   currentTrackDuration: ComputedRef<number>;
-  setQueue: (queue: TrackModel[], index?: number) => void;
+  volume: Ref<number>;
+  setQueue: (
+    queue: TrackModel[],
+    index?: number,
+    startPosition?: number | null,
+  ) => void;
   setQueueShuffled: (queue: TrackModel[]) => void;
   addToQueue: (track: TrackModel) => void;
   addNext: (track: TrackModel) => void;
@@ -45,7 +50,7 @@ export interface MediaPlayer {
 export const seekOffset = 15;
 
 export const initMediaPlayer = (
-  createMediaTrack: (src: string) => MediaTrack,
+  createMediaTrack: (src: string, track: TrackModel) => MediaTrack,
   appInsights: AppInsights,
   user: IUserData,
 ): MediaPlayer => {
@@ -63,6 +68,8 @@ export const initMediaPlayer = (
 
   let nextStartPosition = 0;
 
+  const volume = ref(1);
+
   function stop() {
     if (activeMedia.value) {
       activeMedia.value.destroy();
@@ -79,12 +86,13 @@ export const initMediaPlayer = (
 
     activeMedia.value?.destroy();
 
-    let url = track.media?.[0]?.files?.[0]?.url || "";
+    let url = defaultFileForTrack(track)?.url || "";
     if (nextStartPosition > 0) {
       url = `${url}#t=${new Date(nextStartPosition * 1000).toISOString().slice(11, 19)}`;
       nextStartPosition = 0;
     }
-    activeMedia.value = createMediaTrack(url);
+    activeMedia.value = createMediaTrack(url, track);
+    activeMedia.value.setVolume(volume.value);
     activeMedia.value.registerSource();
     activeMedia.value.registerEvents();
   }
@@ -189,6 +197,16 @@ export const initMediaPlayer = (
     },
   });
 
+  const volumeComputed = computed({
+    get: () => volume.value,
+    set: (value: number) => {
+      volume.value = value;
+      if (activeMedia.value) {
+        activeMedia.value.setVolume(value);
+      }
+    },
+  });
+
   const hasPrevious = computed(() => queue.value.length > 0);
 
   const jumpToPreviousThreshold = 5; // BMM Mobile & YouTube Music have 5s. Spotify has 3s.
@@ -219,7 +237,12 @@ export const initMediaPlayer = (
     continuePlayingNextIfEnded();
   }
 
-  function setQueue(_queue: TrackModel[], index = 0): void {
+  function setQueue(
+    _queue: TrackModel[],
+    index = 0,
+    startPosition: number | null = null,
+  ): void {
+    if (startPosition != null) nextStartPosition = startPosition;
     queue.value = new Queue(_queue, index);
   }
 
@@ -279,6 +302,7 @@ export const initMediaPlayer = (
     currentTrackDuration: computed(() =>
       activeMedia.value ? activeMedia.value.duration : NaN,
     ),
+    volume: volumeComputed,
     queue: computed(() => queue.value),
     setQueue,
     setQueueShuffled,

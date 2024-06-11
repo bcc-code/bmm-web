@@ -1,49 +1,17 @@
 <script lang="ts" setup>
-import type { NuxtIconName } from "#build//nuxt-icons";
-import type { RoutesNamedLocations } from "#build/typed-router";
 import { TrackCollectionApi } from "@bcc-code/bmm-sdk-fetch";
-import type {
-  GetTrackCollectionModel,
-  TrackModel,
-  TrackReference,
-} from "@bcc-code/bmm-sdk-fetch";
-import { Menu, MenuButton, MenuItem, MenuItems } from "@headlessui/vue";
+import type { GetTrackCollectionModel } from "@bcc-code/bmm-sdk-fetch";
 
 const { t } = useI18n();
 
-const props = withDefaults(
-  defineProps<{
-    playlist: GetTrackCollectionModel;
-    buttonClass?: string;
-  }>(),
-  {
-    buttonClass: "",
-  },
-);
+const props = defineProps<{
+  playlist: GetTrackCollectionModel;
+}>();
 const emit = defineEmits<{ "playlist-changed": [] }>();
-
-type DropdownMenuItem = {
-  text: string;
-  icon?: NuxtIconName;
-} & ({ link: RoutesNamedLocations } | { clickFunction: Function });
 
 const showEditDialog = ref(false);
 const showDeleteDialog = ref(false);
 const playlistName = ref("");
-
-const tracksToTrackReferences = (tracks: TrackModel[] | undefined | null) => {
-  const list: TrackReference[] = [];
-  if (!tracks) return list;
-
-  tracks.forEach((track) => {
-    if (track.id && track.language)
-      list.push({
-        id: track.id,
-        language: track.language,
-      });
-  });
-  return list;
-};
 
 const savePlaylist = async () => {
   try {
@@ -79,74 +47,64 @@ const deletePlaylist = async () => {
 const dropdownMenuItems = () => {
   const items: DropdownMenuItem[] = [];
 
-  items.push({
-    icon: "icon.comment",
-    text: t("edit.rename"),
-    clickFunction: () => {
-      playlistName.value = props.playlist.name || "";
-      showEditDialog.value = true;
-    },
-  });
-  items.push({
-    icon: "icon.close.small",
-    text: t("edit.delete"),
-    clickFunction: () => (showDeleteDialog.value = true),
-  });
+  if (props.playlist.canEdit) {
+    items.push({
+      icon: "icon.comment",
+      text: t("edit.rename"),
+      clickFunction: () => {
+        playlistName.value = props.playlist.name || "";
+        showEditDialog.value = true;
+      },
+    });
+    items.push({
+      icon: "icon.close.small",
+      text: t("edit.delete"),
+      clickFunction: () => (showDeleteDialog.value = true),
+    });
+  } else {
+    items.push({
+      icon: "icon.close.small",
+      text: t("playlist.action.remove-shared-playlist"),
+      clickFunction: async () => {
+        const api = new TrackCollectionApi();
+        await api.trackCollectionIdUnfollowPost({
+          id: props.playlist.id,
+        });
+        navigateTo();
+        refreshPrivatePlaylists();
+      },
+    });
+  }
 
   return items;
 };
 </script>
 
 <template>
-  <Menu
-    as="div"
-    class="relative flex flex-col justify-center text-left"
-    :class="$attrs.class"
-    @click.stop
-  >
-    <MenuButton
-      as="button"
+  <DropdownMenu v-bind="$attrs" placement="bottom">
+    <button
       :aria-label="t('track.a11y.options')"
       class="rounded-full bg-background-2 p-2 text-label-1"
-      :class="buttonClass"
     >
       <NuxtIcon name="options" class="text-2xl" />
-    </MenuButton>
+    </button>
 
-    <MenuItems
-      as="ul"
-      class="absolute left-[-100px] right-[-100px] top-12 z-30 mx-auto whitespace-nowrap rounded-xl bg-background-3 p-1 shadow-[0_4px_12px_0_#0000000D,0_1px_4px_0_#0000000D,0_0_0_1px_#0000000D]"
-    >
-      <div class="py-0">
-        <MenuItem
+    <template #items>
+      <DropdownMenuGroup>
+        <DropdownMenuItem
           v-for="item in dropdownMenuItems()"
           :key="item.text"
-          as="li"
-          class="hover:text-black block w-full cursor-pointer rounded-lg text-label-1 hover:bg-background-2"
+          :icon="item.icon"
+          :title="item.text"
+          @click="'clickFunction' in item && item.clickFunction()"
         >
-          <NuxtLink
-            v-if="'link' in item"
-            class="flex w-full items-center justify-start gap-2 px-3 py-2"
-            :to="item.link"
-          >
-            <NuxtIcon v-if="item.icon" :name="item.icon" />
-            <span>{{ item.text }}</span>
-          </NuxtLink>
-          <button
-            v-else
-            class="flex w-full items-center justify-start gap-2 px-3 py-2"
-            @click="item.clickFunction?.()"
-          >
-            <NuxtIcon v-if="item.icon" :name="item.icon" />
-            <span>{{ item.text }}</span>
-          </button>
-        </MenuItem>
-      </div>
-    </MenuItems>
-  </Menu>
+        </DropdownMenuItem>
+      </DropdownMenuGroup>
+    </template>
+  </DropdownMenu>
   <DialogBase
     :show="showEditDialog"
-    :title="$t('playlist.new-playlist')"
+    :title="$t('playlist.name-your-playlist')"
     hide-button
     @close="showEditDialog = false"
   >
