@@ -58,7 +58,7 @@ function linkForOperatingSystem() {
       <div class="type-display-1 p-6 text-center">
         {{ $t("download.get-for-desktop") }}
       </div>
-      <div class="h-5 shrink">{{ linkForOperatingSystem() }}</div>
+      <div class="h-5 shrink"></div>
       <div class="flex flex-col items-center justify-center">
         <NuxtLink :to="linkForOperatingSystem() || ''" class="mb-8 mt-5">
           <ButtonStyled intent="primary" size="large" class="w-[345px] text-lg"

@@ -1,9 +1,9 @@
 <script lang="ts" setup>
-const show = ref(true); // ToDo: persist this value
+const profileStore = useProfileStore();
 </script>
 
 <template>
-  <div v-if="show" class="h-[160px]">
+  <div v-if="!profileStore.hasDisabledDownloadPromo" class="h-[160px]">
     <div class="promo-shadow absolute bottom-3 left-3 right-3 text-black-1">
       <div class="flex flex-col gap-2 border-b-2 border-label-separator p-3">
         <div class="flex justify-between">
@@ -12,7 +12,7 @@ const show = ref(true); // ToDo: persist this value
           <NuxtIcon
             name="icon.close.small"
             class="cursor-pointer text-2xl text-black-3"
-            @click="show = false"
+            @click="profileStore.hasDisabledDownloadPromo = true"
           />
         </div>
         <div class="type-title-1">
