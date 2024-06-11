@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-const show = ref(true); //ToDo: persist this value
+const show = ref(true); // ToDo: persist this value
 </script>
 
 <template>

@@ -10,16 +10,28 @@ const links = await api.downloadLinksGet();
 
 function isAppleSilicon() {
   try {
-    const canvas = document.createElement("canvas");
-    const gl = canvas.getContext("webgl");
+    // Best guess if the device uses Apple Silicon: https://stackoverflow.com/a/65412357
+    const w = document.createElement("canvas").getContext("webgl");
+    if (w == null) {
+      return false;
+    }
+    const d = w.getExtension("WEBGL_debug_renderer_info");
+    const g = (d && w.getParameter(d.UNMASKED_RENDERER_WEBGL)) || "";
+    if (g.match(/Apple/) && !g.match(/Apple GPU/)) {
+      return true;
+    }
 
-    // Best guess if the device is an Apple Silicon
-    // https://stackoverflow.com/a/65412357
-    // @ts-expect-error - Object is possibly 'null'
-    return gl.getSupportedExtensions().includes("WEBGL_compressed_texture_etc");
+    if (
+      // @ts-expect-error - Object is possibly 'null'
+      w.getSupportedExtensions().includes("WEBGL_compressed_texture_s3tc_srgb")
+    ) {
+      return true;
+    }
   } catch {
     return false;
   }
+
+  return false;
 }
 
 function linkForOperatingSystem() {
@@ -46,7 +58,7 @@ function linkForOperatingSystem() {
       <div class="type-display-1 p-6 text-center">
         {{ $t("download.get-for-desktop") }}
       </div>
-      <div class="h-5 shrink"></div>
+      <div class="h-5 shrink">{{ linkForOperatingSystem() }}</div>
       <div class="flex flex-col items-center justify-center">
         <NuxtLink :to="linkForOperatingSystem() || ''" class="mb-8 mt-5">
           <ButtonStyled intent="primary" size="large" class="w-[345px] text-lg"
