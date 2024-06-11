@@ -220,7 +220,7 @@ useDraggable(queueListElement, queue, {
             :class="
               isCurrentTrack(i) ? 'bg-tint text-black-1 hover:bg-tint' : ''
             "
-            class="flex cursor-pointer justify-between gap-2 rounded-xl px-3 py-2 transition-all duration-500 ease-out hover:bg-background-2"
+            class="flex cursor-row-resize justify-between gap-2 rounded-xl px-3 py-2 transition-all duration-500 ease-out hover:bg-background-2"
           >
             <div class="truncate">
               <div>{{ trackTitleField(item) }}</div>
