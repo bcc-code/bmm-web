@@ -382,7 +382,7 @@ describe("plugin mediaPlayer Queue", () => {
     it("reordering doesn't change the current track", async () => {
       // Arrange
       const qObject = ref<Queue | undefined>();
-      const changes: (TrackModel | undefined)[] = []
+      const changes: (TrackModel | undefined)[] = [];
 
       qObject.value = new Queue(
         new Array(10).fill(0).map((_, i) => track(i)),
