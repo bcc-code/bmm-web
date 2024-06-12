@@ -76,16 +76,17 @@
     }
   },
   "download": {
+    "get-for-desktop": "Get the BMM app directly on your desktop",
     "download": "Herunterladen",
+    "download-now": "Download now",
+    "download-windows": "Download for Windows",
+    "download-mac-intel": "Download for Intel CPU",
+    "download-mac-arm": "Download for newer Mac",
+    "mac-intel-explanation": "Usually purchased before 2021",
+    "mac-arm-explanation": "M1, M2, M3, M4 chip",
     "download-bmm-app": "Lade die BMM-App herunter",
     "download-track": "Titel herunterladen",
     "mobile": "Mobil",
-    "desktop": "Desktop",
-    "os": {
-      "windows": "Windows",
-      "mac_intel": "Mac mit Intel-CPU (vor 2021 hergestellt)",
-      "mac_arm": "neuerer Mac (M1, M2, M3, ...)"
-    },
     "messages-not-allowed": {
       "title": "Herunterladen von Reden nicht möglich",
       "description": "Es nicht länger möglich Reden von BMM herunterzuladen. Falls du eine Rede aus einem bestimmten Grund brauchst, schreibe uns und erkläre warum du die Rede brauchst."
