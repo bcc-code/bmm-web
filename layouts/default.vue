@@ -13,7 +13,7 @@ const { queue } = useNuxtApp().$mediaPlayer;
 
 <template>
   <div
-    class="flex h-screen bg-background-1 text-black-1 dark:text-white-1"
+    class="flex h-screen overflow-hidden bg-background-1 text-black-1 dark:text-white-1"
     :class="{ 'select-none': isElectron }"
   >
     <SidebarElement />
