@@ -8,7 +8,6 @@ const profileStore = useProfileStore();
       <div class="flex flex-col gap-2 border-b-2 border-label-separator p-3">
         <div class="flex justify-between">
           <NuxtIcon name="icon.download" class="text-2xl" />
-          <div></div>
           <NuxtIcon
             name="icon.close.small"
             class="cursor-pointer text-2xl text-black-3"
