@@ -76,16 +76,17 @@
     }
   },
   "download": {
+    "get-for-desktop": "Get the BMM app directly on your desktop",
     "download": "Last ned",
+    "download-now": "Download now",
+    "download-windows": "Download for Windows",
+    "download-mac-intel": "Download for Intel CPU",
+    "download-mac-arm": "Download for newer Mac",
+    "mac-intel-explanation": "Usually purchased before 2021",
+    "mac-arm-explanation": "M1, M2, M3, M4 chip",
     "download-bmm-app": "Last ned BMM-appen",
     "download-track": "Last ned spor",
     "mobile": "Mobil",
-    "desktop": "Desktop",
-    "os": {
-      "windows": "Windows",
-      "mac_intel": "Mac med Intel CPU (produsert før 2021)",
-      "mac_arm": "nyere Mac (M1, M2, M3, ...)"
-    },
     "messages-not-allowed": {
       "title": "Nedlasting av taler ikke tilgjengelig",
       "description": "Muligheten til å laste ned taler fra BMM er ikke lenger tilgjengelig. Hvis du trenger en tale for en spesifikk bruk, ta kontakt med oss og beskriv ditt behov."
