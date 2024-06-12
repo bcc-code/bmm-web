@@ -6,6 +6,9 @@ import { VueDraggable } from "vue-draggable-plus";
 const profileStore = useProfileStore();
 const { t } = useI18n();
 
+const runtimeConfig = useRuntimeConfig();
+const isElectron = runtimeConfig.public.systemName === "Electron";
+
 const showInterfaceLanguageDialog = ref(false);
 const showContentLanguageDialog = ref(false);
 const showThemeDialog = ref(false);
@@ -131,6 +134,11 @@ const { data: user } = useCurrentUser();
           />
         </DropdownMenuGroup>
         <DropdownMenuGroup>
+          <DropdownMenuItem
+            v-if="!isElectron"
+            :title="$t('download.download')"
+            :to="{ name: 'download' }"
+          />
           <DropdownMenuItem
             :title="$t('profile.uservoice')"
             href="https://uservoice.bcc.no/?tags=bmm"
