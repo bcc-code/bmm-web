@@ -4,8 +4,8 @@ import type {
   TrackModel,
   SectionHeaderModel,
 } from "@bcc-code/bmm-sdk-fetch";
-import RecommendationItem from "./RecommendationItem.vue";
 import { UAParser } from "ua-parser-js";
+import RecommendationItem from "./RecommendationItem.vue";
 
 type IDiscoverableGroup = {
   header: SectionHeaderModel | null;
@@ -97,7 +97,6 @@ const mobileLink =
   device.vendor === "Apple"
     ? "https://apps.apple.com/app/bmm-brunstad/id777577855"
     : "https://play.google.com/store/apps/details?id=org.brunstad.bmm";
-console.log("device", device);
 </script>
 
 <template>
@@ -121,7 +120,8 @@ console.log("device", device);
         <div>
           <NuxtIcon name="icon.alert" class="text-2xl" />
         </div>
-        We recommend installing the app. Click here.
+        {{ t("download.install-app") }}
+        {{ t("download.go-to-store") }}
       </NuxtLink>
       <template
         v-for="group in convertModels(props.items)"
@@ -156,7 +156,7 @@ console.log("device", device);
 
         <div
           v-if="group.isTileContainer"
-          class="grid-cols-tilesOneLine mt-3 grid w-full gap-4 sm:grid-cols-tilesNarrow md:gap-6 lg:grid-cols-tilesWide"
+          class="mt-3 grid w-full grid-cols-tilesOneLine gap-4 sm:grid-cols-tilesNarrow md:gap-6 lg:grid-cols-tilesWide"
         >
           <template v-for="item in group.items" :key="item.id">
             <TileItem
