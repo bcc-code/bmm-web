@@ -76,16 +76,17 @@
     }
   },
   "download": {
+    "get-for-desktop": "Get the BMM app directly on your desktop",
     "download": "Prenesi",
+    "download-now": "Download now",
+    "download-windows": "Download for Windows",
+    "download-mac-intel": "Download for Intel CPU",
+    "download-mac-arm": "Download for newer Mac",
+    "mac-intel-explanation": "Usually purchased before 2021",
+    "mac-arm-explanation": "M1, M2, M3, M4 chip",
     "download-bmm-app": "Prenesi aplikacijo BMM",
     "download-track": "Prenesi skladbo",
     "mobile": "telefon",
-    "desktop": "namizje",
-    "os": {
-      "windows": "Windows",
-      "mac_intel": "Mac s procesorjem Intel (izdelan pred letom 2021)",
-      "mac_arm": "novejši Mac (M1, M2, M3, ...)"
-    },
     "messages-not-allowed": {
       "title": "Prenos govorov ni na voljo",
       "description": "Možnost prenosa govorov BMM ni več na voljo. Če potrebuješ govor za določen namen, nas kontaktiraj in razloži svojo željo."

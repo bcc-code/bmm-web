@@ -76,16 +76,17 @@
     }
   },
   "download": {
+    "get-for-desktop": "Get the BMM app directly on your desktop",
     "download": "பதிவிறக்கு ",
+    "download-now": "Download now",
+    "download-windows": "Download for Windows",
+    "download-mac-intel": "Download for Intel CPU",
+    "download-mac-arm": "Download for newer Mac",
+    "mac-intel-explanation": "Usually purchased before 2021",
+    "mac-arm-explanation": "M1, M2, M3, M4 chip",
     "download-bmm-app": "BMM செயலியை பதிவிறக்கவும்",
     "download-track": "டிராக்கைப் பதிவிறக்கவும்",
     "mobile": "மொபைல்",
-    "desktop": "டெஸ்க்டாப்",
-    "os": {
-      "windows": "விண்டோஸ்",
-      "mac_intel": "இன்டெல் CPU உடன் Mac (2021 க்கு முன் தயாரிக்கப்பட்டது)",
-      "mac_arm": "புதிய மேக் (M1, M2, M3, ...)"
-    },
     "messages-not-allowed": {
       "title": "செய்திகளின் பதிவிறக்கம் கிடைக்கவில்லை",
       "description": "BMM இலிருந்து செய்திகளைப் பதிவிறக்கும் திறன் இனி கிடைக்காது. குறிப்பிட்ட பயன்பாட்டிற்கான செய்தி உங்களுக்குத் தேவைப்பட்டால், தயவுசெய்து எங்களைத் தொடர்புகொண்டு உங்கள் தேவைகளை விளக்கவும்."

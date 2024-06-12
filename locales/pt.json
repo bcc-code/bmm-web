@@ -76,16 +76,17 @@
     }
   },
   "download": {
+    "get-for-desktop": "Get the BMM app directly on your desktop",
     "download": "Baixar",
+    "download-now": "Download now",
+    "download-windows": "Download for Windows",
+    "download-mac-intel": "Download for Intel CPU",
+    "download-mac-arm": "Download for newer Mac",
+    "mac-intel-explanation": "Usually purchased before 2021",
+    "mac-arm-explanation": "M1, M2, M3, M4 chip",
     "download-bmm-app": "Download the BMM app",
     "download-track": "Baixar a trilha",
     "mobile": "Mobile",
-    "desktop": "Desktop",
-    "os": {
-      "windows": "Windows",
-      "mac_intel": "Mac with Intel CPU (produced before 2021)",
-      "mac_arm": "newer Mac (M1, M2, M3, ...)"
-    },
     "messages-not-allowed": {
       "title": "Download of messages unavailable",
       "description": "A capacidade de baixar falas do BMM não está mais disponível. Caso necessite de uma fala para um uso específico, entre em contato conosco e explique suas necessidades."
