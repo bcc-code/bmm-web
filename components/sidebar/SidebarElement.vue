@@ -9,6 +9,7 @@ const isElectronOnMac =
 
 <template>
   <aside
+    v-if="false"
     class="flex max-h-screen w-[300px] flex-none flex-col border-r border-label-separator bg-background-2"
   >
     <div
