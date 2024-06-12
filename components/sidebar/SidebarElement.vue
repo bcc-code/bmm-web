@@ -22,14 +22,7 @@ const hamburgerOpen = ref<boolean>(false);
         class="flex h-full flex-col justify-center pr-6 md:hidden"
         @click="hamburgerOpen = !hamburgerOpen"
       >
-        <svg
-          class="fill-current block h-6 w-6"
-          viewBox="0 0 20 20"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <title>Mobile menu</title>
-          <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"></path>
-        </svg>
+        <NuxtIcon name="icon.hamburger" class="text-2xl" />
       </div>
     </Teleport>
     <aside
@@ -47,14 +40,7 @@ const hamburgerOpen = ref<boolean>(false);
           class="ml-[-4px] mt-[3px] pr-3 md:hidden"
           @click="hamburgerOpen = !hamburgerOpen"
         >
-          <svg
-            class="fill-current block h-6 w-6"
-            viewBox="0 0 20 20"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <title>Mobile menu</title>
-            <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z"></path>
-          </svg>
+          <NuxtIcon name="icon.hamburger" class="text-2xl" />
         </div>
         <SiteLogo size="small" />
         <span
