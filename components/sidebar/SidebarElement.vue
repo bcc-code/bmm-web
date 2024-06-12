@@ -3,13 +3,13 @@ import { version } from "~/package.json";
 
 const { data: collections } = usePrivatePlaylists();
 const runtimeConfig = useRuntimeConfig();
-const isElectronOnMac =
-  runtimeConfig.public.systemName === "Electron" && runtimeConfig.public.isMac;
+const isElectron = runtimeConfig.public.systemName === "Electron";
+const isElectronOnMac = isElectron && runtimeConfig.public.isMac;
 </script>
 
 <template>
   <aside
-    class="flex max-h-screen w-[300px] flex-none flex-col border-r border-label-separator bg-background-2"
+    class="relative flex max-h-screen w-[300px] flex-none flex-col border-r border-label-separator bg-background-2"
   >
     <div
       class="flex items-center p-3 px-6"
@@ -57,6 +57,7 @@ const isElectronOnMac =
         />
         <SidebarAddPlaylist></SidebarAddPlaylist>
       </SidebarGroup>
+      <SidebarDesktopPromo v-if="!isElectron" />
     </div>
   </aside>
 </template>

@@ -27,7 +27,7 @@ const className = cva("rounded-full flex gap-1 justify-center items-center", {
       secondary: "bg-background-2 text-label-1",
     },
     size: {
-      large: "text-xl py-3 px-6",
+      large: "py-4 px-8 type-title-1",
       medium: `leading-6 text-lg font-semibold ${
         !slots.default ? "p-2" : "px-4 py-2"
       }`,
