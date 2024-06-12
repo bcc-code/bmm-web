@@ -3,7 +3,10 @@ const profileStore = useProfileStore();
 </script>
 
 <template>
-  <div v-if="!profileStore.hasDisabledDownloadPromo" class="h-[160px]">
+  <div
+    v-if="!profileStore.hasDisabledDownloadPromo"
+    class="hidden h-[160px] md:block"
+  >
     <div class="promo-shadow absolute bottom-3 left-3 right-3 text-black-1">
       <div class="flex flex-col gap-2 border-b-2 border-label-separator p-3">
         <div class="flex justify-between">
