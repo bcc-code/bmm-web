@@ -76,16 +76,17 @@
     }
   },
   "download": {
+    "get-for-desktop": "Get the BMM app directly on your desktop",
     "download": "Télécharger",
+    "download-now": "Download now",
+    "download-windows": "Download for Windows",
+    "download-mac-intel": "Download for Intel CPU",
+    "download-mac-arm": "Download for newer Mac",
+    "mac-intel-explanation": "Usually purchased before 2021",
+    "mac-arm-explanation": "M1, M2, M3, M4 chip",
     "download-bmm-app": "Télécharger l'application BMM",
     "download-track": "Télécharger piste",
     "mobile": "Mobile",
-    "desktop": "Bureau",
-    "os": {
-      "windows": "Windows",
-      "mac_intel": "Mac avec processeur Intel (produit avant 2021)",
-      "mac_arm": "Mac plus récent (M1, M2, M3, ...)"
-    },
     "messages-not-allowed": {
       "title": "Téléchargement des messages indisponible",
       "description": "La fonctionnalité de téléchargement des messages de BMM n'est plus disponible. Si vous avez besoin d'un message pour un usage spécifique, veuillez nous contacter et nous expliquer vos besoins."
