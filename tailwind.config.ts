@@ -17,6 +17,7 @@ const config: Partial<Config> = {
         tracklist: "min-content auto auto auto min-content",
         tilesWide: "repeat(auto-fit, minmax(350px, 1fr))",
         tilesNarrow: "repeat(auto-fit, minmax(200px, 1fr))",
+        tilesOneLine: "repeat(6, minmax(220px, 1fr))",
       },
       transitionTimingFunction: {
         "in-expo": "cubic-bezier(0.95, 0.05, 0.795, 0.035)",
