@@ -17,7 +17,9 @@ const { queue } = useNuxtApp().$mediaPlayer;
     :class="{ 'select-none': isElectron }"
   >
     <SidebarElement />
-    <main class="relative flex-grow overflow-y-scroll">
+    <main
+      class="relative flex-grow overflow-x-hidden overflow-y-scroll md:overflow-x-scroll"
+    >
       <AppToolbar />
       <div class="flex flex-row">
         <Suspense>
