@@ -76,16 +76,17 @@
     }
   },
   "download": {
+    "get-for-desktop": "Get the BMM app directly on your desktop",
     "download": "Descarga",
+    "download-now": "Download now",
+    "download-windows": "Download for Windows",
+    "download-mac-intel": "Download for Intel CPU",
+    "download-mac-arm": "Download for newer Mac",
+    "mac-intel-explanation": "Usually purchased before 2021",
+    "mac-arm-explanation": "M1, M2, M3, M4 chip",
     "download-bmm-app": "Download the BMM app",
     "download-track": "Descargar pista",
     "mobile": "Mobile",
-    "desktop": "Desktop",
-    "os": {
-      "windows": "Windows",
-      "mac_intel": "Mac with Intel CPU (produced before 2021)",
-      "mac_arm": "newer Mac (M1, M2, M3, ...)"
-    },
     "messages-not-allowed": {
       "title": "Download of messages unavailable",
       "description": "La posibilidad de descargar mensajes de BMM ya no está disponible. Si necesita un mensaje para un uso específico, póngase en contacto con nosotros y explíquenos sus necesidades."
