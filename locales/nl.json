@@ -76,16 +76,17 @@
     }
   },
   "download": {
+    "get-for-desktop": "Get the BMM app directly on your desktop",
     "download": "Download",
+    "download-now": "Download now",
+    "download-windows": "Download for Windows",
+    "download-mac-intel": "Download for Intel CPU",
+    "download-mac-arm": "Download for newer Mac",
+    "mac-intel-explanation": "Usually purchased before 2021",
+    "mac-arm-explanation": "M1, M2, M3, M4 chip",
     "download-bmm-app": "Download de BMM-app",
     "download-track": "Nummer downloaden",
     "mobile": "Mobiel",
-    "desktop": "Desktop",
-    "os": {
-      "windows": "Windows",
-      "mac_intel": "Mac met Intel CPU (geproduceerd vóór 2021)",
-      "mac_arm": "nieuwere Mac (M1, M2, M3, ...)"
-    },
     "messages-not-allowed": {
       "title": "Het downloaden van toespraken is niet beschikbaar",
       "description": "Er is geen mogelijkheid meer om via BMM toespraken te downloaden. Als je een toespraak nodig hebt voor een specifiek doel, neem dan contact op met ons om je wensen te bespreken."
