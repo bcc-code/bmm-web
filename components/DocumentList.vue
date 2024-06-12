@@ -5,6 +5,7 @@ import type {
   SectionHeaderModel,
 } from "@bcc-code/bmm-sdk-fetch";
 import RecommendationItem from "./RecommendationItem.vue";
+import { UAParser } from "ua-parser-js";
 
 type IDiscoverableGroup = {
   header: SectionHeaderModel | null;
@@ -19,6 +20,7 @@ const props = defineProps<{
   items: IAllDocumentModels[] | null | undefined;
   pending: boolean;
   useDailyPodcastView?: boolean | undefined;
+  showMessageToMobileUsers?: boolean | undefined;
 }>();
 
 const convertModels = (models: IAllDocumentModels[]) => {
@@ -90,6 +92,12 @@ const playItem = (item: TrackModel, group: IDiscoverableGroup) => {
     items.findIndex((track) => track.id === item.id),
   );
 };
+const { device } = UAParser(navigator.userAgent);
+const mobileLink =
+  device.vendor === "Apple"
+    ? "https://apps.apple.com/app/bmm-brunstad/id777577855"
+    : "https://play.google.com/store/apps/details?id=org.brunstad.bmm";
+console.log("device", device);
 </script>
 
 <template>
@@ -103,8 +111,19 @@ const playItem = (item: TrackModel, group: IDiscoverableGroup) => {
         ></li>
       </ul>
     </template>
-    <template v-else-if="props.items"
-      ><template
+    <template v-else-if="props.items">
+      <NuxtLink
+        v-if="props.showMessageToMobileUsers && device.type === 'mobile'"
+        class="col-span-full flex gap-3 rounded-2xl bg-background-2 p-4 font-medium md:hidden"
+        :to="mobileLink"
+        target="_blank"
+      >
+        <div>
+          <NuxtIcon name="icon.alert" class="text-2xl" />
+        </div>
+        We recommend installing the app. Click here.
+      </NuxtLink>
+      <template
         v-for="group in convertModels(props.items)"
         :key="group.header?.id || 0"
       >
