@@ -76,16 +76,17 @@
     }
   },
   "download": {
+    "get-for-desktop": "Get the BMM app directly on your desktop",
     "download": "Laai af",
+    "download-now": "Download now",
+    "download-windows": "Download for Windows",
+    "download-mac-intel": "Download for Intel CPU",
+    "download-mac-arm": "Download for newer Mac",
+    "mac-intel-explanation": "Usually purchased before 2021",
+    "mac-arm-explanation": "M1, M2, M3, M4 chip",
     "download-bmm-app": "Download the BMM app",
     "download-track": "Laai spoor af",
     "mobile": "Mobile",
-    "desktop": "Desktop",
-    "os": {
-      "windows": "Windows",
-      "mac_intel": "Mac with Intel CPU (produced before 2021)",
-      "mac_arm": "newer Mac (M1, M2, M3, ...)"
-    },
     "messages-not-allowed": {
       "title": "Download of messages unavailable",
       "description": "The ability to download messages from BMM is no longer available. If you need a message for a specific use, please contact us and explain your needs."
