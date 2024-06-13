@@ -111,6 +111,7 @@ useHead({
     <NuxtLayout v-if="isAuthenticated && !error">
       <div class="container mx-auto min-w-80 px-2 lg:px-9">
         <NuxtPage />
+        <div class="teleport"></div>
       </div>
     </NuxtLayout>
     <div
