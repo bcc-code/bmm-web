@@ -18,7 +18,7 @@ const hamburgerOpen = ref<boolean>(false);
       class="flex h-full flex-col justify-center pr-6 md:hidden"
       @click="hamburgerOpen = !hamburgerOpen"
     >
-      <NuxtIcon name="icon.hamburger" class="text-2xl" />
+      <NuxtIcon name="icon.hamburger" class="fill-label-1 text-2xl" />
     </div>
   </Teleport>
   <aside
@@ -36,7 +36,7 @@ const hamburgerOpen = ref<boolean>(false);
         class="ml-[-4px] mt-[3px] pr-3 md:hidden"
         @click="hamburgerOpen = !hamburgerOpen"
       >
-        <NuxtIcon name="icon.hamburger" class="text-2xl" />
+        <NuxtIcon name="icon.hamburger" class="fill-label-1 text-2xl" />
       </div>
       <SiteLogo size="small" />
       <span
