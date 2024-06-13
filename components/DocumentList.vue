@@ -4,6 +4,7 @@ import type {
   TrackModel,
   SectionHeaderModel,
 } from "@bcc-code/bmm-sdk-fetch";
+import { UAParser } from "ua-parser-js";
 import RecommendationItem from "./RecommendationItem.vue";
 
 type IDiscoverableGroup = {
@@ -19,6 +20,7 @@ const props = defineProps<{
   items: IAllDocumentModels[] | null | undefined;
   pending: boolean;
   useDailyPodcastView?: boolean | undefined;
+  showMessageToMobileUsers?: boolean | undefined;
 }>();
 
 const convertModels = (models: IAllDocumentModels[]) => {
@@ -90,6 +92,11 @@ const playItem = (item: TrackModel, group: IDiscoverableGroup) => {
     items.findIndex((track) => track.id === item.id),
   );
 };
+const { device } = UAParser(navigator.userAgent);
+const mobileLink =
+  device.vendor === "Apple"
+    ? "https://apps.apple.com/app/bmm-brunstad/id777577855"
+    : "https://play.google.com/store/apps/details?id=org.brunstad.bmm";
 </script>
 
 <template>
@@ -103,8 +110,20 @@ const playItem = (item: TrackModel, group: IDiscoverableGroup) => {
         ></li>
       </ul>
     </template>
-    <template v-else-if="props.items"
-      ><template
+    <template v-else-if="props.items">
+      <NuxtLink
+        v-if="props.showMessageToMobileUsers && device.type === 'mobile'"
+        class="col-span-full flex gap-3 rounded-2xl bg-background-2 p-4 font-medium md:hidden"
+        :to="mobileLink"
+        target="_blank"
+      >
+        <div>
+          <NuxtIcon name="icon.alert" class="text-2xl" />
+        </div>
+        {{ t("download.install-app") }}
+        {{ t("download.go-to-store") }}
+      </NuxtLink>
+      <template
         v-for="group in convertModels(props.items)"
         :key="group.header?.id || 0"
       >
@@ -137,7 +156,7 @@ const playItem = (item: TrackModel, group: IDiscoverableGroup) => {
 
         <div
           v-if="group.isTileContainer"
-          class="mt-3 grid w-full grid-cols-tilesNarrow gap-4 md:gap-6 lg:grid-cols-tilesWide"
+          class="mt-3 grid w-full grid-cols-tilesOneLine gap-4 sm:grid-cols-tilesNarrow md:gap-6 lg:grid-cols-tilesWide"
         >
           <template v-for="item in group.items" :key="item.id">
             <TileItem
@@ -154,7 +173,7 @@ const playItem = (item: TrackModel, group: IDiscoverableGroup) => {
               group.header &&
               group.header?.useCoverCarousel &&
               group.header?.link
-                ? 'max-h-[27.5rem] overflow-hidden lg:max-h-[13rem]'
+                ? 'max-h-[21.5rem] overflow-hidden sm:max-h-[27.5rem] lg:max-h-[13rem]'
                 : ''
             "
           >

@@ -8,6 +8,7 @@ const hasHistory = () => window.history.length > 1; // using a computed() doesn'
     style="-webkit-app-region: drag"
   >
     <div class="mx-5 flex flex-row">
+      <div class="hamburger-teleport"></div>
       <div
         class="teleport ml-[-0.75rem]"
         style="-webkit-app-region: no-drag"
