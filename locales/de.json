@@ -76,6 +76,8 @@
     }
   },
   "download": {
+    "install-app": "We recommend installing the app.",
+    "go-to-store": "Navigate to App Store.",
     "get-for-desktop": "Hol dir die BMM-App direkt auf deinen Desktop",
     "download": "Herunterladen",
     "download-now": "Jetzt herunterladen",
