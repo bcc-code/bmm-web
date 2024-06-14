@@ -189,7 +189,7 @@ onMounted(() => {
         <div v-else-if="group.useFlex" class="relative mt-3 w-full py-2">
           <div
             ref="cardList"
-            class="grid-cols-coverList grid gap-6"
+            class="grid grid-cols-coverList gap-6"
             :class="
               group.header &&
               group.header?.useCoverCarousel &&
