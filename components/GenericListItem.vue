@@ -20,7 +20,7 @@ defineProps<{
       <div class="relative col-span-full grid grid-cols-subgrid">
         <CoverImage
           :src="cover"
-          class="w-10"
+          class="hidden w-10 lg:block"
           :class="circle ? 'rounded-full' : 'rounded'"
         />
         <div class="col-span-3 flex items-center">

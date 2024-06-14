@@ -1,8 +1,11 @@
 <script setup lang="ts">
 import { MediaPlayerStatus } from "~/plugins/mediaPlayer/mediaPlayer";
 import { useDraggable } from "vue-draggable-plus";
+import { UAParser } from "ua-parser-js";
 
 const { t } = useI18n();
+
+const { device } = UAParser(navigator.userAgent);
 
 const open = defineModel({
   type: Boolean,
@@ -33,8 +36,10 @@ function isCurrentTrack(index: number) {
 
 const queueListElement = ref<HTMLUListElement>();
 
+const disableDraggable = device.type === "mobile";
 useDraggable(queueListElement, queue, {
   animation: 200,
+  disabled: disableDraggable,
   onSort({ oldIndex, newIndex }) {
     if (oldIndex === undefined || newIndex === undefined) return;
 
@@ -217,9 +222,11 @@ useDraggable(queueListElement, queue, {
       <ul ref="queueListElement" class="px-3 pb-3">
         <li v-for="(item, i) in queue" :key="item.id" @click="queue.index = i">
           <div
-            :class="
-              isCurrentTrack(i) ? 'bg-tint text-black-1 hover:bg-tint' : ''
-            "
+            :class="{
+              'bg-tint text-black-1 hover:bg-tint': isCurrentTrack(i),
+              'cursor-pointer': disableDraggable,
+              'cursor-row-resize': !disableDraggable,
+            }"
             class="flex cursor-row-resize justify-between gap-2 rounded-xl px-3 py-2 transition-all duration-500 ease-out hover:bg-background-2"
           >
             <div class="truncate">
