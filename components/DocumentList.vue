@@ -97,6 +97,26 @@ const mobileLink =
   device.vendor === "Apple"
     ? "https://apps.apple.com/app/bmm-brunstad/id777577855"
     : "https://play.google.com/store/apps/details?id=org.brunstad.bmm";
+
+const cardList = ref<HTMLElement[]>([]);
+const recalculateCardListHeight = () => {
+  cardList.value.forEach((card) => {
+    const child = card.children[0];
+    if (child && card.className.includes("overflow-hidden")) {
+      if (card.clientWidth <= child.clientWidth * 2 + 24)
+        // show 2 rows for small screens
+        card.style.maxHeight = `${child.clientHeight * 2 + 24}px`;
+      else {
+        card.style.maxHeight = `${child.clientHeight}px`;
+      }
+    }
+  });
+};
+onUpdated(recalculateCardListHeight);
+
+onMounted(() => {
+  window.addEventListener("resize", recalculateCardListHeight, true);
+});
 </script>
 
 <template>
@@ -166,9 +186,10 @@ const mobileLink =
           </template>
         </div>
 
-        <div v-else-if="group.useFlex" class="mt-3 py-2">
+        <div v-else-if="group.useFlex" class="relative mt-3 w-full py-2">
           <div
-            class="flex flex-row flex-wrap gap-6"
+            ref="cardList"
+            class="grid grid-cols-coverList gap-6"
             :class="
               group.header &&
               group.header?.useCoverCarousel &&
