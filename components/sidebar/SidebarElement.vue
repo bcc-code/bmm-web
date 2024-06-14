@@ -28,8 +28,8 @@ const hamburgerOpen = ref<boolean>(false);
     ></div>
   </Teleport>
   <aside
-    class="fixed bottom-0 left-0 top-0 z-50 max-h-screen w-[300px] flex-none flex-col border-r border-label-separator bg-background-2 shadow-2xl transition-all duration-200 ease-out md:relative"
-    :class="hamburgerOpen ? '' : '-left-full md:left-0 md:shadow-none'"
+    class="fixed bottom-0 top-0 z-50 max-h-screen w-[300px] flex-none flex-col border-r border-label-separator bg-background-2 shadow-2xl transition-all duration-200 ease-in-out md:relative"
+    :class="hamburgerOpen ? 'left-0 ' : '-left-full md:left-0 md:shadow-none'"
   >
     <div
       class="flex items-center p-3 px-6"
