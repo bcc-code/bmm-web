@@ -23,7 +23,7 @@ const emit = defineEmits<{
 
 <template>
   <TransitionRoot :show="show" as="template">
-    <Dialog :open="show" class="z-110 relative" @close="emit('close')">
+    <Dialog :open="show" class="relative z-110" @close="emit('close')">
       <TransitionChild
         as="template"
         enter="duration-300 ease-out"
@@ -33,7 +33,7 @@ const emit = defineEmits<{
         leave-from="opacity-100"
         leave-to="opacity-0"
       >
-        <DialogBackdrop class="z-100 fixed inset-0 bg-[#000000]/[0.6]" />
+        <DialogBackdrop class="fixed inset-0 z-100 bg-[#000000]/[0.6]" />
       </TransitionChild>
 
       <div
