@@ -35,6 +35,7 @@ const { queue } = useNuxtApp().$mediaPlayer;
           <MediaPlayer v-if="queue.length > 0" />
         </transition>
       </div>
+      <DialogErrorDialog />
     </main>
   </div>
 </template>
