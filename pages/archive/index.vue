@@ -13,7 +13,7 @@ const { data: years } = useYearList();
         v-for="(year, i) in years?.toReversed()"
         :key="`year${i}`"
         :to="{ name: 'archive-year', params: { year: year.year } }"
-        class="mx-8 flex flex-row items-center justify-center rounded-xl hover:bg-background-2"
+        class="flex max-w-36 flex-row items-center justify-center rounded-xl hover:bg-background-2"
       >
         <div class="type-subtitle-1 px-2 py-2">{{ year.year }}</div>
       </NuxtLink>
