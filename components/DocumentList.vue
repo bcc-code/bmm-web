@@ -115,6 +115,7 @@ const recalculateCardListHeight = () => {
 onUpdated(recalculateCardListHeight);
 
 onMounted(() => {
+  recalculateCardListHeight();
   window.addEventListener("resize", recalculateCardListHeight, true);
 });
 </script>
