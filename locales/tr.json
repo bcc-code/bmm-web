@@ -55,7 +55,8 @@
     "page-not-found": {
       "headline": "Hata",
       "text": "Üzgünüm. \"{path}\" sayfasını bulamıyoruz."
-    }
+    },
+    "track-already-in-playlist": "Parça zaten oynatma listesi {0}mevcut"
   },
   "collection": {
     "track-count": "{count} parça | {count} parçalar",
