@@ -55,7 +55,8 @@
     "page-not-found": {
       "headline": "Error",
       "text": "Sorry. We can't find the page \"{path}\"."
-    }
+    },
+    "track-already-in-playlist": "Zeneszám már létezik a {0} számú lejátszási listában"
   },
   "collection": {
     "track-count": "{count} track | {count} tracks",
