@@ -55,7 +55,8 @@
     "page-not-found": {
       "headline": "Fout",
       "text": "Sorry, we kunnen de pagina \"{path}\" niet vinden."
-    }
+    },
+    "track-already-in-playlist": "Nummer bestaat al in afspeellijst {0}"
   },
   "collection": {
     "track-count": "{count} nummer | {count} nummers",
