@@ -55,7 +55,8 @@
     "page-not-found": {
       "headline": "Fejl",
       "text": "Beklager, vi kan ikke finde siden \"{path}\"."
-    }
+    },
+    "track-already-in-playlist": "Findes allerede i spillelisten."
   },
   "collection": {
     "track-count": "{count} spor | {count} spor",

@@ -55,7 +55,8 @@
     "page-not-found": {
       "headline": "Fehler",
       "text": "Die Seite \"{path}\" gibt es nicht"
-    }
+    },
+    "track-already-in-playlist": "Titel ist bereits in Playlist {0} vorhanden"
   },
   "collection": {
     "track-count": "{count} Titel | {count} Titel",

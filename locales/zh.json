@@ -55,7 +55,8 @@
     "page-not-found": {
       "headline": "Error",
       "text": "Sorry. We can't find the page \"{path}\"."
-    }
+    },
+    "track-already-in-playlist": "播放列表 {0} 中已有该曲目"
   },
   "collection": {
     "track-count": "{count} track | {count} tracks",

@@ -55,7 +55,8 @@
     "page-not-found": {
       "headline": "Napaka",
       "text": "Se opravičujemo. Ne moremo najti strani \"{path}\"."
-    }
+    },
+    "track-already-in-playlist": "Skladba že obstaja na seznamu predvajanja {0}"
   },
   "collection": {
     "track-count": "{count} skladba | skladbe: {count} ",

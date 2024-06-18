@@ -55,7 +55,8 @@
     "page-not-found": {
       "headline": "பிழை",
       "text": "மன்னிக்கவும். \"{path}\" பக்கத்தை எங்களால் கண்டுபிடிக்க முடியவில்லை."
-    }
+    },
+    "track-already-in-playlist": "ட்ராக் ஏற்கனவே பிளேலிஸ்ட் {0}இல் உள்ளது"
   },
   "collection": {
     "track-count": "{count} ட்ராக்| {count} டிராக்குகள்",

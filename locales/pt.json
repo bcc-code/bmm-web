@@ -55,7 +55,8 @@
     "page-not-found": {
       "headline": "Error",
       "text": "Sorry. We can't find the page \"{path}\"."
-    }
+    },
+    "track-already-in-playlist": "A faixa já existe na lista de reprodução {0}"
   },
   "collection": {
     "track-count": "{count} track | {count} tracks",
