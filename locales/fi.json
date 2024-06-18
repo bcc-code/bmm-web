@@ -56,7 +56,7 @@
       "headline": "Error",
       "text": "Sorry. We can't find the page \"{path}\"."
     },
-    "track-already-in-playlist": "Kappale on jo soittolistalla."
+    "track-already-in-playlist": "Kappale on jo soittolistalla {0}"
   },
   "collection": {
     "track-count": "{count} track | {count} tracks",
