@@ -10,8 +10,8 @@ const { data: years } = useYearList();
     <div class="h-3"></div>
     <div class="columns-2 md:columns-3 xl:columns-4 2xl:columns-5">
       <NuxtLink
-        v-for="(year, i) in years?.toReversed()"
-        :key="`year${i}`"
+        v-for="year in years?.toReversed()"
+        :key="`year_${year.year}`"
         :to="{ name: 'archive-year', params: { year: year.year } }"
         class="flex max-w-36 flex-row items-center justify-center rounded-xl hover:bg-background-2"
       >
