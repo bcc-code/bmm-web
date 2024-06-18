@@ -12,7 +12,11 @@ const emit = defineEmits<{
 
 const { data: playlists } = usePrivatePlaylists();
 
-const selectList = async (playlistId: number, trackId: number) => {
+const selectList = async (
+  playlistId: number,
+  trackId: number,
+  playlistName: string,
+) => {
   try {
     const promise = addTrackToPlaylist(playlistId, trackId);
     emit("close");
@@ -22,7 +26,10 @@ const selectList = async (playlistId: number, trackId: number) => {
     if (e instanceof ResponseError && e.response instanceof Response) {
       const res = await e.response.text();
       if (res.includes("TrackAlreadyInTrackCollection:")) {
-        console.error("The track is already in the playlist");
+        showError(
+          "TrackAlreadyInTrackCollection",
+          t("error.track-already-in-playlist", [playlistName]),
+        );
       } else {
         console.error(
           "The server responded with an error when adding a track to a playlist.",
@@ -50,7 +57,7 @@ const selectList = async (playlistId: number, trackId: number) => {
         v-for="collection in playlists"
         :key="collection.id"
         class="flow-row flex cursor-pointer gap-3 rounded-lg p-2 px-5 text-label-1 hover:bg-label-separator"
-        @click="selectList(collection.id, trackId)"
+        @click="selectList(collection.id, trackId, collection.name || '')"
       >
         <NuxtIcon name="icon.category.playlist"></NuxtIcon>
         {{ collection.name }}
