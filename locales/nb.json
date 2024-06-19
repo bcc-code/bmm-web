@@ -16,7 +16,8 @@
     "album": "Album",
     "podcast": "Podcast",
     "contributor": "Bidragsyter",
-    "contributors": "Bidragsytere"
+    "contributors": "Bidragsytere",
+    "archive": "Arkiv"
   },
   "sidebar": {
     "playlists": {
