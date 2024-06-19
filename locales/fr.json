@@ -16,7 +16,8 @@
     "album": "Album",
     "podcast": "Podcast",
     "contributor": "Contributeur",
-    "contributors": "Contributeurs"
+    "contributors": "Contributeurs",
+    "archive": "Archive"
   },
   "sidebar": {
     "playlists": {
