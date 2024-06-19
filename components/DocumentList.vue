@@ -133,6 +133,17 @@ onMounted(() => {
     </template>
     <template v-else-if="props.items">
       <NuxtLink
+        v-if="props.showMessageToMobileUsers && device.type !== 'mobile'"
+        class="col-span-full hidden gap-3 rounded-2xl bg-background-2 p-4 font-medium sm:flex"
+        to="https://bmm-old.brunstad.org"
+        target="_blank"
+      >
+        <div>
+          <NuxtIcon name="icon.alert" class="text-2xl" />
+        </div>
+        Navigate to the old BMM website.
+      </NuxtLink>
+      <NuxtLink
         v-if="props.showMessageToMobileUsers && device.type === 'mobile'"
         class="col-span-full flex gap-3 rounded-2xl bg-background-2 p-4 font-medium md:hidden"
         :to="mobileLink"
