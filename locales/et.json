@@ -16,7 +16,8 @@
     "album": "Album",
     "podcast": "Taskuhääling",
     "contributor": "Kaastegija",
-    "contributors": "Kaastegijad"
+    "contributors": "Kaastegijad",
+    "archive": "Arhiiv"
   },
   "sidebar": {
     "playlists": {
