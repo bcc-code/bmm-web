@@ -14,6 +14,9 @@ type IDiscoverableGroup = {
   isTileContainer: boolean;
 };
 
+const runtimeConfig = useRuntimeConfig();
+const isElectron = runtimeConfig.public.systemName === "Electron";
+
 const { t } = useI18n();
 
 const props = defineProps<{
@@ -133,9 +136,13 @@ onMounted(() => {
     </template>
     <template v-else-if="props.items">
       <NuxtLink
-        v-if="props.showMessageToMobileUsers && device.type !== 'mobile'"
+        v-if="
+          props.showMessageToMobileUsers &&
+          device.type !== 'mobile' &&
+          !isElectron
+        "
         class="col-span-full hidden gap-3 rounded-2xl bg-background-2 p-4 font-medium sm:flex"
-        to="https://bmm-old.brunstad.org"
+        to="https://bmm-old.brunstad.org?utm_campaign=old-bmm"
         target="_blank"
       >
         <div>
