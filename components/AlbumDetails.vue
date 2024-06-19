@@ -52,29 +52,25 @@ const childTracks = computed(
 
 <template>
   <div v-if="album" class="mb-[200px] flex flex-col">
-    <header class="mb-12 flex gap-6">
-      <div class="mt-10">
-        <CoverImage
-          :src="album.cover"
-          class="aspect-square w-[240px] rounded-2xl"
-        />
-      </div>
-      <div class="flex flex-col justify-between px-6 pt-4">
-        <div>
-          <PageHeading>{{ album.title }}</PageHeading>
-        </div>
-        <div class="flex gap-2">
-          <CopyToClipboard
-            :link="{
-              name: 'album-id',
-              params: { id: album.id },
-            }"
-          >
-            <ButtonStyled icon="icon.link"></ButtonStyled>
-          </CopyToClipboard>
-        </div>
-      </div>
-    </header>
+    <TrackCollectionHeader>
+      <template #cover>
+        <CoverImage :src="album.cover" class="rounded-2xl" />
+      </template>
+      <template #heading>
+        <PageHeading>{{ album.title }}</PageHeading>
+      </template>
+      <template #actions>
+        <CopyToClipboard
+          :link="{
+            name: 'album-id',
+            params: { id: album.id },
+          }"
+        >
+          <ButtonStyled icon="icon.link"></ButtonStyled>
+        </CopyToClipboard>
+      </template>
+    </TrackCollectionHeader>
+
     <p v-if="childTracks.length" class="py-2 text-label-3">
       {{ t("collection.track-count", childTracks.length) }}
     </p>

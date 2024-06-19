@@ -37,40 +37,41 @@ const onPressShuffle = () => {
 
 <template>
   <div>
-    <header class="mb-12 flex gap-6">
-      <div class="mt-10 w-[240px] shrink-0">
+    <TrackCollectionHeader>
+      <template #cover>
         <div
-          class="flex aspect-square w-[240px] shrink-0 justify-center rounded-2xl bg-background-2"
+          class="flex aspect-square w-full justify-center rounded-2xl bg-background-2"
         >
-          <NuxtIcon name="icon.category.playlist" class="text-8xl"></NuxtIcon>
+          <NuxtIcon
+            name="icon.category.playlist"
+            class="text-5xl md:text-7xl lg:text-8xl"
+          ></NuxtIcon>
         </div>
-      </div>
-      <div v-if="collection" class="flex flex-col justify-between px-6 pt-4">
+      </template>
+      <template v-if="collection" #heading>
+        <PageHeading>{{ collection?.name }}</PageHeading>
         <div>
-          <PageHeading>{{ collection?.name }}</PageHeading>
+          {{ t("playlist.by-x", { name: collection.authorName }) }}
+        </div>
+        <div v-if="collection?.tracks">
+          {{ t("collection.track-count", collection.tracks.length) }}
+        </div>
+      </template>
+      <template #actions>
+        <ButtonStyled
+          v-if="!hasBeenAdded"
+          icon="icon.add"
+          intent="primary"
+          @click="onAdd()"
+        >
+          {{ t("playlist.action.add-to-my-playlists") }}
+        </ButtonStyled>
+        <ButtonStyled icon="icon.shuffle" @click="onPressShuffle()">
+          {{ t("playlist.action.shuffle") }}
+        </ButtonStyled>
+      </template>
+    </TrackCollectionHeader>
 
-          <div>
-            {{ t("playlist.by-x", { name: collection.authorName }) }}
-          </div>
-          <div v-if="collection?.tracks">
-            {{ t("collection.track-count", collection.tracks.length) }}
-          </div>
-        </div>
-        <div class="flex gap-2">
-          <ButtonStyled
-            v-if="!hasBeenAdded"
-            icon="icon.add"
-            intent="primary"
-            @click="onAdd()"
-          >
-            {{ t("playlist.action.add-to-my-playlists") }}
-          </ButtonStyled>
-          <ButtonStyled icon="icon.shuffle" @click="onPressShuffle()">
-            {{ t("playlist.action.shuffle") }}
-          </ButtonStyled>
-        </div>
-      </div>
-    </header>
     <TrackList
       :skeleton-count="5"
       :show-skeleton="pending"

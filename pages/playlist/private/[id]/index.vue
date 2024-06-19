@@ -53,56 +53,54 @@ const addDropdownItems = (items: DropdownMenuItem[], track: TrackModel) => {
 
 <template>
   <div>
-    <header class="mb-12 flex gap-6">
-      <div class="mt-10 w-[240px] shrink-0">
+    <TrackCollectionHeader>
+      <template #cover>
         <div
-          class="flex aspect-square w-[240px] shrink-0 justify-center rounded-2xl bg-background-2"
+          class="flex aspect-square w-full justify-center rounded-2xl bg-background-2"
         >
-          <NuxtIcon name="icon.category.playlist" class="text-8xl"></NuxtIcon>
+          <NuxtIcon
+            name="icon.category.playlist"
+            class="text-5xl md:text-7xl lg:text-8xl"
+          ></NuxtIcon>
         </div>
-      </div>
-      <div v-if="collection" class="flex flex-col justify-between px-6 pt-4">
-        <div>
-          <PageHeading>{{ collection?.name }}</PageHeading>
+      </template>
+      <template v-if="collection" #heading>
+        <PageHeading>{{ collection?.name }}</PageHeading>
 
-          <div v-if="collection.authorName && !collection.canEdit">
-            {{ t("playlist.by-x", { name: collection.authorName }) }}
-          </div>
-          <div v-if="collection?.tracks">
-            {{ t("collection.track-count", collection.tracks.length) }}
-          </div>
+        <div v-if="collection.authorName && !collection.canEdit">
+          {{ t("playlist.by-x", { name: collection.authorName }) }}
         </div>
-        <div class="mt-2 flex gap-2">
-          <ButtonStyled
-            intent="primary"
-            icon="icon.play"
-            @click="onPressPlay()"
-          >
-            {{ t("podcast.action.play") }}
-          </ButtonStyled>
-          <ButtonStyled
-            intent="primary"
-            icon="icon.shuffle"
-            @click="onPressShuffle()"
-          >
-            {{ t("playlist.action.shuffle") }}
-          </ButtonStyled>
-          <PrivatePlaylistMenu
-            :playlist="collection"
-            @playlist-changed="request.refresh()"
-          />
-          <CopyToClipboard
-            v-if="collection.shareLink && collection.canEdit"
-            :link="{
-              name: 'playlist-shared-sharingsecret',
-              params: { sharingsecret: extractSecret(collection.shareLink) },
-            }"
-          >
-            <ButtonStyled icon="icon.link"></ButtonStyled>
-          </CopyToClipboard>
+        <div v-if="collection?.tracks">
+          {{ t("collection.track-count", collection.tracks.length) }}
         </div>
-      </div>
-    </header>
+      </template>
+      <template v-if="collection" #actions>
+        <ButtonStyled intent="primary" icon="icon.play" @click="onPressPlay()">
+          {{ t("podcast.action.play") }}
+        </ButtonStyled>
+        <ButtonStyled
+          intent="primary"
+          icon="icon.shuffle"
+          @click="onPressShuffle()"
+        >
+          {{ t("playlist.action.shuffle") }}
+        </ButtonStyled>
+        <PrivatePlaylistMenu
+          :playlist="collection"
+          @playlist-changed="request.refresh()"
+        />
+        <CopyToClipboard
+          v-if="collection.shareLink && collection.canEdit"
+          :link="{
+            name: 'playlist-shared-sharingsecret',
+            params: { sharingsecret: extractSecret(collection.shareLink) },
+          }"
+        >
+          <ButtonStyled icon="icon.link"></ButtonStyled>
+        </CopyToClipboard>
+      </template>
+    </TrackCollectionHeader>
+
     <TrackList
       :skeleton-count="5"
       :show-skeleton="pending"
