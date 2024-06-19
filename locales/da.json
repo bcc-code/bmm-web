@@ -16,7 +16,8 @@
     "album": "Album",
     "podcast": "Podcast",
     "contributor": "Medvirkende",
-    "contributors": "Bidragydere"
+    "contributors": "Bidragydere",
+    "archive": "Arkiv"
   },
   "sidebar": {
     "playlists": {

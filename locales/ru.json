@@ -16,7 +16,8 @@
     "album": "Альбом",
     "podcast": "Подкаст",
     "contributor": "Автор",
-    "contributors": "Исполнители"
+    "contributors": "Исполнители",
+    "archive": "Архив"
   },
   "sidebar": {
     "playlists": {

@@ -16,7 +16,8 @@
     "album": "Album",
     "podcast": "Podcast",
     "contributor": "Ustvarjalec",
-    "contributors": "Ustvarjalci"
+    "contributors": "Ustvarjalci",
+    "archive": "Arhiv"
   },
   "sidebar": {
     "playlists": {
