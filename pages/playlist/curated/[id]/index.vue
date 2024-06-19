@@ -33,42 +33,41 @@ onBeforeMount(() => {
 <template>
   <div v-if="playlist">
     <div>
-      <header class="mb-12 flex gap-6">
-        <div class="mt-10">
-          <CoverImage :src="playlist.cover" class="w-[240px] rounded-2xl" />
-        </div>
-        <div class="flex flex-col justify-between px-6 pt-4">
-          <div>
-            <PageHeading>{{ playlist.title }}</PageHeading>
-            <p v-if="tracks">
-              {{ t("collection.track-count", tracks.length) }}
-            </p>
-          </div>
-          <div class="flex gap-2">
-            <ButtonStyled
-              intent="primary"
-              icon="icon.play"
-              @click="onPressPlay()"
-            >
-              {{ t("podcast.action.play") }}
-            </ButtonStyled>
-            <ButtonStyled
-              intent="primary"
-              icon="icon.shuffle"
-              @click.stop="shuffle"
-              >{{ t("playlist.action.shuffle") }}</ButtonStyled
-            >
-            <CopyToClipboard
-              :link="{
-                name: 'playlist-curated-id',
-                params: { id: playlistId },
-              }"
-            >
-              <ButtonStyled intent="secondary" icon="icon.link"> </ButtonStyled>
-            </CopyToClipboard>
-          </div>
-        </div>
-      </header>
+      <TrackCollectionHeader>
+        <template #cover>
+          <CoverImage :src="playlist.cover" class="rounded-2xl" />
+        </template>
+        <template #heading>
+          <PageHeading>{{ playlist.title }}</PageHeading>
+          <p v-if="tracks">
+            {{ t("collection.track-count", tracks.length) }}
+          </p>
+        </template>
+        <template #actions>
+          <ButtonStyled
+            intent="primary"
+            icon="icon.play"
+            @click="onPressPlay()"
+          >
+            {{ t("podcast.action.play") }}
+          </ButtonStyled>
+          <ButtonStyled
+            intent="primary"
+            icon="icon.shuffle"
+            @click.stop="shuffle"
+            >{{ t("playlist.action.shuffle") }}</ButtonStyled
+          >
+          <CopyToClipboard
+            :link="{
+              name: 'playlist-curated-id',
+              params: { id: playlistId },
+            }"
+          >
+            <ButtonStyled intent="secondary" icon="icon.link"> </ButtonStyled>
+          </CopyToClipboard>
+        </template>
+      </TrackCollectionHeader>
+
       <TrackList
         :skeleton-count="10"
         :show-skeleton="pending"

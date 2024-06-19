@@ -48,40 +48,38 @@ async function load(skip: number, take: number) {
 
 <template>
   <div>
-    <header class="mb-12 flex gap-6">
-      <div class="mt-10">
-        <CoverImage :src="contributor?.cover" class="w-[240px] rounded-full" />
-      </div>
-      <div class="flex flex-col justify-between px-6 pt-4">
-        <div>
-          <PageHeading>{{ contributor?.name }}</PageHeading>
-        </div>
-        <div class="flex gap-2">
-          <ButtonStyled
-            intent="primary"
-            icon="icon.play"
-            @click.stop="onPressPlay"
-          >
-            {{ t("podcast.action.play") }}
-          </ButtonStyled>
-          <ButtonStyled
-            intent="primary"
-            icon="icon.shuffle"
-            @click.stop="onPressShuffle"
-          >
-            {{ t("playlist.action.shuffle") }}
-          </ButtonStyled>
-          <CopyToClipboard
-            :link="{
-              name: 'playlist-contributor-id',
-              params: { id: contributorId },
-            }"
-          >
-            <ButtonStyled icon="icon.link"></ButtonStyled>
-          </CopyToClipboard>
-        </div>
-      </div>
-    </header>
+    <TrackCollectionHeader>
+      <template #cover>
+        <CoverImage :src="contributor?.cover" class="rounded-full" />
+      </template>
+      <template #heading>
+        <PageHeading>{{ contributor?.name }}</PageHeading>
+      </template>
+      <template #actions>
+        <ButtonStyled
+          intent="primary"
+          icon="icon.play"
+          @click.stop="onPressPlay"
+        >
+          {{ t("podcast.action.play") }}
+        </ButtonStyled>
+        <ButtonStyled
+          intent="primary"
+          icon="icon.shuffle"
+          @click.stop="onPressShuffle"
+        >
+          {{ t("playlist.action.shuffle") }}
+        </ButtonStyled>
+        <CopyToClipboard
+          :link="{
+            name: 'playlist-contributor-id',
+            params: { id: contributorId },
+          }"
+        >
+          <ButtonStyled icon="icon.link"></ButtonStyled>
+        </CopyToClipboard>
+      </template>
+    </TrackCollectionHeader>
 
     <EndlessDocumentList :load="load" />
   </div>
