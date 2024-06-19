@@ -1,4 +1,4 @@
-import { BrowseApi } from "@bcc-code/bmm-sdk-fetch";
+import { AlbumApi, BrowseApi, FacetsApi } from "@bcc-code/bmm-sdk-fetch";
 
 export function useBrowse() {
   return reactiveApi(
@@ -32,6 +32,24 @@ export function useBrowsePodcast() {
   return reactiveApi(
     useLazyAsyncData("browse-podcast", () =>
       new BrowseApi().browsePodcastsGet(),
+    ),
+  );
+}
+
+export function useYearList() {
+  return reactiveApi(
+    useLazyAsyncData("year-list", () =>
+      new FacetsApi().controllerAlbumPublishedYearsGet({
+        controller: "facets",
+      }),
+    ),
+  );
+}
+
+export function useAlbumsInYear(year: number) {
+  return reactiveApi(
+    useLazyAsyncData(`albums-in-year-${year}`, () =>
+      new AlbumApi().albumPublishedYearGet({ year }),
     ),
   );
 }
