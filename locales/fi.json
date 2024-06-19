@@ -16,7 +16,8 @@
     "album": "Albumi",
     "podcast": "Podcast",
     "contributor": "Tekijä",
-    "contributors": "Tekijät"
+    "contributors": "Tekijät",
+    "archive": "Arkisto"
   },
   "sidebar": {
     "playlists": {
