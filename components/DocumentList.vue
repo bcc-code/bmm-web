@@ -148,7 +148,7 @@ onMounted(() => {
         <div>
           <NuxtIcon name="icon.alert" class="text-2xl" />
         </div>
-        Navigate to the old BMM website.
+        Click here to navigate to the old BMM website.
       </NuxtLink>
       <NuxtLink
         v-if="props.showMessageToMobileUsers && device.type === 'mobile'"
