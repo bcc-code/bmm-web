@@ -1,7 +1,7 @@
 {
   "global": {
     "cancel": "Cancelar",
-    "try-again": "Try again"
+    "try-again": "Intentar otra vez"
   },
   "nav": {
     "home": "Inicio",
@@ -25,12 +25,12 @@
     }
   },
   "share": {
-    "link-copied-message": "Copied link to clipboard"
+    "link-copied-message": "Copiada al portapapeles"
   },
   "profile": {
     "title": "Perfil",
-    "autoplay": "Auto Play",
-    "theme": "Theme",
+    "autoplay": "Auto-reproducción",
+    "theme": "Tema",
     "theme-description": "Select the theme used for the interface.",
     "app-language": "Language",
     "interface-language": "Interface Language",
