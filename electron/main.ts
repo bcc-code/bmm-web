@@ -53,7 +53,7 @@ const openWindow = (url: string) => {
   const previousTrack = {
     tooltip: "Previous", // TODO: figure out how to translate the tooltips
     icon: nativeImage.createFromPath(
-      path.join(__dirname, "../electron/icons/icon.previous.track.png"),
+      path.join(__dirname, "icons/icon.previous.track.png"),
     ),
     click() {
       window?.webContents.send("previous-track");
@@ -63,7 +63,7 @@ const openWindow = (url: string) => {
   const playTrack = {
     tooltip: "Play",
     icon: nativeImage.createFromPath(
-      path.join(__dirname, "../electron/icons/icon.play.png"),
+      path.join(__dirname, "icons/icon.play.png"),
     ),
     click() {
       window?.webContents.send("play-track");
@@ -73,7 +73,7 @@ const openWindow = (url: string) => {
   const pauseTrack = {
     tooltip: "Pause",
     icon: nativeImage.createFromPath(
-      path.join(__dirname, "../electron/icons/icon.pause.png"),
+      path.join(__dirname, "icons/icon.pause.png"),
     ),
     click() {
       window?.webContents.send("pause-track");
@@ -83,7 +83,7 @@ const openWindow = (url: string) => {
   const nextTrack = {
     tooltip: "Next",
     icon: nativeImage.createFromPath(
-      path.join(__dirname, "../electron/icons/icon.next.track.png"),
+      path.join(__dirname, "icons/icon.next.track.png"),
     ),
     click() {
       window?.webContents.send("next-track");
