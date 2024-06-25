@@ -25,10 +25,10 @@ const component = computed(() =>
       :class="{
         'bg-label-separator': active,
       }"
-      class="type-subtitle-2 flex w-full items-center justify-between rounded-lg px-3 py-2 text-left"
+      class="type-subtitle-2 block w-full items-center justify-between rounded-lg px-3 py-2 text-left"
     >
       <slot :active="active">
-        <div class="flex-1" @click="to && close()">
+        <div class="whitespace-normal" @click="to && close()">
           <span class="flex items-center gap-2">
             <NuxtIcon v-if="icon" :name="icon" />
             {{ title }}
