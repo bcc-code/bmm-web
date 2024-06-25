@@ -7,6 +7,7 @@ import tr from "./locales/tr.json";
 import fr from "./locales/fr.json";
 import ta from "./locales/ta.json";
 import da from "./locales/da.json";
+import es from "./locales/es.json";
 
 export default defineI18nConfig(() => ({
   legacy: false,
@@ -20,5 +21,6 @@ export default defineI18nConfig(() => ({
     tr,
     ta,
     da,
+    es,
   },
 }));
