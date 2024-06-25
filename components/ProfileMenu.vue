@@ -61,15 +61,16 @@ const saveAndCloseContentLanguageDialog = () => {
 
 const { data: user } = useCurrentUser();
 </script>
+
 <template>
-  <div>
+  <div v-if="auth0.user.value">
     <DropdownMenu placement="bottom-end">
       <button
         class="type-subtitle-1 flex items-center gap-2 rounded-full px-4 py-2 text-label-1 outline-label-separator hover:bg-background-2 hover:outline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-label-1"
       >
         <span>{{ $t("profile.title") }}</span>
         <FadeInImage
-          v-if="auth0.user.value?.picture"
+          v-if="auth0.user.value.picture"
           :src="auth0.user.value.picture"
           :alt="auth0.user.value.name || ''"
           class="aspect-square w-6 rounded-full object-cover"
@@ -78,6 +79,14 @@ const { data: user } = useCurrentUser();
       </button>
 
       <template #items>
+        <DropdownMenuGroup>
+          <div class="flex flex-col px-3 py-2">
+            <span class="type-subtitle-2">{{ auth0.user.value.name }}</span>
+            <span class="type-subtitle-3 text-label-3">
+              {{ auth0.user.value.email }}
+            </span>
+          </div>
+        </DropdownMenuGroup>
         <DropdownMenuGroup>
           <!-- Todo: #284 implement autoplay behavior -->
           <DropdownMenuItem
