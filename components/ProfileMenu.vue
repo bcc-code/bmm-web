@@ -79,6 +79,13 @@ const { data: user } = useCurrentUser();
 
       <template #items>
         <DropdownMenuGroup>
+          <DropdownMenuItem
+            :title="auth0.user.value?.name || ''"
+            :secondary-title="auth0.user.value?.email || ''"
+          >
+          </DropdownMenuItem>
+        </DropdownMenuGroup>
+        <DropdownMenuGroup>
           <!-- Todo: #284 implement autoplay behavior -->
           <DropdownMenuItem
             v-if="false"
