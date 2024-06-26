@@ -26,7 +26,7 @@ const component = computed(() =>
         :class="{
           'bg-label-separator': active,
         }"
-        class="type-subtitle-2 flex w-full items-center justify-between rounded-lg px-3 py-2 text-left"
+        class="type-subtitle-2 flex w-full items-center justify-between whitespace-normal rounded-lg px-3 py-2 text-left"
       >
         <slot :active="active">
           <div class="flex-1" @click="to && close()">
