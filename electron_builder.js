@@ -7,6 +7,7 @@ const config = {
   productName: "BMM",
   files: [
     { from: ".output/public", to: "dist-electron", filter: ["**/*"] },
+    { from: "electron/icons", to: "dist-electron/icons" },
     { from: "dist-electron", to: "dist-electron", filter: ["**/*"] },
     "package.json",
     "!node_modules",
