@@ -74,7 +74,7 @@ const { floatingStyles, middlewareData } = useFloating(buttonEl, panelEl, {
                 'origin-top': middlewareData.offset?.placement === 'bottom',
                 hidden: middlewareData.hide?.referenceHidden,
               }"
-              class="local-anim w-56 select-none divide-y divide-label-separator overflow-y-auto whitespace-nowrap rounded-xl bg-background-3 text-sm shadow-lg ring-1 ring-label-separator focus-visible:outline-none"
+              class="local-anim min-w-56 select-none divide-y divide-label-separator overflow-y-auto whitespace-nowrap rounded-xl bg-background-3 text-sm shadow-lg ring-1 ring-label-separator focus-visible:outline-none"
             >
               <slot name="items" />
             </div>
