@@ -26,10 +26,10 @@ const getColorModeName = (mode: string) => {
 };
 const colorMode = useColorMode();
 
-const auth0 = useAuth0();
+const { user: auth0User, logout: auth0Logout } = useAuth0();
 const logout = async () => {
   try {
-    await auth0.logout({ openUrl: false });
+    await auth0Logout({ openUrl: false });
   } catch (e) {
     // TODO: Show an error message to the user
     console.error(e);
@@ -61,17 +61,18 @@ const saveAndCloseContentLanguageDialog = () => {
 
 const { data: user } = useCurrentUser();
 </script>
+
 <template>
-  <div>
+  <div v-if="auth0User">
     <DropdownMenu placement="bottom-end">
       <button
         class="type-subtitle-1 flex items-center gap-2 rounded-full px-4 py-2 text-label-1 outline-label-separator hover:bg-background-2 hover:outline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-label-1"
       >
         <span>{{ $t("profile.title") }}</span>
         <FadeInImage
-          v-if="auth0.user.value?.picture"
-          :src="auth0.user.value.picture"
-          :alt="auth0.user.value.name || ''"
+          v-if="auth0User.picture"
+          :src="auth0User.picture"
+          :alt="auth0User.name || ''"
           class="aspect-square w-6 rounded-full object-cover"
         />
         <NuxtIcon v-else name="nav.profile" class="ml-1 text-xl" />
@@ -164,7 +165,27 @@ const { data: user } = useCurrentUser();
           />
         </DropdownMenuGroup>
         <DropdownMenuGroup>
-          <DropdownMenuItem :title="$t('profile.logout')" @click="logout()" />
+          <div class="flex items-center justify-between gap-4 px-3 py-2">
+            <div class="flex flex-col">
+              <span class="type-subtitle-2">{{ auth0User.name }}</span>
+              <span class="type-subtitle-3 text-label-3">
+                {{ auth0User.email }}
+              </span>
+            </div>
+            <DropdownMenuItem>
+              <template #item="{ active }">
+                <button
+                  :class="[
+                    'type-subtitle-3 rounded-full bg-background-2 px-2.5 py-1',
+                    { 'bg-label-separator': active },
+                  ]"
+                  @click="logout"
+                >
+                  {{ $t("profile.logout") }}
+                </button>
+              </template>
+            </DropdownMenuItem>
+          </div>
         </DropdownMenuGroup>
       </template>
     </DropdownMenu>
