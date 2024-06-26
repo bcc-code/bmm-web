@@ -51,11 +51,13 @@ useDraggable(queueListElement, queue, {
 <template>
   <div class="flex max-h-full flex-col">
     <div class="px-3 py-6">
-      <div class="flex h-60 items-center justify-center">
-        <div class="relative z-10 overflow-hidden">
+      <div
+        class="x-tall:mt-0 tall:h-24 x-tall:h-60 mt-8 flex items-center justify-center"
+      >
+        <div class="tall:block relative z-10 hidden overflow-hidden">
           <CoverImage
             :src="currentTrack?.meta?.attachedPicture"
-            class="w-40 rounded-md"
+            class="x-tall:w-40 w-20 rounded-md"
           />
         </div>
 
