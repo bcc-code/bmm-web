@@ -34,7 +34,7 @@ async function shufflePodcast() {
   >
     <NuxtLink
       :to="parseLink(item.showAllLink)"
-      class="aspect-square w-[120px] rounded-2xl lg:w-1/2 lg:rounded-none lg:rounded-l-2xl"
+      class="aspect-square w-[120px] rounded-2xl bg-background-1 lg:w-1/2 lg:rounded-none lg:rounded-l-2xl"
     >
       <CoverImage
         :src="item.coverUrl"
