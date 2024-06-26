@@ -29,12 +29,12 @@ const component = computed(() =>
         class="type-subtitle-2 flex w-full items-center justify-between whitespace-normal rounded-lg px-3 py-2 text-left"
       >
         <slot :active="active">
-          <div class="flex-1" @click="to && close()">
-            <span class="flex items-center gap-2">
+          <div class="flex-1 truncate" @click="to && close()">
+            <span class="flex items-center gap-2" :title="title">
               <NuxtIcon v-if="icon" :name="icon" />
               {{ title }}
             </span>
-            <span class="type-subtitle-3 text-label-3">
+            <span class="type-subtitle-3 text-label-3" :title="secondaryTitle">
               {{ secondaryTitle }}
             </span>
           </div>
