@@ -28,6 +28,10 @@ const config: Partial<Config> = {
         "100": "100",
         "110": "110",
       },
+      screens: {
+        tall: { raw: "(min-height: 700px)" },
+        "x-tall": { raw: "(min-height: 800px)" },
+      },
     },
   },
   plugins: [
