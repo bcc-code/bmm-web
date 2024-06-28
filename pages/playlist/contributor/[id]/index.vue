@@ -11,10 +11,10 @@ let tracks: TrackModel[] = [];
 const api = new ContributorApi();
 
 toolbarTitleStore().setReactiveToolbarTitle(() => t("nav.contributor"));
-
 useHead({
-  title: contributor.value?.name || "",
+  title: computed(() => contributor.value?.name || t("nav.contributor")),
 });
+
 const onPressPlay = () => {
   if (tracks.length > 0) {
     setQueue(tracks);

@@ -10,6 +10,9 @@ import type {
 const router = useRouter();
 const { t } = useI18n();
 toolbarTitleStore().setReactiveToolbarTitle(() => "");
+useHead({
+  title: computed(() => t("nav.search")),
+});
 const {
   query: { filter = "", term: termQuery },
   params: { term: termParam = "" },
