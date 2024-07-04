@@ -37,6 +37,11 @@ const dropdownMenuItemsForTrack = (track: TrackModel) => {
     text: t("track.dropdown.play-next"),
     clickFunction: () => addNext(track),
   });
+  items.push({
+    icon: "icon.queue",
+    text: t("track.dropdown.add-to-queue"),
+    clickFunction: () => addToQueue(track),
+  });
 
   if (track?.meta?.parent?.id) {
     items.push({
@@ -62,11 +67,6 @@ const dropdownMenuItemsForTrack = (track: TrackModel) => {
     });
   }
 
-  items.push({
-    icon: "icon.queue",
-    text: t("track.dropdown.add-to-queue"),
-    clickFunction: () => addToQueue(track),
-  });
   items.push({
     icon: "icon.category.playlist",
     text: t("track.dropdown.add-to-playlist"),
