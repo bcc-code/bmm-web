@@ -3,7 +3,7 @@ import type { Highlighting, TrackModel } from "@bcc-code/bmm-sdk-fetch";
 import { MediaPlayerStatus } from "~/plugins/mediaPlayer/mediaPlayer";
 
 const { t } = useI18n();
-const { addToQueue, currentTrack, status } = useNuxtApp().$mediaPlayer;
+const { addNext, currentTrack, status } = useNuxtApp().$mediaPlayer;
 
 const props = withDefaults(
   defineProps<{
@@ -188,6 +188,8 @@ const selectedTrack: Ref<TrackModel | null> = ref(null);
       >
         <button
           class="rounded-full p-2 opacity-0 hover:bg-label-separator hover:opacity-100 group-hover:opacity-100 group-focus:opacity-100"
+          :aria-label="t('track.dropdown.add-to-playlist')"
+          :title="t('track.dropdown.add-to-playlist')"
           @click="selectedTrack = track"
           @click.stop
         >
@@ -195,11 +197,12 @@ const selectedTrack: Ref<TrackModel | null> = ref(null);
         </button>
         <button
           class="rounded-full p-2 opacity-0 hover:bg-label-separator hover:opacity-100 group-hover:opacity-100 group-focus:opacity-100"
-          :aria-label="t('track.a11y.queue')"
-          @click="addToQueue(track)"
+          :aria-label="t('track.dropdown.play-next')"
+          :title="t('track.dropdown.play-next')"
+          @click="addNext(track)"
           @click.stop
         >
-          <NuxtIcon name="queue" class="text-2xl" />
+          <NuxtIcon name="icon.play" class="text-2xl" />
         </button>
         <TrackMenu
           :track="track"

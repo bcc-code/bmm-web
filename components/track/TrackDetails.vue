@@ -102,6 +102,7 @@ const extractFields = (track: TrackModel) => {
           v-for="reference in track.externalRelations?.filter((x) => x.url)"
           :key="reference.url || ''"
           :to="parseLink(reference.url || '')"
+          :target="isInternalLink(reference.url || '') ? '_self' : '_blank'"
           class="my-2 flex flex-row gap-2 rounded-2xl bg-background-2 p-3 text-2xl"
         >
           <NuxtIcon
