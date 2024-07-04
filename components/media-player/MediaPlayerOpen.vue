@@ -17,6 +17,7 @@ const {
   play,
   pause,
   currentTrack,
+  currentEnrichedTrack,
   currentPosition,
   currentTrackDuration,
   isLoading,
@@ -176,6 +177,7 @@ useDraggable(queueListElement, queue, {
           <TrackMenu
             v-if="currentTrack"
             :track="currentTrack"
+            :origin="currentEnrichedTrack?.originView"
             button-class="rounded-full border border-label-separator p-1.5"
           ></TrackMenu>
         </div>

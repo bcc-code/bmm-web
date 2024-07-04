@@ -57,6 +57,7 @@ const isTrackTypeKnown = () => {
         :show-thumbnail="showThumbnails"
         :add-dropdown-items="props.addDropdownItems"
         :is-album-known="props.albumIsKnown"
+        :origin="props.origin"
         @play-track="setQueue(tracks, i, props.origin)"
       >
       </TrackItem>

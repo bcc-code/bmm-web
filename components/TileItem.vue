@@ -84,7 +84,7 @@ async function shufflePodcast() {
             class="aspect-square p-1 text-xl text-black-1"
           />
         </button>
-        <TrackMenu :track="item.track" class="ml-auto" />
+        <TrackMenu :track="item.track" class="ml-auto" :origin="origin()" />
       </div>
     </div>
   </div>

@@ -82,6 +82,6 @@ async function load(skip: number, take: number) {
       </template>
     </TrackCollectionHeader>
 
-    <EndlessDocumentList :load="load" />
+    <EndlessDocumentList :load="load" :origin="origin()" />
   </div>
 </template>

@@ -283,6 +283,7 @@ onMounted(() => {
               :is-track-type-known="true"
               :use-daily-podcast-view="useDailyPodcastView"
               show-thumbnail
+              :origin="props.origin"
               @play-track="playItem(item, group)"
             />
             <GenericListItem

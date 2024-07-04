@@ -33,6 +33,7 @@ export interface MediaPlayer {
   hasPrevious: ComputedRef<Boolean>;
   queue: ComputedRef<UnwrapRef<Queue>>;
   currentTrack: ComputedRef<UnwrapRef<TrackModel> | undefined>;
+  currentEnrichedTrack: ComputedRef<UnwrapRef<EnrichedTrackModel> | undefined>;
   currentPosition: Ref<number>;
   currentTrackDuration: ComputedRef<number>;
   volume: Ref<number>;
@@ -314,6 +315,7 @@ export const initMediaPlayer = (
     hasNext,
     hasPrevious,
     currentTrack: computed(() => queue.value.currentTrack?.track),
+    currentEnrichedTrack: computed(() => queue.value.currentTrack),
     currentPosition,
     currentTrackDuration: computed(() =>
       activeMedia.value ? activeMedia.value.duration : NaN,
