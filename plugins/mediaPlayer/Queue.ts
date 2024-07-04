@@ -1,6 +1,6 @@
-import type { TrackModel } from "@bcc-code/bmm-sdk-fetch";
+import type EnrichedTrackModel from "./EnrichedTrackModel";
 
-export default class Queue extends Array<TrackModel> {
+export default class Queue extends Array<EnrichedTrackModel> {
   public isShuffled = false;
 
   private i = 0;
@@ -24,15 +24,15 @@ export default class Queue extends Array<TrackModel> {
     this.cT = this[this.i];
   }
 
-  private cT: TrackModel | undefined;
+  private cT: EnrichedTrackModel | undefined;
 
   public get currentTrack() {
     return this.cT;
   }
 
-  private sortedArray: Array<TrackModel> | undefined;
+  private sortedArray: Array<EnrichedTrackModel> | undefined;
 
-  constructor(data: TrackModel[] = [], index = -1) {
+  constructor(data: EnrichedTrackModel[] = [], index = -1) {
     super();
 
     if (Array.isArray(data)) {

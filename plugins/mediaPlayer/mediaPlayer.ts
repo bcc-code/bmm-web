@@ -5,6 +5,7 @@ import type { IUserData } from "../2.userData";
 import type { AppInsights } from "../3.applicationInsights";
 import MediaTrack from "./MediaTrack";
 import Queue from "./Queue";
+import EnrichedTrackModel from "./EnrichedTrackModel";
 
 export enum MediaPlayerStatus {
   Paused = "PAUSED",
@@ -86,12 +87,12 @@ export const initMediaPlayer = (
 
     activeMedia.value?.destroy();
 
-    let url = defaultFileForTrack(track)?.url || "";
+    let url = defaultFileForTrack(track.trackModel)?.url || "";
     if (nextStartPosition > 0) {
       url = `${url}#t=${new Date(nextStartPosition * 1000).toISOString().slice(11, 19)}`;
       nextStartPosition = 0;
     }
-    activeMedia.value = createMediaTrack(url, track);
+    activeMedia.value = createMediaTrack(url, track.trackModel);
     activeMedia.value.setVolume(volume.value);
     activeMedia.value.registerSource();
     activeMedia.value.registerEvents();
@@ -136,7 +137,7 @@ export const initMediaPlayer = (
     () => activeMedia.value?.ended,
     (ended) => {
       if (ended) {
-        const track = queue.value.currentTrack;
+        const track = queue.value.currentTrack?.trackModel;
         if (track !== undefined && user.personId != null) {
           new StatisticsApi().statisticsListeningPost({
             listeningEvent: [
@@ -154,7 +155,7 @@ export const initMediaPlayer = (
           });
 
           appInsights.event("track completed", {
-            trackId: queue.value.currentTrack?.id,
+            trackId: queue.value.currentTrack?.trackModel.id,
             duration: activeMedia.value?.position,
           });
         }
@@ -175,7 +176,7 @@ export const initMediaPlayer = (
       trackTimestampStart = new Date();
       if (appInsights.event) {
         appInsights.event("track playback started", {
-          trackId: queue.value.currentTrack?.id,
+          trackId: queue.value.currentTrack?.trackModel.id,
         });
       }
     }
@@ -233,7 +234,7 @@ export const initMediaPlayer = (
   }
 
   function addToQueue(track: TrackModel) {
-    queue.value.push({ ...track });
+    queue.value.push({ trackModel: { ...track } });
     continuePlayingNextIfEnded();
   }
 
@@ -243,7 +244,10 @@ export const initMediaPlayer = (
     startPosition: number | null = null,
   ): void {
     if (startPosition != null) nextStartPosition = startPosition;
-    queue.value = new Queue(_queue, index);
+    queue.value = new Queue(
+      _queue.map((track: TrackModel) => new EnrichedTrackModel({ ...track })),
+      index,
+    );
   }
 
   function setQueueShuffled(newQueue: TrackModel[]): void {
@@ -253,7 +257,7 @@ export const initMediaPlayer = (
   }
 
   function addNext(track: TrackModel): void {
-    queue.value.splice(queue.value.index + 1, 0, { ...track });
+    queue.value.splice(queue.value.index + 1, 0, { trackModel: { ...track } });
     continuePlayingNextIfEnded();
   }
 
@@ -262,7 +266,7 @@ export const initMediaPlayer = (
     stop();
 
     queue.value = new Queue(
-      queue.value.toSpliced(queue.value.index, 1, { ...track }),
+      queue.value.toSpliced(queue.value.index, 1, { trackModel: { ...track } }),
       queue.value.index,
     );
   }
@@ -297,7 +301,7 @@ export const initMediaPlayer = (
     isLoading: computed(() => activeMedia.value?.loading || false),
     hasNext,
     hasPrevious,
-    currentTrack: computed(() => queue.value.currentTrack),
+    currentTrack: computed(() => queue.value.currentTrack?.trackModel),
     currentPosition,
     currentTrackDuration: computed(() =>
       activeMedia.value ? activeMedia.value.duration : NaN,

@@ -14,6 +14,7 @@ import {
   MediaPlayerStatus,
   RepeatStatus,
 } from "./mediaPlayer";
+import EnrichedTrackModel from "./EnrichedTrackModel";
 
 vi.mock("./Queue", async (importOriginal) => {
   const { default: Mod } = (await importOriginal()) as any;
@@ -40,6 +41,10 @@ function track(id: number) {
     meta: {},
   };
   return t;
+}
+
+function enrichedTrack(id: number) {
+  return new EnrichedTrackModel(track(id));
 }
 
 const userData: IUserData = { personId: null, age: null, os: "Test" };
@@ -593,7 +598,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
       MockedQueue.mockClear();
       const oldQueue = mediaPlayer.value.queue;
 
-      const queues: TrackModel[][] = [];
+      const queues: EnrichedTrackModel[][] = [];
       watch(
         () => mediaPlayer.value.queue,
         (v) => {
@@ -662,9 +667,9 @@ describe("plugin mediaPlayer MediaTrack", () => {
         // Assert
         expect(mediaPlayer.value.queue).length(3);
         expect(mediaPlayer.value.queue.index).eq(0);
-        expect(mediaPlayer.value.queue[0]?.id).eq(2);
-        expect(mediaPlayer.value.queue[1]?.id).eq(1);
-        expect(mediaPlayer.value.queue[2]?.id).eq(3);
+        expect(mediaPlayer.value.queue[0]?.trackModel.id).eq(2);
+        expect(mediaPlayer.value.queue[1]?.trackModel.id).eq(1);
+        expect(mediaPlayer.value.queue[2]?.trackModel.id).eq(3);
       },
       { retry: 100 },
     );
@@ -694,7 +699,11 @@ describe("plugin mediaPlayer MediaTrack", () => {
       // Assert
       expect(MockedMediaTrack).toHaveBeenCalledTimes(0);
       expect(currentTracks).eql([]);
-      expect(mediaPlayer.value.queue).eql([track(1), track(2), track(3)]);
+      expect(mediaPlayer.value.queue).eql([
+        enrichedTrack(1),
+        enrichedTrack(2),
+        enrichedTrack(3),
+      ]);
     });
 
     it("adds an element to the queue and start playing if queue is empty", async () => {
@@ -717,7 +726,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
       // Assert
       expect(MockedMediaTrack).toHaveBeenCalledTimes(1);
       expect(currentTracks).eql([track(3)]);
-      expect(mediaPlayer.value.queue).eql([track(3)]);
+      expect(mediaPlayer.value.queue).eql([enrichedTrack(3)]);
     });
 
     it("adds an element to the queue and start playing if queue has finished playing", async () => {
@@ -747,7 +756,11 @@ describe("plugin mediaPlayer MediaTrack", () => {
       // Assert
       expect(MockedMediaTrack).toHaveBeenCalledTimes(1);
       expect(currentTracks).eql([track(3)]);
-      expect(mediaPlayer.value.queue).eql([track(1), track(2), track(3)]);
+      expect(mediaPlayer.value.queue).eql([
+        enrichedTrack(1),
+        enrichedTrack(2),
+        enrichedTrack(3),
+      ]);
     });
   });
 
@@ -775,7 +788,11 @@ describe("plugin mediaPlayer MediaTrack", () => {
       // Assert
       expect(MockedMediaTrack).toHaveBeenCalledTimes(0);
       expect(currentTracks).eql([]);
-      expect(mediaPlayer.value.queue).eql([track(1), track(2), track(3)]);
+      expect(mediaPlayer.value.queue).eql([
+        enrichedTrack(1),
+        enrichedTrack(2),
+        enrichedTrack(3),
+      ]);
     });
 
     it("adds an element to the queue next to the current element if another track has been added and current element is set", async () => {
@@ -792,10 +809,10 @@ describe("plugin mediaPlayer MediaTrack", () => {
 
       // Assert
       expect(mediaPlayer.value.queue).eql([
-        track(1),
-        track(2),
-        track(3),
-        track(4),
+        enrichedTrack(1),
+        enrichedTrack(2),
+        enrichedTrack(3),
+        enrichedTrack(4),
       ]);
     });
 
@@ -819,7 +836,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
       // Assert
       expect(MockedMediaTrack).toHaveBeenCalledTimes(1);
       expect(currentTracks).eql([track(3)]);
-      expect(mediaPlayer.value.queue).eql([track(3)]);
+      expect(mediaPlayer.value.queue).eql([enrichedTrack(3)]);
     });
 
     it("adds an element to the queue next to the current element and start playing if queue has finished playing", async () => {
@@ -849,7 +866,11 @@ describe("plugin mediaPlayer MediaTrack", () => {
       // Assert
       expect(MockedMediaTrack).toHaveBeenCalledTimes(1);
       expect(currentTracks).eql([track(3)]);
-      expect(mediaPlayer.value.queue).eql([track(1), track(2), track(3)]);
+      expect(mediaPlayer.value.queue).eql([
+        enrichedTrack(1),
+        enrichedTrack(2),
+        enrichedTrack(3),
+      ]);
     });
   });
 
@@ -1287,7 +1308,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
         // Assert
         expect(queueValue).length(2);
         expect(queueValue[0]).not.eq(queueValue[1]);
-        expect(mediaPlayer.value.queue.currentTrack?.id).not.eq(4);
+        expect(mediaPlayer.value.queue.currentTrack?.trackModel.id).not.eq(4);
       });
 
       it("stopps playing after replacing the queue with an empty queue while playing", async () => {
