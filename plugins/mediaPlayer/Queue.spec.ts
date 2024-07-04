@@ -19,7 +19,7 @@ function track(id: number) {
     language: "nb",
     meta: {},
   };
-  return new EnrichedTrackModel(t);
+  return new EnrichedTrackModel(t, "");
 }
 
 describe("plugin mediaPlayer Queue", () => {

@@ -44,7 +44,7 @@ function track(id: number) {
 }
 
 function enrichedTrack(id: number) {
-  return new EnrichedTrackModel(track(id));
+  return new EnrichedTrackModel(track(id), "");
 }
 
 const userData: IUserData = { personId: null, age: null, os: "Test" };

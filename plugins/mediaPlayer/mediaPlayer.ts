@@ -39,6 +39,7 @@ export interface MediaPlayer {
   setQueue: (
     queue: TrackModel[],
     index?: number,
+    origin?: string,
     startPosition?: number | null,
   ) => void;
   setQueueShuffled: (queue: TrackModel[]) => void;
@@ -233,19 +234,22 @@ export const initMediaPlayer = (
     }
   }
 
-  function addToQueue(track: TrackModel) {
-    queue.value.push({ track: { ...track } });
+  function addToQueue(track: TrackModel, origin: string = "") {
+    queue.value.push(new EnrichedTrackModel({ ...track }, origin));
     continuePlayingNextIfEnded();
   }
 
   function setQueue(
     _queue: TrackModel[],
     index = 0,
+    origin: string = "",
     startPosition: number | null = null,
   ): void {
     if (startPosition != null) nextStartPosition = startPosition;
     queue.value = new Queue(
-      _queue.map((track: TrackModel) => new EnrichedTrackModel({ ...track })),
+      _queue.map(
+        (track: TrackModel) => new EnrichedTrackModel({ ...track }, origin),
+      ),
       index,
     );
   }
@@ -257,7 +261,11 @@ export const initMediaPlayer = (
   }
 
   function addNext(track: TrackModel): void {
-    queue.value.splice(queue.value.index + 1, 0, { track: { ...track } });
+    queue.value.splice(
+      queue.value.index + 1,
+      0,
+      new EnrichedTrackModel({ ...track }, ""),
+    );
     continuePlayingNextIfEnded();
   }
 
@@ -266,7 +274,11 @@ export const initMediaPlayer = (
     stop();
 
     queue.value = new Queue(
-      queue.value.toSpliced(queue.value.index, 1, { track: { ...track } }),
+      queue.value.toSpliced(
+        queue.value.index,
+        1,
+        new EnrichedTrackModel({ ...track }, ""),
+      ),
       queue.value.index,
     );
   }
