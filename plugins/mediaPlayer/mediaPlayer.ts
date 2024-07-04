@@ -87,12 +87,12 @@ export const initMediaPlayer = (
 
     activeMedia.value?.destroy();
 
-    let url = defaultFileForTrack(track.trackModel)?.url || "";
+    let url = defaultFileForTrack(track.track)?.url || "";
     if (nextStartPosition > 0) {
       url = `${url}#t=${new Date(nextStartPosition * 1000).toISOString().slice(11, 19)}`;
       nextStartPosition = 0;
     }
-    activeMedia.value = createMediaTrack(url, track.trackModel);
+    activeMedia.value = createMediaTrack(url, track.track);
     activeMedia.value.setVolume(volume.value);
     activeMedia.value.registerSource();
     activeMedia.value.registerEvents();
@@ -137,7 +137,7 @@ export const initMediaPlayer = (
     () => activeMedia.value?.ended,
     (ended) => {
       if (ended) {
-        const track = queue.value.currentTrack?.trackModel;
+        const track = queue.value.currentTrack?.track;
         if (track !== undefined && user.personId != null) {
           new StatisticsApi().statisticsListeningPost({
             listeningEvent: [
@@ -155,7 +155,7 @@ export const initMediaPlayer = (
           });
 
           appInsights.event("track completed", {
-            trackId: queue.value.currentTrack?.trackModel.id,
+            trackId: queue.value.currentTrack?.track.id,
             duration: activeMedia.value?.position,
           });
         }
@@ -176,7 +176,7 @@ export const initMediaPlayer = (
       trackTimestampStart = new Date();
       if (appInsights.event) {
         appInsights.event("track playback started", {
-          trackId: queue.value.currentTrack?.trackModel.id,
+          trackId: queue.value.currentTrack?.track.id,
         });
       }
     }
@@ -234,7 +234,7 @@ export const initMediaPlayer = (
   }
 
   function addToQueue(track: TrackModel) {
-    queue.value.push({ trackModel: { ...track } });
+    queue.value.push({ track: { ...track } });
     continuePlayingNextIfEnded();
   }
 
@@ -257,7 +257,7 @@ export const initMediaPlayer = (
   }
 
   function addNext(track: TrackModel): void {
-    queue.value.splice(queue.value.index + 1, 0, { trackModel: { ...track } });
+    queue.value.splice(queue.value.index + 1, 0, { track: { ...track } });
     continuePlayingNextIfEnded();
   }
 
@@ -266,7 +266,7 @@ export const initMediaPlayer = (
     stop();
 
     queue.value = new Queue(
-      queue.value.toSpliced(queue.value.index, 1, { trackModel: { ...track } }),
+      queue.value.toSpliced(queue.value.index, 1, { track: { ...track } }),
       queue.value.index,
     );
   }
@@ -301,7 +301,7 @@ export const initMediaPlayer = (
     isLoading: computed(() => activeMedia.value?.loading || false),
     hasNext,
     hasPrevious,
-    currentTrack: computed(() => queue.value.currentTrack?.trackModel),
+    currentTrack: computed(() => queue.value.currentTrack?.track),
     currentPosition,
     currentTrackDuration: computed(() =>
       activeMedia.value ? activeMedia.value.duration : NaN,

@@ -2,8 +2,8 @@ import type { TrackModel } from "@bcc-code/bmm-sdk-fetch";
 
 export default class EnrichedTrackModel {
   constructor(trackModel: TrackModel) {
-    this.trackModel = trackModel;
+    this.track = trackModel;
   }
 
-  trackModel: TrackModel;
+  track: TrackModel;
 }

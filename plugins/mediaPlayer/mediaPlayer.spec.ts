@@ -667,9 +667,9 @@ describe("plugin mediaPlayer MediaTrack", () => {
         // Assert
         expect(mediaPlayer.value.queue).length(3);
         expect(mediaPlayer.value.queue.index).eq(0);
-        expect(mediaPlayer.value.queue[0]?.trackModel.id).eq(2);
-        expect(mediaPlayer.value.queue[1]?.trackModel.id).eq(1);
-        expect(mediaPlayer.value.queue[2]?.trackModel.id).eq(3);
+        expect(mediaPlayer.value.queue[0]?.track.id).eq(2);
+        expect(mediaPlayer.value.queue[1]?.track.id).eq(1);
+        expect(mediaPlayer.value.queue[2]?.track.id).eq(3);
       },
       { retry: 100 },
     );
@@ -1308,7 +1308,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
         // Assert
         expect(queueValue).length(2);
         expect(queueValue[0]).not.eq(queueValue[1]);
-        expect(mediaPlayer.value.queue.currentTrack?.trackModel.id).not.eq(4);
+        expect(mediaPlayer.value.queue.currentTrack?.track.id).not.eq(4);
       });
 
       it("stopps playing after replacing the queue with an empty queue while playing", async () => {

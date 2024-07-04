@@ -224,7 +224,7 @@ useDraggable(queueListElement, queue, {
       <ul ref="queueListElement" class="px-3 pb-3">
         <li
           v-for="(item, i) in queue"
-          :key="item.trackModel.id"
+          :key="item.track.id"
           @click="queue.index = i"
         >
           <div
@@ -236,19 +236,19 @@ useDraggable(queueListElement, queue, {
             class="flex cursor-row-resize justify-between gap-2 rounded-xl px-3 py-2 transition-all duration-500 ease-out hover:bg-background-2"
           >
             <div class="truncate">
-              <div>{{ trackTitleField(item.trackModel) }}</div>
+              <div>{{ trackTitleField(item.track) }}</div>
               <div
                 class="text-sm"
                 :class="isCurrentTrack(i) ? 'text-black-2' : 'text-label-2'"
               >
                 <span>
-                  {{ trackSubtitleField(item.trackModel) }}
+                  {{ trackSubtitleField(item.track) }}
                 </span>
               </div>
             </div>
 
             <div class="flex items-center justify-between gap-2">
-              <TrackMenu :track="item.trackModel" />
+              <TrackMenu :track="item.track" />
               <NuxtIcon
                 v-if="isCurrentTrack(i) && status !== MediaPlayerStatus.Stopped"
                 name="icon.playing.animation"

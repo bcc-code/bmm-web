@@ -70,7 +70,7 @@ describe("plugin mediaPlayer Queue", () => {
       expect(q.isShuffled).equal(false);
       expect(q.index).equal(0);
       expect(q.currentTrack).toBeDefined();
-      expect(q.currentTrack!.trackModel.id).equal(1);
+      expect(q.currentTrack!.track.id).equal(1);
     });
 
     it("is unshuffled and has an index of 1 on non-empty initialization with index of 1", () => {
@@ -81,7 +81,7 @@ describe("plugin mediaPlayer Queue", () => {
       expect(q.isShuffled).equal(false);
       expect(q.index).equal(1);
       expect(q.currentTrack).toBeDefined();
-      expect(q.currentTrack!.trackModel.id).equal(2);
+      expect(q.currentTrack!.track.id).equal(2);
     });
 
     it("is unshuffled and has an index of 0 on non-empty initialization with index of -99", () => {
@@ -92,7 +92,7 @@ describe("plugin mediaPlayer Queue", () => {
       expect(q.isShuffled).equal(false);
       expect(q.index).equal(0);
       expect(q.currentTrack).toBeDefined();
-      expect(q.currentTrack!.trackModel.id).equal(1);
+      expect(q.currentTrack!.track.id).equal(1);
     });
 
     it("is unshuffled and has an index of the highest element on non-empty initialization with index of 99 (too high)", () => {
@@ -103,7 +103,7 @@ describe("plugin mediaPlayer Queue", () => {
       expect(q.isShuffled).equal(false);
       expect(q.index).equal(2);
       expect(q.currentTrack).toBeDefined();
-      expect(q.currentTrack!.trackModel.id).equal(3);
+      expect(q.currentTrack!.track.id).equal(3);
     });
   });
 
@@ -118,7 +118,7 @@ describe("plugin mediaPlayer Queue", () => {
         q.shuffle();
 
         // Assert
-        expect(q[2]?.trackModel.id).not.eq(2);
+        expect(q[2]?.track.id).not.eq(2);
         expect(q.isShuffled).eq(true);
       },
       { retry: 100 },
@@ -135,7 +135,7 @@ describe("plugin mediaPlayer Queue", () => {
         q.unshuffle();
 
         // Assert
-        expect(q[2]?.trackModel.id).eq(2);
+        expect(q[2]?.track.id).eq(2);
         expect(q.isShuffled).eq(false);
       },
       { repeats: 100 },
