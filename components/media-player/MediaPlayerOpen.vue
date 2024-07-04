@@ -248,7 +248,7 @@ useDraggable(queueListElement, queue, {
             </div>
 
             <div class="flex items-center justify-between gap-2">
-              <TrackMenu :track="item.track" />
+              <TrackMenu :track="item.track" :origin="item.originView" />
               <NuxtIcon
                 v-if="isCurrentTrack(i) && status !== MediaPlayerStatus.Stopped"
                 name="icon.playing.animation"

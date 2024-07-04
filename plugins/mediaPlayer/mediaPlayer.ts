@@ -42,9 +42,9 @@ export interface MediaPlayer {
     origin?: string,
     startPosition?: number | null,
   ) => void;
-  setQueueShuffled: (queue: TrackModel[]) => void;
-  addToQueue: (track: TrackModel) => void;
-  addNext: (track: TrackModel) => void;
+  setQueueShuffled: (queue: TrackModel[], origin?: string) => void;
+  addToQueue: (track: TrackModel, origin?: string) => void;
+  addNext: (track: TrackModel, origin?: string) => void;
   replaceCurrent: (track: TrackModel) => void;
   repeatStatus: Ref<RepeatStatus>;
 }
@@ -254,17 +254,17 @@ export const initMediaPlayer = (
     );
   }
 
-  function setQueueShuffled(newQueue: TrackModel[]): void {
+  function setQueueShuffled(newQueue: TrackModel[], origin: string = ""): void {
     const trackIndex = Math.floor(Math.random() * newQueue.length);
-    setQueue(newQueue, trackIndex);
+    setQueue(newQueue, trackIndex, origin);
     queue.value.shuffle();
   }
 
-  function addNext(track: TrackModel): void {
+  function addNext(track: TrackModel, origin: string = ""): void {
     queue.value.splice(
       queue.value.index + 1,
       0,
-      new EnrichedTrackModel({ ...track }, ""),
+      new EnrichedTrackModel({ ...track }, origin),
     );
     continuePlayingNextIfEnded();
   }
