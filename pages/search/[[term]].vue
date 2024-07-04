@@ -143,7 +143,7 @@ function playTrack(item: TrackModel) {
   );
   const index = tracks.findIndex((x: TrackModel) => x === item);
   if (highlighting && highlighting.startPositionInSeconds) {
-    setQueue(tracks, index, highlighting.startPositionInSeconds);
+    setQueue(tracks, index, "", highlighting.startPositionInSeconds);
   } else {
     setQueue(tracks, index);
   }
