@@ -11,5 +11,6 @@ const { data: models, pending } = useDiscover({});
     :pending="pending"
     class="mt-6 lg:mt-12"
     show-message-to-mobile-users
+    origin="ExploreNewest"
   ></DocumentList>
 </template>
