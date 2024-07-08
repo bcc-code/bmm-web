@@ -7,18 +7,13 @@ const props = defineProps<{
 }>();
 
 const { setQueue } = useNuxtApp().$mediaPlayer;
-const origin = () => `Tile`;
+const origin = "Tile";
 
 function playTrack() {
   if (!props.item.track) return;
   if (props.item.lastPositionInMs)
-    setQueue(
-      [props.item.track],
-      0,
-      origin(),
-      props.item.lastPositionInMs / 1000,
-    );
-  else setQueue([props.item.track], 0, origin());
+    setQueue([props.item.track], 0, origin, props.item.lastPositionInMs / 1000);
+  else setQueue([props.item.track], 0, origin);
   // ToDo: load linked album (from showAllLink) and add remaining items to the queue
 }
 
@@ -27,7 +22,7 @@ async function shufflePodcast() {
     const tracks = await new PodcastApi().podcastIdShuffleGet({
       id: props.item.shufflePodcastId,
     });
-    setQueue(tracks, 0, origin());
+    setQueue(tracks, 0, origin);
   }
 }
 </script>
@@ -84,7 +79,7 @@ async function shufflePodcast() {
             class="aspect-square p-1 text-xl text-black-1"
           />
         </button>
-        <TrackMenu :track="item.track" class="ml-auto" :origin="origin()" />
+        <TrackMenu :track="item.track" class="ml-auto" :origin="origin" />
       </div>
     </div>
   </div>
