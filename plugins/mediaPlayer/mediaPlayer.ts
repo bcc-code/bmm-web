@@ -5,6 +5,7 @@ import type { IUserData } from "../2.userData";
 import type { AppInsights } from "../3.applicationInsights";
 import MediaTrack from "./MediaTrack";
 import Queue from "./Queue";
+import EnrichedTrackModel from "./EnrichedTrackModel";
 
 export enum MediaPlayerStatus {
   Paused = "PAUSED",
@@ -32,17 +33,19 @@ export interface MediaPlayer {
   hasPrevious: ComputedRef<Boolean>;
   queue: ComputedRef<UnwrapRef<Queue>>;
   currentTrack: ComputedRef<UnwrapRef<TrackModel> | undefined>;
+  currentEnrichedTrack: ComputedRef<UnwrapRef<EnrichedTrackModel> | undefined>;
   currentPosition: Ref<number>;
   currentTrackDuration: ComputedRef<number>;
   volume: Ref<number>;
   setQueue: (
     queue: TrackModel[],
     index?: number,
+    origin?: string,
     startPosition?: number | null,
   ) => void;
-  setQueueShuffled: (queue: TrackModel[]) => void;
-  addToQueue: (track: TrackModel) => void;
-  addNext: (track: TrackModel) => void;
+  setQueueShuffled: (queue: TrackModel[], origin?: string) => void;
+  addToQueue: (track: TrackModel, origin?: string) => void;
+  addNext: (track: TrackModel, origin?: string) => void;
   replaceCurrent: (track: TrackModel) => void;
   repeatStatus: Ref<RepeatStatus>;
 }
@@ -50,7 +53,7 @@ export interface MediaPlayer {
 export const seekOffset = 15;
 
 export const initMediaPlayer = (
-  createMediaTrack: (src: string, track: TrackModel) => MediaTrack,
+  createMediaTrack: (src: string, track: EnrichedTrackModel) => MediaTrack,
   appInsights: AppInsights,
   user: IUserData,
 ): MediaPlayer => {
@@ -86,7 +89,7 @@ export const initMediaPlayer = (
 
     activeMedia.value?.destroy();
 
-    let url = defaultFileForTrack(track)?.url || "";
+    let url = defaultFileForTrack(track.track)?.url || "";
     if (nextStartPosition > 0) {
       url = `${url}#t=${new Date(nextStartPosition * 1000).toISOString().slice(11, 19)}`;
       nextStartPosition = 0;
@@ -136,7 +139,7 @@ export const initMediaPlayer = (
     () => activeMedia.value?.ended,
     (ended) => {
       if (ended) {
-        const track = queue.value.currentTrack;
+        const track = queue.value.currentTrack?.track;
         if (track !== undefined && user.personId != null) {
           new StatisticsApi().statisticsListeningPost({
             listeningEvent: [
@@ -154,7 +157,7 @@ export const initMediaPlayer = (
           });
 
           appInsights.event("track completed", {
-            trackId: queue.value.currentTrack?.id,
+            trackId: queue.value.currentTrack?.track.id,
             duration: activeMedia.value?.position,
           });
         }
@@ -175,7 +178,7 @@ export const initMediaPlayer = (
       trackTimestampStart = new Date();
       if (appInsights.event) {
         appInsights.event("track playback started", {
-          trackId: queue.value.currentTrack?.id,
+          trackId: queue.value.currentTrack?.track.id,
         });
       }
     }
@@ -232,28 +235,38 @@ export const initMediaPlayer = (
     }
   }
 
-  function addToQueue(track: TrackModel) {
-    queue.value.push({ ...track });
+  function addToQueue(track: TrackModel, origin: string = "") {
+    queue.value.push(new EnrichedTrackModel({ ...track }, origin));
     continuePlayingNextIfEnded();
   }
 
   function setQueue(
     _queue: TrackModel[],
     index = 0,
+    origin: string = "",
     startPosition: number | null = null,
   ): void {
     if (startPosition != null) nextStartPosition = startPosition;
-    queue.value = new Queue(_queue, index);
+    queue.value = new Queue(
+      _queue.map(
+        (track: TrackModel) => new EnrichedTrackModel({ ...track }, origin),
+      ),
+      index,
+    );
   }
 
-  function setQueueShuffled(newQueue: TrackModel[]): void {
+  function setQueueShuffled(newQueue: TrackModel[], origin: string = ""): void {
     const trackIndex = Math.floor(Math.random() * newQueue.length);
-    setQueue(newQueue, trackIndex);
+    setQueue(newQueue, trackIndex, origin);
     queue.value.shuffle();
   }
 
-  function addNext(track: TrackModel): void {
-    queue.value.splice(queue.value.index + 1, 0, { ...track });
+  function addNext(track: TrackModel, origin: string = ""): void {
+    queue.value.splice(
+      queue.value.index + 1,
+      0,
+      new EnrichedTrackModel({ ...track }, origin),
+    );
     continuePlayingNextIfEnded();
   }
 
@@ -262,7 +275,11 @@ export const initMediaPlayer = (
     stop();
 
     queue.value = new Queue(
-      queue.value.toSpliced(queue.value.index, 1, { ...track }),
+      queue.value.toSpliced(
+        queue.value.index,
+        1,
+        new EnrichedTrackModel({ ...track }, ""),
+      ),
       queue.value.index,
     );
   }
@@ -297,7 +314,8 @@ export const initMediaPlayer = (
     isLoading: computed(() => activeMedia.value?.loading || false),
     hasNext,
     hasPrevious,
-    currentTrack: computed(() => queue.value.currentTrack),
+    currentTrack: computed(() => queue.value.currentTrack?.track),
+    currentEnrichedTrack: computed(() => queue.value.currentTrack),
     currentPosition,
     currentTrackDuration: computed(() =>
       activeMedia.value ? activeMedia.value.duration : NaN,

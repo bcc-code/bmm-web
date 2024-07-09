@@ -17,6 +17,7 @@ const {
   play,
   pause,
   currentTrack,
+  currentEnrichedTrack,
   currentPosition,
   currentTrackDuration,
   isLoading,
@@ -176,6 +177,7 @@ useDraggable(queueListElement, queue, {
           <TrackMenu
             v-if="currentTrack"
             :track="currentTrack"
+            :origin="currentEnrichedTrack?.originView"
             button-class="rounded-full border border-label-separator p-1.5"
           ></TrackMenu>
         </div>
@@ -222,7 +224,11 @@ useDraggable(queueListElement, queue, {
         </div>
       </div>
       <ul ref="queueListElement" class="px-3 pb-3">
-        <li v-for="(item, i) in queue" :key="item.id" @click="queue.index = i">
+        <li
+          v-for="(item, i) in queue"
+          :key="item.track.id"
+          @click="queue.index = i"
+        >
           <div
             :class="{
               'bg-tint text-black-1 hover:bg-tint': isCurrentTrack(i),
@@ -232,19 +238,19 @@ useDraggable(queueListElement, queue, {
             class="flex cursor-row-resize justify-between gap-2 rounded-xl px-3 py-2 transition-all duration-500 ease-out hover:bg-background-2"
           >
             <div class="truncate">
-              <div>{{ trackTitleField(item) }}</div>
+              <div>{{ trackTitleField(item.track) }}</div>
               <div
                 class="text-sm"
                 :class="isCurrentTrack(i) ? 'text-black-2' : 'text-label-2'"
               >
                 <span>
-                  {{ trackSubtitleField(item) }}
+                  {{ trackSubtitleField(item.track) }}
                 </span>
               </div>
             </div>
 
             <div class="flex items-center justify-between gap-2">
-              <TrackMenu :track="item" />
+              <TrackMenu :track="item.track" :origin="item.originView" />
               <NuxtIcon
                 v-if="isCurrentTrack(i) && status !== MediaPlayerStatus.Stopped"
                 name="icon.playing.animation"

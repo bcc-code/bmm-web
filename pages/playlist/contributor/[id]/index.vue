@@ -11,13 +11,14 @@ let tracks: TrackModel[] = [];
 const api = new ContributorApi();
 
 toolbarTitleStore().setReactiveToolbarTitle(() => t("nav.contributor"));
+const origin = computed(() => `Contributor|${contributorId}`);
 
 useHead({
   title: contributor.value?.name || "",
 });
 const onPressPlay = () => {
   if (tracks.length > 0) {
-    setQueue(tracks);
+    setQueue(tracks, 0, origin.value);
   }
 };
 const onPressShuffle = async () => {
@@ -26,7 +27,7 @@ const onPressShuffle = async () => {
       .value;
 
     if (shuffledTracks) {
-      setQueue(shuffledTracks);
+      setQueue(shuffledTracks, 0, origin.value);
     }
   } catch (e) {
     // TODO: Show an error message to the user
@@ -81,6 +82,6 @@ async function load(skip: number, take: number) {
       </template>
     </TrackCollectionHeader>
 
-    <EndlessDocumentList :load="load" />
+    <EndlessDocumentList :load="load" :origin="origin" />
   </div>
 </template>

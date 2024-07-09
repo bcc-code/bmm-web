@@ -10,12 +10,14 @@ const props = withDefaults(
     albumIsKnown?: boolean;
     showThumbnails?: boolean;
     addDropdownItems?: (items: DropdownMenuItem[], track: TrackModel) => void;
+    origin?: string;
   }>(),
   {
     skeletonCount: 5,
     addDropdownItems: undefined,
     trackTypeIsKnown: undefined,
     albumIsKnown: false,
+    origin: "",
   },
 );
 
@@ -55,7 +57,8 @@ const isTrackTypeKnown = () => {
         :show-thumbnail="showThumbnails"
         :add-dropdown-items="props.addDropdownItems"
         :is-album-known="props.albumIsKnown"
-        @play-track="setQueue(tracks, i)"
+        :origin="props.origin"
+        @play-track="setQueue(tracks, i, props.origin)"
       >
       </TrackItem>
     </template>

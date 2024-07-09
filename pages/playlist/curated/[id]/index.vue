@@ -10,15 +10,18 @@ const { data: playlist } = useCuratedPlaylist({ id: playlistId });
 const { data: tracks, pending } = useCuratedPlaylistTracks({ id: playlistId });
 
 const { setQueueShuffled, setQueue } = useNuxtApp().$mediaPlayer;
+const origin = computed(
+  () => `CuratedPlaylist|${playlistId}|${playlist.value?.title}`,
+);
 
 const onPressPlay = () => {
   if (tracks.value) {
-    setQueue(tracks.value);
+    setQueue(tracks.value, 0, origin.value);
   }
 };
 function shuffle() {
   if (tracks.value) {
-    setQueueShuffled(tracks.value);
+    setQueueShuffled(tracks.value, origin.value);
     $appInsights.event("Shuffle Playlist", { playlistId });
   }
 }
@@ -72,6 +75,7 @@ onBeforeMount(() => {
         :skeleton-count="10"
         :show-skeleton="pending"
         :tracks="tracks"
+        :origin="origin"
       />
     </div>
   </div>

@@ -4,6 +4,7 @@ import { describe, it, expect } from "vitest";
 import { flushPromises } from "@vue/test-utils";
 import type { TrackModel } from "@bcc-code/bmm-sdk-fetch";
 import Queue from "./Queue";
+import EnrichedTrackModel from "./EnrichedTrackModel";
 
 const now = new Date();
 function track(id: number) {
@@ -18,7 +19,7 @@ function track(id: number) {
     language: "nb",
     meta: {},
   };
-  return t;
+  return new EnrichedTrackModel(t, "");
 }
 
 describe("plugin mediaPlayer Queue", () => {
@@ -69,7 +70,7 @@ describe("plugin mediaPlayer Queue", () => {
       expect(q.isShuffled).equal(false);
       expect(q.index).equal(0);
       expect(q.currentTrack).toBeDefined();
-      expect(q.currentTrack!.id).equal(1);
+      expect(q.currentTrack!.track.id).equal(1);
     });
 
     it("is unshuffled and has an index of 1 on non-empty initialization with index of 1", () => {
@@ -80,7 +81,7 @@ describe("plugin mediaPlayer Queue", () => {
       expect(q.isShuffled).equal(false);
       expect(q.index).equal(1);
       expect(q.currentTrack).toBeDefined();
-      expect(q.currentTrack!.id).equal(2);
+      expect(q.currentTrack!.track.id).equal(2);
     });
 
     it("is unshuffled and has an index of 0 on non-empty initialization with index of -99", () => {
@@ -91,7 +92,7 @@ describe("plugin mediaPlayer Queue", () => {
       expect(q.isShuffled).equal(false);
       expect(q.index).equal(0);
       expect(q.currentTrack).toBeDefined();
-      expect(q.currentTrack!.id).equal(1);
+      expect(q.currentTrack!.track.id).equal(1);
     });
 
     it("is unshuffled and has an index of the highest element on non-empty initialization with index of 99 (too high)", () => {
@@ -102,7 +103,7 @@ describe("plugin mediaPlayer Queue", () => {
       expect(q.isShuffled).equal(false);
       expect(q.index).equal(2);
       expect(q.currentTrack).toBeDefined();
-      expect(q.currentTrack!.id).equal(3);
+      expect(q.currentTrack!.track.id).equal(3);
     });
   });
 
@@ -117,7 +118,7 @@ describe("plugin mediaPlayer Queue", () => {
         q.shuffle();
 
         // Assert
-        expect(q[2]?.id).not.eq(2);
+        expect(q[2]?.track.id).not.eq(2);
         expect(q.isShuffled).eq(true);
       },
       { retry: 100 },
@@ -134,7 +135,7 @@ describe("plugin mediaPlayer Queue", () => {
         q.unshuffle();
 
         // Assert
-        expect(q[2]?.id).eq(2);
+        expect(q[2]?.track.id).eq(2);
         expect(q.isShuffled).eq(false);
       },
       { repeats: 100 },
@@ -151,7 +152,7 @@ describe("plugin mediaPlayer Queue", () => {
           indexes.push(v);
         },
       );
-      const tracks: (TrackModel | undefined)[] = [];
+      const tracks: (EnrichedTrackModel | undefined)[] = [];
       watch(
         () => qObject.value?.currentTrack,
         (v) => {
@@ -189,7 +190,7 @@ describe("plugin mediaPlayer Queue", () => {
           indexes.push(v);
         },
       );
-      const tracks: (TrackModel | undefined)[] = [];
+      const tracks: (EnrichedTrackModel | undefined)[] = [];
       watch(
         () => qObject.value?.currentTrack,
         (v) => {
@@ -223,7 +224,7 @@ describe("plugin mediaPlayer Queue", () => {
           indexes.push(v);
         },
       );
-      const tracks: (TrackModel | undefined)[] = [];
+      const tracks: (EnrichedTrackModel | undefined)[] = [];
       watch(
         () => qObject.value?.currentTrack,
         (v) => {
@@ -257,7 +258,7 @@ describe("plugin mediaPlayer Queue", () => {
           indexes.push(v);
         },
       );
-      const tracks: (TrackModel | undefined)[] = [];
+      const tracks: (EnrichedTrackModel | undefined)[] = [];
       watch(
         () => qObject.value?.currentTrack,
         (v) => {
@@ -291,7 +292,7 @@ describe("plugin mediaPlayer Queue", () => {
           indexes.push(v);
         },
       );
-      const tracks: (TrackModel | undefined)[] = [];
+      const tracks: (EnrichedTrackModel | undefined)[] = [];
       watch(
         () => qObject.value?.currentTrack,
         (v) => {
@@ -325,7 +326,7 @@ describe("plugin mediaPlayer Queue", () => {
           indexes.push(v);
         },
       );
-      const tracks: (TrackModel | undefined)[] = [];
+      const tracks: (EnrichedTrackModel | undefined)[] = [];
       watch(
         () => qObject.value?.currentTrack,
         (v) => {
@@ -382,7 +383,7 @@ describe("plugin mediaPlayer Queue", () => {
     it("reordering doesn't change the current track", async () => {
       // Arrange
       const qObject = ref<Queue | undefined>();
-      const changes: (TrackModel | undefined)[] = [];
+      const changes: (EnrichedTrackModel | undefined)[] = [];
 
       qObject.value = new Queue(
         new Array(10).fill(0).map((_, i) => track(i)),

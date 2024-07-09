@@ -15,6 +15,7 @@ const props = withDefaults(
     track: TrackModel;
     buttonClass?: string;
     addDropdownItems?: (items: DropdownMenuItem[], track: TrackModel) => void;
+    origin?: string;
   }>(),
   {
     buttonClass: "",
@@ -35,12 +36,12 @@ const dropdownMenuItemsForTrack = (track: TrackModel) => {
   items.push({
     icon: "icon.play",
     text: t("track.dropdown.play-next"),
-    clickFunction: () => addNext(track),
+    clickFunction: () => addNext(track, props.origin),
   });
   items.push({
     icon: "icon.queue",
     text: t("track.dropdown.add-to-queue"),
-    clickFunction: () => addToQueue(track),
+    clickFunction: () => addToQueue(track, props.origin),
   });
 
   if (track?.meta?.parent?.id) {

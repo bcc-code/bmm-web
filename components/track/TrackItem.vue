@@ -14,6 +14,7 @@ const props = withDefaults(
     highlight?: Highlighting | undefined;
     addDropdownItems?: (items: DropdownMenuItem[], track: TrackModel) => void;
     isAlbumKnown?: boolean;
+    origin?: string;
   }>(),
   {
     isAlbumKnown: false,
@@ -199,7 +200,7 @@ const selectedTrack: Ref<TrackModel | null> = ref(null);
           class="rounded-full p-2 opacity-0 hover:bg-label-separator hover:opacity-100 group-hover:opacity-100 group-focus:opacity-100"
           :aria-label="t('track.dropdown.play-next')"
           :title="t('track.dropdown.play-next')"
-          @click="addNext(track)"
+          @click="addNext(track, props.origin)"
           @click.stop
         >
           <NuxtIcon name="icon.play" class="text-2xl" />
@@ -211,6 +212,7 @@ const selectedTrack: Ref<TrackModel | null> = ref(null);
             (isPlaying ? 'text-black-1 hover:text-black-1' : 'text-label-1')
           "
           :add-dropdown-items="props.addDropdownItems"
+          :origin="props.origin"
         />
       </div>
     </div>

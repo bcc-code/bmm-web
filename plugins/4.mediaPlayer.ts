@@ -68,24 +68,24 @@ export default defineNuxtPlugin((_) => {
               }
             },
             (play: PlayMeasurement) => {
-              const file = defaultFileForTrack(track);
+              const file = defaultFileForTrack(track.track);
               const trackLength = file?.duration || 0;
               const eventValues = {
                 ...play,
                 personId: userData.personId,
-                trackId: track.id,
+                trackId: track.track.id,
                 percentage:
                   trackLength > 0
                     ? (play.uniqueSecondsListened * 100) / trackLength
                     : 0,
                 trackLength,
-                typeOfTrack: track.subtype,
+                typeOfTrack: track.track.subtype,
                 availability: ResourceAvailability.Remote,
-                albumId: track.parentId,
-                tags: track.tags,
+                albumId: track.track.parentId,
+                tags: track.track.tags,
                 sentAfterStartup: false,
-                language: track.language,
-                playbackOrigin: "",
+                language: track.track.language,
+                playbackOrigin: track.originView,
                 adjustedPlaybackSpeed: 1,
                 client: runtimeConfig.public.systemName,
               };

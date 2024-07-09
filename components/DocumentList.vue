@@ -24,6 +24,7 @@ const props = defineProps<{
   pending: boolean;
   useDailyPodcastView?: boolean | undefined;
   showMessageToMobileUsers?: boolean | undefined;
+  origin?: string;
 }>();
 
 const convertModels = (models: IAllDocumentModels[]) => {
@@ -93,6 +94,7 @@ const playItem = (item: TrackModel, group: IDiscoverableGroup) => {
   setQueue(
     items,
     items.findIndex((track) => track.id === item.id),
+    props.origin,
   );
 };
 const { device } = UAParser(navigator.userAgent);
@@ -281,6 +283,7 @@ onMounted(() => {
               :is-track-type-known="true"
               :use-daily-podcast-view="useDailyPodcastView"
               show-thumbnail
+              :origin="props.origin"
               @play-track="playItem(item, group)"
             />
             <GenericListItem
