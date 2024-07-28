@@ -26,10 +26,8 @@ function shuffle() {
   }
 }
 
-onBeforeMount(() => {
-  useHead({
-    title: playlist.value?.title || "",
-  });
+useHead({
+  title: computed(() => playlist.value?.title || t("nav.playlist")),
 });
 </script>
 

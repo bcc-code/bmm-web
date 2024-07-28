@@ -11,7 +11,7 @@ const { data: collection, pending } = request;
 
 const hasBeenAdded = ref(false);
 useHead({
-  title: collection.value?.name || "",
+  title: computed(() => collection.value?.name || t("nav.playlist")),
 });
 const onAdd = async () => {
   const api = new SharedPlaylistApi();

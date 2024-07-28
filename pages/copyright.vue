@@ -1,6 +1,9 @@
 <script lang="ts" setup>
 const { t } = useI18n();
 toolbarTitleStore().setReactiveToolbarTitle(() => t("track.details.copyright"));
+useHead({
+  title: computed(() => t("track.details.copyright")),
+});
 </script>
 
 <template>

@@ -12,10 +12,10 @@ const api = new ContributorApi();
 
 toolbarTitleStore().setReactiveToolbarTitle(() => t("nav.contributor"));
 const origin = computed(() => `Contributor|${contributorId}`);
-
 useHead({
-  title: contributor.value?.name || "",
+  title: computed(() => contributor.value?.name || t("nav.contributor")),
 });
+
 const onPressPlay = () => {
   if (tracks.length > 0) {
     setQueue(tracks, 0, origin.value);

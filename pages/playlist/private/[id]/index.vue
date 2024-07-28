@@ -12,8 +12,9 @@ const request = usePrivatePlaylist({ id: collectionId });
 const { data: collection, pending } = request;
 
 useHead({
-  title: collection.value?.name || "",
+  title: computed(() => collection.value?.name || t("nav.playlist")),
 });
+
 const onPressPlay = () => {
   if (collection.value?.tracks) {
     setQueue(collection.value.tracks);
