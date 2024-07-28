@@ -2,6 +2,9 @@
 const { year } = useRoute<"archive-year">().params;
 
 toolbarTitleStore().setReactiveToolbarTitle(() => year);
+useHead({
+  title: computed(() => year),
+});
 
 const { data: years, pending } = useAlbumsInYear(parseInt(year, 10));
 </script>

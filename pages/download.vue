@@ -4,6 +4,9 @@ import { UAParser } from "ua-parser-js";
 
 const { t } = useI18n();
 toolbarTitleStore().setReactiveToolbarTitle(() => t("download.download"));
+useHead({
+  title: computed(() => t("download.download")),
+});
 
 const api = new DownloadLinksApi();
 const links = await api.downloadLinksGet();
