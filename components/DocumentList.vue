@@ -14,9 +14,6 @@ type IDiscoverableGroup = {
   isTileContainer: boolean;
 };
 
-const runtimeConfig = useRuntimeConfig();
-const isElectron = runtimeConfig.public.systemName === "Electron";
-
 const { t } = useI18n();
 
 const props = defineProps<{
@@ -137,21 +134,6 @@ onMounted(() => {
       </ul>
     </template>
     <template v-else-if="props.items">
-      <NuxtLink
-        v-if="
-          props.showMessageToMobileUsers &&
-          device.type !== 'mobile' &&
-          !isElectron
-        "
-        class="col-span-full hidden gap-3 rounded-2xl bg-background-2 p-4 font-medium sm:flex"
-        to="https://bmm-old.brunstad.org?utm_campaign=old-bmm"
-        target="_blank"
-      >
-        <div>
-          <NuxtIcon name="icon.alert" class="text-2xl" />
-        </div>
-        Click here to navigate to the old BMM website.
-      </NuxtLink>
       <NuxtLink
         v-if="props.showMessageToMobileUsers && device.type === 'mobile'"
         class="col-span-full flex gap-3 rounded-2xl bg-background-2 p-4 font-medium md:hidden"
@@ -322,15 +304,29 @@ onMounted(() => {
               v-else-if="item.type === 'recommendation'"
               :item="item"
             />
-            <div
-              v-else-if="item.type === 'InfoMessage'"
-              class="col-span-full flex gap-3 rounded-2xl bg-background-2 p-4 font-medium"
-            >
-              <div>
-                <NuxtIcon name="icon.alert" class="text-2xl" />
+
+            <template v-else-if="item.type === 'InfoMessage'">
+              <NuxtLink
+                v-if="item.link"
+                :to="parseLink(item.link)"
+                :target="isInternalLink(item.link || '') ? '_self' : '_blank'"
+                class="col-span-full flex gap-3 rounded-2xl bg-background-2 p-4 font-medium"
+              >
+                <div>
+                  <NuxtIcon name="icon.alert" class="text-2xl" />
+                </div>
+                {{ item.translatedMessage }}
+              </NuxtLink>
+              <div
+                v-else
+                class="col-span-full flex gap-3 rounded-2xl bg-background-2 p-4 font-medium"
+              >
+                <div>
+                  <NuxtIcon name="icon.alert" class="text-2xl" />
+                </div>
+                {{ item.translatedMessage }}
               </div>
-              {{ item.translatedMessage }}
-            </div>
+            </template>
 
             <li v-else class="col-span-full">
               <div style="background-color: rgba(255, 0, 0, 0.4); color: red">
