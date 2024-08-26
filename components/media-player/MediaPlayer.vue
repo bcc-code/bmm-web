@@ -20,7 +20,10 @@ defineShortcuts({
 </script>
 
 <template>
-  <div class="shrink-0" :class="{ 'w-[400px]': open }">
+  <div
+    class="shrink-0 transition-all duration-700 ease-out-expo"
+    :class="{ 'w-[400px]': open, 'w-0': !open }"
+  >
     <div
       class="large-shadow group fixed bottom-1 right-0 z-30 flex w-[400px] max-w-full flex-col overflow-hidden rounded-2xl bg-background-1 transition-all duration-700 ease-out-expo sm:bottom-5 sm:right-5"
       :style="{
