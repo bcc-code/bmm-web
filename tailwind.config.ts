@@ -32,6 +32,12 @@ const config: Partial<Config> = {
         tall: { raw: "(min-height: 700px)" },
         "x-tall": { raw: "(min-height: 800px)" },
       },
+      keyframes: {
+        "player-enter": {
+          "0%": { opacity: "0", transform: "translateY(1rem)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
+        },
+      },
     },
   },
   plugins: [
