@@ -15,5 +15,17 @@ export const toolbarTitleStore = defineStore("toolbarTitle", () => {
     toolbarTitle.value = title;
   }
 
-  return { setReactiveToolbarTitle, toolbarTitle, setToolbarTitle };
+  function setToolbarTitleByRef(title: Ref<string>) {
+    toolbarTitle.value = title.value;
+    watch(title, (newTitle) => {
+      toolbarTitle.value = newTitle;
+    });
+  }
+
+  return {
+    setReactiveToolbarTitle,
+    toolbarTitle,
+    setToolbarTitle,
+    setToolbarTitleByRef,
+  };
 });

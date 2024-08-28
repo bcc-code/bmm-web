@@ -1,9 +1,6 @@
 <script lang="ts" setup>
 const { t } = useI18n();
-toolbarTitleStore().setReactiveToolbarTitle(() => t("nav.home"));
-useHead({
-  title: computed(() => t("nav.home")),
-});
+setTitle(() => t("nav.home"));
 
 const { data: models, pending } = useDiscover({});
 </script>

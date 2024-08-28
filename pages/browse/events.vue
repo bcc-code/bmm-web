@@ -2,10 +2,7 @@
 import { BrowseApi } from "@bcc-code/bmm-sdk-fetch";
 
 const title = ref("");
-toolbarTitleStore().setToolbarTitle(title.value);
-useHead({
-  title: computed(() => title.value),
-});
+setTitleByRef(title);
 
 const api = new BrowseApi();
 

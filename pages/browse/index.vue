@@ -1,9 +1,6 @@
 <script lang="ts" setup>
 const { t } = useI18n();
-toolbarTitleStore().setReactiveToolbarTitle(() => t("nav.browse"));
-useHead({
-  title: computed(() => t("nav.browse")),
-});
+setTitle(() => t("nav.browse"));
 
 const { data: models, pending } = useBrowse();
 </script>

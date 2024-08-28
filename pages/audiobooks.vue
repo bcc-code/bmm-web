@@ -1,9 +1,6 @@
 <script lang="ts" setup>
 const { t } = useI18n();
-toolbarTitleStore().setReactiveToolbarTitle(() => t("nav.audiobooks"));
-useHead({
-  title: computed(() => t("nav.audiobooks")),
-});
+setTitle(() => t("nav.audiobooks"));
 
 const { data: audiobooks, pending } = useTracks({
   contentType2: ["audiobook"],

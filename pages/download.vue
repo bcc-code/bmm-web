@@ -3,10 +3,7 @@ import { DownloadLinksApi } from "@bcc-code/bmm-sdk-fetch";
 import { UAParser } from "ua-parser-js";
 
 const { t } = useI18n();
-toolbarTitleStore().setReactiveToolbarTitle(() => t("download.download"));
-useHead({
-  title: computed(() => t("download.download")),
-});
+setTitle(() => t("download.download"));
 
 const api = new DownloadLinksApi();
 const links = await api.downloadLinksGet();

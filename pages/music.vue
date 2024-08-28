@@ -3,10 +3,7 @@ import { TrackApi } from "@bcc-code/bmm-sdk-fetch";
 
 const { t } = useI18n();
 const api = new TrackApi();
-toolbarTitleStore().setReactiveToolbarTitle(() => t("nav.recent-music"));
-useHead({
-  title: computed(() => t("nav.recent-music")),
-});
+setTitle(() => t("nav.recent-music"));
 
 async function load(skip: number, take: number) {
   const data = await api.trackGet({
