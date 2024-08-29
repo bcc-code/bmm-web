@@ -1,7 +1,7 @@
 <script setup lang="ts">
 const { t } = useI18n();
 const { params } = useRoute<"error">();
-setTitle(() => t("nav.unknown"));
+setTitle(() => t("nav.not-found"));
 </script>
 
 <template>
