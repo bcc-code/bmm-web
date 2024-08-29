@@ -7,6 +7,8 @@ import {
   nativeImage,
   net,
   ipcMain,
+  Menu,
+  Tray,
 } from "electron";
 import * as path from "path";
 import * as fs from "fs/promises";
@@ -18,6 +20,7 @@ const PRODUCTION_APP_PROTOCOL = config.appProtocol;
 const PRODUCTION_APP_PATH = path.join(__dirname);
 const defaultUrl = `${PRODUCTION_APP_PROTOCOL}://${config.websiteDomain}`;
 let initUrl = defaultUrl;
+let isQuitting = false;
 let appReadyHasRun = false;
 
 const navigateToUri = (window: BrowserWindow, url: string) => {
@@ -126,12 +129,32 @@ const openWindow = (url: string) => {
     dialog.showErrorBox(url, `${error}`);
   });
 
-  window.on("close", () => {
+  window.on("close", (event) => {
+    if (!isQuitting) {
+      window.hide();
+      event.preventDefault();
+    }
     store.set("bounds", window?.getBounds());
   });
   window.on("closed", () => {
     window = undefined;
   });
+
+  const tray = new Tray(
+    nativeImage.createFromPath(path.join(__dirname, "icons/icon.tray.png")),
+  );
+  tray.on("click", () => window.show());
+  tray.setContextMenu(
+    Menu.buildFromTemplate([
+      {
+        label: "Quit",
+        click: () => {
+          isQuitting = true;
+          app.quit();
+        },
+      },
+    ]),
+  );
 };
 
 // Limit the app to a single instance and pass on arguments to the second instance (calls the "second-instance" event)
@@ -260,4 +283,7 @@ if (!gotTheLock) {
       openWindow(defaultUrl);
     }
   });
+
+  // Ensure app is not minimised to tray if termination is requested.
+  app.on("before-quit", () => (isQuitting = true));
 }
