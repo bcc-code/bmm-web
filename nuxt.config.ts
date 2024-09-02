@@ -30,6 +30,9 @@ export default defineNuxtConfig({
       systemName: process.env.ELECTRON ? "Electron" : "Web",
       isMac: process.platform === "darwin",
       mediaSupportEmail: "support@bcc.media",
+      sentry: {
+        dsn: process.env.SENTRY_DSN ?? ""
+      }
     },
   },
   spaLoadingTemplate: "spa-loading-template.html",
