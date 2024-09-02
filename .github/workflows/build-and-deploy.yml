@@ -41,6 +41,7 @@ jobs:
         run: pnpm build
         env:
           NUXT_PUBLIC_APPLICATION_INSIGHTS: ${{ vars.NUXT_PUBLIC_APPLICATION_INSIGHTS }}
+          NUXT_PUBLIC_SENTRY_DSN: ${{ vars.NUXT_PUBLIC_SENTRY_DSN }}
       - name: E2E testing
         uses: cypress-io/github-action@v6
         env:

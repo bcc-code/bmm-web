@@ -31,7 +31,7 @@ export default defineNuxtConfig({
       isMac: process.platform === "darwin",
       mediaSupportEmail: "support@bcc.media",
       sentry: {
-        dsn: process.env.SENTRY_DSN ?? ""
+        dsn: ""
       }
     },
   },
