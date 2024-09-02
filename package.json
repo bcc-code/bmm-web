@@ -75,6 +75,7 @@
     "stylelint": "^16.9.0",
     "stylelint-config-recommended-scss": "^14.1.0",
     "stylelint-config-recommended-vue": "^1.5.0",
+    "stylelint-processor-html": "^1.0.0",
     "tree-kill": "^1.2.2",
     "typescript": "~5.5.4",
     "vite-plugin-electron": "^0.28.7",
@@ -82,5 +83,5 @@
     "vitest": "^2.0.5",
     "vue-tsc": "^2.1.4"
   },
-  "packageManager": "pnpm@9.9.0"
+  "packageManager": "pnpm@9.0.0"
 }
