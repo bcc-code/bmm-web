@@ -43,23 +43,23 @@ watch([currentPosition, currentTrackDuration], () => {
 </script>
 
 <template>
-  <div class="group/position px-4 py-2" v-bind="positionSlider.rootProps">
+  <div class="group/position px-4 py-2" v-bind="positionSlider.getRootProps()">
     <div class="flex items-center">
       <div class="h-7"></div>
       <div
         class="h-6 w-full transition-all duration-200 group-hover/position:h-7"
       >
         <div
-          v-bind="positionSlider.controlProps"
+          v-bind="positionSlider.getControlProps()"
           class="h-full cursor-pointer py-2"
         >
           <div class="h-full overflow-hidden rounded-full">
             <div
-              v-bind="positionSlider.trackProps"
+              v-bind="positionSlider.getTrackProps()"
               class="h-full cursor-pointer bg-background-2"
             >
               <div
-                v-bind="positionSlider.rangeProps"
+                v-bind="positionSlider.getRangeProps()"
                 class="h-full cursor-pointer bg-label-1"
               />
             </div>

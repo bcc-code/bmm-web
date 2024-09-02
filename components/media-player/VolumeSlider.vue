@@ -23,7 +23,7 @@ const setVolume = (value: number) => {
 };
 </script>
 <template>
-  <div class="px-4 pb-2 pt-5" v-bind="volumeSlider.rootProps">
+  <div class="px-4 pb-2 pt-5" v-bind="volumeSlider.getRootProps()">
     <div
       class="group/volume flex items-center gap-3 rounded-3xl border border-label-separator px-[16px] py-[1px]"
     >
@@ -36,16 +36,16 @@ const setVolume = (value: number) => {
         class="h-8 w-full transition-all duration-200 group-hover/volume:h-9"
       >
         <div
-          v-bind="volumeSlider.controlProps"
+          v-bind="volumeSlider.getControlProps()"
           class="h-full cursor-pointer py-3"
         >
           <div class="h-full overflow-hidden rounded-full">
             <div
-              v-bind="volumeSlider.trackProps"
+              v-bind="volumeSlider.getTrackProps()"
               class="h-full cursor-pointer bg-background-2"
             >
               <div
-                v-bind="volumeSlider.rangeProps"
+                v-bind="volumeSlider.getRangeProps()"
                 class="h-full cursor-pointer bg-label-1"
               />
             </div>
