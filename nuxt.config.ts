@@ -31,8 +31,8 @@ export default defineNuxtConfig({
       isMac: process.platform === "darwin",
       mediaSupportEmail: "support@bcc.media",
       sentry: {
-        dsn: ""
-      }
+        dsn: "",
+      },
     },
   },
   spaLoadingTemplate: "spa-loading-template.html",
