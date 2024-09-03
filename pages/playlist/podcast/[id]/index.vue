@@ -95,6 +95,10 @@ async function load(skip: number, take: number) {
   else tracks = tracks.concat(data);
   return models;
 }
+
+useHead({
+  title: computed(() => podcast.value?.title || t("nav.podcast")),
+});
 </script>
 
 <template>

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const { t } = useI18n();
-toolbarTitleStore().setReactiveToolbarTitle(() => t("nav.archive"));
+setTitle(() => t("nav.archive"));
 
 const { data: years } = useYearList();
 </script>
