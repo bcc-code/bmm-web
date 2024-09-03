@@ -7,10 +7,13 @@ defineProps<{
 <template>
   <div class="col-span-full flex items-center justify-between gap-4 py-3">
     <div class="flex gap-3">
-      <div v-if="showThumbnail" class="size-10 rounded-md bg-label-separator" />
-      <div class="flex flex-col justify-center gap-2">
+      <div
+        v-if="showThumbnail"
+        class="size-10 animate-pulse rounded-md bg-label-separator"
+      />
+      <div class="flex flex-col justify-center gap-1.5">
         <div class="h-5 w-[400px] animate-pulse rounded bg-label-separator" />
-        <div class="h-4 w-[100px] animate-pulse rounded bg-label-separator" />
+        <div class="h-3.5 w-[100px] animate-pulse rounded bg-label-separator" />
       </div>
     </div>
     <div
