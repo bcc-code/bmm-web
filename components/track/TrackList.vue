@@ -42,11 +42,11 @@ const isTrackTypeKnown = () => {
     class="grid w-full grid-cols-tracklist grid-rows-1 gap-x-4 divide-y divide-label-separator"
   >
     <template v-if="showSkeleton">
-      <li
+      <TrackItemSkeleton
         v-for="skeleton in skeletonCount"
         :key="skeleton"
-        class="my-6 h-11 w-full animate-pulse rounded-lg bg-background-2"
-      ></li>
+        :show-thumbnail="showThumbnails"
+      />
     </template>
     <template v-else-if="tracks">
       <TrackItem

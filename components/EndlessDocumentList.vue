@@ -65,12 +65,8 @@ watch(reactiveDependencies(), async () => {
       :use-daily-podcast-view="useDailyPodcastView"
       :origin="origin"
     />
-    <ul v-if="loadingMore">
-      <li
-        v-for="index in 5"
-        :key="index"
-        class="my-6 h-11 w-full animate-pulse rounded-lg bg-background-2"
-      ></li>
+    <ul v-if="loadingMore" class="divide-y divide-label-separator">
+      <TrackItemSkeleton v-for="index in 10" :key="index" show-thumbnail />
     </ul>
   </div>
 </template>
