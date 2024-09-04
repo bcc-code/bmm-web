@@ -79,7 +79,7 @@ jobs:
       - build_and_test
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/download-artifact@v3
+      - uses: actions/download-artifact@v4.1.7
         with:
           name: dist
           path: dist
@@ -112,7 +112,7 @@ jobs:
 
     steps:
       - name: Download production artifacts
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4.1.7
         with:
           name: dist
 
@@ -223,7 +223,7 @@ jobs:
 
     steps:
       - name: Download artifact from build job
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4.1.7
         with:
           name: WebApp
 
