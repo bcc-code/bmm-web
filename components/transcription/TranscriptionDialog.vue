@@ -111,7 +111,7 @@ const headerComponent = computed(() => {
         v-for="item in transcription"
         :key="item.id"
         :class="[
-          'relative z-10 text-pretty text-label-2 after:absolute after:bottom-0 after:left-0 after:-z-10 after:h-full after:bg-tint after:transition-all after:duration-[1000ms] after:ease-out-expo',
+          'relative z-10 whitespace-pre text-pretty text-label-2 after:absolute after:bottom-0 after:left-0 after:-z-10 after:h-full after:bg-tint after:transition-all after:duration-[1000ms] after:ease-out-expo',
           { 'my-4': track.subtype == 'song' },
         ]"
       >
