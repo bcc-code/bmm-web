@@ -30,6 +30,8 @@ const showContributorsList = ref(false);
 const { download } = useWebDownload();
 const showDownloadDialog = ref(false);
 
+const showTranscriptionDialog = ref(false);
+
 const dropdownMenuItemsForTrack = (track: TrackModel) => {
   const items: DropdownMenuItem[] = [];
 
@@ -98,6 +100,17 @@ const dropdownMenuItemsForTrack = (track: TrackModel) => {
       }
     },
   });
+
+  if (track.hasTranscription) {
+    items.push({
+      icon: "icon.information",
+      text: t("track.dropdown.transcription"),
+      clickFunction: () => {
+        showTranscriptionDialog.value = true;
+      },
+    });
+  }
+
   items.push({
     icon: "icon.information",
     text: t("track.dropdown.more-info"),
@@ -138,19 +151,21 @@ const dropdownMenuItemsForTrack = (track: TrackModel) => {
     </template>
   </DropdownMenu>
 
-  <DialogBase :show="showInfo" title="Track Details" @close="showInfo = false">
-    <TrackDetails
-      class="md:w-[500px] lg:w-[600px]"
-      :track="track"
-    ></TrackDetails>
+  <DialogBase
+    :show="showInfo"
+    :title="$t('track.details.title')"
+    @close="showInfo = false"
+  >
+    <TrackDetails class="md:w-[500px] lg:w-[600px]" :track="track" />
   </DialogBase>
   <DialogBase
     :show="showContributorsList"
     :title="t('track.dropdown.go-to-contributors')"
     @close="showContributorsList = false"
   >
-    <TrackContributors :track="track"></TrackContributors>
+    <TrackContributors :track="track" />
   </DialogBase>
+  <TranscriptionDialog v-model:show="showTranscriptionDialog" :track="track" />
   <DialogDownloadNotAllowed
     :show="showDownloadDialog"
     @close="showDownloadDialog = false"
@@ -158,10 +173,10 @@ const dropdownMenuItemsForTrack = (track: TrackModel) => {
   <CopyToClipboard
     ref="copyToClipboardComponent"
     :link="{ name: 'track-id', params: { id: track.id } }"
-  ></CopyToClipboard>
+  />
   <TrackAddToPlaylist
     v-if="showAddToPlaylist"
     :track-id="track.id"
     @close="showAddToPlaylist = false"
-  ></TrackAddToPlaylist>
+  />
 </template>
