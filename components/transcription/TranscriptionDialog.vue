@@ -39,8 +39,6 @@ const { t } = useI18n();
 const dialogTitle = computed(() => {
   if (!trackIsSong(props.track))
     return t("transcription.auto-transcribed.title");
-  if (props.track.songbookRelations?.length)
-    return t("transcription.songtreasures");
   return t("transcription.lyrics");
 });
 
@@ -55,6 +53,11 @@ const showAutoTranscribeInfo = ref(false);
 function onHeaderClick() {
   if (!trackIsSong(props.track)) showAutoTranscribeInfo.value = true;
 }
+
+const headerComponent = computed(() => {
+  if (!trackIsSong(props.track)) return "button";
+  return resolveComponent("NuxtLink");
+});
 </script>
 
 <template>
@@ -64,9 +67,10 @@ function onHeaderClick() {
     @close="show = false"
   >
     <template #title>
-      <NuxtLink
+      <component
+        :is="headerComponent"
         :class="[
-          'flex cursor-pointer items-center gap-2',
+          '-m-3 flex cursor-pointer items-center gap-2 rounded-xl p-3',
           { 'text-utility-auto': !trackIsSong(track) },
         ]"
         :to="getSongtreasuresLink(track)"
@@ -74,7 +78,7 @@ function onHeaderClick() {
       >
         <NuxtIcon :name="dialogIcon" />
         <span>{{ dialogTitle }}</span>
-      </NuxtLink>
+      </component>
     </template>
 
     <header v-if="track.subtype == 'song'" class="mb-6">
@@ -90,6 +94,7 @@ function onHeaderClick() {
     </header>
     <TransitionGroup
       tag="ul"
+      tabindex="0"
       enter-active-class="transition duration-200 ease-out delay-[var(--delay)]"
       enter-from-class="opacity-0 translate-y-1"
       enter-to-class="opacity-100 translate-y-0"
