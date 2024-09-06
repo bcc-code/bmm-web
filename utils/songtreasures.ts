@@ -8,8 +8,8 @@ export default function getSongtreasuresLink(track: TrackModel) {
 
   /**
    * This always opens the norwegian songbook, since SongTreasures uses
-   * the name of the songbook to determine the language. 
-   * 
+   * the name of the songbook to determine the language.
+   *
    * Eg. HV = norwegian, WOTL = english, WDH = german
    */
   return `https://songtreasures.app/songs/${songbookName(song.name)}/${song.id}`;
