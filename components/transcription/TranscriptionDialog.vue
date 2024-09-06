@@ -12,10 +12,18 @@ const { data: transcription, execute } = useTrackTranscription({
   id: props.track.id,
 });
 
+const { $appInsights } = useNuxtApp();
+
 watch(
   show,
   (_show) => {
-    if (_show) execute();
+    if (!_show) return;
+
+    execute();
+    $appInsights.event("Transcription dialog opened", {
+      trackId: props.track.id,
+      trackSubtype: props.track.subtype,
+    });
   },
   { once: true },
 );
