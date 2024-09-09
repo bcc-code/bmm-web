@@ -138,7 +138,8 @@
       "go-to-contributors": "转到贡献者",
       "more-info": "更多信息",
       "show-all": "显示全部",
-      "remove-from-playlist": "从播放列表中移除"
+      "remove-from-playlist": "从播放列表中移除",
+      "transcription": "Transcription"
     },
     "a11y": {
       "download": "下载",
@@ -146,6 +147,7 @@
       "options": "Show options"
     },
     "details": {
+      "title": "Track Details",
       "reference": "Reference",
       "duration": "持续时间",
       "publish-date": "Publish Date",
@@ -183,5 +185,14 @@
   "streak": {
     "your-streak": "您本周的连续记录",
     "days-in-row": "{count} days in a row"
+  },
+  "transcription": {
+    "lyrics": "Lyrics",
+    "auto-transcribed": {
+      "title": "自动转译",
+      "explanation": "转译是自动生成的，可能会包含错误",
+      "confirmation": "明白了"
+    },
+    "songtreasures": "SongTreasures"
   }
 }
