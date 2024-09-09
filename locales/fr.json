@@ -138,7 +138,8 @@
       "go-to-contributors": "Aller à l'artiste",
       "more-info": "Plus d'informations",
       "show-all": "Tout afficher",
-      "remove-from-playlist": "Supprimer de la liste de lecture"
+      "remove-from-playlist": "Supprimer de la liste de lecture",
+      "transcription": "Transcription"
     },
     "a11y": {
       "download": "Télécharger",
@@ -146,6 +147,7 @@
       "options": "Afficher les options"
     },
     "details": {
+      "title": "Track Details",
       "reference": "Référence",
       "duration": "Durée",
       "publish-date": "Date de publication",
@@ -183,5 +185,14 @@
   "streak": {
     "your-streak": "Enchaînement de la semaine",
     "days-in-row": "{count} jours d'affilée"
+  },
+  "transcription": {
+    "lyrics": "Paroles",
+    "auto-transcribed": {
+      "title": "Transcription automatique",
+      "explanation": "Les transcriptions sont générées automatiquement et peuvent contenir des erreurs.",
+      "confirmation": "J'ai compris"
+    },
+    "songtreasures": "SongTreasures"
   }
 }
