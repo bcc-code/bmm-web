@@ -138,7 +138,8 @@
       "go-to-contributors": "Pojdi na ustvarjalce",
       "more-info": "Več informacij",
       "show-all": "Prikaži vse",
-      "remove-from-playlist": "Odstrani s seznama predvajanja"
+      "remove-from-playlist": "Odstrani s seznama predvajanja",
+      "transcription": "Opis"
     },
     "a11y": {
       "download": "Prenesi",
@@ -146,6 +147,7 @@
       "options": "Pokaži možnosti"
     },
     "details": {
+      "title": "Track Details",
       "reference": "Referenca",
       "duration": "Trajanje",
       "publish-date": "Datum objave",
@@ -183,5 +185,14 @@
   "streak": {
     "your-streak": "Tvoj  niz ta teden",
     "days-in-row": "Zaporedni dnevi: {count} "
+  },
+  "transcription": {
+    "lyrics": "Besedilo",
+    "auto-transcribed": {
+      "title": "Samodejni prepis",
+      "explanation": "Prepisi so ustvarjeni samodejno in lahko vsebujejo napake.",
+      "confirmation": "Razumem"
+    },
+    "songtreasures": "SongTreasures"
   }
 }
