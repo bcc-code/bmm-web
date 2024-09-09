@@ -138,7 +138,8 @@
       "go-to-contributors": "Отиди на сътрудници",
       "more-info": "Повече информация",
       "show-all": "Покажи всички",
-      "remove-from-playlist": "Премахни от списъка"
+      "remove-from-playlist": "Премахни от списъка",
+      "transcription": "Transcription"
     },
     "a11y": {
       "download": "Изтегли",
@@ -146,6 +147,7 @@
       "options": "Show options"
     },
     "details": {
+      "title": "Track Details",
       "reference": "Reference",
       "duration": "Продължителност",
       "publish-date": "Publish Date",
@@ -183,5 +185,14 @@
   "streak": {
     "your-streak": "Вашата серия тази седмица",
     "days-in-row": "{count} days in a row"
+  },
+  "transcription": {
+    "lyrics": "Lyrics",
+    "auto-transcribed": {
+      "title": "Автоматично прехвърляне на тон в текст",
+      "explanation": "Преписите се генерират автоматично и може да съдържат грешки",
+      "confirmation": "Схванах го"
+    },
+    "songtreasures": "SongTreasures"
   }
 }
