@@ -139,7 +139,7 @@
       "more-info": "Več informacij",
       "show-all": "Prikaži vse",
       "remove-from-playlist": "Odstrani s seznama predvajanja",
-      "transcription": "Opis"
+      "transcription": "Prepis"
     },
     "a11y": {
       "download": "Prenesi",
@@ -147,7 +147,7 @@
       "options": "Pokaži možnosti"
     },
     "details": {
-      "title": "Track Details",
+      "title": "Podrobnosti skladbe",
       "reference": "Referenca",
       "duration": "Trajanje",
       "publish-date": "Datum objave",
