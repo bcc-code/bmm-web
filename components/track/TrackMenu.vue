@@ -30,6 +30,8 @@ const showContributorsList = ref(false);
 const { download } = useWebDownload();
 const showDownloadDialog = ref(false);
 
+const showTranscriptionDialog = ref(false);
+
 const dropdownMenuItemsForTrack = (track: TrackModel) => {
   const items: DropdownMenuItem[] = [];
 
@@ -38,19 +40,71 @@ const dropdownMenuItemsForTrack = (track: TrackModel) => {
     text: t("track.dropdown.play-next"),
     clickFunction: () => addNext(track, props.origin),
   });
+
   items.push({
     icon: "icon.queue",
     text: t("track.dropdown.add-to-queue"),
     clickFunction: () => addToQueue(track, props.origin),
   });
 
-  if (track?.meta?.parent?.id) {
+  if (track.hasTranscription) {
+    items.push({
+      icon: "icon.information",
+      text: trackIsSong(track)
+        ? t("transcription.lyrics")
+        : t("track.dropdown.transcription"),
+      clickFunction: () => {
+        showTranscriptionDialog.value = true;
+      },
+    });
+  }
+
+  items.push({
+    icon: "icon.information",
+    text: t("track.dropdown.more-info"),
+    clickFunction: () => {
+      showInfo.value = true;
+    },
+  });
+
+  items.push({
+    icon: "icon.category.playlist",
+    text: t("track.dropdown.add-to-playlist"),
+    clickFunction: () => {
+      showAddToPlaylist.value = true;
+    },
+  });
+
+  if (track.meta.parent?.id) {
     items.push({
       icon: "icon.category.album",
       text: t("track.dropdown.go-to-album"),
       link: { name: "album-id", params: { id: track.meta.parent.id } },
     });
   }
+
+  items.push({
+    icon: "icon.person",
+    text: t("track.dropdown.go-to-contributors"),
+    clickFunction: () => {
+      if (track.contributors && uniqueItems(track.contributors).length > 1) {
+        showContributorsList.value = true;
+      } else if (track.contributors?.[0]?.id) {
+        navigateTo({
+          name: "playlist-contributor-id",
+          params: { id: track.contributors[0].id },
+        });
+      }
+    },
+  });
+
+  items.push({
+    icon: "icon.share",
+    text: t("track.dropdown.share"),
+    clickFunction: () => {
+      copyToClipboardComponent?.value?.copyToClipboard?.();
+    },
+  });
 
   if (runtimeConfig.public.systemName !== "Electron") {
     items.push({
@@ -67,44 +121,6 @@ const dropdownMenuItemsForTrack = (track: TrackModel) => {
       },
     });
   }
-
-  items.push({
-    icon: "icon.category.playlist",
-    text: t("track.dropdown.add-to-playlist"),
-    clickFunction: () => {
-      showAddToPlaylist.value = true;
-    },
-  });
-
-  items.push({
-    icon: "icon.share",
-    text: t("track.dropdown.share"),
-    clickFunction: () => {
-      copyToClipboardComponent?.value?.copyToClipboard?.();
-    },
-  });
-
-  items.push({
-    icon: "icon.person",
-    text: t("track.dropdown.go-to-contributors"),
-    clickFunction: () => {
-      if (track.contributors && uniqueItems(track.contributors).length > 1) {
-        showContributorsList.value = true;
-      } else if (track.contributors?.[0]?.id) {
-        navigateTo({
-          name: "playlist-contributor-id",
-          params: { id: track.contributors[0].id },
-        });
-      }
-    },
-  });
-  items.push({
-    icon: "icon.information",
-    text: t("track.dropdown.more-info"),
-    clickFunction: () => {
-      showInfo.value = true;
-    },
-  });
 
   if (props.addDropdownItems) {
     props.addDropdownItems(items, track);
@@ -138,19 +154,21 @@ const dropdownMenuItemsForTrack = (track: TrackModel) => {
     </template>
   </DropdownMenu>
 
-  <DialogBase :show="showInfo" title="Track Details" @close="showInfo = false">
-    <TrackDetails
-      class="md:w-[500px] lg:w-[600px]"
-      :track="track"
-    ></TrackDetails>
+  <DialogBase
+    :show="showInfo"
+    :title="$t('track.details.title')"
+    @close="showInfo = false"
+  >
+    <TrackDetails class="md:w-[500px] lg:w-[600px]" :track="track" />
   </DialogBase>
   <DialogBase
     :show="showContributorsList"
     :title="t('track.dropdown.go-to-contributors')"
     @close="showContributorsList = false"
   >
-    <TrackContributors :track="track"></TrackContributors>
+    <TrackContributors :track="track" />
   </DialogBase>
+  <TranscriptionDialog v-model:show="showTranscriptionDialog" :track="track" />
   <DialogDownloadNotAllowed
     :show="showDownloadDialog"
     @close="showDownloadDialog = false"
@@ -158,10 +176,10 @@ const dropdownMenuItemsForTrack = (track: TrackModel) => {
   <CopyToClipboard
     ref="copyToClipboardComponent"
     :link="{ name: 'track-id', params: { id: track.id } }"
-  ></CopyToClipboard>
+  />
   <TrackAddToPlaylist
     v-if="showAddToPlaylist"
     :track-id="track.id"
     @close="showAddToPlaylist = false"
-  ></TrackAddToPlaylist>
+  />
 </template>

@@ -139,7 +139,8 @@
       "go-to-contributors": "Go to contributors",
       "more-info": "More information",
       "show-all": "Show all",
-      "remove-from-playlist": "Remove from playlist"
+      "remove-from-playlist": "Remove from playlist",
+      "transcription": "Transcription"
     },
     "a11y": {
       "download": "Download",
@@ -147,6 +148,7 @@
       "options": "Show options"
     },
     "details": {
+      "title": "Track Details",
       "reference": "Reference",
       "duration": "Duration",
       "publish-date": "Publish Date",
@@ -184,5 +186,14 @@
   "streak": {
     "your-streak": "Your streak this week",
     "days-in-row": "{count} days in a row"
+  },
+  "transcription": {
+    "lyrics": "Lyrics",
+    "auto-transcribed": {
+      "title": "Auto-transcribed",
+      "explanation": "Transcripts are auto-generated and might contain errors",
+      "confirmation": "Got it"
+    },
+    "songtreasures": "SongTreasures"
   }
 }

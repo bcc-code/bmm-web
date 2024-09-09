@@ -102,8 +102,8 @@ useHead({
 </script>
 
 <template>
-  <div v-if="podcast">
-    <div>
+  <div>
+    <template v-if="podcast">
       <TrackCollectionHeader>
         <template #cover>
           <CoverImage :src="podcast.cover" class="rounded-2xl" />
@@ -137,6 +137,6 @@ useHead({
         :load="load"
         :use-daily-podcast-view="isDailyPodcast"
       />
-    </div>
+    </template>
   </div>
 </template>

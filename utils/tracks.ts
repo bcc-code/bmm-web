@@ -16,3 +16,7 @@ export function defaultFileForTrack(
   if (!track.media) return undefined;
   return defaultFileInMedia(track.media);
 }
+
+export function trackIsSong(track: TrackModel): boolean {
+  return track.subtype === "song" || track.subtype === "singsong";
+}
