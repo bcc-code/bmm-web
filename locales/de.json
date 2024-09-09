@@ -138,7 +138,8 @@
       "go-to-contributors": "Zu den Mitwirkenden",
       "more-info": "Weitere Informationen",
       "show-all": "Alle anzeigen",
-      "remove-from-playlist": "Aus Wiedergabeliste entfernen"
+      "remove-from-playlist": "Aus Wiedergabeliste entfernen",
+      "transcription": "Transkription"
     },
     "a11y": {
       "download": "Herunterladen",
@@ -146,6 +147,7 @@
       "options": "Optionen anzeigen"
     },
     "details": {
+      "title": "Track Details",
       "reference": "Referenz",
       "duration": "Dauer",
       "publish-date": "Datum der Veröffentlichung",
@@ -183,5 +185,14 @@
   "streak": {
     "your-streak": "Dein Status diese Woche",
     "days-in-row": "{count} Tage hintereinander"
+  },
+  "transcription": {
+    "lyrics": "Liedtext",
+    "auto-transcribed": {
+      "title": "Autotranskribiert",
+      "explanation": "Transkripte werden automatisch generiert und können Fehler enthalten",
+      "confirmation": "Verstanden! "
+    },
+    "songtreasures": "SongTreasures"
   }
 }

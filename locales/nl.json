@@ -138,7 +138,8 @@
       "go-to-contributors": "Ga naar bijdragers",
       "more-info": "Meer informatie",
       "show-all": "Toon alle",
-      "remove-from-playlist": "Verwijderen uit afspeellijst"
+      "remove-from-playlist": "Verwijderen uit afspeellijst",
+      "transcription": "Transcriptie"
     },
     "a11y": {
       "download": "Download",
@@ -146,6 +147,7 @@
       "options": "Toon opties"
     },
     "details": {
+      "title": "Track Details",
       "reference": "Referentie",
       "duration": "Afspeelduur",
       "publish-date": "Publicatiedatum",
@@ -183,5 +185,14 @@
   "streak": {
     "your-streak": "Jouw Streak deze week",
     "days-in-row": "{count} dagen op rij"
+  },
+  "transcription": {
+    "lyrics": "Lyrics",
+    "auto-transcribed": {
+      "title": "Geautomatiseerde transcriptie",
+      "explanation": "Transcripties zijn automatisch gegenereerd en kunnen daardoor fouten bevatten",
+      "confirmation": "Begrepen"
+    },
+    "songtreasures": "SongTreasures"
   }
 }

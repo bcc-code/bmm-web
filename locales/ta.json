@@ -138,7 +138,8 @@
       "go-to-contributors": "பங்களிப்பாளர்களிடம் செல்லவும்",
       "more-info": "மேலும் தகவல்",
       "show-all": "அனைத்தையும் காட்டு",
-      "remove-from-playlist": "பிளேலிஸ்ட்டில் இருந்து அகற்று"
+      "remove-from-playlist": "பிளேலிஸ்ட்டில் இருந்து அகற்று",
+      "transcription": "படியெடுத்தல்"
     },
     "a11y": {
       "download": "பதிவிறக்கு ",
@@ -146,6 +147,7 @@
       "options": "விருப்பங்களைக் காட்டு"
     },
     "details": {
+      "title": "Track Details",
       "reference": "குறிப்பு",
       "duration": "கால அளவு",
       "publish-date": "வெளியிடும் தேதி",
@@ -183,5 +185,14 @@
   "streak": {
     "your-streak": "இந்த வாரம் உங்கள் ஸ்ட்ரீக்",
     "days-in-row": "{count} நாட்கள் தொடர்ச்சியாக"
+  },
+  "transcription": {
+    "lyrics": "பாடல் வரிகள்",
+    "auto-transcribed": {
+      "title": "தானாக எழுதப்பட்டது",
+      "explanation": "டிரான்ஸ்கிரிப்டுகள் தானாக உருவாக்கப்படும் மற்றும் பிழைகள் இருக்கலாம்",
+      "confirmation": "அறிந்துகொண்டேன்"
+    },
+    "songtreasures": "SongTreasures"
   }
 }
