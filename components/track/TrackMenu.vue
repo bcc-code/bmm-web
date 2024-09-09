@@ -40,35 +40,32 @@ const dropdownMenuItemsForTrack = (track: TrackModel) => {
     text: t("track.dropdown.play-next"),
     clickFunction: () => addNext(track, props.origin),
   });
+
   items.push({
     icon: "icon.queue",
     text: t("track.dropdown.add-to-queue"),
     clickFunction: () => addToQueue(track, props.origin),
   });
 
-  if (track?.meta?.parent?.id) {
+  if (track.hasTranscription) {
     items.push({
-      icon: "icon.category.album",
-      text: t("track.dropdown.go-to-album"),
-      link: { name: "album-id", params: { id: track.meta.parent.id } },
-    });
-  }
-
-  if (runtimeConfig.public.systemName !== "Electron") {
-    items.push({
-      icon: "icon.download",
-      text: t("track.dropdown.download"),
-      clickFunction: async () => {
-        const result = await download(track);
-        if (result === "no-permission") {
-          $appInsights.event("denied downloading track", { trackId: track.id });
-          showDownloadDialog.value = true;
-        } else {
-          $appInsights.event("track downloaded", { trackId: track.id });
-        }
+      icon: "icon.information",
+      text: trackIsSong(track)
+        ? t("transcription.lyrics")
+        : t("track.dropdown.transcription"),
+      clickFunction: () => {
+        showTranscriptionDialog.value = true;
       },
     });
   }
+
+  items.push({
+    icon: "icon.information",
+    text: t("track.dropdown.more-info"),
+    clickFunction: () => {
+      showInfo.value = true;
+    },
+  });
 
   items.push({
     icon: "icon.category.playlist",
@@ -78,13 +75,13 @@ const dropdownMenuItemsForTrack = (track: TrackModel) => {
     },
   });
 
-  items.push({
-    icon: "icon.share",
-    text: t("track.dropdown.share"),
-    clickFunction: () => {
-      copyToClipboardComponent?.value?.copyToClipboard?.();
-    },
-  });
+  if (track.meta.parent?.id) {
+    items.push({
+      icon: "icon.category.album",
+      text: t("track.dropdown.go-to-album"),
+      link: { name: "album-id", params: { id: track.meta.parent.id } },
+    });
+  }
 
   items.push({
     icon: "icon.person",
@@ -101,23 +98,29 @@ const dropdownMenuItemsForTrack = (track: TrackModel) => {
     },
   });
 
-  if (track.hasTranscription) {
+  items.push({
+    icon: "icon.share",
+    text: t("track.dropdown.share"),
+    clickFunction: () => {
+      copyToClipboardComponent?.value?.copyToClipboard?.();
+    },
+  });
+
+  if (runtimeConfig.public.systemName !== "Electron") {
     items.push({
-      icon: "icon.information",
-      text: t("track.dropdown.transcription"),
-      clickFunction: () => {
-        showTranscriptionDialog.value = true;
+      icon: "icon.download",
+      text: t("track.dropdown.download"),
+      clickFunction: async () => {
+        const result = await download(track);
+        if (result === "no-permission") {
+          $appInsights.event("denied downloading track", { trackId: track.id });
+          showDownloadDialog.value = true;
+        } else {
+          $appInsights.event("track downloaded", { trackId: track.id });
+        }
       },
     });
   }
-
-  items.push({
-    icon: "icon.information",
-    text: t("track.dropdown.more-info"),
-    clickFunction: () => {
-      showInfo.value = true;
-    },
-  });
 
   if (props.addDropdownItems) {
     props.addDropdownItems(items, track);

@@ -47,6 +47,8 @@ const { t } = useI18n();
 const dialogTitle = computed(() => {
   if (!trackIsSong(props.track))
     return t("transcription.auto-transcribed.title");
+  if (props.track.songbookRelations?.length)
+    return t("transcription.songtreasures");
   return t("transcription.lyrics");
 });
 
