@@ -139,7 +139,7 @@
       "more-info": "Mer informasjon",
       "show-all": "Vis alle",
       "remove-from-playlist": "Slett fra spilleliste",
-      "transcription": "Transcription"
+      "transcription": "Transkripsjon"
     },
     "a11y": {
       "download": "Last ned",
@@ -147,7 +147,7 @@
       "options": "Vis alternativer"
     },
     "details": {
-      "title": "Track Details",
+      "title": "Spordetaljer",
       "reference": "Referanse",
       "duration": "Varighet",
       "publish-date": "Publiseringsdato",
@@ -187,7 +187,7 @@
     "days-in-row": "{count} dager på rad"
   },
   "transcription": {
-    "lyrics": "Lyrics",
+    "lyrics": "Sangtekst",
     "auto-transcribed": {
       "title": "Automatisk transkribert",
       "explanation": "Transkripsjoner er automatisk generert og kan inneholde feil",
