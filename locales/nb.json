@@ -56,9 +56,9 @@
   "error": {
     "page-not-found": {
       "headline": "Feil",
-      "text": "Beklager. Vi finner ikke siden \"{path}\"."
+      "text": "Beklager, vi finner ikke siden \"{path}\"."
     },
-    "track-already-in-playlist": "Spor allerede eksisterer in spilleliste {0}"
+    "track-already-in-playlist": "Sporet eksisterer allerede i spilleliste {0}"
   },
   "collection": {
     "track-count": "{count} spor | {count} spor",
