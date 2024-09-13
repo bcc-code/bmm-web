@@ -51,24 +51,27 @@ jobs:
           start: pnpm preview
           wait-on: "http://localhost:9001"
 
-      - uses: actions/upload-artifact@v3
+      - name: Upload cypress-videos
+        uses: actions/upload-artifact@v4
         if: always()
         with:
           name: cypress-videos
           path: cypress/videos
-      - uses: actions/upload-artifact@v3
+      - name: Upload cypress-screenshots
+        uses: actions/upload-artifact@v4
         if: always()
         with:
           name: cypress-screenshots
           path: cypress/screenshots
 
-      - name: Archive production artifacts
-        uses: actions/upload-artifact@v3
+      - name: Archive production artifacts 'dist'
+        uses: actions/upload-artifact@v4
         with:
           name: dist
           path: .output/public
+          include-hidden-files: true
       - name: Archive code coverage results
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: code-coverage-report
           path: coverage
@@ -79,7 +82,7 @@ jobs:
       - build_and_test
     steps:
       - uses: actions/checkout@v3
-      - uses: actions/download-artifact@v3
+      - uses: actions/download-artifact@v4
         with:
           name: dist
           path: dist
@@ -97,10 +100,11 @@ jobs:
       - name: copy dist files
         run: cp -r '${{ github.workspace }}/dist/.' '${{env.DOTNET_ROOT}}/myapp/wwwroot'
 
-      - uses: actions/upload-artifact@v3
+      - uses: actions/upload-artifact@v4
         with:
           path: ${{env.DOTNET_ROOT}}/myapp
           name: WebApp
+          include-hidden-files: true
 
   deploy_azure_static_web_apps:
     runs-on: ubuntu-latest
@@ -112,7 +116,7 @@ jobs:
 
     steps:
       - name: Download production artifacts
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: dist
 
@@ -223,7 +227,7 @@ jobs:
 
     steps:
       - name: Download artifact from build job
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: WebApp
 
