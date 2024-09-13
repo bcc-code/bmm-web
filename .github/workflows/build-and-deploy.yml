@@ -105,6 +105,7 @@ jobs:
         with:
           path: ${{env.DOTNET_ROOT}}/myapp
           name: WebApp
+          include-hidden-files: true
 
   deploy_azure_static_web_apps:
     runs-on: ubuntu-latest
