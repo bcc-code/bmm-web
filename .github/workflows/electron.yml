@@ -71,14 +71,14 @@ jobs:
           WINDOWS_CLIENT_SECRET: ${{ secrets.BCCM_WINDOWS_CLIENT_SECRET }}
 
       - name: Archive production artifacts
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: app
           path: |
             dist-app/BMM*
 
       - name: Archive Debian packages
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         if: matrix.os == 'ubuntu-latest'
         with:
           name: app
