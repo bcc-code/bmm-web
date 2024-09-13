@@ -51,21 +51,20 @@ jobs:
           start: pnpm preview
           wait-on: "http://localhost:9001"
 
-      - uses: actions/upload-artifact@v4
+      - name: Upload cypress-videos
+        uses: actions/upload-artifact@v4
         if: always()
         with:
           name: cypress-videos
           path: cypress/videos
-      - uses: actions/upload-artifact@v4
+      - name: Upload cypress-screenshots
+        uses: actions/upload-artifact@v4
         if: always()
         with:
           name: cypress-screenshots
           path: cypress/screenshots
 
-      - name: Print files
-        run: ls -la .output/public
-
-      - name: Archive production artifacts
+      - name: Archive production artifacts 'dist'
         uses: actions/upload-artifact@v4
         with:
           name: dist
