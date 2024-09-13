@@ -63,7 +63,7 @@ jobs:
           path: cypress/screenshots
 
       - name: Print files
-        run: ls -la
+        run: ls -la .output/public
 
       - name: Archive production artifacts
         uses: actions/upload-artifact@v3
