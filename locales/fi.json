@@ -147,7 +147,7 @@
       "options": "Show options"
     },
     "details": {
-      "title": "Track Details",
+      "title": "Raidan tiedot",
       "reference": "Reference",
       "duration": "Kesto",
       "publish-date": "Publish Date",
@@ -193,6 +193,6 @@
       "explanation": "Tekstit ovat autolitteroituja ja saattavat sisältää virheitä",
       "confirmation": "Selvä"
     },
-    "songtreasures": "SongTreasures"
+    "songtreasures": "Song Treasures"
   }
 }
