@@ -68,6 +68,11 @@ const hamburgerOpen = ref<boolean>(false);
             :link="{ name: 'search-term' }"
             icon="nav.search"
           />
+          <SidebarItem
+            :title="$t('nav.transcribe')"
+            :link="{ name: 'transcribe' }"
+            icon="icon.information"
+          />
         </SidebarGroup>
 
         <SidebarGroup :title="$t('sidebar.playlists.title')">

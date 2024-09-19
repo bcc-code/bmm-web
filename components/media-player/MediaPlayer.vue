@@ -25,7 +25,13 @@ defineShortcuts({
     :class="{ 'w-[400px]': open, 'w-0': !open }"
   >
     <div
-      class="large-shadow group fixed bottom-1 right-0 z-30 flex w-[400px] max-w-full animate-[player-enter_200ms] flex-col overflow-hidden rounded-2xl bg-background-1 transition-all duration-700 ease-out-expo sm:bottom-5 sm:right-5"
+      :class="[
+        'large-shadow group fixed bottom-1 right-0 z-30 flex w-[400px] max-w-full animate-[player-enter_200ms] flex-col overflow-hidden bg-background-1 transition-all duration-700 ease-out-expo sm:bottom-5 sm:right-5',
+        {
+          'rounded-[32px]': open,
+          'rounded-2xl': !open,
+        },
+      ]"
       :style="{
         height: open ? 'calc(100vh - 6rem)' : '4.5rem',
         'animation-timing-function': 'cubic-bezier(0.19, 1, 0.22, 1)',

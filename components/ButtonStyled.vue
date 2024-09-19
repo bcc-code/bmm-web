@@ -8,6 +8,7 @@ withDefaults(
     intent?: "primary" | "secondary";
     size?: "large" | "medium" | "small";
     icon?: NuxtIconName | null;
+    disabled?: boolean;
   }>(),
   {
     intent: "secondary",
@@ -36,12 +37,17 @@ const className = cva("rounded-full flex gap-1 justify-center items-center", {
     iconOnly: {
       true: "aspect-square",
     },
+    disabled: {
+      true: "opacity-50 cursor-not-allowed",
+    },
   },
 });
 </script>
 
 <template>
-  <button :class="className({ iconOnly: !slots.default, intent, size })">
+  <button
+    :class="className({ iconOnly: !slots.default, intent, size, disabled })"
+  >
     <NuxtIcon
       v-if="icon"
       :name="icon"
