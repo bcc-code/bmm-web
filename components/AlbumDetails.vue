@@ -57,14 +57,16 @@ const onPressPlay = () => {
 };
 const onResume = () => {
   if (childTracks.value) {
-    childTracks.value.findIndex(
+    const index = childTracks.value.findIndex(
       (track) => track.id === props.album.latestTrackId,
     );
     setQueue(
       childTracks.value,
-      0,
+      index,
       origin.value,
-      props.album.latestTrackPosition,
+      props.album.latestTrackPosition
+        ? props.album.latestTrackPosition / 1000
+        : 0,
     );
   }
 };

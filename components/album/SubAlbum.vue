@@ -25,14 +25,16 @@ const childTracks = computed(() => {
 });
 const onResume = () => {
   if (childTracks.value && album.value && album.value !== null) {
-    childTracks.value.findIndex(
+    const index = childTracks.value.findIndex(
       (track) => track.id === album.value?.latestTrackId,
     );
     setQueue(
       childTracks.value,
-      0,
+      index,
       origin.value,
-      album.value.latestTrackPosition,
+      album.value.latestTrackPosition
+        ? album.value.latestTrackPosition / 1000
+        : 0,
     );
   }
 };
