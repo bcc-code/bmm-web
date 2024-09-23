@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import type { TrackTranslationTranscriptionSegment } from "@bcc-code/bmm-sdk-fetch";
 import { MediaPlayerStatus } from "~/plugins/mediaPlayer/mediaPlayer";
 
 const { t } = useI18n();
@@ -10,52 +9,35 @@ const route = useRoute("transcribe-id");
 const { data: track } = useTrack({ id: Number(route.params.id) });
 
 const {
-  goToNextTranscriptionItem,
-  goToPreviousTranscriptionItem,
-  playCurrentTranscriptionItem,
+  currentIndex,
   transcription,
   editableTranscription,
-  currentIndex,
-} = useTranscriptionTool(Number(route.params.id));
+  currentTranscriptionItem,
+  currentEditableTranscriptionItem,
+  goToNextTranscriptionItem,
+  goToPreviousTranscriptionItem,
+} = useTranscriptionTool({ trackId: Number(route.params.id) });
 
 const { $mediaPlayer } = useNuxtApp();
 const mediaPlayerPlaying = computed(
   () => $mediaPlayer.status.value === MediaPlayerStatus.Playing,
 );
+onMounted(() => {
+  if ($mediaPlayer.currentTrack.value?.id !== Number(route.params.id)) {
+    $mediaPlayer.stop();
+  }
+});
 
-function onPlayClicked() {
+function onStartTranscriptionPlayback() {
+  if (track.value?.id !== $mediaPlayer.currentTrack.value?.id) {
+    $mediaPlayer.setQueue([track.value!]);
+  }
   if ($mediaPlayer.status.value === MediaPlayerStatus.Playing)
     $mediaPlayer.pause();
   else if ($mediaPlayer.status.value === MediaPlayerStatus.Paused)
     $mediaPlayer.play();
   else $mediaPlayer.setQueue([track.value!]);
 }
-
-function isWithinCurrentTime(item: TrackTranslationTranscriptionSegment) {
-  const hasStarted =
-    !!item.start && $mediaPlayer.currentPosition.value >= item.start;
-  const hasEnded = !!item.end && $mediaPlayer.currentPosition.value > item.end;
-
-  return hasStarted && !hasEnded;
-}
-
-watch(
-  () => $mediaPlayer.currentPosition.value,
-  (pos) => {
-    if (
-      transcription.value?.length &&
-      transcription.value[0]?.start &&
-      transcription.value[0].start > pos
-    )
-      return;
-
-    const indexOfCurrent = transcription.value?.findIndex(isWithinCurrentTime);
-    if (!indexOfCurrent) return;
-    currentIndex.value = indexOfCurrent;
-  },
-);
-
-// const playbackSpeed = ref(1);
 </script>
 
 <template>
@@ -63,13 +45,15 @@ watch(
     <div v-if="track && transcription?.length">
       <header class="mb-12 mt-10 flex items-center justify-between gap-4">
         <PageHeading>{{ track.title }}</PageHeading>
-        <ButtonStyled>Mark as done</ButtonStyled>
+        <ButtonStyled intent="tertiary">
+          {{ $t("transcription.markAsDone") }}
+        </ButtonStyled>
       </header>
       <div
-        class="type-paragraph-1 mt-12 grid grid-cols-2 gap-4 rounded-[48px] border border-label-separator bg-background-1 p-4 text-label-1 shadow-sm"
+        class="type-paragraph-1 mt-12 grid grid-cols-2 gap-4 rounded-[48px] border border-label-separator bg-background-1 p-4 text-label-1 shadow-sm 2xl:-mx-10"
       >
         <div class="rounded-[28px] p-6">
-          <p class="type-title-1 mb-4">Original</p>
+          <p class="type-title-1 mb-4">{{ t("transcription.original") }}</p>
           <Transition
             enter-active-class="transition ease-out-expo duration-500"
             enter-from-class="opacity-0 translate-x-2"
@@ -87,7 +71,7 @@ watch(
           </Transition>
         </div>
         <div class="rounded-[28px] bg-background-2 p-6">
-          <p class="type-title-1 mb-4">Edit</p>
+          <p class="type-title-1 mb-4">{{ t("transcription.edit") }}</p>
           <Transition
             enter-active-class="transition ease-out-expo duration-500"
             enter-from-class="opacity-0 translate-x-2"
@@ -98,15 +82,17 @@ watch(
           >
             <input
               v-if="
-                currentTranscriptionItemCopy &&
-                currentTranscriptionItemCopy.text
+                editableTranscription &&
+                editableTranscription[currentIndex] &&
+                currentEditableTranscriptionItem &&
+                currentEditableTranscriptionItem.text
               "
               :key="currentIndex"
               type="text"
               class="w-full bg-[transparent]"
-              :value="currentTranscriptionItemCopy.text"
+              :value="currentEditableTranscriptionItem.text"
               @input="
-                editableTranscription[currentIndex].text = (
+                editableTranscription[currentIndex]!.text = (
                   $event.target as HTMLInputElement
                 ).value
               "
@@ -117,15 +103,15 @@ watch(
               size="small"
               intent="primary"
               class="!p-1.5"
-              @click="onPlayClicked"
+              @click="onStartTranscriptionPlayback"
             >
               <NuxtIcon
                 :name="mediaPlayerPlaying ? 'icon.pause.small' : 'icon.play'"
                 class="text-xl"
               />
             </ButtonStyled>
-            <!--
-            <RadioButtons
+
+            <!-- <RadioButtons
               v-model="playbackSpeed"
               :options="[1, 1.25, 1.5, 1.75, 2]"
               class="flex rounded-full bg-background-1 px-2.5"
@@ -143,24 +129,25 @@ watch(
                   {{ option }}x
                 </span>
               </template>
-            </RadioButtons>
-            -->
+            </RadioButtons> -->
+
             <div class="ml-auto flex items-center gap-3">
               <ButtonStyled
                 v-if="currentIndex > 0"
                 size="small"
-                intent="secondary"
+                intent="tertiary"
                 @click="goToPreviousTranscriptionItem"
               >
-                Previous section
+                {{ $t("transcription.previousSection") }}
               </ButtonStyled>
               <ButtonStyled
+                v-if="editableTranscription"
                 size="small"
                 intent="primary"
-                :disabled="currentIndex >= transcriptionCopy?.length - 1"
+                :disabled="currentIndex >= editableTranscription.length - 1"
                 @click="goToNextTranscriptionItem"
               >
-                Next section
+                {{ $t("transcription.nextSection") }}
               </ButtonStyled>
             </div>
           </footer>

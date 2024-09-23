@@ -10,24 +10,66 @@ export function useTrackTranscription(options: TrackIdTranscriptionGetRequest, i
 }
 
 
-export function useTranscriptionTool(trackId: number) {
+interface UseTranscriptionToolOptions {
+  trackId: number
+}
+
+export function useTranscriptionTool(options: UseTranscriptionToolOptions) {
+  const { trackId } = options
+
   const { data: transcription } = useTrackTranscription({ id: trackId }, true)
   const { $mediaPlayer } = useNuxtApp()
 
   // copy transcription
-  const editableTranscription = ref<TrackTranslationTranscriptionSegment[] | null>(transcription.value)
+  const editableTranscription = useLocalStorage<TrackTranslationTranscriptionSegment[]>(`transcription:${trackId}`, () => [], {
+    writeDefaults: false
+  })
   watch(transcription, (_transcription) => {
+    if (editableTranscription.value.length) return
     if (_transcription?.length) {
-      editableTranscription.value = _transcription
+      editableTranscription.value = structuredClone(toRaw(_transcription))
     }
   }, { once: true })
 
   const currentIndex = ref(0)
 
+  function isWithinCurrentTime(item: TrackTranslationTranscriptionSegment) {
+    const hasStarted =
+      !!item.start && $mediaPlayer.currentPosition.value >= item.start;
+    const hasEnded = !!item.end && $mediaPlayer.currentPosition.value > item.end;
+
+    return hasStarted && !hasEnded;
+  }
+
+  watch(
+    () => $mediaPlayer.currentPosition.value,
+    (pos) => {
+      if (
+        transcription.value?.length &&
+        transcription.value[0]?.start &&
+        transcription.value[0].start > pos
+      )
+        return;
+
+      const indexOfCurrent = transcription.value?.findIndex(isWithinCurrentTime);
+      if (!indexOfCurrent || indexOfCurrent === -1) return;
+      currentIndex.value = indexOfCurrent;
+    },
+  );
+
+  const currentTranscriptionItem = computed(() => {
+    if (!transcription.value) return null
+    return transcription.value[currentIndex.value] || transcription.value[currentIndex.value - 1]
+  })
+
+  const currentEditableTranscriptionItem = computed(() => {
+    if (!editableTranscription.value) return null
+    return editableTranscription.value[currentIndex.value]
+  })
+
   function playCurrentTranscriptionItem() {
-    const current = transcription.value?.[currentIndex.value]
-    if (current && current.start) {
-      $mediaPlayer.currentPosition.value = current.start
+    if (currentTranscriptionItem.value && currentTranscriptionItem.value.start) {
+      $mediaPlayer.currentPosition.value = currentTranscriptionItem.value.start
     }
   }
 
@@ -47,10 +89,13 @@ export function useTranscriptionTool(trackId: number) {
     playCurrentTranscriptionItem();
   }
 
+
   return {
     currentIndex,
     transcription,
     editableTranscription,
+    currentTranscriptionItem,
+    currentEditableTranscriptionItem,
     playCurrentTranscriptionItem,
     goToNextTranscriptionItem,
     goToPreviousTranscriptionItem,
