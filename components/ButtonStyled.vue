@@ -5,7 +5,7 @@ import type { NuxtIconName } from "#build/nuxt-icons";
 const slots = useSlots();
 withDefaults(
   defineProps<{
-    intent?: "primary" | "secondary";
+    intent?: "primary" | "secondary" | "tertiary";
     size?: "large" | "medium" | "small";
     icon?: NuxtIconName | null;
     disabled?: boolean;
@@ -26,6 +26,7 @@ const className = cva("rounded-full flex gap-1 justify-center items-center", {
     intent: {
       primary: "bg-background-4 text-on-color-1",
       secondary: "bg-background-2 text-label-1",
+      tertiary: "text-label-1 border border-label-separator",
     },
     size: {
       large: "py-4 px-8 type-title-1",
