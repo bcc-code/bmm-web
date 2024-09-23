@@ -83,7 +83,7 @@ const onResume = () => {
       </template>
       <template #actions>
         <ButtonStyled
-          v-if="childTracks.length > 2"
+          v-if="childTracks.length >= 1"
           intent="primary"
           icon="icon.play"
           @click="onPressPlay()"
@@ -91,7 +91,7 @@ const onResume = () => {
           {{ t("podcast.action.play") }}
         </ButtonStyled>
         <ButtonStyled
-          v-if="childTracks.length > 2 && album.latestTrackId"
+          v-if="childTracks.length >= 1 && album.latestTrackId"
           intent="primary"
           icon="icon.play"
           @click="onResume()"
