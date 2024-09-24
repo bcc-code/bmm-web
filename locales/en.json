@@ -200,6 +200,7 @@
     "original": "Original",
     "edit": "Edit",
     "previousSection": "Previous section",
-    "nextSection": "Next section"
+    "nextSection": "Next section",
+    "deleteItem": "Delete"
   }
 }

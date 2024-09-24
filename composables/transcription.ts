@@ -89,15 +89,29 @@ export function useTranscriptionTool(options: UseTranscriptionToolOptions) {
     playCurrentTranscriptionItem();
   }
 
+  function setTranscriptionItemText(item: TrackTranslationTranscriptionSegment, text: string) {
+    const index = editableTranscription.value.findIndex((_item) => _item == item)
+    if (!editableTranscription.value[index]) return
+    editableTranscription.value[index].text = text
+  }
+
+  function deleteTranscriptionItem(item: TrackTranslationTranscriptionSegment) {
+    const index = editableTranscription.value.findIndex((_item) => _item == item)
+    if (!editableTranscription.value[index]) return
+    editableTranscription.value.splice(index, 1)
+  }
 
   return {
     currentIndex,
     transcription,
+    isWithinCurrentTime,
     editableTranscription,
     currentTranscriptionItem,
     currentEditableTranscriptionItem,
     playCurrentTranscriptionItem,
     goToNextTranscriptionItem,
     goToPreviousTranscriptionItem,
+    setTranscriptionItemText,
+    deleteTranscriptionItem
   }
 }

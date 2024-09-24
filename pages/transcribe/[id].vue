@@ -9,19 +9,16 @@ const route = useRoute("transcribe-id");
 const { data: track } = useTrack({ id: Number(route.params.id) });
 
 const {
-  currentIndex,
   transcription,
   editableTranscription,
   currentTranscriptionItem,
   currentEditableTranscriptionItem,
-  goToNextTranscriptionItem,
-  goToPreviousTranscriptionItem,
+  setTranscriptionItemText,
+  playCurrentTranscriptionItem,
+  deleteTranscriptionItem,
 } = useTranscriptionTool({ trackId: Number(route.params.id) });
 
 const { $mediaPlayer } = useNuxtApp();
-const mediaPlayerPlaying = computed(
-  () => $mediaPlayer.status.value === MediaPlayerStatus.Playing,
-);
 onMounted(() => {
   if ($mediaPlayer.currentTrack.value?.id !== Number(route.params.id)) {
     $mediaPlayer.stop();
@@ -31,12 +28,16 @@ onMounted(() => {
 function onStartTranscriptionPlayback() {
   if (track.value?.id !== $mediaPlayer.currentTrack.value?.id) {
     $mediaPlayer.setQueue([track.value!]);
+    playCurrentTranscriptionItem();
   }
   if ($mediaPlayer.status.value === MediaPlayerStatus.Playing)
     $mediaPlayer.pause();
   else if ($mediaPlayer.status.value === MediaPlayerStatus.Paused)
     $mediaPlayer.play();
-  else $mediaPlayer.setQueue([track.value!]);
+  else {
+    $mediaPlayer.setQueue([track.value!]);
+    playCurrentTranscriptionItem();
+  }
 }
 </script>
 
@@ -45,11 +46,76 @@ function onStartTranscriptionPlayback() {
     <div v-if="track && transcription?.length">
       <header class="mb-12 mt-10 flex items-center justify-between gap-4">
         <PageHeading>{{ track.title }}</PageHeading>
-        <ButtonStyled intent="tertiary">
-          {{ $t("transcription.markAsDone") }}
-        </ButtonStyled>
+        <div class="flex items-center gap-2">
+          <ButtonStyled
+            intent="primary"
+            icon="icon.play.small"
+            @click="onStartTranscriptionPlayback"
+          />
+          <ButtonStyled intent="tertiary">
+            {{ $t("transcription.markAsDone") }}
+          </ButtonStyled>
+        </div>
       </header>
       <div
+        class="type-paragraph-1 relative mt-12 grid grid-cols-2 gap-6 p-4 text-label-1 2xl:-mx-10"
+      >
+        <div class="p-6">
+          <p class="type-title-1 mb-4">{{ t("transcription.original") }}</p>
+          <p
+            v-for="item in transcription"
+            :key="item.id"
+            :class="[
+              'rounded-2xl border transition-all duration-300 ease-out',
+              ,
+              {
+                '-mx-6 border-label-separator bg-background-2 px-6 py-4 shadow-sm':
+                  item == currentTranscriptionItem,
+                'border-[transparent]': item != currentTranscriptionItem,
+              },
+            ]"
+          >
+            {{ item.text }}
+          </p>
+        </div>
+        <div class="p-6">
+          <p class="type-title-1 mb-4">{{ t("transcription.edit") }}</p>
+          <div
+            v-for="item in editableTranscription"
+            :key="item.id"
+            :class="[
+              'flex justify-between rounded-2xl border transition-all duration-300 ease-out',
+              {
+                '-mx-6 border-label-separator bg-background-2 px-6 py-4 shadow-sm':
+                  item == currentEditableTranscriptionItem,
+                'border-[transparent]':
+                  item != currentEditableTranscriptionItem,
+              },
+            ]"
+          >
+            <p
+              class="grow"
+              contenteditable
+              @input="
+                setTranscriptionItemText(
+                  item,
+                  ($event.target as HTMLParagraphElement).innerText,
+                )
+              "
+            >
+              {{ item.text }}
+            </p>
+            <button
+              class="type-paragraph-2 flex items-center gap-1 text-label-3"
+              @click="deleteTranscriptionItem(item)"
+            >
+              <NuxtIcon name="icon.close" class="opacity-75" />
+              {{ t("transcription.deleteItem") }}
+            </button>
+          </div>
+        </div>
+      </div>
+      <!-- <div
         class="type-paragraph-1 mt-12 grid grid-cols-2 gap-4 rounded-[48px] border border-label-separator bg-background-1 p-4 text-label-1 shadow-sm 2xl:-mx-10"
       >
         <div class="rounded-[28px] p-6">
@@ -111,7 +177,7 @@ function onStartTranscriptionPlayback() {
               />
             </ButtonStyled>
 
-            <!-- <RadioButtons
+            <RadioButtons
               v-model="playbackSpeed"
               :options="[1, 1.25, 1.5, 1.75, 2]"
               class="flex rounded-full bg-background-1 px-2.5"
@@ -129,7 +195,7 @@ function onStartTranscriptionPlayback() {
                   {{ option }}x
                 </span>
               </template>
-            </RadioButtons> -->
+            </RadioButtons>
 
             <div class="ml-auto flex items-center gap-3">
               <ButtonStyled
@@ -152,7 +218,7 @@ function onStartTranscriptionPlayback() {
             </div>
           </footer>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
