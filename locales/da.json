@@ -62,7 +62,8 @@
   },
   "collection": {
     "track-count": "{count} spor | {count} spor",
-    "album-count": "{count} album | {count} albummer"
+    "album-count": "{count} album | {count} albummer",
+    "resume": "Genoptag"
   },
   "login": {
     "error-message": {
