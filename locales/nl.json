@@ -15,7 +15,7 @@
     "search": "Zoeken",
     "album": "Album",
     "podcast": "Podcast",
-    "not-found": "Page not found",
+    "not-found": "Pagina niet gevonden",
     "contributor": "Bijdrager",
     "contributors": "Bijdragers",
     "archive": "Archief"
@@ -148,7 +148,7 @@
       "options": "Toon opties"
     },
     "details": {
-      "title": "Track Details",
+      "title": "Trackgegevens",
       "reference": "Referentie",
       "duration": "Afspeelduur",
       "publish-date": "Publicatiedatum",
