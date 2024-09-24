@@ -3,6 +3,18 @@ const { t } = useI18n();
 setTitle(() => t("nav.transcribe"));
 
 const { data: tracks } = useTracks();
+
+// Navigate to home if user is not transcription manager
+// definePageMeta({
+//   middleware: [
+//     async (_from, _to, next) => {
+//       const { data: currentUser } = await useCurrentUser();
+//       if (!currentUser.value.roles?.includes("ROLE_TRANSCRIPTION_MANAGER"))
+//         return navigateTo("/");
+//       return next();
+//     },
+//   ],
+// });
 </script>
 
 <template>

@@ -10,6 +10,8 @@ onMounted(() => {
   isMounted.value = true;
 });
 const hamburgerOpen = ref<boolean>(false);
+
+const { data: currentUser } = useCurrentUser();
 </script>
 
 <template>
@@ -69,6 +71,7 @@ const hamburgerOpen = ref<boolean>(false);
             icon="nav.search"
           />
           <SidebarItem
+            v-if="currentUser?.roles?.includes('ROLE_TRANSCRIPTION_MANAGER')"
             :title="$t('nav.transcribe')"
             :link="{ name: 'transcribe' }"
             icon="icon.information"

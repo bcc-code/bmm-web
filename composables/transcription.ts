@@ -112,6 +112,6 @@ export function useTranscriptionTool(options: UseTranscriptionToolOptions) {
     goToNextTranscriptionItem,
     goToPreviousTranscriptionItem,
     setTranscriptionItemText,
-    deleteTranscriptionItem
+    deleteTranscriptionItem,
   }
 }

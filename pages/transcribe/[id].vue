@@ -1,5 +1,19 @@
 <script setup lang="ts">
+import type { TrackTranslationTranscriptionSegment } from "@bcc-code/bmm-sdk-fetch";
+import { diffWordsWithSpace } from "diff";
 import { MediaPlayerStatus } from "~/plugins/mediaPlayer/mediaPlayer";
+
+// Navigate to home if user is not transcription manager
+// definePageMeta({
+//   middleware: [
+//     async (_from, _to, next) => {
+//       const { data: currentUser } = await useCurrentUser();
+//       if (!currentUser.value.roles?.includes("ROLE_TRANSCRIPTION_MANAGER"))
+//         return navigateTo("/");
+//       return next();
+//     },
+//   ],
+// });
 
 const { t } = useI18n();
 setTitle(() => t("nav.transcribe"));
@@ -9,6 +23,7 @@ const route = useRoute("transcribe-id");
 const { data: track } = useTrack({ id: Number(route.params.id) });
 
 const {
+  currentIndex,
   transcription,
   editableTranscription,
   currentTranscriptionItem,
@@ -38,6 +53,43 @@ function onStartTranscriptionPlayback() {
     $mediaPlayer.setQueue([track.value!]);
     playCurrentTranscriptionItem();
   }
+}
+
+function getDiff(
+  oldItem: TrackTranslationTranscriptionSegment | undefined,
+  newItem: TrackTranslationTranscriptionSegment | undefined,
+) {
+  if (!oldItem?.text || !newItem?.text) return [];
+  return diffWordsWithSpace(oldItem.text, newItem.text);
+}
+
+const editing = ref<boolean[]>([]);
+
+function focusTranscriptionItem(index: number) {
+  const element = document.querySelector<HTMLParagraphElement>(
+    `[data-transcription-item-index="${index}"]`,
+  );
+  if (element) element.focus();
+}
+
+function onArrowUp() {
+  if (currentIndex.value > 0) {
+    currentIndex.value -= 1;
+    focusTranscriptionItem(currentIndex.value);
+  }
+}
+
+function onArrowDown() {
+  if (currentIndex.value < transcription.value!.length - 1) {
+    currentIndex.value += 1;
+    focusTranscriptionItem(currentIndex.value);
+  }
+}
+
+function handleFocus(index: number) {
+  currentIndex.value = index;
+  editing.value[index] = true;
+  playCurrentTranscriptionItem();
 }
 </script>
 
@@ -81,10 +133,10 @@ function onStartTranscriptionPlayback() {
         <div class="p-6">
           <p class="type-title-1 mb-4">{{ t("transcription.edit") }}</p>
           <div
-            v-for="item in editableTranscription"
+            v-for="(item, index) in editableTranscription"
             :key="item.id"
             :class="[
-              'flex justify-between rounded-2xl border transition-all duration-300 ease-out',
+              'grid grid-cols-[1fr_auto] rounded-2xl border transition-all duration-300 ease-out',
               {
                 '-mx-6 border-label-separator bg-background-2 px-6 py-4 shadow-sm':
                   item == currentEditableTranscriptionItem,
@@ -94,16 +146,42 @@ function onStartTranscriptionPlayback() {
             ]"
           >
             <p
-              class="grow"
+              :class="[
+                'col-start-1 row-start-1',
+                {
+                  'opacity-0': !editing[index],
+                },
+              ]"
               contenteditable
+              :data-transcription-item-index="index"
               @input="
                 setTranscriptionItemText(
                   item,
                   ($event.target as HTMLParagraphElement).innerText,
                 )
               "
+              @focus="handleFocus(index)"
+              @blur="editing[index] = false"
+              @keydown.up="onArrowUp"
+              @keydown.down="onArrowDown"
             >
               {{ item.text }}
+            </p>
+            <p
+              v-if="!editing[index]"
+              class="col-start-1 row-start-1"
+              @click="editing[index] = true"
+            >
+              <span
+                v-for="change in getDiff(item, transcription[index])"
+                :key="change.value"
+                :class="{
+                  'bg-[red]/10 text-[red]': change.added,
+                  'bg-[green]/10 text-[green]': change.removed,
+                }"
+              >
+                {{ change.value }}
+              </span>
             </p>
             <button
               class="type-paragraph-2 flex items-center gap-1 text-label-3"
