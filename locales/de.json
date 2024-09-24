@@ -62,7 +62,8 @@
   },
   "collection": {
     "track-count": "{count} Titel | {count} Titel",
-    "album-count": "{count} Album | {count} Alben"
+    "album-count": "{count} Album | {count} Alben",
+    "resume": "Weiterhören"
   },
   "login": {
     "error-message": {
