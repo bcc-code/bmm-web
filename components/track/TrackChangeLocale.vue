@@ -23,7 +23,7 @@ const trackLanguages =
   currentTrack?.value?.languages?.map((lang) => lang.toString()) || [];
 
 const getUserLanguages = () =>
-  contentLanguageStore().contentLanguages.filter((lang) =>
+  useContentLanguageStore().contentLanguages.filter((lang) =>
     trackLanguages.includes(lang),
   );
 const getRemainingLanguages = () => {

@@ -3,7 +3,7 @@ import type { AsyncData } from "nuxt/app";
 export function reactiveDependencies() {
   return [
     useNuxtApp().$i18n.locale,
-    () => contentLanguageStore().contentLanguages,
+    () => useContentLanguageStore().contentLanguages,
   ];
 }
 

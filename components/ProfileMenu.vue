@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { useAuth0 } from "@auth0/auth0-vue";
+import type { LanguageEnum } from "@bcc-code/bmm-sdk-fetch";
 import { Switch, RadioGroup, RadioGroupOption } from "@headlessui/vue";
 import { VueDraggable } from "vue-draggable-plus";
 
@@ -37,7 +38,7 @@ const logout = async () => {
 };
 
 const contentLanguages = ref(
-  contentLanguageStore().contentLanguages.filter((x) => x !== "zxx"),
+  useContentLanguageStore().contentLanguages.filter((x) => x !== "zxx"),
 );
 
 const nextUnusedContentLanguage = computed(() =>
@@ -51,12 +52,12 @@ const closeInterfaceLanguageDialog = () => {
 const saveAndCloseContentLanguageDialog = () => {
   showContentLanguageDialog.value = false;
 
-  const newLanguages = ["zxx", ...contentLanguages.value];
+  const newLanguages: LanguageEnum[] = ["zxx", ...contentLanguages.value];
   if (
     newLanguages.toString() !==
-    contentLanguageStore().contentLanguages.toString()
+    useContentLanguageStore().contentLanguages.toString()
   )
-    contentLanguageStore().contentLanguages = newLanguages;
+    useContentLanguageStore().contentLanguages = newLanguages;
 };
 
 const { data: user } = useCurrentUser();

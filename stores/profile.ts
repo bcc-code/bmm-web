@@ -1,8 +1,10 @@
+import type { LanguageEnum } from "@bcc-code/bmm-sdk-fetch";
+
 export const useProfileStore = defineStore(
   "profile",
   () => {
     const autoplay = ref(false);
-    const uiLanguage = ref("en");
+    const uiLanguage = ref<LanguageEnum>("en");
     const hasDisabledDownloadPromo = ref(false);
 
     return {
