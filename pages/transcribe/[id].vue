@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import { TrackApi } from "@bcc-code/bmm-sdk-fetch";
-import type { TrackTranslationTranscriptionSegment } from "@bcc-code/bmm-sdk-fetch";
+import type {
+  LanguageEnum,
+  TrackTranslationTranscriptionSegment,
+} from "@bcc-code/bmm-sdk-fetch";
 import { diffWordsWithSpace } from "diff";
 import { MediaPlayerStatus } from "~/plugins/mediaPlayer/mediaPlayer";
 
@@ -23,10 +26,26 @@ onMounted(() => {
 });
 
 const { contentLanguages } = useContentLanguageStore();
-const language = computed(
-  () =>
-    $mediaPlayer.currentTrack.value?.language ??
-    contentLanguages.filter((c) => c !== "zxx").at(0)!,
+const transcriptionLanguage = ref<LanguageEnum>();
+const language = computed({
+  get() {
+    return (
+      transcriptionLanguage.value ??
+      $mediaPlayer.currentTrack.value?.language ??
+      contentLanguages.filter((c) => c !== "zxx").at(0)!
+    );
+  },
+  set(value) {
+    if (value === transcriptionLanguage.value) return;
+    transcriptionLanguage.value = value;
+
+    if (!$mediaPlayer.currentTrack.value) return;
+    $mediaPlayer.currentTrack.value.language = value;
+  },
+});
+
+const isPlaying = computed(
+  () => $mediaPlayer.status.value === MediaPlayerStatus.Playing,
 );
 
 const {
@@ -136,11 +155,6 @@ async function saveTranscription() {
         <div class="flex items-center gap-2">
           <ButtonStyled
             intent="primary"
-            icon="icon.play.small"
-            @click="onStartTranscriptionPlayback"
-          />
-          <ButtonStyled
-            intent="secondary"
             class="relative"
             :loading="saving"
             @click="saveTranscription"
@@ -149,8 +163,32 @@ async function saveTranscription() {
           </ButtonStyled>
         </div>
       </header>
+      <div class="flex items-center gap-2">
+        <ButtonStyled
+          intent="primary"
+          :icon="isPlaying ? 'icon.pause.small' : 'icon.play.small'"
+          @click="onStartTranscriptionPlayback"
+        />
+        <DropdownMenu v-if="language" placement="bottom-end">
+          <ButtonStyled intent="tertiary">
+            {{ getLocalizedLanguageName(language) }}
+            <NuxtIcon name="icon.chevron.down" class="ml-2" />
+          </ButtonStyled>
+          <template #items>
+            <DropdownMenuGroup>
+              <DropdownMenuItem
+                v-for="lang in track.languages"
+                :key="lang"
+                :title="getLocalizedLanguageName(lang)"
+                @click="language = lang"
+              />
+            </DropdownMenuGroup>
+          </template>
+        </DropdownMenu>
+      </div>
+
       <div
-        class="type-paragraph-1 relative mt-12 grid gap-6 p-4 text-label-1 lg:grid-cols-2 2xl:-mx-10"
+        class="type-paragraph-1 relative mt-12 grid gap-x-6 p-4 text-label-1 lg:grid-cols-2 2xl:-mx-10"
       >
         <div class="md:p-6">
           <p class="type-title-1 mb-4">{{ t("transcription.original") }}</p>
@@ -240,6 +278,7 @@ async function saveTranscription() {
           </div>
         </div>
       </div>
+
       <!-- <div
         class="type-paragraph-1 mt-12 grid grid-cols-2 gap-4 rounded-[48px] border border-label-separator bg-background-1 p-4 text-label-1 shadow-sm 2xl:-mx-10"
       >

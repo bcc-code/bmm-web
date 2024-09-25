@@ -16,17 +16,20 @@ defineSlots<{
 
 const component = computed(() => `h${props.level}`);
 
-const className = cva("font-bold leading-tight text-label-1 mt-6 mb-6", {
-  variants: {
-    level: {
-      1: "text-5xl",
-      2: "text-4xl",
-      3: "text-2xl",
-      4: "text-xl",
-      5: "text-base",
+const className = cva(
+  "font-bold leading-tight text-balance text-label-1 mt-6 mb-6",
+  {
+    variants: {
+      level: {
+        1: "text-5xl",
+        2: "text-4xl",
+        3: "text-2xl",
+        4: "text-xl",
+        5: "text-base",
+      },
     },
   },
-});
+);
 </script>
 
 <template>
