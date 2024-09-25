@@ -1,19 +1,12 @@
 <script setup lang="ts">
+import { TrackApi } from "@bcc-code/bmm-sdk-fetch";
 import type { TrackTranslationTranscriptionSegment } from "@bcc-code/bmm-sdk-fetch";
 import { diffWordsWithSpace } from "diff";
 import { MediaPlayerStatus } from "~/plugins/mediaPlayer/mediaPlayer";
 
-// Navigate to home if user is not transcription manager
-// definePageMeta({
-//   middleware: [
-//     async (_from, _to, next) => {
-//       const { data: currentUser } = await useCurrentUser();
-//       if (!currentUser.value.roles?.includes("ROLE_TRANSCRIPTION_MANAGER"))
-//         return navigateTo("/");
-//       return next();
-//     },
-//   ],
-// });
+definePageMeta({
+  middleware: ["transcription-manager"],
+});
 
 const { t } = useI18n();
 setTitle(() => t("nav.transcribe"));
@@ -21,6 +14,20 @@ setTitle(() => t("nav.transcribe"));
 const route = useRoute("transcribe-id");
 
 const { data: track } = useTrack({ id: Number(route.params.id) });
+
+const { $mediaPlayer } = useNuxtApp();
+onMounted(() => {
+  if ($mediaPlayer.currentTrack.value?.id !== Number(route.params.id)) {
+    $mediaPlayer.stop();
+  }
+});
+
+const { contentLanguages } = useContentLanguageStore();
+const language = computed(
+  () =>
+    $mediaPlayer.currentTrack.value?.language ??
+    contentLanguages.filter((c) => c !== "zxx").at(0)!,
+);
 
 const {
   currentIndex,
@@ -30,14 +37,12 @@ const {
   currentEditableTranscriptionItem,
   setTranscriptionItemText,
   playCurrentTranscriptionItem,
-  deleteTranscriptionItem,
-} = useTranscriptionTool({ trackId: Number(route.params.id) });
-
-const { $mediaPlayer } = useNuxtApp();
-onMounted(() => {
-  if ($mediaPlayer.currentTrack.value?.id !== Number(route.params.id)) {
-    $mediaPlayer.stop();
-  }
+  toggleDeletion,
+  deletedTranscriptionItems,
+  refetchTranscription,
+} = useTranscriptionTool({
+  trackId: Number(route.params.id),
+  language,
 });
 
 function onStartTranscriptionPlayback() {
@@ -91,12 +96,42 @@ function handleFocus(index: number) {
   editing.value[index] = true;
   playCurrentTranscriptionItem();
 }
+
+const saving = ref(false);
+async function saveTranscription() {
+  if (!track.value) return;
+  saving.value = true;
+
+  // Remove items marked for deletion from transcription
+  if (deletedTranscriptionItems.value.length) {
+    deletedTranscriptionItems.value.forEach((item) => {
+      editableTranscription.value.splice(
+        editableTranscription.value.indexOf(item),
+        1,
+      );
+    });
+  }
+
+  try {
+    await new TrackApi().trackIdTranscriptionLanguagePost({
+      id: Number(route.params.id),
+      language: language.value,
+      trackTranslationTranscriptionSegment: editableTranscription.value,
+    });
+    await refetchTranscription();
+  } catch (err) {
+  } finally {
+    saving.value = false;
+  }
+}
 </script>
 
 <template>
   <div>
     <div v-if="track && transcription?.length">
-      <header class="mb-12 mt-10 flex items-center justify-between gap-4">
+      <header
+        class="mb-12 mt-10 flex flex-wrap items-center justify-between gap-4"
+      >
         <PageHeading>{{ track.title }}</PageHeading>
         <div class="flex items-center gap-2">
           <ButtonStyled
@@ -104,21 +139,26 @@ function handleFocus(index: number) {
             icon="icon.play.small"
             @click="onStartTranscriptionPlayback"
           />
-          <ButtonStyled intent="tertiary">
-            {{ $t("transcription.markAsDone") }}
+          <ButtonStyled
+            intent="secondary"
+            class="relative"
+            :loading="saving"
+            @click="saveTranscription"
+          >
+            {{ $t("transcription.save") }}
           </ButtonStyled>
         </div>
       </header>
       <div
-        class="type-paragraph-1 relative mt-12 grid grid-cols-2 gap-6 p-4 text-label-1 2xl:-mx-10"
+        class="type-paragraph-1 relative mt-12 grid gap-6 p-4 text-label-1 lg:grid-cols-2 2xl:-mx-10"
       >
-        <div class="p-6">
+        <div class="md:p-6">
           <p class="type-title-1 mb-4">{{ t("transcription.original") }}</p>
           <p
             v-for="item in transcription"
             :key="item.id"
             :class="[
-              'rounded-2xl border transition-all duration-300 ease-out',
+              'my-4 whitespace-pre-wrap rounded-2xl border transition-all duration-300  ease-out',
               ,
               {
                 '-mx-6 border-label-separator bg-background-2 px-6 py-4 shadow-sm':
@@ -130,24 +170,25 @@ function handleFocus(index: number) {
             {{ item.text }}
           </p>
         </div>
-        <div class="p-6">
+        <div class="md:p-6">
           <p class="type-title-1 mb-4">{{ t("transcription.edit") }}</p>
           <div
             v-for="(item, index) in editableTranscription"
             :key="item.id"
             :class="[
-              'grid grid-cols-[1fr_auto] rounded-2xl border transition-all duration-300 ease-out',
+              'my-4 grid grid-cols-[1fr_auto] items-baseline rounded-2xl border transition-all duration-300 ease-out',
               {
                 '-mx-6 border-label-separator bg-background-2 px-6 py-4 shadow-sm':
                   item == currentEditableTranscriptionItem,
                 'border-[transparent]':
                   item != currentEditableTranscriptionItem,
+                'opacity-25': deletedTranscriptionItems.includes(item),
               },
             ]"
           >
             <p
               :class="[
-                'col-start-1 row-start-1',
+                'col-start-1 row-start-1 whitespace-pre-wrap',
                 {
                   'opacity-0': !editing[index],
                 },
@@ -169,7 +210,7 @@ function handleFocus(index: number) {
             </p>
             <p
               v-if="!editing[index]"
-              class="col-start-1 row-start-1"
+              class="col-start-1 row-start-1 whitespace-pre-wrap"
               @click="editing[index] = true"
             >
               <span
@@ -185,10 +226,16 @@ function handleFocus(index: number) {
             </p>
             <button
               class="type-paragraph-2 flex items-center gap-1 text-label-3"
-              @click="deleteTranscriptionItem(item)"
+              @click="toggleDeletion(item)"
             >
-              <NuxtIcon name="icon.close" class="opacity-75" />
-              {{ t("transcription.deleteItem") }}
+              <template v-if="!deletedTranscriptionItems.includes(item)">
+                <NuxtIcon name="icon.close" class="opacity-75" />
+                {{ t("transcription.deleteItem") }}
+              </template>
+              <template v-else>
+                <NuxtIcon name="icon.repeat" class="opacity-75" />
+                {{ t("transcription.undeleteItem") }}
+              </template>
             </button>
           </div>
         </div>

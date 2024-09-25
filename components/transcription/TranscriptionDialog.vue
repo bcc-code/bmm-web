@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { TrackModel } from "@bcc-code/bmm-sdk-fetch";
+import { isTranscriptionManager } from "~/utils/roles";
 import getSongtreasuresLink from "~/utils/songtreasures";
 
 const props = defineProps<{
@@ -93,10 +94,12 @@ const { data: currentUser } = useCurrentUser();
           <span>{{ dialogTitle }}</span>
         </component>
         <NuxtLink
-          v-if="currentUser?.roles?.includes('ROLE_TRANSCRIPTION_MANAGER')"
+          v-if="isTranscriptionManager(currentUser)"
           :to="{ name: 'transcribe-id', params: { id: track.id } }"
         >
-          <ButtonStyled size="small">Edit</ButtonStyled>
+          <ButtonStyled size="small">
+            {{ $t("transcription.edit") }}
+          </ButtonStyled>
         </NuxtLink>
       </div>
     </template>

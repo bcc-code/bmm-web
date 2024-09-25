@@ -196,11 +196,13 @@
       "confirmation": "Got it"
     },
     "songtreasures": "SongTreasures",
-    "markAsDone": "Mark as done",
+    "save": "Save changes",
     "original": "Original",
     "edit": "Edit",
     "previousSection": "Previous section",
     "nextSection": "Next section",
-    "deleteItem": "Delete"
+    "deleteItem": "Delete",
+    "undeleteItem": "Undo delete",
+    "review": "Review"
   }
 }

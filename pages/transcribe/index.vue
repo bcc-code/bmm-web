@@ -4,17 +4,9 @@ setTitle(() => t("nav.transcribe"));
 
 const { data: tracks } = useTracks();
 
-// Navigate to home if user is not transcription manager
-// definePageMeta({
-//   middleware: [
-//     async (_from, _to, next) => {
-//       const { data: currentUser } = await useCurrentUser();
-//       if (!currentUser.value.roles?.includes("ROLE_TRANSCRIPTION_MANAGER"))
-//         return navigateTo("/");
-//       return next();
-//     },
-//   ],
-// });
+definePageMeta({
+  middleware: ["transcription-manager"],
+});
 </script>
 
 <template>
@@ -28,7 +20,7 @@ const { data: tracks } = useTracks();
       >
         {{ track.title }}
         <NuxtLink :to="{ name: 'transcribe-id', params: { id: track.id } }">
-          <ButtonStyled>Review</ButtonStyled>
+          <ButtonStyled>{{ $t("transcription.review") }}</ButtonStyled>
         </NuxtLink>
       </li>
     </ul>
