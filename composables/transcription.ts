@@ -96,7 +96,7 @@ export function useTranscriptionTool(options: UseTranscriptionToolOptions) {
     },
   );
 
-  const currentTranscriptionItem = computed(() => {
+  const currentTranscriptionSegment = computed(() => {
     if (!transcription.value) return null;
     return (
       transcription.value[currentIndex.value] ||
@@ -104,21 +104,21 @@ export function useTranscriptionTool(options: UseTranscriptionToolOptions) {
     );
   });
 
-  const currentEditableTranscriptionItem = computed(() => {
+  const currentEditableTranscriptionSegment = computed(() => {
     if (!editableTranscription.value) return null;
     return editableTranscription.value[currentIndex.value];
   });
 
-  function playCurrentTranscriptionItem() {
+  function playCurrentTranscriptionSegment() {
     if (
-      currentTranscriptionItem.value &&
-      currentTranscriptionItem.value.start
+      currentTranscriptionSegment.value &&
+      currentTranscriptionSegment.value.start
     ) {
-      $mediaPlayer.currentPosition.value = currentTranscriptionItem.value.start;
+      $mediaPlayer.currentPosition.value = currentTranscriptionSegment.value.start;
     }
   }
 
-  function goToNextTranscriptionItem() {
+  function goToNextTranscriptionSegment() {
     if (!transcription.value) return;
 
     currentIndex.value = Math.min(
@@ -126,15 +126,15 @@ export function useTranscriptionTool(options: UseTranscriptionToolOptions) {
       transcription.value.length - 1,
     );
 
-    playCurrentTranscriptionItem();
+    playCurrentTranscriptionSegment();
   }
 
-  function goToPreviousTranscriptionItem() {
+  function goToPreviousTranscriptionSegment() {
     currentIndex.value = Math.max(currentIndex.value - 1, 0);
-    playCurrentTranscriptionItem();
+    playCurrentTranscriptionSegment();
   }
 
-  function setTranscriptionItemText(
+  function setTranscriptionSegmentText(
     item: TrackTranslationTranscriptionSegment,
     text: string,
   ) {
@@ -145,7 +145,7 @@ export function useTranscriptionTool(options: UseTranscriptionToolOptions) {
     editableTranscription.value[index].text = text;
   }
 
-  const deletedTranscriptionItems = ref<TrackTranslationTranscriptionSegment[]>(
+  const deletedTranscriptionSegments = ref<TrackTranslationTranscriptionSegment[]>(
     [],
   );
 
@@ -154,14 +154,14 @@ export function useTranscriptionTool(options: UseTranscriptionToolOptions) {
       (_item) => _item.id === item.id,
     );
     if (!editableTranscription.value[index]) return;
-    if (deletedTranscriptionItems.value.includes(item)) {
-      deletedTranscriptionItems.value.splice(
-        deletedTranscriptionItems.value.indexOf(item),
+    if (deletedTranscriptionSegments.value.includes(item)) {
+      deletedTranscriptionSegments.value.splice(
+        deletedTranscriptionSegments.value.indexOf(item),
         1,
       );
       return;
     }
-    deletedTranscriptionItems.value.push(editableTranscription.value[index]);
+    deletedTranscriptionSegments.value.push(editableTranscription.value[index]);
   }
 
   return {
@@ -170,14 +170,14 @@ export function useTranscriptionTool(options: UseTranscriptionToolOptions) {
     status,
     isWithinCurrentTime,
     editableTranscription,
-    currentTranscriptionItem,
-    currentEditableTranscriptionItem,
-    playCurrentTranscriptionItem,
-    goToNextTranscriptionItem,
-    goToPreviousTranscriptionItem,
-    setTranscriptionItemText,
+    currentTranscriptionSegment,
+    currentEditableTranscriptionSegment,
+    playCurrentTranscriptionSegment,
+    goToNextTranscriptionSegment,
+    goToPreviousTranscriptionSegment,
+    setTranscriptionSegmentText,
     toggleDeletion,
-    deletedTranscriptionItems,
+    deletedTranscriptionSegments,
     refetchTranscription,
   };
 }

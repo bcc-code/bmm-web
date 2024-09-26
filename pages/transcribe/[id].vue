@@ -53,12 +53,12 @@ const {
   status,
   transcription,
   editableTranscription,
-  currentTranscriptionItem,
-  currentEditableTranscriptionItem,
-  setTranscriptionItemText,
-  playCurrentTranscriptionItem,
+  currentTranscriptionSegment,
+  currentEditableTranscriptionSegment,
+  setTranscriptionSegmentText,
+  playCurrentTranscriptionSegment,
   toggleDeletion,
-  deletedTranscriptionItems,
+  deletedTranscriptionSegments,
   refetchTranscription,
 } = useTranscriptionTool({
   trackId: Number(route.params.id),
@@ -68,7 +68,7 @@ const {
 function onStartTranscriptionPlayback() {
   if (track.value?.id !== $mediaPlayer.currentTrack.value?.id) {
     $mediaPlayer.setQueue([track.value!]);
-    playCurrentTranscriptionItem();
+    playCurrentTranscriptionSegment();
   }
   if ($mediaPlayer.status.value === MediaPlayerStatus.Playing)
     $mediaPlayer.pause();
@@ -76,7 +76,7 @@ function onStartTranscriptionPlayback() {
     $mediaPlayer.play();
   else {
     $mediaPlayer.setQueue([track.value!]);
-    playCurrentTranscriptionItem();
+    playCurrentTranscriptionSegment();
   }
 }
 
@@ -90,9 +90,9 @@ function getDiff(
 
 const editing = ref<boolean[]>([]);
 
-function focusTranscriptionItem(index: number) {
+function focusTranscriptionSegment(index: number) {
   const element = document.querySelector<HTMLParagraphElement>(
-    `[data-transcription-item-index="${index}"]`,
+    `[data-transcription-segment-index="${index}"]`,
   );
   if (element) element.focus();
 }
@@ -100,21 +100,21 @@ function focusTranscriptionItem(index: number) {
 function onArrowUp() {
   if (currentIndex.value > 0) {
     currentIndex.value -= 1;
-    focusTranscriptionItem(currentIndex.value);
+    focusTranscriptionSegment(currentIndex.value);
   }
 }
 
 function onArrowDown() {
   if (currentIndex.value < transcription.value!.length - 1) {
     currentIndex.value += 1;
-    focusTranscriptionItem(currentIndex.value);
+    focusTranscriptionSegment(currentIndex.value);
   }
 }
 
 function handleFocus(index: number) {
   currentIndex.value = index;
   editing.value[index] = true;
-  playCurrentTranscriptionItem();
+  playCurrentTranscriptionSegment();
 }
 
 const saving = ref(false);
@@ -122,9 +122,9 @@ async function saveTranscription() {
   if (!track.value) return;
   saving.value = true;
 
-  // Remove items marked for deletion from transcription
-  if (deletedTranscriptionItems.value.length) {
-    deletedTranscriptionItems.value.forEach((item) => {
+  // Remove segments marked for deletion from transcription
+  if (deletedTranscriptionSegments.value.length) {
+    deletedTranscriptionSegments.value.forEach((item) => {
       editableTranscription.value.splice(
         editableTranscription.value.indexOf(item),
         1,
@@ -202,8 +202,8 @@ async function saveTranscription() {
                 ,
                 {
                   '-mx-6 border-label-separator bg-background-2 px-6 py-4 shadow-sm':
-                    item == currentTranscriptionItem,
-                  'border-[transparent]': item != currentTranscriptionItem,
+                    item == currentTranscriptionSegment,
+                  'border-[transparent]': item != currentTranscriptionSegment,
                 },
               ]"
             >
@@ -219,10 +219,10 @@ async function saveTranscription() {
                 'my-4 grid grid-cols-[1fr_auto] items-baseline rounded-2xl border transition-all duration-300 ease-out',
                 {
                   '-mx-6 border-label-separator bg-background-2 px-6 py-4 shadow-sm':
-                    item == currentEditableTranscriptionItem,
+                    item == currentEditableTranscriptionSegment,
                   'border-[transparent]':
-                    item != currentEditableTranscriptionItem,
-                  'opacity-25': deletedTranscriptionItems.includes(item),
+                    item != currentEditableTranscriptionSegment,
+                  'opacity-25': deletedTranscriptionSegments.includes(item),
                 },
               ]"
             >
@@ -236,7 +236,7 @@ async function saveTranscription() {
                 contenteditable
                 :data-transcription-item-index="index"
                 @input="
-                  setTranscriptionItemText(
+                  setTranscriptionSegmentText(
                     item,
                     ($event.target as HTMLParagraphElement).innerText,
                   )
@@ -268,13 +268,13 @@ async function saveTranscription() {
                 class="type-paragraph-2 flex items-center gap-1 text-label-3"
                 @click="toggleDeletion(item)"
               >
-                <template v-if="!deletedTranscriptionItems.includes(item)">
+                <template v-if="!deletedTranscriptionSegments.includes(item)">
                   <NuxtIcon name="icon.close" class="opacity-75" />
-                  {{ t("transcription.deleteItem") }}
+                  {{ t("transcription.deleteSegment") }}
                 </template>
                 <template v-else>
                   <NuxtIcon name="icon.repeat" class="opacity-75" />
-                  {{ t("transcription.undeleteItem") }}
+                  {{ t("transcription.undeleteSegment") }}
                 </template>
               </button>
             </div>

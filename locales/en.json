@@ -201,8 +201,8 @@
     "edit": "Edit",
     "previousSection": "Previous section",
     "nextSection": "Next section",
-    "deleteItem": "Delete",
-    "undeleteItem": "Undo delete",
+    "deleteSegment": "Delete",
+    "undeleteSegment": "Undo delete",
     "review": "Review"
   }
 }
