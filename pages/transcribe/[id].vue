@@ -35,12 +35,22 @@ const language = computed({
       contentLanguages.filter((c) => c !== "zxx").at(0)!
     );
   },
-  set(value) {
+  async set(value) {
     if (value === transcriptionLanguage.value) return;
     transcriptionLanguage.value = value;
 
     if (!$mediaPlayer.currentTrack.value) return;
-    $mediaPlayer.currentTrack.value.language = value;
+
+    try {
+      const { data: reloadedTrack } = await useTrackIDWithLanguage(value, {
+        id: $mediaPlayer.currentTrack.value.id,
+      });
+      if (!reloadedTrack.value) return;
+      $mediaPlayer.replaceCurrent(reloadedTrack.value);
+    } catch (err) {
+      // TODO: Show an error message to the user
+      console.error(err);
+    }
   },
 });
 
@@ -153,8 +163,8 @@ async function saveTranscription() {
 </script>
 
 <template>
-  <div>
-    <div v-if="track && transcription?.length">
+  <div class="relative h-full">
+    <div v-if="track">
       <header
         class="mb-12 mt-10 flex flex-wrap items-center justify-between gap-4"
       >
@@ -170,7 +180,8 @@ async function saveTranscription() {
             {{ $t("transcription.save") }}
           </ButtonStyled>
           <span v-if="hasInvalidIds" class="type-subtitle-2 text-label-3">
-            Some transcription segments have the same ID, and can not be saved.
+            Some transcription segments have the same ID, and can therefore not
+            be edited.
           </span>
         </div>
       </header>
@@ -259,7 +270,7 @@ async function saveTranscription() {
                     'opacity-0': !editing[index],
                   },
                 ]"
-                contenteditable
+                :contenteditable="!hasInvalidIds"
                 :data-transcription-segment-index="index"
                 @input="
                   setTranscriptionSegmentText(
@@ -280,7 +291,7 @@ async function saveTranscription() {
                 @click="editing[index] = true"
               >
                 <span
-                  v-for="change in getDiff(item, transcription[index])"
+                  v-for="change in getDiff(item, transcription?.[index])"
                   :key="change.value"
                   :class="{
                     'bg-[red]/10 text-[red]': change.added,
@@ -291,6 +302,7 @@ async function saveTranscription() {
                 </span>
               </p>
               <button
+                v-if="!hasInvalidIds"
                 class="type-paragraph-2 flex items-center gap-1 text-label-3"
                 @click="toggleDeletion(item)"
               >
@@ -314,5 +326,10 @@ async function saveTranscription() {
         </template>
       </div>
     </div>
+    <NuxtIcon
+      v-else
+      name="spinner"
+      class="absolute left-1/2 top-1/2 size-32 -translate-x-1/2 -translate-y-1/2"
+    />
   </div>
 </template>
