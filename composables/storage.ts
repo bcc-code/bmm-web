@@ -91,8 +91,8 @@ export interface StorageEventLike {
 
 export interface UseStorageOptions<T>
   extends ConfigurableEventFilter,
-  ConfigurableWindow,
-  ConfigurableFlush {
+    ConfigurableWindow,
+    ConfigurableFlush {
   /**
    * Watch for deep changes
    *
@@ -250,8 +250,8 @@ export function useReactiveStorage<
         storage instanceof Storage && payload instanceof StorageEvent
           ? new StorageEvent("storage", payload)
           : new CustomEvent<StorageEventLike>(customStorageEventName, {
-            detail: payload,
-          }),
+              detail: payload,
+            }),
       );
     }
   }

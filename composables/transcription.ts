@@ -36,8 +36,11 @@ interface UseTranscriptionToolOptions {
 export function useTranscriptionTool(options: UseTranscriptionToolOptions) {
   const { trackId, language } = toRefs(reactive(options));
 
-  const { data: transcription, status, refresh: refetchTranscription } =
-    useTrackTranscriptionWithLanguage({ id: trackId, language });
+  const {
+    data: transcription,
+    status,
+    refresh: refetchTranscription,
+  } = useTrackTranscriptionWithLanguage({ id: trackId, language });
 
   const { $mediaPlayer } = useNuxtApp();
 
@@ -114,7 +117,8 @@ export function useTranscriptionTool(options: UseTranscriptionToolOptions) {
       currentTranscriptionSegment.value &&
       currentTranscriptionSegment.value.start
     ) {
-      $mediaPlayer.currentPosition.value = currentTranscriptionSegment.value.start;
+      $mediaPlayer.currentPosition.value =
+        currentTranscriptionSegment.value.start;
     }
   }
 
@@ -145,9 +149,9 @@ export function useTranscriptionTool(options: UseTranscriptionToolOptions) {
     editableTranscription.value[index].text = text;
   }
 
-  const deletedTranscriptionSegments = ref<TrackTranslationTranscriptionSegment[]>(
-    [],
-  );
+  const deletedTranscriptionSegments = ref<
+    TrackTranslationTranscriptionSegment[]
+  >([]);
 
   function toggleDeletion(item: TrackTranslationTranscriptionSegment) {
     const index = editableTranscription.value.findIndex(
