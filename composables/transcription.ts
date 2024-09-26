@@ -146,7 +146,7 @@ export function useTranscriptionTool(options: UseTranscriptionToolOptions) {
       (_item) => _item.id === item.id,
     );
     if (!editableTranscription.value?.[index]) return;
-    editableTranscription.value[index].text = text;
+    editableTranscription.value[index]!.text = text;
   }
 
   const deletedTranscriptionSegments = ref<
@@ -165,7 +165,9 @@ export function useTranscriptionTool(options: UseTranscriptionToolOptions) {
       );
       return;
     }
-    deletedTranscriptionSegments.value.push(editableTranscription.value[index]);
+    deletedTranscriptionSegments.value.push(
+      editableTranscription.value[index]!,
+    );
   }
 
   return {
