@@ -145,7 +145,7 @@ export function useTranscriptionTool(options: UseTranscriptionToolOptions) {
     const index = editableTranscription.value.findIndex(
       (_item) => _item.id === item.id,
     );
-    if (!editableTranscription.value[index]) return;
+    if (!editableTranscription.value?.[index]) return;
     editableTranscription.value[index].text = text;
   }
 
