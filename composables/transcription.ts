@@ -36,7 +36,7 @@ interface UseTranscriptionToolOptions {
 export function useTranscriptionTool(options: UseTranscriptionToolOptions) {
   const { trackId, language } = toRefs(reactive(options));
 
-  const { data: transcription, refresh: refetchTranscription } =
+  const { data: transcription, status, refresh: refetchTranscription } =
     useTrackTranscriptionWithLanguage({ id: trackId, language });
 
   const { $mediaPlayer } = useNuxtApp();
@@ -167,6 +167,7 @@ export function useTranscriptionTool(options: UseTranscriptionToolOptions) {
   return {
     currentIndex,
     transcription,
+    status,
     isWithinCurrentTime,
     editableTranscription,
     currentTranscriptionItem,
