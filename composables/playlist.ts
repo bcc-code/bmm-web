@@ -50,3 +50,32 @@ export function addTrackToPlaylist(playlistId: number, trackId: number) {
     link: [`</track/${trackId}>,`],
   });
 }
+
+export function addAlbumToPlaylist(playlistId: number, albumId: number) {
+  return new TrackCollectionApi().trackCollectionIdAlbumAlbumIdPost({
+    id: playlistId,
+    albumId,
+  });
+}
+
+export function addCuratedPlaylistToPlaylist(
+  playlistId: number,
+  idToAdd: number,
+) {
+  return new TrackCollectionApi().trackCollectionIdPlaylistPlaylistIdPost({
+    id: playlistId,
+    playlistId: idToAdd,
+  });
+}
+
+export function addPrivatePlaylistToPlaylist(
+  playlistId: number,
+  idToAdd: number,
+) {
+  return new TrackCollectionApi().trackCollectionIdTrackCollectionPlaylistIdPost(
+    {
+      id: playlistId,
+      playlistId: idToAdd,
+    },
+  );
+}

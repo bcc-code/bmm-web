@@ -64,6 +64,8 @@ const onResume = () => {
       </div>
 
       <div v-if="active && album.children" class="ml-auto flex gap-2">
+        <AlbumMenu :album="album"></AlbumMenu>
+        <!-- ToDo: this is currently not clickable since we're not preventing event bubbling -->
         <CopyToClipboard
           :link="{
             name: 'album-id',

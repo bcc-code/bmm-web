@@ -11,6 +11,7 @@ const emit = defineEmits<{ "playlist-changed": [] }>();
 
 const showEditDialog = ref(false);
 const showDeleteDialog = ref(false);
+const showAddToPlaylist = ref(false);
 const playlistName = ref("");
 
 const savePlaylist = async () => {
@@ -76,8 +77,25 @@ const dropdownMenuItems = () => {
     });
   }
 
+  items.push({
+    icon: "icon.category.playlist",
+    text: t("track.dropdown.add-to-playlist"),
+    clickFunction: () => {
+      showAddToPlaylist.value = true;
+    },
+  });
+
   return items;
 };
+
+async function addToPlaylist(selectedPlaylist: number) {
+  await new TrackCollectionApi().trackCollectionIdTrackCollectionPlaylistIdPost(
+    {
+      id: selectedPlaylist,
+      playlistId: props.playlist.id,
+    },
+  );
+}
 </script>
 
 <template>
@@ -149,4 +167,10 @@ const dropdownMenuItems = () => {
       </div>
     </div>
   </DialogBase>
+
+  <AddToPlaylist
+    v-if="showAddToPlaylist"
+    :list-selected="addToPlaylist"
+    @close="showAddToPlaylist = false"
+  />
 </template>
