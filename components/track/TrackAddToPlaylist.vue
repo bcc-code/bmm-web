@@ -26,7 +26,7 @@ const selectList = async (
     if (e instanceof ResponseError && e.response instanceof Response) {
       const res = await e.response.text();
       if (res.includes("TrackAlreadyInTrackCollection:")) {
-        showError(
+        showUserError(
           "TrackAlreadyInTrackCollection",
           t("error.track-already-in-playlist", [playlistName]),
         );
