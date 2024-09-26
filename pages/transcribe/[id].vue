@@ -117,9 +117,15 @@ function handleFocus(index: number) {
   playCurrentTranscriptionSegment();
 }
 
+const hasInvalidIds = computed(() => {
+  if (!editableTranscription.value) return false;
+  return editableTranscription.value.filter((item) => item.id === 0).length > 1;
+});
+
 const saving = ref(false);
 async function saveTranscription() {
   if (!track.value) return;
+  if (hasInvalidIds.value) return;
   saving.value = true;
 
   // Remove segments marked for deletion from transcription
@@ -153,15 +159,19 @@ async function saveTranscription() {
         class="mb-12 mt-10 flex flex-wrap items-center justify-between gap-4"
       >
         <PageHeading>{{ track.title }}</PageHeading>
-        <div class="flex items-center gap-2">
+        <div class="flex flex-col items-end gap-2">
           <ButtonStyled
             intent="primary"
             class="relative"
             :loading="saving"
+            :disabled="hasInvalidIds"
             @click="saveTranscription"
           >
             {{ $t("transcription.save") }}
           </ButtonStyled>
+          <span v-if="hasInvalidIds" class="type-subtitle-2 text-label-3">
+            Some transcription segments have the same ID, and can not be saved.
+          </span>
         </div>
       </header>
       <div class="flex items-center gap-2">
@@ -207,7 +217,15 @@ async function saveTranscription() {
                 },
               ]"
             >
-              {{ item.text }}
+              <span class="type-title-3 block text-label-4">
+                {{
+                  [item.start, item.end]
+                    .filter((val) => val !== undefined)
+                    .map((val) => formatTime(val!))
+                    .join(" - ")
+                }}
+              </span>
+              <span>{{ item.text }}</span>
             </p>
           </div>
           <div class="md:p-6">
@@ -226,15 +244,23 @@ async function saveTranscription() {
                 },
               ]"
             >
+              <span class="type-title-3 col-span-full text-label-4">
+                {{
+                  [item.start, item.end]
+                    .filter((val) => val !== undefined)
+                    .map((val) => formatTime(val!))
+                    .join(" - ")
+                }}
+              </span>
               <p
                 :class="[
-                  'col-start-1 row-start-1 whitespace-pre-wrap',
+                  'col-start-1 row-start-2 whitespace-pre-wrap',
                   {
                     'opacity-0': !editing[index],
                   },
                 ]"
                 contenteditable
-                :data-transcription-item-index="index"
+                :data-transcription-segment-index="index"
                 @input="
                   setTranscriptionSegmentText(
                     item,
@@ -250,7 +276,7 @@ async function saveTranscription() {
               </p>
               <p
                 v-if="!editing[index]"
-                class="col-start-1 row-start-1 whitespace-pre-wrap"
+                class="col-start-1 row-start-2 whitespace-pre-wrap"
                 @click="editing[index] = true"
               >
                 <span
