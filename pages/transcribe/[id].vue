@@ -281,12 +281,10 @@ async function saveTranscription() {
           </div>
         </template>
         <template v-else-if="status === 'pending'">
-          <div class="md:p-6">
-            <p class="type-title-1 mb-4">{{ t("transcription.original") }}</p>
-          </div>
-          <div class="md:p-6">
-            <p class="type-title-1 mb-4">{{ t("transcription.edit") }}</p>
-          </div>
+          <NuxtIcon
+            name="spinner"
+            class="absolute left-1/2 top-1/2 size-8 -translate-x-1/2 -translate-y-1/2"
+          />
         </template>
       </div>
     </div>
