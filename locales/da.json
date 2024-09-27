@@ -18,7 +18,8 @@
     "not-found": "Siden blev ikke fundet",
     "contributor": "Medvirkende",
     "contributors": "Bidragydere",
-    "archive": "Arkiv"
+    "archive": "Arkiv",
+    "transcribe": "Transcribe"
   },
   "sidebar": {
     "playlists": {
@@ -196,6 +197,19 @@
       "explanation": "Transkriberinger genereres automatisk og kan indeholde fejl",
       "confirmation": "Forstået"
     },
-    "songtreasures": "SongTreasures"
+    "songtreasures": "SongTreasures",
+    "save": "Save changes",
+    "original": "Original",
+    "edit": "Edit",
+    "previousSection": "Previous section",
+    "nextSection": "Next section",
+    "deleteSegment": "Slet",
+    "undeleteSegment": "Undo delete",
+    "review": "Review",
+    "status": {
+      "done": "Reviewed",
+      "in-progress": "In progress",
+      "not-started": "Not reviewed"
+    }
   }
 }
