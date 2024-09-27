@@ -58,7 +58,9 @@
       "headline": "Error",
       "text": "Sorry. We can't find the page \"{path}\"."
     },
-    "track-already-in-playlist": "播放列表 {0} 中已有该曲目"
+    "track-already-in-playlist": "播放列表 {0} 中已有该曲目",
+    "album-already-in-playlist": "该专辑已在您的播放列表中。",
+    "collection-already-in-playlist": "These tracks are already in playlist {0}."
   },
   "collection": {
     "track-count": "{count} track | {count} tracks",
