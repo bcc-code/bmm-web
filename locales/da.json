@@ -58,7 +58,9 @@
       "headline": "Fejl",
       "text": "Beklager, vi kan ikke finde siden \"{path}\"."
     },
-    "track-already-in-playlist": "Findes allerede i spillelisten."
+    "track-already-in-playlist": "Findes allerede i spillelisten.",
+    "album-already-in-playlist": "Dette albumet er allerede i spillelisten.",
+    "collection-already-in-playlist": "These tracks are already in playlist {0}."
   },
   "collection": {
     "track-count": "{count} spor | {count} spor",
