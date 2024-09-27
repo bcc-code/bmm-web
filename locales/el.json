@@ -18,7 +18,8 @@
     "not-found": "Page not found",
     "contributor": "Συνεργάτης (?)",
     "contributors": "Συνεργάτες",
-    "archive": "Αρχείο"
+    "archive": "Αρχείο",
+    "transcribe": "Transcribe"
   },
   "sidebar": {
     "playlists": {
@@ -196,6 +197,19 @@
       "explanation": "Transcripts are auto-generated and might contain errors",
       "confirmation": "Got it"
     },
-    "songtreasures": "SongTreasures"
+    "songtreasures": "SongTreasures",
+    "save": "Save changes",
+    "original": "Original",
+    "edit": "Edit",
+    "previousSection": "Previous section",
+    "nextSection": "Next section",
+    "deleteSegment": "Διαγραφή",
+    "undeleteSegment": "Undo delete",
+    "review": "Review",
+    "status": {
+      "done": "Reviewed",
+      "in-progress": "In progress",
+      "not-started": "Not reviewed"
+    }
   }
 }
