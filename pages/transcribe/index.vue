@@ -1,11 +1,12 @@
 <script setup lang="ts">
+import { PublishedFilter } from "@bcc-code/bmm-sdk-fetch";
 import type { TrackModel } from "@bcc-code/bmm-sdk-fetch";
 import transcriptionStorageKey from "~/utils/transcription";
 
 const { t } = useI18n();
 setTitle(() => t("nav.transcribe"));
 
-const { data: tracks } = useTracks();
+const { data: tracks } = useTracks({ publishedFilter: PublishedFilter.Show });
 
 definePageMeta({
   middleware: ["transcription-manager"],
