@@ -1,7 +1,9 @@
-export const contentLanguageStore = defineStore(
+import type { LanguageEnum } from "@bcc-code/bmm-sdk-fetch";
+
+export const useContentLanguageStore = defineStore(
   "contentLanguage",
   () => {
-    const contentLanguages = ref(["nb", "en", "zxx"]);
+    const contentLanguages = ref<LanguageEnum[]>(["nb", "en", "zxx"]);
 
     return { contentLanguages };
   },

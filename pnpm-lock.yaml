@@ -12,8 +12,8 @@ importers:
         specifier: ^2.3.3
         version: 2.3.3(typescript@5.3.3)(vue-router@4.3.2(vue@3.4.19(typescript@5.3.3)))
       '@bcc-code/bmm-sdk-fetch':
-        specifier: ^8.0.0
-        version: 8.0.0
+        specifier: ^8.4.0
+        version: 8.4.0
       '@floating-ui/vue':
         specifier: ^1.0.6
         version: 1.0.6(vue@3.4.19(typescript@5.3.3))
@@ -47,6 +47,9 @@ importers:
       cross-env:
         specifier: ^7.0.3
         version: 7.0.3
+      diff:
+        specifier: ^7.0.0
+        version: 7.0.0
       electron-store:
         specifier: ^8.1.0
         version: 8.1.0
@@ -99,6 +102,9 @@ importers:
       '@pinia-plugin-persistedstate/nuxt':
         specifier: ^1.2.0
         version: 1.2.0(@pinia/nuxt@0.5.1(rollup@4.14.3)(typescript@5.3.3)(vue@3.4.19(typescript@5.3.3)))(pinia@2.1.7(typescript@5.3.3)(vue@3.4.19(typescript@5.3.3)))(rollup@4.14.3)
+      '@types/diff':
+        specifier: ^5.2.2
+        version: 5.2.2
       '@types/ua-parser-js':
         specifier: ^0.7.39
         version: 0.7.39
@@ -479,8 +485,8 @@ packages:
     resolution: {integrity: sha512-+j7a5c253RfKh8iABBhywc8NSfP5LURe7Uh4qpsh6jc+aLJguvmIUBdjSdEMQv2bENrCR5MfRdjGo7vzS/ob7w==}
     engines: {node: '>=6.9.0'}
 
-  '@bcc-code/bmm-sdk-fetch@8.0.0':
-    resolution: {integrity: sha512-gcla0gdyHLf8DZT87d2jnBbNT3Vlj0dkaQvz2pOId6qMNEx9BEukVJpeRUARYvuGffMDHqkJc5XlpJJjJVBM2A==}
+  '@bcc-code/bmm-sdk-fetch@8.4.0':
+    resolution: {integrity: sha512-DoIxoNTQna2gf5xoVBkMVM1uT6cq4eOqUK4Gz0SoRADM8czUyo5l7X6BHTRQe5jv/+KgobNS/TjUnsnkppuxNg==}
 
   '@bcoe/v8-coverage@0.2.3':
     resolution: {integrity: sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==}
@@ -1708,6 +1714,9 @@ packages:
 
   '@types/debug@4.1.12':
     resolution: {integrity: sha512-vIChWdVG3LG1SMxEvI/AK+FWJthlrqlTu7fbrlywTkkaONwk/UAGaULXRlf8vkzFBLVm0zkMdCquhL5aOjhXPQ==}
+
+  '@types/diff@5.2.2':
+    resolution: {integrity: sha512-qVqLpd49rmJA2nZzLVsmfS/aiiBpfVE95dHhPVwG0NmSBAt+riPxnj53wq2oBq5m4Q2RF1IWFEUpnZTgrQZfEQ==}
 
   '@types/estree@1.0.5':
     resolution: {integrity: sha512-/kYRxGDLWzHOB7q+wtSUQlFrtcdUccpfy+X+9iMBpHK8QLLhx2wIPYuS5DYtR9Wa/YlZAbIovy7qVdB1Aq6Lyw==}
@@ -3123,6 +3132,10 @@ packages:
 
   diff@5.2.0:
     resolution: {integrity: sha512-uIFDxqpRZGZ6ThOk84hEfqWoHx2devRFvpTZcTHur85vImfaxUbTW9Ryh4CpCuDnToOP1CEtXKIgytHBPVff5A==}
+    engines: {node: '>=0.3.1'}
+
+  diff@7.0.0:
+    resolution: {integrity: sha512-PJWHUb1RFevKCwaFA9RlG5tCd+FO5iRh9A8HEtkmBH2Li03iJriB6m6JIN4rGz3K3JLawI7/veA1xzRKP6ISBw==}
     engines: {node: '>=0.3.1'}
 
   dir-compare@3.3.0:
@@ -7471,7 +7484,7 @@ snapshots:
       '@babel/helper-validator-identifier': 7.22.20
       to-fast-properties: 2.0.0
 
-  '@bcc-code/bmm-sdk-fetch@8.0.0': {}
+  '@bcc-code/bmm-sdk-fetch@8.4.0': {}
 
   '@bcoe/v8-coverage@0.2.3': {}
 
@@ -9052,6 +9065,8 @@ snapshots:
   '@types/debug@4.1.12':
     dependencies:
       '@types/ms': 0.7.34
+
+  '@types/diff@5.2.2': {}
 
   '@types/estree@1.0.5': {}
 
@@ -10871,6 +10886,8 @@ snapshots:
   diff-sequences@29.6.3: {}
 
   diff@5.2.0: {}
+
+  diff@7.0.0: {}
 
   dir-compare@3.3.0:
     dependencies:

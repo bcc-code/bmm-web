@@ -21,7 +21,7 @@ export default defineNuxtPlugin((nuxtApp) => {
           }
 
           if (!headers.get("Accept-Language")) {
-            const langStore = contentLanguageStore(useNuxtApp().$pinia);
+            const langStore = useContentLanguageStore(useNuxtApp().$pinia);
             headers.set(
               "Accept-Language",
               langStore.contentLanguages.join(","),

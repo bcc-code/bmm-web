@@ -1,9 +1,11 @@
 <script setup lang="ts">
+import type { LanguageEnum } from "@bcc-code/bmm-sdk-fetch";
+
 const expanded = ref(false);
 const { currentTrack, replaceCurrent } = useNuxtApp().$mediaPlayer;
 const { t } = useI18n();
 
-const changeLanguage = async (lang: string) => {
+const changeLanguage = async (lang: LanguageEnum) => {
   expanded.value = false;
   if (!currentTrack.value) return;
 
@@ -19,17 +21,16 @@ const changeLanguage = async (lang: string) => {
   }
 };
 
-const trackLanguages =
-  currentTrack?.value?.languages?.map((lang) => lang.toString()) || [];
+const trackLanguages = computed(() => currentTrack?.value?.languages || []);
 
-const getUserLanguages = () =>
-  contentLanguageStore().contentLanguages.filter((lang) =>
-    trackLanguages.includes(lang),
-  );
-const getRemainingLanguages = () => {
-  const userLanguages = getUserLanguages();
-  return trackLanguages.filter((lang) => !userLanguages.includes(lang));
-};
+const userLanguages = computed(() =>
+  useContentLanguageStore().contentLanguages.filter((lang) =>
+    trackLanguages.value.includes(lang),
+  ),
+);
+const remainingLanguages = computed(() =>
+  trackLanguages.value.filter((lang) => !userLanguages.value.includes(lang)),
+);
 </script>
 <template>
   <DropdownMenu placement="bottom" @click.stop>
@@ -43,8 +44,8 @@ const getRemainingLanguages = () => {
     <template #items>
       <DropdownMenuGroup>
         <DropdownMenuItem
-          v-for="(lang, i) in getUserLanguages()"
-          :key="`Lang${i}`"
+          v-for="lang in userLanguages"
+          :key="lang"
           :title="getLocalizedLanguageName(lang)"
           @click="changeLanguage(lang)"
         />
@@ -73,8 +74,8 @@ const getRemainingLanguages = () => {
         </DropdownMenuItem>
         <template v-if="expanded || !(trackLanguages.length > 5)">
           <DropdownMenuItem
-            v-for="(lang, i) in getRemainingLanguages()"
-            :key="`Lang${i}`"
+            v-for="lang in remainingLanguages"
+            :key="lang"
             :title="getLocalizedLanguageName(lang)"
             @click="changeLanguage(lang)"
           />

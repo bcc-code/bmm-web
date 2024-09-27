@@ -26,3 +26,9 @@ export function useTrackIDWithLanguage(
     }),
   );
 }
+
+export function useTranscribe() {
+  return useAsyncData(`track-transcribe`, () =>
+    new TrackApi().trackTranscribeGet(),
+  );
+}

@@ -18,10 +18,10 @@ const { queue } = useNuxtApp().$mediaPlayer;
   >
     <SidebarElement />
     <main
-      class="relative flex-grow overflow-x-hidden overflow-y-scroll md:overflow-x-scroll"
+      class="relative flex grow flex-col overflow-x-hidden overflow-y-scroll md:overflow-x-scroll"
     >
       <AppToolbar />
-      <div class="flex flex-row">
+      <div class="flex grow">
         <Suspense>
           <slot />
         </Suspense>

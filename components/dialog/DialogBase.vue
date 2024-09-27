@@ -16,7 +16,7 @@ const emit = defineEmits<{
 <template>
   <DialogPlain :show="show" @close="emit('close')">
     <div class="mx-5 flex items-center justify-between py-3">
-      <DialogTitle class="type-title-1 mr-2">
+      <DialogTitle class="type-title-1 mr-2 grow">
         <slot name="title" :title="title">
           {{ title }}
         </slot>
