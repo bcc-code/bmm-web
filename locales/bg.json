@@ -18,7 +18,8 @@
     "not-found": "Page not found",
     "contributor": "Сътрудник",
     "contributors": "Сътрудници",
-    "archive": "Архив"
+    "archive": "Архив",
+    "transcribe": "Transcribe"
   },
   "sidebar": {
     "playlists": {
@@ -196,6 +197,19 @@
       "explanation": "Преписите се генерират автоматично и може да съдържат грешки",
       "confirmation": "Схванах го"
     },
-    "songtreasures": "SongTreasures"
+    "songtreasures": "SongTreasures",
+    "save": "Save changes",
+    "original": "Original",
+    "edit": "Edit",
+    "previousSection": "Previous section",
+    "nextSection": "Next section",
+    "deleteSegment": "Изтрий",
+    "undeleteSegment": "Undo delete",
+    "review": "Review",
+    "status": {
+      "done": "Reviewed",
+      "in-progress": "In progress",
+      "not-started": "Not reviewed"
+    }
   }
 }
