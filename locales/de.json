@@ -58,7 +58,9 @@
       "headline": "Fehler",
       "text": "Die Seite \"{path}\" gibt es nicht"
     },
-    "track-already-in-playlist": "Titel ist bereits in Playlist {0} vorhanden"
+    "track-already-in-playlist": "Titel ist bereits in Playlist {0} vorhanden",
+    "album-already-in-playlist": "Dieses Album befindet sich bereits in deiner Playlist.",
+    "collection-already-in-playlist": "These tracks are already in playlist {0}."
   },
   "collection": {
     "track-count": "{count} Titel | {count} Titel",
