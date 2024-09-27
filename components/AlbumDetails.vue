@@ -98,6 +98,7 @@ const onResume = () => {
         >
           {{ t("collection.resume") }}
         </ButtonStyled>
+        <AlbumMenu v-if="childTracks.length >= 1" :album="album" />
         <CopyToClipboard
           :link="{
             name: 'album-id',

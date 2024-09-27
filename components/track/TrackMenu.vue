@@ -32,25 +32,25 @@ const showDownloadDialog = ref(false);
 
 const showTranscriptionDialog = ref(false);
 
-const dropdownMenuItemsForTrack = (track: TrackModel) => {
+const dropdownMenuItems = computed(() => {
   const items: DropdownMenuItem[] = [];
 
   items.push({
     icon: "icon.play",
     text: t("track.dropdown.play-next"),
-    clickFunction: () => addNext(track, props.origin),
+    clickFunction: () => addNext(props.track, props.origin),
   });
 
   items.push({
     icon: "icon.queue",
     text: t("track.dropdown.add-to-queue"),
-    clickFunction: () => addToQueue(track, props.origin),
+    clickFunction: () => addToQueue(props.track, props.origin),
   });
 
-  if (track.hasTranscription) {
+  if (props.track.hasTranscription) {
     items.push({
       icon: "icon.information",
-      text: trackIsSong(track)
+      text: trackIsSong(props.track)
         ? t("transcription.lyrics")
         : t("track.dropdown.transcription"),
       clickFunction: () => {
@@ -75,11 +75,11 @@ const dropdownMenuItemsForTrack = (track: TrackModel) => {
     },
   });
 
-  if (track.meta.parent?.id) {
+  if (props.track.meta.parent?.id) {
     items.push({
       icon: "icon.category.album",
       text: t("track.dropdown.go-to-album"),
-      link: { name: "album-id", params: { id: track.meta.parent.id } },
+      link: { name: "album-id", params: { id: props.track.meta.parent.id } },
     });
   }
 
@@ -87,12 +87,15 @@ const dropdownMenuItemsForTrack = (track: TrackModel) => {
     icon: "icon.person",
     text: t("track.dropdown.go-to-contributors"),
     clickFunction: () => {
-      if (track.contributors && uniqueItems(track.contributors).length > 1) {
+      if (
+        props.track.contributors &&
+        uniqueItems(props.track.contributors).length > 1
+      ) {
         showContributorsList.value = true;
-      } else if (track.contributors?.[0]?.id) {
+      } else if (props.track.contributors?.[0]?.id) {
         navigateTo({
           name: "playlist-contributor-id",
-          params: { id: track.contributors[0].id },
+          params: { id: props.track.contributors[0].id },
         });
       }
     },
@@ -111,23 +114,25 @@ const dropdownMenuItemsForTrack = (track: TrackModel) => {
       icon: "icon.download",
       text: t("track.dropdown.download"),
       clickFunction: async () => {
-        const result = await download(track);
+        const result = await download(props.track);
         if (result === "no-permission") {
-          $appInsights.event("denied downloading track", { trackId: track.id });
+          $appInsights.event("denied downloading track", {
+            trackId: props.track.id,
+          });
           showDownloadDialog.value = true;
         } else {
-          $appInsights.event("track downloaded", { trackId: track.id });
+          $appInsights.event("track downloaded", { trackId: props.track.id });
         }
       },
     });
   }
 
   if (props.addDropdownItems) {
-    props.addDropdownItems(items, track);
+    props.addDropdownItems(items, props.track);
   }
 
   return items;
-};
+});
 </script>
 
 <template>
@@ -143,7 +148,7 @@ const dropdownMenuItemsForTrack = (track: TrackModel) => {
     <template #items>
       <DropdownMenuGroup>
         <DropdownMenuItem
-          v-for="item in dropdownMenuItemsForTrack(track)"
+          v-for="item in dropdownMenuItems"
           :key="item.text"
           :icon="item.icon"
           :title="item.text"
