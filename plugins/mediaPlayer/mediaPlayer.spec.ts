@@ -38,6 +38,8 @@ function track(id: number) {
     tags: [],
     subtype: "song",
     language: "nb",
+    languages: ["nb"],
+    transcriptionLanguages: [],
     meta: {},
   };
   return t;
