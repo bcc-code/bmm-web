@@ -18,7 +18,8 @@
     "not-found": "Page not found",
     "contributor": "Tekijä",
     "contributors": "Tekijät",
-    "archive": "Arkisto"
+    "archive": "Arkisto",
+    "transcribe": "Transcribe"
   },
   "sidebar": {
     "playlists": {
@@ -58,7 +59,9 @@
       "headline": "Error",
       "text": "Sorry. We can't find the page \"{path}\"."
     },
-    "track-already-in-playlist": "Kappale on jo soittolistalla {0}"
+    "track-already-in-playlist": "Kappale on jo soittolistalla {0}",
+    "album-already-in-playlist": "Tämä albumi on jo soittolistalla.",
+    "collection-already-in-playlist": "Nämä raidat ovat jo soittolistalla{0}."
   },
   "collection": {
     "track-count": "{count} track | {count} tracks",
@@ -194,6 +197,19 @@
       "explanation": "Tekstit ovat autolitteroituja ja saattavat sisältää virheitä",
       "confirmation": "Selvä"
     },
-    "songtreasures": "Song Treasures"
+    "songtreasures": "Song Treasures",
+    "save": "Save changes",
+    "original": "Original",
+    "edit": "Edit",
+    "previousSection": "Previous section",
+    "nextSection": "Next section",
+    "deleteSegment": "Poista",
+    "undeleteSegment": "Undo delete",
+    "review": "Review",
+    "status": {
+      "done": "Reviewed",
+      "in-progress": "In progress",
+      "not-started": "Not reviewed"
+    }
   }
 }

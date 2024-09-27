@@ -18,7 +18,8 @@
     "not-found": "Page not found",
     "contributor": "Contributor",
     "contributors": "Contributors",
-    "archive": "Archive"
+    "archive": "Archive",
+    "transcribe": "Transcribe"
   },
   "sidebar": {
     "playlists": {
@@ -58,7 +59,9 @@
       "headline": "Error",
       "text": "Sorry. We can't find the page \"{path}\"."
     },
-    "track-already-in-playlist": "Track already exists in playlist {0}"
+    "track-already-in-playlist": "Track already exists in playlist {0}",
+    "album-already-in-playlist": "This album is already in your playlist.",
+    "collection-already-in-playlist": "These tracks are already in playlist {0}."
   },
   "collection": {
     "track-count": "{count} track | {count} tracks",
@@ -194,6 +197,19 @@
       "explanation": "Transcripts are auto-generated and might contain errors",
       "confirmation": "Got it"
     },
-    "songtreasures": "SongTreasures"
+    "songtreasures": "SongTreasures",
+    "save": "Save changes",
+    "original": "Original",
+    "edit": "Edit",
+    "previousSection": "Previous section",
+    "nextSection": "Next section",
+    "deleteSegment": "Delete",
+    "undeleteSegment": "Undo delete",
+    "review": "Review",
+    "status": {
+      "done": "Reviewed",
+      "in-progress": "In progress",
+      "not-started": "Not reviewed"
+    }
   }
 }

@@ -18,7 +18,8 @@
     "not-found": "Page not found",
     "contributor": "Katkıda Bulunan",
     "contributors": "Katkı Yapanlar",
-    "archive": "Arşiv"
+    "archive": "Arşiv",
+    "transcribe": "Transcribe"
   },
   "sidebar": {
     "playlists": {
@@ -58,7 +59,9 @@
       "headline": "Hata",
       "text": "Üzgünüm. \"{path}\" sayfasını bulamıyoruz."
     },
-    "track-already-in-playlist": "Parça zaten oynatma listesi {0}mevcut"
+    "track-already-in-playlist": "Parça zaten oynatma listesi {0}mevcut",
+    "album-already-in-playlist": "Bu albüm çalma listenizdeki zaten.",
+    "collection-already-in-playlist": "These tracks are already in playlist {0}."
   },
   "collection": {
     "track-count": "{count} parça | {count} parçalar",
@@ -194,6 +197,19 @@
       "explanation": "Transkriptler otomatik olarak oluşturulur ve hatalar içerebilir",
       "confirmation": "Anladım"
     },
-    "songtreasures": "SongTreasures"
+    "songtreasures": "SongTreasures",
+    "save": "Save changes",
+    "original": "Original",
+    "edit": "Edit",
+    "previousSection": "Previous section",
+    "nextSection": "Next section",
+    "deleteSegment": "Sil",
+    "undeleteSegment": "Undo delete",
+    "review": "Review",
+    "status": {
+      "done": "Reviewed",
+      "in-progress": "In progress",
+      "not-started": "Not reviewed"
+    }
   }
 }

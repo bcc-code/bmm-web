@@ -18,7 +18,8 @@
     "not-found": "Page not found",
     "contributor": "Contribuitor",
     "contributors": "Contribuitori",
-    "archive": "Arhivă"
+    "archive": "Arhivă",
+    "transcribe": "Transcribe"
   },
   "sidebar": {
     "playlists": {
@@ -58,7 +59,9 @@
       "headline": "Error",
       "text": "Sorry. We can't find the page \"{path}\"."
     },
-    "track-already-in-playlist": "Piesa este deja în lista de redare {0}"
+    "track-already-in-playlist": "Piesa este deja în lista de redare {0}",
+    "album-already-in-playlist": "Acest album este deja în lista de redare.",
+    "collection-already-in-playlist": "These tracks are already in playlist {0}."
   },
   "collection": {
     "track-count": "{count} track | {count} tracks",
@@ -194,6 +197,19 @@
       "explanation": "Transcrierile sunt generate automat și pot conține erori",
       "confirmation": "Am înțeles"
     },
-    "songtreasures": "SongTreasures"
+    "songtreasures": "SongTreasures",
+    "save": "Save changes",
+    "original": "Original",
+    "edit": "Edit",
+    "previousSection": "Previous section",
+    "nextSection": "Next section",
+    "deleteSegment": "Șterge",
+    "undeleteSegment": "Undo delete",
+    "review": "Review",
+    "status": {
+      "done": "Reviewed",
+      "in-progress": "In progress",
+      "not-started": "Not reviewed"
+    }
   }
 }

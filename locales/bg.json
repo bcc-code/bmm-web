@@ -18,7 +18,8 @@
     "not-found": "Page not found",
     "contributor": "Сътрудник",
     "contributors": "Сътрудници",
-    "archive": "Архив"
+    "archive": "Архив",
+    "transcribe": "Transcribe"
   },
   "sidebar": {
     "playlists": {
@@ -58,7 +59,9 @@
       "headline": "Error",
       "text": "Sorry. We can't find the page \"{path}\"."
     },
-    "track-already-in-playlist": "Песента/речта вече съществува в списъка {0}"
+    "track-already-in-playlist": "Песента/речта вече съществува в списъка {0}",
+    "album-already-in-playlist": "Този албум е вече във вашия списък за изпълнение.",
+    "collection-already-in-playlist": "These tracks are already in playlist {0}."
   },
   "collection": {
     "track-count": "{count} track | {count} tracks",
@@ -194,6 +197,19 @@
       "explanation": "Преписите се генерират автоматично и може да съдържат грешки",
       "confirmation": "Схванах го"
     },
-    "songtreasures": "SongTreasures"
+    "songtreasures": "SongTreasures",
+    "save": "Save changes",
+    "original": "Original",
+    "edit": "Edit",
+    "previousSection": "Previous section",
+    "nextSection": "Next section",
+    "deleteSegment": "Изтрий",
+    "undeleteSegment": "Undo delete",
+    "review": "Review",
+    "status": {
+      "done": "Reviewed",
+      "in-progress": "In progress",
+      "not-started": "Not reviewed"
+    }
   }
 }

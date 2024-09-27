@@ -15,10 +15,11 @@
     "search": "Zoeken",
     "album": "Album",
     "podcast": "Podcast",
-    "not-found": "Page not found",
+    "not-found": "Pagina niet gevonden",
     "contributor": "Bijdrager",
     "contributors": "Bijdragers",
-    "archive": "Archief"
+    "archive": "Archief",
+    "transcribe": "Transcribe"
   },
   "sidebar": {
     "playlists": {
@@ -58,7 +59,9 @@
       "headline": "Fout",
       "text": "Sorry, we kunnen de pagina \"{path}\" niet vinden."
     },
-    "track-already-in-playlist": "Nummer bestaat al in afspeellijst {0}"
+    "track-already-in-playlist": "Nummer bestaat al in afspeellijst {0}",
+    "album-already-in-playlist": "Dit album staat al in je afspeellijst.",
+    "collection-already-in-playlist": "These tracks are already in playlist {0}."
   },
   "collection": {
     "track-count": "{count} nummer | {count} nummers",
@@ -148,7 +151,7 @@
       "options": "Toon opties"
     },
     "details": {
-      "title": "Track Details",
+      "title": "Trackgegevens",
       "reference": "Referentie",
       "duration": "Afspeelduur",
       "publish-date": "Publicatiedatum",
@@ -194,6 +197,19 @@
       "explanation": "Transcripties zijn automatisch gegenereerd en kunnen daardoor fouten bevatten",
       "confirmation": "Begrepen"
     },
-    "songtreasures": "SongTreasures"
+    "songtreasures": "SongTreasures",
+    "save": "Save changes",
+    "original": "Original",
+    "edit": "Edit",
+    "previousSection": "Previous section",
+    "nextSection": "Next section",
+    "deleteSegment": "Verwijderen",
+    "undeleteSegment": "Undo delete",
+    "review": "Review",
+    "status": {
+      "done": "Reviewed",
+      "in-progress": "In progress",
+      "not-started": "Not reviewed"
+    }
   }
 }

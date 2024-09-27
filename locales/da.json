@@ -18,7 +18,8 @@
     "not-found": "Siden blev ikke fundet",
     "contributor": "Medvirkende",
     "contributors": "Bidragydere",
-    "archive": "Arkiv"
+    "archive": "Arkiv",
+    "transcribe": "Transcribe"
   },
   "sidebar": {
     "playlists": {
@@ -58,7 +59,9 @@
       "headline": "Fejl",
       "text": "Beklager, vi kan ikke finde siden \"{path}\"."
     },
-    "track-already-in-playlist": "Findes allerede i spillelisten."
+    "track-already-in-playlist": "Findes allerede i spillelisten.",
+    "album-already-in-playlist": "Dette albumet er allerede i spillelisten.",
+    "collection-already-in-playlist": "These tracks are already in playlist {0}."
   },
   "collection": {
     "track-count": "{count} spor | {count} spor",
@@ -194,6 +197,19 @@
       "explanation": "Transkriberinger genereres automatisk og kan indeholde fejl",
       "confirmation": "Forstået"
     },
-    "songtreasures": "SongTreasures"
+    "songtreasures": "SongTreasures",
+    "save": "Save changes",
+    "original": "Original",
+    "edit": "Edit",
+    "previousSection": "Previous section",
+    "nextSection": "Next section",
+    "deleteSegment": "Slet",
+    "undeleteSegment": "Undo delete",
+    "review": "Review",
+    "status": {
+      "done": "Reviewed",
+      "in-progress": "In progress",
+      "not-started": "Not reviewed"
+    }
   }
 }
