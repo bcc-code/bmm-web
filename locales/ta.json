@@ -18,7 +18,8 @@
     "not-found": "Page not found",
     "contributor": "பங்களிப்பாளர்",
     "contributors": "பங்களிப்பாளர்கள்",
-    "archive": "காப்பகம்"
+    "archive": "காப்பகம்",
+    "transcribe": "Transcribe"
   },
   "sidebar": {
     "playlists": {
@@ -196,6 +197,19 @@
       "explanation": "டிரான்ஸ்கிரிப்டுகள் தானாக உருவாக்கப்படும் மற்றும் பிழைகள் இருக்கலாம்",
       "confirmation": "அறிந்துகொண்டேன்"
     },
-    "songtreasures": "SongTreasures"
+    "songtreasures": "SongTreasures",
+    "save": "Save changes",
+    "original": "Original",
+    "edit": "Edit",
+    "previousSection": "Previous section",
+    "nextSection": "Next section",
+    "deleteSegment": "அழி",
+    "undeleteSegment": "Undo delete",
+    "review": "Review",
+    "status": {
+      "done": "Reviewed",
+      "in-progress": "In progress",
+      "not-started": "Not reviewed"
+    }
   }
 }
