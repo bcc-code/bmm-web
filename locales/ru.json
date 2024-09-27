@@ -58,7 +58,9 @@
       "headline": "Error",
       "text": "Sorry. We can't find the page \"{path}\"."
     },
-    "track-already-in-playlist": "Трек уже существует в плейлисте {0}"
+    "track-already-in-playlist": "Трек уже существует в плейлисте {0}",
+    "album-already-in-playlist": "Этот альбом уже в вашем плейлисте.",
+    "collection-already-in-playlist": "These tracks are already in playlist {0}."
   },
   "collection": {
     "track-count": "{count} track | {count} tracks",
