@@ -63,7 +63,6 @@ const isPlaying = computed(
 );
 
 const {
-  currentIndex,
   status,
   transcription,
   editableTranscription,

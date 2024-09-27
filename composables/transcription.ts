@@ -37,7 +37,7 @@ interface UseTranscriptionToolOptions {
 export function useTranscriptionTool(options: UseTranscriptionToolOptions) {
   const { trackId, language } = toRefs(reactive(options));
 
-  const { data: track } = useTrack({ id: trackId.value })
+  const { data: track } = useTrack({ id: trackId.value });
   const {
     data: transcription,
     status,
@@ -118,11 +118,13 @@ export function useTranscriptionTool(options: UseTranscriptionToolOptions) {
     return editableTranscription.value[currentIndex.value];
   });
 
-  async function playTranscriptionSegment(item: TrackTranslationTranscriptionSegment) {
+  async function playTranscriptionSegment(
+    item: TrackTranslationTranscriptionSegment,
+  ) {
     if (!$mediaPlayer.currentTrack.value && track.value) {
-      $mediaPlayer.setQueue([track.value])
+      $mediaPlayer.setQueue([track.value]);
     }
-    await nextTick()
+    await nextTick();
     if (item.start) {
       $mediaPlayer.currentPosition.value = item.start;
     }
