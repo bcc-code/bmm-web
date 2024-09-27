@@ -18,7 +18,8 @@
     "not-found": "Page not found",
     "contributor": "Colaborador",
     "contributors": "Colaboradores",
-    "archive": "Archivo"
+    "archive": "Archivo",
+    "transcribe": "Transcribe"
   },
   "sidebar": {
     "playlists": {
@@ -196,6 +197,19 @@
       "explanation": "Las transcripciones se generan automáticamente y pueden contener errores",
       "confirmation": "Entiendo"
     },
-    "songtreasures": "SongTreasures"
+    "songtreasures": "SongTreasures",
+    "save": "Save changes",
+    "original": "Original",
+    "edit": "Edit",
+    "previousSection": "Previous section",
+    "nextSection": "Next section",
+    "deleteSegment": "Eliminar",
+    "undeleteSegment": "Undo delete",
+    "review": "Review",
+    "status": {
+      "done": "Reviewed",
+      "in-progress": "In progress",
+      "not-started": "Not reviewed"
+    }
   }
 }
