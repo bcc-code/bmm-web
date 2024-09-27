@@ -63,9 +63,12 @@ const onResume = () => {
         <NuxtIcon name="icon.chevron.down" class="text-2xl" />
       </div>
 
-      <div v-if="active && album.children" class="ml-auto flex gap-2">
-        <AlbumMenu :album="album"></AlbumMenu>
-        <!-- ToDo: this is currently not clickable since we're not preventing event bubbling -->
+      <div
+        v-if="active && album.children"
+        class="ml-auto flex gap-2"
+        @click.stop
+      >
+        <AlbumMenu :album="album" />
         <CopyToClipboard
           :link="{
             name: 'album-id',
@@ -74,18 +77,17 @@ const onResume = () => {
         >
           <ButtonStyled icon="icon.link" class="bg-background-1"></ButtonStyled>
         </CopyToClipboard>
-
         <ButtonStyled
           icon="icon.play"
           intent="primary"
-          @click.stop="setQueue(childTracks, 0, origin)"
+          @click="setQueue(childTracks, 0, origin)"
           >{{ t("podcast.action.play") }}</ButtonStyled
         >
         <ButtonStyled
           v-if="album.latestTrackId"
           icon="icon.play"
           intent="primary"
-          @click.stop="onResume()"
+          @click="onResume()"
           >{{ t("collection.resume") }}</ButtonStyled
         >
       </div>
