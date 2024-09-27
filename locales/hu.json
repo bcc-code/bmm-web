@@ -58,7 +58,9 @@
       "headline": "Error",
       "text": "Sorry. We can't find the page \"{path}\"."
     },
-    "track-already-in-playlist": "Zeneszám már létezik a {0} számú lejátszási listában"
+    "track-already-in-playlist": "Zeneszám már létezik a {0} számú lejátszási listában",
+    "album-already-in-playlist": "Ez az album már szerepel a lejátszási lista.",
+    "collection-already-in-playlist": "These tracks are already in playlist {0}."
   },
   "collection": {
     "track-count": "{count} track | {count} tracks",
