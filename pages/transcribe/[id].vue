@@ -208,7 +208,7 @@ async function saveTranscription() {
           <template #items>
             <DropdownMenuGroup>
               <DropdownMenuItem
-                v-for="lang in track.languages"
+                v-for="lang in track.transcriptionLanguages"
                 :key="lang"
                 :title="getLocalizedLanguageName(lang)"
                 @click="language = lang"

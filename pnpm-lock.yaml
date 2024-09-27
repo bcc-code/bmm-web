@@ -12,8 +12,8 @@ importers:
         specifier: ^2.3.3
         version: 2.3.3(typescript@5.3.3)(vue-router@4.3.2(vue@3.4.19(typescript@5.3.3)))
       '@bcc-code/bmm-sdk-fetch':
-        specifier: ^8.2.0
-        version: 8.2.0
+        specifier: ^8.3.0
+        version: 8.3.0
       '@floating-ui/vue':
         specifier: ^1.0.6
         version: 1.0.6(vue@3.4.19(typescript@5.3.3))
@@ -485,8 +485,8 @@ packages:
     resolution: {integrity: sha512-+j7a5c253RfKh8iABBhywc8NSfP5LURe7Uh4qpsh6jc+aLJguvmIUBdjSdEMQv2bENrCR5MfRdjGo7vzS/ob7w==}
     engines: {node: '>=6.9.0'}
 
-  '@bcc-code/bmm-sdk-fetch@8.2.0':
-    resolution: {integrity: sha512-9l6stCozZO1keuoLphlr9h5EfRBWrRON2TglQ6pjf26bb/znvzXE+1a9lAjZMWrQ2jIS6DzOyBTqmOKhN5WZkQ==}
+  '@bcc-code/bmm-sdk-fetch@8.3.0':
+    resolution: {integrity: sha512-n2khWHAo2y4suS6YnfsDHsC8pLGtvDETIF5egJc0KZNEj2BSSgHSHeuVyUCjJXCf/jP4lGFF522GwDeMMujwTg==}
 
   '@bcoe/v8-coverage@0.2.3':
     resolution: {integrity: sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==}
@@ -7484,7 +7484,7 @@ snapshots:
       '@babel/helper-validator-identifier': 7.22.20
       to-fast-properties: 2.0.0
 
-  '@bcc-code/bmm-sdk-fetch@8.2.0': {}
+  '@bcc-code/bmm-sdk-fetch@8.3.0': {}
 
   '@bcoe/v8-coverage@0.2.3': {}
 

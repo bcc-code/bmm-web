@@ -1,12 +1,11 @@
 <script setup lang="ts">
-import { PublishedFilter } from "@bcc-code/bmm-sdk-fetch";
 import type { TrackModel } from "@bcc-code/bmm-sdk-fetch";
 import transcriptionStorageKey from "~/utils/transcription";
 
 const { t } = useI18n();
 setTitle(() => t("nav.transcribe"));
 
-const { data: tracks } = useTracks({ publishedFilter: PublishedFilter.Show });
+const { data: tracks } = useTranscribe();
 
 definePageMeta({
   middleware: ["transcription-manager"],
@@ -52,7 +51,7 @@ const translations: Record<TranscriptionStatus, string> = {
           class="type-subtitle-2 text-label-4"
           :datetime="track.publishedAt.toUTCString()"
         >
-          {{ formatDate(track.publishedAt) }}
+          {{ weekDay(track.publishedAt) }} {{ formatDate(track.publishedAt) }}
         </time>
         <span
           class="rounded-full border px-2 text-center data-[status='done']:text-[green] data-[status='in-progress']:text-[orange] data-[status='not-started']:text-label-4"
