@@ -45,7 +45,7 @@ const deletePlaylist = async () => {
   }
 };
 
-const dropdownMenuItems = () => {
+const dropdownMenuItems = computed(() => {
   const items: DropdownMenuItem[] = [];
 
   if (props.playlist.canEdit) {
@@ -86,7 +86,7 @@ const dropdownMenuItems = () => {
   });
 
   return items;
-};
+});
 
 async function addToPlaylist(selectedPlaylist: number) {
   await new TrackCollectionApi().trackCollectionIdTrackCollectionPlaylistIdPost(
@@ -110,7 +110,7 @@ async function addToPlaylist(selectedPlaylist: number) {
     <template #items>
       <DropdownMenuGroup>
         <DropdownMenuItem
-          v-for="item in dropdownMenuItems()"
+          v-for="item in dropdownMenuItems"
           :key="item.text"
           :icon="item.icon"
           :title="item.text"

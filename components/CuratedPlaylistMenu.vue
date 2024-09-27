@@ -10,7 +10,7 @@ const props = defineProps<{
 
 const showAddToPlaylist = ref(false);
 
-const dropdownMenuItems = () => {
+const dropdownMenuItems = computed(() => {
   const items: DropdownMenuItem[] = [];
 
   items.push({
@@ -22,7 +22,7 @@ const dropdownMenuItems = () => {
   });
 
   return items;
-};
+});
 
 async function addToPlaylist(selectedPlaylist: number) {
   await new TrackCollectionApi().trackCollectionIdPlaylistPlaylistIdPost({
@@ -44,7 +44,7 @@ async function addToPlaylist(selectedPlaylist: number) {
     <template #items>
       <DropdownMenuGroup>
         <DropdownMenuItem
-          v-for="item in dropdownMenuItems()"
+          v-for="item in dropdownMenuItems"
           :key="item.text"
           :icon="item.icon"
           :title="item.text"
