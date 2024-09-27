@@ -58,7 +58,9 @@
       "headline": "Error",
       "text": "Lo siento. No podemos encontrar la página \"{path}\"."
     },
-    "track-already-in-playlist": "Esta pista ya existe en la lista de reproducción {0}"
+    "track-already-in-playlist": "Esta pista ya existe en la lista de reproducción {0}",
+    "album-already-in-playlist": "Este álbum ya está en la lista de reproducción.",
+    "collection-already-in-playlist": "These tracks are already in playlist {0}."
   },
   "collection": {
     "track-count": "{count} pista | {count} pistas",
