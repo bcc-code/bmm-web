@@ -6,31 +6,37 @@ const show = () => {
   showDialog.value = true;
   playlistName.value = "";
 };
-
-const createPlaylist = async () => {
-  if (playlistName.value === "") return;
-
+const hide = () => {
   showDialog.value = false;
+  playlistName.value = "";
+};
+
+const saving = ref(false);
+const createPlaylist = async () => {
+  if (!playlistName.value?.length) return;
+
+  saving.value = true;
   try {
-    const name = playlistName.value;
-    playlistName.value = "";
-    await addPrivatePlaylist(name);
+    await addPrivatePlaylist(playlistName.value);
     refreshPrivatePlaylists();
   } catch (e) {
     console.error(e);
     /* TODO: Define what should happen now... */
+  } finally {
+    hide();
+    saving.value = false;
   }
 };
 </script>
 
 <template>
   <div class="cursor-pointer px-4 py-2 text-label-3">
-    <div class="group flex gap-2" @click="show()">
+    <button class="group flex gap-2" @click="show">
       <NuxtIcon name="icon.add" class="text-xl" />
       <span class="transition-transform group-hover:translate-x-2">
         {{ $t("playlist.add") }}
       </span>
-    </div>
+    </button>
     <DialogBase
       :show="showDialog"
       :title="$t('playlist.new-playlist')"
@@ -42,18 +48,21 @@ const createPlaylist = async () => {
           v-model="playlistName"
           class="min-w-[416px] grow rounded-lg bg-background-2 px-4 py-3 text-[17px] font-medium leading-7 text-label-1 placeholder:text-label-3"
           :placeholder="$t('playlist.name-your-playlist')"
+          @keydown.enter="createPlaylist"
         />
         <div class="flex grow gap-6">
-          <ButtonStyled class="grow" @click.stop="showDialog = false">{{
-            $t("global.cancel")
-          }}</ButtonStyled>
+          <ButtonStyled class="grow" @click.stop="hide">
+            {{ $t("global.cancel") }}
+          </ButtonStyled>
           <ButtonStyled
-            class="grow"
-            :class="playlistName === '' ? 'opacity-50' : ''"
+            :class="['grow']"
             intent="primary"
-            @click.stop="createPlaylist()"
-            >{{ $t("profile.done") }}</ButtonStyled
+            :loading="saving"
+            :disabled="playlistName === ''"
+            @click="createPlaylist"
           >
+            {{ $t("profile.done") }}
+          </ButtonStyled>
         </div>
       </div>
     </DialogBase>

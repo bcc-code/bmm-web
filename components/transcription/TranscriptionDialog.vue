@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import type { TrackModel } from "@bcc-code/bmm-sdk-fetch";
+import { isTranscriptionManager } from "~/utils/roles";
 import getSongtreasuresLink from "~/utils/songtreasures";
 
 const props = defineProps<{
@@ -68,6 +69,8 @@ const headerComponent = computed(() => {
   if (!trackIsSong(props.track)) return "button";
   return resolveComponent("NuxtLink");
 });
+
+const { data: currentUser } = useCurrentUser();
 </script>
 
 <template>
@@ -77,18 +80,28 @@ const headerComponent = computed(() => {
     @close="show = false"
   >
     <template #title>
-      <component
-        :is="headerComponent"
-        :class="[
-          '-m-3 flex cursor-pointer items-center gap-2 rounded-xl p-3',
-          { 'text-utility-auto': !trackIsSong(track) },
-        ]"
-        :to="getSongtreasuresLink(track)"
-        @click="onHeaderClick"
-      >
-        <NuxtIcon :name="dialogIcon" />
-        <span>{{ dialogTitle }}</span>
-      </component>
+      <div class="flex justify-between">
+        <component
+          :is="headerComponent"
+          :class="[
+            '-m-3 flex cursor-pointer items-center gap-2 rounded-xl p-3',
+            { 'text-utility-auto': !trackIsSong(track) },
+          ]"
+          :to="getSongtreasuresLink(track)"
+          @click="onHeaderClick"
+        >
+          <NuxtIcon :name="dialogIcon" />
+          <span>{{ dialogTitle }}</span>
+        </component>
+        <NuxtLink
+          v-if="isTranscriptionManager(currentUser)"
+          :to="{ name: 'transcribe-id', params: { id: track.id } }"
+        >
+          <ButtonStyled size="small">
+            {{ $t("transcription.edit") }}
+          </ButtonStyled>
+        </NuxtLink>
+      </div>
     </template>
 
     <header v-if="track.subtype == 'song'" class="mb-6">

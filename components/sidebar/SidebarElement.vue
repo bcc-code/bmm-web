@@ -1,5 +1,6 @@
 <script lang="ts" setup>
 import { version } from "~/package.json";
+import { isTranscriptionManager } from "~/utils/roles";
 
 const { data: collections } = usePrivatePlaylists();
 const runtimeConfig = useRuntimeConfig();
@@ -10,6 +11,8 @@ onMounted(() => {
   isMounted.value = true;
 });
 const hamburgerOpen = ref<boolean>(false);
+
+const { data: currentUser } = await useCurrentUser();
 </script>
 
 <template>
@@ -67,6 +70,12 @@ const hamburgerOpen = ref<boolean>(false);
             :title="$t('nav.search')"
             :link="{ name: 'search-term' }"
             icon="nav.search"
+          />
+          <SidebarItem
+            v-if="isTranscriptionManager(currentUser)"
+            :title="$t('nav.transcribe')"
+            :link="{ name: 'transcribe' }"
+            icon="icon.information"
           />
         </SidebarGroup>
 
