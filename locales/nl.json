@@ -58,7 +58,9 @@
       "headline": "Fout",
       "text": "Sorry, we kunnen de pagina \"{path}\" niet vinden."
     },
-    "track-already-in-playlist": "Nummer bestaat al in afspeellijst {0}"
+    "track-already-in-playlist": "Nummer bestaat al in afspeellijst {0}",
+    "album-already-in-playlist": "Dit album staat al in je afspeellijst.",
+    "collection-already-in-playlist": "These tracks are already in playlist {0}."
   },
   "collection": {
     "track-count": "{count} nummer | {count} nummers",
