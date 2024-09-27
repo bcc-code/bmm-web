@@ -18,7 +18,8 @@
     "not-found": "Pagina niet gevonden",
     "contributor": "Bijdrager",
     "contributors": "Bijdragers",
-    "archive": "Archief"
+    "archive": "Archief",
+    "transcribe": "Transcribe"
   },
   "sidebar": {
     "playlists": {
@@ -196,6 +197,19 @@
       "explanation": "Transcripties zijn automatisch gegenereerd en kunnen daardoor fouten bevatten",
       "confirmation": "Begrepen"
     },
-    "songtreasures": "SongTreasures"
+    "songtreasures": "SongTreasures",
+    "save": "Save changes",
+    "original": "Original",
+    "edit": "Edit",
+    "previousSection": "Previous section",
+    "nextSection": "Next section",
+    "deleteSegment": "Verwijderen",
+    "undeleteSegment": "Undo delete",
+    "review": "Review",
+    "status": {
+      "done": "Reviewed",
+      "in-progress": "In progress",
+      "not-started": "Not reviewed"
+    }
   }
 }
