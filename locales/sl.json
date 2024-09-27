@@ -58,7 +58,9 @@
       "headline": "Napaka",
       "text": "Se opravičujemo. Ne moremo najti strani \"{path}\"."
     },
-    "track-already-in-playlist": "Skladba že obstaja na seznamu predvajanja {0}"
+    "track-already-in-playlist": "Skladba že obstaja na seznamu predvajanja {0}",
+    "album-already-in-playlist": "Ta album je že dodan na tvoj seznam predvajanja.",
+    "collection-already-in-playlist": "These tracks are already in playlist {0}."
   },
   "collection": {
     "track-count": "{count} skladba | skladbe: {count} ",
