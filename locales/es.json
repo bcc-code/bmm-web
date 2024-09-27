@@ -62,7 +62,8 @@
   },
   "collection": {
     "track-count": "{count} pista | {count} pistas",
-    "album-count": "{count} álbum | {count} álbumes"
+    "album-count": "{count} álbum | {count} álbumes",
+    "resume": "Continuar"
   },
   "login": {
     "error-message": {

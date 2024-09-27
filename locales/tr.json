@@ -62,7 +62,8 @@
   },
   "collection": {
     "track-count": "{count} parça | {count} parçalar",
-    "album-count": "{count} albüm | {count} albümler"
+    "album-count": "{count} albüm | {count} albümler",
+    "resume": "Devam"
   },
   "login": {
     "error-message": {

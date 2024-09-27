@@ -62,7 +62,8 @@
   },
   "collection": {
     "track-count": "{count} ட்ராக்| {count} டிராக்குகள்",
-    "album-count": "{count} ஆல்பம் | {count} ஆல்பங்கள்"
+    "album-count": "{count} ஆல்பம் | {count} ஆல்பங்கள்",
+    "resume": "மறுபடி தொடங்கு"
   },
   "login": {
     "error-message": {

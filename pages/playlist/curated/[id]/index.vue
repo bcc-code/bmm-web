@@ -58,6 +58,7 @@ useHead({
             @click.stop="shuffle"
             >{{ t("playlist.action.shuffle") }}</ButtonStyled
           >
+          <CuratedPlaylistMenu :playlist="playlist" />
           <CopyToClipboard
             :link="{
               name: 'playlist-curated-id',

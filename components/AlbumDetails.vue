@@ -3,11 +3,13 @@ import type { AlbumModel, TrackModel } from "@bcc-code/bmm-sdk-fetch";
 import getScrollParent from "~/utils/scroll";
 
 const { t } = useI18n();
+const { setQueue } = useNuxtApp().$mediaPlayer;
 
 const props = defineProps<{
   album: AlbumModel;
 }>();
 
+const origin = computed(() => `Album|${props.album.id}`);
 const expandedAlbums = ref<string[]>([]);
 
 const scrollToAlbum = (albumReference: string) => {
@@ -48,6 +50,26 @@ const childTracks = computed(
     props.album.children?.filter((c): c is TrackModel => c.type === "track") ||
     [],
 );
+const onPressPlay = () => {
+  if (childTracks.value) {
+    setQueue(childTracks.value, 0, origin.value);
+  }
+};
+const onResume = () => {
+  if (childTracks.value) {
+    const index = childTracks.value.findIndex(
+      (track) => track.id === props.album.latestTrackId,
+    );
+    setQueue(
+      childTracks.value,
+      index,
+      origin.value,
+      props.album.latestTrackPosition
+        ? props.album.latestTrackPosition / 1000
+        : 0,
+    );
+  }
+};
 </script>
 
 <template>
@@ -60,6 +82,23 @@ const childTracks = computed(
         <PageHeading>{{ album.title }}</PageHeading>
       </template>
       <template #actions>
+        <ButtonStyled
+          v-if="childTracks.length >= 1"
+          intent="primary"
+          icon="icon.play"
+          @click="onPressPlay()"
+        >
+          {{ t("podcast.action.play") }}
+        </ButtonStyled>
+        <ButtonStyled
+          v-if="childTracks.length >= 1 && album.latestTrackId"
+          intent="primary"
+          icon="icon.play"
+          @click="onResume()"
+        >
+          {{ t("collection.resume") }}
+        </ButtonStyled>
+        <AlbumMenu v-if="childTracks.length >= 1" :album="album" />
         <CopyToClipboard
           :link="{
             name: 'album-id',
@@ -74,7 +113,8 @@ const childTracks = computed(
     <p v-if="childTracks.length" class="py-2 text-label-3">
       {{ t("collection.track-count", childTracks.length) }}
     </p>
-    <TrackList :tracks="childTracks" album-is-known> </TrackList>
+    <TrackList :tracks="childTracks" :origin="origin" album-is-known>
+    </TrackList>
     <p
       v-if="childAlbums.length"
       class="py-2 text-label-3"

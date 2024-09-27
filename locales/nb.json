@@ -62,7 +62,8 @@
   },
   "collection": {
     "track-count": "{count} spor | {count} spor",
-    "album-count": "{count} album | {count} album"
+    "album-count": "{count} album | {count} album",
+    "resume": "Fortsett"
   },
   "login": {
     "error-message": {

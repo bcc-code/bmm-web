@@ -62,7 +62,8 @@
   },
   "collection": {
     "track-count": "{count} nummer | {count} nummers",
-    "album-count": "{count} album | {count} albums"
+    "album-count": "{count} album | {count} albums",
+    "resume": "Doorgaan"
   },
   "login": {
     "error-message": {

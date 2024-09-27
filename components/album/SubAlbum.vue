@@ -12,6 +12,7 @@ const { data: album } = useAlbum({ id: props.id });
 
 const emit = defineEmits<{ expand: [] }>();
 
+const origin = computed(() => `Album|${props.id}`);
 function expand() {
   emit("expand");
 }
@@ -22,6 +23,21 @@ const childTracks = computed(() => {
     (c): c is TrackModel => c.type === "track",
   );
 });
+const onResume = () => {
+  if (childTracks.value && album.value && album.value !== null) {
+    const index = childTracks.value.findIndex(
+      (track) => track.id === album.value?.latestTrackId,
+    );
+    setQueue(
+      childTracks.value,
+      index,
+      origin.value,
+      album.value.latestTrackPosition
+        ? album.value.latestTrackPosition / 1000
+        : 0,
+    );
+  }
+};
 </script>
 
 <template>
@@ -47,7 +63,12 @@ const childTracks = computed(() => {
         <NuxtIcon name="icon.chevron.down" class="text-2xl" />
       </div>
 
-      <div v-if="active && album.children" class="ml-auto flex gap-2">
+      <div
+        v-if="active && album.children"
+        class="ml-auto flex gap-2"
+        @click.stop
+      >
+        <AlbumMenu :album="album" />
         <CopyToClipboard
           :link="{
             name: 'album-id',
@@ -56,12 +77,18 @@ const childTracks = computed(() => {
         >
           <ButtonStyled icon="icon.link" class="bg-background-1"></ButtonStyled>
         </CopyToClipboard>
-
         <ButtonStyled
           icon="icon.play"
           intent="primary"
-          @click.stop="setQueue(childTracks)"
+          @click="setQueue(childTracks, 0, origin)"
           >{{ t("podcast.action.play") }}</ButtonStyled
+        >
+        <ButtonStyled
+          v-if="album.latestTrackId"
+          icon="icon.play"
+          intent="primary"
+          @click="onResume()"
+          >{{ t("collection.resume") }}</ButtonStyled
         >
       </div>
     </section>
@@ -74,7 +101,11 @@ const childTracks = computed(() => {
       >
         {{ t("collection.track-count", album?.children?.length) }}
       </div>
-      <TrackList :track-type-is-known="false" :tracks="childTracks">
+      <TrackList
+        :track-type-is-known="false"
+        :tracks="childTracks"
+        :origin="origin"
+      >
       </TrackList>
       <SubAlbum
         v-for="a in album?.children?.filter(

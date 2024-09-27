@@ -15,7 +15,7 @@
     "search": "Søg",
     "album": "Album",
     "podcast": "Podcast",
-    "not-found": "Page not found",
+    "not-found": "Siden blev ikke fundet",
     "contributor": "Medvirkende",
     "contributors": "Bidragydere",
     "archive": "Arkiv"
@@ -62,7 +62,8 @@
   },
   "collection": {
     "track-count": "{count} spor | {count} spor",
-    "album-count": "{count} album | {count} albummer"
+    "album-count": "{count} album | {count} albummer",
+    "resume": "Genoptag"
   },
   "login": {
     "error-message": {
@@ -79,15 +80,15 @@
     }
   },
   "download": {
-    "install-app": "We recommend installing the app.",
-    "go-to-store": "Navigate to the App Store.",
-    "get-for-desktop": "Get the BMM app directly on your desktop",
+    "install-app": "Vi anbefaler at installere appen.",
+    "go-to-store": "Gå til til App Store.",
+    "get-for-desktop": "Få BMM-appen direkte på dit skrivebord",
     "download": "Download",
-    "download-now": "Download now",
-    "download-windows": "Download for Windows",
-    "download-mac-intel": "Download for Intel CPU",
-    "download-mac-arm": "Download for newer Mac",
-    "mac-intel-explanation": "Usually purchased before 2021",
+    "download-now": "Download nu",
+    "download-windows": "Download til Windows",
+    "download-mac-intel": "Download til Intel CPU",
+    "download-mac-arm": "Download til nyere Mac",
+    "mac-intel-explanation": "Normalt købt før 2021",
     "mac-arm-explanation": "M1, M2, M3, M4 chip",
     "download-bmm-app": "Download BMM-appen",
     "download-track": "Download",
@@ -147,7 +148,7 @@
       "options": "Vis muligheder"
     },
     "details": {
-      "title": "Track Details",
+      "title": "Spordetaljer",
       "reference": "Reference",
       "duration": "Varighed",
       "publish-date": "Publiseringsdato",

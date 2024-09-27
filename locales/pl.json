@@ -62,7 +62,8 @@
   },
   "collection": {
     "track-count": "{count} track | {count} tracks",
-    "album-count": "{count} album | {count} albums"
+    "album-count": "{count} album | {count} albums",
+    "resume": "Wznów"
   },
   "login": {
     "error-message": {

@@ -62,7 +62,8 @@
   },
   "collection": {
     "track-count": "{count} skladba | skladbe: {count} ",
-    "album-count": "{count} album | albumi: {count} "
+    "album-count": "{count} album | albumi: {count} ",
+    "resume": "Nadaljuj"
   },
   "login": {
     "error-message": {
