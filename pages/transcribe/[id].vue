@@ -6,6 +6,7 @@ import type {
 } from "@bcc-code/bmm-sdk-fetch";
 import { diffWordsWithSpace } from "diff";
 import { MediaPlayerStatus } from "~/plugins/mediaPlayer/mediaPlayer";
+import transcriptionStorageKey from "~/utils/transcription";
 
 definePageMeta({
   middleware: ["transcription-manager"],
@@ -70,6 +71,7 @@ const {
   currentEditableTranscriptionSegment,
   setTranscriptionSegmentText,
   playCurrentTranscriptionSegment,
+  playTranscriptionSegment,
   toggleDeletion,
   deletedTranscriptionSegments,
   refetchTranscription,
@@ -110,24 +112,24 @@ function focusTranscriptionSegment(index: number) {
   if (element) element.focus();
 }
 
+const focusedIndex = ref(0);
+
 function onArrowUp() {
-  if (currentIndex.value > 0) {
-    currentIndex.value -= 1;
-    focusTranscriptionSegment(currentIndex.value);
+  if (focusedIndex.value > 0) {
+    focusedIndex.value -= 1;
+    focusTranscriptionSegment(focusedIndex.value);
   }
 }
 
 function onArrowDown() {
-  if (currentIndex.value < transcription.value!.length - 1) {
-    currentIndex.value += 1;
-    focusTranscriptionSegment(currentIndex.value);
+  if (focusedIndex.value < transcription.value!.length - 1) {
+    focusedIndex.value += 1;
+    focusTranscriptionSegment(focusedIndex.value);
   }
 }
 
 function handleFocus(index: number) {
-  currentIndex.value = index;
   editing.value[index] = true;
-  playCurrentTranscriptionSegment();
 }
 
 const hasInvalidIds = computed(() => {
@@ -158,6 +160,11 @@ async function saveTranscription() {
       trackTranslationTranscriptionSegment: editableTranscription.value,
     });
     await refetchTranscription();
+
+    localStorage.setItem(
+      `${transcriptionStorageKey(Number(route.params.id), language.value)}:saved`,
+      JSON.stringify(true),
+    );
   } catch (err) {
   } finally {
     saving.value = false;
@@ -222,7 +229,7 @@ async function saveTranscription() {
               v-for="item in transcription"
               :key="item.id"
               :class="[
-                'my-4 whitespace-pre-wrap rounded-2xl border transition-all duration-300  ease-out',
+                'my-4 whitespace-pre-wrap rounded-2xl border transition-all duration-300 ease-out',
                 ,
                 {
                   '-mx-6 border-label-separator bg-background-2 px-6 py-4 shadow-sm':
@@ -231,7 +238,7 @@ async function saveTranscription() {
                 },
               ]"
             >
-              <span class="type-title-3 block text-label-4">
+              <span class="type-title-3 block h-6 text-label-4">
                 {{
                   [item.start, item.end]
                     .filter((val) => val !== undefined)
@@ -258,14 +265,46 @@ async function saveTranscription() {
                 },
               ]"
             >
-              <span class="type-title-3 col-span-full text-label-4">
-                {{
-                  [item.start, item.end]
-                    .filter((val) => val !== undefined)
-                    .map((val) => formatTime(val!))
-                    .join(" - ")
-                }}
-              </span>
+              <div
+                class="type-title-3 col-span-full flex h-6 items-center justify-between gap-2 text-label-4"
+              >
+                <button
+                  class="-ml-4 flex items-center gap-1"
+                  @click="playTranscriptionSegment(item)"
+                >
+                  <NuxtIcon name="icon.play" />
+                  <span>
+                    {{
+                      [item.start, item.end]
+                        .filter((val) => val !== undefined)
+                        .map((val) => formatTime(val!))
+                        .join(" - ")
+                    }}
+                  </span>
+                </button>
+                <button
+                  v-if="!hasInvalidIds"
+                  :class="[
+                    'flex items-center gap-0.5 rounded-full border px-1.5 hover:text-label-3',
+                    {
+                      'border-label-separator':
+                        !deletedTranscriptionSegments.includes(item),
+                      'border-label-4':
+                        deletedTranscriptionSegments.includes(item),
+                    },
+                  ]"
+                  @click="toggleDeletion(item)"
+                >
+                  <template v-if="!deletedTranscriptionSegments.includes(item)">
+                    <NuxtIcon name="icon.close.small" class="opacity-50" />
+                    {{ t("transcription.deleteSegment") }}
+                  </template>
+                  <template v-else>
+                    <NuxtIcon name="icon.repeat" class="opacity-50" />
+                    {{ t("transcription.undeleteSegment") }}
+                  </template>
+                </button>
+              </div>
               <p
                 :class="[
                   'col-start-1 row-start-2 whitespace-pre-wrap',
@@ -304,20 +343,6 @@ async function saveTranscription() {
                   {{ change.value }}
                 </span>
               </p>
-              <button
-                v-if="!hasInvalidIds"
-                class="type-paragraph-2 flex items-center gap-1 text-label-3"
-                @click="toggleDeletion(item)"
-              >
-                <template v-if="!deletedTranscriptionSegments.includes(item)">
-                  <NuxtIcon name="icon.close" class="opacity-75" />
-                  {{ t("transcription.deleteSegment") }}
-                </template>
-                <template v-else>
-                  <NuxtIcon name="icon.repeat" class="opacity-75" />
-                  {{ t("transcription.undeleteSegment") }}
-                </template>
-              </button>
             </div>
           </div>
         </template>

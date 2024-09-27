@@ -5,6 +5,7 @@ import type {
   TrackIdTranscriptionLanguageGetRequest,
   TrackTranslationTranscriptionSegment,
 } from "@bcc-code/bmm-sdk-fetch";
+import transcriptionStorageKey from "~/utils/transcription";
 
 export function useTrackTranscription(
   options: TrackIdTranscriptionGetRequest,
@@ -36,6 +37,7 @@ interface UseTranscriptionToolOptions {
 export function useTranscriptionTool(options: UseTranscriptionToolOptions) {
   const { trackId, language } = toRefs(reactive(options));
 
+  const { data: track } = useTrack({ id: trackId.value })
   const {
     data: transcription,
     status,
@@ -52,7 +54,7 @@ export function useTranscriptionTool(options: UseTranscriptionToolOptions) {
   const editableTranscription = useReactiveLocalStorage<
     TrackTranslationTranscriptionSegment[]
   >(
-    () => `transcription:${trackId.value}-${language.value}`,
+    () => transcriptionStorageKey(trackId.value, language.value),
     () => [],
   );
   function copyTranscriptionIfNonExisting() {
@@ -116,13 +118,22 @@ export function useTranscriptionTool(options: UseTranscriptionToolOptions) {
     return editableTranscription.value[currentIndex.value];
   });
 
+  async function playTranscriptionSegment(item: TrackTranslationTranscriptionSegment) {
+    if (!$mediaPlayer.currentTrack.value && track.value) {
+      $mediaPlayer.setQueue([track.value])
+    }
+    await nextTick()
+    if (item.start) {
+      $mediaPlayer.currentPosition.value = item.start;
+    }
+  }
+
   function playCurrentTranscriptionSegment() {
     if (
       currentTranscriptionSegment.value &&
       currentTranscriptionSegment.value.start
     ) {
-      $mediaPlayer.currentPosition.value =
-        currentTranscriptionSegment.value.start;
+      playTranscriptionSegment(currentTranscriptionSegment.value);
     }
   }
 
@@ -182,6 +193,7 @@ export function useTranscriptionTool(options: UseTranscriptionToolOptions) {
     editableTranscription,
     currentTranscriptionSegment,
     currentEditableTranscriptionSegment,
+    playTranscriptionSegment,
     playCurrentTranscriptionSegment,
     goToNextTranscriptionSegment,
     goToPreviousTranscriptionSegment,
