@@ -18,7 +18,8 @@
     "not-found": "Page not found",
     "contributor": "Közreműködő",
     "contributors": "Közreműködők",
-    "archive": "Archívum"
+    "archive": "Archívum",
+    "transcribe": "Transcribe"
   },
   "sidebar": {
     "playlists": {
@@ -196,6 +197,19 @@
       "explanation": "Az átiratok automatikusan generálódnak, és hibákat tartalmazhatnak.",
       "confirmation": "Értem"
     },
-    "songtreasures": "SongTreasures"
+    "songtreasures": "SongTreasures",
+    "save": "Save changes",
+    "original": "Original",
+    "edit": "Edit",
+    "previousSection": "Previous section",
+    "nextSection": "Next section",
+    "deleteSegment": "Törlés",
+    "undeleteSegment": "Undo delete",
+    "review": "Review",
+    "status": {
+      "done": "Reviewed",
+      "in-progress": "In progress",
+      "not-started": "Not reviewed"
+    }
   }
 }
