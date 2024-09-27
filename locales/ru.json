@@ -18,7 +18,8 @@
     "not-found": "Page not found",
     "contributor": "Автор",
     "contributors": "Исполнители",
-    "archive": "Архив"
+    "archive": "Архив",
+    "transcribe": "Transcribe"
   },
   "sidebar": {
     "playlists": {
@@ -196,6 +197,19 @@
       "explanation": "Расшифровки генерируются автоматически и могут содержать ошибки.",
       "confirmation": "Понятно"
     },
-    "songtreasures": "SongTreasures"
+    "songtreasures": "SongTreasures",
+    "save": "Save changes",
+    "original": "Original",
+    "edit": "Edit",
+    "previousSection": "Previous section",
+    "nextSection": "Next section",
+    "deleteSegment": "Удалить",
+    "undeleteSegment": "Undo delete",
+    "review": "Review",
+    "status": {
+      "done": "Reviewed",
+      "in-progress": "In progress",
+      "not-started": "Not reviewed"
+    }
   }
 }
