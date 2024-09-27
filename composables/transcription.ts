@@ -1,4 +1,4 @@
-import { TrackApi } from "@bcc-code/bmm-sdk-fetch";
+import { PublishedFilter, TrackApi } from "@bcc-code/bmm-sdk-fetch";
 import type {
   LanguageEnum,
   TrackIdTranscriptionGetRequest,
@@ -40,7 +40,11 @@ export function useTranscriptionTool(options: UseTranscriptionToolOptions) {
     data: transcription,
     status,
     refresh: refetchTranscription,
-  } = useTrackTranscriptionWithLanguage({ id: trackId, language });
+  } = useTrackTranscriptionWithLanguage({
+    id: trackId,
+    language,
+    unpublished: PublishedFilter.Show,
+  });
 
   const { $mediaPlayer } = useNuxtApp();
 

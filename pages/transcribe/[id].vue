@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { TrackApi } from "@bcc-code/bmm-sdk-fetch";
+import { PublishedFilter, TrackApi } from "@bcc-code/bmm-sdk-fetch";
 import type {
   LanguageEnum,
   TrackTranslationTranscriptionSegment,
@@ -16,7 +16,10 @@ setTitle(() => t("nav.transcribe"));
 
 const route = useRoute("transcribe-id");
 
-const { data: track } = useTrack({ id: Number(route.params.id) });
+const { data: track } = useTrack({
+  id: Number(route.params.id),
+  unpublished: PublishedFilter.Show,
+});
 
 const { $mediaPlayer } = useNuxtApp();
 onMounted(() => {
