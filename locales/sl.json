@@ -18,7 +18,8 @@
     "not-found": "Stran ni bila najdena",
     "contributor": "Ustvarjalec",
     "contributors": "Ustvarjalci",
-    "archive": "Arhiv"
+    "archive": "Arhiv",
+    "transcribe": "Transcribe"
   },
   "sidebar": {
     "playlists": {
@@ -196,6 +197,19 @@
       "explanation": "Prepisi so ustvarjeni samodejno in lahko vsebujejo napake.",
       "confirmation": "Razumem"
     },
-    "songtreasures": "SongTreasures"
+    "songtreasures": "SongTreasures",
+    "save": "Save changes",
+    "original": "Original",
+    "edit": "Edit",
+    "previousSection": "Previous section",
+    "nextSection": "Next section",
+    "deleteSegment": "Izbriši",
+    "undeleteSegment": "Undo delete",
+    "review": "Review",
+    "status": {
+      "done": "Reviewed",
+      "in-progress": "In progress",
+      "not-started": "Not reviewed"
+    }
   }
 }
