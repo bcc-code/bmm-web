@@ -18,7 +18,8 @@
     "not-found": "Page not found",
     "contributor": "Katkıda Bulunan",
     "contributors": "Katkı Yapanlar",
-    "archive": "Arşiv"
+    "archive": "Arşiv",
+    "transcribe": "Transcribe"
   },
   "sidebar": {
     "playlists": {
@@ -196,6 +197,19 @@
       "explanation": "Transkriptler otomatik olarak oluşturulur ve hatalar içerebilir",
       "confirmation": "Anladım"
     },
-    "songtreasures": "SongTreasures"
+    "songtreasures": "SongTreasures",
+    "save": "Save changes",
+    "original": "Original",
+    "edit": "Edit",
+    "previousSection": "Previous section",
+    "nextSection": "Next section",
+    "deleteSegment": "Sil",
+    "undeleteSegment": "Undo delete",
+    "review": "Review",
+    "status": {
+      "done": "Reviewed",
+      "in-progress": "In progress",
+      "not-started": "Not reviewed"
+    }
   }
 }
