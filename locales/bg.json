@@ -58,7 +58,9 @@
       "headline": "Error",
       "text": "Sorry. We can't find the page \"{path}\"."
     },
-    "track-already-in-playlist": "Песента/речта вече съществува в списъка {0}"
+    "track-already-in-playlist": "Песента/речта вече съществува в списъка {0}",
+    "album-already-in-playlist": "Този албум е вече във вашия списък за изпълнение.",
+    "collection-already-in-playlist": "These tracks are already in playlist {0}."
   },
   "collection": {
     "track-count": "{count} track | {count} tracks",
