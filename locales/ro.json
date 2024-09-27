@@ -18,7 +18,8 @@
     "not-found": "Page not found",
     "contributor": "Contribuitor",
     "contributors": "Contribuitori",
-    "archive": "Arhivă"
+    "archive": "Arhivă",
+    "transcribe": "Transcribe"
   },
   "sidebar": {
     "playlists": {
@@ -196,6 +197,19 @@
       "explanation": "Transcrierile sunt generate automat și pot conține erori",
       "confirmation": "Am înțeles"
     },
-    "songtreasures": "SongTreasures"
+    "songtreasures": "SongTreasures",
+    "save": "Save changes",
+    "original": "Original",
+    "edit": "Edit",
+    "previousSection": "Previous section",
+    "nextSection": "Next section",
+    "deleteSegment": "Șterge",
+    "undeleteSegment": "Undo delete",
+    "review": "Review",
+    "status": {
+      "done": "Reviewed",
+      "in-progress": "In progress",
+      "not-started": "Not reviewed"
+    }
   }
 }
