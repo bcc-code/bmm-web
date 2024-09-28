@@ -19,7 +19,7 @@
     "contributor": "Contributeur",
     "contributors": "Contributeurs",
     "archive": "Archive",
-    "transcribe": "Transcribe"
+    "transcribe": "Transcrire"
   },
   "sidebar": {
     "playlists": {
@@ -66,7 +66,7 @@
   "collection": {
     "track-count": "{count} piste | {count} pistes",
     "album-count": "{count} album | {count} albums",
-    "resume": "Continuer"
+    "resume": "Reprendre"
   },
   "login": {
     "error-message": {
@@ -198,18 +198,18 @@
       "confirmation": "J'ai compris"
     },
     "songtreasures": "SongTreasures",
-    "save": "Save changes",
+    "save": "Enregistrer les modifications",
     "original": "Original",
-    "edit": "Edit",
-    "previousSection": "Previous section",
-    "nextSection": "Next section",
+    "edit": "Modifier",
+    "previousSection": "Section précédente",
+    "nextSection": "Section suivante",
     "deleteSegment": "Supprimer",
-    "undeleteSegment": "Undo delete",
-    "review": "Review",
+    "undeleteSegment": "Annuler la suppression",
+    "review": "Réviser",
     "status": {
-      "done": "Reviewed",
-      "in-progress": "In progress",
-      "not-started": "Not reviewed"
+      "done": "Révisé",
+      "in-progress": "En cours",
+      "not-started": "Non révisé"
     }
   }
 }
