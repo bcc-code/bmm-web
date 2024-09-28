@@ -19,7 +19,7 @@
     "contributor": "Mitwirkender",
     "contributors": "Mitwirkende",
     "archive": "Archiv",
-    "transcribe": "Transcribe"
+    "transcribe": "Transkribieren"
   },
   "sidebar": {
     "playlists": {
@@ -198,18 +198,18 @@
       "confirmation": "Verstanden! "
     },
     "songtreasures": "SongTreasures",
-    "save": "Save changes",
+    "save": "Änderungen speichern",
     "original": "Original",
-    "edit": "Edit",
-    "previousSection": "Previous section",
-    "nextSection": "Next section",
+    "edit": "Ändern",
+    "previousSection": "Vorheriger Abschnitt",
+    "nextSection": "Nächster Abschnitt",
     "deleteSegment": "Löschen",
-    "undeleteSegment": "Undo delete",
-    "review": "Review",
+    "undeleteSegment": "Löschen rückgängig machen",
+    "review": "Überprüfen",
     "status": {
-      "done": "Reviewed",
-      "in-progress": "In progress",
-      "not-started": "Not reviewed"
+      "done": "Überprüft",
+      "in-progress": "In Bearbeitung",
+      "not-started": "Nicht überprüft"
     }
   }
 }
