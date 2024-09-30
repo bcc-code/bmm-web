@@ -10,7 +10,9 @@ export function useTracks(options: TrackGetRequest = {}) {
   );
 }
 
-export function useTrack(options: TrackIdGetRequest = { id: -1, unpublished: PublishedFilter.Hide }) {
+export function useTrack(
+  options: TrackIdGetRequest = { id: -1, unpublished: PublishedFilter.Hide },
+) {
   return useAsyncData(`track-${options.id}-${options.unpublished}`, () =>
     new TrackApi().trackIdGet(options),
   );
