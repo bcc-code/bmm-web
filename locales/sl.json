@@ -61,7 +61,7 @@
     },
     "track-already-in-playlist": "Skladba že obstaja na seznamu predvajanja {0}",
     "album-already-in-playlist": "Ta album je že dodan na tvoj seznam predvajanja.",
-    "collection-already-in-playlist": "These tracks are already in playlist {0}."
+    "collection-already-in-playlist": "Te skladbe so že na seznamu predvajanja {0}."
   },
   "collection": {
     "track-count": "{count} skladba | skladbe: {count} ",
@@ -201,8 +201,6 @@
     "save": "Save changes",
     "original": "Original",
     "edit": "Edit",
-    "previousSection": "Previous section",
-    "nextSection": "Next section",
     "deleteSegment": "Izbriši",
     "undeleteSegment": "Undo delete",
     "review": "Review",
