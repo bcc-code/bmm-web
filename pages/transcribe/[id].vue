@@ -177,6 +177,21 @@ async function saveTranscription() {
     saving.value = false;
   }
 }
+
+const copiedToClipboard = ref(false);
+async function copyToClipboard() {
+  try {
+    await navigator.clipboard.writeText(
+      editableTranscription.value.map((item) => item.text).join("\n"),
+    );
+    copiedToClipboard.value = true;
+  } catch (err) {
+  } finally {
+    setTimeout(() => {
+      copiedToClipboard.value = false;
+    }, 2000);
+  }
+}
 </script>
 
 <template>
@@ -187,15 +202,23 @@ async function saveTranscription() {
       >
         <PageHeading>{{ track.title }}</PageHeading>
         <div class="flex flex-col items-end gap-2">
-          <ButtonStyled
-            intent="primary"
-            class="relative"
-            :loading="saving"
-            :disabled="hasInvalidIds"
-            @click="saveTranscription"
-          >
-            {{ $t("transcription.save") }}
-          </ButtonStyled>
+          <div class="flex gap-2">
+            <ButtonStyled intent="tertiary" @click="copyToClipboard">
+              Copy to clipboard
+            </ButtonStyled>
+            <DialogPlain :show="copiedToClipboard">
+              <p class="p-6">Copied to clipboard</p>
+            </DialogPlain>
+            <ButtonStyled
+              intent="primary"
+              class="relative"
+              :loading="saving"
+              :disabled="hasInvalidIds"
+              @click="saveTranscription"
+            >
+              {{ $t("transcription.save") }}
+            </ButtonStyled>
+          </div>
           <span v-if="hasInvalidIds" class="type-subtitle-2 text-label-3">
             Some transcription segments have the same ID, and can therefore not
             be edited.
