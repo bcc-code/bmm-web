@@ -5,7 +5,6 @@ import type {
   TrackIdTranscriptionLanguageGetRequest,
   TrackTranslationTranscriptionSegment,
 } from "@bcc-code/bmm-sdk-fetch";
-import transcriptionStorageKey from "~/utils/transcription";
 
 export function useTrackTranscription(
   options: TrackIdTranscriptionGetRequest,
@@ -53,16 +52,12 @@ export function useTranscriptionTool(options: UseTranscriptionToolOptions) {
 
   const { $mediaPlayer } = useNuxtApp();
 
-  // copy transcription
-  const editableTranscription = useReactiveLocalStorage<
-    TrackTranslationTranscriptionSegment[]
-  >(
-    () => transcriptionStorageKey(trackId.value, language.value),
-    () => [],
-  );
-  function copyTranscriptionIfNonExisting() {
+  const editableTranscription = ref<TrackTranslationTranscriptionSegment[]>([]);
+  function copyTranscription() {
     if (!transcription.value?.length) return;
-    if (editableTranscription.value.length) return;
+
+    // We need to deep clone the transcription to break the two-way binding between
+    // the editableTranscription and the transcription.
     editableTranscription.value = structuredClone(
       toRaw(transcription.value ?? []),
     );
@@ -70,14 +65,14 @@ export function useTranscriptionTool(options: UseTranscriptionToolOptions) {
   watch(
     transcription,
     () => {
-      copyTranscriptionIfNonExisting();
+      copyTranscription();
     },
     { once: true },
   );
 
   watch(language, async () => {
     await refetchTranscription();
-    copyTranscriptionIfNonExisting();
+    copyTranscription();
   });
 
   const currentIndex = ref(0);
