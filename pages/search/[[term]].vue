@@ -18,6 +18,7 @@ const {
   params: { term: termParam = "" },
 } = useRoute<"search-term">();
 
+const searchbox = ref<HTMLInputElement | null>(null);
 const searchFilter = ref<SearchFilter>(
   filter === "All" ||
     filter === "Speeches" ||
@@ -43,6 +44,12 @@ const loadingMore = ref(false);
 const fullyLoaded = ref(false);
 const isMounted = ref<boolean>(false);
 let searchFingerprint = null;
+
+watch(searchbox, (box) => {
+  if (box) {
+    box.focus();
+  }
+});
 
 async function loadSearchResults() {
   try {
@@ -171,6 +178,7 @@ function playTrack(item: TrackModel) {
           <input
             v-model="searchTerm"
             type="text"
+            ref="searchbox"
             :placeholder="t('search.input-placeholder')"
             class="w-auto flex-grow bg-[transparent] px-2 text-[17px] text-label-1 outline-none placeholder:text-label-3"
           />
