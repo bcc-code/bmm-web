@@ -83,6 +83,12 @@ onMounted(() => {
       highlightings.value = [];
       if (searchTerm.value === "") {
         loading.value = false;
+        const routeParams = {
+          name: "search-term",
+          query:
+            searchFilter.value === "All" ? {} : { filter: searchFilter.value },
+        };
+        router.push(routeParams);
         return;
       }
 
@@ -166,14 +172,15 @@ function playTrack(item: TrackModel) {
             v-model="searchTerm"
             type="text"
             :placeholder="t('search.input-placeholder')"
-            class="w-auto flex-grow bg-background-2 px-2 text-[17px] text-label-1 outline-none placeholder:text-label-3 focus-within:bg-background-1"
+            class="w-auto flex-grow bg-[transparent] px-2 text-[17px] text-label-1 outline-none placeholder:text-label-3"
           />
-          <NuxtIcon
+          <button
             v-if="searchTerm !== ''"
-            name="icon.close.small"
             class="cursor-pointer text-2xl text-label-1"
             @click="searchTerm = ''"
-          ></NuxtIcon>
+          >
+            <NuxtIcon name="icon.close.small" />
+          </button>
         </div>
       </div>
 
