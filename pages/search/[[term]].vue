@@ -45,6 +45,12 @@ const fullyLoaded = ref(false);
 const isMounted = ref<boolean>(false);
 let searchFingerprint = null;
 
+watch(searchbox, (box) => {
+  if (box) {
+    box.focus();
+  }
+});
+
 async function loadSearchResults() {
   try {
     searchFingerprint = Math.random();
@@ -75,10 +81,6 @@ async function loadSearchResults() {
 onMounted(() => {
   isMounted.value = true;
   const main = ref<HTMLElement | null>(document.querySelector("main"));
-
-  if (searchbox.value) {
-    searchbox.value.focus();
-  }
 
   watchDebounced(
     [...reactiveDependencies(), searchTerm, searchFilter],
