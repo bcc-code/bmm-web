@@ -5,7 +5,6 @@ import type {
   TrackIdTranscriptionLanguageGetRequest,
   TrackTranslationTranscriptionSegment,
 } from "@bcc-code/bmm-sdk-fetch";
-import transcriptionStorageKey from "~/utils/transcription";
 
 export function useTrackTranscription(
   options: TrackIdTranscriptionGetRequest,
