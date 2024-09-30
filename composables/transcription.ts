@@ -52,11 +52,12 @@ export function useTranscriptionTool(options: UseTranscriptionToolOptions) {
 
   const { $mediaPlayer } = useNuxtApp();
 
-  // copy transcription
   const editableTranscription = ref<TrackTranslationTranscriptionSegment[]>([]);
-
   function copyTranscription() {
     if (!transcription.value?.length) return;
+
+    // We need to deep clone the transcription to break the two-way binding between
+    // the editableTranscription and the transcription.
     editableTranscription.value = structuredClone(
       toRaw(transcription.value ?? []),
     );
