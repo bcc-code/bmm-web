@@ -37,7 +37,7 @@ interface UseTranscriptionToolOptions {
 export function useTranscriptionTool(options: UseTranscriptionToolOptions) {
   const { trackId, language } = toRefs(reactive(options));
 
-  const { data: track } = useTrack({ id: trackId.value });
+  const { data: track } = useTrack({ id: trackId.value, unpublished: PublishedFilter.Show });
   const {
     data: transcription,
     status,

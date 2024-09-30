@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { PublishedFilter, TrackApi } from "@bcc-code/bmm-sdk-fetch";
 import type {
   LanguageEnum,
   TrackTranslationTranscriptionSegment,
 } from "@bcc-code/bmm-sdk-fetch";
+import { PublishedFilter, TrackApi } from "@bcc-code/bmm-sdk-fetch";
 import { diffWordsWithSpace } from "diff";
 import { MediaPlayerStatus } from "~/plugins/mediaPlayer/mediaPlayer";
 import transcriptionStorageKey from "~/utils/transcription";
@@ -36,6 +36,13 @@ const language = computed({
     return (
       transcriptionLanguage.value ??
       $mediaPlayer.currentTrack.value?.language ??
+      ($mediaPlayer.currentTrack.value?.transcriptionLanguages ?? [])
+        .filter((c) => c !== "zxx")
+        .at(0) ??
+      track.value?.language ??
+      (track.value?.transcriptionLanguages ?? [])
+        .filter((c) => c !== "zxx")
+        .at(0) ??
       contentLanguages.filter((c) => c !== "zxx").at(0)!
     );
   },
@@ -48,6 +55,7 @@ const language = computed({
     try {
       const { data: reloadedTrack } = await useTrackIDWithLanguage(value, {
         id: $mediaPlayer.currentTrack.value.id,
+        unpublished: PublishedFilter.Show,
       });
       if (!reloadedTrack.value) return;
       $mediaPlayer.replaceCurrent(reloadedTrack.value);

@@ -1,8 +1,8 @@
-import { TrackApi } from "@bcc-code/bmm-sdk-fetch";
 import type {
   TrackGetRequest,
   TrackIdGetRequest,
 } from "@bcc-code/bmm-sdk-fetch";
+import { PublishedFilter, TrackApi } from "@bcc-code/bmm-sdk-fetch";
 
 export function useTracks(options: TrackGetRequest = {}) {
   return reactiveApi(
@@ -10,8 +10,8 @@ export function useTracks(options: TrackGetRequest = {}) {
   );
 }
 
-export function useTrack(options: TrackIdGetRequest = { id: -1 }) {
-  return useAsyncData(`track-${options.id}`, () =>
+export function useTrack(options: TrackIdGetRequest = { id: -1, unpublished: PublishedFilter.Hide }) {
+  return useAsyncData(`track-${options.id}-${options.unpublished}`, () =>
     new TrackApi().trackIdGet(options),
   );
 }
