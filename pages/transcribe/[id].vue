@@ -182,7 +182,7 @@ const copiedToClipboard = ref(false);
 async function copyToClipboard() {
   try {
     await navigator.clipboard.writeText(
-      editableTranscription.value.map((item) => item.text).join("\n"),
+      editableTranscription.value.map((item) => item.text).join(" "),
     );
     copiedToClipboard.value = true;
   } catch (err) {
