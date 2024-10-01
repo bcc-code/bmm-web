@@ -189,6 +189,7 @@ export function useTranscriptionTool(options: UseTranscriptionToolOptions) {
     currentIndex,
     transcription,
     status,
+    copyTranscription,
     isWithinCurrentTime,
     editableTranscription,
     currentTranscriptionSegment,
