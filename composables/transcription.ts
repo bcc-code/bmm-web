@@ -53,7 +53,7 @@ export function useTranscriptionTool(options: UseTranscriptionToolOptions) {
   const { $mediaPlayer } = useNuxtApp();
 
   const editableTranscription = ref<TrackTranslationTranscriptionSegment[]>([]);
-  function copyTranscription() {
+  function syncEditableTranscription() {
     if (!transcription.value?.length) return;
 
     // We need to deep clone the transcription to break the two-way binding between
@@ -65,14 +65,14 @@ export function useTranscriptionTool(options: UseTranscriptionToolOptions) {
   watch(
     transcription,
     () => {
-      copyTranscription();
+      syncEditableTranscription();
     },
     { once: true },
   );
 
   watch(language, async () => {
     await refetchTranscription();
-    copyTranscription();
+    syncEditableTranscription();
   });
 
   const currentIndex = ref(0);
@@ -189,7 +189,7 @@ export function useTranscriptionTool(options: UseTranscriptionToolOptions) {
     currentIndex,
     transcription,
     status,
-    copyTranscription,
+    syncEditableTranscription,
     isWithinCurrentTime,
     editableTranscription,
     currentTranscriptionSegment,
