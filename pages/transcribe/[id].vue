@@ -82,6 +82,7 @@ const {
   toggleDeletion,
   deletedTranscriptionSegments,
   refetchTranscription,
+  syncEditableTranscription,
 } = useTranscriptionTool({
   trackId: Number(route.params.id),
   language,
@@ -167,6 +168,7 @@ async function saveTranscription() {
       trackTranslationTranscriptionSegment: editableTranscription.value,
     });
     await refetchTranscription();
+    syncEditableTranscription();
 
     localStorage.setItem(
       `${transcriptionStorageKey(Number(route.params.id), language.value)}:saved`,
