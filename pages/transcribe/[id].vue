@@ -154,6 +154,9 @@ async function saveTranscription() {
   // Remove segments marked for deletion from transcription
   if (deletedTranscriptionSegments.value.length) {
     deletedTranscriptionSegments.value.forEach((item) => {
+      const index = editableTranscription.value.indexOf(item);
+      if (index === -1) return;
+
       editableTranscription.value.splice(
         editableTranscription.value.indexOf(item),
         1,
@@ -167,8 +170,11 @@ async function saveTranscription() {
       language: language.value,
       trackTranslationTranscriptionSegment: editableTranscription.value,
     });
+
+    // reset state
     await refetchTranscription();
     syncEditableTranscription();
+    deletedTranscriptionSegments.value = [];
 
     localStorage.setItem(
       `${transcriptionStorageKey(Number(route.params.id), language.value)}:saved`,
