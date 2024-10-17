@@ -449,13 +449,13 @@ const twentysixAvg = computed(
       class="grid grid-cols-[repeat(auto-fill,minmax(250px,1fr))] gap-4 sm:gap-6"
     >
       <DashboardStatistic label="Average 13-17" :value="thirteenAvg">
-        <template #value="{ value }"> {{ value.toFixed(1) }}% </template>
+        <template #value="{ value }"> {{ value.toFixed(1) }}%</template>
       </DashboardStatistic>
       <DashboardStatistic label="Average 18-25" :value="eighteenAvg">
-        <template #value="{ value }"> {{ value.toFixed(1) }}% </template>
+        <template #value="{ value }"> {{ value.toFixed(1) }}%</template>
       </DashboardStatistic>
       <DashboardStatistic label="Average 26-36" :value="twentysixAvg">
-        <template #value="{ value }"> {{ value.toFixed(1) }}% </template>
+        <template #value="{ value }"> {{ value.toFixed(1) }}%</template>
       </DashboardStatistic>
     </section>
     <section id="graphs"></section>
@@ -482,7 +482,9 @@ const twentysixAvg = computed(
         ]"
         :get-field="
           (item, key) =>
-            typeof item[key] === 'number' ? item[key] + '%' : item[key]
+            typeof item[key] === 'number'
+              ? `${item[key]}%`
+              : item[key]?.toString()
         "
       />
     </section>
