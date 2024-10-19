@@ -15,11 +15,11 @@
     "search": "Buscar",
     "album": "Álbum",
     "podcast": "podcast",
-    "not-found": "Page not found",
+    "not-found": "Página no encontrada",
     "contributor": "Colaborador",
     "contributors": "Colaboradores",
     "archive": "Archivo",
-    "transcribe": "Transcribe"
+    "transcribe": "Transcribir"
   },
   "sidebar": {
     "playlists": {
@@ -61,7 +61,7 @@
     },
     "track-already-in-playlist": "Esta pista ya existe en la lista de reproducción {0}",
     "album-already-in-playlist": "Este álbum ya está en la lista de reproducción.",
-    "collection-already-in-playlist": "These tracks are already in playlist {0}."
+    "collection-already-in-playlist": "Estas pistas ya están en la lista de reproducción {0}."
   },
   "collection": {
     "track-count": "{count} pista | {count} pistas",
@@ -151,7 +151,7 @@
       "options": "Mostrar opciones"
     },
     "details": {
-      "title": "Track Details",
+      "title": "Detalles de la pista",
       "reference": "Referencia",
       "duration": "Duración",
       "publish-date": "Fecha de publicación",
@@ -198,16 +198,16 @@
       "confirmation": "Entiendo"
     },
     "songtreasures": "SongTreasures",
-    "save": "Save changes",
+    "save": "Guardar cambios",
     "original": "Original",
-    "edit": "Edit",
+    "edit": "Editar",
     "deleteSegment": "Eliminar",
-    "undeleteSegment": "Undo delete",
-    "review": "Review",
+    "undeleteSegment": "Deshacer eliminación",
+    "review": "Revisar",
     "status": {
-      "done": "Reviewed",
-      "in-progress": "In progress",
-      "not-started": "Not reviewed"
+      "done": "Revisado",
+      "in-progress": "En proceso",
+      "not-started": "No revisado"
     }
   }
 }
