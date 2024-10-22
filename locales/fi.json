@@ -1,7 +1,7 @@
 {
   "global": {
     "cancel": "Peruuta",
-    "try-again": "Try again"
+    "try-again": "Yritä uudestaan"
   },
   "nav": {
     "home": "Koti",
@@ -15,11 +15,11 @@
     "search": "Haku",
     "album": "Albumi",
     "podcast": "Podcast",
-    "not-found": "Page not found",
+    "not-found": "Sivua ei löydy",
     "contributor": "Tekijä",
     "contributors": "Tekijät",
     "archive": "Arkisto",
-    "transcribe": "Transcribe"
+    "transcribe": "Tekstiksi"
   },
   "sidebar": {
     "playlists": {
@@ -27,98 +27,98 @@
     }
   },
   "share": {
-    "link-copied-message": "Copied link to clipboard"
+    "link-copied-message": "Kopioitu leikepöydälle"
   },
   "profile": {
     "title": "Profiili",
-    "autoplay": "Auto Play",
-    "theme": "Theme",
-    "theme-description": "Select the theme used for the interface.",
-    "app-language": "Language",
-    "interface-language": "Interface Language",
-    "interface-language-description": "Select the language used for the interface.",
-    "select-language": "Select language",
-    "content-language": "Content Language",
-    "content-language-description": "The preferred language for the content you are listening to.",
-    "preference-language-1": "Preferred language",
-    "preference-language-2": "Second language",
-    "preference-language-3": "Third language",
-    "preference-language-4": "{count}th language",
+    "autoplay": "Automaattinen toisto",
+    "theme": "Aihe",
+    "theme-description": "Valitse käyttöliittymässä käytettävä aihe.",
+    "app-language": "Kieli",
+    "interface-language": "Käyttöliittymän kieli",
+    "interface-language-description": "Valitse käyttöliittymässä käytettävä kieli.",
+    "select-language": "Valitse kieli",
+    "content-language": "Sisällön kieli",
+    "content-language-description": "Kuuntelemasi sisällön ensisijainen kieli.",
+    "preference-language-1": "Ensisijainen kieli",
+    "preference-language-2": "Toinen kieli",
+    "preference-language-3": "Kolmas kieli",
+    "preference-language-4": "{count}. kieli",
     "uservoice": "Palautteet",
     "privacy-policy": "Tietosuojakäytäntö",
     "contact": "Yhteydenotto",
-    "logout": "Sign out",
+    "logout": "Kirjaudu ulos",
     "theme-dark": "Pimeä",
     "theme-light": "Valoisa",
-    "theme-system": "Same as system",
+    "theme-system": "Sama kuin järjestelmän",
     "done": "Valmis",
-    "add-another-language": "Add another language"
+    "add-another-language": "Lisää kieli"
   },
   "error": {
     "page-not-found": {
-      "headline": "Error",
-      "text": "Sorry. We can't find the page \"{path}\"."
+      "headline": "Virhe",
+      "text": "Sivua \"{path}\" ei valitettavasti löydy."
     },
     "track-already-in-playlist": "Kappale on jo soittolistalla {0}",
     "album-already-in-playlist": "Tämä albumi on jo soittolistalla.",
     "collection-already-in-playlist": "Nämä raidat ovat jo soittolistalla{0}."
   },
   "collection": {
-    "track-count": "{count} track | {count} tracks",
-    "album-count": "{count} album | {count} albums",
+    "track-count": "{count} kappale | {count} kappaleita",
+    "album-count": "{count} albumi | {count} albumia",
     "resume": "Jatka"
   },
   "login": {
     "error-message": {
-      "contact-info": "Should this error persist, {0}.",
-      "contact-link": "please get in contact with us",
-      "logout-and-redirect-info": "Something regarding the login went wrong:",
-      "manual-logout-and-redirect-info": "Please {0}.",
-      "logout-and-redirect-link": "try to log in again"
+      "contact-info": "Jos tämä virhe jatkuu, {0}.",
+      "contact-link": "ota meihin yhteyttä",
+      "logout-and-redirect-info": "",
+      "manual-logout-and-redirect-info": "",
+      "logout-and-redirect-link": "yritä kirjautua sisään uudelleen"
     },
     "redirect-message": {
-      "redirect-info": "You will be redirected to the login page.",
-      "manual-redirect-info": "Please wait or {0}.",
-      "redirect-link": "click to try again"
+      "redirect-info": "Sinut ohjataan kirjautumissivulle.",
+      "manual-redirect-info": "Odota tai {0}.",
+      "redirect-link": "napsauta yrittääksesi uudestaan"
     }
   },
   "download": {
-    "install-app": "We recommend installing the app.",
-    "go-to-store": "Navigate to the App Store.",
-    "get-for-desktop": "Get the BMM app directly on your desktop",
+    "install-app": "Suosittelemme sovelluksen asentamista.",
+    "go-to-store": "Siirry App Storeen.",
+    "get-for-desktop": "",
     "download": "Lataa",
-    "download-now": "Download now",
-    "download-windows": "Download for Windows",
-    "download-mac-intel": "Download for Intel CPU",
-    "download-mac-arm": "Download for newer Mac",
-    "mac-intel-explanation": "Usually purchased before 2021",
-    "mac-arm-explanation": "M1, M2, M3, M4 chip",
+    "download-now": "Lataa nyt",
+    "download-windows": "Lataa Windowsille",
+    "download-mac-intel": "Lataa Intel CPU:lle",
+    "download-mac-arm": "Lataa uudempaan Maciin",
+    "mac-intel-explanation": "Yleensä ostettu ennen vuotta 2021",
+    "mac-arm-explanation": "M1, M2, M3, M4 siru",
     "download-bmm-app": "Lataa BMM-sovellus",
     "download-track": "Lataa kappale",
     "mobile": "Kännykkä",
     "messages-not-allowed": {
-      "title": "Download of messages unavailable",
+      "title": "Puheiden lataaminen ei ole käytössä.",
       "description": "Puheita ei voi enää ladata BMM:stä. Jos tarvitset tiettyä puhetta johonkin, ota yhteyttä ja kerro perustelut."
     },
-    "sendEmailTo": "Send email to {0}"
+    "sendEmailTo": "Lähetä sähköposti osoitteeseen {0}"
   },
   "playlist": {
-    "add": "Add playlist",
+    "add": "Lisää soittolista",
     "new-playlist": "Uusi soittolista",
-    "name-your-playlist": "Name your playlist",
+    "name-your-playlist": "Nimeä soittolistasi",
     "delete-playlist": "Poista soittolista",
-    "delete-playlist-description": "Are you sure you want to delete the playlist? This action cannot be reversed.",
+    "delete-playlist-description": "Haluatko varmasti poistaa soittolistan? Tätä toimintoa ei voi peruuttaa.",
     "action": {
       "shuffle": "Sekoita",
       "add-to-my-playlists": "Lisää soittolistoihini",
       "remove-shared-playlist": "Poista soittolista"
     },
-    "by-x": "by {name}"
+    "by-x": "tekijä {name}"
   },
   "podcast": {
     "this-week": "Tämä viikko",
     "last-week": "Viime viikko",
-    "week-x": "Week {count}",
+    "week-x": "",
     "action": {
       "play": "Toista",
       "follow": "Seuraa"
@@ -128,7 +128,7 @@
     "queue": "Jono"
   },
   "edit": {
-    "rename": "Rename",
+    "rename": "Nimeä uudelleen",
     "delete": "Poista"
   },
   "track": {
@@ -148,13 +148,13 @@
     "a11y": {
       "download": "Lataa",
       "queue": "Lisää jonoon",
-      "options": "Show options"
+      "options": "Näytä vaihtoehdot"
     },
     "details": {
       "title": "Raidan tiedot",
-      "reference": "Reference",
+      "reference": "Viite",
       "duration": "Kesto",
-      "publish-date": "Publish Date",
+      "publish-date": "Julkaisupäivä",
       "album": "Albumi",
       "publisher": "Julkaisija",
       "copyright": "Tekijänoikeudet",
@@ -166,7 +166,7 @@
   },
   "home": {
     "list": {
-      "see-all": "See all",
+      "see-all": "Näytä kaikki",
       "recommended": "Suositellut"
     }
   },
@@ -182,13 +182,13 @@
     },
     "input-placeholder": "Haku",
     "loading-results": "Lataustulokset",
-    "no-results-yet": "No results yet",
-    "no-results-found": "No results found",
-    "result-count": "{count} results"
+    "no-results-yet": "Ei tuloksia",
+    "no-results-found": "Mitään ei löytynyt",
+    "result-count": "{count} tulosta"
   },
   "streak": {
     "your-streak": "Viikon suorituksesi",
-    "days-in-row": "{count} days in a row"
+    "days-in-row": "{count} päivää peräkkäin"
   },
   "transcription": {
     "lyrics": "Sanat\n",
@@ -198,12 +198,12 @@
       "confirmation": "Selvä"
     },
     "songtreasures": "Song Treasures",
-    "save": "Save changes",
-    "original": "Original",
-    "edit": "Edit",
+    "save": "Tallenna muutokset.",
+    "original": "Alkuperäinen",
+    "edit": "Muokkaa",
     "deleteSegment": "Poista",
-    "undeleteSegment": "Undo delete",
-    "review": "Review",
+    "undeleteSegment": "Kumoa poistaminen",
+    "review": "Palaa edellisiin",
     "status": {
       "done": "Reviewed",
       "in-progress": "In progress",
