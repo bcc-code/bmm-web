@@ -205,9 +205,9 @@
     "undeleteSegment": "Kumoa poistaminen",
     "review": "Palaa edellisiin",
     "status": {
-      "done": "Reviewed",
-      "in-progress": "In progress",
-      "not-started": "Not reviewed"
+      "done": "Arvosteltu",
+      "in-progress": "Kesken\n",
+      "not-started": "Ei arvosteltu"
     }
   }
 }
