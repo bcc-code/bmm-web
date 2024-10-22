@@ -19,7 +19,7 @@
     "contributor": "Ustvarjalec",
     "contributors": "Ustvarjalci",
     "archive": "Arhiv",
-    "transcribe": "Transcribe"
+    "transcribe": "Prepis"
   },
   "sidebar": {
     "playlists": {
@@ -198,16 +198,16 @@
       "confirmation": "Razumem"
     },
     "songtreasures": "SongTreasures",
-    "save": "Save changes",
-    "original": "Original",
-    "edit": "Edit",
+    "save": "Shrani spremembe",
+    "original": "Izvirnik",
+    "edit": "Uredi",
     "deleteSegment": "Izbriši",
-    "undeleteSegment": "Undo delete",
-    "review": "Review",
+    "undeleteSegment": "Razveljavi izbris",
+    "review": "Pregled",
     "status": {
-      "done": "Reviewed",
-      "in-progress": "In progress",
-      "not-started": "Not reviewed"
+      "done": "Pregledano",
+      "in-progress": "V teku",
+      "not-started": "Ni pregledano"
     }
   }
 }

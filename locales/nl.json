@@ -19,7 +19,7 @@
     "contributor": "Bijdrager",
     "contributors": "Bijdragers",
     "archive": "Archief",
-    "transcribe": "Transcribe"
+    "transcribe": "Transcriberen"
   },
   "sidebar": {
     "playlists": {
@@ -61,7 +61,7 @@
     },
     "track-already-in-playlist": "Nummer bestaat al in afspeellijst {0}",
     "album-already-in-playlist": "Dit album staat al in je afspeellijst.",
-    "collection-already-in-playlist": "These tracks are already in playlist {0}."
+    "collection-already-in-playlist": "Deze nummers staan al in de afspeellijst {0}."
   },
   "collection": {
     "track-count": "{count} nummer | {count} nummers",
@@ -198,16 +198,16 @@
       "confirmation": "Begrepen"
     },
     "songtreasures": "SongTreasures",
-    "save": "Save changes",
-    "original": "Original",
-    "edit": "Edit",
+    "save": "Sla de wijzigingen op",
+    "original": "Origineel",
+    "edit": "Bewerken",
     "deleteSegment": "Verwijderen",
-    "undeleteSegment": "Undo delete",
-    "review": "Review",
+    "undeleteSegment": "Verwijderen ongedaan maken",
+    "review": "Beoordeling",
     "status": {
-      "done": "Reviewed",
-      "in-progress": "In progress",
-      "not-started": "Not reviewed"
+      "done": "Beoordeeld",
+      "in-progress": "In uitvoering",
+      "not-started": "Niet beoordeeld"
     }
   }
 }
