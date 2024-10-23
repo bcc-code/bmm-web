@@ -77,6 +77,12 @@ const { data: currentUser } = await useCurrentUser();
             :link="{ name: 'transcribe' }"
             icon="icon.information"
           />
+          <SidebarItem
+            v-if="isFraKaareDashboardViewer(currentUser)"
+            title="Fra Kåre Dashboard"
+            :link="{ name: 'dashboards-fra-kaare' }"
+            icon="icon.information"
+          />
         </SidebarGroup>
 
         <SidebarGroup :title="$t('sidebar.playlists.title')">

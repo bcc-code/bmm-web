@@ -7,7 +7,7 @@ setTitle(() => t("dashboards.title"));
 const api = new StatisticsApi();
 const statistics = await api.statisticsFraKaareGet();
 
-const rows = statistics.list ?? [];
+const rows = statistics.largeChurches ?? [];
 
 // const thirteenAvg = computed(
 //   () => rows.reduce((a, b) => a + b., 0) / rows.length,
@@ -17,20 +17,6 @@ const rows = statistics.list ?? [];
 <template>
   <div class="space-y-12">
     <PageHeading>{{ t("dashboards.fra-kaare") }}</PageHeading>
-    <section
-      id="stats"
-      class="grid grid-cols-[repeat(auto-fill,minmax(250px,1fr))] gap-4 sm:gap-6"
-    >
-      <DashboardStatistic label="Average 13-17" :value="80">
-        <template #value="{ value }"> {{ value.toFixed(1) }}%</template>
-      </DashboardStatistic>
-      <DashboardStatistic label="Average 18-25" :value="85">
-        <template #value="{ value }"> {{ value.toFixed(1) }}%</template>
-      </DashboardStatistic>
-      <DashboardStatistic label="Average 26-36" :value="87">
-        <template #value="{ value }"> {{ value.toFixed(1) }}%</template>
-      </DashboardStatistic>
-    </section>
     <section id="graphs"></section>
     <section id="table">
       <DataTable
@@ -41,35 +27,35 @@ const rows = statistics.list ?? [];
             text: 'Church',
           },
           {
-            key: 'oneEpisodePercent13to17',
+            key: 'oneEpisodePercent13To17',
             text: '13-17',
           },
           {
-            key: 'oneEpisodePercent18to25',
+            key: 'oneEpisodePercent18To25',
             text: '18-25',
           },
           {
-            key: 'oneEpisodePercent26to35',
-            text: '26-36',
+            key: 'oneEpisodePercent26To35',
+            text: '26-35',
           },
           {
-            key: 'oneEpisodePercentYouth',
+            key: 'oneEpisodePercentAverage',
             text: 'Average',
           },
           {
-            key: 'onTrackPercent13to17',
+            key: 'allEpisodesPercent13To17',
             text: '13-17',
           },
           {
-            key: 'onTrackPercent18to25',
+            key: 'allEpisodesPercent18To25',
             text: '18-25',
           },
           {
-            key: 'onTrackPercent26to35',
-            text: '26-36',
+            key: 'allEpisodesPercent26To35',
+            text: '26-35',
           },
           {
-            key: 'onTrackPercentYouth',
+            key: 'allEpisodesPercentAverage',
             text: 'Average',
           },
         ]"
