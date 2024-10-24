@@ -170,7 +170,7 @@ const emptyColumnsBeforeFirstColumnGroup = computed(() => {
             class="px-3 py-1.5 sm:px-4 sm:py-2"
             v-bind="column.props"
             :class="{
-              'bg-tint !text-label-1': highlightRow?.(item) ?? false,
+              'bg-tint text-black-1': highlightRow?.(item) ?? false,
             }"
           >
             <slot :name="column.key" :item="item">
