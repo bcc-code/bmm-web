@@ -176,9 +176,9 @@ function playTrack(item: TrackModel) {
         <div class="flex w-80 items-center px-3 py-2">
           <NuxtIcon name="nav.search" class="text-xl text-label-1" />
           <input
+            ref="searchbox"
             v-model="searchTerm"
             type="text"
-            ref="searchbox"
             :placeholder="t('search.input-placeholder')"
             class="w-auto flex-grow bg-[transparent] px-2 text-[17px] text-label-1 outline-none placeholder:text-label-3"
           />

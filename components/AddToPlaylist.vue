@@ -22,17 +22,17 @@ const selectList = async (playlistId: number, playlistName: string) => {
     if (e instanceof ResponseError && e.response instanceof Response) {
       const res = await e.response.text();
       if (res.includes("TrackAlreadyInTrackCollection:")) {
-        showError(
+        showErrorToUser(
           "TrackAlreadyInTrackCollection",
           t("error.track-already-in-playlist", [playlistName]),
         );
       } else if (res.includes("AlbumAlreadyInTrackCollection:")) {
-        showError(
+        showErrorToUser(
           "AlbumAlreadyInTrackCollection",
           t("error.album-already-in-playlist"),
         );
       } else if (res.includes("CollectionAlreadyInTrackCollection:")) {
-        showError(
+        showErrorToUser(
           "CollectionAlreadyInTrackCollection",
           t("error.collection-already-in-playlist", [playlistName]),
         );
