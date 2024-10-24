@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { StatisticsApi } from "@bcc-code/bmm-sdk-fetch";
+import type { GetFraKaareStatisticsResponse } from "@bcc-code/bmm-sdk-fetch";
 import DashboardDataTable from "~/components/dashboard/DashboardDataTable.vue";
 import type { SortDirection } from "~/components/dashboard/DashboardDataTable.vue";
 
@@ -9,14 +10,25 @@ setTitle(() => t("dashboards.title"));
 const sortDirection = ref<SortDirection>("descending");
 const churchSize = ref<"small" | "large">("large");
 
-const api = new StatisticsApi();
-const statistics = await api.statisticsFraKaareGet();
+const statistics = ref<GetFraKaareStatisticsResponse>();
+onBeforeMount(async () => {
+  statistics.value = await new StatisticsApi().statisticsFraKaareGet();
+});
+
+watch(statistics, (stats) => {
+  if (!stats) return;
+  churchSize.value = (stats.largeChurches || []).some(
+    (item) => item.churchName === stats.highlightedChurchName,
+  )
+    ? "large"
+    : "small";
+});
 
 const rows = computed(
   () =>
     (churchSize.value === "large"
-      ? statistics.largeChurches
-      : statistics.smallChurches) ?? [],
+      ? statistics.value?.largeChurches
+      : statistics.value?.smallChurches) ?? [],
 );
 
 function sortPercentageColumn(
@@ -76,6 +88,7 @@ function sortStringColumn(
       </div>
 
       <DashboardDataTable
+        v-if="statistics"
         :key="churchSize"
         v-model:sort-direction="sortDirection"
         :items="rows"
@@ -184,7 +197,7 @@ function sortStringColumn(
           }
         "
         :highlight-row="
-          (item) => item.churchName === statistics.highlightedChurchName
+          (item) => item.churchName === statistics!.highlightedChurchName
         "
       />
     </section>
