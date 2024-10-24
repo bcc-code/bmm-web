@@ -213,6 +213,12 @@
   },
   "dashboards": {
     "title": "Dashboard",
-    "fra-kaare": "Fra Kåre"
+    "fra-kaare": {
+      "title": "Fra Kåre",
+      "largeChurches": "Large Churches",
+      "smallChurches": "Small Churches",
+      "oneEpisodeDescription": "Listened to at least one episode",
+      "allEpisodesDescription": "Listened to every episode"
+    }
   }
 }

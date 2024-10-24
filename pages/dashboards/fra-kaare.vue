@@ -47,7 +47,7 @@ function sortStringColumn(
 
 <template>
   <div class="space-y-12">
-    <PageHeading>{{ t("dashboards.fra-kaare") }}</PageHeading>
+    <PageHeading>{{ t("dashboards.fra-kaare.title") }}</PageHeading>
 
     <section id="graphs"></section>
 
@@ -55,16 +55,20 @@ function sortStringColumn(
       <div class="mb-4">
         <DropdownMenu placement="bottom-start">
           <ButtonStyled size="small" intent="tertiary">
-            {{ churchSize === "large" ? "Large churches" : "Small churches" }}
+            {{
+              churchSize === "large"
+                ? t("dashboards.fra-kaare.largeChurches")
+                : t("dashboards.fra-kaare.smallChurches")
+            }}
             <NuxtIcon name="icon.chevron.down" class="ml-1" />
           </ButtonStyled>
           <template #items>
             <DropdownMenuGroup>
               <DropdownMenuItem @click="churchSize = 'large'">
-                Large churches
+                {{ t("dashboards.fra-kaare.largeChurches") }}
               </DropdownMenuItem>
               <DropdownMenuItem @click="churchSize = 'small'">
-                Small churches
+                {{ t("dashboards.fra-kaare.smallChurches") }}
               </DropdownMenuItem>
             </DropdownMenuGroup>
           </template>
@@ -79,13 +83,13 @@ function sortStringColumn(
         :column-groups="[
           {
             key: 'oneEpisode',
-            text: 'Listened to at least one episode',
+            text: t('dashboards.fra-kaare.oneEpisodeDescription'),
             start: 1,
             span: 4,
           },
           {
             key: 'allEpisodes',
-            text: 'Listened to every episode',
+            text: t('dashboards.fra-kaare.allEpisodesDescription'),
             start: 5,
             span: 4,
           },
