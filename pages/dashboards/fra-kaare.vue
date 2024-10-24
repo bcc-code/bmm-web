@@ -158,7 +158,7 @@ const shouldHideColumns = computed(
           {
             key: 'oneEpisodePercentAverage',
             text: 'Average',
-            props: { class: 'bg-background-2' },
+            props: !shouldHideColumns ? { class: 'bg-background-2' } : {},
             sortMethod: (a, b) =>
               sortPercentageColumn(
                 a.oneEpisodePercentAverage,
@@ -198,7 +198,7 @@ const shouldHideColumns = computed(
           {
             key: 'allEpisodesPercentAverage',
             text: 'Average',
-            props: { class: 'bg-background-2' },
+            props: !shouldHideColumns ? { class: 'bg-background-2' } : {},
             sortMethod: (a, b) =>
               sortPercentageColumn(
                 a.allEpisodesPercentAverage,
