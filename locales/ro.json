@@ -1,7 +1,7 @@
 {
   "global": {
     "cancel": "Anulare",
-    "try-again": "Try again"
+    "try-again": "Încearcă din nou"
   },
   "nav": {
     "home": "Acasă",
@@ -15,11 +15,11 @@
     "search": "Caută",
     "album": "Album",
     "podcast": "Podcast",
-    "not-found": "Page not found",
+    "not-found": "Pagina nu a fost găsită",
     "contributor": "Contribuitor",
     "contributors": "Contribuitori",
     "archive": "Arhivă",
-    "transcribe": "Transcribe"
+    "transcribe": "Transcrie"
   },
   "sidebar": {
     "playlists": {
@@ -27,41 +27,41 @@
     }
   },
   "share": {
-    "link-copied-message": "Copied link to clipboard"
+    "link-copied-message": "S-a copiat linkul în clipboard"
   },
   "profile": {
     "title": "Profil",
-    "autoplay": "Auto Play",
-    "theme": "Theme",
-    "theme-description": "Select the theme used for the interface.",
-    "app-language": "Language",
-    "interface-language": "Interface Language",
-    "interface-language-description": "Select the language used for the interface.",
-    "select-language": "Select language",
-    "content-language": "Content Language",
-    "content-language-description": "The preferred language for the content you are listening to.",
-    "preference-language-1": "Preferred language",
-    "preference-language-2": "Second language",
-    "preference-language-3": "Third language",
-    "preference-language-4": "{count}th language",
+    "autoplay": "Redare automată",
+    "theme": "Temă",
+    "theme-description": "Selectează tema utilizată pentru interfață.",
+    "app-language": "Limbă",
+    "interface-language": "Limbajul interfeței",
+    "interface-language-description": "Alege limba utilizată pentru interfață.",
+    "select-language": "Alege limba",
+    "content-language": "Limba conținutului",
+    "content-language-description": "Limba preferată pentru conținutul pe care îl asculți.",
+    "preference-language-1": "Limba preferate",
+    "preference-language-2": "A doua limbă",
+    "preference-language-3": "A treia limbă",
+    "preference-language-4": "{count}-a limbă",
     "uservoice": "User Voice",
     "privacy-policy": "Politica de confidențialitate",
     "contact": "Contact",
-    "logout": "Sign out",
+    "logout": "Deconectare",
     "theme-dark": "Întunecat",
     "theme-light": "Luminos",
-    "theme-system": "Same as system",
+    "theme-system": "La fel ca sistemul",
     "done": "Gata",
-    "add-another-language": "Add another language"
+    "add-another-language": "Adaugă altă limbă"
   },
   "error": {
     "page-not-found": {
-      "headline": "Error",
-      "text": "Sorry. We can't find the page \"{path}\"."
+      "headline": "Eroare",
+      "text": "Scuze. Nu pot găsi pagina „{path}”."
     },
     "track-already-in-playlist": "Piesa este deja în lista de redare {0}",
     "album-already-in-playlist": "Acest album este deja în lista de redare.",
-    "collection-already-in-playlist": "These tracks are already in playlist {0}."
+    "collection-already-in-playlist": "Aceste melodii sunt deja în lista de redare {0}."
   },
   "collection": {
     "track-count": "{count} track | {count} tracks",
