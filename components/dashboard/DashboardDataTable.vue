@@ -3,23 +3,37 @@
  https://github.com/bcc-code/bcc-design/blob/main/design-library/src/components/BccTable/BccTable.vue
 -->
 
+<script lang="ts">
+export type SortDirection = "ascending" | "descending";
+</script>
+
 <script setup lang="ts" generic="TItem extends Record<string, any>">
 type Column = {
   key: keyof TItem;
   text?: string;
   sortable?: boolean;
   sortMethod?: (a: TItem, b: TItem) => number;
+  props?: Record<string, any>;
 };
-type SortDirection = "ascending" | "descending";
+
+type ColumnGroup = {
+  key: string;
+  text: string;
+  start: number;
+  span: number;
+};
 
 const {
   columns,
   items,
   getField = (item, key) => item[key],
+  columnGroups,
 } = defineProps<{
   columns: Column[];
   items: TItem[];
   getField?: (item: TItem, key: keyof TItem) => string;
+  highlightRow?: (item: TItem) => boolean;
+  columnGroups?: ColumnGroup[];
 }>();
 
 const sortBy = defineModel<keyof TItem>("sortBy");
@@ -61,7 +75,7 @@ function sort(column: Column) {
   }
 
   // Stop sorting this column if we have cycled through both sorting directions
-  if (sortBy.value === column.key && sortDirection.value === "descending") {
+  if (sortBy.value === column.key && sortDirection.value === "ascending") {
     sortDirection.value = "ascending";
     sortBy.value = undefined;
     return;
@@ -69,14 +83,21 @@ function sort(column: Column) {
 
   // If the column was already sorted, flip the sort direction
   if (sortBy.value === column.key) {
-    sortDirection.value = "descending";
+    sortDirection.value = "ascending";
     return;
   }
 
   // Reset the sort direction when another column is clicked
-  sortDirection.value = "ascending";
+  sortDirection.value = "descending";
   sortBy.value = column.key;
 }
+
+const emptyColumnsBeforeFirstColumnGroup = computed(() => {
+  if (!columnGroups) return 0;
+  const sorted = columnGroups.toSorted((a, b) => a.start - b.start);
+  if (!sorted[0]) return 0;
+  return sorted[0].start;
+});
 </script>
 
 <template>
@@ -84,20 +105,45 @@ function sort(column: Column) {
     class="overflow-hidden rounded-2xl border border-label-separator bg-background-1"
   >
     <table class="w-full table-auto">
-      <thead class="type-title-3 bg-background-2 text-left text-label-3">
-        <tr>
-          <th v-for="column in columns" :key="column.key" scope="col">
+      <thead class="type-title-3 text-left text-label-3">
+        <tr v-if="columnGroups?.length">
+          <th v-for="i in emptyColumnsBeforeFirstColumnGroup" :key="i"></th>
+          <th
+            v-for="columnGroup in columnGroups"
+            :key="columnGroup.key"
+            scope="colgroup"
+            class="px-3 py-1.5 sm:px-4 sm:py-2"
+            :colspan="columnGroup.span"
+            cols
+          >
+            {{ columnGroup.text }}
+          </th>
+        </tr>
+        <tr class="bg-background-2">
+          <th
+            v-for="column in columns"
+            :key="column.key"
+            scope="col"
+            class="p-0"
+          >
             <button
               :disabled="column.sortable === false"
               :class="[
-                ' flex items-center gap-1 whitespace-nowrap px-3 py-1.5 sm:px-4 sm:py-2',
+                'group flex w-full items-center gap-1 whitespace-nowrap px-3 py-1.5 sm:px-4 sm:py-2',
                 { 'cursor-pointer': column.sortable !== false },
               ]"
+              v-bind="column.props"
               @click="sort(column)"
             >
               {{ column.text }}
 
-              <span v-if="column.sortable !== false">
+              <span
+                v-if="column.sortable !== false"
+                :class="[
+                  'opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100',
+                  { 'opacity-100': sortBy === column.key },
+                ]"
+              >
                 <NuxtIcon
                   v-if="sortBy !== column.key"
                   name="icon.chevron.up-down"
@@ -123,6 +169,8 @@ function sort(column: Column) {
             v-for="column in columns"
             :key="column.key"
             class="px-3 py-1.5 sm:px-4 sm:py-2"
+            v-bind="column.props"
+            :class="{ 'bg-tint': highlightRow?.(item) ?? false }"
           >
             <slot :name="column.key" :item="item">
               <span>
