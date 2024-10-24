@@ -32,6 +32,17 @@ function sortPercentageColumn(
   }
   return aInt - bInt;
 }
+
+function sortStringColumn(
+  a: string | null | undefined,
+  b: string | null | undefined,
+) {
+  if (typeof a !== "string" || typeof b !== "string") return 0;
+  if (sortDirection.value === "ascending") {
+    return b.localeCompare(a);
+  }
+  return a.localeCompare(b);
+}
 </script>
 
 <template>
@@ -83,13 +94,7 @@ function sortPercentageColumn(
           {
             key: 'churchName',
             text: 'Church',
-            sortMethod(a, b) {
-              if (!a.churchName || !b.churchName) return 0;
-              if (sortDirection === 'ascending') {
-                return b.churchName.localeCompare(a.churchName);
-              }
-              return a.churchName.localeCompare(b.churchName);
-            },
+            sortMethod: (a, b) => sortStringColumn(a.churchName, b.churchName),
           },
           {
             key: 'oneEpisodePercent13To17',
@@ -167,12 +172,12 @@ function sortPercentageColumn(
           },
         ]"
         :get-field="
-          (item, key) =>
-            typeof item[key] === 'number'
-              ? `${Math.round(item[key] * 100)}%`
-              : item[key]
-                ? item[key].toString()
-                : ''
+          (item, key) => {
+            const value = item[key];
+            if (value === null || value === undefined) return '';
+            if (typeof value === 'number') return Math.round(value * 100) + '%';
+            return value;
+          }
         "
         :highlight-row="
           (item) => item.churchName === statistics.highlightedChurchName
