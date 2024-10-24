@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { StatisticsApi } from "@bcc-code/bmm-sdk-fetch";
 import type { GetFraKaareStatisticsResponse } from "@bcc-code/bmm-sdk-fetch";
+import { breakpointsTailwind } from "@vueuse/core";
 import DashboardDataTable from "~/components/dashboard/DashboardDataTable.vue";
 import type { SortDirection } from "~/components/dashboard/DashboardDataTable.vue";
 
@@ -59,6 +60,13 @@ function sortStringColumn(
   }
   return a.localeCompare(b);
 }
+
+const breakpoints = useBreakpoints(breakpointsTailwind);
+const isSmallScreeen = breakpoints.smaller("lg");
+
+const shouldHideColumns = computed(
+  () => churchSize.value === "small" || isSmallScreeen.value,
+);
 </script>
 
 <template>
@@ -93,7 +101,7 @@ function sortStringColumn(
 
       <DashboardDataTable
         v-if="statistics"
-        :key="churchSize"
+        :key="`${churchSize}-${isSmallScreeen}`"
         v-model:sort-direction="sortDirection"
         :items="rows"
         sort-by="oneEpisodePercentAverage"
@@ -102,13 +110,13 @@ function sortStringColumn(
             key: 'oneEpisode',
             text: t('dashboards.fra-kaare.oneEpisodeDescription'),
             start: 1,
-            span: 4,
+            span: shouldHideColumns ? 1 : 4,
           },
           {
             key: 'allEpisodes',
             text: t('dashboards.fra-kaare.allEpisodesDescription'),
             start: 5,
-            span: 4,
+            span: shouldHideColumns ? 1 : 4,
           },
         ]"
         :columns="[
@@ -125,6 +133,7 @@ function sortStringColumn(
                 a.oneEpisodePercent13To17,
                 b.oneEpisodePercent13To17,
               ),
+            hide: shouldHideColumns,
           },
           {
             key: 'oneEpisodePercent18To25',
@@ -134,6 +143,7 @@ function sortStringColumn(
                 a.oneEpisodePercent18To25,
                 b.oneEpisodePercent18To25,
               ),
+            hide: shouldHideColumns,
           },
           {
             key: 'oneEpisodePercent26To35',
@@ -143,6 +153,7 @@ function sortStringColumn(
                 a.oneEpisodePercent26To35,
                 b.oneEpisodePercent26To35,
               ),
+            hide: shouldHideColumns,
           },
           {
             key: 'oneEpisodePercentAverage',
@@ -162,6 +173,7 @@ function sortStringColumn(
                 a.allEpisodesPercent13To17,
                 b.allEpisodesPercent13To17,
               ),
+            hide: shouldHideColumns,
           },
           {
             key: 'allEpisodesPercent18To25',
@@ -171,6 +183,7 @@ function sortStringColumn(
                 a.allEpisodesPercent18To25,
                 b.allEpisodesPercent18To25,
               ),
+            hide: shouldHideColumns,
           },
           {
             key: 'allEpisodesPercent26To35',
@@ -180,6 +193,7 @@ function sortStringColumn(
                 a.allEpisodesPercent26To35,
                 b.allEpisodesPercent26To35,
               ),
+            hide: shouldHideColumns,
           },
           {
             key: 'allEpisodesPercentAverage',

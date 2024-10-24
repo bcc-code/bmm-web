@@ -14,6 +14,7 @@ type Column = {
   sortable?: boolean;
   sortMethod?: (a: TItem, b: TItem) => number;
   props?: Record<string, any>;
+  hide?: boolean;
 };
 
 type ColumnGroup = {
@@ -92,6 +93,8 @@ function sort(column: Column) {
   sortBy.value = column.key;
 }
 
+const filteredColumns = computed(() => columns.filter((c) => !c.hide));
+
 const emptyColumnsBeforeFirstColumnGroup = computed(() => {
   if (!columnGroups) return 0;
   const sorted = columnGroups.toSorted((a, b) => a.start - b.start);
@@ -120,7 +123,7 @@ const emptyColumnsBeforeFirstColumnGroup = computed(() => {
         </tr>
         <tr class="bg-background-2">
           <th
-            v-for="column in columns"
+            v-for="column in filteredColumns"
             :key="column.key"
             scope="col"
             class="p-0"
@@ -165,7 +168,7 @@ const emptyColumnsBeforeFirstColumnGroup = computed(() => {
       >
         <tr v-for="(item, key) in sortedItems" :key="key">
           <td
-            v-for="column in columns"
+            v-for="column in filteredColumns"
             :key="column.key"
             class="px-3 py-1.5 sm:px-4 sm:py-2"
             v-bind="column.props"
