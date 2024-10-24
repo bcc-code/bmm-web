@@ -107,14 +107,13 @@ const emptyColumnsBeforeFirstColumnGroup = computed(() => {
     <table class="w-full table-auto">
       <thead class="type-title-3 text-left text-label-3">
         <tr v-if="columnGroups?.length">
-          <th v-for="i in emptyColumnsBeforeFirstColumnGroup" :key="i"></th>
+          <th v-for="i in emptyColumnsBeforeFirstColumnGroup" :key="i" />
           <th
             v-for="columnGroup in columnGroups"
             :key="columnGroup.key"
             scope="colgroup"
             class="px-3 py-1.5 sm:px-4 sm:py-2"
             :colspan="columnGroup.span"
-            cols
           >
             {{ columnGroup.text }}
           </th>
@@ -170,7 +169,9 @@ const emptyColumnsBeforeFirstColumnGroup = computed(() => {
             :key="column.key"
             class="px-3 py-1.5 sm:px-4 sm:py-2"
             v-bind="column.props"
-            :class="{ 'bg-tint': highlightRow?.(item) ?? false }"
+            :class="{
+              'bg-tint !text-label-1': highlightRow?.(item) ?? false,
+            }"
           >
             <slot :name="column.key" :item="item">
               <span>
