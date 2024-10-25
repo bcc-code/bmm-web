@@ -69,7 +69,7 @@ const shouldHideColumns = computed(
 
 <template>
   <div class="space-y-12">
-    <PageHeading>{{ t("dashboards.fra-kaare.title") }}</PageHeading>
+    <PageHeading>{{ t("dashboards.fra-kaare") }}</PageHeading>
 
     <section id="graphs"></section>
 
@@ -77,20 +77,16 @@ const shouldHideColumns = computed(
       <div class="mb-4">
         <DropdownMenu placement="bottom-start">
           <ButtonStyled size="small" intent="tertiary">
-            {{
-              churchSize === "large"
-                ? t("dashboards.fra-kaare.largeChurches")
-                : t("dashboards.fra-kaare.smallChurches")
-            }}
+            {{ churchSize === "large" ? "Store menigheter" : "Små menigheter" }}
             <NuxtIcon name="icon.chevron.down" class="ml-1" />
           </ButtonStyled>
           <template #items>
             <DropdownMenuGroup>
               <DropdownMenuItem @click="churchSize = 'large'">
-                {{ t("dashboards.fra-kaare.largeChurches") }}
+                Store menigheter
               </DropdownMenuItem>
               <DropdownMenuItem @click="churchSize = 'small'">
-                {{ t("dashboards.fra-kaare.smallChurches") }}
+                Små menigheter
               </DropdownMenuItem>
             </DropdownMenuGroup>
           </template>
@@ -106,21 +102,21 @@ const shouldHideColumns = computed(
         :column-groups="[
           {
             key: 'oneEpisode',
-            text: t('dashboards.fra-kaare.oneEpisodeDescription'),
+            text: 'Har hørt på minst én episode',
             start: 1,
-            span: shouldHideColumns ? 2 : 5,
+            span: shouldHideColumns ? 1 : 5,
           },
           {
             key: 'allEpisodes',
-            text: t('dashboards.fra-kaare.allEpisodesDescription'),
+            text: 'Har hørt på alle episoder',
             start: 5,
-            span: shouldHideColumns ? 2 : 5,
+            span: shouldHideColumns ? 1 : 5,
           },
         ]"
         :columns="[
           {
             key: 'churchName',
-            text: 'Church',
+            text: 'Menighet',
             sortMethod: (a, b) => sortStringColumn(a.churchName, b.churchName),
           },
           {
@@ -155,7 +151,7 @@ const shouldHideColumns = computed(
           },
           {
             key: 'oneEpisodePercentAverage',
-            text: 'Average',
+            text: 'Gjennomsnitt',
             props: () =>
               !shouldHideColumns ? { class: 'bg-background-2' } : {},
             sortMethod: (a, b) =>
@@ -166,7 +162,7 @@ const shouldHideColumns = computed(
           },
           {
             key: 'oneEpisodeChange',
-            text: 'Change',
+            text: 'Endring',
             props: (item) => ({
               class: [
                 'bg-background-2',
@@ -214,7 +210,7 @@ const shouldHideColumns = computed(
           },
           {
             key: 'allEpisodesPercentAverage',
-            text: 'Average',
+            text: 'Gjennomsnitt',
             props: () =>
               !shouldHideColumns ? { class: 'bg-background-2' } : {},
             sortMethod: (a, b) =>
@@ -225,7 +221,7 @@ const shouldHideColumns = computed(
           },
           {
             key: 'allEpisodesChange',
-            text: 'Change',
+            text: 'Endring',
             props: (item) => ({
               class: [
                 'bg-background-2',
@@ -287,6 +283,30 @@ const shouldHideColumns = computed(
           </div>
         </template>
       </DashboardDataTable>
+    </section>
+
+    <section
+      id="info"
+      class="type-paragraph-2 max-w-6xl space-y-3 px-6 text-label-2"
+    >
+      <p>
+        Tilgangen til denne statistikken er kun ment for lokale ungdomsledere og
+        BUK-kontakter. Disse dataene inneholder informasjon om individuell
+        deltagelse i bibelstudieprosjektet, og det er derfor viktig at de ikke
+        deles fritt med andre. Bruk denne statistikken ansvarlig for å skape
+        positivt engasjement rundt prosjektet i din lokalforening. Dersom du har
+        spørsmål til hvordan tallene kan brukes, vennligst kontakt oss på
+        <a href="mailto:support@bcc.media" class="underline"
+          >support@bcc.media</a
+        >.
+      </p>
+      <p>
+        Alderskategoriene er basert på alderen i begynnelsen av året. Det betyr
+        at hvis du fyller 18 i år, regnes du med i kategorien 13-17.
+        Alderskategoriene er basert på personlige brukerkontoer, og brukere som
+        f.eks. låner foreldres innlogging vil ikke telle med i statistikken for
+        sin aldersgruppe.
+      </p>
     </section>
   </div>
 </template>
