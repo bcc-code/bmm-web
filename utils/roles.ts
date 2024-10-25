@@ -1,7 +1,7 @@
 import type { Role, UserModel } from "@bcc-code/bmm-sdk-fetch";
 
 function hasRole(user: UserModel, role: Role): boolean {
-  return user.roles?.includes(role) === true;
+  return user?.roles?.includes(role) === true;
 }
 
 export function isAdmin(user: UserModel): boolean {
