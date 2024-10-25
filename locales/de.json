@@ -209,5 +209,9 @@
       "in-progress": "In Bearbeitung",
       "not-started": "Nicht überprüft"
     }
+  },
+  "dashboards": {
+    "title": "Dashboard",
+    "fra-kaare": "Fra Kåre"
   }
 }
