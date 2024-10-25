@@ -209,5 +209,9 @@
       "in-progress": "V teku",
       "not-started": "Ni pregledano"
     }
+  },
+  "dashboards": {
+    "title": "Nadzorna plošča",
+    "fra-kaare": "Fra Kåre"
   }
 }
