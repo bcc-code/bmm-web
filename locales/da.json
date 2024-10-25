@@ -209,5 +209,9 @@
       "in-progress": "I gang",
       "not-started": "Ikke gennemgået"
     }
+  },
+  "dashboards": {
+    "title": "Kontrolpanel",
+    "fra-kaare": "Fra Kåre"
   }
 }

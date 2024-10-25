@@ -209,5 +209,9 @@
       "in-progress": "In progress",
       "not-started": "Not reviewed"
     }
+  },
+  "dashboards": {
+    "title": "Ταμπλό",
+    "fra-kaare": "Fra Kåre"
   }
 }

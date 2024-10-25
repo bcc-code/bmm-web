@@ -209,5 +209,9 @@
       "in-progress": "En cours",
       "not-started": "Non révisé"
     }
+  },
+  "dashboards": {
+    "title": "Tableau de bord",
+    "fra-kaare": "Fra Kåre"
   }
 }

@@ -72,8 +72,8 @@
     "error-message": {
       "contact-info": "Jos tämä virhe jatkuu, {0}.",
       "contact-link": "ota meihin yhteyttä",
-      "logout-and-redirect-info": "Something regarding the login went wrong:",
-      "manual-logout-and-redirect-info": "Please {0}.",
+      "logout-and-redirect-info": "Jostain syystä kirjautuminen epäonnistui",
+      "manual-logout-and-redirect-info": "Ole hyvä {0}.",
       "logout-and-redirect-link": "yritä kirjautua sisään uudelleen"
     },
     "redirect-message": {
@@ -85,7 +85,7 @@
   "download": {
     "install-app": "Suosittelemme sovelluksen asentamista.",
     "go-to-store": "Siirry App Storeen.",
-    "get-for-desktop": "Get the BMM app directly on your desktop",
+    "get-for-desktop": "Hanki BMM-sovellus suoraan työpöydällesi",
     "download": "Lataa",
     "download-now": "Lataa nyt",
     "download-windows": "Lataa Windowsille",
@@ -118,7 +118,7 @@
   "podcast": {
     "this-week": "Tämä viikko",
     "last-week": "Viime viikko",
-    "week-x": "Week {count}",
+    "week-x": "Viikko {count}",
     "action": {
       "play": "Toista",
       "follow": "Seuraa"
@@ -209,5 +209,9 @@
       "in-progress": "Kesken\n",
       "not-started": "Ei arvosteltu"
     }
+  },
+  "dashboards": {
+    "title": "Aloitusnäkymä",
+    "fra-kaare": "Terveisiä Kårelta"
   }
 }

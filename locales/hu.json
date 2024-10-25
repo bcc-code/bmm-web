@@ -209,5 +209,9 @@
       "in-progress": "In progress",
       "not-started": "Not reviewed"
     }
+  },
+  "dashboards": {
+    "title": "Vezérlőpanel",
+    "fra-kaare": "Fra Kåre"
   }
 }
