@@ -209,5 +209,9 @@
       "in-progress": "Kesken\n",
       "not-started": "Ei arvosteltu"
     }
+  },
+  "dashboards": {
+    "title": "Aloitusnäkymä",
+    "fra-kaare": "Fra Kåre"
   }
 }
