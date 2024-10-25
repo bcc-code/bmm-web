@@ -209,5 +209,9 @@
       "in-progress": "In progress",
       "not-started": "Not reviewed"
     }
+  },
+  "dashboards": {
+    "title": "Panel",
+    "fra-kaare": "Fra Kåre"
   }
 }
