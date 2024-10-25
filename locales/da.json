@@ -19,7 +19,7 @@
     "contributor": "Medvirkende",
     "contributors": "Bidragydere",
     "archive": "Arkiv",
-    "transcribe": "Transcribe"
+    "transcribe": "Transskriber"
   },
   "sidebar": {
     "playlists": {
@@ -61,7 +61,7 @@
     },
     "track-already-in-playlist": "Findes allerede i spillelisten.",
     "album-already-in-playlist": "Dette albumet er allerede i spillelisten.",
-    "collection-already-in-playlist": "These tracks are already in playlist {0}."
+    "collection-already-in-playlist": "Disse numre er allerede på afspilningslisten {0}."
   },
   "collection": {
     "track-count": "{count} spor | {count} spor",
@@ -198,16 +198,16 @@
       "confirmation": "Forstået"
     },
     "songtreasures": "SongTreasures",
-    "save": "Save changes",
+    "save": "Gem ændringer",
     "original": "Original",
-    "edit": "Edit",
+    "edit": "Rediger",
     "deleteSegment": "Slet",
-    "undeleteSegment": "Undo delete",
-    "review": "Review",
+    "undeleteSegment": "Fortryd sletning",
+    "review": "Gennemgå",
     "status": {
-      "done": "Reviewed",
-      "in-progress": "In progress",
-      "not-started": "Not reviewed"
+      "done": "Gennemgået",
+      "in-progress": "I gang",
+      "not-started": "Ikke gennemgået"
     }
   }
 }
