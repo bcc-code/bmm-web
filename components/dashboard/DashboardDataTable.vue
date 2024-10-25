@@ -13,7 +13,7 @@ type Column = {
   text?: string;
   sortable?: boolean;
   sortMethod?: (a: TItem, b: TItem) => number;
-  props?: Record<string, any>;
+  props?: (item?: TItem) => Record<string, any>;
   hide?: boolean;
 };
 
@@ -134,7 +134,7 @@ const emptyColumnsBeforeFirstColumnGroup = computed(() => {
                 'group flex w-full items-center gap-1 whitespace-nowrap px-3 py-1.5 sm:px-4 sm:py-2',
                 { 'cursor-pointer': column.sortable !== false },
               ]"
-              v-bind="column.props"
+              v-bind="column.props?.()"
               @click="sort(column)"
             >
               {{ column.text }}
@@ -171,7 +171,7 @@ const emptyColumnsBeforeFirstColumnGroup = computed(() => {
             v-for="column in filteredColumns"
             :key="column.key"
             class="px-3 py-1.5 sm:px-4 sm:py-2"
-            v-bind="column.props"
+            v-bind="column.props?.(item)"
             :class="{
               'bg-tint text-black-1': highlightRow?.(item) ?? false,
             }"

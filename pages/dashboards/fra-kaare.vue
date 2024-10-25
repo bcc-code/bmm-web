@@ -41,13 +41,11 @@ function sortPercentageColumn(
   b: number | null | undefined,
 ) {
   if (typeof a !== "number" || typeof b !== "number") return 0;
-  const aInt = a * 100;
-  const bInt = b * 100;
-  if (aInt === bInt) return 0;
+  if (a === b) return 0;
   if (sortDirection.value === "descending") {
-    return bInt - aInt;
+    return b - a;
   }
-  return aInt - bInt;
+  return a - b;
 }
 
 function sortStringColumn(
@@ -110,13 +108,13 @@ const shouldHideColumns = computed(
             key: 'oneEpisode',
             text: t('dashboards.fra-kaare.oneEpisodeDescription'),
             start: 1,
-            span: shouldHideColumns ? 1 : 4,
+            span: shouldHideColumns ? 2 : 5,
           },
           {
             key: 'allEpisodes',
             text: t('dashboards.fra-kaare.allEpisodesDescription'),
             start: 5,
-            span: shouldHideColumns ? 1 : 4,
+            span: shouldHideColumns ? 2 : 5,
           },
         ]"
         :columns="[
@@ -158,12 +156,31 @@ const shouldHideColumns = computed(
           {
             key: 'oneEpisodePercentAverage',
             text: 'Average',
-            props: !shouldHideColumns ? { class: 'bg-background-2' } : {},
+            props: () =>
+              !shouldHideColumns ? { class: 'bg-background-2' } : {},
             sortMethod: (a, b) =>
               sortPercentageColumn(
                 a.oneEpisodePercentAverage,
                 b.oneEpisodePercentAverage,
               ),
+          },
+          {
+            key: 'oneEpisodeChange',
+            text: 'Change',
+            props: (item) => ({
+              class: [
+                'bg-background-2',
+                {
+                  'text-[green]':
+                    item?.oneEpisodeChange && item.oneEpisodeChange > 0,
+                  'text-[red]':
+                    item?.oneEpisodeChange && item.oneEpisodeChange < 0,
+                },
+              ],
+            }),
+            sortMethod: (a, b) =>
+              sortPercentageColumn(a.oneEpisodeChange, b.oneEpisodeChange),
+            hide: shouldHideColumns,
           },
           {
             key: 'allEpisodesPercent13To17',
@@ -198,12 +215,31 @@ const shouldHideColumns = computed(
           {
             key: 'allEpisodesPercentAverage',
             text: 'Average',
-            props: !shouldHideColumns ? { class: 'bg-background-2' } : {},
+            props: () =>
+              !shouldHideColumns ? { class: 'bg-background-2' } : {},
             sortMethod: (a, b) =>
               sortPercentageColumn(
                 a.allEpisodesPercentAverage,
                 b.allEpisodesPercentAverage,
               ),
+          },
+          {
+            key: 'allEpisodesChange',
+            text: 'Change',
+            props: (item) => ({
+              class: [
+                'bg-background-2',
+                {
+                  'text-[green]':
+                    item?.allEpisodesChange && item.allEpisodesChange > 0,
+                  'text-[red]':
+                    item?.allEpisodesChange && item.allEpisodesChange < 0,
+                },
+              ],
+            }),
+            sortMethod: (a, b) =>
+              sortPercentageColumn(a.allEpisodesChange, b.allEpisodesChange),
+            hide: shouldHideColumns,
           },
         ]"
         :get-field="
@@ -217,7 +253,40 @@ const shouldHideColumns = computed(
         :highlight-row="
           (item) => item.churchName === statistics!.highlightedChurchName
         "
-      />
+      >
+        <template #oneEpisodeChange="{ item }">
+          <div
+            v-if="typeof item.oneEpisodeChange === 'number'"
+            class="flex grow items-center justify-end gap-1"
+          >
+            <NuxtIcon
+              v-if="item.oneEpisodeChange !== 0"
+              :name="
+                item.oneEpisodeChange > 0
+                  ? 'icon.chevron.up'
+                  : 'icon.chevron.down'
+              "
+            />
+            <span>{{ (item.oneEpisodeChange * 100).toPrecision(1) }}%</span>
+          </div>
+        </template>
+        <template #allEpisodesChange="{ item }">
+          <div
+            v-if="typeof item.allEpisodesChange === 'number'"
+            class="flex grow items-center justify-end gap-1"
+          >
+            <NuxtIcon
+              v-if="item.allEpisodesChange !== 0"
+              :name="
+                item.allEpisodesChange > 0
+                  ? 'icon.chevron.up'
+                  : 'icon.chevron.down'
+              "
+            />
+            <span>{{ (item.allEpisodesChange * 100).toPrecision(1) }}%</span>
+          </div>
+        </template>
+      </DashboardDataTable>
     </section>
   </div>
 </template>
