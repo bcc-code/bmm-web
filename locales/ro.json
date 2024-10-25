@@ -209,5 +209,9 @@
       "in-progress": "În curs",
       "not-started": "Not reviewed"
     }
+  },
+  "dashboards": {
+    "title": "Panou de control",
+    "fra-kaare": "Fra Kåre"
   }
 }
