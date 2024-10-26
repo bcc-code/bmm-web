@@ -64,43 +64,43 @@
     "collection-already-in-playlist": "Aceste melodii sunt deja în lista de redare {0}."
   },
   "collection": {
-    "track-count": "{count} track | {count} tracks",
-    "album-count": "{count} album | {count} albums",
+    "track-count": "{count} piesa | {count} piese",
+    "album-count": "{count} album | {count} albume",
     "resume": "Continuă"
   },
   "login": {
     "error-message": {
-      "contact-info": "Should this error persist, {0}.",
-      "contact-link": "please get in contact with us",
-      "logout-and-redirect-info": "Something regarding the login went wrong:",
-      "manual-logout-and-redirect-info": "Please {0}.",
-      "logout-and-redirect-link": "try to log in again"
+      "contact-info": "Dacă această eroare persistă, {0}.",
+      "contact-link": "te rugăm să ne contactezi",
+      "logout-and-redirect-info": "Ceva cu privire la autentificare a mers prost:",
+      "manual-logout-and-redirect-info": "Te rog {0}.",
+      "logout-and-redirect-link": "încearcă să te conectezi din nou"
     },
     "redirect-message": {
-      "redirect-info": "You will be redirected to the login page.",
-      "manual-redirect-info": "Please wait or {0}.",
+      "redirect-info": "Vei fi redirecționat către pagina de conectare.",
+      "manual-redirect-info": "Te rog să aștepți sau {0}.",
       "redirect-link": "fă clic pentru a încerca din nou"
     }
   },
   "download": {
     "install-app": "Recomandăm instalarea aplicației.",
     "go-to-store": "Navighează la App Store.",
-    "get-for-desktop": "Get the BMM app directly on your desktop",
+    "get-for-desktop": "Obține aplicația BMM direct pe desktop",
     "download": "Descarcă",
-    "download-now": "Download now",
-    "download-windows": "Download for Windows",
-    "download-mac-intel": "Download for Intel CPU",
-    "download-mac-arm": "Download for newer Mac",
-    "mac-intel-explanation": "Usually purchased before 2021",
+    "download-now": "Descarcă acum",
+    "download-windows": "Descarcă pentru Windows",
+    "download-mac-intel": "Descarcă pentru CPU Intel",
+    "download-mac-arm": "Descarcă pentru Mac mai nou",
+    "mac-intel-explanation": "Achiziționat de obicei înainte de 2021",
     "mac-arm-explanation": "M1, M2, M3, M4 chip",
     "download-bmm-app": "Descarcă aplicația BMM",
     "download-track": "Descarcă piesă",
     "mobile": "Mobil",
     "messages-not-allowed": {
-      "title": "Download of messages unavailable",
+      "title": "Descărcarea vorbirilor indisponibilă",
       "description": "Abilitatea de a descărca vorbiri de pe BMM nu mai este disponibilă. Dacă aveți nevoie de o vorbire pentru o anumită utilizare, vă rugăm să ne contactați și să ne explicați nevoile."
     },
-    "sendEmailTo": "Send email to {0}"
+    "sendEmailTo": "Trimite e-mail la {0}"
   },
   "playlist": {
     "add": "Add playlist",
