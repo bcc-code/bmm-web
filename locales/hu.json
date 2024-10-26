@@ -19,7 +19,7 @@
     "contributor": "Közreműködő",
     "contributors": "Közreműködők",
     "archive": "Archívum",
-    "transcribe": "Transcribe"
+    "transcribe": "Átirat"
   },
   "sidebar": {
     "playlists": {
@@ -33,92 +33,92 @@
     "title": "Profil",
     "autoplay": "Automatikus lejátszás",
     "theme": "Téma",
-    "theme-description": "Select the theme used for the interface.",
-    "app-language": "Language",
-    "interface-language": "Interface Language",
-    "interface-language-description": "Select the language used for the interface.",
-    "select-language": "Select language",
-    "content-language": "Content Language",
-    "content-language-description": "The preferred language for the content you are listening to.",
-    "preference-language-1": "Preferred language",
-    "preference-language-2": "Second language",
-    "preference-language-3": "Third language",
-    "preference-language-4": "{count}th language",
+    "theme-description": "Válasszad ki a felülethez használt témát.",
+    "app-language": "Nyelv",
+    "interface-language": "Felület nyelve",
+    "interface-language-description": "Válasszad ki a felülethez használt nyelvet.",
+    "select-language": "Nyelv kiválasztása",
+    "content-language": "Tartalom nyelve",
+    "content-language-description": "A hallgatott tartalom preferált nyelve.",
+    "preference-language-1": "Elsőleges nyelv",
+    "preference-language-2": "Második nyelv",
+    "preference-language-3": "Harmadik nyelv",
+    "preference-language-4": "{count}. nyelv",
     "uservoice": "Felhasználói hang",
     "privacy-policy": "Adatvédelmi szabályzat",
     "contact": "Kapcsolat",
-    "logout": "Sign out",
+    "logout": "Kijelentkezés",
     "theme-dark": "Sötét",
     "theme-light": "Világos",
-    "theme-system": "Same as system",
+    "theme-system": "Ugyanaz, mint a rendszeré",
     "done": "Kész",
-    "add-another-language": "Add another language"
+    "add-another-language": "Nyelv hozzáadása"
   },
   "error": {
     "page-not-found": {
-      "headline": "Error",
-      "text": "Sorry. We can't find the page \"{path}\"."
+      "headline": "Hiba",
+      "text": "Elnézést. Nem találjuk a \"{path}\" oldalt."
     },
     "track-already-in-playlist": "Zeneszám már létezik a {0} számú lejátszási listában",
     "album-already-in-playlist": "Ez az album már szerepel a lejátszási lista.",
-    "collection-already-in-playlist": "These tracks are already in playlist {0}."
+    "collection-already-in-playlist": "Ezek a számok már a {0} lejátszási listán vannak."
   },
   "collection": {
-    "track-count": "{count} track | {count} tracks",
-    "album-count": "{count} album | {count} albums",
+    "track-count": "{count} szám | {count} számok",
+    "album-count": "{count} album | {count} albumok",
     "resume": "Folytatás"
   },
   "login": {
     "error-message": {
-      "contact-info": "Should this error persist, {0}.",
-      "contact-link": "please get in contact with us",
-      "logout-and-redirect-info": "Something regarding the login went wrong:",
-      "manual-logout-and-redirect-info": "Please {0}.",
-      "logout-and-redirect-link": "try to log in again"
+      "contact-info": "Ha ez a hiba továbbra is fennáll, {0}.",
+      "contact-link": "kérjük vedd fel velünk a kapcsolatot",
+      "logout-and-redirect-info": "Valami hiba történt a bejelentkezéssel kapcsolatban:",
+      "manual-logout-and-redirect-info": "Kérlek {0}.",
+      "logout-and-redirect-link": "próbálj meg újra bejelentkezni"
     },
     "redirect-message": {
-      "redirect-info": "You will be redirected to the login page.",
-      "manual-redirect-info": "Please wait or {0}.",
-      "redirect-link": "click to try again"
+      "redirect-info": "A rendszer átirányít a bejelentkezési oldalra.",
+      "manual-redirect-info": "Kérlek, várj, vagy {0}.",
+      "redirect-link": "kattints az újrapróbálkozáshoz"
     }
   },
   "download": {
-    "install-app": "We recommend installing the app.",
-    "go-to-store": "Navigate to the App Store.",
-    "get-for-desktop": "Get the BMM app directly on your desktop",
+    "install-app": "Javasoljuk az alkalmazás telepítését.",
+    "go-to-store": "Menj az App Store-ba.",
+    "get-for-desktop": "Töltsd le a BMM alkalmazást közvetlenül az asztalra",
     "download": "Letöltés",
-    "download-now": "Download now",
-    "download-windows": "Download for Windows",
-    "download-mac-intel": "Download for Intel CPU",
-    "download-mac-arm": "Download for newer Mac",
-    "mac-intel-explanation": "Usually purchased before 2021",
+    "download-now": "Letöltés",
+    "download-windows": "Letöltés Windowshoz",
+    "download-mac-intel": "Letöltés Intel processzorhoz",
+    "download-mac-arm": "Letöltés újabb Mac-re",
+    "mac-intel-explanation": "Általában a 2021 előtt vásároltak",
     "mac-arm-explanation": "M1, M2, M3, M4 chip",
-    "download-bmm-app": "Download the BMM app",
+    "download-bmm-app": "Töltsd le a BMM alkalmazást",
     "download-track": "Zeneszám letöltse",
-    "mobile": "Mobile",
+    "mobile": "Mobil",
     "messages-not-allowed": {
-      "title": "Download of messages unavailable",
+      "title": "Beszédek letöltése nem elérhető",
       "description": "A BMM-ből származó üzenetek letöltésének lehetősége már nem áll rendelkezésre. Ha egy üzenetre van szükséged egy adott felhasználási célra, kérjük, lépj velünk kapcsolatba, és ismertesd igényeidet."
     },
-    "sendEmailTo": "Send email to {0}"
+    "sendEmailTo": "E-mail küldése a {0} címre"
   },
   "playlist": {
-    "add": "Add playlist",
+    "add": "Lejátszási lista hozzáadása",
     "new-playlist": "Új lejátszási lista",
-    "name-your-playlist": "Name your playlist",
+    "name-your-playlist": "Nevezd el a lejátszási listát",
     "delete-playlist": "Lejátszási lista törlése",
-    "delete-playlist-description": "Are you sure you want to delete the playlist? This action cannot be reversed.",
+    "delete-playlist-description": "Biztosan törlöd a lejátszási listát? Ez a művelet nem vonható vissza.",
     "action": {
       "shuffle": "Keverés",
       "add-to-my-playlists": "Hozzáadás lejátszási listámhoz",
       "remove-shared-playlist": "Lejátszási lista törlése"
     },
-    "by-x": "by {name}"
+    "by-x": "{name} szerint"
   },
   "podcast": {
     "this-week": "Ez a hét",
     "last-week": "Elöző hét",
-    "week-x": "Week {count}",
+    "week-x": "{count}. hét",
     "action": {
       "play": "Lejátszás",
       "follow": "Kövesse"
@@ -128,7 +128,7 @@
     "queue": "Várólista"
   },
   "edit": {
-    "rename": "Rename",
+    "rename": "Átnevezés",
     "delete": "Törlés"
   },
   "track": {
@@ -148,13 +148,13 @@
     "a11y": {
       "download": "Letöltés",
       "queue": "Hozzáadás várólistához",
-      "options": "Show options"
+      "options": "Beállítások megjelenítése"
     },
     "details": {
-      "title": "Track Details",
-      "reference": "Reference",
+      "title": "Szám részletei",
+      "reference": "Referencia",
       "duration": "Időtartam",
-      "publish-date": "Publish Date",
+      "publish-date": "Megjelenés dátuma",
       "album": "Album",
       "publisher": "Kiadó",
       "copyright": "Szerzői jog",
@@ -166,7 +166,7 @@
   },
   "home": {
     "list": {
-      "see-all": "See all",
+      "see-all": "Mutasd mind",
       "recommended": "Ajánlott"
     }
   },
@@ -181,14 +181,14 @@
       "Playlists": "Lejátszási listák"
     },
     "input-placeholder": "Keresés",
-    "loading-results": "Loading results",
-    "no-results-yet": "No results yet",
-    "no-results-found": "No results found",
-    "result-count": "{count} results"
+    "loading-results": "Eredmények betöltése",
+    "no-results-yet": "Nincs eredmény",
+    "no-results-found": "Nincs találat",
+    "result-count": "{count} eredmény"
   },
   "streak": {
     "your-streak": "E heti sorozatod",
-    "days-in-row": "{count} days in a row"
+    "days-in-row": "{count} nap egymás után"
   },
   "transcription": {
     "lyrics": "Szövegek",
@@ -198,20 +198,20 @@
       "confirmation": "Értem"
     },
     "songtreasures": "SongTreasures",
-    "save": "Save changes",
-    "original": "Original",
-    "edit": "Edit",
+    "save": "Módosítások mentése",
+    "original": "Eredeti",
+    "edit": "Szerkesztés",
     "deleteSegment": "Törlés",
-    "undeleteSegment": "Undo delete",
-    "review": "Review",
+    "undeleteSegment": "Törlés visszavonása",
+    "review": "Áttekintés",
     "status": {
-      "done": "Reviewed",
-      "in-progress": "In progress",
-      "not-started": "Not reviewed"
+      "done": "Áttekintve",
+      "in-progress": "Folyamatban",
+      "not-started": "Nincs áttekintve"
     }
   },
   "dashboards": {
     "title": "Vezérlőpanel",
-    "fra-kaare": "Fra Kåre"
+    "fra-kaare": "Kårétól"
   }
 }
