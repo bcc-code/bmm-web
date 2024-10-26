@@ -15,11 +15,11 @@
     "search": "Ara",
     "album": "Albüm",
     "podcast": "Podcast",
-    "not-found": "Page not found",
+    "not-found": "Sayfa bulunamadı",
     "contributor": "Katkıda Bulunan",
     "contributors": "Katkı Yapanlar",
     "archive": "Arşiv",
-    "transcribe": "Transcribe"
+    "transcribe": "Uyarlamak"
   },
   "sidebar": {
     "playlists": {
@@ -61,7 +61,7 @@
     },
     "track-already-in-playlist": "Parça zaten oynatma listesi {0}mevcut",
     "album-already-in-playlist": "Bu albüm çalma listenizdeki zaten.",
-    "collection-already-in-playlist": "These tracks are already in playlist {0}."
+    "collection-already-in-playlist": "Bu parçalar zaten çalma listenizde {0}mevcut."
   },
   "collection": {
     "track-count": "{count} parça | {count} parçalar",
@@ -83,19 +83,19 @@
     }
   },
   "download": {
-    "install-app": "We recommend installing the app.",
-    "go-to-store": "Navigate to the App Store.",
-    "get-for-desktop": "Get the BMM app directly on your desktop",
+    "install-app": "Uygulamayı yüklemenizi öneririz.",
+    "go-to-store": "App Store’a gidin.",
+    "get-for-desktop": "BMM uygulamasını doğrudan masaüstünüze alın",
     "download": "İndir",
-    "download-now": "Download now",
-    "download-windows": "Download for Windows",
-    "download-mac-intel": "Download for Intel CPU",
-    "download-mac-arm": "Download for newer Mac",
-    "mac-intel-explanation": "Usually purchased before 2021",
-    "mac-arm-explanation": "M1, M2, M3, M4 chip",
-    "download-bmm-app": "Download the BMM app",
+    "download-now": "Şimdi indirin",
+    "download-windows": "Windows için indirin",
+    "download-mac-intel": "Intel CPU için indirin",
+    "download-mac-arm": "Daha yeni Mac için indirin",
+    "mac-intel-explanation": "Genellikle 2021'den önce satın alındı",
+    "mac-arm-explanation": "M1, M2, M3, M4 çipi",
+    "download-bmm-app": "BMM uygulamasını indirin",
     "download-track": "Parça İndir",
-    "mobile": "Mobile",
+    "mobile": "Mobil",
     "messages-not-allowed": {
       "title": "Mesajların indirilmesi kullanılamıyor",
       "description": "BMM'den mesaj indirme özelliği artık kullanılamıyor. Belirli bir kullanıma yönelik bir mesaja ihtiyacınız varsa lütfen bizimle iletişime geçin ve ihtiyaçlarınızı açıklayın."
@@ -143,7 +143,7 @@
       "more-info": "Daha bilgi",
       "show-all": "Listele",
       "remove-from-playlist": "Çalma listesinden çıkar",
-      "transcription": "Transcription"
+      "transcription": "Transkripsiyon"
     },
     "a11y": {
       "download": "İndir",
@@ -151,7 +151,7 @@
       "options": "Seçenekleri göster"
     },
     "details": {
-      "title": "Track Details",
+      "title": "Parça Detayları",
       "reference": "Referans",
       "duration": "Süre",
       "publish-date": "Yayın Tarihi",
@@ -191,23 +191,23 @@
     "days-in-row": "{count} gün üst üste"
   },
   "transcription": {
-    "lyrics": "Lyrics",
+    "lyrics": "Şarkı sözleri",
     "auto-transcribed": {
       "title": "Otomatik olarak metne dönüştürüldü",
       "explanation": "Transkriptler otomatik olarak oluşturulur ve hatalar içerebilir",
       "confirmation": "Anladım"
     },
     "songtreasures": "SongTreasures",
-    "save": "Save changes",
-    "original": "Original",
-    "edit": "Edit",
+    "save": "Değişiklikleri kaydet",
+    "original": "Orijinal",
+    "edit": "Düzenlemek",
     "deleteSegment": "Sil",
-    "undeleteSegment": "Undo delete",
-    "review": "Review",
+    "undeleteSegment": "Silmeyi geri al",
+    "review": "Gözden geçirmek",
     "status": {
-      "done": "Reviewed",
-      "in-progress": "In progress",
-      "not-started": "Not reviewed"
+      "done": "İncelendi",
+      "in-progress": "Devam etmekte",
+      "not-started": "İncelenmedi"
     }
   },
   "dashboards": {
