@@ -103,22 +103,22 @@
     "sendEmailTo": "Trimite e-mail la {0}"
   },
   "playlist": {
-    "add": "Add playlist",
+    "add": "Listă de redare nouă",
     "new-playlist": "Play-list nou",
-    "name-your-playlist": "Name your playlist",
+    "name-your-playlist": "Denumește lista de redare",
     "delete-playlist": "Șterge play-list",
-    "delete-playlist-description": "Are you sure you want to delete the playlist? This action cannot be reversed.",
+    "delete-playlist-description": "Ești sigur că dorești să ștergi lista de redare? Această acțiune nu poate fi inversată.",
     "action": {
       "shuffle": "Aleatoriu",
       "add-to-my-playlists": "Adaugă la play-list-urile mele",
       "remove-shared-playlist": "Elimină play-list"
     },
-    "by-x": "by {name}"
+    "by-x": "de la {name}"
   },
   "podcast": {
     "this-week": "Această săptămână",
     "last-week": "Ultima săptămână",
-    "week-x": "Week {count}",
+    "week-x": "Săptămâna {count}",
     "action": {
       "play": "Cântă",
       "follow": "Urmărește"
@@ -151,7 +151,7 @@
       "options": "Afișează opțiuni"
     },
     "details": {
-      "title": "Track Details",
+      "title": "Detaliile piesei",
       "reference": "Referinţă",
       "duration": "Durată",
       "publish-date": "Data publicării",
@@ -184,11 +184,11 @@
     "loading-results": "Se încarcă rezultatele",
     "no-results-yet": "Niciun rezultat încă",
     "no-results-found": "Niciun rezultat găsit",
-    "result-count": "{count} results"
+    "result-count": "{count} rezultate"
   },
   "streak": {
     "your-streak": "Progresul tău",
-    "days-in-row": "{count} days in a row"
+    "days-in-row": "{count} zile consecutive"
   },
   "transcription": {
     "lyrics": "Versuri",
@@ -203,11 +203,11 @@
     "edit": "Editează",
     "deleteSegment": "Șterge",
     "undeleteSegment": "Anulează ștergerea",
-    "review": "Review",
+    "review": "Revizuire",
     "status": {
       "done": "Revizuit",
       "in-progress": "În curs",
-      "not-started": "Not reviewed"
+      "not-started": "Nerevizuit"
     }
   },
   "dashboards": {
