@@ -1,7 +1,7 @@
 {
   "global": {
     "cancel": "Mégse",
-    "try-again": "Try again"
+    "try-again": "Próbáld újra"
   },
   "nav": {
     "home": "Főoldal",
@@ -15,7 +15,7 @@
     "search": "Keresés",
     "album": "Album",
     "podcast": "Podcast",
-    "not-found": "Page not found",
+    "not-found": "Az oldal nem található",
     "contributor": "Közreműködő",
     "contributors": "Közreműködők",
     "archive": "Archívum",
@@ -27,12 +27,12 @@
     }
   },
   "share": {
-    "link-copied-message": "Copied link to clipboard"
+    "link-copied-message": "Link vágólapra másolva"
   },
   "profile": {
     "title": "Profil",
-    "autoplay": "Auto Play",
-    "theme": "Theme",
+    "autoplay": "Automatikus lejátszás",
+    "theme": "Téma",
     "theme-description": "Select the theme used for the interface.",
     "app-language": "Language",
     "interface-language": "Interface Language",
