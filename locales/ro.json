@@ -77,7 +77,7 @@
       "logout-and-redirect-link": "încearcă să te conectezi din nou"
     },
     "redirect-message": {
-      "redirect-info": "Vei fi redirecționat către pagina de conectare.",
+      "redirect-info": "Vei fi redirecționat la pagina de conectare.",
       "manual-redirect-info": "Te rog să aștepți sau {0}.",
       "redirect-link": "fă clic pentru a încerca din nou"
     }
@@ -212,6 +212,6 @@
   },
   "dashboards": {
     "title": "Panou de control",
-    "fra-kaare": "Fra Kåre"
+    "fra-kaare": "De la Kåre"
   }
 }
