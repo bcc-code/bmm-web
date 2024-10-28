@@ -161,7 +161,7 @@
       "song-number": "Numéro de chant",
       "arranger": "Arrangement",
       "composer": "Compositeur",
-      "lyricist": "Auteur"
+      "lyricist": "Paroles"
     }
   },
   "home": {
@@ -173,7 +173,7 @@
   "search": {
     "search-filter": {
       "All": "Tous",
-      "Speeches": "Discours",
+      "Speeches": "Messages",
       "Music": "Musique",
       "Albums": "Albums",
       "Contributors": "Contributeurs",
