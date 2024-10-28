@@ -12,7 +12,7 @@
     "recent-messages": "Derniers Messages",
     "recent-music": "Musique récente",
     "audiobooks": "Livres audio",
-    "search": "Recherche",
+    "search": "Rechercher",
     "album": "Album",
     "podcast": "Podcast",
     "not-found": "Page non trouvée",
@@ -44,7 +44,7 @@
     "preference-language-2": "Seconde langue",
     "preference-language-3": "Troisième langue",
     "preference-language-4": "{count}ème langue",
-    "uservoice": "Guide de l'utilisateur",
+    "uservoice": "Parole à l'utilisateur",
     "privacy-policy": "Politique de confidentialité",
     "contact": "Contact",
     "logout": "Se déconnecter",
@@ -139,7 +139,7 @@
       "add-to-queue": "Ajouter à la file d'attente",
       "add-to-playlist": "Ajouter à la liste de lecture",
       "share": "Partager le titre",
-      "go-to-contributors": "Aller à l'artiste",
+      "go-to-contributors": "Accéder aux contributeurs",
       "more-info": "Plus d'informations",
       "show-all": "Tout afficher",
       "remove-from-playlist": "Supprimer de la liste de lecture",
@@ -161,7 +161,7 @@
       "song-number": "Numéro de chant",
       "arranger": "Arrangement",
       "composer": "Compositeur",
-      "lyricist": "Auteur"
+      "lyricist": "Paroles"
     }
   },
   "home": {
@@ -173,7 +173,7 @@
   "search": {
     "search-filter": {
       "All": "Tous",
-      "Speeches": "Discours",
+      "Speeches": "Messages",
       "Music": "Musique",
       "Albums": "Albums",
       "Contributors": "Contributeurs",
@@ -212,6 +212,6 @@
   },
   "dashboards": {
     "title": "Tableau de bord",
-    "fra-kaare": "Fra Kåre"
+    "fra-kaare": "Venant de Kåre"
   }
 }

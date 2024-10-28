@@ -15,11 +15,11 @@
     "search": "தேடு",
     "album": "ஆல்பம்",
     "podcast": "பாட்காஸ்ட்",
-    "not-found": "Page not found",
+    "not-found": "பக்கம் கிடைக்கவில்லை",
     "contributor": "பங்களிப்பாளர்",
     "contributors": "பங்களிப்பாளர்கள்",
     "archive": "காப்பகம்",
-    "transcribe": "Transcribe"
+    "transcribe": "படியெடுக்கவும்"
   },
   "sidebar": {
     "playlists": {
@@ -61,7 +61,7 @@
     },
     "track-already-in-playlist": "ட்ராக் ஏற்கனவே பிளேலிஸ்ட் {0}இல் உள்ளது",
     "album-already-in-playlist": "இந்த ஆல்பம் ஏற்கனவே உங்கள் பிளேலிஸ்ட்டில் உள்ளது.",
-    "collection-already-in-playlist": "These tracks are already in playlist {0}."
+    "collection-already-in-playlist": "இந்த டிராக்குகள் ஏற்கனவே பிளேலிஸ்ட்டில் உள்ளன {0}."
   },
   "collection": {
     "track-count": "{count} ட்ராக்| {count} டிராக்குகள்",
@@ -83,16 +83,16 @@
     }
   },
   "download": {
-    "install-app": "We recommend installing the app.",
-    "go-to-store": "Navigate to the App Store.",
-    "get-for-desktop": "Get the BMM app directly on your desktop",
+    "install-app": "செயலியை நிறுவப் பரிந்துரைக்கிறோம்.",
+    "go-to-store": "ஆப் ஸ்டோருக்கு செல்லவும்.",
+    "get-for-desktop": "BMM செயலியை நேரடியாக உங்கள் டெஸ்க்டாப்பில் பெறவும்",
     "download": "பதிவிறக்கு ",
-    "download-now": "Download now",
-    "download-windows": "Download for Windows",
-    "download-mac-intel": "Download for Intel CPU",
-    "download-mac-arm": "Download for newer Mac",
-    "mac-intel-explanation": "Usually purchased before 2021",
-    "mac-arm-explanation": "M1, M2, M3, M4 chip",
+    "download-now": "இப்போது பதிவிறக்கவும்",
+    "download-windows": "விண்டோஸுக்காக பதிவிறக்கவும்",
+    "download-mac-intel": "Intel CPU க்கு பதிவிறக்கவும்",
+    "download-mac-arm": "புதிய மேக்கிற்கு பதிவிறக்கவும்",
+    "mac-intel-explanation": "வழக்கமாக 2021க்கு முன் வாங்கப்படும்",
+    "mac-arm-explanation": "M1, M2, M3, M4 சிப்",
     "download-bmm-app": "BMM செயலியை பதிவிறக்கவும்",
     "download-track": "டிராக்கைப் பதிவிறக்கவும்",
     "mobile": "மொபைல்",
@@ -151,7 +151,7 @@
       "options": "விருப்பங்களைக் காட்டு"
     },
     "details": {
-      "title": "Track Details",
+      "title": "ட்ராக் விவரங்கள்",
       "reference": "குறிப்பு",
       "duration": "கால அளவு",
       "publish-date": "வெளியிடும் தேதி",
@@ -198,20 +198,20 @@
       "confirmation": "அறிந்துகொண்டேன்"
     },
     "songtreasures": "SongTreasures",
-    "save": "Save changes",
-    "original": "Original",
-    "edit": "Edit",
+    "save": "மாற்றங்களைச் சேமிக்கவும்",
+    "original": "அசல்",
+    "edit": "திருத்தவும்",
     "deleteSegment": "அழி",
-    "undeleteSegment": "Undo delete",
-    "review": "Review",
+    "undeleteSegment": "நீக்குதலை செயல்தவிர்க்கவும்",
+    "review": "மதிப்பாய்வு",
     "status": {
-      "done": "Reviewed",
-      "in-progress": "In progress",
-      "not-started": "Not reviewed"
+      "done": "மதிப்பாய்வு செய்யப்பட்டது",
+      "in-progress": "நடந்து கொண்டிருக்கிறது",
+      "not-started": "மதிப்பாய்வு செய்யப்படவில்லை"
     }
   },
   "dashboards": {
     "title": "டாஷ்போர்டு",
-    "fra-kaare": "Fra Kåre"
+    "fra-kaare": "ஃப்ரா கோரே"
   }
 }
