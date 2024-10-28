@@ -65,6 +65,12 @@ const isSmallScreeen = breakpoints.smaller("lg");
 const shouldHideColumns = computed(
   () => churchSize.value === "small" || isSmallScreeen.value,
 );
+
+const columnGroupWidth = computed(() => {
+  if (churchSize.value === "small" && !isSmallScreeen.value) return 2;
+  if (shouldHideColumns.value) return 1;
+  return 5;
+});
 </script>
 
 <template>
@@ -104,13 +110,13 @@ const shouldHideColumns = computed(
             key: 'oneEpisode',
             text: 'Har hørt på minst én episode',
             start: 1,
-            span: shouldHideColumns ? 1 : 5,
+            span: columnGroupWidth,
           },
           {
             key: 'allEpisodes',
             text: 'Har hørt på alle episoder',
             start: 5,
-            span: shouldHideColumns ? 1 : 5,
+            span: columnGroupWidth,
           },
         ]"
         :columns="[
@@ -176,7 +182,7 @@ const shouldHideColumns = computed(
             }),
             sortMethod: (a, b) =>
               sortPercentageColumn(a.oneEpisodeChange, b.oneEpisodeChange),
-            hide: shouldHideColumns,
+            hide: isSmallScreeen,
           },
           {
             key: 'allEpisodesPercent13To17',
@@ -235,7 +241,7 @@ const shouldHideColumns = computed(
             }),
             sortMethod: (a, b) =>
               sortPercentageColumn(a.allEpisodesChange, b.allEpisodesChange),
-            hide: shouldHideColumns,
+            hide: isSmallScreeen,
           },
         ]"
         :get-field="
@@ -263,7 +269,7 @@ const shouldHideColumns = computed(
                   : 'icon.chevron.down'
               "
             />
-            <span>{{ (item.oneEpisodeChange * 100).toPrecision(1) }}%</span>
+            <span>{{ (item.oneEpisodeChange * 100).toFixed(1) }}%</span>
           </div>
         </template>
         <template #allEpisodesChange="{ item }">
@@ -279,7 +285,7 @@ const shouldHideColumns = computed(
                   : 'icon.chevron.down'
               "
             />
-            <span>{{ (item.allEpisodesChange * 100).toPrecision(1) }}%</span>
+            <span>{{ (item.allEpisodesChange * 100).toFixed(1) }}%</span>
           </div>
         </template>
       </DashboardDataTable>
