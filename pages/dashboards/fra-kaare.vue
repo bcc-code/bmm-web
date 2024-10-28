@@ -108,13 +108,13 @@ const columnGroupWidth = computed(() => {
         :column-groups="[
           {
             key: 'oneEpisode',
-            text: 'Har hørt på minst én episode',
+            text: 'Har hørt på minst én episode siden August',
             start: 1,
             span: columnGroupWidth,
           },
           {
             key: 'allEpisodes',
-            text: 'Har hørt på alle episoder',
+            text: 'Har hørt på alle episoder siden August',
             start: 5,
             span: columnGroupWidth,
           },
@@ -168,7 +168,7 @@ const columnGroupWidth = computed(() => {
           },
           {
             key: 'oneEpisodeChange',
-            text: 'Endring',
+            text: 'Endring 7d',
             props: (item) => ({
               class: [
                 'bg-background-2',
@@ -227,7 +227,7 @@ const columnGroupWidth = computed(() => {
           },
           {
             key: 'allEpisodesChange',
-            text: 'Endring',
+            text: 'Endring 7d',
             props: (item) => ({
               class: [
                 'bg-background-2',
