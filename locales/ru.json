@@ -1,7 +1,7 @@
 {
   "global": {
     "cancel": "Отмена",
-    "try-again": "Try again"
+    "try-again": "Попробуйте еще раз"
   },
   "nav": {
     "home": "Главная",
@@ -15,11 +15,11 @@
     "search": "Поиск",
     "album": "Альбом",
     "podcast": "Подкаст",
-    "not-found": "Page not found",
+    "not-found": "Страница не найдена",
     "contributor": "Автор",
     "contributors": "Исполнители",
     "archive": "Архив",
-    "transcribe": "Transcribe"
+    "transcribe": "Транскрибация"
   },
   "sidebar": {
     "playlists": {
@@ -27,98 +27,98 @@
     }
   },
   "share": {
-    "link-copied-message": "Copied link to clipboard"
+    "link-copied-message": "Скопировано в буфер обмена"
   },
   "profile": {
     "title": "Профиль",
-    "autoplay": "Auto Play",
-    "theme": "Theme",
-    "theme-description": "Select the theme used for the interface.",
-    "app-language": "Language",
-    "interface-language": "Interface Language",
-    "interface-language-description": "Select the language used for the interface.",
-    "select-language": "Select language",
-    "content-language": "Content Language",
-    "content-language-description": "The preferred language for the content you are listening to.",
-    "preference-language-1": "Preferred language",
-    "preference-language-2": "Second language",
-    "preference-language-3": "Third language",
-    "preference-language-4": "{count}th language",
+    "autoplay": "Автоматическое воспроизведение",
+    "theme": "Тема",
+    "theme-description": "Выберите тему интерфейса.",
+    "app-language": "Язык",
+    "interface-language": "Язык интерфейса",
+    "interface-language-description": "Выбрать язык интерфейса.",
+    "select-language": "Выбрать язык",
+    "content-language": "Язык содержания",
+    "content-language-description": "Предпочитаемый язык содержания.",
+    "preference-language-1": "Предпочитаемые языки",
+    "preference-language-2": "Второй язык",
+    "preference-language-3": "Третий язык",
+    "preference-language-4": "{count} язык",
     "uservoice": "Голос пользователя",
     "privacy-policy": "Политика конфиденциальности",
     "contact": "Контакт",
-    "logout": "Sign out",
+    "logout": "Выйти",
     "theme-dark": "Темный",
     "theme-light": "Светлый",
-    "theme-system": "Same as system",
+    "theme-system": "Как в системе",
     "done": "Готово",
-    "add-another-language": "Add another language"
+    "add-another-language": "Добавить другой язык"
   },
   "error": {
     "page-not-found": {
-      "headline": "Error",
-      "text": "Sorry. We can't find the page \"{path}\"."
+      "headline": "Ошибка",
+      "text": "Извините. Страница\"{path}\" не найдена."
     },
     "track-already-in-playlist": "Трек уже существует в плейлисте {0}",
     "album-already-in-playlist": "Этот альбом уже в вашем плейлисте.",
-    "collection-already-in-playlist": "These tracks are already in playlist {0}."
+    "collection-already-in-playlist": "Эти дорожки уже есть в плейлисте {0}."
   },
   "collection": {
-    "track-count": "{count} track | {count} tracks",
-    "album-count": "{count} album | {count} albums",
+    "track-count": "{count} трек | {count} треков",
+    "album-count": "{count} альбом | {count} альбомов",
     "resume": "Продолжить"
   },
   "login": {
     "error-message": {
-      "contact-info": "Should this error persist, {0}.",
-      "contact-link": "please get in contact with us",
-      "logout-and-redirect-info": "Something regarding the login went wrong:",
-      "manual-logout-and-redirect-info": "Please {0}.",
-      "logout-and-redirect-link": "try to log in again"
+      "contact-info": "Если эта ошибка повторится, {0}.",
+      "contact-link": "пожалуйста, свяжитесь с нами",
+      "logout-and-redirect-info": "Что-то пошло не так со входом в систему:",
+      "manual-logout-and-redirect-info": "Пожалуйста {0}.",
+      "logout-and-redirect-link": "попробуйте войти снова"
     },
     "redirect-message": {
-      "redirect-info": "You will be redirected to the login page.",
-      "manual-redirect-info": "Please wait or {0}.",
-      "redirect-link": "click to try again"
+      "redirect-info": "Вы будете перенаправлены на страницу входа.",
+      "manual-redirect-info": "Пожалуйста, подождите или {0}.",
+      "redirect-link": "нажмите, чтобы попробовать еще раз"
     }
   },
   "download": {
-    "install-app": "We recommend installing the app.",
-    "go-to-store": "Navigate to the App Store.",
-    "get-for-desktop": "Get the BMM app directly on your desktop",
+    "install-app": "Мы рекомендуем установить приложение.",
+    "go-to-store": "Перейти в App Store.",
+    "get-for-desktop": "Загрузить приложение BMM на рабочий стол",
     "download": "Скачать",
-    "download-now": "Download now",
-    "download-windows": "Download for Windows",
-    "download-mac-intel": "Download for Intel CPU",
-    "download-mac-arm": "Download for newer Mac",
-    "mac-intel-explanation": "Usually purchased before 2021",
-    "mac-arm-explanation": "M1, M2, M3, M4 chip",
-    "download-bmm-app": "Download the BMM app",
+    "download-now": "Скачать сейчас",
+    "download-windows": "Загрузить для Windows",
+    "download-mac-intel": "Загрузить для процессора Intel",
+    "download-mac-arm": "Загрузить для более новых Mac",
+    "mac-intel-explanation": "Купленных до 2021 года",
+    "mac-arm-explanation": "Чип M1, M2, M3, M4",
+    "download-bmm-app": "Загрузить приложение BMM",
     "download-track": "Скачать трек",
-    "mobile": "Mobile",
+    "mobile": "Телефон",
     "messages-not-allowed": {
-      "title": "Download of messages unavailable",
+      "title": "Скачивание проповедей недоступно",
       "description": "Возможность скачивания проповедедей из BMM больше не доступна. Если вам нужна проповедь для конкретного случая, пожалуйста, свяжитесь с нами и расскажите о цели использования."
     },
-    "sendEmailTo": "Send email to {0}"
+    "sendEmailTo": "Отправить письмо на адрес {0}"
   },
   "playlist": {
-    "add": "Add playlist",
+    "add": "Добавить плейлист",
     "new-playlist": "Новый плейлист",
-    "name-your-playlist": "Name your playlist",
+    "name-your-playlist": "Дайте название плейлисту",
     "delete-playlist": "Удалить список воспроизведения",
-    "delete-playlist-description": "Are you sure you want to delete the playlist? This action cannot be reversed.",
+    "delete-playlist-description": "Вы уверены, что хотите удалить плейлист? Это действие нельзя отменить.",
     "action": {
       "shuffle": "Перемешать",
       "add-to-my-playlists": "Добавить в мои плейлисты",
       "remove-shared-playlist": "Удалить плейлист"
     },
-    "by-x": "by {name}"
+    "by-x": "от {name}"
   },
   "podcast": {
     "this-week": "На этой неделе",
     "last-week": "На прошлой неделе",
-    "week-x": "Week {count}",
+    "week-x": "Неделя {count}",
     "action": {
       "play": "Воспроизвести",
       "follow": "Подписаться"
@@ -128,7 +128,7 @@
     "queue": "Очередь"
   },
   "edit": {
-    "rename": "Rename",
+    "rename": "Переименовать",
     "delete": "Удалить"
   },
   "track": {
@@ -148,13 +148,13 @@
     "a11y": {
       "download": "Скачать",
       "queue": "Добавить в очередь",
-      "options": "Show options"
+      "options": "Показать опции"
     },
     "details": {
-      "title": "Track Details",
-      "reference": "Reference",
+      "title": "Детали дорожки",
+      "reference": "Ссылка",
       "duration": "Продолжительность",
-      "publish-date": "Publish Date",
+      "publish-date": "Дата публикации",
       "album": "Альбом",
       "publisher": "Опубликовано",
       "copyright": "Авторское право",
@@ -166,7 +166,7 @@
   },
   "home": {
     "list": {
-      "see-all": "See all",
+      "see-all": "Посмотреть все",
       "recommended": "Рекомендуется"
     }
   },
@@ -178,17 +178,17 @@
       "Albums": "Альбомы",
       "Contributors": "Исполнители",
       "Podcasts": "Подкасты",
-      "Playlists": "Списки воспроизведения"
+      "Playlists": "Плейлисты"
     },
     "input-placeholder": "Поиск",
-    "loading-results": "Loading results",
-    "no-results-yet": "No results yet",
-    "no-results-found": "No results found",
-    "result-count": "{count} results"
+    "loading-results": "Загрузка результатов",
+    "no-results-yet": "Без результатов",
+    "no-results-found": "Результатов не найдено",
+    "result-count": "{count} результатов"
   },
   "streak": {
     "your-streak": "Твое достижение за неделю",
-    "days-in-row": "{count} days in a row"
+    "days-in-row": "{count} дней подряд"
   },
   "transcription": {
     "lyrics": "Текст",
@@ -198,16 +198,16 @@
       "confirmation": "Понятно"
     },
     "songtreasures": "SongTreasures",
-    "save": "Save changes",
-    "original": "Original",
-    "edit": "Edit",
+    "save": "Сохранить изменения",
+    "original": "Оригинал",
+    "edit": "Редактировать",
     "deleteSegment": "Удалить",
-    "undeleteSegment": "Undo delete",
-    "review": "Review",
+    "undeleteSegment": "Отменить удаление",
+    "review": "Обзор",
     "status": {
-      "done": "Reviewed",
-      "in-progress": "In progress",
-      "not-started": "Not reviewed"
+      "done": "Просмотрено",
+      "in-progress": "В прогрессе",
+      "not-started": "Не просмотрено"
     }
   },
   "dashboards": {
