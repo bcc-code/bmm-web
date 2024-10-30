@@ -99,6 +99,17 @@ const columnGroupWidth = computed(() => {
         </DropdownMenu>
       </div>
 
+      <section
+        id="info"
+        class="type-paragraph-2 max-w-6xl space-y-3 px-6 text-label-2"
+      >
+        <p>
+          For now this is based on streak points. We're working on also counting
+          if someone listens later.
+          <br /><br />
+        </p>
+      </section>
+
       <DashboardDataTable
         v-if="statistics"
         :key="`${churchSize}-${isSmallScreeen}`"
@@ -108,13 +119,13 @@ const columnGroupWidth = computed(() => {
         :column-groups="[
           {
             key: 'oneEpisode',
-            text: 'Har hørt på minst én episode siden August',
+            text: 'Har fått minst én streak poeng siden August',
             start: 1,
             span: columnGroupWidth,
           },
           {
             key: 'allEpisodes',
-            text: 'Har hørt på alle episoder siden August',
+            text: 'Har perfekt streak siden August',
             start: 5,
             span: columnGroupWidth,
           },
