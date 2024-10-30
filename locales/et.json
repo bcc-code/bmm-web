@@ -4,13 +4,13 @@
     "try-again": "Try again"
   },
   "nav": {
-    "home": "Home",
-    "browse": "Browse",
+    "home": "Pealeht",
+    "browse": "Sirvi",
     "playlist": "Esitusloend",
-    "profile": "Profile",
+    "profile": "Profiil",
     "messages": "Sõnumid",
-    "recent-messages": "Recent Messages",
-    "recent-music": "Recent Music",
+    "recent-messages": "Hiljutised sõnumid",
+    "recent-music": "Hiljutine muusika",
     "audiobooks": "Audioraamatud",
     "search": "Otsi",
     "album": "Album",
@@ -30,7 +30,7 @@
     "link-copied-message": "Copied link to clipboard"
   },
   "profile": {
-    "title": "Profile",
+    "title": "Profiil",
     "autoplay": "Auto Play",
     "theme": "Theme",
     "theme-description": "Select the theme used for the interface.",
@@ -48,10 +48,10 @@
     "privacy-policy": "Privacy Policy",
     "contact": "Kontakt",
     "logout": "Sign out",
-    "theme-dark": "Dark",
-    "theme-light": "Light",
+    "theme-dark": "Tume",
+    "theme-light": "Hele",
     "theme-system": "Same as system",
-    "done": "Done",
+    "done": "Valmis",
     "add-another-language": "Add another language"
   },
   "error": {
@@ -59,7 +59,7 @@
       "headline": "Error",
       "text": "Sorry. We can't find the page \"{path}\"."
     },
-    "track-already-in-playlist": "Track already exists in playlist {0}",
+    "track-already-in-playlist": "Lugu on esitusloendis {0} juba olemas",
     "album-already-in-playlist": "See album on juba Playlist.",
     "collection-already-in-playlist": "These tracks are already in playlist {0}."
   },
@@ -109,15 +109,15 @@
     "delete-playlist": "Kustuta esitusloend",
     "delete-playlist-description": "Are you sure you want to delete the playlist? This action cannot be reversed.",
     "action": {
-      "shuffle": "Shuffle",
+      "shuffle": "Sega",
       "add-to-my-playlists": "Add to my playlists",
       "remove-shared-playlist": "Remove playlist"
     },
     "by-x": "by {name}"
   },
   "podcast": {
-    "this-week": "This week",
-    "last-week": "Last week",
+    "this-week": "Sel nädalal",
+    "last-week": "Eelmisel nädalal",
     "week-x": "Week {count}",
     "action": {
       "play": "Esita",
@@ -133,12 +133,12 @@
   },
   "track": {
     "dropdown": {
-      "play-next": "Play next",
+      "play-next": "Mängi järgmisena",
       "download": "Lae alla",
       "go-to-album": "Mine albumisse",
       "add-to-queue": "Lisa järjekorda",
       "add-to-playlist": "Lisa esitlusloendisse",
-      "share": "Share track",
+      "share": "Jaga lugu",
       "go-to-contributors": "Mine kaastegijate ossa",
       "more-info": "Rohkem infot",
       "show-all": "Näita kõiki",
@@ -172,8 +172,8 @@
   },
   "search": {
     "search-filter": {
-      "All": "All",
-      "Speeches": "Speeches",
+      "All": "Kõik",
+      "Speeches": "Kõned",
       "Music": "Muusika",
       "Albums": "Albums",
       "Contributors": "Kaastegijad",
@@ -187,15 +187,15 @@
     "result-count": "{count} results"
   },
   "streak": {
-    "your-streak": "Your streak this week",
+    "your-streak": "Sinu selle nädala striik",
     "days-in-row": "{count} days in a row"
   },
   "transcription": {
     "lyrics": "Lyrics",
     "auto-transcribed": {
-      "title": "Auto-transcribed",
+      "title": "Automaatselt transkribeeritud",
       "explanation": "Transcripts are auto-generated and might contain errors",
-      "confirmation": "Got it"
+      "confirmation": "Sain aru"
     },
     "songtreasures": "SongTreasures",
     "save": "Save changes",
