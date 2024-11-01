@@ -1,7 +1,7 @@
 {
   "global": {
     "cancel": "Anuluj",
-    "try-again": "Try again"
+    "try-again": "Spróbuj ponownie"
   },
   "nav": {
     "home": "Home",
@@ -19,7 +19,7 @@
     "contributor": "Autor",
     "contributors": "Autorzy",
     "archive": "Archiwum",
-    "transcribe": "Transcribe"
+    "transcribe": "Rozpisz"
   },
   "sidebar": {
     "playlists": {
@@ -27,37 +27,37 @@
     }
   },
   "share": {
-    "link-copied-message": "Copied link to clipboard"
+    "link-copied-message": "Skopiowano link do schowka"
   },
   "profile": {
     "title": "Profil",
-    "autoplay": "Auto Play",
-    "theme": "Theme",
-    "theme-description": "Select the theme used for the interface.",
-    "app-language": "Language",
-    "interface-language": "Interface Language",
-    "interface-language-description": "Select the language used for the interface.",
-    "select-language": "Select language",
-    "content-language": "Content Language",
-    "content-language-description": "The preferred language for the content you are listening to.",
-    "preference-language-1": "Preferred language",
-    "preference-language-2": "Second language",
-    "preference-language-3": "Third language",
+    "autoplay": "Odtwarzanie automatyczne",
+    "theme": "Temat",
+    "theme-description": "Wybierz motyw używany dla interfejsu.",
+    "app-language": "Język",
+    "interface-language": "Język interfejsu",
+    "interface-language-description": "Wybierz język używany w interfejsie.",
+    "select-language": "Wybierz język",
+    "content-language": "Język zawartości",
+    "content-language-description": "Preferowany język dla treści, których słuchasz.",
+    "preference-language-1": "Preferowany język",
+    "preference-language-2": "Drugi język",
+    "preference-language-3": "Trzeci język",
     "preference-language-4": "{count}th language",
     "uservoice": "Głos Użytkownika",
     "privacy-policy": "Polityka prywatności",
     "contact": "Kontakt",
-    "logout": "Sign out",
+    "logout": "Wyloguj się",
     "theme-dark": "Ciemny",
     "theme-light": "Jasny",
-    "theme-system": "Same as system",
+    "theme-system": "Taki sam jak systemowy",
     "done": "Gotowe",
-    "add-another-language": "Add another language"
+    "add-another-language": "Dodaj kolejny język"
   },
   "error": {
     "page-not-found": {
-      "headline": "Error",
-      "text": "Sorry. We can't find the page \"{path}\"."
+      "headline": "Błąd",
+      "text": "Przepraszamy. Nie możemy znaleźć strony „{path}”."
     },
     "track-already-in-playlist": "Utwór znajduje się na playliście {0}",
     "album-already-in-playlist": "Ten album jest już na playliście.",
