@@ -79,7 +79,7 @@
     "redirect-message": {
       "redirect-info": "Vei fi redirecționat la pagina de logare.",
       "manual-redirect-info": "Te rog să aștepți sau {0}.",
-      "redirect-link": "fă clic pentru a încerca din nou"
+      "redirect-link": "apasă pentru a încerca din nou"
     }
   },
   "download": {
@@ -92,7 +92,7 @@
     "download-mac-intel": "Descarcă pentru CPU Intel",
     "download-mac-arm": "Descarcă pentru Mac mai nou",
     "mac-intel-explanation": "Achiziționat de obicei înainte de 2021",
-    "mac-arm-explanation": "M1, M2, M3, M4 chip",
+    "mac-arm-explanation": "Chip M1, M2, M3, M4",
     "download-bmm-app": "Descarcă aplicația BMM",
     "download-track": "Descarcă piesă",
     "mobile": "Mobil",
@@ -166,7 +166,7 @@
   },
   "home": {
     "list": {
-      "see-all": "Vezi tot",
+      "see-all": "Afișează tot",
       "recommended": "Recomandate"
     }
   },
@@ -182,7 +182,7 @@
     },
     "input-placeholder": "Caută",
     "loading-results": "Se încarcă rezultatele",
-    "no-results-yet": "Niciun rezultat încă",
+    "no-results-yet": "Încă niciun rezultat",
     "no-results-found": "Niciun rezultat găsit",
     "result-count": "{count} rezultate"
   },
@@ -206,7 +206,7 @@
     "review": "Revizuire",
     "status": {
       "done": "Revizuit",
-      "in-progress": "În curs",
+      "in-progress": "În curs de desfășurare",
       "not-started": "Nerevizuit"
     }
   },
