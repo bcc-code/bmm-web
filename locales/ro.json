@@ -40,7 +40,7 @@
     "select-language": "Alege limba",
     "content-language": "Limba conținutului",
     "content-language-description": "Limba preferată pentru conținutul pe care îl asculți.",
-    "preference-language-1": "Limba preferate",
+    "preference-language-1": "Limba preferată",
     "preference-language-2": "A doua limbă",
     "preference-language-3": "A treia limbă",
     "preference-language-4": "{count}-a limbă",
@@ -57,11 +57,11 @@
   "error": {
     "page-not-found": {
       "headline": "Eroare",
-      "text": "Scuze. Nu pot găsi pagina „{path}”."
+      "text": "Îmi pare rău. Nu pot găsi pagina „{path}”."
     },
     "track-already-in-playlist": "Piesa este deja în lista de redare {0}",
     "album-already-in-playlist": "Acest album este deja în lista de redare.",
-    "collection-already-in-playlist": "Aceste melodii sunt deja în lista de redare {0}."
+    "collection-already-in-playlist": "Aceste piese sunt deja în lista de redare {0}."
   },
   "collection": {
     "track-count": "{count} piesa | {count} piese",
@@ -72,12 +72,12 @@
     "error-message": {
       "contact-info": "Dacă această eroare persistă, {0}.",
       "contact-link": "te rugăm să ne contactezi",
-      "logout-and-redirect-info": "Ceva cu privire la autentificare a mers prost:",
+      "logout-and-redirect-info": "Procesul de autentificare a întâmpinat o eroare:",
       "manual-logout-and-redirect-info": "Te rog {0}.",
       "logout-and-redirect-link": "încearcă să te conectezi din nou"
     },
     "redirect-message": {
-      "redirect-info": "Vei fi redirecționat la pagina de conectare.",
+      "redirect-info": "Vei fi redirecționat la pagina de logare.",
       "manual-redirect-info": "Te rog să aștepți sau {0}.",
       "redirect-link": "fă clic pentru a încerca din nou"
     }
@@ -107,13 +107,13 @@
     "new-playlist": "Play-list nou",
     "name-your-playlist": "Denumește lista de redare",
     "delete-playlist": "Șterge play-list",
-    "delete-playlist-description": "Ești sigur că dorești să ștergi lista de redare? Această acțiune nu poate fi inversată.",
+    "delete-playlist-description": "Ești sigur că vrei să ștergi lista de redare? Această acțiune nu poate fi inversată.",
     "action": {
       "shuffle": "Aleatoriu",
       "add-to-my-playlists": "Adaugă la play-list-urile mele",
       "remove-shared-playlist": "Elimină play-list"
     },
-    "by-x": "de la {name}"
+    "by-x": "după {name}"
   },
   "podcast": {
     "this-week": "Această săptămână",
@@ -212,6 +212,6 @@
   },
   "dashboards": {
     "title": "Panou de control",
-    "fra-kaare": "De la Kåre"
+    "fra-kaare": "Fra Kåre"
   }
 }
