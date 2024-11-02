@@ -13,7 +13,7 @@ import {
 import * as path from "path";
 import * as fs from "fs/promises";
 import { autoUpdater } from "electron-updater";
-import ElectronStore from "electron-store";
+import { mainWindowStore } from "../stores/window";
 import config from "../utils/config";
 
 const PRODUCTION_APP_PROTOCOL = config.appProtocol;
@@ -26,7 +26,7 @@ let appReadyHasRun = false;
 const navigateToUri = (window: BrowserWindow, url: string) => {
   window.webContents.send("route-changed", url);
 };
-const store = new ElectronStore();
+const windowStore = mainWindowStore();
 
 const removeUrlOrigin = (_url: string) => {
   const url = new URL(
@@ -48,6 +48,8 @@ const openWindow = (url: string) => {
     minWidth: 800,
     minHeight: 600,
     webPreferences: {
+      nodeIntegration: Boolean(process.env.ELECTRON_NODE_INTEGRATION),
+      contextIsolation: !process.env.ELECTRON_NODE_INTEGRATION,
       preload: path.join(__dirname, "preload.js"),
     },
     titleBarStyle: process.platform === "darwin" ? "hidden" : "default",
@@ -101,7 +103,7 @@ const openWindow = (url: string) => {
     }
   });
 
-  const bounds = store.get("bounds");
+  const { bounds } = windowStore;
   // restoring settings works fine on Mac. Maybe other environments need additional code to deal with changing monitor setups. See https://github.com/electron/electron/issues/526
   if (bounds) window.setBounds(bounds);
 
@@ -130,11 +132,11 @@ const openWindow = (url: string) => {
   });
 
   window.on("close", (event) => {
-    if (!isQuitting) {
-      window.hide();
+    if (!isQuitting && windowStore.closeToTray) {
+      window?.hide();
       event.preventDefault();
     }
-    store.set("bounds", window?.getBounds());
+    windowStore.bounds = window?.getBounds();
   });
   window.on("closed", () => {
     window = undefined;
@@ -143,7 +145,7 @@ const openWindow = (url: string) => {
   const tray = new Tray(
     nativeImage.createFromPath(path.join(__dirname, "icons/icon.tray.png")),
   );
-  tray.on("click", () => window.show());
+  tray.on("click", () => window?.show());
   tray.setContextMenu(
     Menu.buildFromTemplate([
       {
