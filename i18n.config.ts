@@ -8,6 +8,12 @@ import fr from "./locales/fr.json";
 import ta from "./locales/ta.json";
 import da from "./locales/da.json";
 import es from "./locales/es.json";
+import et from "./locales/et.json";
+import fi from "./locales/fi.json";
+import hu from "./locales/hu.json";
+import pt from "./locales/pt.json";
+import ro from "./locales/ro.json";
+import ru from "./locales/ru.json";
 
 export default defineI18nConfig(() => ({
   legacy: false,
@@ -22,5 +28,11 @@ export default defineI18nConfig(() => ({
     ta,
     da,
     es,
+    et,
+    fi,
+    hu,
+    pt,
+    ro,
+    ru,
   },
 }));
