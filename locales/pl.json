@@ -1,7 +1,7 @@
 {
   "global": {
     "cancel": "Anuluj",
-    "try-again": "Try again"
+    "try-again": "Spróbuj ponownie"
   },
   "nav": {
     "home": "Home",
@@ -19,7 +19,7 @@
     "contributor": "Autor",
     "contributors": "Autorzy",
     "archive": "Archiwum",
-    "transcribe": "Transcribe"
+    "transcribe": "Rozpisz"
   },
   "sidebar": {
     "playlists": {
@@ -27,41 +27,41 @@
     }
   },
   "share": {
-    "link-copied-message": "Copied link to clipboard"
+    "link-copied-message": "Skopiowano link do schowka"
   },
   "profile": {
     "title": "Profil",
-    "autoplay": "Auto Play",
-    "theme": "Theme",
-    "theme-description": "Select the theme used for the interface.",
-    "app-language": "Language",
-    "interface-language": "Interface Language",
-    "interface-language-description": "Select the language used for the interface.",
-    "select-language": "Select language",
-    "content-language": "Content Language",
-    "content-language-description": "The preferred language for the content you are listening to.",
-    "preference-language-1": "Preferred language",
-    "preference-language-2": "Second language",
-    "preference-language-3": "Third language",
+    "autoplay": "Odtwarzanie automatyczne",
+    "theme": "Temat",
+    "theme-description": "Wybierz motyw używany dla interfejsu.",
+    "app-language": "Język",
+    "interface-language": "Język interfejsu",
+    "interface-language-description": "Wybierz język używany w interfejsie.",
+    "select-language": "Wybierz język",
+    "content-language": "Język zawartości",
+    "content-language-description": "Preferowany język dla treści, których słuchasz.",
+    "preference-language-1": "Preferowany język",
+    "preference-language-2": "Drugi język",
+    "preference-language-3": "Trzeci język",
     "preference-language-4": "{count}th language",
     "uservoice": "Głos Użytkownika",
     "privacy-policy": "Polityka prywatności",
     "contact": "Kontakt",
-    "logout": "Sign out",
+    "logout": "Wyloguj się",
     "theme-dark": "Ciemny",
     "theme-light": "Jasny",
-    "theme-system": "Same as system",
+    "theme-system": "Taki sam jak systemowy",
     "done": "Gotowe",
-    "add-another-language": "Add another language"
+    "add-another-language": "Dodaj kolejny język"
   },
   "error": {
     "page-not-found": {
-      "headline": "Error",
-      "text": "Sorry. We can't find the page \"{path}\"."
+      "headline": "Błąd",
+      "text": "Przepraszamy. Nie możemy znaleźć strony „{path}”."
     },
     "track-already-in-playlist": "Utwór znajduje się na playliście {0}",
     "album-already-in-playlist": "Ten album jest już na playliście.",
-    "collection-already-in-playlist": "These tracks are already in playlist {0}."
+    "collection-already-in-playlist": "Te ścieżki znajdują się już na playliście {0}."
   },
   "collection": {
     "track-count": "{count} track | {count} tracks",
@@ -70,55 +70,55 @@
   },
   "login": {
     "error-message": {
-      "contact-info": "Should this error persist, {0}.",
-      "contact-link": "please get in contact with us",
-      "logout-and-redirect-info": "Something regarding the login went wrong:",
-      "manual-logout-and-redirect-info": "Please {0}.",
-      "logout-and-redirect-link": "try to log in again"
+      "contact-info": "Jeśli błąd będzie się powtarzał, {0}.",
+      "contact-link": "proszę skontaktuj się z nami",
+      "logout-and-redirect-info": "Wystąpił błąd podczas logowania:",
+      "manual-logout-and-redirect-info": "Proszę {0}.",
+      "logout-and-redirect-link": "spróbuj zalogować się ponownie"
     },
     "redirect-message": {
-      "redirect-info": "You will be redirected to the login page.",
-      "manual-redirect-info": "Please wait or {0}.",
-      "redirect-link": "click to try again"
+      "redirect-info": "Zostaniesz przekierowany na stronę logowania.",
+      "manual-redirect-info": "Proszę czekać lub {0}.",
+      "redirect-link": "kliknij, aby spróbować ponownie"
     }
   },
   "download": {
-    "install-app": "We recommend installing the app.",
-    "go-to-store": "Navigate to the App Store.",
-    "get-for-desktop": "Get the BMM app directly on your desktop",
+    "install-app": "Zalecamy zainstalowanie aplikacji.",
+    "go-to-store": "Przejdź do App Store.",
+    "get-for-desktop": "Pobierz aplikację BMM bezpośrednio na swój komputer",
     "download": "Pobierz",
-    "download-now": "Download now",
-    "download-windows": "Download for Windows",
+    "download-now": "Pobierz teraz",
+    "download-windows": "Pobierz dla systemu Windows",
     "download-mac-intel": "Download for Intel CPU",
-    "download-mac-arm": "Download for newer Mac",
-    "mac-intel-explanation": "Usually purchased before 2021",
+    "download-mac-arm": "Pobierz dla nowszego Maca",
+    "mac-intel-explanation": "Zwykle kupowane przed 2021 r",
     "mac-arm-explanation": "M1, M2, M3, M4 chip",
-    "download-bmm-app": "Download the BMM app",
+    "download-bmm-app": "Pobierz aplikację BMM",
     "download-track": "Pobierz utwór",
-    "mobile": "Mobile",
+    "mobile": "Urządzenie mobilne",
     "messages-not-allowed": {
-      "title": "Download of messages unavailable",
+      "title": "Pobieranie przemów jest niedostępne",
       "description": "Możliwość pobierania przemów z BMM nie jest już dostępna. Jeśli potrzebujesz przemowy do konkretnego celu, skontaktuj się z nami i wyjaśnij swoje potrzeby."
     },
-    "sendEmailTo": "Send email to {0}"
+    "sendEmailTo": "Wyślij e-mail do {0}"
   },
   "playlist": {
-    "add": "Add playlist",
+    "add": "Dodaj playlistę",
     "new-playlist": "Nowa playlista",
-    "name-your-playlist": "Name your playlist",
+    "name-your-playlist": "Nadaj nazwę playliście",
     "delete-playlist": "Usuń playlistę",
-    "delete-playlist-description": "Are you sure you want to delete the playlist? This action cannot be reversed.",
+    "delete-playlist-description": "Czy na pewno chcesz usunąć playlistę? Tej czynności nie można cofnąć.",
     "action": {
       "shuffle": "Shuffle",
       "add-to-my-playlists": "Dodaj do moich playlist",
       "remove-shared-playlist": "Usuń playlistę"
     },
-    "by-x": "by {name}"
+    "by-x": "przez {name}"
   },
   "podcast": {
     "this-week": "W tym tygodniu",
     "last-week": "W zeszłym tygodniu",
-    "week-x": "Week {count}",
+    "week-x": "Tydzień {count}",
     "action": {
       "play": "Graj",
       "follow": "Obserwuj"
