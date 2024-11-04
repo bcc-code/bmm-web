@@ -75,7 +75,7 @@ const columnGroupWidth = computed(() => {
 
 <template>
   <div class="space-y-12">
-    <PageHeading>{{ t("dashboards.fra-kaare") }}</PageHeading>
+    <PageHeading>Dashboard: Operation Gibraltar</PageHeading>
 
     <section id="graphs"></section>
 
@@ -99,17 +99,6 @@ const columnGroupWidth = computed(() => {
         </DropdownMenu>
       </div>
 
-      <section
-        id="info"
-        class="type-paragraph-2 max-w-6xl space-y-3 px-6 text-label-2"
-      >
-        <p>
-          For now this is based on streak points. We're working on also counting
-          if someone listens later.
-          <br /><br />
-        </p>
-      </section>
-
       <DashboardDataTable
         v-if="statistics"
         :key="`${churchSize}-${isSmallScreeen}`"
@@ -119,13 +108,13 @@ const columnGroupWidth = computed(() => {
         :column-groups="[
           {
             key: 'oneEpisode',
-            text: 'Har fått minst én streak poeng siden August',
+            text: 'Har hørt minst én episode',
             start: 1,
             span: columnGroupWidth,
           },
           {
             key: 'allEpisodes',
-            text: 'Har perfekt streak siden August',
+            text: 'Totale episoder hørt',
             start: 5,
             span: columnGroupWidth,
           },

@@ -79,7 +79,7 @@ const { data: currentUser } = await useCurrentUser();
           />
           <SidebarItem
             v-if="isFraKaareDashboardViewer(currentUser)"
-            title="Fra Kåre Dashboard"
+            title="Dashboard"
             :link="{ name: 'dashboards-fra-kaare' }"
             icon="icon.information"
           />
