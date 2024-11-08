@@ -258,8 +258,8 @@ jobs:
     runs-on: ubuntu-latest
     needs: build_dotnet
     environment:
-      name: "prod"
-      url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
+      name: "Production"
+      url: ${{ steps.deploy-to-webapp-int.outputs.webapp-url }}
     permissions:
       id-token: write #This is required for requesting the JWT
     env:
@@ -272,18 +272,15 @@ jobs:
           name: WebApp
 
       - name: Login to Azure
-        uses: azure/login@v1
+        uses: azure/login@v2
         with:
           client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_FC3514582EAC4AA58F660DDED58E18CD }}
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_79CAD2F981C94DA0AF6A512047D4235F }}
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_261A68B4000D4EECBCBFF4E3FF3C84F9 }}
 
-      - name: debug
-        run: ls -la
-
       - name: Deploy to Azure Web App
         id: deploy-to-webapp-int
-        uses: azure/webapps-deploy@v2
+        uses: azure/webapps-deploy@v3
         with:
           app-name: "INT-BMM-Web"
           slot-name: "Production"
