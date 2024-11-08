@@ -7,20 +7,24 @@ namespace BMM.Website;
 public class HtmlResult : IResult
 {
     private readonly string _indexHtml;
+    private readonly ApiConfiguration _apiConfig;
     private readonly string? _path;
     private string _title = "bmm";
     private string _description = "Listen to edifying music and messages";
     private string _coverUrl = "https://bmm.bcc.media/bmm-logo.jpg";
     private const string Placeholder = "<meta name=\"description\" content=\"{{MetadataPlaceholder}}\">";
+    private const string ApiPlaceholder = "{{BmmApiPlaceholder}}";
 
-    public HtmlResult(string indexHtml)
+    public HtmlResult(string indexHtml, ApiConfiguration apiConfig)
     {
         _indexHtml = indexHtml;
+        _apiConfig = apiConfig;
     }
 
-    public HtmlResult(string indexHtml, string? path)
+    public HtmlResult(string indexHtml, ApiConfiguration apiConfig, string? path)
     {
         _indexHtml = indexHtml;
+        _apiConfig = apiConfig;
         _path = path;
     }
     
@@ -48,7 +52,7 @@ public class HtmlResult : IResult
             $"<meta property=\"og:description\" content=\"{_description}\">" +
             $"<meta property=\"og:image\" content=\"{_coverUrl}\" />\n"+
             "<meta property=\"og:type\" content=\"website\" />\n<meta property=\"og:site_name\" content=\"bmm\" />\n<meta property=\"og:image:width\" content=\"640\" />\n<meta property=\"og:image:height\" content=\"640\" />";
-        var adjustedHtml = _indexHtml.Replace(Placeholder, metaTags);
+        var adjustedHtml = _indexHtml.Replace(Placeholder, metaTags).Replace(ApiPlaceholder, _apiConfig.BaseUrl);
 
         httpContext.Response.Headers.Append("Cache-Control", "no-store");
         

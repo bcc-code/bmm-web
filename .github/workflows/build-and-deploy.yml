@@ -263,7 +263,7 @@ jobs:
     permissions:
       id-token: write #This is required for requesting the JWT
     env:
-      Api.BaseUrl: https://bmm-api.brunstad.org
+      Api.BaseUrl: https://int-bmm-api.brunstad.org
 
     steps:
       - name: Download artifact from build job
@@ -277,6 +277,10 @@ jobs:
           client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_FC3514582EAC4AA58F660DDED58E18CD }}
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_79CAD2F981C94DA0AF6A512047D4235F }}
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_261A68B4000D4EECBCBFF4E3FF3C84F9 }}
+
+      - uses: microsoft/variable-substitution@v1
+        with:
+          files: "appsettings.json"
 
       - name: Deploy to Azure Web App
         id: deploy-to-webapp-int
