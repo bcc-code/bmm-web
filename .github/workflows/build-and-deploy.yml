@@ -252,3 +252,11 @@ jobs:
           app-name: "PROD-BMM-Web"
           slot-name: "Production"
           package: .
+
+      - name: Deploy to Azure Web App
+        id: deploy-to-webapp-int
+        uses: azure/webapps-deploy@v2
+        with:
+          app-name: "INT-BMM-Web"
+          slot-name: "Production"
+          package: .
