@@ -72,7 +72,7 @@ useDraggable(queueListElement, queue, {
         />
       </div>
       <div class="flex flex-col gap-1 overflow-x-hidden whitespace-nowrap py-3">
-        <TextMarquee class="m-auto">
+        <TextMarquee class="mx-auto px-4">
           <h3
             v-if="currentTrack"
             class="text-lg font-semibold leading-tight"
@@ -84,7 +84,7 @@ useDraggable(queueListElement, queue, {
         <div
           class="overflow-x-hidden whitespace-nowrap text-base leading-snug text-label-2"
         >
-          <TextMarquee class="m-auto">
+          <TextMarquee class="mx-auto px-4">
             <span v-if="currentTrack" :title="trackSubtitleField(currentTrack)">
               {{ trackSubtitleField(currentTrack) }}
             </span>
@@ -272,3 +272,15 @@ useDraggable(queueListElement, queue, {
     </div>
   </div>
 </template>
+
+<style scoped>
+div:has(> [data-marquee-enabled]) {
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 1rem,
+    black calc(100% - 1rem),
+    transparent 100%
+  );
+}
+</style>

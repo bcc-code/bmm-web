@@ -66,7 +66,11 @@ onUnmounted(() => {
 });
 </script>
 <template>
-  <div ref="elRef" class="relative flex w-fit">
+  <div
+    ref="elRef"
+    class="relative flex w-fit"
+    :data-marquee-enabled="contentIsTooLarge ? '' : null"
+  >
     <div
       ref="container"
       class="inline-block"
