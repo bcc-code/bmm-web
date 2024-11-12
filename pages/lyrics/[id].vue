@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { LyricsApi } from "@bcc-code/bmm-sdk-fetch";
-import type { Lyrics } from "@bcc-code/bmm-sdk-fetch";
+import { ContributorApi, LyricsApi } from "@bcc-code/bmm-sdk-fetch";
+import type { ContributorModel, Lyrics } from "@bcc-code/bmm-sdk-fetch";
 
 const route = useRoute("lyrics-id");
 
@@ -56,6 +56,34 @@ async function saveLyrics() {
     saving.value = false;
   }
 }
+
+const contributors = ref<ContributorModel[]>([]);
+const contributorSearch = ref("");
+const composer = ref<ContributorModel>();
+const lyricist = ref<ContributorModel>();
+
+watch([composer, lyricist], ([c, l]) => {
+  if (!lyrics.value) return;
+  if (c) {
+    lyrics.value.composers = [c.id];
+  }
+  if (l) {
+    lyrics.value.lyricists = [l.id];
+  }
+});
+
+watchDebounced(
+  contributorSearch,
+  async (search) => {
+    if (search === "" || !search) return;
+
+    contributors.value =
+      await new ContributorApi().contributorSuggesterCompletionTermGet({
+        term: search,
+      });
+  },
+  { debounce: 100 },
+);
 </script>
 
 <template>
@@ -67,7 +95,33 @@ async function saveLyrics() {
       </ButtonStyled>
     </div>
     <div class="grid gap-8 lg:grid-cols-2 lg:grid-rows-1">
-      <div class="row-start-1 md:col-start-2"></div>
+      <div class="row-start-1 flex flex-col gap-4 md:col-start-2">
+        <ComboSearchBox
+          v-model:search="contributorSearch"
+          v-model="composer"
+          label="Composer"
+          :options="contributors"
+          :option-key="(c) => c.id"
+          :display-value="(option) => option.name!"
+        >
+          <template #option="{ option }">
+            {{ option.name }}
+          </template>
+        </ComboSearchBox>
+        <ComboSearchBox
+          v-model:search="contributorSearch"
+          v-model="lyricist"
+          label="Lyricist"
+          :options="contributors"
+          :option-key="(c) => c.id"
+          :display-value="(option) => option.name!"
+        >
+          <template #option="{ option }">
+            {{ option.name }}
+          </template>
+        </ComboSearchBox>
+      </div>
+
       <LyricsEditor v-model="verses" class="md:col-start-1 md:row-start-1" />
     </div>
   </div>
