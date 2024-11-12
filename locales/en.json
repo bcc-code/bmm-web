@@ -19,7 +19,8 @@
     "contributor": "Contributor",
     "contributors": "Contributors",
     "archive": "Archive",
-    "transcribe": "Transcribe"
+    "transcribe": "Transcribe",
+    "lyrics": "Lyrics"
   },
   "sidebar": {
     "playlists": {
@@ -214,5 +215,11 @@
   "dashboards": {
     "title": "Dashboard",
     "fra-kaare": "Fra Kåre"
+  },
+  "lyrics": {
+    "edit": "Edit",
+    "create-new-lyrics": "Create new lyrics",
+    "create": "Create",
+    "save": "Save changes"
   }
 }

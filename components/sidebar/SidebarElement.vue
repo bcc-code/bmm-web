@@ -78,6 +78,12 @@ const { data: currentUser } = await useCurrentUser();
             icon="icon.information"
           />
           <SidebarItem
+            v-if="isLyricsManager(currentUser)"
+            :title="$t('nav.lyrics')"
+            :link="{ name: 'lyrics' }"
+            icon="icon.information"
+          />
+          <SidebarItem
             v-if="isFraKaareDashboardViewer(currentUser)"
             title="Dashboard"
             :link="{ name: 'dashboards-fra-kaare' }"

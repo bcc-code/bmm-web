@@ -60,7 +60,7 @@ const className = cva(
     />
     <span
       :class="[
-        'flex transition duration-150 ease-out',
+        'flex gap-1.5 transition duration-150 ease-out',
         { 'translate-y-1 opacity-0': loading },
       ]"
     >

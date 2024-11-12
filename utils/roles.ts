@@ -27,3 +27,7 @@ export function isTranscriptionManager(user: UserModel): boolean {
 export function isFraKaareDashboardViewer(user: UserModel): boolean {
   return hasRole(user, "ROLE_FRAKAARE_DASHBOARD") || isAdmin(user);
 }
+
+export function isLyricsManager(user: UserModel): boolean {
+  return hasRole(user, "ROLE_LYRICS_MANAGER") || isAdmin(user)
+}
