@@ -29,5 +29,5 @@ export function isFraKaareDashboardViewer(user: UserModel): boolean {
 }
 
 export function isLyricsManager(user: UserModel): boolean {
-  return hasRole(user, "ROLE_LYRICS_MANAGER") || isAdmin(user)
+  return hasRole(user, "ROLE_LYRICS_MANAGER") || isAdmin(user);
 }
