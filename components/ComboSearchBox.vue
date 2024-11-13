@@ -35,7 +35,7 @@ const search = defineModel<string>("search");
         @change="search = $event.target.value"
       />
       <ComboboxButton class="absolute right-3 top-1/2 -translate-y-1/2">
-        <NuxtIcon name="icon.search" />
+        <NuxtIcon name="icon.chevron.down" />
       </ComboboxButton>
     </div>
     <ComboboxOptions class="absolute z-50 rounded-xl p-1">
