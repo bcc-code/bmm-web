@@ -56,7 +56,7 @@ onBeforeUnmount(() => {
           :data-active="editor.isActive('heading', { level: 3 })"
           @click="editor.chain().focus().toggleHeading({ level: 3 }).run()"
         >
-          B
+          Verse title
         </button>
       </li>
     </ul>
@@ -66,11 +66,18 @@ onBeforeUnmount(() => {
 
 <style>
 .tiptap {
-  line-height: 1.5;
+  line-height: 1.7;
 
   h3 {
     font-size: 18px;
     font-weight: 800;
+    line-height:;
+    margin-top: 1em;
+    margin-bottom: 0.25em;
+
+    &:first-child {
+      margin-top: 0;
+    }
   }
 }
 </style>

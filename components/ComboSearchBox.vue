@@ -19,24 +19,35 @@ defineProps<{
   displayValue: (option: TOption) => string;
 }>();
 
-const modelValue = defineModel<TOption>();
+const modelValue = defineModel<TOption[]>();
 const search = defineModel<string>("search");
 </script>
 
 <template>
-  <Combobox v-model="modelValue" as="div">
+  <Combobox v-model="modelValue" as="div" multiple>
     <ComboboxLabel v-if="label" class="type-subtitle-2 mb-1 block text-label-1">
       {{ label }}
     </ComboboxLabel>
     <div class="relative w-full">
       <ComboboxInput
-        class="w-full rounded-lg border border-label-separator bg-background-2 px-4 py-2"
-        :display-value="(option) => displayValue(option as TOption)"
+        class="w-full truncate rounded-lg border border-label-separator bg-background-2 px-4 py-2"
+        :display-value="
+          (options) => (options as TOption[]).map(displayValue).join(', ')
+        "
         @change="search = $event.target.value"
       />
-      <ComboboxButton class="absolute right-3 top-1/2 -translate-y-1/2">
-        <NuxtIcon name="icon.chevron.down" />
-      </ComboboxButton>
+      <div class="absolute right-3 top-1/2 flex -translate-y-1/2 items-center">
+        <button
+          v-if="modelValue?.length"
+          class="rounded-md p-2"
+          @click="modelValue = []"
+        >
+          <NuxtIcon name="icon.close.small" class="opacity-50" />
+        </button>
+        <ComboboxButton>
+          <NuxtIcon name="icon.chevron.down" />
+        </ComboboxButton>
+      </div>
     </div>
     <ComboboxOptions class="absolute z-50 rounded-xl p-1">
       <div
@@ -45,7 +56,7 @@ const search = defineModel<string>("search");
         <ComboboxOption
           v-for="(option, index) in options"
           :key="optionKey(option)"
-          v-slot="{ active }"
+          v-slot="{ active, selected }"
           :value="option"
           as="template"
         >
@@ -57,7 +68,7 @@ const search = defineModel<string>("search");
               },
             ]"
           >
-            <slot name="option" :option :index />
+            <slot name="option" :option :index :selected :active />
           </div>
         </ComboboxOption>
       </div>

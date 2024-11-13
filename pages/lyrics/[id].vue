@@ -10,6 +10,10 @@ onMounted(async () => {
   lyrics.value = await new LyricsApi().lyricsIdGet({
     id: Number(route.params.id),
   });
+
+  // Default longCopyright if not set
+  lyrics.value.longCopyright ??= `© Stiftelsen Skjulte Skatters Forlag, Norway. All rights reserved.
+forlaget@skjulte-skatter.no / activechristianity.org / christianbookshop.org`;
 });
 
 const verses = computed({
@@ -42,6 +46,14 @@ const verses = computed({
   },
 });
 
+watch(lyrics, (l) => {
+  if (!l) return;
+  if (verses.value) return;
+
+  verses.value =
+    "<h3>Vers 1</h3><p>Herrens veier, Herrens tanker er</p><p>høyere enn dine, mine tanker,</p><p>ja, som himlen over jorden her.</p><p>Kun av kjærlighet hans hjerte banker.</p><h3>Refreng</h3><p>Herrens vei, du og jeg</p><p>kan ei skjønne eller fatte.</p><p>Herrens ord er lyset på vår sti.</p><p>Tro det, og du finner skjulte skatter!</p>";
+});
+
 const saving = ref(false);
 async function saveLyrics() {
   if (!lyrics.value) return;
@@ -59,31 +71,38 @@ async function saveLyrics() {
 
 const contributors = ref<ContributorModel[]>([]);
 const contributorSearch = ref("");
-const composer = ref<ContributorModel>();
-const lyricist = ref<ContributorModel>();
+const composers = ref<ContributorModel[]>();
+const lyricists = ref<ContributorModel[]>();
 
 // Initially set composer and lyricist based on the lyrics
 watch(lyrics, async (l) => {
   if (!l) return;
-  if (!l.composers?.[0] || !l.lyricists?.[0]) return;
+  if (!l.composers?.length || !l.lyricists?.length) return;
 
-  [composer.value, lyricist.value] = await Promise.all([
-    await new ContributorApi().contributorIdGet({
-      id: l.composers[0],
-    }),
-    await new ContributorApi().contributorIdGet({
-      id: l.lyricists[0],
-    }),
-  ]);
+  composers.value = await Promise.all(
+    l.composers.map((c) =>
+      new ContributorApi().contributorIdGet({
+        id: c,
+      }),
+    ),
+  );
+
+  lyricists.value = await Promise.all(
+    l.lyricists.map((c) =>
+      new ContributorApi().contributorIdGet({
+        id: c,
+      }),
+    ),
+  );
 });
 
-watch([composer, lyricist], ([c, l]) => {
+watch([composers, lyricists], ([c, l]) => {
   if (!lyrics.value) return;
   if (c) {
-    lyrics.value.composers = [c.id];
+    lyrics.value.composers = Array.from(new Set(c.map((i) => i.id)));
   }
   if (l) {
-    lyrics.value.lyricists = [l.id];
+    lyrics.value.lyricists = Array.from(new Set(l.map((i) => i.id)));
   }
 });
 
@@ -95,7 +114,7 @@ watchDebounced(
       term: search,
     });
   },
-  { debounce: 100 },
+  { debounce: 100, immediate: true },
 );
 
 // Delete lyrics dialog
@@ -118,68 +137,85 @@ function deleteLyrics() {
 </script>
 
 <template>
-  <div v-if="lyrics">
-    <div class="flex items-center justify-between gap-6">
-      <PageHeading
-        contenteditable
-        @blur="lyrics.songTitle = $event.target.innerText"
+  <div>
+    <template v-if="lyrics">
+      <div class="flex items-center justify-between gap-6">
+        <PageHeading
+          contenteditable
+          @blur="lyrics.songTitle = $event.target.innerText"
+        >
+          {{ lyrics.songTitle }}
+        </PageHeading>
+        <div class="flex items-center gap-4">
+          <ButtonStyled intent="tertiary" @click="deleteLyrics">
+            {{ $t("edit.delete") }}
+          </ButtonStyled>
+          <ButtonStyled :loading="saving" intent="primary" @click="saveLyrics">
+            {{ $t("lyrics.save") }}
+          </ButtonStyled>
+        </div>
+      </div>
+      <div class="grid gap-8 lg:grid-cols-2 lg:grid-rows-1">
+        <div class="row-start-1 flex flex-col gap-4 md:col-start-2">
+          <ComboSearchBox
+            v-model:search="contributorSearch"
+            v-model="composers"
+            :label="$t('track.details.composer')"
+            :options="contributors"
+            :option-key="(c) => c.id"
+            :display-value="(option) => option.name!"
+          >
+            <template #option="{ option, selected }">
+              {{ option.name }}
+              <NuxtIcon v-if="selected" name="icon.checkmark" />
+            </template>
+          </ComboSearchBox>
+          <ComboSearchBox
+            v-model:search="contributorSearch"
+            v-model="lyricists"
+            :label="$t('track.details.lyricist')"
+            :options="contributors"
+            :option-key="(c) => c.id"
+            :display-value="(option) => option.name!"
+          >
+            <template #option="{ option, selected }">
+              {{ option.name }}
+              <NuxtIcon v-if="selected" name="icon.checkmark" />
+            </template>
+          </ComboSearchBox>
+        </div>
+        <div class="flex flex-col gap-8">
+          <LyricsEditor
+            v-model="verses"
+            class="md:col-start-1 md:row-start-1"
+          />
+          <div class="flex flex-col gap-1">
+            <label for="long-copyright">Long copyright</label>
+            <textarea
+              id="long-copyright"
+              v-model="lyrics.longCopyright"
+              class="w-full truncate rounded-lg border border-label-separator bg-background-2 px-4 py-2"
+              rows="3"
+            ></textarea>
+          </div>
+        </div>
+      </div>
+      <DialogBase
+        :show="confirmDelete.isRevealed.value"
+        title="Delete lyrics?"
+        description="The lyrics will be permanently deleted."
+        hide-button
+        @close="confirmDelete.cancel"
       >
-        {{ lyrics.songTitle }}
-      </PageHeading>
-      <div class="flex items-center gap-4">
-        <ButtonStyled intent="tertiary" @click="deleteLyrics">
-          {{ $t("edit.delete") }}
-        </ButtonStyled>
-        <ButtonStyled :loading="saving" intent="primary" @click="saveLyrics">
-          {{ $t("lyrics.save") }}
-        </ButtonStyled>
-      </div>
-    </div>
-    <div class="grid gap-8 lg:grid-cols-2 lg:grid-rows-1">
-      <div class="row-start-1 flex flex-col items-start gap-4 md:col-start-2">
-        <ComboSearchBox
-          v-model:search="contributorSearch"
-          v-model="composer"
-          :label="$t('track.details.composer')"
-          :options="contributors"
-          :option-key="(c) => c.id"
-          :display-value="(option) => option.name!"
-        >
-          <template #option="{ option }">
-            {{ option.name }}
-          </template>
-        </ComboSearchBox>
-        <ComboSearchBox
-          v-model:search="contributorSearch"
-          v-model="lyricist"
-          :label="$t('track.details.lyricist')"
-          :options="contributors"
-          :option-key="(c) => c.id"
-          :display-value="(option) => option.name!"
-        >
-          <template #option="{ option }">
-            {{ option.name }}
-          </template>
-        </ComboSearchBox>
-      </div>
-
-      <LyricsEditor v-model="verses" class="md:col-start-1 md:row-start-1" />
-    </div>
-    <DialogBase
-      :show="confirmDelete.isRevealed.value"
-      title="Delete lyrics?"
-      description="The lyrics will be permanently deleted."
-      hide-button
-      @close="confirmDelete.cancel"
-    >
-      <div class="flex justify-end gap-2">
-        <ButtonStyled intent="secondary" @click="confirmDelete.cancel">
-          Cancel
-        </ButtonStyled>
-        <ButtonStyled intent="primary" @click="confirmDelete.confirm">
-          Yes, delete
-        </ButtonStyled>
-      </div>
-    </DialogBase>
+        <div class="flex justify-end gap-2">
+          <ButtonStyled intent="secondary" @click="confirmDelete.cancel">
+            Cancel
+          </ButtonStyled>
+          <ButtonStyled intent="primary" @click="confirmDelete.confirm">
+            Yes, delete
+          </ButtonStyled>
+        </div>
+      </DialogBase>
+    </template>
   </div>
 </template>
