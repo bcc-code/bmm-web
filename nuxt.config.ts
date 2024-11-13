@@ -35,13 +35,6 @@ export default defineNuxtConfig({
       },
     },
   },
-  $server: {
-    runtimeConfig: {
-      public: {
-        apiUrl: "{{BmmApiPlaceholder}}",
-      },
-    },
-  },
   spaLoadingTemplate: "spa-loading-template.html",
   i18n: {
     strategy: "no_prefix",

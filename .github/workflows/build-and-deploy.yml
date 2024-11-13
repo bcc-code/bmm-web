@@ -38,7 +38,7 @@ jobs:
       - name: Upload coverage reports to Codecov
         uses: codecov/codecov-action@v3
       - name: Build for production
-        run: pnpm build
+        run: pnpm build:server
         env:
           NUXT_PUBLIC_APPLICATION_INSIGHTS: ${{ vars.NUXT_PUBLIC_APPLICATION_INSIGHTS }}
           NUXT_PUBLIC_SENTRY_DSN: ${{ vars.NUXT_PUBLIC_SENTRY_DSN }}
