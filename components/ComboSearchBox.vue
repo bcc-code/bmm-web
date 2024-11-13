@@ -28,9 +28,9 @@ const search = defineModel<string>("search");
     <ComboboxLabel v-if="label" class="type-subtitle-2 mb-1 block text-label-1">
       {{ label }}
     </ComboboxLabel>
-    <div class="relative w-max">
+    <div class="relative w-full">
       <ComboboxInput
-        class="rounded-lg border border-label-separator bg-background-2 px-4 py-2"
+        class="w-full rounded-lg border border-label-separator bg-background-2 px-4 py-2"
         :display-value="(option) => displayValue(option as TOption)"
         @change="search = $event.target.value"
       />

@@ -62,6 +62,21 @@ const contributorSearch = ref("");
 const composer = ref<ContributorModel>();
 const lyricist = ref<ContributorModel>();
 
+// Initially set composer and lyricist based on the lyrics
+watch(lyrics, async (l) => {
+  if (!l) return;
+  if (!l.composers?.[0] || !l.lyricists?.[0]) return;
+
+  [composer.value, lyricist.value] = await Promise.all([
+    await new ContributorApi().contributorIdGet({
+      id: l.composers[0],
+    }),
+    await new ContributorApi().contributorIdGet({
+      id: l.lyricists[0],
+    }),
+  ]);
+});
+
 watch([composer, lyricist], ([c, l]) => {
   if (!lyrics.value) return;
   if (c) {
@@ -76,30 +91,56 @@ watchDebounced(
   contributorSearch,
   async (search) => {
     if (search === "" || !search) return;
-
-    contributors.value =
-      await new ContributorApi().contributorSuggesterCompletionTermGet({
-        term: search,
-      });
+    contributors.value = await new ContributorApi().contributorSearchTermGet({
+      term: search,
+    });
   },
   { debounce: 100 },
 );
+
+// Delete lyrics dialog
+const confirmDelete = useConfirmDialog();
+confirmDelete.onConfirm(async () => {
+  try {
+    await new LyricsApi().lyricsIdDelete({
+      id: Number(route.params.id),
+    });
+    navigateTo({ name: "lyrics" });
+  } catch {
+    throw createError("Failed to delete lyrics");
+  }
+});
+
+function deleteLyrics() {
+  if (!lyrics.value) return;
+  confirmDelete.reveal();
+}
 </script>
 
 <template>
   <div v-if="lyrics">
     <div class="flex items-center justify-between gap-6">
-      <PageHeading>{{ lyrics.songTitle }}</PageHeading>
-      <ButtonStyled :loading="saving" intent="primary" @click="saveLyrics">
-        {{ $t("lyrics.save") }}
-      </ButtonStyled>
+      <PageHeading
+        contenteditable
+        @blur="lyrics.songTitle = $event.target.innerText"
+      >
+        {{ lyrics.songTitle }}
+      </PageHeading>
+      <div class="flex items-center gap-4">
+        <ButtonStyled intent="tertiary" @click="deleteLyrics">
+          {{ $t("edit.delete") }}
+        </ButtonStyled>
+        <ButtonStyled :loading="saving" intent="primary" @click="saveLyrics">
+          {{ $t("lyrics.save") }}
+        </ButtonStyled>
+      </div>
     </div>
     <div class="grid gap-8 lg:grid-cols-2 lg:grid-rows-1">
-      <div class="row-start-1 flex flex-col gap-4 md:col-start-2">
+      <div class="row-start-1 flex flex-col items-start gap-4 md:col-start-2">
         <ComboSearchBox
           v-model:search="contributorSearch"
           v-model="composer"
-          label="Composer"
+          :label="$t('track.details.composer')"
           :options="contributors"
           :option-key="(c) => c.id"
           :display-value="(option) => option.name!"
@@ -111,7 +152,7 @@ watchDebounced(
         <ComboSearchBox
           v-model:search="contributorSearch"
           v-model="lyricist"
-          label="Lyricist"
+          :label="$t('track.details.lyricist')"
           :options="contributors"
           :option-key="(c) => c.id"
           :display-value="(option) => option.name!"
@@ -124,5 +165,21 @@ watchDebounced(
 
       <LyricsEditor v-model="verses" class="md:col-start-1 md:row-start-1" />
     </div>
+    <DialogBase
+      :show="confirmDelete.isRevealed.value"
+      title="Delete lyrics?"
+      description="The lyrics will be permanently deleted."
+      hide-button
+      @close="confirmDelete.cancel"
+    >
+      <div class="flex justify-end gap-2">
+        <ButtonStyled intent="secondary" @click="confirmDelete.cancel">
+          Cancel
+        </ButtonStyled>
+        <ButtonStyled intent="primary" @click="confirmDelete.confirm">
+          Yes, delete
+        </ButtonStyled>
+      </div>
+    </DialogBase>
   </div>
 </template>
