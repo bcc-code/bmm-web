@@ -2,6 +2,10 @@
 import { Editor, EditorContent } from "@tiptap/vue-3";
 import StarterKit from "@tiptap/starter-kit";
 
+const props = defineProps<{
+  placeholder?: string;
+}>();
+
 const modelValue = defineModel<string>();
 
 const editor = ref<Editor>();
@@ -27,9 +31,19 @@ onMounted(() => {
         },
       }),
     ],
-    content: modelValue.value,
+    content: modelValue.value || props.placeholder,
     onUpdate: ({ editor: _editor }) => {
       modelValue.value = _editor.getHTML();
+    },
+    onFocus: ({ editor: _editor }) => {
+      if (!modelValue.value && props.placeholder) {
+        _editor.commands.clearContent();
+      }
+    },
+    onBlur: ({ editor: _editor }) => {
+      if (!modelValue.value && props.placeholder) {
+        _editor.commands.setContent(props.placeholder);
+      }
     },
     editorProps: {
       attributes: {
@@ -68,16 +82,15 @@ onBeforeUnmount(() => {
 .tiptap {
   line-height: 1.7;
 
+  :first-child {
+    margin-top: 0;
+  }
+
   h3 {
     font-size: 18px;
     font-weight: 800;
-    line-height:;
     margin-top: 1em;
     margin-bottom: 0.25em;
-
-    &:first-child {
-      margin-top: 0;
-    }
   }
 }
 </style>

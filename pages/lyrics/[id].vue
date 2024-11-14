@@ -2,6 +2,11 @@
 import { ContributorApi, LyricsApi } from "@bcc-code/bmm-sdk-fetch";
 import type { ContributorModel, Lyrics } from "@bcc-code/bmm-sdk-fetch";
 
+const DEFAULT_LONG_COPYRIGHT =
+  "© Stiftelsen Skjulte Skatters Forlag, Norway. All rights reserved.";
+const EDITOR_PLACEHOLDER =
+  "<h3>Vers 1</h3><p>Herrens veier, Herrens tanker er</p><p>høyere enn dine, mine tanker,</p><p>ja, som himlen over jorden her.</p><p>Kun av kjærlighet hans hjerte banker.</p><h3>Refreng</h3><p>Herrens vei, du og jeg</p><p>kan ei skjønne eller fatte.</p><p>Herrens ord er lyset på vår sti.</p><p>Tro det, og du finner skjulte skatter!</p>";
+
 const route = useRoute("lyrics-id");
 
 const lyrics = ref<Lyrics>();
@@ -10,10 +15,6 @@ onMounted(async () => {
   lyrics.value = await new LyricsApi().lyricsIdGet({
     id: Number(route.params.id),
   });
-
-  // Default longCopyright if not set
-  lyrics.value.longCopyright ??= `© Stiftelsen Skjulte Skatters Forlag, Norway. All rights reserved.
-forlaget@skjulte-skatter.no / activechristianity.org / christianbookshop.org`;
 });
 
 const verses = computed({
@@ -46,18 +47,15 @@ const verses = computed({
   },
 });
 
-watch(lyrics, (l) => {
-  if (!l) return;
-  if (verses.value) return;
-
-  verses.value =
-    "<h3>Vers 1</h3><p>Herrens veier, Herrens tanker er</p><p>høyere enn dine, mine tanker,</p><p>ja, som himlen over jorden her.</p><p>Kun av kjærlighet hans hjerte banker.</p><h3>Refreng</h3><p>Herrens vei, du og jeg</p><p>kan ei skjønne eller fatte.</p><p>Herrens ord er lyset på vår sti.</p><p>Tro det, og du finner skjulte skatter!</p>";
-});
-
 const saving = ref(false);
 async function saveLyrics() {
   if (!lyrics.value) return;
   saving.value = true;
+
+  // Default values
+  lyrics.value.longCopyright ??= DEFAULT_LONG_COPYRIGHT;
+  lyrics.value.source = "Manual"; // Source is always manual in this case
+
   try {
     await new LyricsApi().lyricsIdPut({
       id: Number(route.params.id),
@@ -187,6 +185,7 @@ function deleteLyrics() {
         <div class="flex flex-col gap-8">
           <LyricsEditor
             v-model="verses"
+            :placeholder="EDITOR_PLACEHOLDER"
             class="md:col-start-1 md:row-start-1"
           />
           <div class="flex flex-col gap-1">
@@ -194,8 +193,9 @@ function deleteLyrics() {
             <textarea
               id="long-copyright"
               v-model="lyrics.longCopyright"
+              :placeholder="DEFAULT_LONG_COPYRIGHT"
               class="w-full truncate rounded-lg border border-label-separator bg-background-2 px-4 py-2"
-              rows="3"
+              rows="1"
             ></textarea>
           </div>
         </div>
