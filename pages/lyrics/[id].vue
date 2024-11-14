@@ -39,11 +39,10 @@ const verses = computed({
       .map((verseString) => {
         const title = verseString.match(/<h3>(.*?)<\/h3>/)?.[1];
         const text = verseString
-          .replace(/<h3>(.*?)<\/h3>/, "")
+          .replaceAll(/<h3>(.*?)<\/h3>/g, "")
           .split("</p><p>")
           .join("\n")
-          .replaceAll("<p>", "")
-          .replaceAll("</p>", "");
+          .replaceAll(/<(\/*)(.+)(\/*)>/g, "");
         return { title, text };
       });
 
