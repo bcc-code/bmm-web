@@ -20,9 +20,11 @@ onMounted(async () => {
 const verses = computed({
   get() {
     return lyrics.value?.verses
-      ?.map(
-        (v) =>
-          `<h3>${v.title}</h3><p>${v.text?.split("\n").join("</p><p>")}</p>`,
+      ?.map((v) =>
+        [
+          v.title && `<h3>${v.title}</h3>`,
+          v.text && `<p>${v.text?.split("\n").join("</p><p>")}</p>`,
+        ].join(""),
       )
       .join("");
   },
@@ -32,16 +34,18 @@ const verses = computed({
       .replaceAll("<h3>", "\n<h3>")
       .split("\n")
       .filter(Boolean);
-    const verseObjects = verseStrings.map((verseString) => {
-      const title = verseString.match(/<h3>(.*?)<\/h3>/)?.[1];
-      const text = verseString
-        .replace(/<h3>(.*?)<\/h3>/, "")
-        .split("</p><p>")
-        .join("\n")
-        .replaceAll("<p>", "")
-        .replaceAll("</p>", "");
-      return { title, text };
-    });
+    const verseObjects = verseStrings
+      .filter((verseString) => verseString !== "<p></p>")
+      .map((verseString) => {
+        const title = verseString.match(/<h3>(.*?)<\/h3>/)?.[1];
+        const text = verseString
+          .replace(/<h3>(.*?)<\/h3>/, "")
+          .split("</p><p>")
+          .join("\n")
+          .replaceAll("<p>", "")
+          .replaceAll("</p>", "");
+        return { title, text };
+      });
 
     lyrics.value.verses = verseObjects;
   },
@@ -53,7 +57,7 @@ async function saveLyrics() {
   saving.value = true;
 
   // Default values
-  lyrics.value.longCopyright ??= DEFAULT_LONG_COPYRIGHT;
+  lyrics.value.longCopyright ||= DEFAULT_LONG_COPYRIGHT;
   lyrics.value.source = "Manual"; // Source is always manual in this case
 
   try {
