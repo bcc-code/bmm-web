@@ -1,9 +1,23 @@
 <script setup type="ts">
 const route = useRoute();
 const hasHistory = () => window.history.length > 1; // using a computed() doesn't work on inital load in the Electron app. No idea why. See PR #433
+
+onMounted(() => {
+
+})
+
+const toolbar = ref()
+const {height} = useElementBounding(toolbar)
+watch(height, (h) => {
+  if (h) {
+    document.documentElement.style.setProperty('--toolbar-height', `${h}px`)
+  }
+})
 </script>
+
 <template>
   <header
+    ref="toolbar"
     class="sticky top-0 z-20 flex justify-between border-b border-label-separator bg-background-toolbar backdrop-blur-md"
     style="-webkit-app-region: drag"
   >

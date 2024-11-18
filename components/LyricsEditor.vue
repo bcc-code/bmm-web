@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { Editor, EditorContent } from "@tiptap/vue-3";
 import StarterKit from "@tiptap/starter-kit";
+import KeyboardShortcut from "./KeyboardShortcut.vue";
 
 const props = defineProps<{
   placeholder?: string;
@@ -72,16 +73,19 @@ onBeforeUnmount(() => {
 <template>
   <div
     v-if="editor"
-    class="divide-y divide-label-separator rounded-2xl border border-label-separator bg-background-2"
+    class="overflow-clip rounded-2xl border border-label-separator bg-background-2"
   >
-    <ul class="flex rounded-t-2xl bg-background-3">
+    <ul
+      class="sticky top-[var(--toolbar-height)] z-10 flex border-b border-label-separator bg-background-3"
+    >
       <li>
         <button
-          class="rounded-tl-2xl border-r border-label-separator px-6 py-2 data-[active=true]:bg-background-2"
+          class="flex gap-3 border-r border-label-separator px-6 py-2 data-[active=true]:bg-background-2"
           :data-active="editor.isActive('heading', { level: 3 })"
           @click="editor.chain().focus().toggleHeading({ level: 3 }).run()"
         >
-          Verse title
+          <span>{{ $t("lyrics.verse-title") }}</span>
+          <KeyboardShortcut :keys="['meta', 'b']" />
         </button>
       </li>
     </ul>

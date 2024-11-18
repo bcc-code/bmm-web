@@ -139,10 +139,10 @@ function deleteLyrics() {
 </script>
 
 <template>
-  <div class="relative">
+  <div>
     <template v-if="lyrics">
       <div
-        class="sticky top-10 z-10 flex items-center justify-between gap-6 bg-gradient-to-b from-background-1 from-60% to-[transparent]"
+        class="flex items-center justify-between gap-6 bg-gradient-to-b from-background-1 from-60% to-[transparent]"
       >
         <PageHeading
           contenteditable

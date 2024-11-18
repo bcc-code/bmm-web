@@ -222,6 +222,7 @@
     "create": "Create",
     "save": "Save changes",
     "composer": "Melody",
-    "lyricist": "Text"
+    "lyricist": "Text",
+    "verse-title": "Verse title"
   }
 }
