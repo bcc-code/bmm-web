@@ -111,9 +111,10 @@ watchDebounced(
   contributorSearch,
   async (search) => {
     if (search === "" || !search) return;
-    contributors.value = await new ContributorApi().contributorSearchTermGet({
-      term: search,
-    });
+    contributors.value =
+      await new ContributorApi().contributorSearchUnpublishedTermGet({
+        term: search,
+      });
   },
   { debounce: 100, immediate: true },
 );
@@ -169,8 +170,23 @@ function deleteLyrics() {
             :display-value="(option) => option.name!"
           >
             <template #option="{ option, selected }">
-              {{ option.name }}
-              <NuxtIcon v-if="selected" name="icon.checkmark" />
+              <div class="flex grow items-baseline gap-2">
+                <span>{{ option.name }}</span>
+                <div
+                  class="type-subtitle-3 flex items-baseline gap-0.5 text-label-3"
+                >
+                  <span>{{ option.interpretReferences }}</span>
+                  ·
+                  <span>{{ option.otherReferences }}</span>
+                </div>
+                <NuxtIcon
+                  :class="[
+                    'ml-auto',
+                    { 'opacity-100': selected, 'opacity-0': !selected },
+                  ]"
+                  name="icon.checkmark"
+                />
+              </div>
             </template>
           </ComboSearchBox>
           <ComboSearchBox
@@ -182,8 +198,23 @@ function deleteLyrics() {
             :display-value="(option) => option.name!"
           >
             <template #option="{ option, selected }">
-              {{ option.name }}
-              <NuxtIcon v-if="selected" name="icon.checkmark" />
+              <div class="flex grow items-baseline gap-2">
+                <span>{{ option.name }}</span>
+                <div
+                  class="type-subtitle-3 flex items-baseline gap-0.5 text-label-3"
+                >
+                  <span>{{ option.interpretReferences }}</span>
+                  ·
+                  <span>{{ option.otherReferences }}</span>
+                </div>
+                <NuxtIcon
+                  :class="[
+                    'ml-auto',
+                    { 'opacity-100': selected, 'opacity-0': !selected },
+                  ]"
+                  name="icon.checkmark"
+                />
+              </div>
             </template>
           </ComboSearchBox>
         </div>

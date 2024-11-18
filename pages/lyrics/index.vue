@@ -10,6 +10,10 @@ const createForm = reactive({
   title: "",
 });
 
+const resetForm = () => {
+  createForm.title = "";
+};
+
 const items = ref<Lyrics[]>([]);
 onMounted(async () => {
   items.value = await new LyricsApi().lyricsGet();
@@ -26,6 +30,8 @@ async function createLyrics() {
   });
 
   items.value = await new LyricsApi().lyricsGet();
+
+  resetForm();
 
   loading.value = false;
   showCreateDialog.value = false;
