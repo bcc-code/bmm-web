@@ -162,8 +162,8 @@ function deleteLyrics() {
         <div class="row-start-1 flex flex-col gap-4 md:col-start-2">
           <ComboSearchBox
             v-model:search="contributorSearch"
-            v-model="composers"
-            :label="$t('lyrics.composer')"
+            v-model="lyricists"
+            :label="$t('lyrics.lyricist')"
             :options="contributors"
             :option-key="(c) => c.id"
             :display-value="(option) => option.name!"
@@ -175,8 +175,8 @@ function deleteLyrics() {
           </ComboSearchBox>
           <ComboSearchBox
             v-model:search="contributorSearch"
-            v-model="lyricists"
-            :label="$t('lyrics.lyricist')"
+            v-model="composers"
+            :label="$t('lyrics.composer')"
             :options="contributors"
             :option-key="(c) => c.id"
             :display-value="(option) => option.name!"
