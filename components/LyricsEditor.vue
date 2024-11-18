@@ -102,8 +102,7 @@ onBeforeUnmount(() => {
   }
 
   h3 {
-    font-size: 18px;
-    font-weight: 800;
+    color: var(--bmm-label-4);
     margin-top: 1em;
     margin-bottom: 0.25em;
   }
