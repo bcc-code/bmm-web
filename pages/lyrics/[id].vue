@@ -138,9 +138,11 @@ function deleteLyrics() {
 </script>
 
 <template>
-  <div>
+  <div class="relative">
     <template v-if="lyrics">
-      <div class="flex items-center justify-between gap-6">
+      <div
+        class="sticky top-10 z-10 flex items-center justify-between gap-6 bg-gradient-to-b from-background-1 from-60% to-[transparent]"
+      >
         <PageHeading
           contenteditable
           @blur="lyrics.songTitle = $event.target.innerText"
