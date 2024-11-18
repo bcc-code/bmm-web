@@ -17,6 +17,16 @@ onMounted(async () => {
   });
 });
 
+watch(
+  () => lyrics.value?.longCopyright,
+  (copyright) => {
+    if (!lyrics.value) return;
+    if (copyright === DEFAULT_LONG_COPYRIGHT) {
+      lyrics.value.longCopyright = "";
+    }
+  },
+);
+
 const verses = computed({
   get() {
     return lyrics.value?.verses
