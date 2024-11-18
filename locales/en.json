@@ -223,6 +223,7 @@
     "save": "Save changes",
     "composer": "Melody",
     "lyricist": "Text",
-    "verse-title": "Verse title"
+    "verse-title": "Verse title",
+    "long-copyright": "Long copyright"
   }
 }

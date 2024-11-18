@@ -42,7 +42,7 @@ const verses = computed({
           .replaceAll(/<h3>(.*?)<\/h3>/g, "")
           .split("</p><p>")
           .join("\n")
-          .replaceAll(/<(\/*)(.+)(\/*)>/g, "");
+          .replaceAll(/<[^>]*>/g, "");
         return { title, text };
       });
 
@@ -225,7 +225,9 @@ function deleteLyrics() {
             class="md:col-start-1 md:row-start-1"
           />
           <div class="flex flex-col gap-1">
-            <label for="long-copyright">Long copyright</label>
+            <label for="long-copyright">
+              {{ $t("lyrics.long-copyright") }}
+            </label>
             <textarea
               id="long-copyright"
               v-model="lyrics.longCopyright"

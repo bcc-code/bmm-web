@@ -50,17 +50,6 @@ onMounted(() => {
       attributes: {
         class: "p-6 rounded-b-2xl",
       },
-      handlePaste(_, event) {
-        if (!event.clipboardData) return true;
-
-        const text = event.clipboardData.getData("text");
-        const lines = text.split(/\r?\n/);
-        const html = lines.map((line) => `<p>${line}</p>`).join("");
-        modelValue.value = html;
-        editor.value?.commands.setContent(html);
-
-        return true;
-      },
     },
   });
 });
