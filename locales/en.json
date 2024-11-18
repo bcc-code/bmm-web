@@ -220,6 +220,8 @@
     "edit": "Edit",
     "create-new-lyrics": "Create new lyrics",
     "create": "Create",
-    "save": "Save changes"
+    "save": "Save changes",
+    "composer": "Melody",
+    "lyricist": "Text"
   }
 }
