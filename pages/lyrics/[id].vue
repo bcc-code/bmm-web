@@ -60,6 +60,7 @@ const verses = computed({
   },
 });
 
+const yearPublished = ref<number | null>();
 const saving = ref(false);
 async function saveLyrics() {
   if (!lyrics.value) return;
@@ -67,7 +68,9 @@ async function saveLyrics() {
 
   // Default values
   lyrics.value.longCopyright ||= DEFAULT_LONG_COPYRIGHT;
-  lyrics.value.source = "Manual"; // Source is always manual in this case
+  if (yearPublished.value) {
+    lyrics.value.yearPublished = yearPublished.value;
+  }
 
   try {
     await new LyricsApi().lyricsIdPut({
@@ -90,6 +93,7 @@ watch(lyrics, async (l) => {
   if (!l) return;
   if (!l.composers?.length || !l.lyricists?.length) return;
 
+  yearPublished.value = l.yearPublished;
   composers.value = await Promise.all(
     l.composers.map((c) =>
       new ContributorApi().contributorIdGet({
@@ -227,6 +231,20 @@ function deleteLyrics() {
               </div>
             </template>
           </ComboSearchBox>
+          <div>
+            <div>Publishing year:</div>
+            <input
+              class="w-24 truncate rounded-lg border border-label-separator bg-background-2 px-4 py-2"
+              v-model="yearPublished"
+              :placeholder="new Date().getFullYear().toString()"
+            />
+          </div>
+          <div v-if="lyrics.originalUrl">
+            <div>Original telegra.ph URL:</div>
+            <a :href="lyrics.originalUrl" target="_blank" class="underline">{{
+              lyrics.originalUrl
+            }}</a>
+          </div>
         </div>
         <div class="flex flex-col gap-8">
           <LyricsEditor
