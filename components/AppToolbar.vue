@@ -6,6 +6,9 @@ onMounted(() => {
 
 })
 
+// We need the height of the app toolbar for the LyricsEditor toolbar,
+// so that the LyricsEditor toolbars "position: sticky" sticks to the
+// bottom of the app toolbar.
 const toolbar = ref()
 const {height} = useElementBounding(toolbar)
 watch(height, (h) => {
