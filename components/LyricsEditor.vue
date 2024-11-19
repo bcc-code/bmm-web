@@ -65,16 +65,24 @@ onBeforeUnmount(() => {
     class="overflow-clip rounded-2xl border border-label-separator bg-background-2"
   >
     <ul
-      class="sticky top-[var(--toolbar-height)] z-10 flex border-b border-label-separator bg-background-3"
+      class="type-subtitle-2 sticky top-[var(--toolbar-height)] z-10 flex border-b border-label-separator bg-background-3"
     >
       <li>
         <button
-          class="flex gap-3 border-r border-label-separator px-6 py-2 data-[active=true]:bg-background-2"
+          class="flex h-full items-center gap-3 border-r border-label-separator px-6 py-2 data-[active=true]:bg-background-2"
           :data-active="editor.isActive('heading', { level: 3 })"
           @click="editor.chain().focus().toggleHeading({ level: 3 }).run()"
         >
           <span>{{ $t("lyrics.verse-title") }}</span>
           <KeyboardShortcut :keys="['meta', 'b']" />
+        </button>
+      </li>
+      <li>
+        <button
+          class="flex h-full items-center gap-3 border-r border-label-separator px-6 py-2 data-[active=true]:bg-background-2"
+          @click="editor.chain().focus().selectAll().clearNodes().run()"
+        >
+          <span>{{ $t("lyrics.remove-formatting") }}</span>
         </button>
       </li>
     </ul>
