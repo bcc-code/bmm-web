@@ -55,7 +55,7 @@ async function createLyrics() {
       <NuxtLink
         v-for="item in items"
         :key="item.id"
-        class="col-span-full grid grid-cols-subgrid items-center justify-between gap-4 py-4"
+        class="col-span-full grid grid-cols-subgrid items-center justify-between gap-4 py-1"
         :to="{ name: 'lyrics-id', params: { id: item.id } }"
       >
         <p class="type-title-2">{{ item.songTitle }}</p>
