@@ -133,7 +133,7 @@ const { data: currentUser } = useCurrentUser();
               !item.isHeader,
             'mb-1': item.isHeader,
             'text-label-2': !item.isHeader,
-            'text-label-4': item.isHeader || item.id == 2,
+            'text-label-4': item.isHeader,
           },
         ]"
       >
