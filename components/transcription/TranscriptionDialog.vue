@@ -111,8 +111,7 @@ const { data: currentUser } = useCurrentUser();
         class="type-paragraph-2 flex flex-wrap items-center gap-x-1 text-label-3"
       >
         <span>{{ $t("track.details.lyricist") }}: {{ lyricists }}</span> •
-        <span>{{ $t("track.details.composer") }}: {{ composers }}</span> •
-        <span>{{ track.copyright }}</span>
+        <span>{{ $t("track.details.composer") }}: {{ composers }}</span>
       </p>
     </header>
     <TransitionGroup
