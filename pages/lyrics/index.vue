@@ -58,7 +58,11 @@ async function createLyrics() {
         class="col-span-full grid grid-cols-subgrid items-center justify-between gap-4 py-1"
         :to="{ name: 'lyrics-id', params: { id: item.id } }"
       >
-        <p class="type-title-2">{{ item.songTitle }}</p>
+        <p>
+          <span class="type-title-2">{{ item.songTitle }}</span>
+          <span class="text-label-4">&nbsp; {{ item.modifiedBy }}</span>
+        </p>
+
         <ButtonStyled intent="secondary">
           {{ $t("lyrics.edit") }}
         </ButtonStyled>
