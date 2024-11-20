@@ -174,7 +174,7 @@ function deleteLyrics() {
         </div>
       </div>
       <div class="grid gap-8 lg:grid-cols-2 lg:grid-rows-1">
-        <div class="row-start-1 flex flex-col gap-4 md:col-start-2">
+        <div class="row-start-1 flex flex-col gap-6 md:col-start-2">
           <ComboSearchBox
             v-model:search="contributorSearch"
             v-model="lyricists"
@@ -232,18 +232,31 @@ function deleteLyrics() {
             </template>
           </ComboSearchBox>
           <div>
-            <div>Publishing year:</div>
+            <label
+              class="type-subtitle-2 mb-1 block text-label-1"
+              for="publishing-year"
+            >
+              Publishing year
+            </label>
             <input
-              class="w-24 truncate rounded-lg border border-label-separator bg-background-2 px-4 py-2"
+              id="publishing-year"
               v-model="yearPublished"
+              type="number"
+              class="w-24 truncate rounded-lg border border-label-separator bg-background-2 px-4 py-2"
               :placeholder="new Date().getFullYear().toString()"
             />
           </div>
           <div v-if="lyrics.originalUrl">
-            <div>Original telegra.ph URL:</div>
-            <a :href="lyrics.originalUrl" target="_blank" class="underline">{{
-              lyrics.originalUrl
-            }}</a>
+            <div class="type-subtitle-3 text-label-1">
+              Original telegra.ph URL
+            </div>
+            <a
+              :href="lyrics.originalUrl"
+              target="_blank"
+              class="type-paragraph-1 underline"
+            >
+              {{ lyrics.originalUrl }}
+            </a>
           </div>
         </div>
         <div class="flex flex-col gap-8">
