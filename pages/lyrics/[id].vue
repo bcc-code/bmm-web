@@ -29,34 +29,14 @@ watch(
 
 const verses = computed({
   get() {
-    return lyrics.value?.verses
-      ?.map((v) =>
-        [
-          v.title && `<h3>${v.title}</h3>`,
-          v.text && `<p>${v.text?.split("\n").join("</p><p>")}</p>`,
-        ].join(""),
-      )
-      .join("");
+    if (!lyrics.value?.verses) return "";
+    return lyricsVersesToHtml(lyrics.value.verses);
   },
   set(value) {
     if (!lyrics.value || !value) return;
-    const verseStrings = value
-      .replaceAll("<h3>", "\n<h3>")
-      .split("\n")
-      .filter(Boolean);
-    const verseObjects = verseStrings
-      .filter((verseString) => verseString !== "<p></p>")
-      .map((verseString) => {
-        const title = verseString.match(/<h3>(.*?)<\/h3>/)?.[1];
-        const text = verseString
-          .replaceAll(/<h3>(.*?)<\/h3>/g, "")
-          .split("</p><p>")
-          .join("\n")
-          .replaceAll(/<[^>]*>/g, "");
-        return { title, text };
-      });
-
-    lyrics.value.verses = verseObjects;
+    const html = lyricsCleanupHtml(value);
+    const lyricsVerses = lyricsVersesFromHtml(html);
+    lyrics.value.verses = lyricsVerses;
   },
 });
 
@@ -155,24 +135,38 @@ function deleteLyrics() {
 <template>
   <div>
     <template v-if="lyrics">
-      <div
-        class="flex items-center justify-between gap-6 bg-gradient-to-b from-background-1 from-60% to-[transparent]"
-      >
-        <PageHeading
-          contenteditable
-          @blur="lyrics.songTitle = $event.target.innerText"
+      <header class="mb-8">
+        <div
+          class="flex items-center justify-between gap-6 bg-gradient-to-b from-background-1 from-60% to-[transparent]"
         >
-          {{ lyrics.songTitle }}
-        </PageHeading>
-        <div class="flex items-center gap-4">
-          <ButtonStyled intent="tertiary" @click="deleteLyrics">
-            {{ $t("edit.delete") }}
-          </ButtonStyled>
-          <ButtonStyled :loading="saving" intent="primary" @click="saveLyrics">
-            {{ $t("lyrics.save") }}
-          </ButtonStyled>
+          <PageHeading
+            contenteditable
+            @blur="lyrics.songTitle = $event.target.innerText"
+          >
+            {{ lyrics.songTitle }}
+          </PageHeading>
+          <div class="flex items-center gap-4">
+            <ButtonStyled intent="tertiary" @click="deleteLyrics">
+              {{ $t("edit.delete") }}
+            </ButtonStyled>
+            <ButtonStyled
+              :loading="saving"
+              intent="primary"
+              @click="saveLyrics"
+            >
+              {{ $t("lyrics.save") }}
+            </ButtonStyled>
+          </div>
         </div>
-      </div>
+        <I18nText
+          class="type-paragraph-1 flex flex-wrap items-center gap-2 text-label-2"
+          i18n-key="lyrics.paste-instructions"
+        >
+          <template #shortcut>
+            <KeyboardShortcut :keys="['meta', 'shift', 'v']" />
+          </template>
+        </I18nText>
+      </header>
       <div class="grid gap-8 lg:grid-cols-2 lg:grid-rows-1">
         <div class="row-start-1 flex flex-col gap-6 md:col-start-2">
           <ComboSearchBox

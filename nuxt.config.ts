@@ -23,7 +23,7 @@ export default defineNuxtConfig({
   modules,
   runtimeConfig: {
     public: {
-      apiUrl: "https://bmm-api.brunstad.org",
+      apiUrl: "https://int-bmm-api.brunstad.org",
       authUrl: "https://login.bcc.no",
       clientId: "L9891KdcqtoKmHg4r65lT7zbSjv55dNN",
       applicationInsights: "",

@@ -20,6 +20,7 @@ const formattedKeys = computed(() =>
 <template>
   <kbd
     class="type-subtitle-3 inline-block rounded border border-b-4 border-label-2 bg-background-1 px-1 text-label-2"
+    :title="formattedKeys"
   >
     {{ formattedKeys }}
   </kbd>
