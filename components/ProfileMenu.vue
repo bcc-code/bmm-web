@@ -302,7 +302,7 @@ const { data: user } = useCurrentUser();
           </div>
 
           <button
-            v-if="i > 0"
+            v-if="contentLanguages.length > 1"
             class="text-2xl"
             @click="contentLanguages.splice(i, 1)"
           >
