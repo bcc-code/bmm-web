@@ -11,7 +11,7 @@ const translation = computed(() => {
   const properties = text.matchAll(/<(\w*)>/g);
   return {
     text: text.split(/<\w*>/),
-    properties: properties.toArray().map((x) => x[1]),
+    properties: Array.from(properties).map((x) => x[1]),
   };
 });
 </script>
