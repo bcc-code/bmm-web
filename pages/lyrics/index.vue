@@ -37,6 +37,15 @@ async function createLyrics() {
   loading.value = false;
   showCreateDialog.value = false;
 }
+
+const search = ref("");
+
+const filteredItems = computed(() => {
+  if (!search.value) return items.value;
+  return items.value.filter((item) =>
+    item.songTitle?.toLowerCase().includes(search.value.toLowerCase()),
+  );
+});
 </script>
 
 <template>
@@ -51,9 +60,21 @@ async function createLyrics() {
         {{ $t("lyrics.create-new-lyrics") }}
       </ButtonStyled>
     </header>
+    <div class="relative mb-4 max-w-72">
+      <input
+        id="search"
+        v-model="search"
+        class="w-full truncate rounded-lg border border-label-separator bg-background-2 px-4 py-2"
+        :placeholder="$t('search.input-placeholder')"
+      />
+      <NuxtIcon
+        name="icon.search"
+        class="absolute right-4 top-1/2 -translate-y-1/2"
+      />
+    </div>
     <div class="grid grid-cols-[1fr_auto] divide-y divide-label-separator">
       <NuxtLink
-        v-for="item in items"
+        v-for="item in filteredItems"
         :key="item.id"
         class="col-span-full grid grid-cols-subgrid items-center justify-between gap-4 py-1"
         :to="{ name: 'lyrics-id', params: { id: item.id } }"
