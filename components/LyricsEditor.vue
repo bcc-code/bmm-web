@@ -57,6 +57,12 @@ onMounted(() => {
 onBeforeUnmount(() => {
   editor.value?.destroy();
 });
+
+function cleanUpFormatting() {
+  if (!editor.value) return;
+  modelValue.value = lyricsCleanupHtml(editor.value.getHTML());
+  editor.value.commands.setContent(modelValue.value);
+}
 </script>
 
 <template>
@@ -80,7 +86,7 @@ onBeforeUnmount(() => {
       <li>
         <button
           class="flex h-full items-center gap-3 border-r border-label-separator px-6 py-2 data-[active=true]:bg-background-2"
-          @click="editor.chain().focus().selectAll().clearNodes().run()"
+          @click="cleanUpFormatting"
         >
           <span>{{ $t("lyrics.remove-formatting") }}</span>
         </button>
