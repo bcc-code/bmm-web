@@ -42,6 +42,7 @@ const verses = computed({
 
 const yearPublished = ref<number | null>();
 const saving = ref(false);
+const editorRenderingKey = ref(0);
 async function saveLyrics() {
   if (!lyrics.value) return;
   saving.value = true;
@@ -60,6 +61,7 @@ async function saveLyrics() {
   } catch {
   } finally {
     saving.value = false;
+    editorRenderingKey.value += 1;
   }
 }
 
@@ -255,6 +257,7 @@ function deleteLyrics() {
         </div>
         <div class="flex flex-col gap-8">
           <LyricsEditor
+            :key="editorRenderingKey"
             v-model="verses"
             :placeholder="EDITOR_PLACEHOLDER"
             class="md:col-start-1 md:row-start-1"
