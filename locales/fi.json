@@ -163,8 +163,8 @@
       "arranger": "Sovittaja",
       "composer": "Säveltäjä",
       "lyricist": "Sanoittaja",
-      "text": "Text",
-      "melody": "Melody"
+      "text": "Teksti",
+      "melody": "Sävelmä"
     }
   },
   "home": {
@@ -219,12 +219,12 @@
   },
   "lyrics": {
     "edit": "Muokkaa",
-    "create-new-lyrics": "Create new lyrics",
-    "create": "Create",
+    "create-new-lyrics": "Luo uudet sanoitukset",
+    "create": "Luo",
     "save": "Tallenna muutokset.",
-    "verse-title": "Verse title",
-    "long-copyright": "Long copyright",
-    "remove-formatting": "Cleanup formatting",
-    "paste-instructions": "Paste text using <shortcut> to remove formatting."
+    "verse-title": "Säkeistön otsikko",
+    "long-copyright": "Pitkä tekijänoikeus",
+    "remove-formatting": "Poista muotoilu",
+    "paste-instructions": "Liitä teksti käyttäen <shortcut> poistaaksesi muotoilun."
   }
 }
