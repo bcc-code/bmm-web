@@ -19,7 +19,8 @@
     "contributor": "Сътрудник",
     "contributors": "Сътрудници",
     "archive": "Архив",
-    "transcribe": "Transcribe"
+    "transcribe": "Transcribe",
+    "lyrics": "Lyrics"
   },
   "sidebar": {
     "playlists": {
@@ -161,7 +162,9 @@
       "song-number": "Номер на песен",
       "arranger": "Аранжор",
       "composer": "Композитор",
-      "lyricist": "Текстописец"
+      "lyricist": "Текстописец",
+      "text": "Text",
+      "melody": "Melody"
     }
   },
   "home": {
@@ -213,5 +216,17 @@
   "dashboards": {
     "title": "Табло за управление",
     "fra-kaare": "Fra Kåre"
+  },
+  "lyrics": {
+    "edit": "Edit",
+    "create-new-lyrics": "Create new lyrics",
+    "create": "Create",
+    "save": "Save changes",
+    "composer": "Melody",
+    "lyricist": "Text",
+    "verse-title": "Verse title",
+    "long-copyright": "Long copyright",
+    "remove-formatting": "Cleanup formatting",
+    "paste-instructions": "Paste text using <shortcut> to remove formatting."
   }
 }
