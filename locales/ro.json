@@ -164,7 +164,7 @@
       "composer": "Compozitor",
       "lyricist": "Textier",
       "text": "Text",
-      "melody": "Melody"
+      "melody": "Melodie"
     }
   },
   "home": {
@@ -219,12 +219,12 @@
   },
   "lyrics": {
     "edit": "Editează",
-    "create-new-lyrics": "Create new lyrics",
-    "create": "Create",
+    "create-new-lyrics": "Crează versuri noi",
+    "create": "Creează",
     "save": "Salvează modificările",
-    "verse-title": "Verse title",
-    "long-copyright": "Long copyright",
-    "remove-formatting": "Cleanup formatting",
-    "paste-instructions": "Paste text using <shortcut> to remove formatting."
+    "verse-title": "Titlul versului",
+    "long-copyright": "Drept de autor lung",
+    "remove-formatting": "Formatare de curățare",
+    "paste-instructions": "Lipește textul folosind „scurtătura” pentru a elimina formatarea."
   }
 }
