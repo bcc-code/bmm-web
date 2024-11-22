@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type {
   LanguageEnum,
-  TrackTranslationTranscriptionSegment,
+  TranscriptionSegment,
 } from "@bcc-code/bmm-sdk-fetch";
 import { PublishedFilter, TrackApi } from "@bcc-code/bmm-sdk-fetch";
 import { diffWordsWithSpace } from "diff";
@@ -104,8 +104,8 @@ function onStartTranscriptionPlayback() {
 }
 
 function getDiff(
-  oldItem: TrackTranslationTranscriptionSegment | undefined,
-  newItem: TrackTranslationTranscriptionSegment | undefined,
+  oldItem: TranscriptionSegment | undefined,
+  newItem: TranscriptionSegment | undefined,
 ) {
   if (!oldItem?.text || !newItem?.text) return [];
   return diffWordsWithSpace(oldItem.text, newItem.text);
@@ -168,7 +168,7 @@ async function saveTranscription() {
     await new TrackApi().trackIdTranscriptionLanguagePost({
       id: Number(route.params.id),
       language: language.value,
-      trackTranslationTranscriptionSegment: editableTranscription.value,
+      transcriptionSegment: editableTranscription.value,
     });
 
     // reset state

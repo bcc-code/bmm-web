@@ -3,7 +3,7 @@ import type {
   LanguageEnum,
   TrackIdTranscriptionGetRequest,
   TrackIdTranscriptionLanguageGetRequest,
-  TrackTranslationTranscriptionSegment,
+  TranscriptionSegment,
 } from "@bcc-code/bmm-sdk-fetch";
 
 export function useTrackTranscription(
@@ -52,7 +52,7 @@ export function useTranscriptionTool(options: UseTranscriptionToolOptions) {
 
   const { $mediaPlayer } = useNuxtApp();
 
-  const editableTranscription = ref<TrackTranslationTranscriptionSegment[]>([]);
+  const editableTranscription = ref<TranscriptionSegment[]>([]);
   function syncEditableTranscription() {
     if (!transcription.value?.length) return;
 
@@ -77,7 +77,7 @@ export function useTranscriptionTool(options: UseTranscriptionToolOptions) {
 
   const currentIndex = ref(0);
 
-  function isWithinCurrentTime(item: TrackTranslationTranscriptionSegment) {
+  function isWithinCurrentTime(item: TranscriptionSegment) {
     const hasStarted =
       !!item.start && $mediaPlayer.currentPosition.value >= item.start;
     const hasEnded =
@@ -116,9 +116,7 @@ export function useTranscriptionTool(options: UseTranscriptionToolOptions) {
     return editableTranscription.value[currentIndex.value];
   });
 
-  async function playTranscriptionSegment(
-    item: TrackTranslationTranscriptionSegment,
-  ) {
+  async function playTranscriptionSegment(item: TranscriptionSegment) {
     if (!$mediaPlayer.currentTrack.value && track.value) {
       $mediaPlayer.setQueue([track.value]);
     }
@@ -154,7 +152,7 @@ export function useTranscriptionTool(options: UseTranscriptionToolOptions) {
   }
 
   function setTranscriptionSegmentText(
-    item: TrackTranslationTranscriptionSegment,
+    item: TranscriptionSegment,
     text: string,
   ) {
     const index = editableTranscription.value.findIndex(
@@ -164,11 +162,9 @@ export function useTranscriptionTool(options: UseTranscriptionToolOptions) {
     editableTranscription.value[index]!.text = text;
   }
 
-  const deletedTranscriptionSegments = ref<
-    TrackTranslationTranscriptionSegment[]
-  >([]);
+  const deletedTranscriptionSegments = ref<TranscriptionSegment[]>([]);
 
-  function toggleDeletion(item: TrackTranslationTranscriptionSegment) {
+  function toggleDeletion(item: TranscriptionSegment) {
     const index = editableTranscription.value.findIndex(
       (_item) => _item.id === item.id,
     );
