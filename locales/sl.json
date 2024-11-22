@@ -219,12 +219,12 @@
   },
   "lyrics": {
     "edit": "Uredi",
-    "create-new-lyrics": "Create new lyrics",
-    "create": "Create",
+    "create-new-lyrics": "Ustvari novo besedilo",
+    "create": "Ustvari",
     "save": "Shrani spremembe",
-    "verse-title": "Verse title",
-    "long-copyright": "Long copyright",
-    "remove-formatting": "Cleanup formatting",
-    "paste-instructions": "Paste text using <shortcut> to remove formatting."
+    "verse-title": "Naslov kitice",
+    "long-copyright": "Avtorske pravice",
+    "remove-formatting": "Odstrani oblikovanje",
+    "paste-instructions": "Prilepi besedilo z <shortcut>, da odstraniš oblikovanje."
   }
 }
