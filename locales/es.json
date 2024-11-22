@@ -19,7 +19,8 @@
     "contributor": "Colaborador",
     "contributors": "Colaboradores",
     "archive": "Archivo",
-    "transcribe": "Transcribir"
+    "transcribe": "Transcribir",
+    "lyrics": "Letras"
   },
   "sidebar": {
     "playlists": {
@@ -161,7 +162,9 @@
       "song-number": "Número de canción",
       "arranger": "Organizador",
       "composer": "Compositor",
-      "lyricist": "Letrista"
+      "lyricist": "Letrista",
+      "text": "Text",
+      "melody": "Melody"
     }
   },
   "home": {
@@ -213,5 +216,17 @@
   "dashboards": {
     "title": "Panel de Control",
     "fra-kaare": "De Kåre"
+  },
+  "lyrics": {
+    "edit": "Editar",
+    "create-new-lyrics": "Create new lyrics",
+    "create": "Create",
+    "save": "Guardar cambios",
+    "composer": "Melody",
+    "lyricist": "Text",
+    "verse-title": "Verse title",
+    "long-copyright": "Long copyright",
+    "remove-formatting": "Cleanup formatting",
+    "paste-instructions": "Paste text using <shortcut> to remove formatting."
   }
 }
