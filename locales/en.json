@@ -163,7 +163,9 @@
       "song-number": "Song number",
       "arranger": "Arranger",
       "composer": "Composer",
-      "lyricist": "Lyricist"
+      "lyricist": "Lyricist",
+      "text": "Text",
+      "melody": "Melody"
     }
   },
   "home": {

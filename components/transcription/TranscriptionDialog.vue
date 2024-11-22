@@ -110,8 +110,13 @@ const { data: currentUser } = useCurrentUser();
         v-if="track.contributors?.length"
         class="type-paragraph-2 flex flex-wrap items-center gap-x-1 text-label-3"
       >
-        <span>{{ $t("track.details.lyricist") }}: {{ lyricists }}</span> •
-        <span>{{ $t("track.details.composer") }}: {{ composers }}</span>
+        <span v-if="lyricists"
+          >{{ $t("track.details.text") }}: {{ lyricists }}</span
+        >
+        <span v-if="lyricists && composers">•</span>
+        <span v-if="composers"
+          >{{ $t("track.details.melody") }}: {{ composers }}</span
+        >
       </p>
     </header>
     <TransitionGroup
