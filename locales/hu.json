@@ -19,7 +19,8 @@
     "contributor": "Közreműködő",
     "contributors": "Közreműködők",
     "archive": "Archívum",
-    "transcribe": "Átirat"
+    "transcribe": "Átirat",
+    "lyrics": "Szövegek"
   },
   "sidebar": {
     "playlists": {
@@ -161,7 +162,9 @@
       "song-number": "Ének száma",
       "arranger": "Rendező",
       "composer": "Zeneszerző",
-      "lyricist": "Szövegíró"
+      "lyricist": "Szövegíró",
+      "text": "Text",
+      "melody": "Melody"
     }
   },
   "home": {
@@ -213,5 +216,17 @@
   "dashboards": {
     "title": "Vezérlőpanel",
     "fra-kaare": "Kårétól"
+  },
+  "lyrics": {
+    "edit": "Szerkesztés",
+    "create-new-lyrics": "Create new lyrics",
+    "create": "Create",
+    "save": "Módosítások mentése",
+    "composer": "Melody",
+    "lyricist": "Text",
+    "verse-title": "Verse title",
+    "long-copyright": "Long copyright",
+    "remove-formatting": "Cleanup formatting",
+    "paste-instructions": "Paste text using <shortcut> to remove formatting."
   }
 }
