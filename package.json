@@ -31,6 +31,7 @@
     "@tiptap/vue-3": "^2.9.1",
     "@vueuse/core": "^10.7.2",
     "@vueuse/math": "^10.9.0",
+    "@vueuse/router": "^11.3.0",
     "@zag-js/slider": "^0.50.0",
     "@zag-js/vue": "^0.50.0",
     "class-variance-authority": "^0.7.0",

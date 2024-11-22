@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { LyricsApi } from "@bcc-code/bmm-sdk-fetch";
+import { useRouteQuery } from "@vueuse/router";
 import type { Lyrics } from "@bcc-code/bmm-sdk-fetch";
 
 const { t } = useI18n();
@@ -38,7 +39,7 @@ async function createLyrics() {
   showCreateDialog.value = false;
 }
 
-const search = ref("");
+const search = useRouteQuery("search", "");
 
 const filteredItems = computed(() => {
   if (!search.value) return items.value;
