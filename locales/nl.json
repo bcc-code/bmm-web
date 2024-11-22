@@ -19,7 +19,8 @@
     "contributor": "Bijdrager",
     "contributors": "Bijdragers",
     "archive": "Archief",
-    "transcribe": "Transcriberen"
+    "transcribe": "Transcriberen",
+    "lyrics": "Lyrics"
   },
   "sidebar": {
     "playlists": {
@@ -161,7 +162,9 @@
       "song-number": "Liednummer",
       "arranger": "Arrangeur",
       "composer": "Componist",
-      "lyricist": "Schrijver"
+      "lyricist": "Schrijver",
+      "text": "Tekst",
+      "melody": "Melodie"
     }
   },
   "home": {
@@ -213,5 +216,17 @@
   "dashboards": {
     "title": "Dashboard",
     "fra-kaare": "Fra Kåre"
+  },
+  "lyrics": {
+    "edit": "Bewerken",
+    "create-new-lyrics": "Create new lyrics",
+    "create": "Create",
+    "save": "Sla de wijzigingen op",
+    "composer": "Melodie",
+    "lyricist": "Tekst",
+    "verse-title": "Verse title",
+    "long-copyright": "Long copyright",
+    "remove-formatting": "Cleanup formatting",
+    "paste-instructions": "Paste text using <shortcut> to remove formatting."
   }
 }

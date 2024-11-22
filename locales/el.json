@@ -19,7 +19,8 @@
     "contributor": "Συνεργάτης (?)",
     "contributors": "Συνεργάτες",
     "archive": "Αρχείο",
-    "transcribe": "Transcribe"
+    "transcribe": "Transcribe",
+    "lyrics": "Lyrics"
   },
   "sidebar": {
     "playlists": {
@@ -161,7 +162,9 @@
       "song-number": "Song number",
       "arranger": "Ενορχηστρωτής",
       "composer": "Συνθέτης",
-      "lyricist": "Στιχουργός"
+      "lyricist": "Στιχουργός",
+      "text": "Text",
+      "melody": "Melody"
     }
   },
   "home": {
@@ -213,5 +216,17 @@
   "dashboards": {
     "title": "Ταμπλό",
     "fra-kaare": "Fra Kåre"
+  },
+  "lyrics": {
+    "edit": "Edit",
+    "create-new-lyrics": "Create new lyrics",
+    "create": "Create",
+    "save": "Save changes",
+    "composer": "Melody",
+    "lyricist": "Text",
+    "verse-title": "Verse title",
+    "long-copyright": "Long copyright",
+    "remove-formatting": "Cleanup formatting",
+    "paste-instructions": "Paste text using <shortcut> to remove formatting."
   }
 }

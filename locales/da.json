@@ -19,7 +19,8 @@
     "contributor": "Medvirkende",
     "contributors": "Bidragydere",
     "archive": "Arkiv",
-    "transcribe": "Transskriber"
+    "transcribe": "Transskriber",
+    "lyrics": "Tekster"
   },
   "sidebar": {
     "playlists": {
@@ -161,7 +162,9 @@
       "song-number": "Sangnummer",
       "arranger": "Arrangør",
       "composer": "Komponist",
-      "lyricist": "Forfatter"
+      "lyricist": "Forfatter",
+      "text": "Text",
+      "melody": "Melody"
     }
   },
   "home": {
@@ -213,5 +216,17 @@
   "dashboards": {
     "title": "Kontrolpanel",
     "fra-kaare": "Fra Kåre"
+  },
+  "lyrics": {
+    "edit": "Rediger",
+    "create-new-lyrics": "Create new lyrics",
+    "create": "Create",
+    "save": "Gem ændringer",
+    "composer": "Melody",
+    "lyricist": "Text",
+    "verse-title": "Verse title",
+    "long-copyright": "Long copyright",
+    "remove-formatting": "Cleanup formatting",
+    "paste-instructions": "Paste text using <shortcut> to remove formatting."
   }
 }

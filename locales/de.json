@@ -19,7 +19,8 @@
     "contributor": "Mitwirkender",
     "contributors": "Mitwirkende",
     "archive": "Archiv",
-    "transcribe": "Transkribieren"
+    "transcribe": "Transkribieren",
+    "lyrics": "Liedtext"
   },
   "sidebar": {
     "playlists": {
@@ -161,7 +162,9 @@
       "song-number": "Liednummer",
       "arranger": "Arrangeur",
       "composer": "Komponist",
-      "lyricist": "Verfasser"
+      "lyricist": "Verfasser",
+      "text": "Text",
+      "melody": "Melodie"
     }
   },
   "home": {
@@ -213,5 +216,17 @@
   "dashboards": {
     "title": "Dashboard",
     "fra-kaare": "Von Kåre"
+  },
+  "lyrics": {
+    "edit": "Ändern",
+    "create-new-lyrics": "Create new lyrics",
+    "create": "Create",
+    "save": "Änderungen speichern",
+    "composer": "Melodie",
+    "lyricist": "Text",
+    "verse-title": "Verse title",
+    "long-copyright": "Long copyright",
+    "remove-formatting": "Cleanup formatting",
+    "paste-instructions": "Paste text using <shortcut> to remove formatting."
   }
 }

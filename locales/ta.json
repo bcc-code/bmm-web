@@ -19,7 +19,8 @@
     "contributor": "பங்களிப்பாளர்",
     "contributors": "பங்களிப்பாளர்கள்",
     "archive": "காப்பகம்",
-    "transcribe": "படியெடுக்கவும்"
+    "transcribe": "படியெடுக்கவும்",
+    "lyrics": "பாடல் வரிகள்"
   },
   "sidebar": {
     "playlists": {
@@ -161,7 +162,9 @@
       "song-number": "பாடல் எண்",
       "arranger": "ஏற்பாடு செய்பவர்",
       "composer": "இசையமைப்பாளர்",
-      "lyricist": "பாடலாசிரியர்"
+      "lyricist": "பாடலாசிரியர்",
+      "text": "Text",
+      "melody": "Melody"
     }
   },
   "home": {
@@ -213,5 +216,17 @@
   "dashboards": {
     "title": "டாஷ்போர்டு",
     "fra-kaare": "ஃப்ரா கோரே"
+  },
+  "lyrics": {
+    "edit": "திருத்தவும்",
+    "create-new-lyrics": "Create new lyrics",
+    "create": "Create",
+    "save": "மாற்றங்களைச் சேமிக்கவும்",
+    "composer": "Melody",
+    "lyricist": "Text",
+    "verse-title": "Verse title",
+    "long-copyright": "Long copyright",
+    "remove-formatting": "Cleanup formatting",
+    "paste-instructions": "Paste text using <shortcut> to remove formatting."
   }
 }

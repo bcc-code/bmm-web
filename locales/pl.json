@@ -19,7 +19,8 @@
     "contributor": "Autor",
     "contributors": "Autorzy",
     "archive": "Archiwum",
-    "transcribe": "Rozpisz"
+    "transcribe": "Rozpisz",
+    "lyrics": "Tekst"
   },
   "sidebar": {
     "playlists": {
@@ -161,7 +162,9 @@
       "song-number": "Numer piosenki",
       "arranger": "Aranżer",
       "composer": "Kompozytor",
-      "lyricist": "Autor tekstu"
+      "lyricist": "Autor tekstu",
+      "text": "Text",
+      "melody": "Melody"
     }
   },
   "home": {
@@ -213,5 +216,17 @@
   "dashboards": {
     "title": "Panel",
     "fra-kaare": "Fra Kåre"
+  },
+  "lyrics": {
+    "edit": "Edit",
+    "create-new-lyrics": "Create new lyrics",
+    "create": "Create",
+    "save": "Save changes",
+    "composer": "Melody",
+    "lyricist": "Text",
+    "verse-title": "Verse title",
+    "long-copyright": "Long copyright",
+    "remove-formatting": "Cleanup formatting",
+    "paste-instructions": "Paste text using <shortcut> to remove formatting."
   }
 }

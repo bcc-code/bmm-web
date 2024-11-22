@@ -19,7 +19,8 @@
     "contributor": "Bydaer",
     "contributors": "bydraers",
     "archive": "Argief",
-    "transcribe": "Transcribe"
+    "transcribe": "Transcribe",
+    "lyrics": "Lyrics"
   },
   "sidebar": {
     "playlists": {
@@ -161,7 +162,9 @@
       "song-number": "Song number",
       "arranger": "Arranger",
       "composer": "Komponis",
-      "lyricist": "Liriekskrywer"
+      "lyricist": "Liriekskrywer",
+      "text": "Text",
+      "melody": "Melody"
     }
   },
   "home": {
@@ -213,5 +216,17 @@
   "dashboards": {
     "title": "Paneelbord",
     "fra-kaare": "Fra Kåre"
+  },
+  "lyrics": {
+    "edit": "Edit",
+    "create-new-lyrics": "Create new lyrics",
+    "create": "Create",
+    "save": "Save changes",
+    "composer": "Melody",
+    "lyricist": "Text",
+    "verse-title": "Verse title",
+    "long-copyright": "Long copyright",
+    "remove-formatting": "Cleanup formatting",
+    "paste-instructions": "Paste text using <shortcut> to remove formatting."
   }
 }

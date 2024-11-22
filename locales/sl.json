@@ -19,7 +19,8 @@
     "contributor": "Ustvarjalec",
     "contributors": "Ustvarjalci",
     "archive": "Arhiv",
-    "transcribe": "Prepis"
+    "transcribe": "Prepis",
+    "lyrics": "Besedilo"
   },
   "sidebar": {
     "playlists": {
@@ -161,7 +162,9 @@
       "song-number": "Številka pesmi",
       "arranger": "Aranžer",
       "composer": "Skladatelj",
-      "lyricist": "Avtor besedila"
+      "lyricist": "Avtor besedila",
+      "text": "Besedilo",
+      "melody": "Melodija"
     }
   },
   "home": {
@@ -213,5 +216,17 @@
   "dashboards": {
     "title": "Nadzorna plošča",
     "fra-kaare": "Od Kåreja"
+  },
+  "lyrics": {
+    "edit": "Uredi",
+    "create-new-lyrics": "Create new lyrics",
+    "create": "Create",
+    "save": "Shrani spremembe",
+    "composer": "Melodija",
+    "lyricist": "Besedilo",
+    "verse-title": "Verse title",
+    "long-copyright": "Long copyright",
+    "remove-formatting": "Cleanup formatting",
+    "paste-instructions": "Paste text using <shortcut> to remove formatting."
   }
 }
