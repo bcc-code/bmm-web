@@ -41,6 +41,7 @@ app.MapGet("contributors/{*.}", handler);
 app.MapGet("featured/{*.}", handler);
 app.MapGet("search/{*.}", handler);
 app.MapGet("transcribe/{*.}", handler);
+app.MapGet("lyrics/{*.}", handler);
 app.MapGet("dashboards/{*.}", handler);
 
 // We want to allow downloading without needing to log in. It looks ugly and can't be translated but offers a better exerience.
