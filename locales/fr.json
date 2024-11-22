@@ -19,7 +19,8 @@
     "contributor": "Contributeur",
     "contributors": "Contributeurs",
     "archive": "Archive",
-    "transcribe": "Transcrire"
+    "transcribe": "Transcrire",
+    "lyrics": "Paroles"
   },
   "sidebar": {
     "playlists": {
@@ -161,7 +162,9 @@
       "song-number": "Numéro de chant",
       "arranger": "Arrangement",
       "composer": "Compositeur",
-      "lyricist": "Paroles"
+      "lyricist": "Paroles",
+      "text": "Texte",
+      "melody": "Mélodie"
     }
   },
   "home": {
@@ -213,5 +216,17 @@
   "dashboards": {
     "title": "Tableau de bord",
     "fra-kaare": "Venant de Kåre"
+  },
+  "lyrics": {
+    "edit": "Modifier",
+    "create-new-lyrics": "Create new lyrics",
+    "create": "Create",
+    "save": "Enregistrer les modifications",
+    "composer": "Mélodie",
+    "lyricist": "Texte",
+    "verse-title": "Verse title",
+    "long-copyright": "Long copyright",
+    "remove-formatting": "Cleanup formatting",
+    "paste-instructions": "Paste text using <shortcut> to remove formatting."
   }
 }
