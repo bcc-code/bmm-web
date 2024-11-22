@@ -110,9 +110,13 @@ const { data: currentUser } = useCurrentUser();
         v-if="track.contributors?.length"
         class="type-paragraph-2 flex flex-wrap items-center gap-x-1 text-label-3"
       >
-        <span>{{ $t("track.details.lyricist") }}: {{ lyricists }}</span> •
-        <span>{{ $t("track.details.composer") }}: {{ composers }}</span> •
-        <span>{{ track.copyright }}</span>
+        <span v-if="lyricists"
+          >{{ $t("track.details.text") }}: {{ lyricists }}</span
+        >
+        <span v-if="lyricists && composers">•</span>
+        <span v-if="composers"
+          >{{ $t("track.details.melody") }}: {{ composers }}</span
+        >
       </p>
     </header>
     <TransitionGroup
@@ -126,8 +130,15 @@ const { data: currentUser } = useCurrentUser();
         v-for="item in transcription"
         :key="item.id"
         :class="[
-          'relative z-10 whitespace-pre text-pretty text-label-2 after:absolute after:bottom-0 after:left-0 after:-z-10 after:h-full after:bg-tint after:transition-all after:duration-[1000ms] after:ease-out-expo',
-          { 'my-4': track.subtype == 'song' },
+          'relative z-10 whitespace-pre text-pretty after:absolute after:bottom-0 after:left-0 after:-z-10 after:h-full after:bg-tint after:transition-all after:duration-[1000ms] after:ease-out-expo',
+          {
+            'mb-4':
+              (track.subtype == 'song' || track.subtype == 'singsong') &&
+              !item.isHeader,
+            'mb-1': item.isHeader,
+            'text-label-2': !item.isHeader,
+            'text-label-4': item.isHeader,
+          },
         ]"
       >
         {{ item.text }}
