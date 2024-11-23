@@ -134,7 +134,7 @@
   },
   "track": {
     "dropdown": {
-      "play-next": "அடுத்தது பிளே செய் ",
+      "play-next": "அடுத்தது பிளே செய்",
       "download": "பதிவிறக்கு ",
       "go-to-album": "ஆல்பத்திற்குச் செல்லவும்",
       "add-to-queue": "வரிசையில் சேர்",
@@ -163,8 +163,8 @@
       "arranger": "ஏற்பாடு செய்பவர்",
       "composer": "இசையமைப்பாளர்",
       "lyricist": "பாடலாசிரியர்",
-      "text": "Text",
-      "melody": "Melody"
+      "text": "உரை",
+      "melody": "மெல்லிசை"
     }
   },
   "home": {
@@ -219,12 +219,12 @@
   },
   "lyrics": {
     "edit": "திருத்தவும்",
-    "create-new-lyrics": "Create new lyrics",
-    "create": "Create",
+    "create-new-lyrics": "புதிய பாடல் வரிகளை உருவாக்கவும்",
+    "create": "உருவாக்கு",
     "save": "மாற்றங்களைச் சேமிக்கவும்",
-    "verse-title": "Verse title",
-    "long-copyright": "Long copyright",
-    "remove-formatting": "Cleanup formatting",
-    "paste-instructions": "Paste text using <shortcut> to remove formatting."
+    "verse-title": "வசன தலைப்பு",
+    "long-copyright": "நீண்ட காப்புரிமை",
+    "remove-formatting": "வடிவமைப்பை சீர்செய்",
+    "paste-instructions": "<shortcut> ஐப் பயன்படுத்தி வடிவமைப்பை நீக்க உரையை ஒட்டவும்."
   }
 }
