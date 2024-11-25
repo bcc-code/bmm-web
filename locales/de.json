@@ -219,12 +219,12 @@
   },
   "lyrics": {
     "edit": "Ändern",
-    "create-new-lyrics": "Create new lyrics",
-    "create": "Create",
+    "create-new-lyrics": "Neuen Liedtext erstellen",
+    "create": "Erstellen",
     "save": "Änderungen speichern",
-    "verse-title": "Verse title",
-    "long-copyright": "Long copyright",
-    "remove-formatting": "Cleanup formatting",
-    "paste-instructions": "Paste text using <shortcut> to remove formatting."
+    "verse-title": "Verstitel",
+    "long-copyright": "Langes Urheberrecht",
+    "remove-formatting": "Formatierung bereinigen",
+    "paste-instructions": "Text mit <shortcut> einfügen, um die Formatierung zu entfernen."
   }
 }
