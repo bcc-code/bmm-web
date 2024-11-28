@@ -1,11 +1,15 @@
-<script setup lang="ts">
-import { ContributorApi, LyricsApi } from "@bcc-code/bmm-sdk-fetch";
-import type { ContributorModel, Lyrics } from "@bcc-code/bmm-sdk-fetch";
-
-const DEFAULT_LONG_COPYRIGHT =
+<script lang="ts">
+export const DEFAULT_LONG_COPYRIGHT =
   "© Stiftelsen Skjulte Skatters Forlag, Norway. All rights reserved.";
-const EDITOR_PLACEHOLDER =
+export const EDITOR_PLACEHOLDER =
   "<h3>Vers 1</h3><p>Herrens veier, Herrens tanker er</p><p>høyere enn dine, mine tanker,</p><p>ja, som himlen over jorden her.</p><p>Kun av kjærlighet hans hjerte banker.</p><h3>Refreng</h3><p>Herrens vei, du og jeg</p><p>kan ei skjønne eller fatte.</p><p>Herrens ord er lyset på vår sti.</p><p>Tro det, og du finner skjulte skatter!</p>";
+</script>
+
+<script setup lang="ts">
+// eslint-disable-next-line import/first
+import { ContributorApi, LyricsApi } from "@bcc-code/bmm-sdk-fetch";
+// eslint-disable-next-line import/first
+import type { ContributorModel, Lyrics } from "@bcc-code/bmm-sdk-fetch";
 
 const route = useRoute("lyrics-id");
 
@@ -16,16 +20,6 @@ onMounted(async () => {
     id: Number(route.params.id),
   });
 });
-
-watch(
-  () => lyrics.value?.longCopyright,
-  (copyright) => {
-    if (!lyrics.value) return;
-    if (copyright === DEFAULT_LONG_COPYRIGHT) {
-      lyrics.value.longCopyright = "";
-    }
-  },
-);
 
 const verses = computed({
   get() {
@@ -48,7 +42,6 @@ async function saveLyrics() {
   saving.value = true;
 
   // Default values
-  lyrics.value.longCopyright ||= DEFAULT_LONG_COPYRIGHT;
   if (yearPublished.value) {
     lyrics.value.yearPublished = yearPublished.value;
   }
@@ -131,6 +124,11 @@ confirmDelete.onConfirm(async () => {
 function deleteLyrics() {
   if (!lyrics.value) return;
   confirmDelete.reveal();
+}
+
+function useDefaultLongCopyright() {
+  if (!lyrics.value) return;
+  lyrics.value.longCopyright = DEFAULT_LONG_COPYRIGHT;
 }
 </script>
 
@@ -263,13 +261,21 @@ function deleteLyrics() {
             class="md:col-start-1 md:row-start-1"
           />
           <div class="flex flex-col gap-1">
-            <label for="long-copyright">
-              {{ $t("lyrics.long-copyright") }}
-            </label>
+            <div class="flex items-center justify-between gap-2">
+              <label for="long-copyright">
+                {{ $t("lyrics.long-copyright") }}
+              </label>
+              <button
+                class="type-subtitle-3 flex items-center gap-1 rounded-md border border-label-separator bg-background-2 pl-1 pr-2 text-label-3 hover:border-label-4 hover:text-label-2"
+                @click="useDefaultLongCopyright"
+              >
+                <NuxtIcon name="icon.add" class="opacity-50" />
+                <span>Default SSSF copyright</span>
+              </button>
+            </div>
             <textarea
               id="long-copyright"
               v-model="lyrics.longCopyright"
-              :placeholder="DEFAULT_LONG_COPYRIGHT"
               class="w-full truncate rounded-lg border border-label-separator bg-background-2 px-4 py-2"
               rows="1"
             ></textarea>
