@@ -2,6 +2,7 @@
 import { LyricsApi } from "@bcc-code/bmm-sdk-fetch";
 import { useRouteQuery } from "@vueuse/router";
 import type { Lyrics } from "@bcc-code/bmm-sdk-fetch";
+import { DEFAULT_LONG_COPYRIGHT } from "./[id].vue";
 
 const { t } = useI18n();
 setTitle(() => t("nav.lyrics"));
@@ -24,19 +25,22 @@ const loading = ref(false);
 async function createLyrics() {
   loading.value = true;
 
-  await new LyricsApi().lyricsPost({
-    lyrics: {
-      songTitle: createForm.title,
-      source: "Manual",
-    },
-  });
-
-  items.value = await new LyricsApi().lyricsGet();
-
-  resetForm();
-
-  loading.value = false;
-  showCreateDialog.value = false;
+  try {
+    await new LyricsApi().lyricsPost({
+      lyrics: {
+        songTitle: createForm.title,
+        source: "Manual",
+        longCopyright: DEFAULT_LONG_COPYRIGHT,
+      },
+    });
+    resetForm();
+  } catch (err) {
+    showErrorToUser("CreateLyricsFailed", "Failed to create lyrics");
+  } finally {
+    items.value = await new LyricsApi().lyricsGet();
+    loading.value = false;
+    showCreateDialog.value = false;
+  }
 }
 
 const search = useRouteQuery("search", "");
@@ -73,12 +77,23 @@ const filteredItems = computed(() => {
         class="absolute right-4 top-1/2 -translate-y-1/2"
       />
     </div>
-    <div class="grid grid-cols-[1fr_auto] divide-y divide-label-separator">
+
+    <TransitionGroup
+      tag="div"
+      class="grid grid-cols-[1fr_auto] divide-y divide-label-separator"
+      move-class="transition-all duration-500 ease-out"
+      enter-active-class="transition-all duration-500 ease-out"
+      enter-from-class="opacity-0 scale-95"
+      enter-to-class="opacity-100 scale-100"
+      leave-active-class="transition-all duration-500 ease-out absolute"
+      leave-from-class="opacity-100 scale-100"
+      leave-to-class="opacity-0 scale-95"
+    >
       <NuxtLink
         v-for="item in filteredItems"
         :key="item.id"
         class="col-span-full grid grid-cols-subgrid items-center justify-between gap-4 py-1"
-        :to="{ name: 'lyrics-id', params: { id: item.id } }"
+        :to="{ name: 'lyrics-id', params: { id: item.id! } }"
       >
         <p>
           <span class="type-title-2">{{ item.songTitle }}</span>
@@ -89,7 +104,7 @@ const filteredItems = computed(() => {
           {{ $t("lyrics.edit") }}
         </ButtonStyled>
       </NuxtLink>
-    </div>
+    </TransitionGroup>
 
     <DialogBase
       :show="showCreateDialog"
