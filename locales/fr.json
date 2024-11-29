@@ -219,12 +219,12 @@
   },
   "lyrics": {
     "edit": "Modifier",
-    "create-new-lyrics": "Create new lyrics",
-    "create": "Create",
+    "create-new-lyrics": "Créer de nouvelles paroles",
+    "create": "Créer",
     "save": "Enregistrer les modifications",
-    "verse-title": "Verse title",
-    "long-copyright": "Long copyright",
-    "remove-formatting": "Cleanup formatting",
-    "paste-instructions": "Paste text using <shortcut> to remove formatting."
+    "verse-title": "Titre du couplet",
+    "long-copyright": "Long droit d'auteur",
+    "remove-formatting": "Nettoyer le formatage",
+    "paste-instructions": "Coller le texte en utilisant <shortcut> pour supprimer le formatage."
   }
 }
