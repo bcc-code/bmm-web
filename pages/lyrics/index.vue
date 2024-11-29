@@ -25,20 +25,22 @@ const loading = ref(false);
 async function createLyrics() {
   loading.value = true;
 
-  await new LyricsApi().lyricsPost({
-    lyrics: {
-      songTitle: createForm.title,
-      source: "Manual",
-      longCopyright: DEFAULT_LONG_COPYRIGHT,
-    },
-  });
-
-  items.value = await new LyricsApi().lyricsGet();
-
-  resetForm();
-
-  loading.value = false;
-  showCreateDialog.value = false;
+  try {
+    await new LyricsApi().lyricsPost({
+      lyrics: {
+        songTitle: createForm.title,
+        source: "Manual",
+        longCopyright: DEFAULT_LONG_COPYRIGHT,
+      },
+    });
+    resetForm();
+  } catch (err) {
+    showErrorToUser("CreateLyricsFailed", "Failed to create lyrics");
+  } finally {
+    items.value = await new LyricsApi().lyricsGet();
+    loading.value = false;
+    showCreateDialog.value = false;
+  }
 }
 
 const search = useRouteQuery("search", "");
@@ -91,7 +93,7 @@ const filteredItems = computed(() => {
         v-for="item in filteredItems"
         :key="item.id"
         class="col-span-full grid grid-cols-subgrid items-center justify-between gap-4 py-1"
-        :to="{ name: 'lyrics-id', params: { id: item.id } }"
+        :to="{ name: 'lyrics-id', params: { id: item.id! } }"
       >
         <p>
           <span class="type-title-2">{{ item.songTitle }}</span>
