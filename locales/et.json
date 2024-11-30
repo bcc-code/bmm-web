@@ -20,7 +20,7 @@
     "contributors": "Kaastegijad",
     "archive": "Arhiiv",
     "transcribe": "Transkribeerimine",
-    "lyrics": "Lyrics"
+    "lyrics": "Laulusõnad"
   },
   "sidebar": {
     "playlists": {
@@ -219,12 +219,12 @@
   },
   "lyrics": {
     "edit": "Muuda",
-    "create-new-lyrics": "Create new lyrics",
-    "create": "Create",
+    "create-new-lyrics": "Loo uued laulusõnad",
+    "create": "Loo",
     "save": "Salvesta muudatused",
-    "verse-title": "Verse title",
-    "long-copyright": "Long copyright",
-    "remove-formatting": "Cleanup formatting",
-    "paste-instructions": "Paste text using <shortcut> to remove formatting."
+    "verse-title": "Salmi pealkiri",
+    "long-copyright": "Pikk autoriõigus",
+    "remove-formatting": "Puhasta vormindus",
+    "paste-instructions": "Kleebi tekst, kasutades <shortcut>, et eemaldada vormindust."
   }
 }
