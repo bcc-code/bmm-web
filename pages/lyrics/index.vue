@@ -4,6 +4,7 @@ import { useRouteQuery } from "@vueuse/router";
 import type { Lyrics } from "@bcc-code/bmm-sdk-fetch";
 import { DEFAULT_LONG_COPYRIGHT } from "./[id].vue";
 
+const router = useRouter();
 const { t } = useI18n();
 setTitle(() => t("nav.lyrics"));
 
@@ -26,7 +27,7 @@ async function createLyrics() {
   loading.value = true;
 
   try {
-    await new LyricsApi().lyricsPost({
+    const newId = await new LyricsApi().lyricsPost({
       lyrics: {
         songTitle: createForm.title,
         source: "Manual",
@@ -34,6 +35,7 @@ async function createLyrics() {
       },
     });
     resetForm();
+    router.push({ name: "lyrics-id", params: { id: newId } });
   } catch (err) {
     showErrorToUser("CreateLyricsFailed", "Failed to create lyrics");
   } finally {
