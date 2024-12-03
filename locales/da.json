@@ -163,8 +163,8 @@
       "arranger": "Arrangør",
       "composer": "Komponist",
       "lyricist": "Forfatter",
-      "text": "Text",
-      "melody": "Melody"
+      "text": "Tekst",
+      "melody": "Melodi"
     }
   },
   "home": {
@@ -219,12 +219,12 @@
   },
   "lyrics": {
     "edit": "Rediger",
-    "create-new-lyrics": "Create new lyrics",
-    "create": "Create",
+    "create-new-lyrics": "Opret nye tekster",
+    "create": "Opret",
     "save": "Gem ændringer",
-    "verse-title": "Verse title",
-    "long-copyright": "Long copyright",
-    "remove-formatting": "Cleanup formatting",
-    "paste-instructions": "Paste text using <shortcut> to remove formatting."
+    "verse-title": "Sangtitel",
+    "long-copyright": "Lang ophavsret",
+    "remove-formatting": "Ryd op i formatering",
+    "paste-instructions": "Indsæt tekst ved hjælp af <shortcut> for at fjerne formatering."
   }
 }
