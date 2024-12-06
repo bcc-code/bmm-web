@@ -219,12 +219,12 @@
   },
   "lyrics": {
     "edit": "Bewerken",
-    "create-new-lyrics": "Create new lyrics",
-    "create": "Create",
+    "create-new-lyrics": "Nieuwe songtekst maken",
+    "create": "Aanmaken",
     "save": "Sla de wijzigingen op",
-    "verse-title": "Verse title",
-    "long-copyright": "Long copyright",
-    "remove-formatting": "Cleanup formatting",
-    "paste-instructions": "Paste text using <shortcut> to remove formatting."
+    "verse-title": "Titel van het couplet",
+    "long-copyright": "Lang copyright",
+    "remove-formatting": "Weggooien opmaak",
+    "paste-instructions": "Plak tekst met <shortcut> om opmaak te verwijderen."
   }
 }
