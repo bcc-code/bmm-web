@@ -8,6 +8,7 @@
   "scripts": {
     "dev": "nuxt dev --port 9001",
     "build": "nuxt generate",
+    "build:server": "cross-env NUXT_PUBLIC_API_URL={{BmmApiPlaceholder}} nuxt generate",
     "dev:electron": "cross-env ELECTRON=true nuxt dev --port 9001",
     "build:electron": "cross-env ELECTRON=true nuxt generate",
     "package:electron": "electron-builder --config=electron_builder.js",
