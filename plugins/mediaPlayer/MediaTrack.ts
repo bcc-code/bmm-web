@@ -351,7 +351,7 @@ export default class MediaTrack {
       timestampStart: firstPortion.startTime,
       timestampEnd: lastPortion.endTime,
       spentTime,
-      lastPosition: lastPortion.end,
+      lastPosition: lastPortion.end * 1000,
     };
     this.onTrackPlayed(values);
 
