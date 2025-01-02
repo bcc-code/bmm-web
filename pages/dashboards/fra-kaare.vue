@@ -75,7 +75,7 @@ const columnGroupWidth = computed(() => {
 
 <template>
   <div class="space-y-12">
-    <PageHeading>Dashboard: Operation Gibraltar</PageHeading>
+    <PageHeading>Dashboard: Fra Kåre</PageHeading>
 
     <section id="graphs"></section>
 
@@ -108,7 +108,7 @@ const columnGroupWidth = computed(() => {
         :column-groups="[
           {
             key: 'oneEpisode',
-            text: 'Har hørt minst én episode',
+            text: 'Har hørt minst én episode i 2025',
             start: 1,
             span: columnGroupWidth,
           },
