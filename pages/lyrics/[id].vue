@@ -169,7 +169,7 @@ function useDefaultLongCopyright() {
       </header>
       <div class="grid gap-8 lg:grid-cols-2 lg:grid-rows-1">
         <div class="row-start-1 flex flex-col gap-6 md:col-start-2">
-          <ComboSearchBox
+          <ContributorSelector
             v-model:search="contributorSearch"
             v-model="lyricists"
             :label="$t('track.details.text')"
@@ -177,26 +177,7 @@ function useDefaultLongCopyright() {
             :option-key="(c) => c.id"
             :display-value="(option) => option.name!"
           >
-            <template #option="{ option, selected }">
-              <div class="flex grow items-baseline gap-2">
-                <span>{{ option.name }}</span>
-                <div
-                  class="type-subtitle-3 flex items-baseline gap-0.5 text-label-3"
-                >
-                  <span>{{ option.interpretReferences }}</span>
-                  ·
-                  <span>{{ option.otherReferences }}</span>
-                </div>
-                <NuxtIcon
-                  :class="[
-                    'ml-auto',
-                    { 'opacity-100': selected, 'opacity-0': !selected },
-                  ]"
-                  name="icon.checkmark"
-                />
-              </div>
-            </template>
-          </ComboSearchBox>
+          </ContributorSelector>
           <ComboSearchBox
             v-model:search="contributorSearch"
             v-model="composers"
