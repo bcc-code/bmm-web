@@ -58,8 +58,6 @@ async function saveLyrics() {
   }
 }
 
-const contributors = ref<ContributorModel[]>([]);
-const contributorSearch = ref("");
 const composers = ref<ContributorModel[]>();
 const lyricists = ref<ContributorModel[]>();
 
@@ -95,18 +93,6 @@ watch([composers, lyricists], ([c, l]) => {
     lyrics.value.lyricists = Array.from(new Set(l.map((i) => i.id)));
   }
 });
-
-watchDebounced(
-  contributorSearch,
-  async (search) => {
-    if (search === "" || !search) return;
-    contributors.value =
-      await new ContributorApi().contributorSearchUnpublishedTermGet({
-        term: search,
-      });
-  },
-  { debounce: 100, immediate: true },
-);
 
 // Delete lyrics dialog
 const confirmDelete = useConfirmDialog();
@@ -170,16 +156,12 @@ function useDefaultLongCopyright() {
       <div class="grid gap-8 lg:grid-cols-2 lg:grid-rows-1">
         <div class="row-start-1 flex flex-col gap-6 md:col-start-2">
           <ContributorSelector
-            v-model:search="contributorSearch"
             v-model="lyricists"
             :label="$t('track.details.text')"
-            :options="contributors"
           />
           <ContributorSelector
-            v-model:search="contributorSearch"
             v-model="composers"
             :label="$t('track.details.melody')"
-            :options="contributors"
           />
           <div>
             <label

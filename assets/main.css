@@ -31,3 +31,7 @@ html {
     0px 1px 4px 0px #0000000d,
     0px 0px 0px 1px #ffffff14;
 }
+
+* {
+  outline-color: currentColor;
+}

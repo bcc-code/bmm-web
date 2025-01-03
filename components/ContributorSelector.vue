@@ -8,7 +8,6 @@ import { ContributorApi } from "@bcc-code/bmm-sdk-fetch";
 
 defineProps<{
   label?: string;
-  options: TOption[];
 }>();
 
 const modelValue = defineModel<ContributorModel[]>();
@@ -53,9 +52,9 @@ watch(modelValue, (newValue, oldValue) => {
       <div class="flex grow items-baseline gap-2">
         <span>{{ option.name }}</span>
         <div class="type-subtitle-3 flex items-baseline gap-0.5 text-label-3">
-          <span>{{ option.interpretReferences }}</span>
-          ·
-          <span>{{ option.otherReferences }}</span>
+          (<span>{{ option.interpretReferences }}</span
+          >|<span>{{ option.otherReferences }}</span
+          >)
         </div>
         <NuxtIcon
           :class="[
