@@ -8,7 +8,6 @@ import {
   ComboboxInput,
   ComboboxOption,
   ComboboxOptions,
-  ComboboxButton,
   ComboboxLabel,
 } from "@headlessui/vue";
 
@@ -21,6 +20,10 @@ defineProps<{
 
 const modelValue = defineModel<TOption[]>();
 const search = defineModel<string>("search");
+
+function removeOption(option: TOption) {
+  modelValue.value = modelValue.value?.filter((o) => o !== option);
+}
 </script>
 
 <template>
@@ -28,25 +31,33 @@ const search = defineModel<string>("search");
     <ComboboxLabel v-if="label" class="type-subtitle-2 mb-1 block text-label-1">
       {{ label }}
     </ComboboxLabel>
-    <div class="relative w-full">
-      <ComboboxInput
-        class="w-full truncate rounded-lg border border-label-separator bg-background-2 px-4 py-2"
-        :display-value="
-          (options) => (options as TOption[]).map(displayValue).join(', ')
-        "
-        @change="search = $event.target.value"
-      />
-      <div class="absolute right-3 top-1/2 flex -translate-y-1/2 items-center">
-        <button
-          v-if="modelValue?.length"
-          class="rounded-md p-2"
-          @click="modelValue = []"
+    <div
+      class="relative w-full rounded-lg border border-label-separator bg-background-2 p-2 outline-2 focus-within:outline"
+    >
+      <div class="relative flex flex-wrap gap-2">
+        <TransitionGroup
+          move-class="transition-all duration-300 ease-out"
+          enter-active-class="transition-all duration-300 ease-out"
+          enter-from-class="opacity-0 scale-95"
+          leave-active-class="transition-all duration-300 ease-out absolute"
+          leave-to-class="opacity-0 scale-95"
         >
-          <NuxtIcon name="icon.close.small" class="opacity-50" />
-        </button>
-        <ComboboxButton>
-          <NuxtIcon name="icon.chevron.down" />
-        </ComboboxButton>
+          <span
+            v-for="option in modelValue"
+            :key="optionKey(option)"
+            class="type-subtitle-2 flex gap-2 truncate rounded-md border border-label-separator bg-background-3 py-1 pl-3 pr-2"
+          >
+            {{ displayValue(option) }}
+            <button class="aspect-square h-full" @click="removeOption(option)">
+              <NuxtIcon name="icon.close.small" class="opacity-50" />
+            </button>
+          </span>
+        </TransitionGroup>
+        <ComboboxInput
+          class="w-full truncate bg-[transparent] px-2 focus-visible:outline-none"
+          placeholder="Search..."
+          @change="search = $event.target.value"
+        />
       </div>
     </div>
     <ComboboxOptions class="absolute z-50 rounded-xl p-1">
