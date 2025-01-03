@@ -9,14 +9,11 @@ import { ContributorApi } from "@bcc-code/bmm-sdk-fetch";
 defineProps<{
   label?: string;
   options: TOption[];
-  optionKey: (option: TOption) => string | number;
-  displayValue: (option: TOption) => string;
 }>();
 
 const modelValue = defineModel<ContributorModel[]>();
 const searchTerm = ref<string>("");
 const contributors = ref<ContributorModel[]>([]);
-//const search = defineModel<string>("search");
 
 watchDebounced(
   searchTerm,
@@ -32,44 +29,42 @@ watchDebounced(
   },
   { debounce: 100, immediate: true },
 );
+
+watch(modelValue, (newValue, oldValue) => {
+  if (!newValue || !oldValue) return;
+
+  if (newValue !== oldValue) {
+    searchTerm.value = "";
+    contributors.value = [];
+  }
+});
 </script>
 
 <template>
-  <div>
-    <div v-if="label" class="type-subtitle-2 mb-1 block text-label-1">
-      {{ label }}
-    </div>
-    <div>
-      <div
-        v-for="item in modelValue"
-        v-bind:key="item.id"
-        class="bg-background-2 px-4 py-2"
-      >
-        {{ item.name }}
-        <div class="inline-block" @click="modelValue = []">
-          <NuxtIcon name="icon.close.small" class="opacity-50" />
+  <ComboSearchBox
+    v-model:search="searchTerm"
+    v-model="modelValue"
+    :label="label"
+    :options="contributors"
+    :option-key="(c) => c.id"
+    :display-value="(option) => option.name!"
+  >
+    <template #option="{ option, selected }">
+      <div class="flex grow items-baseline gap-2">
+        <span>{{ option.name }}</span>
+        <div class="type-subtitle-3 flex items-baseline gap-0.5 text-label-3">
+          <span>{{ option.interpretReferences }}</span>
+          ·
+          <span>{{ option.otherReferences }}</span>
         </div>
+        <NuxtIcon
+          :class="[
+            'ml-auto',
+            { 'opacity-100': selected, 'opacity-0': !selected },
+          ]"
+          name="icon.checkmark"
+        />
       </div>
-    </div>
-    <input
-      ref="searchbox"
-      v-model="searchTerm"
-      type="text"
-      placeholder="add a contributor"
-      class="w-full truncate rounded-lg border border-label-separator bg-background-2 px-4 py-2"
-    />
-    <div v-if="contributors.length > 0" class="absolute z-50 rounded-xl p-1">
-      <div
-        class="min-w-56 max-w-80 select-none overflow-y-auto whitespace-nowrap rounded-xl bg-background-3 p-1 text-sm shadow-lg ring-1 ring-label-separator focus-visible:outline-none"
-      >
-        <div
-          v-for="item in contributors"
-          v-bind:key="item.id"
-          class="type-subtitle-2 flex w-full items-center justify-between whitespace-normal rounded-lg px-3 py-2 text-left"
-        >
-          {{ item.name }}
-        </div>
-      </div>
-    </div>
-  </div>
+    </template>
+  </ComboSearchBox>
 </template>
