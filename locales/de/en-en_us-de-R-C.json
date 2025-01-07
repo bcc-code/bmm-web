@@ -1,0 +1,231 @@
+{
+  "global": {
+    "cancel": "",
+    "try-again": ""
+  },
+  "nav": {
+    "home": "",
+    "browse": "",
+    "playlist": "",
+    "profile": "",
+    "messages": "",
+    "recent-messages": "",
+    "recent-music": "",
+    "audiobooks": "",
+    "search": "",
+    "album": "",
+    "podcast": "",
+    "not-found": "",
+    "contributor": "",
+    "contributors": "",
+    "archive": "",
+    "transcribe": "",
+    "lyrics": ""
+  },
+  "sidebar": {
+    "playlists": {
+      "title": ""
+    }
+  },
+  "share": {
+    "link-copied-message": ""
+  },
+  "profile": {
+    "title": "",
+    "autoplay": "",
+    "theme": "",
+    "theme-description": "",
+    "app-language": "",
+    "interface-language": "",
+    "interface-language-description": "",
+    "select-language": "",
+    "content-language": "",
+    "content-language-description": "",
+    "preference-language-1": "",
+    "preference-language-2": "",
+    "preference-language-3": "",
+    "preference-language-4": "",
+    "uservoice": "",
+    "privacy-policy": "",
+    "contact": "",
+    "logout": "",
+    "theme-dark": "",
+    "theme-light": "",
+    "theme-system": "",
+    "done": "",
+    "add-another-language": ""
+  },
+  "error": {
+    "page-not-found": {
+      "headline": "",
+      "text": " "
+    },
+    "track-already-in-playlist": "",
+    "album-already-in-playlist": "",
+    "collection-already-in-playlist": ""
+  },
+  "collection": {
+    "track-count": "",
+    "album-count": "",
+    "resume": ""
+  },
+  "login": {
+    "error-message": {
+      "contact-info": "",
+      "contact-link": "",
+      "logout-and-redirect-info": "",
+      "manual-logout-and-redirect-info": "",
+      "logout-and-redirect-link": ""
+    },
+    "redirect-message": {
+      "redirect-info": "",
+      "manual-redirect-info": "",
+      "redirect-link": ""
+    }
+  },
+  "download": {
+    "install-app": "",
+    "go-to-store": "",
+    "get-for-desktop": "",
+    "download": "",
+    "download-now": "",
+    "download-windows": "",
+    "download-mac-intel": "",
+    "download-mac-arm": "",
+    "mac-intel-explanation": "",
+    "mac-arm-explanation": "",
+
+    "download-bmm-app": "",
+    "download-track": "",
+    "mobile": "",
+    "messages-not-allowed": {
+      "title": "",
+      "description": " "
+    },
+    "sendEmailTo": ""
+  },
+  "playlist": {
+    "add": "",
+    "new-playlist": "",
+    "name-your-playlist": "",
+    "delete-playlist": "",
+    "delete-playlist-description": " ",
+    "action": {
+      "shuffle": "",
+      "add-to-my-playlists": "",
+      "remove-shared-playlist": ""
+    },
+    "by-x": ""
+  },
+  "podcast": {
+    "this-week": "",
+    "last-week": "",
+    "week-x": "",
+    "action": {
+      "play": "",
+      "follow": ""
+    }
+  },
+  "player": {
+    "queue": ""
+  },
+  "edit": {
+    "rename": "",
+    "delete": ""
+  },
+  "track": {
+    "dropdown": {
+      "play-next": "",
+      "download": "",
+      "go-to-album": "",
+      "add-to-queue": "",
+      "add-to-playlist": "",
+      "share": "",
+      "go-to-contributors": "",
+      "more-info": "",
+      "show-all": "",
+      "remove-from-playlist": "",
+      "transcription": ""
+    },
+    "a11y": {
+      "download": "",
+      "queue": "",
+      "options": ""
+    },
+    "details": {
+      "title": "",
+      "reference": "",
+      "duration": "",
+      "publish-date": "",
+      "album": "",
+      "publisher": "",
+      "copyright": "",
+      "song-number": "",
+      "arranger": "",
+      "composer": "",
+      "lyricist": "",
+      "text": "",
+      "melody": ""
+    }
+  },
+  "home": {
+    "list": {
+      "see-all": "",
+      "recommended": ""
+    }
+  },
+  "search": {
+    "search-filter": {
+      "All": "",
+      "Speeches": "",
+      "Music": "",
+      "Albums": "",
+      "Contributors": "",
+      "Podcasts": "",
+      "Playlists": ""
+    },
+    "input-placeholder": "",
+    "loading-results": "",
+    "no-results-yet": "",
+    "no-results-found": "",
+    "result-count": ""
+  },
+  "streak": {
+    "your-streak": "",
+    "days-in-row": ""
+  },
+  "transcription": {
+    "lyrics": "",
+    "auto-transcribed": {
+      "title": "",
+      "explanation": "",
+      "confirmation": ""
+    },
+    "songtreasures": "",
+    "save": "",
+    "original": "",
+    "edit": "",
+    "deleteSegment": "",
+    "undeleteSegment": "",
+    "review": "",
+    "status": {
+      "done": "",
+      "in-progress": "",
+      "not-started": ""
+    }
+  },
+  "dashboards": {
+    "title": "",
+    "fra-kaare": ""
+  },
+  "lyrics": {
+    "edit": "",
+    "create-new-lyrics": "",
+    "create": "",
+    "save": "",
+    "verse-title": "",
+    "long-copyright": "",
+    "remove-formatting": "",
+    "paste-instructions": ""
+  }
+}
