@@ -35,4 +35,21 @@ export default defineI18nConfig(() => ({
     ro,
     ru,
   },
+  fallbackRootWithEmptyString: true,
+  postTranslation: (value, path) => {
+    if (value === "") {
+      const parts = path.split(".");
+      let message = en;
+      return "empty translation";
+      for (const key of parts) {
+        if (key in message) {
+          message = message[key];
+        } else {
+          return value;
+        }
+      }
+      return message;
+    }
+    return value;
+  },
 }));

@@ -5,21 +5,21 @@
   },
   "nav": {
     "home": "Start",
-    "browse": "Stöbern",
+    "browse": "",
     "playlist": "Playlist",
     "profile": "Profil",
     "messages": "Reden",
     "recent-messages": "Neue Reden",
     "recent-music": "Neue Musik",
     "audiobooks": "Hörbücher",
-    "search": "Suche",
+    "search": "",
     "album": "Album",
     "podcast": "Podcast",
     "not-found": "Seite nicht gefunden",
     "contributor": "Mitwirkender",
     "contributors": "Mitwirkende",
     "archive": "Archiv",
-    "transcribe": "Transkribieren",
+    "transcribe": "",
     "lyrics": "Liedtext"
   },
   "sidebar": {
@@ -66,7 +66,7 @@
   },
   "collection": {
     "track-count": "{count} Titel | {count} Titel",
-    "album-count": "{count} Album | {count} Alben",
+    "album-count": "",
     "resume": "Weiterhören"
   },
   "login": {
@@ -144,7 +144,7 @@
       "more-info": "Weitere Informationen",
       "show-all": "Alle anzeigen",
       "remove-from-playlist": "Aus Wiedergabeliste entfernen",
-      "transcription": "Transkription"
+      "transcription": ""
     },
     "a11y": {
       "download": "Herunterladen",
