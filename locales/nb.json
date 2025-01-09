@@ -19,8 +19,8 @@
     "contributor": "Bidragsyter",
     "contributors": "Bidragsytere",
     "archive": "Arkiv",
-    "transcribe": "Transcribe",
-    "lyrics": "Lyrics"
+    "transcribe": "Transkriber",
+    "lyrics": "Sangtekst"
   },
   "sidebar": {
     "playlists": {
@@ -62,7 +62,7 @@
     },
     "track-already-in-playlist": "Sporet eksisterer allerede i spilleliste {0}",
     "album-already-in-playlist": "Dette albumet er allerede i spillelisten.",
-    "collection-already-in-playlist": "These tracks are already in playlist {0}."
+    "collection-already-in-playlist": "Disse sporene er allerede i spillelisten {0}."
   },
   "collection": {
     "track-count": "{count} spor | {count} spor",
@@ -201,11 +201,11 @@
       "confirmation": "Forstått"
     },
     "songtreasures": "SongTreasures",
-    "save": "Save changes",
+    "save": "Lagre endringer",
     "original": "Original",
-    "edit": "Edit",
+    "edit": "Rediger",
     "deleteSegment": "Slett",
-    "undeleteSegment": "Undo delete",
+    "undeleteSegment": "Angre sletting",
     "review": "Review",
     "status": {
       "done": "Reviewed",
@@ -218,11 +218,11 @@
     "fra-kaare": "Fra Kåre"
   },
   "lyrics": {
-    "edit": "Edit",
+    "edit": "Rediger",
     "create-new-lyrics": "Create new lyrics",
-    "create": "Create",
-    "save": "Save changes",
-    "verse-title": "Verse title",
+    "create": "Opprett",
+    "save": "Lagre endringer",
+    "verse-title": "Verstittel",
     "long-copyright": "Long copyright",
     "remove-formatting": "Cleanup formatting",
     "paste-instructions": "Paste text using <shortcut> to remove formatting."
