@@ -17,28 +17,28 @@ import pt from "./locales/pt.json";
 import ro from "./locales/ro.json";
 import ru from "./locales/ru.json";
 
-function cleanupAny(existing: any, fallback: any): any {
-  Object.keys(existing).forEach((key) => {
-    if (typeof existing[key] === "object") {
-      existing[key] = cleanupAny(existing[key], fallback[key]);
+function cleanupEmptyProperties(obj: any, fallback: any): any {
+  Object.keys(obj).forEach((key) => {
+    if (typeof obj[key] === "object") {
+      obj[key] = cleanupEmptyProperties(obj[key], fallback[key]);
     }
-    if (existing[key] === "") {
-      existing[key] = fallback[key];
+    if (obj[key] === "") {
+      obj[key] = fallback[key];
     }
   });
-  return existing;
+  return obj;
 }
 
 function cleanup(
-  existing: LocaleMessage<VueMessageType>,
+  locale: LocaleMessage<VueMessageType>,
   fallback: LocaleMessage<VueMessageType>,
 ): LocaleMessage<VueMessageType> {
-  Object.keys(existing).forEach((key) => {
-    if (typeof existing[key] === "object") {
-      existing[key] = cleanupAny(existing[key], fallback[key]);
+  Object.keys(locale).forEach((key) => {
+    if (typeof locale[key] === "object") {
+      locale[key] = cleanupEmptyProperties(locale[key], fallback[key]);
     }
   });
-  return existing;
+  return locale;
 }
 
 export default defineI18nConfig(() => ({
