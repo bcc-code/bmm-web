@@ -4,13 +4,13 @@
     "try-again": "Tente novamente"
   },
   "nav": {
-    "home": "Início",
+    "home": "Menu",
     "browse": "Navegar",
     "playlist": "Lista de reprodução",
     "profile": "Perfil",
     "messages": "Mensagens",
     "recent-messages": "Mensagens recentes",
-    "recent-music": "Musica recente",
+    "recent-music": "Músicas recentes",
     "audiobooks": "Audiobooks",
     "search": "Buscar",
     "album": "Álbum",
@@ -20,7 +20,7 @@
     "contributors": "Colaboradores",
     "archive": "Arquivo",
     "transcribe": "Transcrever",
-    "lyrics": "Lyrics"
+    "lyrics": "Letra da música"
   },
   "sidebar": {
     "playlists": {
@@ -58,7 +58,7 @@
   "error": {
     "page-not-found": {
       "headline": "Erro",
-      "text": "Desculpe. Não conseguimos encontrar a página \"{path}\"."
+      "text": "Desculpe. Desculpe. Não conseguimos encontrar a página \"{path}\"."
     },
     "track-already-in-playlist": "A faixa já existe na lista de reprodução {0}",
     "album-already-in-playlist": "Este álbum já está em sua lista de reprodução.",
@@ -94,12 +94,13 @@
     "download-mac-arm": "Baixar para Mac mais novo",
     "mac-intel-explanation": "Geralmente adquirido antes de 2021",
     "mac-arm-explanation": "Chips M1, M2, M3, M4",
+
     "download-bmm-app": "Baixe o aplicativo BMM",
     "download-track": "Baixar faixa",
     "mobile": "Móvel",
     "messages-not-allowed": {
       "title": "Download de falas indisponível",
-      "description": "A capacidade de baixar falas do BMM não está mais disponível. Caso necessite de uma fala para um uso específico, entre em contato conosco e explique suas necessidades."
+      "description": "A possibilidade de baixar mensagens do BMM já não está disponível. Se precisar de uma mensagem para uma utilidade específica, contate-nos e explique-nos suas necessidades."
     },
     "sendEmailTo": "Enviar e-mail para {0}"
   },
@@ -108,7 +109,7 @@
     "new-playlist": "Nova lista de reprodução",
     "name-your-playlist": "Dê um nome à sua lista de reprodução",
     "delete-playlist": "Excluir lista de reprodução",
-    "delete-playlist-description": "Tem certeza de que deseja excluir a playlist? Esta ação não pode ser revertida.",
+    "delete-playlist-description": "Tem certeza que deseja apagar a lista de reprodução \"{0}\"? Esta ação não pode ser anulada.",
     "action": {
       "shuffle": "Aleatório",
       "add-to-my-playlists": "Adicionar às minhas listas de reprodução",
@@ -130,11 +131,11 @@
   },
   "edit": {
     "rename": "Renomear",
-    "delete": "Excluir"
+    "delete": "Apagar"
   },
   "track": {
     "dropdown": {
-      "play-next": "Reproduzir próxima",
+      "play-next": "Tocar a seguir",
       "download": "Baixar",
       "go-to-album": "Ir ao álbum",
       "add-to-queue": "Adicionar à fila",
@@ -183,18 +184,18 @@
       "Podcasts": "Podcasts",
       "Playlists": "Lista de reprodução"
     },
-    "input-placeholder": "Busca",
+    "input-placeholder": "Buscar",
     "loading-results": "Carregando resultados",
     "no-results-yet": "Sem resultados",
     "no-results-found": "Nenhum resultado encontrado",
     "result-count": "{count} resultados"
   },
   "streak": {
-    "your-streak": "Seu progresso semanal ",
+    "your-streak": "Seu progresso semanal",
     "days-in-row": "{count} dias consecutivos"
   },
   "transcription": {
-    "lyrics": "Letra",
+    "lyrics": "Letra da música",
     "auto-transcribed": {
       "title": "Transcrição automática",
       "explanation": "As transcrições são geradas automaticamente e podem conter erros",
@@ -204,7 +205,7 @@
     "save": "Salvar alterações",
     "original": "Original",
     "edit": "Editar",
-    "deleteSegment": "Excluir",
+    "deleteSegment": "Apagar",
     "undeleteSegment": "Desfazer exclusão",
     "review": "Análise",
     "status": {
@@ -219,12 +220,12 @@
   },
   "lyrics": {
     "edit": "Editar",
-    "create-new-lyrics": "Create new lyrics",
-    "create": "Create",
+    "create-new-lyrics": "Cria novas letras",
+    "create": "Criar",
     "save": "Salvar alterações",
-    "verse-title": "Verse title",
-    "long-copyright": "Long copyright",
-    "remove-formatting": "Cleanup formatting",
-    "paste-instructions": "Paste text using <shortcut> to remove formatting."
+    "verse-title": "Título do verso",
+    "long-copyright": "Direitos autorais",
+    "remove-formatting": "Limpa a formatação",
+    "paste-instructions": "Colar texto utilizando <shortcut> para remover a formatação."
   }
 }
