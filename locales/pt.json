@@ -20,7 +20,7 @@
     "contributors": "Colaboradores",
     "archive": "Arquivo",
     "transcribe": "Transcrever",
-    "lyrics": "Lyrics"
+    "lyrics": "Letras"
   },
   "sidebar": {
     "playlists": {
@@ -219,12 +219,12 @@
   },
   "lyrics": {
     "edit": "Editar",
-    "create-new-lyrics": "Create new lyrics",
-    "create": "Create",
+    "create-new-lyrics": "Crie novas letras",
+    "create": "Criar",
     "save": "Salvar alterações",
-    "verse-title": "Verse title",
-    "long-copyright": "Long copyright",
-    "remove-formatting": "Cleanup formatting",
-    "paste-instructions": "Paste text using <shortcut> to remove formatting."
+    "verse-title": "Título da estrofe",
+    "long-copyright": "Direitos autorais longos",
+    "remove-formatting": "Formatação de limpeza",
+    "paste-instructions": "Cole o texto usando <shortcut> para remover a formatação."
   }
 }

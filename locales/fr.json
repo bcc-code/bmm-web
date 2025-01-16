@@ -15,7 +15,7 @@
     "search": "Rechercher",
     "album": "Album",
     "podcast": "Podcast",
-    "not-found": "Cette page n'existe pas",
+    "not-found": "Page non trouvée",
     "contributor": "Contributeur",
     "contributors": "Contributeurs",
     "archive": "Archive",
@@ -24,7 +24,7 @@
   },
   "sidebar": {
     "playlists": {
-      "title": "Playlists"
+      "title": "Listes de lecture"
     }
   },
   "share": {
@@ -37,15 +37,15 @@
     "theme-description": "Sélectionnez le thème utilisé pour l'interface.",
     "app-language": "Langue",
     "interface-language": "Langue de l'interface",
-    "interface-language-description": "Sélectionner la langue utilisée pour l'interface",
-    "select-language": "Choisir la langue",
+    "interface-language-description": "Sélectionnez la langue utilisée pour l'interface.",
+    "select-language": "Sélection de la langue",
     "content-language": "Langue du contenu",
-    "content-language-description": "Langue préférée du contenu que vous écoutez.",
+    "content-language-description": "La langue préférée pour le contenu que vous écoutez.",
     "preference-language-1": "Langue préférée",
     "preference-language-2": "Seconde langue",
     "preference-language-3": "Troisième langue",
     "preference-language-4": "{count}ème langue",
-    "uservoice": "Voix de l'utilisateur",
+    "uservoice": "Parole à l'utilisateur",
     "privacy-policy": "Politique de confidentialité",
     "contact": "Contact",
     "logout": "Se déconnecter",
@@ -58,14 +58,14 @@
   "error": {
     "page-not-found": {
       "headline": "Erreur",
-      "text": "Désolé Nous ne trouvons pas la page «{path}»."
+      "text": "Désolé. Nous ne trouvons pas la page «{path}»."
     },
     "track-already-in-playlist": "Le titre existe déjà dans la playlist {0}",
-    "album-already-in-playlist": "Cet album est déjà dans votre playlist.",
-    "collection-already-in-playlist": "Ces titres sont déjà dans la playlist {0}."
+    "album-already-in-playlist": "Cet album est déjà dans votre liste de lecture.",
+    "collection-already-in-playlist": "Ces morceaux sont déjà dans la playlist {0}."
   },
   "collection": {
-    "track-count": "{count} titre | {count} titres",
+    "track-count": "{count} piste | {count} pistes",
     "album-count": "{count} album | {count} albums",
     "resume": "Reprendre"
   },
@@ -74,18 +74,18 @@
       "contact-info": "Si l'erreur persiste, {0}.",
       "contact-link": "veuillez nous contacter",
       "logout-and-redirect-info": "Une erreur s'est produite lors de la connexion :",
-      "manual-logout-and-redirect-info": "Veuillez {0}.",
+      "manual-logout-and-redirect-info": "Veuillez  {0}.",
       "logout-and-redirect-link": "essayer de vous connecter à nouveau"
     },
     "redirect-message": {
       "redirect-info": "Vous serez redirigé vers la page de connexion.",
       "manual-redirect-info": "Veuillez patienter ou {0}.",
-      "redirect-link": "cliquer pour réessayer"
+      "redirect-link": "cliquez pour réessayer"
     }
   },
   "download": {
     "install-app": "Nous vous recommandons d'installer l'application.",
-    "go-to-store": "Accéder à l'App Store.",
+    "go-to-store": "Accédez à l'App Store.",
     "get-for-desktop": "Téléchargez l'application BMM directement sur votre bureau",
     "download": "Télécharger",
     "download-now": "Télécharger maintenant",
@@ -94,22 +94,21 @@
     "download-mac-arm": "Télécharger pour les Mac plus récents",
     "mac-intel-explanation": "Généralement achetés avant 2021",
     "mac-arm-explanation": "Puce M1, M2, M3, M4",
-
     "download-bmm-app": "Télécharger l'application BMM",
     "download-track": "Télécharger piste",
     "mobile": "Mobile",
     "messages-not-allowed": {
       "title": "Téléchargement des messages indisponible",
-      "description": "La possibilité de télécharger des messages à partir de BMM n'est plus disponible. Si vous avez besoin d'un message pour une utilisation spécifique, contactez-nous et expliquez-nous vos besoins."
+      "description": "La fonctionnalité de téléchargement des messages de BMM n'est plus disponible. Si vous avez besoin d'un message pour un usage spécifique, veuillez nous contacter et nous expliquer vos besoins."
     },
     "sendEmailTo": "Envoyer un courriel à {0}"
   },
   "playlist": {
-    "add": "Ajouter une playlist",
+    "add": "Ajouter une liste de lecture",
     "new-playlist": "Nouvelle playlist",
-    "name-your-playlist": "Nommer sa playlist",
-    "delete-playlist": "Supprimer la playlist",
-    "delete-playlist-description": "Êtes-vous sûr de vouloir supprimer la playlist ? Cette action est irréversible.",
+    "name-your-playlist": "Nommez votre liste de lecture",
+    "delete-playlist": "Supprimer la liste de lecture",
+    "delete-playlist-description": "Êtes-vous sûr de vouloir supprimer la liste de lecture ? Cette action ne peut pas être annulée.",
     "action": {
       "shuffle": "Aléatoire",
       "add-to-my-playlists": "Ajouter à mes playlists",
@@ -122,7 +121,7 @@
     "last-week": "Semaine dernière",
     "week-x": "Semaine {count}",
     "action": {
-      "play": "Lire",
+      "play": "Lecture",
       "follow": "Suivre"
     }
   },
@@ -131,20 +130,20 @@
   },
   "edit": {
     "rename": "Renommer",
-    "delete": "Effacer"
+    "delete": "Supprimer"
   },
   "track": {
     "dropdown": {
       "play-next": "Lecture suivante",
       "download": "Télécharger",
-      "go-to-album": "Accéder à l'album",
+      "go-to-album": "Aller à l'album",
       "add-to-queue": "Ajouter à la file d'attente",
-      "add-to-playlist": "Ajouter à la playlist",
+      "add-to-playlist": "Ajouter à la liste de lecture",
       "share": "Partager le titre",
       "go-to-contributors": "Accéder aux contributeurs",
       "more-info": "Plus d'informations",
       "show-all": "Tout afficher",
-      "remove-from-playlist": "Supprimer de la playlist",
+      "remove-from-playlist": "Supprimer de la liste de lecture",
       "transcription": "Transcription"
     },
     "a11y": {
@@ -153,17 +152,17 @@
       "options": "Afficher les options"
     },
     "details": {
-      "title": "Détails du titre",
+      "title": "Détails de la piste",
       "reference": "Référence",
       "duration": "Durée",
       "publish-date": "Date de publication",
       "album": "Album",
       "publisher": "Éditeur",
       "copyright": "Droits d'auteur",
-      "song-number": "Numéro du chant",
-      "arranger": "Arrangeur",
+      "song-number": "Numéro de chant",
+      "arranger": "Arrangement",
       "composer": "Compositeur",
-      "lyricist": "Interprète",
+      "lyricist": "Paroles",
       "text": "Texte",
       "melody": "Mélodie"
     }
@@ -182,16 +181,16 @@
       "Albums": "Albums",
       "Contributors": "Contributeurs",
       "Podcasts": "Podcasts",
-      "Playlists": "Playlists"
+      "Playlists": "Listes de lecture"
     },
-    "input-placeholder": "Rechercher",
+    "input-placeholder": "Recherche",
     "loading-results": "Chargement des résultats",
     "no-results-yet": "Aucun résultat pour l'instant",
     "no-results-found": "Aucun résultat trouvé",
     "result-count": "{count} résultats"
   },
   "streak": {
-    "your-streak": "Enchaînements de la semaine",
+    "your-streak": "Enchaînement de la semaine",
     "days-in-row": "{count} jours d'affilée"
   },
   "transcription": {
@@ -205,9 +204,9 @@
     "save": "Enregistrer les modifications",
     "original": "Original",
     "edit": "Modifier",
-    "deleteSegment": "Effacer",
+    "deleteSegment": "Supprimer",
     "undeleteSegment": "Annuler la suppression",
-    "review": "Révision",
+    "review": "Réviser",
     "status": {
       "done": "Révisé",
       "in-progress": "En cours",
@@ -216,15 +215,15 @@
   },
   "dashboards": {
     "title": "Tableau de bord",
-    "fra-kaare": "Fra Kåre"
+    "fra-kaare": "Venant de Kåre"
   },
   "lyrics": {
     "edit": "Modifier",
     "create-new-lyrics": "Créer de nouvelles paroles",
     "create": "Créer",
     "save": "Enregistrer les modifications",
-    "verse-title": "Titre de la strophe",
-    "long-copyright": "Droit d'auteur de longue durée",
+    "verse-title": "Titre du couplet",
+    "long-copyright": "Long droit d'auteur",
     "remove-formatting": "Nettoyer le formatage",
     "paste-instructions": "Coller le texte en utilisant <shortcut> pour supprimer le formatage."
   }
