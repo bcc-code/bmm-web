@@ -8,22 +8,18 @@ import {
   VisTooltip,
   VisBulletLegend,
 } from "@unovis/vue";
-import { Line } from "@unovis/ts";
 
-const props = defineProps<{
+defineProps<{
   data: GetFraKaareStatisticsChurchStatisticsSnapshot[];
 }>();
 
 const getColor = (index: number) => `var(--vis-color${index})`;
 
-const formatDate = (tick: number) => tick;
-const formatNumber = (tick: number) => `${tick * 100}%`;
-
 const crosshairTemplate = (d: GetFraKaareStatisticsChurchStatisticsSnapshot) =>
   `<div class="flex flex-col gap-2">
 		<p class="type-title-3 leading-none mb-1 text-label-3">${d.snapshotDate?.toLocaleDateString()}</p>
-		<p class="type-title-2 leading-none pl-2 border-l-4 border-[var(--vis-color0)]">${Math.floor((d.allEpisodesPercentAverage ?? 0) * 100)}%</p>
-		<p class="type-title-2 leading-none pl-2 border-l-4 border-[var(--vis-color1)]">${Math.floor((d.oneEpisodePercentAverage ?? 0) * 100)}%</p>
+		<p class="type-title-2 leading-none pl-2 border-l-4 border-[var(--vis-color0)]">${Math.round((d.allEpisodesPercentAverage ?? 0) * 100)}%</p>
+		<p class="type-title-2 leading-none pl-2 border-l-4 border-[var(--vis-color1)]">${Math.round((d.oneEpisodePercentAverage ?? 0) * 100)}%</p>
 	</div>`;
 </script>
 
@@ -59,7 +55,11 @@ const crosshairTemplate = (d: GetFraKaareStatisticsChurchStatisticsSnapshot) =>
         (v: number, i: number) => data[i]?.snapshotDate?.toLocaleDateString()
       "
     />
-    <VisAxis type="y" :tick-line="false" :tick-format="formatNumber" />
+    <VisAxis
+      type="y"
+      :tick-line="false"
+      :tick-format="(v: number) => `${v * 100}%`"
+    />
     <VisCrosshair :template="crosshairTemplate" />
     <VisTooltip />
   </VisXYContainer>
