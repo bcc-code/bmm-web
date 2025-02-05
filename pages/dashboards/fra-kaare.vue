@@ -77,7 +77,18 @@ const columnGroupWidth = computed(() => {
   <div class="space-y-12">
     <PageHeading>Dashboard: Fra Kåre</PageHeading>
 
-    <section id="graphs"></section>
+    <section
+      id="chart"
+      class="flex min-h-[400px] flex-col rounded-2xl bg-background-2 p-8"
+    >
+      <h2 class="type-heading-3 mb-4">
+        {{ statistics?.highlightedChurchName }}
+      </h2>
+      <DashboardTimeSeriesChart
+        v-if="statistics?.timeSeries"
+        :data="statistics.timeSeries"
+      />
+    </section>
 
     <section id="table">
       <div class="mb-4">
