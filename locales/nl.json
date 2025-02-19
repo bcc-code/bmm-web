@@ -39,9 +39,9 @@
     "interface-language": "Taal van de gebruikersinterface",
     "interface-language-description": "Selecteer de taal die wordt gebruikt voor de interface.",
     "select-language": "Kies taal",
-    "content-language": "Taal van de content ",
+    "content-language": "Taal van de inhoud",
     "content-language-description": "De voorkeurstaal voor de inhoud waarnaar je luistert.",
-    "preference-language-1": "Voorkeurstaal",
+    "preference-language-1": "Voorkeur taal",
     "preference-language-2": "Tweede taal",
     "preference-language-3": "Derde taal",
     "preference-language-4": "{count}e taal",
@@ -58,7 +58,7 @@
   "error": {
     "page-not-found": {
       "headline": "Fout",
-      "text": "Sorry, we kunnen de pagina \"{path}\" niet vinden."
+      "text": "Sorry Sorry, we kunnen de pagina \"{path}\" niet vinden."
     },
     "track-already-in-playlist": "Nummer bestaat al in afspeellijst {0}",
     "album-already-in-playlist": "Dit album staat al in je afspeellijst.",
@@ -87,19 +87,20 @@
     "install-app": "Wij raden aan de app te installeren.",
     "go-to-store": "Navigeer naar de App Store.",
     "get-for-desktop": "Download de BMM-app rechtstreeks op uw bureaublad",
-    "download": "Download",
+    "download": "Downloaden",
     "download-now": "Nu downloaden",
     "download-windows": "Downloaden voor Windows",
     "download-mac-intel": "Downloaden voor Intel CPU",
     "download-mac-arm": "Downloaden voor nieuwere Mac",
     "mac-intel-explanation": "Meestal gekocht vóór 2021",
     "mac-arm-explanation": "M1, M2, M3, M4 chip",
+
     "download-bmm-app": "Download de BMM-app",
     "download-track": "Nummer downloaden",
     "mobile": "Mobiel",
     "messages-not-allowed": {
       "title": "Het downloaden van toespraken is niet beschikbaar",
-      "description": "Er is geen mogelijkheid meer om via BMM toespraken te downloaden. Als je een toespraak nodig hebt voor een specifiek doel, neem dan contact op met ons om je wensen te bespreken."
+      "description": "De mogelijkheid om toespraken te downloaden van BMM is niet langer beschikbaar. Als je een toespraak nodig hebt voor een specifiek gebruik, neem dan contact met ons op en leg uit wat je nodig hebt."
     },
     "sendEmailTo": "Stuur een e-mail naar {0}"
   },
@@ -108,7 +109,7 @@
     "new-playlist": "Nieuwe afspeellijst",
     "name-your-playlist": "Geef je afspeellijst een naam",
     "delete-playlist": "Afspeellijst verwijderen",
-    "delete-playlist-description": "Weet je zeker dat je de afspeellijst wilt verwijderen? Deze actie kan niet ongedaan worden gemaakt.",
+    "delete-playlist-description": "Weet je zeker dat je afspeellijst \"{0}\" wilt verwijderen? Deze actie kan niet worden teruggedraaid.",
     "action": {
       "shuffle": "Shuffle",
       "add-to-my-playlists": "Toevoegen aan mijn afspeellijst",
@@ -135,7 +136,7 @@
   "track": {
     "dropdown": {
       "play-next": "Volgende afspelen",
-      "download": "Download",
+      "download": "Downloaden",
       "go-to-album": "Ga naar album",
       "add-to-queue": "Toevoegen aan wachtrij",
       "add-to-playlist": "Toevoegen aan afspeellijst",
@@ -147,7 +148,7 @@
       "transcription": "Transcriptie"
     },
     "a11y": {
-      "download": "Download",
+      "download": "Downloaden",
       "queue": "Toevoegen aan wachtrij",
       "options": "Toon opties"
     },
@@ -201,9 +202,9 @@
       "confirmation": "Begrepen"
     },
     "songtreasures": "SongTreasures",
-    "save": "Sla de wijzigingen op",
+    "save": "Wijzigingen opslaan",
     "original": "Origineel",
-    "edit": "Bewerken",
+    "edit": "Bewerk",
     "deleteSegment": "Verwijderen",
     "undeleteSegment": "Verwijderen ongedaan maken",
     "review": "Beoordeling",
@@ -218,10 +219,10 @@
     "fra-kaare": "Fra Kåre"
   },
   "lyrics": {
-    "edit": "Bewerken",
+    "edit": "Bewerk",
     "create-new-lyrics": "Nieuwe songtekst maken",
     "create": "Aanmaken",
-    "save": "Sla de wijzigingen op",
+    "save": "Wijzigingen opslaan",
     "verse-title": "Titel van het couplet",
     "long-copyright": "Lang copyright",
     "remove-formatting": "Weggooien opmaak",
