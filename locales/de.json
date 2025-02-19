@@ -1,12 +1,12 @@
 {
   "global": {
     "cancel": "Abbrechen",
-    "try-again": "Versuche es erneut"
+    "try-again": "Erneut versuchen"
   },
   "nav": {
-    "home": "Start",
+    "home": "Home",
     "browse": "Stöbern",
-    "playlist": "Playlist",
+    "playlist": "Wiedergabeliste",
     "profile": "Profil",
     "messages": "Reden",
     "recent-messages": "Neue Reden",
@@ -15,7 +15,7 @@
     "search": "Suche",
     "album": "Album",
     "podcast": "Podcast",
-    "not-found": "Seite nicht gefunden",
+    "not-found": "Die Seite kann nicht gefunden werden",
     "contributor": "Mitwirkender",
     "contributors": "Mitwirkende",
     "archive": "Archiv",
@@ -24,7 +24,7 @@
   },
   "sidebar": {
     "playlists": {
-      "title": "Wiedergabelisten"
+      "title": "Playlisten"
     }
   },
   "share": {
@@ -38,7 +38,7 @@
     "app-language": "Sprache",
     "interface-language": "Sprache der Benutzeroberfläche",
     "interface-language-description": "Wähle die für die Benutzeroberfläche verwendete Sprache aus.",
-    "select-language": "Sprache auswählen",
+    "select-language": "Sprache wählen",
     "content-language": "Sprache für Audioinhalte",
     "content-language-description": "Die bevorzugte Sprache für den Inhalt, den du anhörst.",
     "preference-language-1": "Bevorzugte Sprache",
@@ -46,19 +46,19 @@
     "preference-language-3": "Dritte Sprache",
     "preference-language-4": "{count}. Sprache",
     "uservoice": "User Voice",
-    "privacy-policy": "Datenschutzrichtlinie",
+    "privacy-policy": "Datenschutz-Bestimmungen",
     "contact": "Kontakt",
     "logout": "Ausloggen",
     "theme-dark": "Dunkel",
     "theme-light": "Hell",
     "theme-system": "Gleich wie System",
-    "done": "Fertig",
+    "done": "Erledigt",
     "add-another-language": "Weitere Sprache hinzufügen"
   },
   "error": {
     "page-not-found": {
       "headline": "Fehler",
-      "text": "Die Seite \"{path}\" gibt es nicht"
+      "text": "Sorry. Die Seite \"{path}\" gibt es nicht."
     },
     "track-already-in-playlist": "Titel ist bereits in Playlist {0} vorhanden",
     "album-already-in-playlist": "Dieses Album ist bereits in deiner Playlist.",
@@ -75,40 +75,41 @@
       "contact-link": "nimm bitte Kontakt mit uns auf",
       "logout-and-redirect-info": "Bei der Anmeldung ist ein Fehler aufgetreten:",
       "manual-logout-and-redirect-info": "Bitte {0}.",
-      "logout-and-redirect-link": "versuche dich erneut anzumelden"
+      "logout-and-redirect-link": "Versuche dich erneut anzumelden"
     },
     "redirect-message": {
       "redirect-info": "Du wirst zur Anmeldeseite weitergeleitet.",
       "manual-redirect-info": "Bitte warten oder {0}.",
-      "redirect-link": "klicken, um es erneut zu versuchen"
+      "redirect-link": "Klicken, um es erneut zu versuchen"
     }
   },
   "download": {
     "install-app": "Wir empfehlen, die App zu installieren.",
     "go-to-store": "Navigiere zum App Store.",
     "get-for-desktop": "Hol dir die BMM-App direkt auf deinen Desktop",
-    "download": "Herunterladen",
+    "download": "Download",
     "download-now": "Jetzt herunterladen",
     "download-windows": "Herunterladen für Windows",
     "download-mac-intel": "Herunterladen für Intel CPU",
     "download-mac-arm": "Herunterladen für neueren Mac",
     "mac-intel-explanation": "In der Regel vor 2021 gekauft",
     "mac-arm-explanation": "M1, M2, M3, M4 Chip",
+
     "download-bmm-app": "Lade die BMM-App herunter",
     "download-track": "Titel herunterladen",
     "mobile": "Mobil",
     "messages-not-allowed": {
-      "title": "Herunterladen von Reden nicht möglich",
-      "description": "Es nicht länger möglich Reden von BMM herunterzuladen. Falls du eine Rede aus einem bestimmten Grund brauchst, schreibe uns und erkläre warum du die Rede brauchst."
+      "title": "Herunterladen von Inhalten nicht möglich",
+      "description": "Die Möglichkeit, Inhalte aus BMM herunterzuladen, ist nicht mehr verfügbar. Wenn du einen Inhalt für einen bestimmten Zweck benötigst, kontaktiere uns bitte und erkläre uns deinen Bedarf."
     },
     "sendEmailTo": "E-Mail senden an {0}"
   },
   "playlist": {
     "add": "Playlist hinzufügen",
-    "new-playlist": "Neue Wiedergabeliste",
+    "new-playlist": "Neue Playlist",
     "name-your-playlist": "Gib deiner Wiedergabeliste einen Namen",
     "delete-playlist": "Playlist löschen",
-    "delete-playlist-description": "Bist du sicher, dass du die Wiedergabeliste löschen möchtest? Diese Aktion kann nicht rückgängig gemacht werden.",
+    "delete-playlist-description": "Bist du sicher, dass du die die Wiedergabeliste löschen möchtest? Diese Aktion kann nicht rückgängig gemacht werden.",
     "action": {
       "shuffle": "Zufällige Wiedergabe",
       "add-to-my-playlists": "Zu meinen Wiedergabelisten hinzufügen",
@@ -135,26 +136,26 @@
   "track": {
     "dropdown": {
       "play-next": "Als nächstes abspielen",
-      "download": "Herunterladen",
+      "download": "Download",
       "go-to-album": "Album öffnen",
       "add-to-queue": "Zur Warteschlange hinzufügen",
-      "add-to-playlist": "Zur Playlist hinzufügen",
+      "add-to-playlist": "Zur Playliste hinzufügen",
       "share": "Titel teilen",
-      "go-to-contributors": "Zu den Mitwirkenden",
-      "more-info": "Weitere Informationen",
+      "go-to-contributors": "Zur Person",
+      "more-info": "Mehr Informationen",
       "show-all": "Alle anzeigen",
-      "remove-from-playlist": "Aus Wiedergabeliste entfernen",
+      "remove-from-playlist": "Aus der Wiedergabeliste entfernen",
       "transcription": "Transkription"
     },
     "a11y": {
-      "download": "Herunterladen",
+      "download": "Download",
       "queue": "Zur Warteschlange hinzufügen",
       "options": "Optionen anzeigen"
     },
     "details": {
       "title": "Track Details",
       "reference": "Referenz",
-      "duration": "Dauer",
+      "duration": "Länge",
       "publish-date": "Datum der Veröffentlichung",
       "album": "Album",
       "publisher": "Herausgeber",
@@ -175,13 +176,13 @@
   },
   "search": {
     "search-filter": {
-      "All": "Alle",
+      "All": "alle",
       "Speeches": "Reden",
       "Music": "Musik",
       "Albums": "Alben",
       "Contributors": "Mitwirkende",
       "Podcasts": "Podcasts",
-      "Playlists": "Playlists"
+      "Playlists": "Playlisten"
     },
     "input-placeholder": "Suche",
     "loading-results": "Ergebnisse werden geladen",
@@ -198,7 +199,7 @@
     "auto-transcribed": {
       "title": "Autotranskribiert",
       "explanation": "Transkripte werden automatisch generiert und können Fehler enthalten",
-      "confirmation": "Verstanden! "
+      "confirmation": "Verstanden!"
     },
     "songtreasures": "SongTreasures",
     "save": "Änderungen speichern",
@@ -222,7 +223,7 @@
     "create-new-lyrics": "Neuen Liedtext erstellen",
     "create": "Erstellen",
     "save": "Änderungen speichern",
-    "verse-title": "Verstitel",
+    "verse-title": "Strophe Titel",
     "long-copyright": "Langes Urheberrecht",
     "remove-formatting": "Formatierung bereinigen",
     "paste-instructions": "Text mit <shortcut> einfügen, um die Formatierung zu entfernen."
