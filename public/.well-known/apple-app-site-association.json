@@ -25,7 +25,8 @@
           { "/": "/featured" },
           { "/": "/year-in-review" },
           { "/": "/romans-questions" },
-          { "/": "/achievement/*" }
+          { "/": "/achievement/*" },
+          { "/": "/hvhe-standings" }
         ]
       }
     ]
