@@ -7,6 +7,7 @@ import type {
 import { breakpointsTailwind } from "@vueuse/core";
 import DashboardDataTable from "~/components/dashboard/DashboardDataTable.vue";
 import type { SortDirection } from "~/components/dashboard/DashboardDataTable.vue";
+import { vConfetti } from "@neoconfetti/vue";
 
 const { t } = useI18n();
 setTitle(() => t("dashboards.title"));
@@ -75,15 +76,22 @@ const columnGroupWidth = computed(() => {
   return 5;
 });
 const now = new Date().getFullYear();
-const maxBirthYear = ref<number>(now - 13);
-const minBirthYear = ref<number>(now - 25);
-function resetBirthYear() {
-  maxBirthYear.value = now - 13;
-  minBirthYear.value = now - 25;
+const minAge = ref<number>(13);
+const maxAge = ref<number>(25);
+function resetAge() {
+  minAge.value = 13;
+  maxAge.value = 25;
 }
 
-const selectedGender = ref<string>("both");
-const isLoading = ref<boolean>(false);
+const genders = ["both", "boys", "girls"] as const;
+type Gender = (typeof genders)[number];
+const selectedGender = ref<Gender>("both");
+const genderTranslations: Record<Gender, string> = {
+  both: "Begge",
+  boys: "Gutter",
+  girls: "Jenter",
+};
+const isLoading = ref(false);
 const drawResult = ref<FraKaareDrawCommandResponse | null>(null);
 async function onDrawWinner() {
   let gender;
@@ -97,10 +105,9 @@ async function onDrawWinner() {
   }
   drawResult.value = await new StatisticsApi().statisticsFraKaareDrawPost({
     fraKaareDrawCommand: {
-      latestBirthYear: maxBirthYear.value,
-      earliestBirthYear: minBirthYear.value,
+      latestBirthYear: now - minAge.value,
+      earliestBirthYear: now - maxAge.value,
       gender,
-      churchUid: "86cee624-4848-462b-a4bd-8e20f773cb90",
     },
   });
   isLoading.value = false;
@@ -111,76 +118,81 @@ async function onDrawWinner() {
   <div class="space-y-12">
     <PageHeading>Dashboard: Fra Kåre</PageHeading>
 
-    <section>
-      <div
-        class="mb-5 mt-12 text-[28px] font-extrabold leading-tight text-label-1"
-      >
-        Draw a winner
-      </div>
+    <section
+      id="raffle"
+      class="grid grid-rows-[2fr_1fr] overflow-hidden rounded-2xl border border-label-separator xl:grid-cols-2 xl:grid-rows-1"
+    >
+      <div class="flex flex-col gap-4 bg-background-2 p-6">
+        <h2 class="type-heading-3">Trekk en vinner</h2>
 
-      <div class="my-4 rounded-b-2xl rounded-t-2xl bg-background-2 p-4">
-        <div class="flex items-center gap-2">
-          Birth year:
-          <input
-            type="number"
-            v-model.number="maxBirthYear"
-            class="type-title-2 w-20 rounded-lg bg-background-1 p-1 px-2 py-1.5 text-label-1 shadow-[0_4px_12px_0_#0000000D,0_1px_4px_0_#0000000D,0_0_0_1px_#0000000D]"
-          />
-          -
-
-          <input
-            type="number"
-            v-model.number="minBirthYear"
-            class="type-title-2 w-20 rounded-lg bg-background-1 p-1 px-2 py-1.5 text-label-1 shadow-[0_4px_12px_0_#0000000D,0_1px_4px_0_#0000000D,0_0_0_1px_#0000000D]"
-          />
-          <div>({{ now - maxBirthYear }} - {{ now - minBirthYear }})</div>
-          <ButtonStyled
-            intent="primary"
-            size="small"
-            @click.stop="resetBirthYear()"
-          >
-            13 - 25
-          </ButtonStyled>
-        </div>
-        <div class="flex items-center gap-2 pt-2">
-          Gender:
-
-          <div
-            class="type-title-2 min-w-[100px] rounded-lg bg-background-1 px-2 py-0 text-label-1 shadow-[0_4px_12px_0_#0000000D,0_1px_4px_0_#0000000D,0_0_0_1px_#0000000D]"
-          >
-            <select v-model="selectedGender" class="py-1">
-              <option
-                v-for="(gender, i) in ['both', 'boys', 'girls']"
-                :key="`gender${i}`"
-                :value="gender"
-              >
-                {{ gender }}
-              </option>
-            </select>
+        <fieldset
+          class="flex w-full items-start justify-between gap-4 rounded-2xl border border-label-separator bg-background-2 p-3"
+        >
+          <legend class="bg-background-2 px-1">Aldersgruppe</legend>
+          <div class="flex flex-wrap items-center gap-x-2 gap-y-1">
+            <input
+              v-model.number="minAge"
+              type="number"
+              class="type-title-2 w-20 rounded-lg bg-background-1 px-2 py-1.5 text-label-1"
+            />
+            -
+            <input
+              v-model.number="maxAge"
+              type="number"
+              class="type-title-2 w-20 rounded-lg bg-background-1 px-2 py-1.5 text-label-1"
+            />
+            <span class="type-paragraph-3 w-full px-2 text-label-3">
+              Født mellom {{ now - maxAge }} og {{ now - minAge }}
+            </span>
           </div>
-        </div>
-      </div>
+          <button
+            class="type-paragraph-3 shrink-0 rounded-lg bg-background-3 px-3 py-0.5 text-label-3"
+            @click.stop="resetAge()"
+          >
+            Sett til 13 - 25
+          </button>
+        </fieldset>
 
-      <ButtonStyled intent="primary" @click.stop="onDrawWinner()">
-        Draw
-      </ButtonStyled>
-
-      <div
-        v-if="isLoading || drawResult != null"
-        class="my-4 mb-10 rounded-b-2xl rounded-t-2xl bg-background-2 p-4"
-      >
-        <div v-if="isLoading">Loading...</div>
-        <div v-else-if="drawResult != null" class="text-2xl">
-          <div>
-            {{ drawResult.winnerDisplayName }},
-            {{ drawResult.winnerBirthYear }}, {{ drawResult.winnerGender }}
+        <fieldset
+          class="flex w-full items-start justify-between gap-4 rounded-2xl border border-label-separator bg-background-2 p-3"
+        >
+          <legend>Kjønn</legend>
+          <div class="flex rounded-xl bg-background-1 p-1">
+            <button
+              v-for="gender in genders"
+              :key="gender"
+              class="type-title-3 rounded-lg px-3 py-1"
+              :class="{ 'bg-background-3': selectedGender === gender }"
+              @click.stop="selectedGender = gender"
+            >
+              <span>{{ genderTranslations[gender] }}</span>
+            </button>
           </div>
-        </div>
+        </fieldset>
+
+        <ButtonStyled
+          intent="primary"
+          class="mt-2"
+          :loading="isLoading"
+          @click.stop="onDrawWinner"
+        >
+          Trekk vinner
+        </ButtonStyled>
       </div>
 
-      <div v-if="false">
-        <div>Selected birth year: {{ minBirthYear }} - {{ maxBirthYear }}</div>
-        <div>Selected gender: {{ selectedGender }}</div>
+      <div class="flex items-center justify-center p-6">
+        <Transition
+          enter-active-class="transition-all duration-500 ease-out"
+          enter-from-class="opacity-0 scale-90"
+          enter-to-class="opacity-100 scale-100"
+        >
+          <div v-if="drawResult != null">
+            <p class="type-display-3">
+              {{ drawResult.winnerDisplayName }}
+            </p>
+            <div v-confetti="{ particleCount: 50, force: 0.5 }" />
+          </div>
+        </Transition>
       </div>
     </section>
 
