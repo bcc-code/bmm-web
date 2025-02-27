@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { PersonGenderEnum, StatisticsApi } from "@bcc-code/bmm-sdk-fetch";
 import type {
+  FraKaareDrawCommandDrawOption,
   FraKaareDrawCommandResponse,
   GetFraKaareStatisticsResponse,
 } from "@bcc-code/bmm-sdk-fetch";
@@ -91,11 +92,17 @@ const genderTranslations: Record<Gender, string> = {
   boys: "Gutter",
   girls: "Jenter",
 };
+const selectedDrawOption = ref<FraKaareDrawCommandDrawOption>();
+watch(statistics, (stats) => {
+  if (!stats) return;
+  selectedDrawOption.value = stats.drawOptions?.[0];
+});
 const isLoading = ref(false);
 const drawResult = ref<FraKaareDrawCommandResponse | null>(null);
 async function onDrawWinner() {
-  let gender;
   isLoading.value = true;
+  let gender;
+
   if (selectedGender.value === "both") {
     gender = undefined;
   } else if (selectedGender.value === "boys") {
@@ -103,13 +110,20 @@ async function onDrawWinner() {
   } else {
     gender = PersonGenderEnum.Female;
   }
-  drawResult.value = await new StatisticsApi().statisticsFraKaareDrawPost({
-    fraKaareDrawCommand: {
-      latestBirthYear: now - minAge.value,
-      earliestBirthYear: now - maxAge.value,
-      gender,
-    },
-  });
+
+  try {
+    if (!selectedDrawOption.value) return;
+    drawResult.value = await new StatisticsApi().statisticsFraKaareDrawPost({
+      fraKaareDrawCommand: {
+        latestBirthYear: now - minAge.value,
+        earliestBirthYear: now - maxAge.value,
+        gender,
+        drawOptionId: selectedDrawOption.value.id,
+      },
+    });
+  } catch (e) {
+    showErrorToUser("DrawWinnerFailed", "Kunne ikke trekke vinner");
+  }
   isLoading.value = false;
 }
 </script>
@@ -123,12 +137,26 @@ async function onDrawWinner() {
       class="grid grid-rows-[2fr_1fr] overflow-hidden rounded-2xl border border-label-separator xl:grid-cols-2 xl:grid-rows-1"
     >
       <div class="flex flex-col gap-4 bg-background-2 p-6">
-        <h2 class="type-heading-3">Trekk en vinner</h2>
+        <div class="mb-2 flex flex-wrap items-center justify-between gap-4">
+          <h2 class="type-heading-3">Trekk en vinner</h2>
+          <div class="flex gap-2">
+            <div
+              v-for="i in 10"
+              :key="i"
+              :class="[
+                'size-3 rounded-full border border-background-4',
+                i <= 6 ? 'bg-background-4' : '',
+              ]"
+            />
+          </div>
+        </div>
 
         <fieldset
           class="flex w-full items-start justify-between gap-4 rounded-2xl border border-label-separator bg-background-2 p-3"
         >
-          <legend class="bg-background-2 px-1">Aldersgruppe</legend>
+          <legend class="type-title-3 bg-background-2 px-1">
+            Aldersgruppe
+          </legend>
           <div class="flex flex-wrap items-center gap-x-2 gap-y-1">
             <input
               v-model.number="minAge"
@@ -156,7 +184,7 @@ async function onDrawWinner() {
         <fieldset
           class="flex w-full items-start justify-between gap-4 rounded-2xl border border-label-separator bg-background-2 p-3"
         >
-          <legend>Kjønn</legend>
+          <legend class="type-title-3 bg-background-2 px-1">Kjønn</legend>
           <div class="flex rounded-xl bg-background-1 p-1">
             <button
               v-for="gender in genders"
@@ -172,6 +200,25 @@ async function onDrawWinner() {
               <span>{{ genderTranslations[gender] }}</span>
             </button>
           </div>
+        </fieldset>
+
+        <fieldset
+          v-if="statistics?.drawOptions"
+          class="flex w-full items-start justify-between gap-4 rounded-2xl border border-label-separator bg-background-2 p-3"
+        >
+          <legend class="type-title-3 bg-background-2 px-1">Fra Kåre</legend>
+          <select
+            v-model="selectedDrawOption"
+            class="type-title-2 rounded-lg bg-background-1 px-2 py-1.5 text-label-1"
+          >
+            <option
+              v-for="(option, index) in statistics.drawOptions"
+              :key="option.id ?? index"
+              :value="option"
+            >
+              {{ option.description }}
+            </option>
+          </select>
         </fieldset>
 
         <ButtonStyled
