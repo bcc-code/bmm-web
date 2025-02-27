@@ -161,8 +161,12 @@ async function onDrawWinner() {
             <button
               v-for="gender in genders"
               :key="gender"
-              class="type-title-3 rounded-lg px-3 py-1"
-              :class="{ 'bg-background-3': selectedGender === gender }"
+              :class="[
+                'type-title-3 rounded-lg border px-3 py-1',
+                selectedGender === gender
+                  ? 'border-label-separator bg-background-2 shadow-sm'
+                  : 'border-[transparent]',
+              ]"
               @click.stop="selectedGender = gender"
             >
               <span>{{ genderTranslations[gender] }}</span>
