@@ -1,6 +1,9 @@
 <script setup lang="ts">
-import { StatisticsApi } from "@bcc-code/bmm-sdk-fetch";
-import type { GetFraKaareStatisticsResponse } from "@bcc-code/bmm-sdk-fetch";
+import { PersonGenderEnum, StatisticsApi } from "@bcc-code/bmm-sdk-fetch";
+import type {
+  FraKaareDrawCommandResponse,
+  GetFraKaareStatisticsResponse,
+} from "@bcc-code/bmm-sdk-fetch";
 import { breakpointsTailwind } from "@vueuse/core";
 import DashboardDataTable from "~/components/dashboard/DashboardDataTable.vue";
 import type { SortDirection } from "~/components/dashboard/DashboardDataTable.vue";
@@ -71,11 +74,115 @@ const columnGroupWidth = computed(() => {
   if (shouldHideColumns.value) return 1;
   return 5;
 });
+const now = new Date().getFullYear();
+const maxBirthYear = ref<number>(now - 13);
+const minBirthYear = ref<number>(now - 25);
+function resetBirthYear() {
+  maxBirthYear.value = now - 13;
+  minBirthYear.value = now - 25;
+}
+
+const selectedGender = ref<string>("both");
+const isLoading = ref<boolean>(false);
+const drawResult = ref<FraKaareDrawCommandResponse | null>(null);
+async function onDrawWinner() {
+  let gender;
+  isLoading.value = true;
+  if (selectedGender.value === "both") {
+    gender = undefined;
+  } else if (selectedGender.value === "boys") {
+    gender = PersonGenderEnum.Male;
+  } else {
+    gender = PersonGenderEnum.Female;
+  }
+  drawResult.value = await new StatisticsApi().statisticsFraKaareDrawPost({
+    fraKaareDrawCommand: {
+      latestBirthYear: maxBirthYear.value,
+      earliestBirthYear: minBirthYear.value,
+      gender,
+      churchUid: "86cee624-4848-462b-a4bd-8e20f773cb90",
+    },
+  });
+  isLoading.value = false;
+}
 </script>
 
 <template>
   <div class="space-y-12">
     <PageHeading>Dashboard: Fra Kåre</PageHeading>
+
+    <section>
+      <div
+        class="mb-5 mt-12 text-[28px] font-extrabold leading-tight text-label-1"
+      >
+        Draw a winner
+      </div>
+
+      <div class="my-4 rounded-b-2xl rounded-t-2xl bg-background-2 p-4">
+        <div class="flex items-center gap-2">
+          Birth year:
+          <input
+            type="number"
+            v-model.number="maxBirthYear"
+            class="type-title-2 w-20 rounded-lg bg-background-1 p-1 px-2 py-1.5 text-label-1 shadow-[0_4px_12px_0_#0000000D,0_1px_4px_0_#0000000D,0_0_0_1px_#0000000D]"
+          />
+          -
+
+          <input
+            type="number"
+            v-model.number="minBirthYear"
+            class="type-title-2 w-20 rounded-lg bg-background-1 p-1 px-2 py-1.5 text-label-1 shadow-[0_4px_12px_0_#0000000D,0_1px_4px_0_#0000000D,0_0_0_1px_#0000000D]"
+          />
+          <div>({{ now - maxBirthYear }} - {{ now - minBirthYear }})</div>
+          <ButtonStyled
+            intent="primary"
+            size="small"
+            @click.stop="resetBirthYear()"
+          >
+            13 - 25
+          </ButtonStyled>
+        </div>
+        <div class="flex items-center gap-2 pt-2">
+          Gender:
+
+          <div
+            class="type-title-2 min-w-[100px] rounded-lg bg-background-1 px-2 py-0 text-label-1 shadow-[0_4px_12px_0_#0000000D,0_1px_4px_0_#0000000D,0_0_0_1px_#0000000D]"
+          >
+            <select v-model="selectedGender" class="py-1">
+              <option
+                v-for="(gender, i) in ['both', 'boys', 'girls']"
+                :key="`gender${i}`"
+                :value="gender"
+              >
+                {{ gender }}
+              </option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <ButtonStyled intent="primary" @click.stop="onDrawWinner()">
+        Draw
+      </ButtonStyled>
+
+      <div
+        v-if="isLoading || drawResult != null"
+        class="my-4 mb-10 rounded-b-2xl rounded-t-2xl bg-background-2 p-4"
+      >
+        <div v-if="isLoading">Loading...</div>
+        <div v-else-if="drawResult != null" class="text-2xl">
+          <div>
+            {{ drawResult.winnerDisplayName }},
+            {{ drawResult.winnerBirthYear }}, {{ drawResult.winnerGender }}
+          </div>
+        </div>
+      </div>
+
+      <div v-if="false">
+        <div>Selected birth year: {{ minBirthYear }} - {{ maxBirthYear }}</div>
+        <div>Selected gender: {{ selectedGender }}</div>
+      </div>
+    </section>
 
     <section
       id="chart"
