@@ -91,16 +91,26 @@ async function onDrawWinner() {
       <div class="flex flex-col gap-4 bg-background-2 p-6">
         <div class="mb-2 flex flex-wrap items-center justify-between gap-4">
           <h2 class="type-heading-3">Trekk en vinner</h2>
-          <div class="flex gap-2">
-            <div
-              v-for="i in 10"
-              :key="i"
-              :class="[
-                'size-3 rounded-full border border-background-4',
-                i <= 6 ? 'bg-background-4' : '',
-              ]"
-            />
-          </div>
+          <TooltipBase :delay="500">
+            <div class="flex gap-2">
+              <div
+                v-for="i in 10"
+                :key="i"
+                :class="[
+                  'size-3 rounded-full border border-background-4',
+                  i <= 6 ? 'bg-background-4' : '',
+                ]"
+              />
+            </div>
+
+            <template #content>
+              <p
+                class="type-paragraph-3 mt-2 rounded-xl border border-label-separator bg-background-1 px-4 py-2 shadow-lg"
+              >
+                Du kan trekke 10 vinnere per uke.
+              </p>
+            </template>
+          </TooltipBase>
         </div>
 
         <fieldset
