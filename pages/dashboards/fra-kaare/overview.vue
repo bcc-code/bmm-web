@@ -11,10 +11,6 @@ import type { SortDirection } from "~/components/dashboard/DashboardDataTable.vu
 const { t } = useI18n();
 setTitle(() => t("dashboards.title"));
 
-definePageMeta({
-  middleware: ["frakaare-dashboard-viewer"],
-});
-
 const sortDirection = ref<SortDirection>("descending");
 const churchSize = ref<"small" | "large">("large");
 

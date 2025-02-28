@@ -7,28 +7,13 @@ import type {
 } from "@bcc-code/bmm-sdk-fetch";
 import { vConfetti } from "@neoconfetti/vue";
 
-const { t } = useI18n();
-setTitle(() => t("dashboards.title"));
-
-definePageMeta({
-  middleware: ["frakaare-dashboard-viewer"],
-});
-
-const churchSize = ref<"small" | "large">("large");
-
 const statistics = ref<GetFraKaareStatisticsResponse>();
 onBeforeMount(async () => {
   statistics.value = await new StatisticsApi().statisticsFraKaareGet();
 });
 
-watch(statistics, (stats) => {
-  if (!stats) return;
-  churchSize.value = (stats.largeChurches || []).some(
-    (item) => item.churchName === stats.highlightedChurchName,
-  )
-    ? "large"
-    : "small";
-});
+const { t } = useI18n();
+setTitle(() => t("dashboards.title"));
 
 const now = new Date().getFullYear();
 const minAge = ref<number>(13);
@@ -193,17 +178,25 @@ async function onDrawWinner() {
         </ButtonStyled>
       </div>
 
-      <div class="flex items-center justify-center p-6">
+      <div
+        :key="JSON.stringify(drawResult)"
+        class="flex items-center justify-center p-6 text-center"
+      >
         <Transition
           enter-active-class="transition-all duration-500 ease-out"
           enter-from-class="opacity-0 scale-90"
           enter-to-class="opacity-100 scale-100"
         >
-          <div v-if="drawResult != null">
+          <div v-if="drawResult?.isSuccess">
             <p class="type-display-3">
               {{ drawResult.winnerDisplayName }}
             </p>
             <div v-confetti="{ particleCount: 50, force: 0.5 }" />
+          </div>
+          <div v-else-if="drawResult?.errorMessage">
+            <p class="type-paragraph-1">
+              {{ drawResult.errorMessage }}
+            </p>
           </div>
         </Transition>
       </div>
