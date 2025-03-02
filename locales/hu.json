@@ -5,7 +5,7 @@
   },
   "nav": {
     "home": "Főoldal",
-    "browse": "Böngész",
+    "browse": "Böngészés",
     "playlist": "Lejátszási lista",
     "profile": "Profil",
     "messages": "Üzenetek",
@@ -52,16 +52,16 @@
     "theme-dark": "Sötét",
     "theme-light": "Világos",
     "theme-system": "Ugyanaz, mint a rendszeré",
-    "done": "Kész",
+    "done": "Végrehajtva",
     "add-another-language": "Nyelv hozzáadása"
   },
   "error": {
     "page-not-found": {
       "headline": "Hiba",
-      "text": "Elnézést. Nem találjuk a \"{path}\" oldalt."
+      "text": "Sajnáljuk. Elnézést. Nem találjuk a \"{path}\" oldalt."
     },
     "track-already-in-playlist": "Zeneszám már létezik a {0} számú lejátszási listában",
-    "album-already-in-playlist": "Ez az album már szerepel a lejátszási lista.",
+    "album-already-in-playlist": "Ez az album már szerepel a lejátszási listádban.",
     "collection-already-in-playlist": "Ezek a számok már a {0} lejátszási listán vannak."
   },
   "collection": {
@@ -88,18 +88,19 @@
     "go-to-store": "Menj az App Store-ba.",
     "get-for-desktop": "Töltsd le a BMM alkalmazást közvetlenül az asztalra",
     "download": "Letöltés",
-    "download-now": "Letöltés",
+    "download-now": "Letöltés most",
     "download-windows": "Letöltés Windowshoz",
     "download-mac-intel": "Letöltés Intel processzorhoz",
     "download-mac-arm": "Letöltés újabb Mac-re",
     "mac-intel-explanation": "Általában a 2021 előtt vásároltak",
     "mac-arm-explanation": "M1, M2, M3, M4 chip",
+
     "download-bmm-app": "Töltsd le a BMM alkalmazást",
     "download-track": "Zeneszám letöltse",
     "mobile": "Mobil",
     "messages-not-allowed": {
       "title": "Beszédek letöltése nem elérhető",
-      "description": "A BMM-ből származó üzenetek letöltésének lehetősége már nem áll rendelkezésre. Ha egy üzenetre van szükséged egy adott felhasználási célra, kérjük, lépj velünk kapcsolatba, és ismertesd igényeidet."
+      "description": "A BMM-ből való letöltés lehetősége már nem áll rendelkezésre. Ha különleges felhasználásra van szükséged, kérjük, vedd fel velünk a kapcsolatot, és ismertesd igényeit."
     },
     "sendEmailTo": "E-mail küldése a {0} címre"
   },
@@ -108,11 +109,11 @@
     "new-playlist": "Új lejátszási lista",
     "name-your-playlist": "Nevezd el a lejátszási listát",
     "delete-playlist": "Lejátszási lista törlése",
-    "delete-playlist-description": "Biztosan törlöd a lejátszási listát? Ez a művelet nem vonható vissza.",
+    "delete-playlist-description": "Biztosan törölni kívánod a lejátszási listát? Ezt a lépést nem lehet visszavonni.",
     "action": {
       "shuffle": "Keverés",
       "add-to-my-playlists": "Hozzáadás lejátszási listámhoz",
-      "remove-shared-playlist": "Lejátszási lista törlése"
+      "remove-shared-playlist": "Lejátszási lista eltávolítása"
     },
     "by-x": "{name} szerint"
   },
@@ -122,7 +123,7 @@
     "week-x": "{count}. hét",
     "action": {
       "play": "Lejátszás",
-      "follow": "Kövesse"
+      "follow": "Követés"
     }
   },
   "player": {
@@ -142,7 +143,7 @@
       "share": "Zeneszám megosztása",
       "go-to-contributors": "Váltás közreműködőkhöz",
       "more-info": "További információ",
-      "show-all": "Mutasd mind",
+      "show-all": "Összes megjelenítése",
       "remove-from-playlist": "Eltávolítás lejátszási listáról",
       "transcription": "Átírás"
     },
@@ -163,8 +164,8 @@
       "arranger": "Rendező",
       "composer": "Zeneszerző",
       "lyricist": "Szövegíró",
-      "text": "Text",
-      "melody": "Melody"
+      "text": "Szöveg",
+      "melody": "Dallam"
     }
   },
   "home": {
@@ -176,7 +177,7 @@
   "search": {
     "search-filter": {
       "All": "Összes",
-      "Speeches": "Beszéd",
+      "Speeches": "Beszédek",
       "Music": "Zene",
       "Albums": "Album(ok)",
       "Contributors": "Közreműködők",
@@ -196,7 +197,7 @@
   "transcription": {
     "lyrics": "Szövegek",
     "auto-transcribed": {
-      "title": "Automatikusan átírva",
+      "title": "Automatikus átirat",
       "explanation": "Az átiratok automatikusan generálódnak, és hibákat tartalmazhatnak.",
       "confirmation": "Értem"
     },
@@ -219,12 +220,12 @@
   },
   "lyrics": {
     "edit": "Szerkesztés",
-    "create-new-lyrics": "Create new lyrics",
-    "create": "Create",
+    "create-new-lyrics": "Új dalszövegek létrehozása",
+    "create": "Létrehozás",
     "save": "Módosítások mentése",
-    "verse-title": "Verse title",
-    "long-copyright": "Long copyright",
-    "remove-formatting": "Cleanup formatting",
-    "paste-instructions": "Paste text using <shortcut> to remove formatting."
+    "verse-title": "Verscím",
+    "long-copyright": "Szerzői jog",
+    "remove-formatting": "Formázás letisztítása",
+    "paste-instructions": "Szöveg beillesztése a <shortcut> segítségével a formázás eltávolításához."
   }
 }
