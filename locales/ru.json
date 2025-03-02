@@ -1,30 +1,30 @@
 {
   "global": {
     "cancel": "Отмена",
-    "try-again": "Попробуйте еще раз"
+    "try-again": "Попробуйте снова"
   },
   "nav": {
     "home": "Главная",
     "browse": "Просмотреть",
     "playlist": "Плейлист",
     "profile": "Профиль",
-    "messages": "Сообщения",
-    "recent-messages": "Последние проповеди",
-    "recent-music": "Недавние треки",
+    "messages": "Проповеди",
+    "recent-messages": "Недавно добавленные проповеди",
+    "recent-music": "Недавно добавленная музыка",
     "audiobooks": "Аудиокниги",
     "search": "Поиск",
     "album": "Альбом",
     "podcast": "Подкаст",
     "not-found": "Страница не найдена",
-    "contributor": "Автор",
+    "contributor": "Исполнитель",
     "contributors": "Исполнители",
     "archive": "Архив",
     "transcribe": "Транскрибация",
-    "lyrics": "Текст"
+    "lyrics": "Текст песни"
   },
   "sidebar": {
     "playlists": {
-      "title": "Списки воспроизведения"
+      "title": "Плейлисты"
     }
   },
   "share": {
@@ -34,23 +34,23 @@
     "title": "Профиль",
     "autoplay": "Автоматическое воспроизведение",
     "theme": "Тема",
-    "theme-description": "Выберите тему интерфейса.",
+    "theme-description": "Выбрать тему интерфейса.",
     "app-language": "Язык",
     "interface-language": "Язык интерфейса",
     "interface-language-description": "Выбрать язык интерфейса.",
     "select-language": "Выбрать язык",
     "content-language": "Язык содержания",
     "content-language-description": "Предпочитаемый язык содержания.",
-    "preference-language-1": "Предпочитаемые языки",
+    "preference-language-1": "Предпочитаемый язык",
     "preference-language-2": "Второй язык",
     "preference-language-3": "Третий язык",
     "preference-language-4": "{count} язык",
     "uservoice": "Голос пользователя",
     "privacy-policy": "Политика конфиденциальности",
-    "contact": "Контакт",
+    "contact": "Связаться",
     "logout": "Выйти",
-    "theme-dark": "Темный",
-    "theme-light": "Светлый",
+    "theme-dark": "Темная",
+    "theme-light": "Светлая",
     "theme-system": "Как в системе",
     "done": "Готово",
     "add-another-language": "Добавить другой язык"
@@ -58,7 +58,7 @@
   "error": {
     "page-not-found": {
       "headline": "Ошибка",
-      "text": "Извините. Страница\"{path}\" не найдена."
+      "text": "Извините Страница \"{path}\" не найдена."
     },
     "track-already-in-playlist": "Трек уже существует в плейлисте {0}",
     "album-already-in-playlist": "Этот альбом уже в вашем плейлисте.",
@@ -73,8 +73,8 @@
     "error-message": {
       "contact-info": "Если эта ошибка повторится, {0}.",
       "contact-link": "пожалуйста, свяжитесь с нами",
-      "logout-and-redirect-info": "Что-то пошло не так со входом в систему:",
-      "manual-logout-and-redirect-info": "Пожалуйста {0}.",
+      "logout-and-redirect-info": "Произошла ошибка при входе:",
+      "manual-logout-and-redirect-info": "Пожалуйста {0},",
       "logout-and-redirect-link": "попробуйте войти снова"
     },
     "redirect-message": {
@@ -86,7 +86,7 @@
   "download": {
     "install-app": "Мы рекомендуем установить приложение.",
     "go-to-store": "Перейти в App Store.",
-    "get-for-desktop": "Загрузить приложение BMM на рабочий стол",
+    "get-for-desktop": "Установить приложение BMM на рабочий стол",
     "download": "Скачать",
     "download-now": "Скачать сейчас",
     "download-windows": "Загрузить для Windows",
@@ -94,21 +94,22 @@
     "download-mac-arm": "Загрузить для более новых Mac",
     "mac-intel-explanation": "Купленных до 2021 года",
     "mac-arm-explanation": "Чип M1, M2, M3, M4",
+
     "download-bmm-app": "Загрузить приложение BMM",
     "download-track": "Скачать трек",
     "mobile": "Телефон",
     "messages-not-allowed": {
       "title": "Скачивание проповедей недоступно",
-      "description": "Возможность скачивания проповедедей из BMM больше не доступна. Если вам нужна проповедь для конкретного случая, пожалуйста, свяжитесь с нами и расскажите о цели использования."
+      "description": "Возможность скачивать проповеди из BMM больше не доступна. Если вам нужна проповедь для конкретной цели, пожалуйста, свяжитесь с нами и уточните ваши пожелания."
     },
-    "sendEmailTo": "Отправить письмо на адрес {0}"
+    "sendEmailTo": "Отправить email {0}"
   },
   "playlist": {
     "add": "Добавить плейлист",
     "new-playlist": "Новый плейлист",
-    "name-your-playlist": "Дайте название плейлисту",
-    "delete-playlist": "Удалить список воспроизведения",
-    "delete-playlist-description": "Вы уверены, что хотите удалить плейлист? Это действие нельзя отменить.",
+    "name-your-playlist": "Дать название плейлисту",
+    "delete-playlist": "Удалить плейлист",
+    "delete-playlist-description": "Вы уверены, что хотите удалить плейлист «{0}»? Это действие не может быть отменено.",
     "action": {
       "shuffle": "Перемешать",
       "add-to-my-playlists": "Добавить в мои плейлисты",
@@ -121,7 +122,7 @@
     "last-week": "На прошлой неделе",
     "week-x": "Неделя {count}",
     "action": {
-      "play": "Воспроизвести",
+      "play": "Проиграть",
       "follow": "Подписаться"
     }
   },
@@ -134,7 +135,7 @@
   },
   "track": {
     "dropdown": {
-      "play-next": "Проиграть следующую",
+      "play-next": "Следующий",
       "download": "Скачать",
       "go-to-album": "Перейти в альбом",
       "add-to-queue": "Добавить в очередь",
@@ -143,7 +144,7 @@
       "go-to-contributors": "Перейти к исполнителям",
       "more-info": "Дополнительная информация",
       "show-all": "Показать все",
-      "remove-from-playlist": "Удалить из списка воспроизведения",
+      "remove-from-playlist": "Удалить из плейлиста",
       "transcription": "Расшифровка текста"
     },
     "a11y": {
@@ -158,13 +159,13 @@
       "publish-date": "Дата публикации",
       "album": "Альбом",
       "publisher": "Опубликовано",
-      "copyright": "Авторское право",
+      "copyright": "Все права защищены",
       "song-number": "Номер песни",
       "arranger": "Аранжировщик",
       "composer": "Композитор",
-      "lyricist": "Текст",
-      "text": "Text",
-      "melody": "Melody"
+      "lyricist": "Текст песни",
+      "text": "Текст",
+      "melody": "Мелодия"
     }
   },
   "home": {
@@ -185,7 +186,7 @@
     },
     "input-placeholder": "Поиск",
     "loading-results": "Загрузка результатов",
-    "no-results-yet": "Без результатов",
+    "no-results-yet": "Пока никаких результатов",
     "no-results-found": "Результатов не найдено",
     "result-count": "{count} результатов"
   },
@@ -194,9 +195,9 @@
     "days-in-row": "{count} дней подряд"
   },
   "transcription": {
-    "lyrics": "Текст",
+    "lyrics": "Текст песни",
     "auto-transcribed": {
-      "title": "Автоматическая расшифровка текста",
+      "title": "Авторасшифровка",
       "explanation": "Расшифровки генерируются автоматически и могут содержать ошибки.",
       "confirmation": "Понятно"
     },
@@ -206,7 +207,7 @@
     "edit": "Редактировать",
     "deleteSegment": "Удалить",
     "undeleteSegment": "Отменить удаление",
-    "review": "Обзор",
+    "review": "Просмотр",
     "status": {
       "done": "Просмотрено",
       "in-progress": "В прогрессе",
@@ -219,12 +220,12 @@
   },
   "lyrics": {
     "edit": "Редактировать",
-    "create-new-lyrics": "Create new lyrics",
-    "create": "Create",
+    "create-new-lyrics": "Создай новый текст",
+    "create": "Создать",
     "save": "Сохранить изменения",
-    "verse-title": "Verse title",
-    "long-copyright": "Long copyright",
-    "remove-formatting": "Cleanup formatting",
-    "paste-instructions": "Paste text using <shortcut> to remove formatting."
+    "verse-title": "Название куплета",
+    "long-copyright": "Длительное авторское право",
+    "remove-formatting": "Сброс форматирования",
+    "paste-instructions": "Вставьте текст с помощью <shortcut>, чтобы убрать форматирование."
   }
 }
