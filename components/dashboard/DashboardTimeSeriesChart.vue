@@ -52,7 +52,7 @@ const crosshairTemplate = (d: GetFraKaareStatisticsChurchStatisticsSnapshot) =>
       :grid-line="false"
       :tick-line="false"
       :tick-format="
-        (v: number, i: number) => data[i]?.snapshotDate?.toLocaleDateString()
+        (timestamp: number) => new Date(timestamp).toLocaleDateString()
       "
     />
     <VisAxis

@@ -21,10 +21,11 @@
   },
   "dependencies": {
     "@auth0/auth0-vue": "^2.3.3",
-    "@bcc-code/bmm-sdk-fetch": "^8.7.4",
+    "@bcc-code/bmm-sdk-fetch": "^8.7.10",
     "@floating-ui/vue": "^1.0.6",
     "@headlessui/vue": "^1.7.19",
     "@microsoft/applicationinsights-web": "^3.0.8",
+    "@neoconfetti/vue": "^2.2.1",
     "@pinia/nuxt": "^0.5.1",
     "@sentry/vue": "^8.27.0",
     "@tiptap/starter-kit": "^2.9.1",
