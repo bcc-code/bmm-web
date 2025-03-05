@@ -8,15 +8,15 @@
     "browse": "Gennemse",
     "playlist": "Spilleliste",
     "profile": "Profil",
-    "messages": "Beskeder",
+    "messages": "Taler",
     "recent-messages": "Seneste taler",
     "recent-music": "Nyeste musik",
     "audiobooks": "Lydbøger",
-    "search": "Søg",
+    "search": "Søg...",
     "album": "Album",
     "podcast": "Podcast",
-    "not-found": "Siden blev ikke fundet",
-    "contributor": "Medvirkende",
+    "not-found": "Siden findes ikke",
+    "contributor": "Bidragsyder",
     "contributors": "Bidragydere",
     "archive": "Arkiv",
     "transcribe": "Transskriber",
@@ -24,20 +24,20 @@
   },
   "sidebar": {
     "playlists": {
-      "title": "Spillelister"
+      "title": "Playliste"
     }
   },
   "share": {
-    "link-copied-message": "Link kopieret til udklipsholder"
+    "link-copied-message": "Kopier link til udklipsholder"
   },
   "profile": {
     "title": "Profil",
     "autoplay": "Automatisk afspilning",
     "theme": "Tema",
-    "theme-description": "Vælg det tema, der bruges til grænsefladen.",
+    "theme-description": "Vælg det tema, der bruges til interface.",
     "app-language": "Sprog",
-    "interface-language": "Sprog på grænseflade",
-    "interface-language-description": "Vælg det sprog, der bruges til grænsefladen.",
+    "interface-language": "Interface-sprog",
+    "interface-language-description": "Vælg det sprog, der bruges til interface",
     "select-language": "Vælg sprog",
     "content-language": "Indholdssprog",
     "content-language-description": "Det foretrukne sprog for det indhold, du lytter til.",
@@ -52,21 +52,21 @@
     "theme-dark": "Mørk",
     "theme-light": "Lys",
     "theme-system": "Samme som system",
-    "done": "Færdig",
+    "done": "Udført",
     "add-another-language": "Tilføj et sprog"
   },
   "error": {
     "page-not-found": {
       "headline": "Fejl",
-      "text": "Beklager, vi kan ikke finde siden \"{path}\"."
+      "text": "Beklager Beklager, vi kan ikke finde siden \"{path}\"."
     },
-    "track-already-in-playlist": "Findes allerede i spillelisten.",
-    "album-already-in-playlist": "Dette albumet er allerede i spillelisten.",
-    "collection-already-in-playlist": "Disse numre er allerede på afspilningslisten {0}."
+    "track-already-in-playlist": "Findes allerede i playlisten.",
+    "album-already-in-playlist": "Dette album er allerede på din playliste.",
+    "collection-already-in-playlist": "Disse numre er allerede på playliste {0}."
   },
   "collection": {
-    "track-count": "{count} spor | {count} spor",
-    "album-count": "{count} album | {count} albummer",
+    "track-count": "{count} track | {count} track",
+    "album-count": "{antal} album | {antal} albums",
     "resume": "Genoptag"
   },
   "login": {
@@ -85,7 +85,7 @@
   },
   "download": {
     "install-app": "Vi anbefaler at installere appen.",
-    "go-to-store": "Gå til til App Store.",
+    "go-to-store": "Gå til App Store.",
     "get-for-desktop": "Få BMM-appen direkte på dit skrivebord",
     "download": "Download",
     "download-now": "Download nu",
@@ -94,12 +94,13 @@
     "download-mac-arm": "Download til nyere Mac",
     "mac-intel-explanation": "Normalt købt før 2021",
     "mac-arm-explanation": "M1, M2, M3, M4 chip",
+
     "download-bmm-app": "Download BMM-appen",
     "download-track": "Download",
     "mobile": "Mobil",
     "messages-not-allowed": {
       "title": "Download af taler ikke tilgængelig",
-      "description": "Muligheden for at downloade taler fra BMM er ikke længere tilgængelig. Hvis du har brug for en tale til et specifikt formål, bedes du kontakte os og forklare dine behov."
+      "description": "Muligheden for at downloade taler fra BMM er ikke længere tilgængelig. Hvis du har brug for en tale til et bestemt formål, bedes du kontakte os og forklare dine behov."
     },
     "sendEmailTo": "Send e-mail til {0}"
   },
@@ -108,7 +109,7 @@
     "new-playlist": "Ny spilleliste",
     "name-your-playlist": "Navngiv spilleliste",
     "delete-playlist": "Slet spilleliste",
-    "delete-playlist-description": "Er du sikker på, at du vil slette spillelisten? Denne handling kan ikke fortrydes.",
+    "delete-playlist-description": "Er du sikker på at du vil slette spillelisten \"{0}\"? Denne handling kan ikke omgøres.",
     "action": {
       "shuffle": "Afspil blandet",
       "add-to-my-playlists": "Tilføj til mine spillelister",
@@ -134,7 +135,7 @@
   },
   "track": {
     "dropdown": {
-      "play-next": "Afspil som næste",
+      "play-next": "Afspil næste",
       "download": "Download",
       "go-to-album": "Gå til album",
       "add-to-queue": "Føj til spillekø",
@@ -144,7 +145,7 @@
       "more-info": "Mere information",
       "show-all": "Vis alle",
       "remove-from-playlist": "Slet fra spilleliste",
-      "transcription": "Transkribering"
+      "transcription": "Transskribering"
     },
     "a11y": {
       "download": "Download",
@@ -152,17 +153,17 @@
       "options": "Vis muligheder"
     },
     "details": {
-      "title": "Spordetaljer",
+      "title": "Detaljer",
       "reference": "Reference",
       "duration": "Varighed",
-      "publish-date": "Publiseringsdato",
+      "publish-date": "Publiceringsdato",
       "album": "Album",
       "publisher": "Udgiver",
-      "copyright": "Rettigheder",
+      "copyright": "Copyright",
       "song-number": "Sangnummer",
       "arranger": "Arrangør",
       "composer": "Komponist",
-      "lyricist": "Forfatter",
+      "lyricist": "Tekstforfatter",
       "text": "Tekst",
       "melody": "Melodi"
     }
@@ -180,10 +181,10 @@
       "Music": "Musik",
       "Albums": "Album",
       "Contributors": "Bidragydere",
-      "Podcasts": "Podcasts",
-      "Playlists": "Spillelister"
+      "Podcasts": "Podcaster",
+      "Playlists": "Playliste"
     },
-    "input-placeholder": "Søg",
+    "input-placeholder": "Søg...",
     "loading-results": "Indlæser resultater",
     "no-results-yet": "Ingen resultater",
     "no-results-found": "Ingen resultater fundet",
@@ -191,13 +192,13 @@
   },
   "streak": {
     "your-streak": "Din streak denne uge",
-    "days-in-row": "{count} dage i stræk\n"
+    "days-in-row": "{count} dage i træk"
   },
   "transcription": {
     "lyrics": "Tekster",
     "auto-transcribed": {
       "title": "Automatisk transskriberet",
-      "explanation": "Transkriberinger genereres automatisk og kan indeholde fejl",
+      "explanation": "Transskriberinger genereres automatisk og kan indeholde fejl",
       "confirmation": "Forstået"
     },
     "songtreasures": "SongTreasures",
@@ -223,7 +224,7 @@
     "create": "Opret",
     "save": "Gem ændringer",
     "verse-title": "Sangtitel",
-    "long-copyright": "Lang ophavsret",
+    "long-copyright": "Lang copyright",
     "remove-formatting": "Ryd op i formatering",
     "paste-instructions": "Indsæt tekst ved hjælp af <shortcut> for at fjerne formatering."
   }
