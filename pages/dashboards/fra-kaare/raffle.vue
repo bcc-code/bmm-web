@@ -18,10 +18,6 @@ setTitle(() => t("dashboards.title"));
 const now = new Date().getFullYear();
 const minAge = ref<number>(13);
 const maxAge = ref<number>(25);
-function resetAge() {
-  minAge.value = 13;
-  maxAge.value = 25;
-}
 
 const genders = ["both", "boys", "girls"] as const;
 type Gender = (typeof genders)[number];
@@ -171,7 +167,9 @@ async function onDrawWinner() {
           v-if="statistics?.drawOptions"
           class="flex w-full items-start justify-between gap-4 rounded-2xl border border-label-separator bg-background-2 p-3"
         >
-          <legend class="type-title-3 bg-background-2 px-1">Periode</legend>
+          <legend class="type-title-3 bg-background-2 px-1">
+            Har hørt på alle episoder i perioden
+          </legend>
           <select
             v-model="selectedDrawOption"
             class="type-title-2 rounded-lg bg-background-1 px-2 py-1.5 text-label-1"
