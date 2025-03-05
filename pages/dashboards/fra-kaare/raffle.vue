@@ -54,8 +54,8 @@ async function onDrawWinner() {
     if (!selectedDrawOption.value) return;
     drawResult.value = await new StatisticsApi().statisticsFraKaareDrawPost({
       fraKaareDrawCommand: {
-        latestBirthYear: now - minAge.value,
-        earliestBirthYear: now - maxAge.value,
+        latestBirthYear: now - minAge.value - 1,
+        earliestBirthYear: now - maxAge.value - 1,
         gender,
         drawOptionId: selectedDrawOption.value.id,
       },
@@ -79,11 +79,13 @@ async function onDrawWinner() {
           <TooltipBase :delay="500">
             <div class="flex gap-2">
               <div
-                v-for="i in 10"
+                v-for="i in statistics?.maxDraws"
                 :key="i"
                 :class="[
                   'size-3 rounded-full border border-background-4',
-                  i <= 6 ? 'bg-background-4' : '',
+                  i <= (drawResult?.drawsLeft ?? statistics?.drawsLeft ?? 0)
+                    ? 'bg-background-4'
+                    : '',
                 ]"
               />
             </div>
@@ -92,7 +94,7 @@ async function onDrawWinner() {
               <p
                 class="type-paragraph-3 mt-2 rounded-xl border border-label-separator bg-background-1 px-4 py-2 shadow-lg"
               >
-                Du kan trekke 10 vinnere per uke.
+                Du kan trekke {{ statistics?.maxDraws }} vinnere per uke.
               </p>
             </template>
           </TooltipBase>
@@ -117,14 +119,30 @@ async function onDrawWinner() {
               class="type-title-2 w-20 rounded-lg bg-background-1 px-2 py-1.5 text-label-1"
             />
             <span class="type-paragraph-3 w-full px-2 text-label-3">
-              Født mellom {{ now - maxAge }} og {{ now - minAge }}
+              Født mellom {{ now - maxAge - 1 }} og {{ now - minAge - 1 }}
             </span>
           </div>
           <button
             class="type-paragraph-3 shrink-0 rounded-lg bg-background-3 px-3 py-0.5 text-label-3"
-            @click.stop="resetAge()"
+            @click.stop="
+              {
+                minAge = 13;
+                maxAge = 25;
+              }
+            "
           >
             Sett til 13 - 25
+          </button>
+          <button
+            class="type-paragraph-3 shrink-0 rounded-lg bg-background-3 px-3 py-0.5 text-label-3"
+            @click.stop="
+              {
+                minAge = 12;
+                maxAge = 36;
+              }
+            "
+          >
+            Sett til 12 - 36
           </button>
         </fieldset>
 
