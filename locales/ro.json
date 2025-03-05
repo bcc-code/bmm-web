@@ -6,13 +6,13 @@
   "nav": {
     "home": "Acasă",
     "browse": "Explorează",
-    "playlist": "Play-list",
+    "playlist": "Listă de redare",
     "profile": "Profil",
     "messages": "Vorbiri",
     "recent-messages": "Ultimele vorbiri",
     "recent-music": "Ultimele cântări",
     "audiobooks": "Cărți audio",
-    "search": "Caută",
+    "search": "Căutare",
     "album": "Album",
     "podcast": "Podcast",
     "not-found": "Pagina nu a fost găsită",
@@ -24,11 +24,11 @@
   },
   "sidebar": {
     "playlists": {
-      "title": "Play-list-uri"
+      "title": "Liste de redare"
     }
   },
   "share": {
-    "link-copied-message": "S-a copiat linkul în clipboard"
+    "link-copied-message": "S-a copiat linkul în memorie"
   },
   "profile": {
     "title": "Profil",
@@ -36,8 +36,8 @@
     "theme": "Temă",
     "theme-description": "Selectează tema utilizată pentru interfață.",
     "app-language": "Limbă",
-    "interface-language": "Limbajul interfeței",
-    "interface-language-description": "Alege limba utilizată pentru interfață.",
+    "interface-language": "Limba interfeței",
+    "interface-language-description": "Alege limba pentru interfață.",
     "select-language": "Alege limba",
     "content-language": "Limba conținutului",
     "content-language-description": "Limba preferată pentru conținutul pe care îl asculți.",
@@ -45,27 +45,27 @@
     "preference-language-2": "A doua limbă",
     "preference-language-3": "A treia limbă",
     "preference-language-4": "{count}-a limbă",
-    "uservoice": "User Voice",
+    "uservoice": "Vocea utilizatorului",
     "privacy-policy": "Politica de confidențialitate",
     "contact": "Contact",
     "logout": "Deconectare",
     "theme-dark": "Întunecat",
     "theme-light": "Luminos",
     "theme-system": "La fel ca sistemul",
-    "done": "Gata",
+    "done": "Efectuat",
     "add-another-language": "Adaugă altă limbă"
   },
   "error": {
     "page-not-found": {
       "headline": "Eroare",
-      "text": "Îmi pare rău. Nu pot găsi pagina „{path}”."
+      "text": "Scuze. Nu putem găsi pagina \"{path}\"."
     },
     "track-already-in-playlist": "Piesa este deja în lista de redare {0}",
-    "album-already-in-playlist": "Acest album este deja în lista de redare.",
+    "album-already-in-playlist": "Acest album este deja în lista ta de redare.",
     "collection-already-in-playlist": "Aceste piese sunt deja în lista de redare {0}."
   },
   "collection": {
-    "track-count": "{count} piesa | {count} piese",
+    "track-count": "{count} piesă | {count} piese",
     "album-count": "{count} album | {count} albume",
     "resume": "Continuă"
   },
@@ -94,25 +94,26 @@
     "download-mac-arm": "Descarcă pentru Mac mai nou",
     "mac-intel-explanation": "Achiziționat de obicei înainte de 2021",
     "mac-arm-explanation": "Chip M1, M2, M3, M4",
+
     "download-bmm-app": "Descarcă aplicația BMM",
-    "download-track": "Descarcă piesă",
+    "download-track": "Descarcă piesa",
     "mobile": "Mobil",
     "messages-not-allowed": {
-      "title": "Descărcarea vorbirilor indisponibilă",
-      "description": "Abilitatea de a descărca vorbiri de pe BMM nu mai este disponibilă. Dacă aveți nevoie de o vorbire pentru o anumită utilizare, vă rugăm să ne contactați și să ne explicați nevoile."
+      "title": "Descărcarea vorbirilor este indisponibilă",
+      "description": "Posibilitatea de a descărca mesaje din BMM nu mai este disponibilă. Dacă ai nevoie de un mesaj pentru o utilizare specifică, te rugăm să ne contactezi și să ne explici nevoile tale."
     },
     "sendEmailTo": "Trimite e-mail la {0}"
   },
   "playlist": {
-    "add": "Listă de redare nouă",
-    "new-playlist": "Play-list nou",
+    "add": "Adaugă listă de redare",
+    "new-playlist": "Listă de redare nouă",
     "name-your-playlist": "Denumește lista de redare",
-    "delete-playlist": "Șterge play-list",
-    "delete-playlist-description": "Ești sigur că vrei să ștergi lista de redare? Această acțiune nu poate fi inversată.",
+    "delete-playlist": "Șterge lista de redare",
+    "delete-playlist-description": "Ești sigur că dorești să ștergi lista de redare? Această acțiune nu poate fi anulată.",
     "action": {
-      "shuffle": "Aleatoriu",
-      "add-to-my-playlists": "Adaugă la play-list-urile mele",
-      "remove-shared-playlist": "Elimină play-list"
+      "shuffle": "Amestecă ordinea",
+      "add-to-my-playlists": "Adaugă printre listele mele de redare",
+      "remove-shared-playlist": "Elimină lista de redare"
     },
     "by-x": "după {name}"
   },
@@ -121,12 +122,12 @@
     "last-week": "Ultima săptămână",
     "week-x": "Săptămâna {count}",
     "action": {
-      "play": "Cântă",
+      "play": "Rulează",
       "follow": "Urmărește"
     }
   },
   "player": {
-    "queue": "Listă"
+    "queue": "Coadă"
   },
   "edit": {
     "rename": "Redenumește",
@@ -134,16 +135,16 @@
   },
   "track": {
     "dropdown": {
-      "play-next": "Redă următoarea",
+      "play-next": "Rulează în continuare",
       "download": "Descarcă",
       "go-to-album": "Mergi la album",
       "add-to-queue": "Adaugă în coadă",
-      "add-to-playlist": "Adaugă în play-list",
-      "share": "Distribuie piesă",
+      "add-to-playlist": "Adaugă în lista de redare",
+      "share": "Distribuie piesa",
       "go-to-contributors": "Vezi contribuitori",
-      "more-info": "Mai multe informaţii",
+      "more-info": "Mai multe informații",
       "show-all": "Toate",
-      "remove-from-playlist": "Șterge din play-list",
+      "remove-from-playlist": "Șterge din lista de redare",
       "transcription": "Transcriere"
     },
     "a11y": {
@@ -153,7 +154,7 @@
     },
     "details": {
       "title": "Detaliile piesei",
-      "reference": "Referinţă",
+      "reference": "Referință",
       "duration": "Durată",
       "publish-date": "Data publicării",
       "album": "Album",
@@ -175,22 +176,22 @@
   },
   "search": {
     "search-filter": {
-      "All": "Toate",
-      "Speeches": "Discursuri",
+      "All": "Toți / Toate",
+      "Speeches": "Vorbiri",
       "Music": "Muzică",
       "Albums": "Albume",
       "Contributors": "Contribuitori",
-      "Podcasts": "Podcast-uri",
-      "Playlists": "Play-list-uri"
+      "Podcasts": "Podcasturi",
+      "Playlists": "Liste de redare"
     },
-    "input-placeholder": "Caută",
+    "input-placeholder": "Căutare",
     "loading-results": "Se încarcă rezultatele",
-    "no-results-yet": "Încă niciun rezultat",
-    "no-results-found": "Niciun rezultat găsit",
+    "no-results-yet": "Niciun rezultat nu a fost găsit încă",
+    "no-results-found": "Niciun rezultat nu a fost găsit",
     "result-count": "{count} rezultate"
   },
   "streak": {
-    "your-streak": "Progresul tău",
+    "your-streak": "Progresul tău săptămâna aceasta",
     "days-in-row": "{count} zile consecutive"
   },
   "transcription": {
@@ -215,16 +216,16 @@
   },
   "dashboards": {
     "title": "Panou de control",
-    "fra-kaare": "Fra Kåre"
+    "fra-kaare": "De la Kåre"
   },
   "lyrics": {
     "edit": "Editează",
-    "create-new-lyrics": "Crează versuri noi",
+    "create-new-lyrics": "Creează versuri noi",
     "create": "Creează",
     "save": "Salvează modificările",
-    "verse-title": "Titlul versului",
+    "verse-title": "Titlul cântării",
     "long-copyright": "Drept de autor lung",
-    "remove-formatting": "Formatare de curățare",
-    "paste-instructions": "Lipește textul folosind „scurtătura” pentru a elimina formatarea."
+    "remove-formatting": "Șterge formatarea",
+    "paste-instructions": "Introdu text folosind <shortcut> pentru a șterge formatarea textului."
   }
 }
