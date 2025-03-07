@@ -16,7 +16,7 @@ const { t } = useI18n();
 setTitle(() => t("dashboards.title"));
 
 const now = new Date().getFullYear();
-const minAge = ref<number>(13);
+const minAge = ref<number>(12);
 const maxAge = ref<number>(25);
 
 const genders = ["both", "boys", "girls"] as const;
@@ -118,28 +118,30 @@ async function onDrawWinner() {
               Født mellom {{ now - maxAge - 1 }} og {{ now - minAge - 1 }}
             </span>
           </div>
-          <button
-            class="type-paragraph-3 shrink-0 rounded-lg bg-background-3 px-3 py-0.5 text-label-3"
-            @click.stop="
-              {
-                minAge = 13;
-                maxAge = 25;
-              }
-            "
-          >
-            Sett til 13 - 25
-          </button>
-          <button
-            class="type-paragraph-3 shrink-0 rounded-lg bg-background-3 px-3 py-0.5 text-label-3"
-            @click.stop="
-              {
-                minAge = 12;
-                maxAge = 36;
-              }
-            "
-          >
-            Sett til 12 - 36
-          </button>
+          <div class="flex gap-2">
+            <button
+              class="type-paragraph-3 shrink-0 rounded-lg bg-background-3 px-3 py-0.5 text-label-3"
+              @click.stop="
+                {
+                  minAge = 12;
+                  maxAge = 25;
+                }
+              "
+            >
+              Sett til 12 - 25
+            </button>
+            <button
+              class="type-paragraph-3 shrink-0 rounded-lg bg-background-3 px-3 py-0.5 text-label-3"
+              @click.stop="
+                {
+                  minAge = 12;
+                  maxAge = 35;
+                }
+              "
+            >
+              Sett til 12 - 35
+            </button>
+          </div>
         </fieldset>
 
         <fieldset
