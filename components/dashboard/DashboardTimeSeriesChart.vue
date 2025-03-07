@@ -27,7 +27,7 @@ const crosshairTemplate = (d: GetFraKaareStatisticsChurchStatisticsSnapshot) =>
   <VisBulletLegend
     :items="[
       { name: 'Totale episoder hørt', color: getColor(0) },
-      { name: 'Har hørt minst én episode i 2025', color: getColor(1) },
+      { name: 'Har hørt minst én episode i prosjektet', color: getColor(1) },
     ]"
   />
   <VisXYContainer :data="data" class="grow">

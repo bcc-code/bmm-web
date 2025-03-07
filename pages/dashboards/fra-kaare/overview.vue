@@ -122,7 +122,7 @@ watch(statistics, (stats) => {
         :column-groups="[
           {
             key: 'oneEpisode',
-            text: 'Har hørt minst én episode i 2025',
+            text: 'Har hørt minst én episode fra «Hvem er du, Herre?»',
             start: 1,
             span: columnGroupWidth,
           },
