@@ -67,7 +67,7 @@ async function onDrawWinner() {
   <div class="space-y-12">
     <section
       id="raffle"
-      class="grid grid-rows-[2fr_1fr] overflow-hidden rounded-2xl border border-label-separator xl:grid-cols-2 xl:grid-rows-1"
+      class="grid grid-cols-1 grid-rows-[2fr_1fr] overflow-hidden rounded-2xl border border-label-separator xl:grid-cols-2 xl:grid-rows-1"
     >
       <div class="flex flex-col gap-4 bg-background-2 p-6">
         <div class="mb-2 flex flex-wrap items-center justify-between gap-4">
@@ -97,30 +97,32 @@ async function onDrawWinner() {
         </div>
 
         <fieldset
-          class="flex w-full items-start justify-between gap-4 rounded-2xl border border-label-separator bg-background-2 p-3"
+          class="flex w-full flex-wrap items-start justify-between gap-4 rounded-2xl border border-label-separator bg-background-2 p-3"
         >
           <legend class="type-title-3 bg-background-2 px-1">
             Aldersgruppe
           </legend>
-          <div class="flex flex-wrap items-center gap-x-2 gap-y-1">
-            <input
-              v-model.number="minAge"
-              type="number"
-              class="type-title-2 w-20 rounded-lg bg-background-1 px-2 py-1.5 text-label-1"
-            />
-            -
-            <input
-              v-model.number="maxAge"
-              type="number"
-              class="type-title-2 w-20 rounded-lg bg-background-1 px-2 py-1.5 text-label-1"
-            />
-            <span class="type-paragraph-3 w-full px-2 text-label-3">
+          <div class="items-center gap-x-2 gap-y-1">
+            <div class="flex items-center gap-2 pb-2">
+              <input
+                v-model.number="minAge"
+                type="number"
+                class="type-title-2 w-20 rounded-lg bg-background-1 px-2 py-1.5 text-label-1"
+              />
+              -
+              <input
+                v-model.number="maxAge"
+                type="number"
+                class="type-title-2 w-20 rounded-lg bg-background-1 px-2 py-1.5 text-label-1"
+              />
+            </div>
+            <p class="type-paragraph-3 block px-2 text-label-3">
               Født mellom {{ now - maxAge - 1 }} og {{ now - minAge - 1 }}
-            </span>
+            </p>
           </div>
-          <div class="flex gap-2">
+          <div class="flex flex-wrap justify-end gap-2">
             <button
-              class="type-paragraph-3 shrink-0 rounded-lg bg-background-3 px-3 py-0.5 text-label-3"
+              class="type-paragraph-3 shrink-0 rounded-lg bg-background-3 px-3 py-0.5 text-label-3 active:bg-background-2"
               @click.stop="
                 {
                   minAge = 12;
@@ -131,7 +133,7 @@ async function onDrawWinner() {
               Sett til 12 - 25
             </button>
             <button
-              class="type-paragraph-3 shrink-0 rounded-lg bg-background-3 px-3 py-0.5 text-label-3"
+              class="type-paragraph-3 shrink-0 rounded-lg bg-background-3 px-3 py-0.5 text-label-3 active:bg-background-2"
               @click.stop="
                 {
                   minAge = 12;
@@ -174,7 +176,7 @@ async function onDrawWinner() {
           </legend>
           <select
             v-model="selectedDrawOption"
-            class="type-title-2 rounded-lg bg-background-1 px-2 py-1.5 text-label-1"
+            class="type-title-2 w-full truncate rounded-lg bg-background-1 px-2 py-1.5 text-label-1"
           >
             <option
               v-for="(option, index) in statistics.drawOptions"
