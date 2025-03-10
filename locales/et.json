@@ -9,12 +9,12 @@
     "playlist": "Esitusloend",
     "profile": "Profiil",
     "messages": "Sõnumid",
-    "recent-messages": "Hiljutised sõnumid",
+    "recent-messages": "Hiljutised jutlused",
     "recent-music": "Hiljutine muusika",
     "audiobooks": "Audioraamatud",
     "search": "Otsi",
     "album": "Album",
-    "podcast": "Taskuhääling",
+    "podcast": "Podcast",
     "not-found": "Lehte ei leitud",
     "contributor": "Kaastegija",
     "contributors": "Kaastegijad",
@@ -34,10 +34,10 @@
     "title": "Profiil",
     "autoplay": "Automaatne esitus",
     "theme": "Teema",
-    "theme-description": "Valige liidese jaoks kasutatav teema.",
+    "theme-description": "Vali liidese jaoks kasutatav teema.",
     "app-language": "Keel",
     "interface-language": "Liidese keel",
-    "interface-language-description": "Valige liidese jaoks kasutatav keel.",
+    "interface-language-description": "Vali liidese jaoks kasutatav keel.",
     "select-language": "Vali keel",
     "content-language": "Sisu keel",
     "content-language-description": "Eelistatud keel kuulatava sisu jaoks.",
@@ -58,10 +58,10 @@
   "error": {
     "page-not-found": {
       "headline": "Viga",
-      "text": "Vabandust. Me ei leia lehte \"{path}\"."
+      "text": "Vabandust. Vabandust. Me ei leia lehte \"{path}\"."
     },
     "track-already-in-playlist": "Lugu on esitusloendis {0} juba olemas",
-    "album-already-in-playlist": "See album on juba Playlist.",
+    "album-already-in-playlist": "See album on juba esitusloendis.",
     "collection-already-in-playlist": "Need lood on juba esitusloendis {0}."
   },
   "collection": {
@@ -72,46 +72,47 @@
   "login": {
     "error-message": {
       "contact-info": "Kui see tõrge püsib, {0}.",
-      "contact-link": "palun võtke meiega ühendust",
+      "contact-link": "palun võta meiega ühendust",
       "logout-and-redirect-info": "Midagi läks sisselogimisel valesti:",
       "manual-logout-and-redirect-info": "Palun {0}.",
       "logout-and-redirect-link": "proovi uuesti sisse logida"
     },
     "redirect-message": {
-      "redirect-info": "Teid suunatakse sisselogimislehele.",
-      "manual-redirect-info": "Palun oodake või {0}.",
-      "redirect-link": "klõpsake uuesti proovimiseks"
+      "redirect-info": "Sind suunatakse sisselogimislehele.",
+      "manual-redirect-info": "Palun oota või {0}.",
+      "redirect-link": "klõpsa uuesti proovimiseks"
     }
   },
   "download": {
     "install-app": "Soovitame rakendust installida.",
     "go-to-store": "Navigeerige äpi poodi.",
-    "get-for-desktop": "Hangi BMM-rakendus otse oma töölauale",
+    "get-for-desktop": "Hangi BMM-rakendus otse oma desktopile",
     "download": "Lae alla",
-    "download-now": "Allalaadimine",
+    "download-now": "Lae alla nüüd",
     "download-windows": "Lae alla Windowsi jaoks",
     "download-mac-intel": "Lae alla Inteli protsessori jaoks",
     "download-mac-arm": "Lae alla uuema Maci jaoks",
     "mac-intel-explanation": "Tavaliselt ostetud enne 2021. aastat",
     "mac-arm-explanation": "M1, M2, M3, M4 kiip",
+
     "download-bmm-app": "Lae alla BMM-i rakendus",
-    "download-track": "Lae pala alla",
+    "download-track": "Lae lugu alla",
     "mobile": "Mobiil",
     "messages-not-allowed": {
-      "title": "Sõnumite allalaadimine pole saadaval",
-      "description": "Sõnumeid BMM-ist alla laadida pole enam võimalik. Kui vajad konkreetset sõnumit millekski, palun võta meiega ühendust ja selgita oma põhjust."
+      "title": "Jutluste allalaadimine pole saadaval",
+      "description": "Jutluste allalaadimise võimalus BMMist ei ole enam saadaval. Kui vajad jutlust konkreetseks otstarbeks, võta meiega ühendust ja selgita oma vajadusi."
     },
     "sendEmailTo": "Saada meil aadressile {0}"
   },
   "playlist": {
     "add": "Lisa esitlusloendisse",
     "new-playlist": "Uus esitusloend",
-    "name-your-playlist": "Nimetage oma esitusloend",
+    "name-your-playlist": "Nimeta oma esitusloend",
     "delete-playlist": "Kustuta esitusloend",
-    "delete-playlist-description": "Kas oled kindel, et soovid esitusloendit kustutada? Seda toimingut ei saa tagasi pöörata.",
+    "delete-playlist-description": "Kas oled kindel, et soovid kustutada esitusloendit \"{0}\"? Seda tegevust ei saa tagasi pöörata.",
     "action": {
       "shuffle": "Sega",
-      "add-to-my-playlists": "Lisa esitlusloendisse",
+      "add-to-my-playlists": "Lisa mu esitlusloendisse",
       "remove-shared-playlist": "Eemalda esitusloend"
     },
     "by-x": "{name}"
@@ -122,7 +123,7 @@
     "week-x": "Nädal {count}",
     "action": {
       "play": "Esita",
-      "follow": "Järgige"
+      "follow": "Järgi"
     }
   },
   "player": {
