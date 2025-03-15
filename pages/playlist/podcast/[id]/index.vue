@@ -9,7 +9,7 @@ const api = new PodcastApi();
 const { setQueue } = useNuxtApp().$mediaPlayer;
 const { id } = useRoute<"playlist-podcast-id">().params;
 const collectionId = Number(id);
-const isDailyPodcast = [1, 53, 54, 55].includes(collectionId);
+const isDailyPodcast = [1, 53, 54, 55, 56, 57].includes(collectionId);
 let tracks: TrackModel[] = [];
 
 const { data: podcast } = usePodcast({ id: collectionId });
