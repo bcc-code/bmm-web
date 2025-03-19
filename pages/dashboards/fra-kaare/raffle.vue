@@ -18,6 +18,24 @@ setTitle(() => t("dashboards.title"));
 const now = new Date().getFullYear();
 const minAge = ref<number>(12);
 const maxAge = ref<number>(25);
+watch([minAge, maxAge], ([min, max], [oldMin, oldMax]) => {
+  if (min !== oldMin) {
+    if (min > maxAge.value) {
+      maxAge.value = min;
+    }
+    if (min < 12) {
+      minAge.value = 12;
+    }
+  }
+  if (max !== oldMax) {
+    if (max < minAge.value) {
+      minAge.value = max;
+    }
+    if (max > 37) {
+      maxAge.value = 37;
+    }
+  }
+});
 
 const genders = ["both", "boys", "girls"] as const;
 type Gender = (typeof genders)[number];
