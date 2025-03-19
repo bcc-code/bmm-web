@@ -4,13 +4,13 @@
     "try-again": "Spróbuj ponownie"
   },
   "nav": {
-    "home": "Home",
+    "home": "Strona główna",
     "browse": "Przeglądaj",
     "playlist": "Playlista",
     "profile": "Profil",
     "messages": "Przemowy",
-    "recent-messages": "Przemowy",
-    "recent-music": "Muzyka",
+    "recent-messages": "Najnowsze Przemowy",
+    "recent-music": "Najnowsza Muzyka",
     "audiobooks": "Audiobooki",
     "search": "Szukaj",
     "album": "Album",
@@ -24,7 +24,7 @@
   },
   "sidebar": {
     "playlists": {
-      "title": "Listy odtwarzania"
+      "title": "Playlisty"
     }
   },
   "share": {
@@ -44,11 +44,11 @@
     "preference-language-1": "Preferowany język",
     "preference-language-2": "Drugi język",
     "preference-language-3": "Trzeci język",
-    "preference-language-4": "{count}th language",
+    "preference-language-4": "{count} język",
     "uservoice": "Głos Użytkownika",
-    "privacy-policy": "Polityka prywatności",
+    "privacy-policy": "Oświadczenie o ochronie prywatności",
     "contact": "Kontakt",
-    "logout": "Wyloguj się",
+    "logout": "Wyloguj",
     "theme-dark": "Ciemny",
     "theme-light": "Jasny",
     "theme-system": "Taki sam jak systemowy",
@@ -58,15 +58,15 @@
   "error": {
     "page-not-found": {
       "headline": "Błąd",
-      "text": "Przepraszamy. Nie możemy znaleźć strony „{path}”."
+      "text": "Przepraszamy Przepraszamy. Nie możemy znaleźć strony „{path}”."
     },
-    "track-already-in-playlist": "Utwór znajduje się na playliście {0}",
+    "track-already-in-playlist": "Utwór znajduje się już na playliście {0}",
     "album-already-in-playlist": "Ten album jest już na playliście.",
     "collection-already-in-playlist": "Te ścieżki znajdują się już na playliście {0}."
   },
   "collection": {
-    "track-count": "{count} track | {count} tracks",
-    "album-count": "{count} album | {count} albums",
+    "track-count": "{count} utwór | {count} utworów",
+    "album-count": "{count} album | {count} albumów",
     "resume": "Wznów"
   },
   "login": {
@@ -79,7 +79,7 @@
     },
     "redirect-message": {
       "redirect-info": "Zostaniesz przekierowany na stronę logowania.",
-      "manual-redirect-info": "Proszę czekać lub {0}.",
+      "manual-redirect-info": "Poczekaj lub {0}.",
       "redirect-link": "kliknij, aby spróbować ponownie"
     }
   },
@@ -90,16 +90,17 @@
     "download": "Pobierz",
     "download-now": "Pobierz teraz",
     "download-windows": "Pobierz dla systemu Windows",
-    "download-mac-intel": "Download for Intel CPU",
+    "download-mac-intel": "Pobierz dla procesora Intel",
     "download-mac-arm": "Pobierz dla nowszego Maca",
     "mac-intel-explanation": "Zwykle kupowane przed 2021 r",
     "mac-arm-explanation": "M1, M2, M3, M4 chip",
+
     "download-bmm-app": "Pobierz aplikację BMM",
     "download-track": "Pobierz utwór",
     "mobile": "Urządzenie mobilne",
     "messages-not-allowed": {
       "title": "Pobieranie przemów jest niedostępne",
-      "description": "Możliwość pobierania przemów z BMM nie jest już dostępna. Jeśli potrzebujesz przemowy do konkretnego celu, skontaktuj się z nami i wyjaśnij swoje potrzeby."
+      "description": "Możliwość pobierania przemów z BMM nie jest już dostępna. Jeśli potrzebujesz przemowy jakimś konkretnym celu, skontaktuj się z nami i wyjaśnij swoje potrzeby."
     },
     "sendEmailTo": "Wyślij e-mail do {0}"
   },
@@ -108,20 +109,20 @@
     "new-playlist": "Nowa playlista",
     "name-your-playlist": "Nadaj nazwę playliście",
     "delete-playlist": "Usuń playlistę",
-    "delete-playlist-description": "Czy na pewno chcesz usunąć playlistę? Tej czynności nie można cofnąć.",
+    "delete-playlist-description": "Czy na pewno chcesz usunąć playlistę \"{0}\"? Tego działania nie można odwrócić.",
     "action": {
-      "shuffle": "Shuffle",
+      "shuffle": "Losowo",
       "add-to-my-playlists": "Dodaj do moich playlist",
       "remove-shared-playlist": "Usuń playlistę"
     },
-    "by-x": "przez {name}"
+    "by-x": "stworzona przez {name}"
   },
   "podcast": {
     "this-week": "W tym tygodniu",
     "last-week": "W zeszłym tygodniu",
     "week-x": "Tydzień {count}",
     "action": {
-      "play": "Graj",
+      "play": "Odtwarzaj",
       "follow": "Obserwuj"
     }
   },
@@ -129,12 +130,12 @@
     "queue": "Kolejka"
   },
   "edit": {
-    "rename": "Rename",
+    "rename": "Zmień nazwę",
     "delete": "Usuń"
   },
   "track": {
     "dropdown": {
-      "play-next": "Odtwórz następnie",
+      "play-next": "Odtwórz kolejne",
       "download": "Pobierz",
       "go-to-album": "Idź do albumu",
       "add-to-queue": "Dodaj do kolejki",
@@ -144,54 +145,54 @@
       "more-info": "Więcej informacji",
       "show-all": "Pokaż wszystkie",
       "remove-from-playlist": "Usuń z playlisty",
-      "transcription": "Transkrypcja "
+      "transcription": "Transkrypcja"
     },
     "a11y": {
       "download": "Pobierz",
       "queue": "Dodaj do kolejki",
-      "options": "Show options"
+      "options": "Pokaż opcje"
     },
     "details": {
-      "title": "Track Details",
-      "reference": "Reference",
+      "title": "Szczegóły utworu",
+      "reference": "Odniesienie",
       "duration": "Długość utworu",
-      "publish-date": "Publish Date",
+      "publish-date": "Data publikacji",
       "album": "Album",
       "publisher": "Wydawca",
       "copyright": "Prawa autorskie",
-      "song-number": "Numer piosenki",
+      "song-number": "Numer pieśni",
       "arranger": "Aranżer",
       "composer": "Kompozytor",
       "lyricist": "Autor tekstu",
-      "text": "Text",
-      "melody": "Melody"
+      "text": "Tekst",
+      "melody": "Melodia"
     }
   },
   "home": {
     "list": {
-      "see-all": "See all",
+      "see-all": "Zobacz wszystko",
       "recommended": "Polecane"
     }
   },
   "search": {
     "search-filter": {
-      "All": "Wszystkie",
+      "All": "Wszystko",
       "Speeches": "Przemowy",
       "Music": "Muzyka",
       "Albums": "Albumy",
       "Contributors": "Autorzy",
       "Podcasts": "Podcasty",
-      "Playlists": "Listy odtwarzania"
+      "Playlists": "Playlisty"
     },
     "input-placeholder": "Szukaj",
-    "loading-results": "Loading results",
-    "no-results-yet": "No results yet",
-    "no-results-found": "No results found",
-    "result-count": "{count} results"
+    "loading-results": "Wyniki ładowania",
+    "no-results-yet": "Nie ma jeszcze wyników",
+    "no-results-found": "Nie znaleziono wyników",
+    "result-count": "{liczba} wyników"
   },
   "streak": {
     "your-streak": "Twoja seria w tym tygodniu",
-    "days-in-row": "{count} days in a row"
+    "days-in-row": "{0} dni pod rząd"
   },
   "transcription": {
     "lyrics": "Tekst",
@@ -201,30 +202,30 @@
       "confirmation": "Rozumiem"
     },
     "songtreasures": "SongTreasures",
-    "save": "Save changes",
-    "original": "Original",
-    "edit": "Edit",
+    "save": "Zapisz zmiany",
+    "original": "Oryginał",
+    "edit": "Edytuj",
     "deleteSegment": "Usuń",
-    "undeleteSegment": "Undo delete",
-    "review": "Review",
+    "undeleteSegment": "Cofnij usunięcie",
+    "review": "Recenzja",
     "status": {
-      "done": "Reviewed",
-      "in-progress": "In progress",
-      "not-started": "Not reviewed"
+      "done": "Ocenione",
+      "in-progress": "W toku",
+      "not-started": "Nie ocenione"
     }
   },
   "dashboards": {
     "title": "Panel",
-    "fra-kaare": "Fra Kåre"
+    "fra-kaare": "Od Kårego"
   },
   "lyrics": {
-    "edit": "Edit",
-    "create-new-lyrics": "Create new lyrics",
-    "create": "Create",
-    "save": "Save changes",
-    "verse-title": "Verse title",
-    "long-copyright": "Long copyright",
-    "remove-formatting": "Cleanup formatting",
-    "paste-instructions": "Paste text using <shortcut> to remove formatting."
+    "edit": "Edytuj",
+    "create-new-lyrics": "Utwórz nowy tekst",
+    "create": "Utwórz",
+    "save": "Zapisz zmiany",
+    "verse-title": "Tytuł zwrotki",
+    "long-copyright": "Prawa autorskie",
+    "remove-formatting": "Czyszczenie formatowania",
+    "paste-instructions": "Wklej tekst za pomocą <shortcut>, aby usunąć formatowanie."
   }
 }
