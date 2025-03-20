@@ -112,6 +112,7 @@ describe("plugin mediaPlayer Queue", () => {
   describe("shuffling", () => {
     it(
       "shuffles the elements if method `shuffle` is called and sets isShuffled to `true`",
+      { retry: 100 },
       () => {
         // Arrange
         const q = new Queue(new Array(50).fill(0).map((_, i) => track(i)));
@@ -123,11 +124,11 @@ describe("plugin mediaPlayer Queue", () => {
         expect(q[2]?.track.id).not.eq(2);
         expect(q.isShuffled).eq(true);
       },
-      { retry: 100 },
     );
 
     it(
       "unshuffles the elements if method `unshuffle` is called after shuffling and sets isShuffled to `false`",
+      { repeats: 100 },
       () => {
         // Arrange
         const q = new Queue(new Array(50).fill(0).map((_, i) => track(i)));
@@ -140,7 +141,6 @@ describe("plugin mediaPlayer Queue", () => {
         expect(q[2]?.track.id).eq(2);
         expect(q.isShuffled).eq(false);
       },
-      { repeats: 100 },
     );
 
     it("changes index of the current track on shuffling without triggering a change of the track", async () => {
