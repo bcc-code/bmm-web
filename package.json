@@ -77,7 +77,7 @@
     "glob": "^10.3.10",
     "happy-dom": "^12.10.3",
     "log-symbols": "^6.0.0",
-    "nuxt": "^3.11.1",
+    "nuxt": "^3.16.0",
     "nuxt-electron": "^0.7.0",
     "nuxt-typed-router": "^3.5.1",
     "prettier": "^3.2.5",
