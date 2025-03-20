@@ -18,6 +18,24 @@ setTitle(() => t("dashboards.title"));
 const now = new Date().getFullYear();
 const minAge = ref<number>(12);
 const maxAge = ref<number>(25);
+watch([minAge, maxAge], ([min, max], [oldMin, oldMax]) => {
+  if (min !== oldMin) {
+    if (min > maxAge.value) {
+      maxAge.value = min;
+    }
+    if (min < 12) {
+      minAge.value = 12;
+    }
+  }
+  if (max !== oldMax) {
+    if (max < minAge.value) {
+      minAge.value = max;
+    }
+    if (max > 37) {
+      maxAge.value = 37;
+    }
+  }
+});
 
 const genders = ["both", "boys", "girls"] as const;
 type Gender = (typeof genders)[number];
@@ -105,13 +123,21 @@ async function onDrawWinner() {
           <div class="items-center gap-x-2 gap-y-1">
             <div class="flex items-center gap-2 pb-2">
               <input
-                v-model.number="minAge"
+                :value="minAge"
+                @change="
+                  (e) =>
+                    (minAge = parseInt((e.target as HTMLInputElement).value))
+                "
                 type="number"
                 class="type-title-2 w-20 rounded-lg bg-background-1 px-2 py-1.5 text-label-1"
               />
               -
               <input
-                v-model.number="maxAge"
+                :value="maxAge"
+                @change="
+                  (e) =>
+                    (maxAge = parseInt((e.target as HTMLInputElement).value))
+                "
                 type="number"
                 class="type-title-2 w-20 rounded-lg bg-background-1 px-2 py-1.5 text-label-1"
               />

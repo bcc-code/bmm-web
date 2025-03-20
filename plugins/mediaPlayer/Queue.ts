@@ -52,11 +52,22 @@ export default class Queue extends Array<EnrichedTrackModel> {
     if (this.sortedArray) return;
 
     this.sortedArray = [...this];
-    this.sort((a, b) => {
-      if (a === this.currentTrack) return -1;
-      if (b === this.currentTrack) return 1;
-      return Math.random() - 0.5;
-    });
+    // Erase the queue…
+    this.splice(
+      // …from start…
+      0,
+      // …to end…
+      this.length,
+      // …replace the contents with:
+      // The current track in the first position…
+      ...(this.currentTrack ? [this.currentTrack] : []),
+      // …followed by all other tracks…
+      ...this.filter((track) => track !== this.currentTrack)
+        // …shuffled using Schwarzian Transform Shuffle
+        .map((track) => ({ track, ix: Math.random() }))
+        .sort(({ ix: a }, { ix: b }) => a - b)
+        .map(({ track }) => track),
+    );
     this.isShuffled = true;
 
     this.reevaluateIndex();
