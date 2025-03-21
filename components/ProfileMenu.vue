@@ -81,9 +81,7 @@ const { data: user } = useCurrentUser();
 
       <template #items>
         <DropdownMenuGroup>
-          <!-- Todo: #284 implement autoplay behavior -->
           <DropdownMenuItem
-            v-if="false"
             :title="$t('profile.autoplay')"
             @click="
               (e: MouseEvent) => {
