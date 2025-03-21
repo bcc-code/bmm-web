@@ -1,16 +1,25 @@
 <script lang="ts" setup>
-import { PodcastApi } from "@bcc-code/bmm-sdk-fetch";
+import { PodcastApi, TrackApi } from "@bcc-code/bmm-sdk-fetch";
 import type { TileModel } from "@bcc-code/bmm-sdk-fetch";
+
+const trackApi = new TrackApi();
 
 const props = defineProps<{
   item: TileModel;
 }>();
 
+const profileStore = useProfileStore();
+
 const { setQueue } = useNuxtApp().$mediaPlayer;
 const origin = "Tile";
 
-function playTrack() {
+async function playTrack() {
   if (!props.item.track) return;
+  if ((props.item?.shufflePodcastId ?? 0) > 0 && profileStore.autoplay) {
+    const recomendedTracks = await trackApi.trackRecommendationGet()
+    setQueue([props.item.track, ...recomendedTracks], 0, origin);
+    return;
+  }
   if (props.item.lastPositionInMs)
     setQueue([props.item.track], 0, origin, props.item.lastPositionInMs / 1000);
   else setQueue([props.item.track], 0, origin);
