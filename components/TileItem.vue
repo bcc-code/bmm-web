@@ -16,7 +16,7 @@ const origin = "Tile";
 async function playTrack() {
   if (!props.item.track) return;
   if ((props.item?.shufflePodcastId ?? 0) > 0 && profileStore.autoplay) {
-    const recomendedTracks = await trackApi.trackRecommendationGet()
+    const recomendedTracks = await trackApi.trackRecommendationGet();
     setQueue([props.item.track, ...recomendedTracks], 0, origin);
     return;
   }
