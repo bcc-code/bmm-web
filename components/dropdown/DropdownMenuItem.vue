@@ -9,6 +9,7 @@ const props = defineProps<{
   icon?: NuxtIconName | undefined;
   to?: RoutesNamedLocations;
   href?: string;
+  removeFlex?: boolean;
 }>();
 
 const nuxtLink = resolveComponent("NuxtLink");
@@ -25,8 +26,9 @@ const component = computed(() =>
         :href="href"
         :class="{
           'bg-label-separator': active,
+          flex: !props.removeFlex,
         }"
-        class="type-subtitle-2 flex w-full items-center justify-between whitespace-normal rounded-lg px-3 py-2 text-left"
+        class="type-subtitle-2 w-full items-center justify-between whitespace-normal rounded-lg px-3 py-2 text-left"
       >
         <slot :active="active">
           <div class="flex-1 truncate" @click="to && close()">

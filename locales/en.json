@@ -145,7 +145,8 @@
       "more-info": "More information",
       "show-all": "Show all",
       "remove-from-playlist": "Remove from playlist",
-      "transcription": "Transcription"
+      "transcription": "Transcription",
+      "playback": "Playback Speed"
     },
     "a11y": {
       "download": "Download",
@@ -166,6 +167,9 @@
       "lyricist": "Lyricist",
       "text": "Text",
       "melody": "Melody"
+    },
+    "playback": {
+      "normal": "Normal"
     }
   },
   "home": {

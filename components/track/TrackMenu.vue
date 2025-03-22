@@ -23,6 +23,7 @@ const props = withDefaults(
   },
 );
 
+const showPlaybackSpeed = ref(false);
 const showInfo = ref(false);
 const showAddToPlaylist = ref(false);
 const showContributorsList = ref(false);
@@ -109,6 +110,14 @@ const dropdownMenuItems = computed(() => {
     },
   });
 
+  items.push({
+    icon: "icon.chevron.double.right",
+    text: t("track.dropdown.playback"),
+    clickFunction: () => {
+      showPlaybackSpeed.value = true;
+    },
+  });
+
   if (runtimeConfig.public.systemName !== "Electron") {
     items.push({
       icon: "icon.download",
@@ -159,6 +168,13 @@ const dropdownMenuItems = computed(() => {
     </template>
   </DropdownMenu>
 
+  <DialogBase
+    :show="showPlaybackSpeed"
+    :title="$t('track.dropdown.playback')"
+    @close="showPlaybackSpeed = false"
+  >
+    <TrackPlaybackSpeed :track="track" />
+  </DialogBase>
   <DialogBase
     :show="showInfo"
     :title="$t('track.details.title')"

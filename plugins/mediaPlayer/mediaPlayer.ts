@@ -37,6 +37,7 @@ export interface MediaPlayer {
   currentPosition: Ref<number>;
   currentTrackDuration: ComputedRef<number>;
   volume: Ref<number>;
+  playbackSpeed: Ref<number>;
   setQueue: (
     queue: TrackModel[],
     index?: number,
@@ -72,6 +73,7 @@ export const initMediaPlayer = (
   let nextStartPosition = 0;
 
   const volume = ref(1);
+  const playbackSpeed = ref(1);
 
   function stop() {
     if (activeMedia.value) {
@@ -98,6 +100,8 @@ export const initMediaPlayer = (
     activeMedia.value.setVolume(volume.value);
     activeMedia.value.registerSource();
     activeMedia.value.registerEvents();
+
+    activeMedia.value.setPlaybackRate(playbackSpeed.value);
   }
 
   function restartTrack() {
@@ -150,7 +154,7 @@ export const initMediaPlayer = (
                 language: track.language ?? "zxx",
                 playbackOrigin: null,
                 lastPosition: activeMedia.value?.position ?? 0,
-                adjustedPlaybackSpeed: 1,
+                adjustedPlaybackSpeed: playbackSpeed.value,
                 os: user.os,
               },
             ],
@@ -206,6 +210,16 @@ export const initMediaPlayer = (
       volume.value = value;
       if (activeMedia.value) {
         activeMedia.value.setVolume(value);
+      }
+    },
+  });
+
+  const playbackSpeedComputed = computed({
+    get: () => playbackSpeed.value,
+    set: (value: number) => {
+      playbackSpeed.value = value;
+      if (activeMedia.value) {
+        activeMedia.value.setPlaybackRate(value);
       }
     },
   });
@@ -321,6 +335,7 @@ export const initMediaPlayer = (
       activeMedia.value ? activeMedia.value.duration : NaN,
     ),
     volume: volumeComputed,
+    playbackSpeed: playbackSpeedComputed,
     queue: computed(() => queue.value),
     setQueue,
     setQueueShuffled,
