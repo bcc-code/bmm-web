@@ -100,8 +100,6 @@ export const initMediaPlayer = (
     activeMedia.value.setVolume(volume.value);
     activeMedia.value.registerSource();
     activeMedia.value.registerEvents();
-
-    activeMedia.value.setPlaybackRate(playbackSpeed.value);
   }
 
   function restartTrack() {
@@ -192,6 +190,15 @@ export const initMediaPlayer = (
     () => [queue.value.currentTrack, queue.value],
     () => {
       initCurrentTrack();
+    },
+  );
+
+  watch(
+    () => activeMedia.value?.loading,
+    (loading) => {
+      if (loading === false && activeMedia.value) {
+        activeMedia.value.setPlaybackRate(playbackSpeed.value);
+      }
     },
   );
 
