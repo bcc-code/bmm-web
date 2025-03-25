@@ -36,8 +36,9 @@ const maybeLoad = async () => {
   }
 };
 
+const main = ref<HTMLElement | null>();
 onMounted(() => {
-  const main = ref<HTMLElement | null>(document.querySelector("main"));
+  main.value = document.querySelector("main");
   useInfiniteScroll(main, maybeLoad, {
     distance: 10,
     interval: 500,

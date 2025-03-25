@@ -3,8 +3,8 @@ defineSlots<{
   default: (props: {}) => any;
 }>();
 
-const elRef = ref<HTMLElement | null>(null);
-const container = ref<HTMLElement | null>(null);
+const elRef = ref<HTMLDivElement | null>(null);
+const container = ref<HTMLDivElement | null>(null);
 const contentIsTooLarge = ref<boolean>(false);
 const mutationObserver = ref<MutationObserver | null>(null);
 const speed = 30; // in pixel per second
@@ -47,9 +47,10 @@ const onSlotContentChange = () => {
 };
 
 onMounted(() => {
-  mutationObserver.value = new MutationObserver(onSlotContentChange);
+  if (!(container.value instanceof HTMLDivElement)) return;
 
-  mutationObserver.value.observe(container.value!, {
+  mutationObserver.value = new MutationObserver(onSlotContentChange);
+  mutationObserver.value.observe(container.value, {
     childList: true,
     characterData: true,
     subtree: true,
