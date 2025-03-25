@@ -658,6 +658,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
   describe("setQueueShuffled()", () => {
     it(
       "replaces the current queue by a new one with a random index (2)",
+      { retry: 100 },
       async () => {
         // Arrange
         const mediaPlayer = ref(setupPlayer());
@@ -673,7 +674,6 @@ describe("plugin mediaPlayer MediaTrack", () => {
         expect(mediaPlayer.value.queue[1]?.track.id).eq(1);
         expect(mediaPlayer.value.queue[2]?.track.id).eq(3);
       },
-      { retry: 100 },
     );
   });
 

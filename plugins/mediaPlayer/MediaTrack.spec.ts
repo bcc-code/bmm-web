@@ -146,7 +146,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
         ),
       );
       mT.value.audioElementMock =
-        audio as unknown as globalThis.HTMLAudioElement;
+        audio as unknown as globalThis.HTMLAudioElement & HTMLAudioElement;
 
       const durations: number[] = [];
       watch(
@@ -187,7 +187,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
         ),
       );
       mT.value.audioElementMock =
-        audio as unknown as globalThis.HTMLAudioElement;
+        audio as unknown as globalThis.HTMLAudioElement & HTMLAudioElement;
 
       const durations: number[] = [];
       watch(
@@ -230,7 +230,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
         ),
       );
       mT.value.audioElementMock =
-        audio as unknown as globalThis.HTMLAudioElement;
+        audio as unknown as globalThis.HTMLAudioElement & HTMLAudioElement;
 
       const pauses: boolean[] = [];
       watch(
@@ -271,7 +271,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
         ),
       );
       mT.value.audioElementMock =
-        audio as unknown as globalThis.HTMLAudioElement;
+        audio as unknown as globalThis.HTMLAudioElement & HTMLAudioElement;
 
       const ends: boolean[] = [];
       watch(
@@ -308,7 +308,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
         ),
       );
       mT.value.audioElementMock =
-        audio as unknown as globalThis.HTMLAudioElement;
+        audio as unknown as globalThis.HTMLAudioElement & HTMLAudioElement;
 
       const positions: number[] = [];
       watch(
@@ -349,7 +349,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
         ),
       );
       mT.value.audioElementMock =
-        audio as unknown as globalThis.HTMLAudioElement;
+        audio as unknown as globalThis.HTMLAudioElement & HTMLAudioElement;
 
       const positions: number[] = [];
       watch(
@@ -400,7 +400,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
         ),
       );
       mT.value.audioElementMock =
-        audio as unknown as globalThis.HTMLAudioElement;
+        audio as unknown as globalThis.HTMLAudioElement & HTMLAudioElement;
 
       const positions: number[] = [];
       watch(
@@ -431,7 +431,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
         ),
       );
       mT.value.audioElementMock =
-        audio as unknown as globalThis.HTMLAudioElement;
+        audio as unknown as globalThis.HTMLAudioElement & HTMLAudioElement;
 
       const positions: number[] = [];
       watch(
