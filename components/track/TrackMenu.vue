@@ -42,6 +42,16 @@ const dropdownMenuItems = computed(() => {
     clickFunction: () => addNext(props.track, props.origin),
   });
 
+  if (props.origin === "media-player" || props.origin === "queue-item-true") {
+    items.push({
+      icon: "icon.play.twice.small",
+      text: t("track.dropdown.playback"),
+      clickFunction: () => {
+        showPlaybackSpeed.value = true;
+      },
+    });
+  }
+
   items.push({
     icon: "icon.queue",
     text: t("track.dropdown.add-to-queue"),
@@ -107,14 +117,6 @@ const dropdownMenuItems = computed(() => {
     text: t("track.dropdown.share"),
     clickFunction: () => {
       copyToClipboardComponent?.value?.copyToClipboard?.();
-    },
-  });
-
-  items.push({
-    icon: "icon.chevron.double.right",
-    text: t("track.dropdown.playback"),
-    clickFunction: () => {
-      showPlaybackSpeed.value = true;
     },
   });
 

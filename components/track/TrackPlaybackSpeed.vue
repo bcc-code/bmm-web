@@ -9,7 +9,6 @@ defineProps<{
 }>();
 
 const speeds = [
-  { value: 0.25, label: "0.25x" },
   { value: 0.5, label: "0.5x" },
   { value: 0.75, label: "0.75x" },
   { value: 1, label: t("track.playback.normal") },

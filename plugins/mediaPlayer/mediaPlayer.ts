@@ -268,6 +268,7 @@ export const initMediaPlayer = (
     startPosition: number | null = null,
   ): void {
     if (startPosition != null) nextStartPosition = startPosition;
+    playbackSpeed.value = 1;
     queue.value = new Queue(
       _queue.map(
         (track: TrackModel) => new EnrichedTrackModel({ ...track }, origin),
