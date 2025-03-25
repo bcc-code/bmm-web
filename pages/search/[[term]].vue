@@ -78,9 +78,10 @@ async function loadSearchResults() {
   }
 }
 
+const main = ref<HTMLElement | null>();
 onMounted(() => {
   isMounted.value = true;
-  const main = ref<HTMLElement | null>(document.querySelector("main"));
+  main.value = document.querySelector("main");
 
   watchDebounced(
     [...reactiveDependencies(), searchTerm, searchFilter],

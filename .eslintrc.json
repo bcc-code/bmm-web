@@ -21,7 +21,7 @@
         "@nuxtjs/eslint-config-typescript",
         "plugin:promise/recommended",
         "plugin:@intlify/vue-i18n/recommended",
-        "plugin:vitest/recommended",
+        "plugin:@vitest/legacy-recommended",
         "prettier"
       ],
       "rules": {
@@ -69,7 +69,7 @@
     {
       "files": ["vitest.config.ts", "cypress.config.ts", "cypress/**/*.ts"],
       "rules": {
-        "vitest/expect-expect": "off",
+        "@vitest/expect-expect": "off",
         "import/no-extraneous-dependencies": [
           "error",
           { "devDependencies": true }
@@ -96,7 +96,7 @@
     "project": ["tsconfig.json"],
     "extraFileExtensions": [".vue"]
   },
-  "plugins": ["vue", "@typescript-eslint", "vitest"],
+  "plugins": ["vue", "@typescript-eslint", "@vitest"],
   "rules": {
     "@intlify/vue-i18n/valid-message-syntax": "warn",
     "@intlify/vue-i18n/no-duplicate-keys-in-locale": "warn",
