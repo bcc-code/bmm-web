@@ -79,6 +79,13 @@ async function onDrawWinner() {
   }
   isLoading.value = false;
 }
+
+const confettiContainer = ref<HTMLDivElement>();
+const {
+  isSupported: fullscreenIsSupported,
+  toggle: toggleFullscreen,
+  isFullscreen,
+} = useFullscreen(confettiContainer);
 </script>
 
 <template>
@@ -225,19 +232,52 @@ async function onDrawWinner() {
       </div>
 
       <div
-        :key="JSON.stringify(drawResult)"
-        class="flex items-center justify-center p-6 text-center"
+        ref="confettiContainer"
+        class="relative flex items-center justify-center bg-background-1 p-6 text-center"
       >
+        <button
+          v-if="fullscreenIsSupported && !isFullscreen"
+          class="absolute right-2 top-2 flex aspect-square rounded-full bg-background-2 p-3 text-xl leading-none"
+          title="Vis vinner i fullskjerm"
+          @click="toggleFullscreen"
+        >
+          <NuxtIcon name="fullscreen" />
+        </button>
+        <div
+          v-if="isFullscreen"
+          class="absolute bottom-8 left-1/2 -translate-x-1/2"
+        >
+          <ButtonStyled
+            intent="primary"
+            size="large"
+            :loading="isLoading"
+            @click="onDrawWinner"
+          >
+            Trekk vinner
+          </ButtonStyled>
+        </div>
+
         <Transition
+          :key="JSON.stringify(drawResult)"
           enter-active-class="transition-all duration-500 ease-out"
           enter-from-class="opacity-0 scale-90"
           enter-to-class="opacity-100 scale-100"
         >
           <div v-if="drawResult?.isSuccess">
-            <p class="type-display-3">
+            <p
+              :class="{
+                'type-display-3': !isFullscreen,
+                'type-display-1 text-9xl': isFullscreen,
+              }"
+            >
               {{ drawResult.winnerDisplayName }}
             </p>
-            <div v-confetti="{ particleCount: 50, force: 0.5 }" />
+            <div
+              v-confetti="{
+                particleCount: isFullscreen ? 100 : 50,
+                force: 0.5,
+              }"
+            />
           </div>
           <div v-else-if="drawResult?.errorMessage">
             <p class="type-paragraph-1">

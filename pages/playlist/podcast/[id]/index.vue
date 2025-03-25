@@ -9,7 +9,6 @@ const api = new PodcastApi();
 const { setQueue } = useNuxtApp().$mediaPlayer;
 const { id } = useRoute<"playlist-podcast-id">().params;
 const collectionId = Number(id);
-const isDailyPodcast = [1, 53, 54, 55, 56, 57].includes(collectionId);
 let tracks: TrackModel[] = [];
 
 const { data: podcast } = usePodcast({ id: collectionId });
@@ -87,7 +86,7 @@ async function load(skip: number, take: number) {
   });
   const models: IAllDocumentModels[] = [];
   if (data?.length > 0) {
-    if (isDailyPodcast) models.push(...groupByWeek(data));
+    if (podcast.value?.useWeekGrouping) models.push(...groupByWeek(data));
     else models.push(...data);
   }
 
@@ -135,7 +134,7 @@ useHead({
 
       <EndlessDocumentList
         :load="load"
-        :use-daily-podcast-view="isDailyPodcast"
+        :use-daily-podcast-view="podcast.useWeekGrouping"
       />
     </template>
   </div>
