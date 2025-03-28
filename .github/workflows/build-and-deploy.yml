@@ -33,6 +33,7 @@ jobs:
           echo "GITHUB_REPOSITORY: ${{ github.repository }}"
           echo "github event repository: ${{ github.event.repository }}"
           echo "github event repository.fork: ${{ github.event.repository.fork }}"
+          echo "github.secret_source: ${{ github.event.secret_source }}"
           echo "GITHUB_REF: ${{ github.ref }}"
           echo "GITHUB_HEAD_REF: ${{ github.head_ref }}"
           echo "GITHUB_BASE_REF: ${{ github.base_ref }}"
@@ -54,7 +55,7 @@ jobs:
           NUXT_PUBLIC_SENTRY_DSN: ${{ vars.NUXT_PUBLIC_SENTRY_DSN }}
 
       - name: E2E testing
-        if: github.repository == 'bcc-code/bmm-web'
+        if: github.secret_source != 'None'
         uses: cypress-io/github-action@v6
         env:
           CYPRESS_LOGIN_USERNAME: ${{ secrets.CYPRESS_LOGIN_USERNAME }}
