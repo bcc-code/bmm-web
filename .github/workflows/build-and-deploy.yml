@@ -28,6 +28,16 @@ jobs:
       - uses: pnpm/action-setup@v4
         with:
           version: 9
+      - name: log info about forks
+        run: |
+          echo "GITHUB_REPOSITORY: ${{ github.repository }}"
+          echo "github event repository: ${{ github.event.repository }}"
+          echo "github event repository.fork: ${{ github.event.repository.fork }}"
+          echo "GITHUB_REF: ${{ github.ref }}"
+          echo "GITHUB_HEAD_REF: ${{ github.head_ref }}"
+          echo "GITHUB_BASE_REF: ${{ github.base_ref }}"
+          echo "GITHUB_EVENT_NAME: ${{ github.event_name }}"
+          echo "GITHUB_EVENT_ACTION: ${{ github.event.action }}"
 
       - name: Install dependencies
         run: pnpm install
