@@ -50,8 +50,9 @@ const { data: currentUser } = await useCurrentUser();
         </div>
         <SiteLogo size="small" />
         <span
+          v-if="isElectron"
           class="mx-2 mt-1 inline-block rounded-xl bg-tint px-[5px] text-[13px] leading-5 text-black-1"
-          >Beta v{{ version }}</span
+          >Version {{ version }}</span
         >
       </div>
       <div class="flex-grow overflow-y-auto">
