@@ -44,7 +44,7 @@ const dropdownMenuItems = computed(() => {
 
   if (props.origin === "media-player" || props.origin === "queue-item-true") {
     items.push({
-      icon: "icon.play.twice.small",
+      icon: "icon.playback-speed",
       text: t("track.dropdown.playback"),
       clickFunction: () => {
         showPlaybackSpeed.value = true;
