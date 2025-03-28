@@ -49,7 +49,10 @@ const { data: currentUser } = await useCurrentUser();
           <NuxtIcon name="icon.hamburger" class="fill-label-1 text-2xl" />
         </div>
         <SiteLogo size="small" />
-        <span class="mt-2 inline-block text-xs leading-5 text-label-3">
+        <span
+          v-if="isElectron"
+          class="mt-2 inline-block text-xs leading-5 text-label-3"
+        >
           v{{ version }}
         </span>
       </div>
