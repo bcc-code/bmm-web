@@ -36,23 +36,22 @@ const { data: currentUser } = await useCurrentUser();
   >
     <div class="flex h-full flex-col">
       <div
-        class="flex items-center p-3 px-6"
+        class="flex items-center gap-3 p-3 px-6"
         :class="{
           'pb-1 pt-8': isElectronOnMac,
         }"
         style="-webkit-app-region: drag"
       >
         <div
-          class="ml-[-4px] mt-[3px] pr-3 md:hidden"
+          class="ml-[-4px] mt-[3px] md:hidden"
           @click="hamburgerOpen = !hamburgerOpen"
         >
           <NuxtIcon name="icon.hamburger" class="fill-label-1 text-2xl" />
         </div>
         <SiteLogo size="small" />
-        <span
-          class="mx-2 mt-1 inline-block rounded-xl bg-tint px-[5px] text-[13px] leading-5 text-black-1"
-          >Beta v{{ version }}</span
-        >
+        <span class="mt-2 inline-block text-xs leading-5 text-label-3">
+          v{{ version }}
+        </span>
       </div>
       <div class="flex-grow overflow-y-auto">
         <SidebarGroup>
