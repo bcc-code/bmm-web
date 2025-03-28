@@ -44,7 +44,7 @@ jobs:
           NUXT_PUBLIC_SENTRY_DSN: ${{ vars.NUXT_PUBLIC_SENTRY_DSN }}
 
       - name: E2E testing
-        if: github.event.repository.fork == false
+        if: github.repository == 'bcc-code/bmm-web'
         uses: cypress-io/github-action@v6
         env:
           CYPRESS_LOGIN_USERNAME: ${{ secrets.CYPRESS_LOGIN_USERNAME }}
