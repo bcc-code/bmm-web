@@ -64,7 +64,7 @@ jobs:
 
       - name: Package the Electron app for Windows
         run: pnpm package:electron
-        if: matrix.os == 'windows-latest'
+        if: matrix.os == 'windows-latest' && github.repository == 'bcc-code/bmm-web'
         env:
           WINDOWS_DIRECTORY_ID: ${{ secrets.BCCM_WINDOWS_DIRECTORY_ID }}
           WINDOWS_CLIENT_ID: ${{ secrets.BCCM_WINDOWS_CLIENT_ID }}
