@@ -37,6 +37,7 @@ export interface MediaPlayer {
   currentPosition: Ref<number>;
   currentTrackDuration: ComputedRef<number>;
   volume: Ref<number>;
+  playbackSpeed: Ref<number>;
   setQueue: (
     queue: TrackModel[],
     index?: number,
@@ -72,6 +73,7 @@ export const initMediaPlayer = (
   let nextStartPosition = 0;
 
   const volume = ref(1);
+  const playbackSpeed = ref(1);
 
   function stop() {
     if (activeMedia.value) {
@@ -150,7 +152,7 @@ export const initMediaPlayer = (
                 language: track.language ?? "zxx",
                 playbackOrigin: null,
                 lastPosition: activeMedia.value?.position ?? 0,
-                adjustedPlaybackSpeed: 1,
+                adjustedPlaybackSpeed: playbackSpeed.value,
                 os: user.os,
               },
             ],
@@ -191,6 +193,15 @@ export const initMediaPlayer = (
     },
   );
 
+  watch(
+    () => activeMedia.value?.loading,
+    (loading) => {
+      if (loading === false && activeMedia.value) {
+        activeMedia.value.setPlaybackRate(playbackSpeed.value);
+      }
+    },
+  );
+
   const currentPosition = computed({
     get: () => (activeMedia.value ? activeMedia.value.position : NaN),
     set: (value: any) => {
@@ -206,6 +217,16 @@ export const initMediaPlayer = (
       volume.value = value;
       if (activeMedia.value) {
         activeMedia.value.setVolume(value);
+      }
+    },
+  });
+
+  const playbackSpeedComputed = computed({
+    get: () => playbackSpeed.value,
+    set: (value: number) => {
+      playbackSpeed.value = value;
+      if (activeMedia.value) {
+        activeMedia.value.setPlaybackRate(value);
       }
     },
   });
@@ -247,6 +268,7 @@ export const initMediaPlayer = (
     startPosition: number | null = null,
   ): void {
     if (startPosition != null) nextStartPosition = startPosition;
+    playbackSpeed.value = 1;
     queue.value = new Queue(
       _queue.map(
         (track: TrackModel) => new EnrichedTrackModel({ ...track }, origin),
@@ -321,6 +343,7 @@ export const initMediaPlayer = (
       activeMedia.value ? activeMedia.value.duration : NaN,
     ),
     volume: volumeComputed,
+    playbackSpeed: playbackSpeedComputed,
     queue: computed(() => queue.value),
     setQueue,
     setQueueShuffled,

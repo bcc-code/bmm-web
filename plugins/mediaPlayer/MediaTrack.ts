@@ -174,6 +174,9 @@ export default class MediaTrack {
       this.audioElement.addEventListener("volumechange", (e) =>
         console.debug("volumechange", this.audioElement.currentTime, e),
       );
+      this.audioElement.addEventListener("playbackchange", (e) =>
+        console.debug("playbackchange", this.audioElement.currentTime, e),
+      );
     }
     /* c8 ignore stop */
   }
@@ -297,6 +300,10 @@ export default class MediaTrack {
 
   setVolume(volume: number) {
     this.audioElement.volume = volume;
+  }
+
+  setPlaybackRate(rate: number) {
+    this.audioElement.playbackRate = rate;
   }
 
   endPortion() {

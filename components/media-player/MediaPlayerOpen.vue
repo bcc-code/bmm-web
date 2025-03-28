@@ -17,7 +17,6 @@ const {
   play,
   pause,
   currentTrack,
-  currentEnrichedTrack,
   currentPosition,
   currentTrackDuration,
   isLoading,
@@ -177,7 +176,7 @@ useDraggable(queueListElement, queue, {
           <TrackMenu
             v-if="currentTrack"
             :track="currentTrack"
-            :origin="currentEnrichedTrack?.originView"
+            origin="media-player"
             button-class="rounded-full border border-label-separator p-1.5"
           ></TrackMenu>
         </div>
@@ -250,7 +249,10 @@ useDraggable(queueListElement, queue, {
             </div>
 
             <div class="flex items-center justify-between gap-2">
-              <TrackMenu :track="item.track" :origin="item.originView" />
+              <TrackMenu
+                :track="item.track"
+                :origin="`queue-item-${isCurrentTrack(i)}`"
+              />
               <NuxtIcon
                 v-if="isCurrentTrack(i) && status !== MediaPlayerStatus.Stopped"
                 name="icon.playing.animation"

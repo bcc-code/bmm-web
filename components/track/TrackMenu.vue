@@ -23,6 +23,7 @@ const props = withDefaults(
   },
 );
 
+const showPlaybackSpeed = ref(false);
 const showInfo = ref(false);
 const showAddToPlaylist = ref(false);
 const showContributorsList = ref(false);
@@ -40,6 +41,16 @@ const dropdownMenuItems = computed(() => {
     text: t("track.dropdown.play-next"),
     clickFunction: () => addNext(props.track, props.origin),
   });
+
+  if (props.origin === "media-player" || props.origin === "queue-item-true") {
+    items.push({
+      icon: "icon.playback-speed",
+      text: t("track.dropdown.playback"),
+      clickFunction: () => {
+        showPlaybackSpeed.value = true;
+      },
+    });
+  }
 
   items.push({
     icon: "icon.queue",
@@ -159,6 +170,13 @@ const dropdownMenuItems = computed(() => {
     </template>
   </DropdownMenu>
 
+  <DialogBase
+    :show="showPlaybackSpeed"
+    :title="$t('track.dropdown.playback')"
+    @close="showPlaybackSpeed = false"
+  >
+    <TrackPlaybackSpeed :track="track" />
+  </DialogBase>
   <DialogBase
     :show="showInfo"
     :title="$t('track.details.title')"
