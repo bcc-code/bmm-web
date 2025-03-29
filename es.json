@@ -1,0 +1,231 @@
+{
+  "global": {
+    "cancel": "Cancelar",
+    "try-again": "Intentar otra vez"
+  },
+  "nav": {
+    "home": "Inicio",
+    "browse": "Buscar",
+    "playlist": "Lista de reproducción",
+    "profile": "Perfil",
+    "messages": "Mensajes",
+    "recent-messages": "Últimos mensajes",
+    "recent-music": "Música reciente",
+    "audiobooks": "Libros audio",
+    "search": "Buscar",
+    "album": "Álbum",
+    "podcast": "Podcast",
+    "not-found": "Página no encontrada",
+    "contributor": "Colaborador",
+    "contributors": "Colaboradores",
+    "archive": "Archivo",
+    "transcribe": "Transcribir",
+    "lyrics": "Letras"
+  },
+  "sidebar": {
+    "playlists": {
+      "title": "Listas de pistas"
+    }
+  },
+  "share": {
+    "link-copied-message": "Copiada al portapapeles"
+  },
+  "profile": {
+    "title": "Perfil",
+    "autoplay": "Auto-reproducción",
+    "theme": "Tema",
+    "theme-description": "Seleccione el tema utilizado para la interfaz.",
+    "app-language": "Idioma",
+    "interface-language": "Lenguaje de interfaz",
+    "interface-language-description": "Seleccione el idioma de la interfaz.",
+    "select-language": "Seleccione el idioma",
+    "content-language": "Idioma del contenido",
+    "content-language-description": "El idioma del contenido que estás escuchando.",
+    "preference-language-1": "Idioma preferido",
+    "preference-language-2": "Segundo lenguaje",
+    "preference-language-3": "tercer idioma",
+    "preference-language-4": "{count} idioma",
+    "uservoice": "Voz de Usuario",
+    "privacy-policy": "política de privacidad",
+    "contact": "Contacto",
+    "logout": "Cerrar sesión",
+    "theme-dark": "Oscuro",
+    "theme-light": "Claro",
+    "theme-system": "Igual que el sistema",
+    "done": "Listo",
+    "add-another-language": "Agregar otro idioma"
+  },
+  "error": {
+    "page-not-found": {
+      "headline": "Error",
+      "text": "Lo lamento Lo siento. No podemos encontrar la página \"{path}\"."
+    },
+    "track-already-in-playlist": "Esta pista ya existe en la lista de reproducción {0}",
+    "album-already-in-playlist": "Este álbum ya está en la lista de reproducción.",
+    "collection-already-in-playlist": "Estas pistas ya están en la lista de reproducción {0}."
+  },
+  "collection": {
+    "track-count": "{count} pista | {count} pistas",
+    "album-count": "{count} álbum | {count} álbumes",
+    "resume": "Continuar"
+  },
+  "login": {
+    "error-message": {
+      "contact-info": "Si este error persiste, {0}.",
+      "contact-link": "por favor póngase en contacto con nosotros",
+      "logout-and-redirect-info": "Algo relacionado con el inicio de sesión salió mal:",
+      "manual-logout-and-redirect-info": "Por favor {0}.",
+      "logout-and-redirect-link": "intenta iniciar sesión nuevamente"
+    },
+    "redirect-message": {
+      "redirect-info": "Serás redirigido a la página de inicio de sesión.",
+      "manual-redirect-info": "Espere o {0}.",
+      "redirect-link": "haga clic para intentarlo de nuevo"
+    }
+  },
+  "download": {
+    "install-app": "Recomendamos instalar la aplicación.",
+    "go-to-store": "Navega hasta la App Store.",
+    "get-for-desktop": "Obtenga la aplicación BMM directamente en su escritorio",
+    "download": "Descarga",
+    "download-now": "Descargar ahora",
+    "download-windows": "Descargar para Windows",
+    "download-mac-intel": "Descargar para CPU Intel",
+    "download-mac-arm": "Descargar para Mac más reciente",
+    "mac-intel-explanation": "Generalmente comprado antes de 2021",
+    "mac-arm-explanation": "Chips M1, M2, M3, M4",
+
+    "download-bmm-app": "Descarga la aplicación BMM",
+    "download-track": "Descargar pista",
+    "mobile": "Móvil",
+    "messages-not-allowed": {
+      "title": "Descarga de mensajes no disponible",
+      "description": "La opción de descargar mensajes de BMM ya no está disponible. Si necesitas un mensaje para un uso específico, contáctanos y explícanos tu necesidad."
+    },
+    "sendEmailTo": "Enviar correo electrónico a {0}"
+  },
+  "playlist": {
+    "add": "Agregar lista de reproducción",
+    "new-playlist": "Nueva lista de reproducción",
+    "name-your-playlist": "Nombre de tu lista de reproducción",
+    "delete-playlist": "Borrar lista de reproducción",
+    "delete-playlist-description": "¿Está seguro que desea eliminar la lista de reproducción \"{0}\"? Esta acción no se puede revertir.",
+    "action": {
+      "shuffle": "Aleatorio",
+      "add-to-my-playlists": "Añadir a mis listas de reproducción",
+      "remove-shared-playlist": "Eliminar lista de reproducción"
+    },
+    "by-x": "por {name}"
+  },
+  "podcast": {
+    "this-week": "Esta semana",
+    "last-week": "Semana pasada",
+    "week-x": "Semana {count}",
+    "action": {
+      "play": "Reproducir",
+      "follow": "Siga"
+    }
+  },
+  "player": {
+    "queue": "Cola"
+  },
+  "edit": {
+    "rename": "Cambiar el nombre",
+    "delete": "Eliminar"
+  },
+  "track": {
+    "dropdown": {
+      "play-next": "Reproducir lo siguiente",
+      "download": "Descarga",
+      "go-to-album": "Ir al álbum",
+      "add-to-queue": "Agregar a cola",
+      "add-to-playlist": "Añadir a la lista de reproducción",
+      "share": "Compartir pista",
+      "go-to-contributors": "Ir a colaboradores",
+      "more-info": "Más información",
+      "show-all": "Mostrar todos",
+      "remove-from-playlist": "Eliminar de lista de reproducción",
+      "transcription": "Transcripción"
+    },
+    "a11y": {
+      "download": "Descarga",
+      "queue": "Agregar a cola",
+      "options": "Mostrar opciones"
+    },
+    "details": {
+      "title": "Detalles de la pista",
+      "reference": "Referencia",
+      "duration": "Duración",
+      "publish-date": "Fecha de publicación",
+      "album": "Álbum",
+      "publisher": "Editor",
+      "copyright": "Derechos de autor",
+      "song-number": "Número de canción",
+      "arranger": "Organizador",
+      "composer": "Compositor",
+      "lyricist": "Letrista",
+      "text": "Texto",
+      "melody": "Melodía"
+    }
+  },
+  "home": {
+    "list": {
+      "see-all": "Ver todo",
+      "recommended": "Recomendado"
+    }
+  },
+  "search": {
+    "search-filter": {
+      "All": "Todo",
+      "Speeches": "Mensajes",
+      "Music": "Música",
+      "Albums": "Álbumes",
+      "Contributors": "Colaboradores",
+      "Podcasts": "Podcasts",
+      "Playlists": "Listas de pistas"
+    },
+    "input-placeholder": "Buscar",
+    "loading-results": "Cargando resultados",
+    "no-results-yet": "Aún no hay resultados",
+    "no-results-found": "No se han encontrado resultados",
+    "result-count": "{count} resultados"
+  },
+  "streak": {
+    "your-streak": "Tu racha de esta semana",
+    "days-in-row": "{count} días seguidos"
+  },
+  "transcription": {
+    "lyrics": "Letras",
+    "auto-transcribed": {
+      "title": "Auto-transcrito",
+      "explanation": "Las transcripciones se generan automáticamente y pueden contener errores",
+      "confirmation": "Entiendo"
+    },
+    "songtreasures": "SongTreasures",
+    "save": "Guardar cambios",
+    "original": "Original",
+    "edit": "Editar",
+    "deleteSegment": "Eliminar",
+    "undeleteSegment": "Deshacer eliminación",
+    "review": "Revisar",
+    "status": {
+      "done": "Revisado",
+      "in-progress": "En proceso",
+      "not-started": "No revisado"
+    }
+  },
+  "dashboards": {
+    "title": "Panel de Control",
+    "fra-kaare": "De Kåre"
+  },
+  "lyrics": {
+    "edit": "Editar",
+    "create-new-lyrics": "Crear nueva letra",
+    "create": "Crear",
+    "save": "Guardar cambios",
+    "verse-title": "Título del verso",
+    "long-copyright": "Derechos de autor extendidos",
+    "remove-formatting": "Limpieza de formato",
+    "paste-instructions": "Pegar texto usando <shortcut> para eliminar el formato."
+  }
+}
