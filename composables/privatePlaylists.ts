@@ -1,5 +1,8 @@
 import { SharedPlaylistApi, TrackCollectionApi } from "@bcc-code/bmm-sdk-fetch";
-import type { TrackCollectionDetails } from "@bcc-code/bmm-sdk-fetch";
+import type {
+  GetTrackCollectionModel,
+  TrackCollectionDetails,
+} from "@bcc-code/bmm-sdk-fetch";
 import type { AsyncData } from "nuxt/app";
 
 interface UseTrackCollectionOptions {
@@ -13,7 +16,7 @@ export function usePrivatePlaylist(options: UseTrackCollectionOptions) {
   const { id } = options;
 
   return reactiveApi(
-    useLazyAsyncData(
+    useLazyAsyncData<GetTrackCollectionModel>(
       `track-collection-${id}`,
       () => new TrackCollectionApi().trackCollectionIdGet({ id }),
       {
@@ -54,7 +57,7 @@ export function addPrivatePlaylist(name: string) {
 
 export function useSharedPrivatePlaylist(sharingSecret: string) {
   return reactiveApi(
-    useLazyAsyncData(
+    useLazyAsyncData<GetTrackCollectionModel>(
       `track-collection-shared-${sharingSecret}`,
       () =>
         new SharedPlaylistApi().sharedPlaylistSharingSecretGet({

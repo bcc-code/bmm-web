@@ -1,4 +1,5 @@
 import { PodcastApi } from "@bcc-code/bmm-sdk-fetch";
+import type { PodcastModel, TrackModel } from "@bcc-code/bmm-sdk-fetch";
 
 interface UsePodcastOptions {
   id: number;
@@ -8,7 +9,7 @@ export function usePodcast(options: UsePodcastOptions) {
   const { id } = options;
 
   return reactiveApi(
-    useLazyAsyncData(
+    useLazyAsyncData<PodcastModel>(
       `podcast-${id}`,
       () => new PodcastApi().podcastIdGet({ id }),
       {
@@ -28,7 +29,7 @@ export function usePodcastTracks(options: UsePodcastTracksOptions) {
   const { id } = options;
 
   return reactiveApi(
-    useLazyAsyncData(
+    useLazyAsyncData<TrackModel[]>(
       `podcast-tracks-${id}`,
       () => new PodcastApi().podcastIdTrackGet({ id }),
       {
@@ -42,16 +43,20 @@ export function usePodcastTracks(options: UsePodcastTracksOptions) {
 
 export function usePodcasts() {
   return reactiveApi(
-    useLazyAsyncData("podcasts", () => new PodcastApi().podcastGet(), {
-      getCachedData(key, nuxtApp) {
-        return nuxtApp.payload.data[key] ?? nuxtApp.static.data[key];
+    useLazyAsyncData<PodcastModel[]>(
+      "podcasts",
+      () => new PodcastApi().podcastGet(),
+      {
+        getCachedData(key, nuxtApp) {
+          return nuxtApp.payload.data[key] ?? nuxtApp.static.data[key];
+        },
       },
-    }),
+    ),
   );
 }
 
 export function usePodcastShuffle(id: number) {
-  return useAsyncData(
+  return useAsyncData<TrackModel[]>(
     "podcastshuffle",
     () => new PodcastApi().podcastIdShuffleGet({ id }),
     {

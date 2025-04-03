@@ -1,4 +1,11 @@
 import { AlbumApi, BrowseApi, FacetsApi } from "@bcc-code/bmm-sdk-fetch";
+import type {
+  AlbumModel,
+  AlbumYearFacetsQueryResult,
+  DocumentListIAlbumOrChapterHeader,
+  DocumentListIAlbumPlaylistOrChapterHeader,
+  DocumentListPodcastModel,
+} from "@bcc-code/bmm-sdk-fetch";
 
 export function useBrowse() {
   return reactiveApi(
@@ -8,7 +15,7 @@ export function useBrowse() {
 
 export function useBrowseEvents(skip: number = 0) {
   return reactiveApi(
-    useLazyAsyncData(
+    useLazyAsyncData<DocumentListIAlbumOrChapterHeader>(
       "browse-events",
       () => new BrowseApi().browseEventsGet({ skip }),
       {
@@ -22,7 +29,7 @@ export function useBrowseEvents(skip: number = 0) {
 
 export function useBrowseAudiobooks() {
   return reactiveApi(
-    useLazyAsyncData(
+    useLazyAsyncData<DocumentListIAlbumPlaylistOrChapterHeader>(
       "browse-audiobooks",
       () => new BrowseApi().browseAudiobooksGet(),
       {
@@ -36,17 +43,21 @@ export function useBrowseAudiobooks() {
 
 export function useBrowseMusic() {
   return reactiveApi(
-    useLazyAsyncData("browse-music", () => new BrowseApi().browseMusicGet(), {
-      getCachedData(key, nuxtApp) {
-        return nuxtApp.payload.data[key] ?? nuxtApp.static.data[key];
+    useLazyAsyncData<DocumentListPodcastModel>(
+      "browse-music",
+      () => new BrowseApi().browseMusicGet(),
+      {
+        getCachedData(key, nuxtApp) {
+          return nuxtApp.payload.data[key] ?? nuxtApp.static.data[key];
+        },
       },
-    }),
+    ),
   );
 }
 
 export function useBrowsePodcast() {
   return reactiveApi(
-    useLazyAsyncData(
+    useLazyAsyncData<DocumentListPodcastModel>(
       "browse-podcast",
       () => new BrowseApi().browsePodcastsGet(),
       {
@@ -60,7 +71,7 @@ export function useBrowsePodcast() {
 
 export function useYearList() {
   return reactiveApi(
-    useLazyAsyncData(
+    useLazyAsyncData<AlbumYearFacetsQueryResult[]>(
       "year-list",
       () =>
         new FacetsApi().controllerAlbumPublishedYearsGet({
@@ -77,7 +88,7 @@ export function useYearList() {
 
 export function useAlbumsInYear(year: number) {
   return reactiveApi(
-    useLazyAsyncData(
+    useLazyAsyncData<AlbumModel[]>(
       `albums-in-year-${year}`,
       () => new AlbumApi().albumPublishedYearGet({ year }),
       {

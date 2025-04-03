@@ -1,4 +1,5 @@
 import { ContributorApi } from "@bcc-code/bmm-sdk-fetch";
+import type { ContributorModel, TrackModel } from "@bcc-code/bmm-sdk-fetch";
 
 interface UseContributorOptions {
   id: number;
@@ -7,7 +8,7 @@ interface UseContributorOptions {
 export function useContributor(options: UseContributorOptions) {
   const { id } = options;
 
-  return useLazyAsyncData(
+  return useLazyAsyncData<ContributorModel>(
     `contributor-${id}`,
     () => new ContributorApi().contributorIdGet({ id }),
     {
@@ -19,7 +20,7 @@ export function useContributor(options: UseContributorOptions) {
 }
 
 export function useContributorShuffle(id: number) {
-  return useAsyncData(
+  return useAsyncData<TrackModel[]>(
     `contributor-${id}-shuffle`,
     () => new ContributorApi().contributorIdRandomGet({ id }),
     {
@@ -31,7 +32,7 @@ export function useContributorShuffle(id: number) {
 }
 
 export function useContributors() {
-  return useLazyAsyncData(
+  return useLazyAsyncData<ContributorModel[]>(
     "contributors",
     () => new ContributorApi().contributorGet(),
     {

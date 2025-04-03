@@ -1,4 +1,9 @@
 import { PlaylistApi } from "@bcc-code/bmm-sdk-fetch";
+import type {
+  DocumentListIAllDocumentModels,
+  PlaylistModel,
+  TrackModel,
+} from "@bcc-code/bmm-sdk-fetch";
 
 interface UseCuratedPlaylistOptions {
   id: number;
@@ -30,7 +35,7 @@ export function useCuratedPlaylistTracks(
   const { id } = options;
 
   return reactiveApi(
-    useLazyAsyncData(
+    useLazyAsyncData<TrackModel[]>(
       `playlist-tracks-${id}`,
       () => new PlaylistApi().playlistIdTrackGet({ id }),
       {
@@ -44,17 +49,21 @@ export function useCuratedPlaylistTracks(
 
 export function useCuratedPlaylists() {
   return reactiveApi(
-    useLazyAsyncData("playlists", () => new PlaylistApi().playlistGet(), {
-      getCachedData(key, nuxtApp) {
-        return nuxtApp.payload.data[key] ?? nuxtApp.static.data[key];
+    useLazyAsyncData<PlaylistModel[]>(
+      "playlists",
+      () => new PlaylistApi().playlistGet(),
+      {
+        getCachedData(key, nuxtApp) {
+          return nuxtApp.payload.data[key] ?? nuxtApp.static.data[key];
+        },
       },
-    }),
+    ),
   );
 }
 
 export function useFeaturedPlaylists() {
   return reactiveApi(
-    useLazyAsyncData(
+    useLazyAsyncData<DocumentListIAllDocumentModels>(
       "playlists-featured",
       () => new PlaylistApi().playlistDocumentsGet(),
       {
