@@ -13,7 +13,7 @@ export function useCachedLazyAsyncData<T>(
   fn: () => Promise<T>,
   options?: AsyncDataOptions<T, any>,
 ) {
-  return useLazyAsyncData(key, fn, {
+  return useLazyAsyncData<T>(key, fn, {
     getCachedData(k, nuxtApp) {
       return nuxtApp.payload.data[k] ?? nuxtApp.static.data[k];
     },
