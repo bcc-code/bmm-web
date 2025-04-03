@@ -8,14 +8,20 @@ export function useAlbum(options: UseAlbumOptions) {
   const { id } = options;
 
   return reactiveApi(
-    useCachedLazyAsyncData(`album-${id}`, () =>
-      new AlbumApi().albumIdGet({ id }),
-    ),
+    useLazyAsyncData(`album-${id}`, () => new AlbumApi().albumIdGet({ id }), {
+      getCachedData(key, nuxtApp) {
+        return nuxtApp.payload.data[key] ?? nuxtApp.static.data[key];
+      },
+    }),
   );
 }
 
 export function useAlbums() {
   return reactiveApi(
-    useCachedLazyAsyncData("albums", () => new AlbumApi().albumGet()),
+    useLazyAsyncData("albums", () => new AlbumApi().albumGet(), {
+      getCachedData(key, nuxtApp) {
+        return nuxtApp.payload.data[key] ?? nuxtApp.static.data[key];
+      },
+    }),
   );
 }

@@ -6,7 +6,7 @@ import { PublishedFilter, TrackApi } from "@bcc-code/bmm-sdk-fetch";
 
 export function useTracks(options: TrackGetRequest = {}) {
   return reactiveApi(
-    useCachedLazyAsyncData("tracks", () => new TrackApi().trackGet(options)),
+    useLazyAsyncData("tracks", () => new TrackApi().trackGet(options)),
   );
 }
 

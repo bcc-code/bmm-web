@@ -13,8 +13,14 @@ export function usePrivatePlaylist(options: UseTrackCollectionOptions) {
   const { id } = options;
 
   return reactiveApi(
-    useCachedLazyAsyncData(`track-collection-${id}`, () =>
-      new TrackCollectionApi().trackCollectionIdGet({ id }),
+    useLazyAsyncData(
+      `track-collection-${id}`,
+      () => new TrackCollectionApi().trackCollectionIdGet({ id }),
+      {
+        getCachedData(key, nuxtApp) {
+          return nuxtApp.payload.data[key] ?? nuxtApp.static.data[key];
+        },
+      },
     ),
   );
 }
@@ -23,8 +29,14 @@ export function usePrivatePlaylists() {
   if (playlistsRequest != null) return playlistsRequest;
 
   playlistsRequest = reactiveApi(
-    useCachedLazyAsyncData("track-collections", () =>
-      new TrackCollectionApi().trackCollectionGet(),
+    useLazyAsyncData(
+      "track-collections",
+      () => new TrackCollectionApi().trackCollectionGet(),
+      {
+        getCachedData(key, nuxtApp) {
+          return nuxtApp.payload.data[key] ?? nuxtApp.static.data[key];
+        },
+      },
     ),
   );
   return playlistsRequest;
@@ -42,8 +54,17 @@ export function addPrivatePlaylist(name: string) {
 
 export function useSharedPrivatePlaylist(sharingSecret: string) {
   return reactiveApi(
-    useCachedLazyAsyncData(`track-collection-shared-${sharingSecret}`, () =>
-      new SharedPlaylistApi().sharedPlaylistSharingSecretGet({ sharingSecret }),
+    useLazyAsyncData(
+      `track-collection-shared-${sharingSecret}`,
+      () =>
+        new SharedPlaylistApi().sharedPlaylistSharingSecretGet({
+          sharingSecret,
+        }),
+      {
+        getCachedData(key, nuxtApp) {
+          return nuxtApp.payload.data[key] ?? nuxtApp.static.data[key];
+        },
+      },
     ),
   );
 }

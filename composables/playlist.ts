@@ -8,8 +8,14 @@ export function useCuratedPlaylist(options: UseCuratedPlaylistOptions) {
   const { id } = options;
 
   return reactiveApi(
-    useCachedLazyAsyncData(`playlist-${id}`, () =>
-      new PlaylistApi().playlistIdGet({ id }),
+    useLazyAsyncData(
+      `playlist-${id}`,
+      () => new PlaylistApi().playlistIdGet({ id }),
+      {
+        getCachedData(key, nuxtApp) {
+          return nuxtApp.payload.data[key] ?? nuxtApp.static.data[key];
+        },
+      },
     ),
   );
 }
@@ -24,22 +30,38 @@ export function useCuratedPlaylistTracks(
   const { id } = options;
 
   return reactiveApi(
-    useCachedLazyAsyncData(`playlist-tracks-${id}`, () =>
-      new PlaylistApi().playlistIdTrackGet({ id }),
+    useLazyAsyncData(
+      `playlist-tracks-${id}`,
+      () => new PlaylistApi().playlistIdTrackGet({ id }),
+      {
+        getCachedData(key, nuxtApp) {
+          return nuxtApp.payload.data[key] ?? nuxtApp.static.data[key];
+        },
+      },
     ),
   );
 }
 
 export function useCuratedPlaylists() {
   return reactiveApi(
-    useCachedLazyAsyncData("playlists", () => new PlaylistApi().playlistGet()),
+    useLazyAsyncData("playlists", () => new PlaylistApi().playlistGet(), {
+      getCachedData(key, nuxtApp) {
+        return nuxtApp.payload.data[key] ?? nuxtApp.static.data[key];
+      },
+    }),
   );
 }
 
 export function useFeaturedPlaylists() {
   return reactiveApi(
-    useCachedLazyAsyncData("playlists-featured", () =>
-      new PlaylistApi().playlistDocumentsGet(),
+    useLazyAsyncData(
+      "playlists-featured",
+      () => new PlaylistApi().playlistDocumentsGet(),
+      {
+        getCachedData(key, nuxtApp) {
+          return nuxtApp.payload.data[key] ?? nuxtApp.static.data[key];
+        },
+      },
     ),
   );
 }
