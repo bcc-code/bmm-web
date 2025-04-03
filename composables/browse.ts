@@ -24,7 +24,9 @@ export function useBrowseAudiobooks() {
 
 export function useBrowseMusic() {
   return reactiveApi(
-    useCachedLazyAsyncData("browse-music", () => new BrowseApi().browseMusicGet()),
+    useCachedLazyAsyncData("browse-music", () =>
+      new BrowseApi().browseMusicGet(),
+    ),
   );
 }
 
