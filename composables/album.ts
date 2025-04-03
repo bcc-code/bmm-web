@@ -8,12 +8,12 @@ export function useAlbum(options: UseAlbumOptions) {
   const { id } = options;
 
   return reactiveApi(
-    useLazyAsyncData(`album-${id}`, () => new AlbumApi().albumIdGet({ id })),
+    useCachedLazyAsyncData(`album-${id}`, () => new AlbumApi().albumIdGet({ id })),
   );
 }
 
 export function useAlbums() {
   return reactiveApi(
-    useLazyAsyncData("albums", () => new AlbumApi().albumGet()),
+    useCachedLazyAsyncData("albums", () => new AlbumApi().albumGet()),
   );
 }

@@ -8,7 +8,7 @@ export function usePodcast(options: UsePodcastOptions) {
   const { id } = options;
 
   return reactiveApi(
-    useLazyAsyncData(`podcast-${id}`, () =>
+    useCachedLazyAsyncData(`podcast-${id}`, () =>
       new PodcastApi().podcastIdGet({ id }),
     ),
   );
@@ -22,7 +22,7 @@ export function usePodcastTracks(options: UsePodcastTracksOptions) {
   const { id } = options;
 
   return reactiveApi(
-    useLazyAsyncData(`podcast-tracks-${id}`, () =>
+    useCachedLazyAsyncData(`podcast-tracks-${id}`, () =>
       new PodcastApi().podcastIdTrackGet({ id }),
     ),
   );
@@ -30,7 +30,7 @@ export function usePodcastTracks(options: UsePodcastTracksOptions) {
 
 export function usePodcasts() {
   return reactiveApi(
-    useLazyAsyncData("podcasts", () => new PodcastApi().podcastGet()),
+    useCachedLazyAsyncData("podcasts", () => new PodcastApi().podcastGet()),
   );
 }
 

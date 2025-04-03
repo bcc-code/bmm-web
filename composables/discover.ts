@@ -3,7 +3,7 @@ import type { DiscoverGetRequest } from "@bcc-code/bmm-sdk-fetch";
 
 export function useDiscover(requestParameters: DiscoverGetRequest) {
   return reactiveApi(
-    useLazyAsyncData("discover", () =>
+    useCachedLazyAsyncData("discover", () =>
       new DiscoverApi().discoverGet(requestParameters),
     ),
   );

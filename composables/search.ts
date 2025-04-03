@@ -8,7 +8,7 @@ interface UseSearchOptions {
 export function useSearch(options: UseSearchOptions) {
   const { term, filter } = options;
   return reactiveApi(
-    useLazyAsyncData(`search-${term}-${filter}`, () =>
+    useCachedLazyAsyncData(`search-${term}-${filter}`, () =>
       new SearchApi().searchV2TermGet(options),
     ),
   );

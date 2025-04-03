@@ -8,7 +8,7 @@ export function useCuratedPlaylist(options: UseCuratedPlaylistOptions) {
   const { id } = options;
 
   return reactiveApi(
-    useLazyAsyncData(`playlist-${id}`, () =>
+    useCachedLazyAsyncData(`playlist-${id}`, () =>
       new PlaylistApi().playlistIdGet({ id }),
     ),
   );
@@ -24,7 +24,7 @@ export function useCuratedPlaylistTracks(
   const { id } = options;
 
   return reactiveApi(
-    useLazyAsyncData(`playlist-tracks-${id}`, () =>
+    useCachedLazyAsyncData(`playlist-tracks-${id}`, () =>
       new PlaylistApi().playlistIdTrackGet({ id }),
     ),
   );
@@ -32,13 +32,13 @@ export function useCuratedPlaylistTracks(
 
 export function useCuratedPlaylists() {
   return reactiveApi(
-    useLazyAsyncData("playlists", () => new PlaylistApi().playlistGet()),
+    useCachedLazyAsyncData("playlists", () => new PlaylistApi().playlistGet()),
   );
 }
 
 export function useFeaturedPlaylists() {
   return reactiveApi(
-    useLazyAsyncData("playlists-featured", () =>
+    useCachedLazyAsyncData("playlists-featured", () =>
       new PlaylistApi().playlistDocumentsGet(),
     ),
   );

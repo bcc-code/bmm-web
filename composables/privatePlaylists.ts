@@ -13,7 +13,7 @@ export function usePrivatePlaylist(options: UseTrackCollectionOptions) {
   const { id } = options;
 
   return reactiveApi(
-    useLazyAsyncData(`track-collection-${id}`, () =>
+    useCachedLazyAsyncData(`track-collection-${id}`, () =>
       new TrackCollectionApi().trackCollectionIdGet({ id }),
     ),
   );
@@ -23,7 +23,7 @@ export function usePrivatePlaylists() {
   if (playlistsRequest != null) return playlistsRequest;
 
   playlistsRequest = reactiveApi(
-    useLazyAsyncData("track-collections", () =>
+    useCachedLazyAsyncData("track-collections", () =>
       new TrackCollectionApi().trackCollectionGet(),
     ),
   );
@@ -42,7 +42,7 @@ export function addPrivatePlaylist(name: string) {
 
 export function useSharedPrivatePlaylist(sharingSecret: string) {
   return reactiveApi(
-    useLazyAsyncData(`track-collection-shared-${sharingSecret}`, () =>
+    useCachedLazyAsyncData(`track-collection-shared-${sharingSecret}`, () =>
       new SharedPlaylistApi().sharedPlaylistSharingSecretGet({ sharingSecret }),
     ),
   );

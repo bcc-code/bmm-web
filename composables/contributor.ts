@@ -7,7 +7,7 @@ interface UseContributorOptions {
 export function useContributor(options: UseContributorOptions) {
   const { id } = options;
 
-  return useLazyAsyncData(`contributor-${id}`, () =>
+  return useCachedLazyAsyncData(`contributor-${id}`, () =>
     new ContributorApi().contributorIdGet({ id }),
   );
 }
@@ -19,7 +19,7 @@ export function useContributorShuffle(id: number) {
 }
 
 export function useContributors() {
-  return useLazyAsyncData("contributors", () =>
+  return useCachedLazyAsyncData("contributors", () =>
     new ContributorApi().contributorGet(),
   );
 }
