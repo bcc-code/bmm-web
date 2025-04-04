@@ -9,12 +9,12 @@
     "playlist": "Lista de reproducción",
     "profile": "Perfil",
     "messages": "Mensajes",
-    "recent-messages": "Lo más reciente",
+    "recent-messages": "Últimos mensajes",
     "recent-music": "Música reciente",
     "audiobooks": "Libros audio",
     "search": "Buscar",
     "album": "Álbum",
-    "podcast": "podcast",
+    "podcast": "Podcast",
     "not-found": "Página no encontrada",
     "contributor": "Colaborador",
     "contributors": "Colaboradores",
@@ -24,7 +24,7 @@
   },
   "sidebar": {
     "playlists": {
-      "title": "Listas de reproducción"
+      "title": "Listas de pistas"
     }
   },
   "share": {
@@ -58,7 +58,7 @@
   "error": {
     "page-not-found": {
       "headline": "Error",
-      "text": "Lo siento. No podemos encontrar la página \"{path}\"."
+      "text": "Lo lamento Lo siento. No podemos encontrar la página \"{path}\"."
     },
     "track-already-in-playlist": "Esta pista ya existe en la lista de reproducción {0}",
     "album-already-in-playlist": "Este álbum ya está en la lista de reproducción.",
@@ -94,12 +94,13 @@
     "download-mac-arm": "Descargar para Mac más reciente",
     "mac-intel-explanation": "Generalmente comprado antes de 2021",
     "mac-arm-explanation": "Chips M1, M2, M3, M4",
+
     "download-bmm-app": "Descarga la aplicación BMM",
     "download-track": "Descargar pista",
     "mobile": "Móvil",
     "messages-not-allowed": {
       "title": "Descarga de mensajes no disponible",
-      "description": "La posibilidad de descargar mensajes de BMM ya no está disponible. Si necesita un mensaje para un uso específico, póngase en contacto con nosotros y explíquenos sus necesidades."
+      "description": "La opción de descargar mensajes de BMM ya no está disponible. Si necesitas un mensaje para un uso específico, contáctanos y explícanos tu necesidad."
     },
     "sendEmailTo": "Enviar correo electrónico a {0}"
   },
@@ -108,7 +109,7 @@
     "new-playlist": "Nueva lista de reproducción",
     "name-your-playlist": "Nombre de tu lista de reproducción",
     "delete-playlist": "Borrar lista de reproducción",
-    "delete-playlist-description": "¿Estás seguro de que quieres eliminar la lista de reproducción? Esta acción no se puede revertir.",
+    "delete-playlist-description": "¿Está seguro que desea eliminar la lista de reproducción \"{0}\"? Esta acción no se puede revertir.",
     "action": {
       "shuffle": "Aleatorio",
       "add-to-my-playlists": "Añadir a mis listas de reproducción",
@@ -137,18 +138,19 @@
       "play-next": "Reproducir lo siguiente",
       "download": "Descarga",
       "go-to-album": "Ir al álbum",
-      "add-to-queue": "Agregar a la cola",
+      "add-to-queue": "Agregar a cola",
       "add-to-playlist": "Añadir a la lista de reproducción",
       "share": "Compartir pista",
       "go-to-contributors": "Ir a colaboradores",
       "more-info": "Más información",
       "show-all": "Mostrar todos",
       "remove-from-playlist": "Eliminar de lista de reproducción",
-      "transcription": "Transcripción"
+      "transcription": "Transcripción",
+      "playback": "Velocidad de reproducción"
     },
     "a11y": {
       "download": "Descarga",
-      "queue": "Agregar a la cola",
+      "queue": "Agregar a cola",
       "options": "Mostrar opciones"
     },
     "details": {
@@ -163,8 +165,11 @@
       "arranger": "Organizador",
       "composer": "Compositor",
       "lyricist": "Letrista",
-      "text": "Text",
-      "melody": "Melody"
+      "text": "Texto",
+      "melody": "Melodía"
+    },
+    "playback": {
+      "normal": "Normal"
     }
   },
   "home": {
@@ -181,7 +186,7 @@
       "Albums": "Álbumes",
       "Contributors": "Colaboradores",
       "Podcasts": "Podcasts",
-      "Playlists": "Listas de reproducción"
+      "Playlists": "Listas de pistas"
     },
     "input-placeholder": "Buscar",
     "loading-results": "Cargando resultados",
@@ -219,12 +224,12 @@
   },
   "lyrics": {
     "edit": "Editar",
-    "create-new-lyrics": "Create new lyrics",
-    "create": "Create",
+    "create-new-lyrics": "Crear nueva letra",
+    "create": "Crear",
     "save": "Guardar cambios",
-    "verse-title": "Verse title",
-    "long-copyright": "Long copyright",
-    "remove-formatting": "Cleanup formatting",
-    "paste-instructions": "Paste text using <shortcut> to remove formatting."
+    "verse-title": "Título del verso",
+    "long-copyright": "Derechos de autor extendidos",
+    "remove-formatting": "Limpieza de formato",
+    "paste-instructions": "Pegar texto usando <shortcut> para eliminar el formato."
   }
 }
