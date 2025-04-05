@@ -77,19 +77,19 @@ const { data: currentUser } = await useCurrentUser();
             v-if="isTranscriptionManager(currentUser)"
             :title="$t('nav.transcribe')"
             :link="{ name: 'transcribe' }"
-            icon="icon.information"
+            icon="icon.transcription"
           />
           <SidebarItem
             v-if="isLyricsManager(currentUser)"
             :title="$t('nav.lyrics')"
             :link="{ name: 'lyrics' }"
-            icon="icon.information"
+            icon="icon.lyrics"
           />
           <SidebarItem
             v-if="isFraKaareDashboardViewer(currentUser)"
             title="Dashboard"
             :link="{ name: 'dashboards-fra-kaare' }"
-            icon="icon.information"
+            icon="icon.dashboard"
           />
         </SidebarGroup>
 

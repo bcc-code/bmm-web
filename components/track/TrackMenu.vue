@@ -60,7 +60,7 @@ const dropdownMenuItems = computed(() => {
 
   if (props.track.hasTranscription) {
     items.push({
-      icon: "icon.information",
+      icon: trackIsSong(props.track) ? "icon.lyrics" : "icon.transcription",
       text: trackIsSong(props.track)
         ? t("transcription.lyrics")
         : t("track.dropdown.transcription"),
