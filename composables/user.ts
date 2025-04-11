@@ -7,7 +7,11 @@ export function useCurrentUser(): AsyncData<UserModel, Error | null> {
   cachedComposable ??= useAsyncData(
     `current-user-asyncdata`,
     () => new CurrentUserApi().currentUserGet(),
-    { dedupe: "defer" },
+    {
+      dedupe: "defer",
+      getCachedData: (k, nuxtApp) =>
+        nuxtApp.payload.data[k] ?? nuxtApp.static.data[k],
+    },
   );
   return cachedComposable!;
 }
