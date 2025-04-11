@@ -5,11 +5,20 @@ import type {
   DocumentListIAlbumOrChapterHeader,
   DocumentListIAlbumPlaylistOrChapterHeader,
   DocumentListPodcastModel,
+  IAlbumPodcastPlaylistOrSectionHeader,
 } from "@bcc-code/bmm-sdk-fetch";
 
 export function useBrowse() {
   return reactiveApi(
-    useLazyAsyncData("browse", () => new BrowseApi().browseGet()),
+    useLazyAsyncData<Array<IAlbumPodcastPlaylistOrSectionHeader>>(
+      "browse",
+      () => new BrowseApi().browseGet(),
+      {
+        getCachedData(key, nuxtApp) {
+          return nuxtApp.payload.data[key] ?? nuxtApp.static.data[key];
+        },
+      },
+    ),
   );
 }
 
