@@ -145,7 +145,8 @@
       "more-info": "Mai multe informații",
       "show-all": "Toate",
       "remove-from-playlist": "Șterge din lista de redare",
-      "transcription": "Transcriere"
+      "transcription": "Transcriere",
+      "playback": "Viteză de redare"
     },
     "a11y": {
       "download": "Descarcă",
@@ -166,6 +167,9 @@
       "lyricist": "Textier",
       "text": "Text",
       "melody": "Melodie"
+    },
+    "playback": {
+      "normal": "Normal"
     }
   },
   "home": {
