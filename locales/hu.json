@@ -145,7 +145,8 @@
       "more-info": "További információ",
       "show-all": "Összes megjelenítése",
       "remove-from-playlist": "Eltávolítás lejátszási listáról",
-      "transcription": "Átírás"
+      "transcription": "Átírás",
+      "playback": "Lejátszási sebesség"
     },
     "a11y": {
       "download": "Letöltés",
@@ -166,6 +167,9 @@
       "lyricist": "Szövegíró",
       "text": "Szöveg",
       "melody": "Dallam"
+    },
+    "playback": {
+      "normal": "Átlagos"
     }
   },
   "home": {
