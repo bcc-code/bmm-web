@@ -57,7 +57,7 @@ function adjustHighlightText(highlight: Highlighting) {
 
 const fields = computed(() => {
   const parts = [
-    props.track.title,
+    props.track.meta.title,
     trackSongNumber(props.track),
     props.track.meta.artist,
     props.isTrackTypeKnown || props.isAlbumKnown
