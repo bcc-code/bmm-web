@@ -145,7 +145,8 @@
       "more-info": "Meer informatie",
       "show-all": "Toon alle",
       "remove-from-playlist": "Verwijderen uit afspeellijst",
-      "transcription": "Transcriptie"
+      "transcription": "Transcriptie",
+      "playback": "Afspeelsnelheid"
     },
     "a11y": {
       "download": "Downloaden",
@@ -166,6 +167,9 @@
       "lyricist": "Schrijver",
       "text": "Tekst",
       "melody": "Melodie"
+    },
+    "playback": {
+      "normal": "Normaal"
     }
   },
   "home": {
