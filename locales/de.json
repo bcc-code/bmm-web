@@ -7,8 +7,6 @@
     "home": "Home",
     "browse": "Stöbern",
     "playlist": "Wiedergabeliste",
-    "profile": "Profil",
-    "messages": "Reden",
     "recent-messages": "Neue Reden",
     "recent-music": "Neue Musik",
     "audiobooks": "Hörbücher",
@@ -122,8 +120,7 @@
     "last-week": "Letzte Woche",
     "week-x": "Woche {count}",
     "action": {
-      "play": "Abspielen",
-      "follow": "Abonnieren"
+      "play": "Abspielen"
     }
   },
   "player": {
@@ -149,8 +146,6 @@
       "playback": "Abspielgeschwindigkeit"
     },
     "a11y": {
-      "download": "Download",
-      "queue": "Zur Warteschlange hinzufügen",
       "options": "Optionen anzeigen"
     },
     "details": {

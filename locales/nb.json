@@ -7,8 +7,6 @@
     "home": "Hjem",
     "browse": "Utforsk",
     "playlist": "Spilleliste",
-    "profile": "Min profil",
-    "messages": "Taler",
     "recent-messages": "Nye taler",
     "recent-music": "Ny musikk",
     "audiobooks": "Lydbøker",
@@ -122,8 +120,7 @@
     "last-week": "Forrige uke",
     "week-x": "Uke {count}",
     "action": {
-      "play": "Spill av",
-      "follow": "Følg"
+      "play": "Spill av"
     }
   },
   "player": {
@@ -149,8 +146,6 @@
       "playback": "Avspillingshastighet"
     },
     "a11y": {
-      "download": "Last ned",
-      "queue": "Legg til i køen",
       "options": "Vis alternativer"
     },
     "details": {

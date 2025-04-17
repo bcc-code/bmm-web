@@ -144,7 +144,7 @@ const dropdownMenuItems = computed(() => {
     items.push({
       icon: "icon.link",
       text: "Open in Admin",
-      externalLink: "https://bmm.brunstad.org/admin/track/" + props.track.id,
+      externalLink: `https://bmm.brunstad.org/admin/track/${props.track.id}`,
     });
   }
 

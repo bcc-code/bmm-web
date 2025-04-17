@@ -7,8 +7,6 @@
     "home": "Domov",
     "browse": "Razišči",
     "playlist": "Seznam predvajanja",
-    "profile": "Profil",
-    "messages": "Govori",
     "recent-messages": "Najnovejši govori",
     "recent-music": "Najnovejša glasba",
     "audiobooks": "Zvočne knjige",
@@ -122,8 +120,7 @@
     "last-week": "Prejšnji teden",
     "week-x": "Teden {count}",
     "action": {
-      "play": "Predvajaj",
-      "follow": "Sledi"
+      "play": "Predvajaj"
     }
   },
   "player": {
@@ -148,8 +145,6 @@
       "transcription": "Prepis"
     },
     "a11y": {
-      "download": "Prenesi",
-      "queue": "Dodaj v čakalno vrsto",
       "options": "Pokaži možnosti"
     },
     "details": {

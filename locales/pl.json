@@ -7,8 +7,6 @@
     "home": "Strona główna",
     "browse": "Przeglądaj",
     "playlist": "Playlista",
-    "profile": "Profil",
-    "messages": "Przemowy",
     "recent-messages": "Najnowsze Przemowy",
     "recent-music": "Najnowsza Muzyka",
     "audiobooks": "Audiobooki",
@@ -122,8 +120,7 @@
     "last-week": "W zeszłym tygodniu",
     "week-x": "Tydzień {count}",
     "action": {
-      "play": "Odtwarzaj",
-      "follow": "Obserwuj"
+      "play": "Odtwarzaj"
     }
   },
   "player": {
@@ -149,8 +146,6 @@
       "playback": "Prędkość odtwarzania"
     },
     "a11y": {
-      "download": "Pobierz",
-      "queue": "Dodaj do kolejki",
       "options": "Pokaż opcje"
     },
     "details": {

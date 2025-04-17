@@ -7,8 +7,6 @@
     "home": "Accueil",
     "browse": "Parcourir",
     "playlist": "Liste de lecture",
-    "profile": "Profil",
-    "messages": "Messages",
     "recent-messages": "Derniers Messages",
     "recent-music": "Musique récente",
     "audiobooks": "Livres audio",
@@ -122,8 +120,7 @@
     "last-week": "Semaine dernière",
     "week-x": "Semaine {count}",
     "action": {
-      "play": "Lire",
-      "follow": "Suivre"
+      "play": "Lire"
     }
   },
   "player": {
@@ -149,8 +146,6 @@
       "playback": "Vitesse de lecture"
     },
     "a11y": {
-      "download": "Télécharger",
-      "queue": "Ajouter à la file d'attente",
       "options": "Afficher les options"
     },
     "details": {

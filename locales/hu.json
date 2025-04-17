@@ -7,8 +7,6 @@
     "home": "Főoldal",
     "browse": "Böngészés",
     "playlist": "Lejátszási lista",
-    "profile": "Profil",
-    "messages": "Üzenetek",
     "recent-messages": "Legújabb üzenetek",
     "recent-music": "Legújabb zene",
     "audiobooks": "Hangoskönyvek",
@@ -122,8 +120,7 @@
     "last-week": "Elöző hét",
     "week-x": "{count}. hét",
     "action": {
-      "play": "Lejátszás",
-      "follow": "Követés"
+      "play": "Lejátszás"
     }
   },
   "player": {
@@ -149,8 +146,6 @@
       "playback": "Lejátszási sebesség"
     },
     "a11y": {
-      "download": "Letöltés",
-      "queue": "Hozzáadás várólistához",
       "options": "Beállítások megjelenítése"
     },
     "details": {

@@ -7,8 +7,6 @@
     "home": "Inicio",
     "browse": "Buscar",
     "playlist": "Lista de reproducción",
-    "profile": "Perfil",
-    "messages": "Mensajes",
     "recent-messages": "Últimos mensajes",
     "recent-music": "Música reciente",
     "audiobooks": "Libros audio",
@@ -122,8 +120,7 @@
     "last-week": "Semana pasada",
     "week-x": "Semana {count}",
     "action": {
-      "play": "Reproducir",
-      "follow": "Siga"
+      "play": "Reproducir"
     }
   },
   "player": {
@@ -149,8 +146,6 @@
       "playback": "Velocidad de reproducción"
     },
     "a11y": {
-      "download": "Descarga",
-      "queue": "Agregar a cola",
       "options": "Mostrar opciones"
     },
     "details": {
