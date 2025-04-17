@@ -4,23 +4,23 @@
     "try-again": "Prøv igjen"
   },
   "nav": {
-    "home": "Hjem",
+    "home": "Home",
     "browse": "Utforsk",
     "playlist": "Spilleliste",
-    "profile": "Min profil",
+    "profile": "Profil",
     "messages": "Taler",
     "recent-messages": "Nye taler",
-    "recent-music": "Ny musikk",
+    "recent-music": "Siste musikk",
     "audiobooks": "Lydbøker",
     "search": "Søk",
     "album": "Album",
     "podcast": "Podcast",
-    "not-found": "Siden ble ikke funnet",
+    "not-found": "Siden finnes ikke",
     "contributor": "Bidragsyter",
     "contributors": "Bidragsytere",
     "archive": "Arkiv",
-    "transcribe": "Transcribe",
-    "lyrics": "Lyrics"
+    "transcribe": "Transkriber",
+    "lyrics": "Sangtekst"
   },
   "sidebar": {
     "playlists": {
@@ -31,7 +31,7 @@
     "link-copied-message": "Kopierte lenken til utklippstavlen"
   },
   "profile": {
-    "title": "Min profil",
+    "title": "Profil",
     "autoplay": "Automatisk avspilling",
     "theme": "Tema",
     "theme-description": "Velg temaet som brukes for grensesnittet.",
@@ -41,11 +41,11 @@
     "select-language": "Velg språk",
     "content-language": "Innholdsspråk",
     "content-language-description": "Det prioriterte språket for innholdet du lytter til.",
-    "preference-language-1": "Prioriterte språk",
+    "preference-language-1": "Foretrukket språk.",
     "preference-language-2": "Andre språk",
     "preference-language-3": "Tredje språk",
     "preference-language-4": "{count}. språk",
-    "uservoice": "User Voice",
+    "uservoice": "Brukerstemme",
     "privacy-policy": "Personvernerklæring",
     "contact": "Kontakt",
     "logout": "Logg ut",
@@ -58,11 +58,11 @@
   "error": {
     "page-not-found": {
       "headline": "Feil",
-      "text": "Beklager, vi finner ikke siden \"{path}\"."
+      "text": "Beklager Vi finner ikke siden \"{path}\"."
     },
-    "track-already-in-playlist": "Sporet eksisterer allerede i spilleliste {0}",
-    "album-already-in-playlist": "Dette albumet er allerede i spillelisten.",
-    "collection-already-in-playlist": "These tracks are already in playlist {0}."
+    "track-already-in-playlist": "Sporet finnes allerede i spillelisten {0}",
+    "album-already-in-playlist": "Dette albumet ligger allerede i spillelisten din.",
+    "collection-already-in-playlist": "Disse sporene finnes allerede i spillelisten {0}."
   },
   "collection": {
     "track-count": "{count} spor | {count} spor",
@@ -73,7 +73,7 @@
     "error-message": {
       "contact-info": "Hvis denne feilen vedvarer, {0}.",
       "contact-link": "vennligst ta kontakt med oss",
-      "logout-and-redirect-info": "Noe angående påloggingen gikk galt:",
+      "logout-and-redirect-info": "Noe gikk galt med påloggingen:",
       "manual-logout-and-redirect-info": "Vennligst {0}.",
       "logout-and-redirect-link": "prøv å logge på igjen"
     },
@@ -85,7 +85,7 @@
   },
   "download": {
     "install-app": "Vi anbefaler å installere appen.",
-    "go-to-store": "Naviger til App Store.",
+    "go-to-store": "Gå til App Store.",
     "get-for-desktop": "Få BMM-appen direkte på skrivebordet ditt",
     "download": "Last ned",
     "download-now": "Last ned nå",
@@ -94,23 +94,24 @@
     "download-mac-arm": "Last ned for nyere Mac",
     "mac-intel-explanation": "Vanligvis kjøpt før 2021",
     "mac-arm-explanation": "M1, M2, M3, M4 chip",
+
     "download-bmm-app": "Last ned BMM-appen",
     "download-track": "Last ned spor",
     "mobile": "Mobil",
     "messages-not-allowed": {
       "title": "Nedlasting av taler ikke tilgjengelig",
-      "description": "Muligheten til å laste ned taler fra BMM er ikke lenger tilgjengelig. Hvis du trenger en tale for en spesifikk bruk, ta kontakt med oss og beskriv ditt behov."
+      "description": "Det er ikke lenger mulig å laste ned taler fra BMM. Hvis du trenger en tale til et spesifikt formål, kan du kontakte oss og forklare dine behov."
     },
     "sendEmailTo": "Send e-post til {0}"
   },
   "playlist": {
-    "add": "Ny spilleliste",
+    "add": "Legg til spilleliste",
     "new-playlist": "Ny spilleliste",
     "name-your-playlist": "Gi spillelisten et navn",
     "delete-playlist": "Slett spillelisten",
     "delete-playlist-description": "Er du sikker på at du vil slette spillelisten? Denne handlingen kan ikke reverseres.",
     "action": {
-      "shuffle": "Shuffle",
+      "shuffle": "Stokk",
       "add-to-my-playlists": "Legg til mine spillelister",
       "remove-shared-playlist": "Fjern spillelisten"
     },
@@ -118,7 +119,7 @@
   },
   "podcast": {
     "this-week": "Denne uken",
-    "last-week": "Siste uke",
+    "last-week": "Forrige uke",
     "week-x": "Uke {count}",
     "action": {
       "play": "Spill av",
@@ -129,12 +130,12 @@
     "queue": "Kø"
   },
   "edit": {
-    "rename": "Endre navnet",
+    "rename": "Gi nytt navn",
     "delete": "Slett"
   },
   "track": {
     "dropdown": {
-      "play-next": "Spill av som neste",
+      "play-next": "Spill neste",
       "download": "Last ned",
       "go-to-album": "Gå til albumet",
       "add-to-queue": "Legg til i køen",
@@ -144,7 +145,8 @@
       "more-info": "Mer informasjon",
       "show-all": "Vis alle",
       "remove-from-playlist": "Slett fra spilleliste",
-      "transcription": "Transkripsjon"
+      "transcription": "Transkripsjon",
+      "playback": "Avspillingshastighet"
     },
     "a11y": {
       "download": "Last ned",
@@ -157,7 +159,7 @@
       "duration": "Varighet",
       "publish-date": "Publiseringsdato",
       "album": "Album",
-      "publisher": "Forlegger",
+      "publisher": "Utgiver",
       "copyright": "Opphavsrett",
       "song-number": "Sangnummer",
       "arranger": "Arrangør",
@@ -165,11 +167,14 @@
       "lyricist": "Tekstforfatter",
       "text": "Tekst",
       "melody": "Melodi"
+    },
+    "playback": {
+      "normal": "Normal"
     }
   },
   "home": {
     "list": {
-      "see-all": "Vis alle",
+      "see-all": "Se alle",
       "recommended": "Anbefalt"
     }
   },
@@ -201,16 +206,16 @@
       "confirmation": "Forstått"
     },
     "songtreasures": "SongTreasures",
-    "save": "Save changes",
+    "save": "Lagre endringer",
     "original": "Original",
-    "edit": "Edit",
+    "edit": "Endre",
     "deleteSegment": "Slett",
-    "undeleteSegment": "Undo delete",
-    "review": "Review",
+    "undeleteSegment": "Angre sletting",
+    "review": "Gjennomgang",
     "status": {
-      "done": "Reviewed",
-      "in-progress": "In progress",
-      "not-started": "Not reviewed"
+      "done": "Gjennomgått",
+      "in-progress": "Pågående",
+      "not-started": "Ikke gjennomgått"
     }
   },
   "dashboards": {
@@ -218,13 +223,13 @@
     "fra-kaare": "Fra Kåre"
   },
   "lyrics": {
-    "edit": "Edit",
-    "create-new-lyrics": "Create new lyrics",
-    "create": "Create",
-    "save": "Save changes",
-    "verse-title": "Verse title",
-    "long-copyright": "Long copyright",
-    "remove-formatting": "Cleanup formatting",
-    "paste-instructions": "Paste text using <shortcut> to remove formatting."
+    "edit": "Endre",
+    "create-new-lyrics": "Lag nye tekster",
+    "create": "Opprett",
+    "save": "Lagre endringer",
+    "verse-title": "Versets tittel",
+    "long-copyright": "Lang opphavsrett",
+    "remove-formatting": "Oppryddingsformatering",
+    "paste-instructions": "Lim inn tekst ved hjelp av <shortcut> for å fjerne formatering."
   }
 }
