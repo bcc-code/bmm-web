@@ -5,7 +5,7 @@
   },
   "nav": {
     "home": "Ana sayfa",
-    "browse": "Gözat",
+    "browse": "Araştır",
     "playlist": "Çalma Listesi",
     "profile": "Profil",
     "messages": "Mesajlar",
@@ -17,10 +17,10 @@
     "podcast": "Podcast",
     "not-found": "Sayfa bulunamadı",
     "contributor": "Katkıda Bulunan",
-    "contributors": "Katkı Yapanlar",
+    "contributors": "Katılımcılar",
     "archive": "Arşiv",
     "transcribe": "Uyarlamak",
-    "lyrics": "Lyrics"
+    "lyrics": "Şarkı sözleri"
   },
   "sidebar": {
     "playlists": {
@@ -58,7 +58,7 @@
   "error": {
     "page-not-found": {
       "headline": "Hata",
-      "text": "Üzgünüm. \"{path}\" sayfasını bulamıyoruz."
+      "text": "Özür dilerim. Üzgünüm. \"{path}\" sayfasını bulamıyoruz."
     },
     "track-already-in-playlist": "Parça zaten oynatma listesi {0}mevcut",
     "album-already-in-playlist": "Bu albüm çalma listenizdeki zaten.",
@@ -94,12 +94,13 @@
     "download-mac-arm": "Daha yeni Mac için indirin",
     "mac-intel-explanation": "Genellikle 2021'den önce satın alındı",
     "mac-arm-explanation": "M1, M2, M3, M4 çipi",
+
     "download-bmm-app": "BMM uygulamasını indirin",
     "download-track": "Parça İndir",
     "mobile": "Mobil",
     "messages-not-allowed": {
       "title": "Mesajların indirilmesi kullanılamıyor",
-      "description": "BMM'den mesaj indirme özelliği artık kullanılamıyor. Belirli bir kullanıma yönelik bir mesaja ihtiyacınız varsa lütfen bizimle iletişime geçin ve ihtiyaçlarınızı açıklayın."
+      "description": "BMM'den mesaj indirme özelliği artık mevcut değildir. Belirli bir kullanım için bir mesaja ihtiyacınız varsa, lütfen bizimle iletişime geçin ve ihtiyaçlarınızı açıklayın."
     },
     "sendEmailTo": "{0}adresine e-posta gönder"
   },
@@ -108,7 +109,7 @@
     "new-playlist": "Yeni çalma listesi",
     "name-your-playlist": "Çalma listenizi adlandırın",
     "delete-playlist": "Çalma Listesini Sil",
-    "delete-playlist-description": "Çalma listesini silmek istediğinizden emin misiniz? Bu eylem geri alınamaz.",
+    "delete-playlist-description": "Bu çalma Listesini silmek istediğine emin misin \"{0}\"? Bu işlem geri alınamaz.",
     "action": {
       "shuffle": "Karıştır",
       "add-to-my-playlists": "Çalma listelerime ekle",
@@ -144,7 +145,8 @@
       "more-info": "Daha bilgi",
       "show-all": "Listele",
       "remove-from-playlist": "Çalma listesinden çıkar",
-      "transcription": "Transkripsiyon"
+      "transcription": "Transkripsiyon",
+      "playback": "Oynatma hızı"
     },
     "a11y": {
       "download": "İndir",
@@ -163,8 +165,11 @@
       "arranger": "Aranjör",
       "composer": "Besteci",
       "lyricist": "Söz Yazarı",
-      "text": "Text",
-      "melody": "Melody"
+      "text": "Metin",
+      "melody": "Melodi"
+    },
+    "playback": {
+      "normal": "Normal"
     }
   },
   "home": {
@@ -179,7 +184,7 @@
       "Speeches": "Konuşmalar",
       "Music": "Müzik",
       "Albums": "Albümler",
-      "Contributors": "Katkı Yapanlar",
+      "Contributors": "Katılımcılar",
       "Podcasts": "Podcast",
       "Playlists": "Çalma Listesi"
     },
@@ -219,12 +224,12 @@
   },
   "lyrics": {
     "edit": "Düzenlemek",
-    "create-new-lyrics": "Create new lyrics",
-    "create": "Create",
+    "create-new-lyrics": "Yeni şarkı sözleri oluşturun",
+    "create": "Oluştur",
     "save": "Değişiklikleri kaydet",
-    "verse-title": "Verse title",
-    "long-copyright": "Long copyright",
-    "remove-formatting": "Cleanup formatting",
-    "paste-instructions": "Paste text using <shortcut> to remove formatting."
+    "verse-title": "Ayet başlığı",
+    "long-copyright": "Telif Hakkı",
+    "remove-formatting": "Temizleme biçimlendirme",
+    "paste-instructions": "Biçimlendirmeyi kaldırmak için <shortcut> adresini kullanarak metni yapıştırın."
   }
 }
