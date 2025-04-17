@@ -19,7 +19,7 @@
     "contributor": "Kaastegija",
     "contributors": "Kaastegijad",
     "archive": "Arhiiv",
-    "transcribe": "Transkribeerimine",
+    "transcribe": "Kirjuta ümber tekstiks",
     "lyrics": "Laulusõnad"
   },
   "sidebar": {
@@ -60,19 +60,19 @@
       "headline": "Viga",
       "text": "Vabandust. Vabandust. Me ei leia lehte \"{path}\"."
     },
-    "track-already-in-playlist": "Lugu on esitusloendis {0} juba olemas",
+    "track-already-in-playlist": "Lugu on juba esitusloendis {0} olemas",
     "album-already-in-playlist": "See album on juba esitusloendis.",
     "collection-already-in-playlist": "Need lood on juba esitusloendis {0}."
   },
   "collection": {
-    "track-count": "{count} lugu | {count} lugu",
-    "album-count": "{count} album | {count} albumit",
+    "track-count": "{count} lugu | {count} loost",
+    "album-count": "{count} album | {count} albumist",
     "resume": "Jätka"
   },
   "login": {
     "error-message": {
       "contact-info": "Kui see tõrge püsib, {0}.",
-      "contact-link": "palun võta meiega ühendust",
+      "contact-link": "palun võtke meiega ühendust",
       "logout-and-redirect-info": "Midagi läks sisselogimisel valesti:",
       "manual-logout-and-redirect-info": "Palun {0}.",
       "logout-and-redirect-link": "proovi uuesti sisse logida"
@@ -84,38 +84,38 @@
     }
   },
   "download": {
-    "install-app": "Soovitame rakendust installida.",
-    "go-to-store": "Navigeerige äpi poodi.",
-    "get-for-desktop": "Hangi BMM-rakendus otse oma desktopile",
+    "install-app": "Soovitame paigaldada rakenduse.",
+    "go-to-store": "Navigeerige rakenduste poodi.",
+    "get-for-desktop": "Hangi BMM-rakendus otse oma töölauale",
     "download": "Lae alla",
-    "download-now": "Lae alla nüüd",
+    "download-now": "Lae kohe alla",
     "download-windows": "Lae alla Windowsi jaoks",
     "download-mac-intel": "Lae alla Inteli protsessori jaoks",
     "download-mac-arm": "Lae alla uuema Maci jaoks",
     "mac-intel-explanation": "Tavaliselt ostetud enne 2021. aastat",
     "mac-arm-explanation": "M1, M2, M3, M4 kiip",
 
-    "download-bmm-app": "Lae alla BMM-i rakendus",
+    "download-bmm-app": "Lae BMM-i rakendus alla",
     "download-track": "Lae lugu alla",
     "mobile": "Mobiil",
     "messages-not-allowed": {
-      "title": "Jutluste allalaadimine pole saadaval",
-      "description": "Jutluste allalaadimise võimalus BMMist ei ole enam saadaval. Kui vajad jutlust konkreetseks otstarbeks, võta meiega ühendust ja selgita oma vajadusi."
+      "title": "Sõnumite allalaadimine pole saadaval",
+      "description": "Sõnumite allalaadimise võimalus BMM-ist ei ole enam saadaval. Kui vajate sõnumit konkreetseks otstarbeks, võtke meiega ühendust ja selgitage oma vajadusi."
     },
     "sendEmailTo": "Saada meil aadressile {0}"
   },
   "playlist": {
     "add": "Lisa esitlusloendisse",
     "new-playlist": "Uus esitusloend",
-    "name-your-playlist": "Nimeta oma esitusloend",
+    "name-your-playlist": "Nimetage oma esitusloend",
     "delete-playlist": "Kustuta esitusloend",
-    "delete-playlist-description": "Kas oled kindel, et soovid kustutada esitusloendit \"{0}\"? Seda tegevust ei saa tagasi pöörata.",
+    "delete-playlist-description": "Kas olete kindel, et soovite esitusloendi kustutada? Seda tegevust ei saa tagasi pöörata.",
     "action": {
       "shuffle": "Sega",
-      "add-to-my-playlists": "Lisa mu esitlusloendisse",
+      "add-to-my-playlists": "Lisa minu esitlusloendisse",
       "remove-shared-playlist": "Eemalda esitusloend"
     },
-    "by-x": "{name}"
+    "by-x": "{name} järgi"
   },
   "podcast": {
     "this-week": "Sel nädalal",
@@ -123,7 +123,7 @@
     "week-x": "Nädal {count}",
     "action": {
       "play": "Esita",
-      "follow": "Järgi"
+      "follow": "Järgige"
     }
   },
   "player": {
@@ -141,11 +141,12 @@
       "add-to-queue": "Lisa järjekorda",
       "add-to-playlist": "Lisa esitlusloendisse",
       "share": "Jaga lugu",
-      "go-to-contributors": "Mine kaastegijate ossa",
+      "go-to-contributors": "Vaata kaastegijaid",
       "more-info": "Rohkem infot",
       "show-all": "Näita kõiki",
-      "remove-from-playlist": "Kustuta esitusloendist",
-      "transcription": "Transkriptsioon"
+      "remove-from-playlist": "Eemalda esitusloendist",
+      "transcription": "Tekstiks ümberkirjutamine",
+      "playback": "Taasesituse kiirus"
     },
     "a11y": {
       "download": "Lae alla",
@@ -153,7 +154,7 @@
       "options": "Kuva valikud"
     },
     "details": {
-      "title": "Loo detailid",
+      "title": "Loo üksikasjad",
       "reference": "Viide",
       "duration": "Kestus",
       "publish-date": "Avaldamise kuupäev",
@@ -161,11 +162,14 @@
       "publisher": "Väljaandja",
       "copyright": "Autoriõigused",
       "song-number": "Laulu number",
-      "arranger": "Korraldajalt",
+      "arranger": "Korraldaja",
       "composer": "Helilooja",
       "lyricist": "Sõnade autor",
       "text": "Tekst",
       "melody": "Meloodia"
+    },
+    "playback": {
+      "normal": "Tavaline"
     }
   },
   "home": {
@@ -181,7 +185,7 @@
       "Music": "Muusika",
       "Albums": "Albumid",
       "Contributors": "Kaastegijad",
-      "Podcasts": "Saated",
+      "Podcasts": "Taskuhäälingud",
       "Playlists": "Esitusloendid"
     },
     "input-placeholder": "Otsi",
@@ -197,11 +201,11 @@
   "transcription": {
     "lyrics": "Laulusõnad",
     "auto-transcribed": {
-      "title": "Automaatselt transkribeeritud",
-      "explanation": "Transkriptsioonid genereeritakse automaatselt ja võivad sisaldada vigu",
+      "title": "Automaatselt tekstiks ümberkirjutatud",
+      "explanation": "Tekstid genereeritakse automaatselt ja võivad sisaldada vigu",
       "confirmation": "Sain aru"
     },
-    "songtreasures": "Song Treasures",
+    "songtreasures": "LauluAarded4",
     "save": "Salvesta muudatused",
     "original": "Originaal",
     "edit": "Muuda",
@@ -210,7 +214,7 @@
     "review": "Ülevaade",
     "status": {
       "done": "Üle vaadatud",
-      "in-progress": "Pooleli",
+      "in-progress": "Käimasolev",
       "not-started": "Pole üle vaadatud"
     }
   },
