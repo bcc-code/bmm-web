@@ -6,6 +6,8 @@ const { t } = useI18n();
 const { $appInsights } = useNuxtApp();
 const { addNext, addToQueue } = useNuxtApp().$mediaPlayer;
 
+const { data: user } = await useCurrentUser();
+
 const copyToClipboardComponent = ref<null | { copyToClipboard: () => void }>(
   null,
 );
@@ -138,6 +140,14 @@ const dropdownMenuItems = computed(() => {
     });
   }
 
+  if (isTrackManager(user.value)) {
+    items.push({
+      icon: "icon.link",
+      text: "Open in Admin",
+      externalLink: "https://bmm.brunstad.org/admin/track/" + props.track.id,
+    });
+  }
+
   if (props.addDropdownItems) {
     props.addDropdownItems(items, props.track);
   }
@@ -164,6 +174,8 @@ const dropdownMenuItems = computed(() => {
           :icon="item.icon"
           :title="item.text"
           :to="'link' in item ? item.link : undefined"
+          :href="'externalLink' in item ? item.externalLink : undefined"
+          :target="'externalLink' in item ? '_blank' : undefined"
           @click="'clickFunction' in item ? item.clickFunction() : undefined"
         />
       </DropdownMenuGroup>

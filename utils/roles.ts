@@ -19,6 +19,9 @@ export function isUploader(user: UserModel): boolean {
     isAdmin(user)
   );
 }
+export function isTrackManager(user: UserModel): boolean {
+  return hasRole(user, "ROLE_TRACK_MANAGER") || isAdmin(user);
+}
 
 export function isTranscriptionManager(user: UserModel): boolean {
   return hasRole(user, "ROLE_TRANSCRIPTION_MANAGER") || isAdmin(user);

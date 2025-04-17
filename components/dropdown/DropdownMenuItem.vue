@@ -9,6 +9,7 @@ const props = defineProps<{
   icon?: NuxtIconName | undefined;
   to?: RoutesNamedLocations;
   href?: string;
+  target?: string;
   removeFlex?: boolean;
 }>();
 
@@ -24,6 +25,7 @@ const component = computed(() =>
         :is="component"
         :to="to"
         :href="href"
+        :target="target"
         :class="{
           'bg-label-separator': active,
           flex: !props.removeFlex,
