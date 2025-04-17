@@ -1,26 +1,24 @@
 {
   "global": {
     "cancel": "Annulla",
-    "try-again": "Try again"
+    "try-again": "Riprova"
   },
   "nav": {
     "home": "Home",
-    "browse": "Browse",
+    "browse": "Sfoglia",
     "playlist": "Playlist",
-    "profile": "Profilo",
-    "messages": "Messaggi",
-    "recent-messages": "Recent Messages",
-    "recent-music": "Recent Music",
+    "recent-messages": "Messaggi recenti",
+    "recent-music": "Musica recente",
     "audiobooks": "Audiolibri",
     "search": "Cerca",
     "album": "Album",
     "podcast": "Podcast",
-    "not-found": "Page not found",
+    "not-found": "Pagina non trovata",
     "contributor": "Contributore",
     "contributors": "Contributori",
     "archive": "Archivio",
-    "transcribe": "Transcribe",
-    "lyrics": "Lyrics"
+    "transcribe": "Trascrivi",
+    "lyrics": "Testi"
   },
   "sidebar": {
     "playlists": {
@@ -28,155 +26,157 @@
     }
   },
   "share": {
-    "link-copied-message": "Copied link to clipboard"
+    "link-copied-message": "Copia il link negli appunti"
   },
   "profile": {
     "title": "Profilo",
-    "autoplay": "Auto Play",
-    "theme": "Theme",
-    "theme-description": "Select the theme used for the interface.",
-    "app-language": "Language",
-    "interface-language": "Interface Language",
-    "interface-language-description": "Select the language used for the interface.",
-    "select-language": "Select language",
-    "content-language": "Content Language",
-    "content-language-description": "The preferred language for the content you are listening to.",
-    "preference-language-1": "Preferred language",
-    "preference-language-2": "Second language",
-    "preference-language-3": "Third language",
-    "preference-language-4": "{count}th language",
-    "uservoice": "User Voice",
-    "privacy-policy": "Privacy Policy",
+    "autoplay": "Riproduzione automatica",
+    "theme": "Tema",
+    "theme-description": "Seleziona il tema utilizzato per l'interfaccia.",
+    "app-language": "Lingua",
+    "interface-language": "Linguaggio dell'interfaccia",
+    "interface-language-description": "Seleziona la lingua utilizzata per l'interfaccia.",
+    "select-language": "Seleziona la lingua",
+    "content-language": "Lingua dei contenuti",
+    "content-language-description": "La lingua preferita per il contenuto che stai ascoltando.",
+    "preference-language-1": "Lingua preferita",
+    "preference-language-2": "Seconda lingua",
+    "preference-language-3": "Terza lingua",
+    "preference-language-4": "{count} lingua",
+    "uservoice": "Voce dell'utente",
+    "privacy-policy": "Informativa sulla privacy",
     "contact": "Contatto",
-    "logout": "Sign out",
-    "theme-dark": "Dark",
-    "theme-light": "Light",
-    "theme-system": "Same as system",
-    "done": "Done",
-    "add-another-language": "Add another language"
+    "logout": "Esci",
+    "theme-dark": "Scuro",
+    "theme-light": "Luce",
+    "theme-system": "Come il sistema",
+    "done": "Fatto",
+    "add-another-language": "Aggiungi un'altra lingua"
   },
   "error": {
     "page-not-found": {
-      "headline": "Error",
-      "text": "Sorry. We can't find the page \"{path}\"."
+      "headline": "Errore",
+      "text": "Mi dispiace. Non riusciamo a trovare la pagina \"{path}\"."
     },
-    "track-already-in-playlist": "Track already exists in playlist {0}",
+    "track-already-in-playlist": "Il brano esiste già nella playlist {0}",
     "album-already-in-playlist": "Questo album è già nella tua playlist.",
-    "collection-already-in-playlist": "These tracks are already in playlist {0}."
+    "collection-already-in-playlist": "Questi brani sono già presenti nella playlist {0}."
   },
   "collection": {
-    "track-count": "{count} track | {count} tracks",
-    "album-count": "{count} album | {count} albums",
-    "resume": "Resume"
+    "track-count": "{count} traccia | {count} tracce",
+    "album-count": "{count} album | {count} album",
+    "resume": "Prosegui"
   },
   "login": {
     "error-message": {
-      "contact-info": "Should this error persist, {0}.",
-      "contact-link": "please get in contact with us",
-      "logout-and-redirect-info": "Something regarding the login went wrong:",
-      "manual-logout-and-redirect-info": "Please {0}.",
-      "logout-and-redirect-link": "try to log in again"
+      "contact-info": "Se l'errore persiste, {0}.",
+      "contact-link": "contattaci",
+      "logout-and-redirect-info": "Qualcosa che riguarda il login è andato storto:",
+      "manual-logout-and-redirect-info": "Per favore {0}.",
+      "logout-and-redirect-link": "prova ad accedere di nuovo"
     },
     "redirect-message": {
-      "redirect-info": "You will be redirected to the login page.",
-      "manual-redirect-info": "Please wait or {0}.",
-      "redirect-link": "click to try again"
+      "redirect-info": "Verrai reindirizzato alla pagina di login.",
+      "manual-redirect-info": "Attendi o {0}.",
+      "redirect-link": "clicca per riprovare"
     }
   },
   "download": {
-    "install-app": "We recommend installing the app.",
-    "go-to-store": "Navigate to the App Store.",
-    "get-for-desktop": "Get the BMM app directly on your desktop",
+    "install-app": "Ti consigliamo di installare l'applicazione.",
+    "go-to-store": "Vai all'App Store.",
+    "get-for-desktop": "Ottieni l'app BMM direttamente sul tuo desktop",
     "download": "Scarica",
-    "download-now": "Download now",
-    "download-windows": "Download for Windows",
-    "download-mac-intel": "Download for Intel CPU",
-    "download-mac-arm": "Download for newer Mac",
-    "mac-intel-explanation": "Usually purchased before 2021",
+    "download-now": "Scarica ora",
+    "download-windows": "Scarica per Windows",
+    "download-mac-intel": "Scarica per CPU Intel",
+    "download-mac-arm": "Scarica per i Mac più recenti",
+    "mac-intel-explanation": "Di solito vengono acquistati prima del 2021",
     "mac-arm-explanation": "M1, M2, M3, M4 chip",
-    "download-bmm-app": "Download the BMM app",
+
+    "download-bmm-app": "Scarica l'applicazione BMM",
     "download-track": "Scarica la traccia",
     "mobile": "Mobile",
     "messages-not-allowed": {
-      "title": "Download of messages unavailable",
-      "description": "The ability to download messages from BMM is no longer available. If you need a message for a specific use, please contact us and explain your needs."
+      "title": "Download dei messaggi non disponibile",
+      "description": "La possibilità di scaricare i messaggi da BMM non è più disponibile. Se hai bisogno di un messaggio per un uso specifico, contattaci e spiegaci le tue esigenze."
     },
-    "sendEmailTo": "Send email to {0}"
+    "sendEmailTo": "Invia un'email a {0}"
   },
   "playlist": {
-    "add": "Add playlist",
+    "add": "Aggiungi una playlist",
     "new-playlist": "Nuova playlist",
-    "name-your-playlist": "Name your playlist",
+    "name-your-playlist": "Dai un nome alla tua playlist",
     "delete-playlist": "Elimina la playlist",
-    "delete-playlist-description": "Are you sure you want to delete the playlist? This action cannot be reversed.",
+    "delete-playlist-description": "Sei sicuro di voler eliminare la playlist \"{0}\"? Questa azione non può essere annullata.",
     "action": {
-      "shuffle": "Shuffle",
-      "add-to-my-playlists": "Add to my playlists",
-      "remove-shared-playlist": "Remove playlist"
+      "shuffle": "Mischia",
+      "add-to-my-playlists": "Aggiungi alle mie playlist",
+      "remove-shared-playlist": "Rimuovi la playlist"
     },
-    "by-x": "by {name}"
+    "by-x": "da {name}"
   },
   "podcast": {
-    "this-week": "This week",
-    "last-week": "Last week",
-    "week-x": "Week {count}",
+    "this-week": "Questa settimana",
+    "last-week": "La scorsa settimana",
+    "week-x": "Settimana {count}",
     "action": {
-      "play": "Riproduci",
-      "follow": "Segui"
+      "play": "Riproduci"
     }
   },
   "player": {
     "queue": "Coda"
   },
   "edit": {
-    "rename": "Rename",
+    "rename": "Rinomina",
     "delete": "Elimina"
   },
   "track": {
     "dropdown": {
-      "play-next": "Play next",
+      "play-next": "Riproduci il prossimo",
       "download": "Scarica",
       "go-to-album": "Vai all'album",
       "add-to-queue": "Aggiungi alla coda",
       "add-to-playlist": "Aggiungi alla playlist",
-      "share": "Share track",
+      "share": "Condividi la traccia",
       "go-to-contributors": "Vai ai collaboratori",
       "more-info": "Ulteriori informazioni",
       "show-all": "Visualizza tutti i",
       "remove-from-playlist": "Rimuovi dalla playlist",
-      "transcription": "Transcription"
+      "transcription": "Trascrizione",
+      "playback": "Velocità di riproduzione"
     },
     "a11y": {
-      "download": "Scarica",
-      "queue": "Aggiungi alla coda",
-      "options": "Show options"
+      "options": "Mostra le opzioni"
     },
     "details": {
-      "title": "Track Details",
-      "reference": "Reference",
+      "title": "Dettagli della traccia",
+      "reference": "Riferimento",
       "duration": "Durata",
-      "publish-date": "Publish Date",
+      "publish-date": "Data di pubblicazione",
       "album": "Album",
       "publisher": "Publisher",
       "copyright": "Copyright",
-      "song-number": "Song number",
+      "song-number": "Numero della canzone",
       "arranger": "Arrangiatore",
       "composer": "Compositore",
       "lyricist": "Autore",
-      "text": "Text",
-      "melody": "Melody"
+      "text": "Testo",
+      "melody": "Melodia"
+    },
+    "playback": {
+      "normal": "Normale"
     }
   },
   "home": {
     "list": {
-      "see-all": "See all",
+      "see-all": "Vedi tutti",
       "recommended": "Consigliato"
     }
   },
   "search": {
     "search-filter": {
-      "All": "All",
-      "Speeches": "Speeches",
+      "All": "Tutto",
+      "Speeches": "Discorsi",
       "Music": "Musica",
       "Albums": "Albums",
       "Contributors": "Contributori",
@@ -184,33 +184,33 @@
       "Playlists": "Playlist"
     },
     "input-placeholder": "Cerca",
-    "loading-results": "Loading results",
-    "no-results-yet": "No results yet",
-    "no-results-found": "No results found",
-    "result-count": "{count} results"
+    "loading-results": "Risultati del caricamento",
+    "no-results-yet": "Non ci sono ancora risultati",
+    "no-results-found": "Nessun risultato trovato",
+    "result-count": "{count} risultati"
   },
   "streak": {
-    "your-streak": "Your streak this week",
-    "days-in-row": "{count} days in a row"
+    "your-streak": "Il tuo streak di questa settimana",
+    "days-in-row": "{count} giorni di fila"
   },
   "transcription": {
-    "lyrics": "Lyrics",
+    "lyrics": "Testi",
     "auto-transcribed": {
-      "title": "Auto-transcribed",
-      "explanation": "Transcripts are auto-generated and might contain errors",
-      "confirmation": "Got it"
+      "title": "Trascritto automaticamente",
+      "explanation": "Le trascrizioni sono generate automaticamente e potrebbero contenere degli errori.",
+      "confirmation": "Capito!"
     },
     "songtreasures": "SongTreasures",
-    "save": "Save changes",
-    "original": "Original",
-    "edit": "Edit",
+    "save": "Salva le modifiche",
+    "original": "Originale",
+    "edit": "Modifica",
     "deleteSegment": "Elimina",
-    "undeleteSegment": "Undo delete",
-    "review": "Review",
+    "undeleteSegment": "Annulla l'eliminazione",
+    "review": "Recensione",
     "status": {
-      "done": "Reviewed",
-      "in-progress": "In progress",
-      "not-started": "Not reviewed"
+      "done": "Recensito",
+      "in-progress": "In corso",
+      "not-started": "Non recensito"
     }
   },
   "dashboards": {
@@ -218,13 +218,13 @@
     "fra-kaare": "Fra Kåre"
   },
   "lyrics": {
-    "edit": "Edit",
-    "create-new-lyrics": "Create new lyrics",
-    "create": "Create",
-    "save": "Save changes",
-    "verse-title": "Verse title",
-    "long-copyright": "Long copyright",
-    "remove-formatting": "Cleanup formatting",
-    "paste-instructions": "Paste text using <shortcut> to remove formatting."
+    "edit": "Modifica",
+    "create-new-lyrics": "Crea nuovi testi",
+    "create": "Crea",
+    "save": "Salva le modifiche",
+    "verse-title": "Titolo della strofa",
+    "long-copyright": "Lungo Copyright",
+    "remove-formatting": "Pulizia della formattazione",
+    "paste-instructions": "Incolla il testo utilizzando <shortcut> per rimuovere la formattazione."
   }
 }

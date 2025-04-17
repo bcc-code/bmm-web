@@ -7,8 +7,6 @@
     "home": "Acasă",
     "browse": "Explorează",
     "playlist": "Listă de redare",
-    "profile": "Profil",
-    "messages": "Vorbiri",
     "recent-messages": "Ultimele vorbiri",
     "recent-music": "Ultimele cântări",
     "audiobooks": "Cărți audio",
@@ -122,8 +120,7 @@
     "last-week": "Ultima săptămână",
     "week-x": "Săptămâna {count}",
     "action": {
-      "play": "Rulează",
-      "follow": "Urmărește"
+      "play": "Rulează"
     }
   },
   "player": {
@@ -145,11 +142,10 @@
       "more-info": "Mai multe informații",
       "show-all": "Toate",
       "remove-from-playlist": "Șterge din lista de redare",
-      "transcription": "Transcriere"
+      "transcription": "Transcriere",
+      "playback": "Viteză de redare"
     },
     "a11y": {
-      "download": "Descarcă",
-      "queue": "Adaugă în coadă",
       "options": "Afișează opțiuni"
     },
     "details": {
@@ -166,6 +162,9 @@
       "lyricist": "Textier",
       "text": "Text",
       "melody": "Melodie"
+    },
+    "playback": {
+      "normal": "Normal"
     }
   },
   "home": {

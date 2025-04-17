@@ -7,8 +7,6 @@
     "home": "முகப்பு ",
     "browse": "உலாவு",
     "playlist": "பிளேலிஸ்ட்",
-    "profile": "சுயவிவரம்",
-    "messages": "செய்திகள்",
     "recent-messages": "சமீபத்திய செய்திகள்",
     "recent-music": "சமீபத்திய இசை",
     "audiobooks": "ஆடியோ புத்தகங்கள்",
@@ -121,8 +119,7 @@
     "last-week": "கடந்த வாரம்",
     "week-x": "வாரம் {count}",
     "action": {
-      "play": "பிளே",
-      "follow": "பின்பற்றவும்"
+      "play": "பிளே"
     }
   },
   "player": {
@@ -147,8 +144,6 @@
       "transcription": "படியெடுத்தல்"
     },
     "a11y": {
-      "download": "பதிவிறக்கு ",
-      "queue": "வரிசையில் சேர்",
       "options": "விருப்பங்களைக் காட்டு"
     },
     "details": {

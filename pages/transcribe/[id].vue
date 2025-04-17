@@ -343,28 +343,27 @@ async function copyToClipboard() {
                   </template>
                 </button>
               </div>
-              <p
+              <input
                 :class="[
-                  'col-start-1 row-start-2 whitespace-pre-wrap',
+                  'col-start-1 row-start-2 whitespace-pre-wrap bg-[transparent]',
                   {
                     'opacity-0': !editing[index],
                   },
                 ]"
                 :contenteditable="!hasInvalidIds"
                 :data-transcription-segment-index="index"
+                :value="item.text"
                 @input="
                   setTranscriptionSegmentText(
                     item,
-                    ($event.target as HTMLParagraphElement).innerText,
+                    ($event.target as HTMLInputElement).value,
                   )
                 "
                 @focus="handleFocus(index)"
                 @blur="editing[index] = false"
                 @keydown.up="onArrowUp"
                 @keydown.down="onArrowDown"
-              >
-                {{ item.text }}
-              </p>
+              />
               <p
                 v-if="!editing[index]"
                 class="col-start-1 row-start-2 whitespace-pre-wrap"

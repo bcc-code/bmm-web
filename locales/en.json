@@ -7,8 +7,6 @@
     "home": "Home",
     "browse": "Browse",
     "playlist": "Playlist",
-    "profile": "Profile",
-    "messages": "Messages",
     "recent-messages": "Recent Messages",
     "recent-music": "Recent Music",
     "audiobooks": "Audiobooks",
@@ -122,8 +120,7 @@
     "last-week": "Last week",
     "week-x": "Week {count}",
     "action": {
-      "play": "Play",
-      "follow": "Follow"
+      "play": "Play"
     }
   },
   "player": {
@@ -149,8 +146,6 @@
       "playback": "Playback speed"
     },
     "a11y": {
-      "download": "Download",
-      "queue": "Add to queue",
       "options": "Show options"
     },
     "details": {

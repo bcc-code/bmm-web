@@ -131,22 +131,22 @@ const {
             <div class="flex items-center gap-2 pb-2">
               <input
                 :value="minAge"
+                type="number"
+                class="type-title-2 w-20 rounded-lg bg-background-1 px-2 py-1.5 text-label-1"
                 @change="
                   (e) =>
                     (minAge = parseInt((e.target as HTMLInputElement).value))
                 "
-                type="number"
-                class="type-title-2 w-20 rounded-lg bg-background-1 px-2 py-1.5 text-label-1"
               />
               -
               <input
                 :value="maxAge"
+                type="number"
+                class="type-title-2 w-20 rounded-lg bg-background-1 px-2 py-1.5 text-label-1"
                 @change="
                   (e) =>
                     (maxAge = parseInt((e.target as HTMLInputElement).value))
                 "
-                type="number"
-                class="type-title-2 w-20 rounded-lg bg-background-1 px-2 py-1.5 text-label-1"
               />
             </div>
             <p class="type-paragraph-3 block px-2 text-label-3">

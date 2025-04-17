@@ -7,8 +7,6 @@
     "home": "Menu",
     "browse": "Navegar",
     "playlist": "Lista de reprodução",
-    "profile": "Perfil",
-    "messages": "Mensagens",
     "recent-messages": "Mensagens recentes",
     "recent-music": "Músicas recentes",
     "audiobooks": "Audiobooks",
@@ -122,8 +120,7 @@
     "last-week": "Ultima semana",
     "week-x": "Semana {count}",
     "action": {
-      "play": "Reproduzir",
-      "follow": "Siga"
+      "play": "Reproduzir"
     }
   },
   "player": {
@@ -145,11 +142,10 @@
       "more-info": "Mais informações",
       "show-all": "Mostrar todos",
       "remove-from-playlist": "Remover da lista de reprodução",
-      "transcription": "Transcrição"
+      "transcription": "Transcrição",
+      "playback": "Velocidade do playback"
     },
     "a11y": {
-      "download": "Baixar",
-      "queue": "Adicionar à fila",
       "options": "Mostrar opções"
     },
     "details": {
@@ -166,6 +162,9 @@
       "lyricist": "Letrista",
       "text": "Texto",
       "melody": "Melodia"
+    },
+    "playback": {
+      "normal": "Normal"
     }
   },
   "home": {

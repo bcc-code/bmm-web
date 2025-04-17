@@ -7,8 +7,6 @@
     "home": "Home",
     "browse": "Bladeren",
     "playlist": "Afspeellijst",
-    "profile": "Profiel",
-    "messages": "Toespraken",
     "recent-messages": "Recente toespraken",
     "recent-music": "Recente muziek",
     "audiobooks": "Audioboeken",
@@ -122,8 +120,7 @@
     "last-week": "Vorige week",
     "week-x": "Week {count}",
     "action": {
-      "play": "Afspelen",
-      "follow": "Volg"
+      "play": "Afspelen"
     }
   },
   "player": {
@@ -145,11 +142,10 @@
       "more-info": "Meer informatie",
       "show-all": "Toon alle",
       "remove-from-playlist": "Verwijderen uit afspeellijst",
-      "transcription": "Transcriptie"
+      "transcription": "Transcriptie",
+      "playback": "Afspeelsnelheid"
     },
     "a11y": {
-      "download": "Downloaden",
-      "queue": "Toevoegen aan wachtrij",
       "options": "Toon opties"
     },
     "details": {
@@ -166,6 +162,9 @@
       "lyricist": "Schrijver",
       "text": "Tekst",
       "melody": "Melodie"
+    },
+    "playback": {
+      "normal": "Normaal"
     }
   },
   "home": {
