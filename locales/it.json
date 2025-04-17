@@ -44,7 +44,7 @@
     "preference-language-1": "Lingua preferita",
     "preference-language-2": "Seconda lingua",
     "preference-language-3": "Terza lingua",
-    "preference-language-4": "{conta} lingua",
+    "preference-language-4": "{count} lingua",
     "uservoice": "Voce dell'utente",
     "privacy-policy": "Informativa sulla privacy",
     "contact": "Contatto",
@@ -58,15 +58,15 @@
   "error": {
     "page-not-found": {
       "headline": "Errore",
-      "text": "Mi dispiace. Non riusciamo a trovare la pagina \"{percorso}\"."
+      "text": "Mi dispiace. Non riusciamo a trovare la pagina \"{path}\"."
     },
     "track-already-in-playlist": "Il brano esiste già nella playlist {0}",
     "album-already-in-playlist": "Questo album è già nella tua playlist.",
     "collection-already-in-playlist": "Questi brani sono già presenti nella playlist {0}."
   },
   "collection": {
-    "track-count": "{conta} traccia | {conta} tracce",
-    "album-count": "{conta} album | {conta} album",
+    "track-count": "{count} traccia | {count} tracce",
+    "album-count": "{count} album | {count} album",
     "resume": "Prosegui"
   },
   "login": {
@@ -115,12 +115,12 @@
       "add-to-my-playlists": "Aggiungi alle mie playlist",
       "remove-shared-playlist": "Rimuovi la playlist"
     },
-    "by-x": "da {nome}"
+    "by-x": "da {name}"
   },
   "podcast": {
     "this-week": "Questa settimana",
     "last-week": "La scorsa settimana",
-    "week-x": "Settimana {conta}",
+    "week-x": "Settimana {count}",
     "action": {
       "play": "Riproduci",
       "follow": "Segui"
@@ -192,11 +192,11 @@
     "loading-results": "Risultati del caricamento",
     "no-results-yet": "Non ci sono ancora risultati",
     "no-results-found": "Nessun risultato trovato",
-    "result-count": "{conta} risultati"
+    "result-count": "{count} risultati"
   },
   "streak": {
     "your-streak": "Il tuo streak di questa settimana",
-    "days-in-row": "{conta} giorni di fila"
+    "days-in-row": "{count} giorni di fila"
   },
   "transcription": {
     "lyrics": "Testi",

@@ -16,6 +16,8 @@ import hu from "./locales/hu.json";
 import pt from "./locales/pt.json";
 import ro from "./locales/ro.json";
 import ru from "./locales/ru.json";
+import it from "./locales/it.json";
+import pl from "./locales/pl.json";
 
 function cleanupEmptyProperties(obj: any, fallback: any): any {
   Object.keys(obj).forEach((key) => {
@@ -46,19 +48,21 @@ export default defineI18nConfig(() => ({
   messages: {
     nb: cleanup(nb, en),
     en,
-    de: cleanup(de, en),
-    nl: cleanup(nl, en),
-    fr: cleanup(fr, en),
-    sl: cleanup(sl, en),
-    tr: cleanup(tr, en),
-    ta: cleanup(ta, en),
     da: cleanup(da, en),
+    de: cleanup(de, en),
     es: cleanup(es, en),
     et: cleanup(et, en),
     fi: cleanup(fi, en),
+    fr: cleanup(fr, en),
     hu: cleanup(hu, en),
+    it: cleanup(it, en),
+    nl: cleanup(nl, en),
+    pl: cleanup(pl, en),
     pt: cleanup(pt, en),
     ro: cleanup(ro, en),
     ru: cleanup(ru, en),
+    sl: cleanup(sl, en),
+    ta: cleanup(ta, en),
+    tr: cleanup(tr, en),
   },
 }));
