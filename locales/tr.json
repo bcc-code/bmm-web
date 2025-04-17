@@ -7,8 +7,6 @@
     "home": "Ana sayfa",
     "browse": "Araştır",
     "playlist": "Çalma Listesi",
-    "profile": "Profil",
-    "messages": "Mesajlar",
     "recent-messages": "Son Mesajlar",
     "recent-music": "En Yeni Müzikler",
     "audiobooks": "Sesli Kitaplar",
@@ -122,8 +120,7 @@
     "last-week": "Geçen hafta",
     "week-x": "Hafta {count}",
     "action": {
-      "play": "Oynat",
-      "follow": "İzleyin"
+      "play": "Oynat"
     }
   },
   "player": {
@@ -149,8 +146,6 @@
       "playback": "Oynatma hızı"
     },
     "a11y": {
-      "download": "İndir",
-      "queue": "Sıraya Ekle",
       "options": "Seçenekleri göster"
     },
     "details": {

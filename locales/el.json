@@ -7,8 +7,6 @@
     "home": "Home",
     "browse": "Browse",
     "playlist": "Playlist",
-    "profile": "Profile",
-    "messages": "Μυνήματα",
     "recent-messages": "Recent Messages",
     "recent-music": "Recent Music",
     "audiobooks": "Ηχογραφημένα βιβλία",
@@ -121,8 +119,7 @@
     "last-week": "Last week",
     "week-x": "Week {count}",
     "action": {
-      "play": "Αναπαραγωγή / Play",
-      "follow": "Follow"
+      "play": "Αναπαραγωγή / Play"
     }
   },
   "player": {
@@ -147,8 +144,6 @@
       "transcription": "Transcription"
     },
     "a11y": {
-      "download": "Λήψη",
-      "queue": "Add to queue",
       "options": "Show options"
     },
     "details": {

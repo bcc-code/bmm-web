@@ -7,8 +7,6 @@
     "home": "Koti",
     "browse": "Selaa",
     "playlist": "Soittolista",
-    "profile": "Profiili",
-    "messages": "Puheet",
     "recent-messages": "Uusimmat puheet",
     "recent-music": "Uusimmat kappaleet",
     "audiobooks": "Äänikirjat",
@@ -121,8 +119,7 @@
     "last-week": "Viime viikko",
     "week-x": "Viikko {count}",
     "action": {
-      "play": "Toista",
-      "follow": "Seuraa"
+      "play": "Toista"
     }
   },
   "player": {
@@ -147,8 +144,6 @@
       "transcription": "Tekstinä"
     },
     "a11y": {
-      "download": "Lataa",
-      "queue": "Lisää jonoon",
       "options": "Näytä vaihtoehdot"
     },
     "details": {

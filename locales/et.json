@@ -7,8 +7,6 @@
     "home": "Pealeht",
     "browse": "Sirvi",
     "playlist": "Esitusloend",
-    "profile": "Profiil",
-    "messages": "Sõnumid",
     "recent-messages": "Hiljutised jutlused",
     "recent-music": "Hiljutine muusika",
     "audiobooks": "Audioraamatud",
@@ -122,8 +120,7 @@
     "last-week": "Eelmisel nädalal",
     "week-x": "Nädal {count}",
     "action": {
-      "play": "Esita",
-      "follow": "Järgige"
+      "play": "Esita"
     }
   },
   "player": {
@@ -149,8 +146,6 @@
       "playback": "Taasesituse kiirus"
     },
     "a11y": {
-      "download": "Lae alla",
-      "queue": "Lisa järjekorda",
       "options": "Kuva valikud"
     },
     "details": {

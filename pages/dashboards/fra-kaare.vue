@@ -5,7 +5,10 @@ import { NuxtLink } from "#components";
 <template>
   <div>
     <header class="mb-8">
-      <PageHeading>Dashboard: Fra Kåre</PageHeading>
+      <PageHeading
+        >{{ $t("dashboards.title") }}:
+        {{ $t("dashboards.fra-kaare") }}</PageHeading
+      >
       <div class="flex border-b border-label-separator">
         <NuxtLink
           to="/dashboards/fra-kaare/overview"

@@ -7,8 +7,6 @@
     "home": "Acasă",
     "browse": "Explorează",
     "playlist": "Listă de redare",
-    "profile": "Profil",
-    "messages": "Vorbiri",
     "recent-messages": "Ultimele vorbiri",
     "recent-music": "Ultimele cântări",
     "audiobooks": "Cărți audio",
@@ -122,8 +120,7 @@
     "last-week": "Ultima săptămână",
     "week-x": "Săptămâna {count}",
     "action": {
-      "play": "Rulează",
-      "follow": "Urmărește"
+      "play": "Rulează"
     }
   },
   "player": {
@@ -149,8 +146,6 @@
       "playback": "Viteză de redare"
     },
     "a11y": {
-      "download": "Descarcă",
-      "queue": "Adaugă în coadă",
       "options": "Afișează opțiuni"
     },
     "details": {

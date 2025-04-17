@@ -7,8 +7,6 @@
     "home": "Hjem",
     "browse": "Gennemse",
     "playlist": "Spilleliste",
-    "profile": "Profil",
-    "messages": "Taler",
     "recent-messages": "Seneste taler",
     "recent-music": "Nyeste musik",
     "audiobooks": "Lydbøger",
@@ -122,8 +120,7 @@
     "last-week": "Sidste uge",
     "week-x": "Uge {count}",
     "action": {
-      "play": "Afspil",
-      "follow": "Følg"
+      "play": "Afspil"
     }
   },
   "player": {
@@ -148,8 +145,6 @@
       "transcription": "Transskribering"
     },
     "a11y": {
-      "download": "Download",
-      "queue": "Føj til spillekø",
       "options": "Vis muligheder"
     },
     "details": {
