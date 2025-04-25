@@ -277,9 +277,7 @@ function playTrack(item: TrackModel) {
                 :cover="item.cover"
                 :label="item.title"
               />
-              <li v-else>
-                {{ ((a: never) => {})(item) }}
-              </li>
+              <li v-else>{{ item.type }} is not supported yet</li>
             </template>
             <ul v-if="loadingMore" class="col-span-full">
               <li
