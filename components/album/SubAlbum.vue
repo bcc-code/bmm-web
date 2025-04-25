@@ -99,7 +99,10 @@ const onResume = () => {
       <div
         class="mt-2 border-b-[1px] border-b-label-separator py-3 text-label-3"
       >
-        {{ t("collection.track-count", album?.children?.length) }}
+        <TrackCountAndDuration
+          :track-count="album.trackCount"
+          :seconds="album.totalSeconds"
+        ></TrackCountAndDuration>
       </div>
       <TrackList
         :track-type-is-known="false"

@@ -72,7 +72,10 @@ const addDropdownItems = (items: DropdownMenuItem[], track: TrackModel) => {
           {{ t("playlist.by-x", { name: collection.authorName }) }}
         </div>
         <div v-if="collection?.tracks">
-          {{ t("collection.track-count", collection.tracks.length) }}
+          <TrackCountAndDuration
+            :track-count="collection.trackCount"
+            :seconds="collection.totalSeconds"
+          ></TrackCountAndDuration>
         </div>
       </template>
       <template v-if="collection" #actions>

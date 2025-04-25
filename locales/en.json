@@ -1,7 +1,9 @@
 {
   "global": {
     "cancel": "Cancel",
-    "try-again": "Try again"
+    "try-again": "Try again",
+    "hours-and-minutes": "{0} hr {1} min",
+    "minutes-and-seconds": "{0} min {1} sec"
   },
   "nav": {
     "home": "Home",

@@ -111,7 +111,10 @@ const onResume = () => {
     </TrackCollectionHeader>
 
     <p v-if="childTracks.length" class="py-2 text-label-3">
-      {{ t("collection.track-count", childTracks.length) }}
+      <TrackCountAndDuration
+        :track-count="album.trackCount"
+        :seconds="album.totalSeconds"
+      ></TrackCountAndDuration>
     </p>
     <TrackList :tracks="childTracks" :origin="origin" album-is-known>
     </TrackList>

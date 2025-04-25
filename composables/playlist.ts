@@ -9,7 +9,7 @@ export function useCuratedPlaylist(options: UseCuratedPlaylistOptions) {
 
   return reactiveApi(
     useLazyAsyncData(`playlist-${id}`, () =>
-      new PlaylistApi().playlistIdGet({ id }),
+      new PlaylistApi().playlistIdDetailsGet({ id }),
     ),
   );
 }

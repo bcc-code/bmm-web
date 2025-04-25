@@ -1,11 +1,11 @@
 <script lang="ts" setup>
 import { TrackCollectionApi } from "@bcc-code/bmm-sdk-fetch";
-import type { PlaylistModel } from "@bcc-code/bmm-sdk-fetch";
+import type { PlaylistDetailsModel } from "@bcc-code/bmm-sdk-fetch";
 
 const { t } = useI18n();
 
 const props = defineProps<{
-  playlist: PlaylistModel;
+  playlist: PlaylistDetailsModel;
 }>();
 
 const showAddToPlaylist = ref(false);

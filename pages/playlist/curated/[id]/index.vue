@@ -15,13 +15,13 @@ const origin = computed(
 );
 
 const onPressPlay = () => {
-  if (tracks.value) {
-    setQueue(tracks.value, 0, origin.value);
+  if (playlist.value?.tracks) {
+    setQueue(playlist.value.tracks, 0, origin.value);
   }
 };
 function shuffle() {
-  if (tracks.value) {
-    setQueueShuffled(tracks.value, origin.value);
+  if (playlist.value?.tracks) {
+    setQueueShuffled(playlist.value.tracks, origin.value);
     $appInsights.event("Shuffle Playlist", { playlistId });
   }
 }
@@ -40,8 +40,11 @@ useHead({
         </template>
         <template #heading>
           <PageHeading>{{ playlist.title }}</PageHeading>
-          <p v-if="tracks">
-            {{ t("collection.track-count", tracks.length) }}
+          <p>
+            <TrackCountAndDuration
+              :track-count="playlist.trackCount"
+              :seconds="playlist.totalSeconds"
+            />
           </p>
         </template>
         <template #actions>
