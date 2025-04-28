@@ -40,7 +40,7 @@ useHead({
         </template>
         <template #heading>
           <PageHeading>{{ playlist.title }}</PageHeading>
-          <p v-if="playlist.description">
+          <p v-if="playlist.description" class="mb-2">
             {{ playlist.description }}
           </p>
           <p>

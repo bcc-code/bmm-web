@@ -80,6 +80,9 @@ const onResume = () => {
       </template>
       <template #heading>
         <PageHeading>{{ album.title }}</PageHeading>
+        <p v-if="album.description" class="mb-2">
+          {{ album.description }}
+        </p>
       </template>
       <template #actions>
         <ButtonStyled

@@ -109,6 +109,9 @@ useHead({
         </template>
         <template #heading>
           <PageHeading>{{ podcast.title }}</PageHeading>
+          <p v-if="podcast.description" class="mb-2">
+            {{ podcast.description }}
+          </p>
         </template>
         <template #actions>
           <ButtonStyled intent="primary" icon="icon.play" @click="onPressPlay">
