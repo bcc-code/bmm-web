@@ -1,12 +1,12 @@
 import { SharedPlaylistApi, TrackCollectionApi } from "@bcc-code/bmm-sdk-fetch";
-import type { TrackCollectionDetails } from "@bcc-code/bmm-sdk-fetch";
+import type { TrackCollectionShell } from "@bcc-code/bmm-sdk-fetch";
 import type { AsyncData } from "nuxt/app";
 
 interface UseTrackCollectionOptions {
   id: number;
 }
 
-let playlistsRequest: AsyncData<TrackCollectionDetails[], Error | null> | null =
+let playlistsRequest: AsyncData<TrackCollectionShell[], Error | null> | null =
   null;
 
 export function usePrivatePlaylist(options: UseTrackCollectionOptions) {
