@@ -80,7 +80,10 @@ const onResume = () => {
       </template>
       <template #heading>
         <PageHeading>{{ album.title }}</PageHeading>
-        <p v-if="album.description" class="mb-2">
+        <p
+          v-if="album.description"
+          class="type-paragraph-2 mb-2 mt-[-12px] text-label-2"
+        >
           {{ album.description }}
         </p>
       </template>
