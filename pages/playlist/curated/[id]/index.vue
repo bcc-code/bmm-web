@@ -40,6 +40,9 @@ useHead({
         </template>
         <template #heading>
           <PageHeading>{{ playlist.title }}</PageHeading>
+          <p v-if="playlist.description">
+            {{ playlist.description }}
+          </p>
           <p>
             <TrackCountAndDuration
               :track-count="playlist.trackCount"
