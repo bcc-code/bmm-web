@@ -29,6 +29,7 @@ const onPointerDownProgressBar = () => {
       <CoverImage
         :src="currentTrack?.meta?.attachedPicture"
         class="h-[48px] rounded-md"
+        :style="`view-transition-name: player-cover-${currentTrack?.id}`"
       />
       <div
         class="flex min-w-0 flex-1 flex-col gap-1 truncate whitespace-nowrap"

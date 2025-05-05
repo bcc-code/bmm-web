@@ -17,6 +17,16 @@ defineShortcuts({
   ctrl_arrowright: () => next(),
   ctrl_shift_arrowright: () => next(),
 });
+
+function setOpen(value: boolean) {
+  if ("startViewTransition" in document && document.startViewTransition) {
+    document.startViewTransition(() => {
+      open.value = value;
+    });
+  } else {
+    open.value = value;
+  }
+}
 </script>
 
 <template>
@@ -37,8 +47,13 @@ defineShortcuts({
         'animation-timing-function': 'cubic-bezier(0.19, 1, 0.22, 1)',
       }"
     >
-      <MediaPlayerClosed v-if="!open" @click.stop="open = !open" />
-      <MediaPlayerOpen v-else v-model="open" class="player-height" />
+      <MediaPlayerClosed v-if="!open" @click.stop="setOpen(!open)" />
+      <MediaPlayerOpen
+        v-else
+        :model-value="open"
+        @update:model-value="setOpen"
+        class="player-height"
+      />
     </div>
   </div>
 </template>

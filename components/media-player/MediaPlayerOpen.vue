@@ -58,6 +58,7 @@ useDraggable(queueListElement, queue, {
           <CoverImage
             :src="currentTrack?.meta?.attachedPicture"
             class="w-20 rounded-md x-tall:w-40"
+            :style="`view-transition-name: player-cover-${currentTrack?.id}`"
           />
         </div>
 
