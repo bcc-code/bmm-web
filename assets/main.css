@@ -35,3 +35,7 @@ html {
 * {
   outline-color: currentColor;
 }
+
+::view-transition-group(root) {
+  animation: none;
+}
