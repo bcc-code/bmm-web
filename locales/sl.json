@@ -1,7 +1,9 @@
 {
   "global": {
     "cancel": "Prekliči",
-    "try-again": "Poskusi znova"
+    "try-again": "Poskusi znova",
+    "hours-and-minutes": "{0} hr {1} min",
+    "minutes-and-seconds": "{0} min {1} sek"
   },
   "nav": {
     "home": "Domov",
@@ -42,7 +44,7 @@
     "preference-language-1": "Želeni jezik",
     "preference-language-2": "Drugi jezik",
     "preference-language-3": "Tretji jezik",
-    "preference-language-4": "{count} jezik",
+    "preference-language-4": "{count}i jezik",
     "uservoice": "Glas uporabnika",
     "privacy-policy": "Pravilnik o zasebnosti",
     "contact": "Kontakt",
@@ -72,12 +74,12 @@
       "contact-info": "Če se ta napaka ne odpravi, {0}.",
       "contact-link": "stopite v stik z nami",
       "logout-and-redirect-info": "Nekaj v zvezi s prijavo je šlo narobe:",
-      "manual-logout-and-redirect-info": "Prosim {0}.",
+      "manual-logout-and-redirect-info": "Prosim {0}.,",
       "logout-and-redirect-link": "poskusi se prijaviti znova"
     },
     "redirect-message": {
       "redirect-info": "Preusmerjen boš na stran za prijavo.",
-      "manual-redirect-info": "Prosim počakaj ali {0}.",
+      "manual-redirect-info": "Prosim, počakaj ali {0}.",
       "redirect-link": "klikni za ponovni poskus"
     }
   },
@@ -132,7 +134,7 @@
   },
   "track": {
     "dropdown": {
-      "play-next": "Igraj naslednjw",
+      "play-next": "Predvajaj naslednje",
       "download": "Prenesi",
       "go-to-album": "Pojdi na album",
       "add-to-queue": "Dodaj v čakalno vrsto",
@@ -142,7 +144,8 @@
       "more-info": "Več informacij",
       "show-all": "Prikaži vse",
       "remove-from-playlist": "Odstrani s seznama predvajanja",
-      "transcription": "Prepis"
+      "transcription": "Prepis",
+      "playback": "Hitrost predvajanja"
     },
     "a11y": {
       "options": "Pokaži možnosti"
@@ -161,6 +164,9 @@
       "lyricist": "Avtor besedila",
       "text": "Besedilo",
       "melody": "Melodija"
+    },
+    "playback": {
+      "normal": "Normalno"
     }
   },
   "home": {
@@ -186,7 +192,7 @@
     "result-count": "Rezultati: {count}"
   },
   "streak": {
-    "your-streak": "Tvoj  niz ta teden",
+    "your-streak": "Tvoj niz ta teden",
     "days-in-row": "Zaporedni dnevi: {count}"
   },
   "transcription": {
