@@ -1,7 +1,9 @@
 {
   "global": {
     "cancel": "Annulla",
-    "try-again": "Riprova"
+    "try-again": "Riprova",
+    "hours-and-minutes": "{0} hr {1} min",
+    "minutes-and-seconds": "{0} min \\ sec"
   },
   "nav": {
     "home": "Home",
@@ -42,7 +44,7 @@
     "preference-language-1": "Lingua preferita",
     "preference-language-2": "Seconda lingua",
     "preference-language-3": "Terza lingua",
-    "preference-language-4": "{count} lingua",
+    "preference-language-4": "{conta} lingua",
     "uservoice": "Voce dell'utente",
     "privacy-policy": "Informativa sulla privacy",
     "contact": "Contatto",
@@ -56,15 +58,15 @@
   "error": {
     "page-not-found": {
       "headline": "Errore",
-      "text": "Mi dispiace. Non riusciamo a trovare la pagina \"{path}\"."
+      "text": "Mi dispiace. Non riusciamo a trovare la pagina \"{percorso}\"."
     },
     "track-already-in-playlist": "Il brano esiste già nella playlist {0}",
     "album-already-in-playlist": "Questo album è già nella tua playlist.",
     "collection-already-in-playlist": "Questi brani sono già presenti nella playlist {0}."
   },
   "collection": {
-    "track-count": "{count} traccia | {count} tracce",
-    "album-count": "{count} album | {count} album",
+    "track-count": "{conta} traccia | {conta} tracce",
+    "album-count": "{conta} album | {conta} album",
     "resume": "Prosegui"
   },
   "login": {
@@ -113,12 +115,12 @@
       "add-to-my-playlists": "Aggiungi alle mie playlist",
       "remove-shared-playlist": "Rimuovi la playlist"
     },
-    "by-x": "da {name}"
+    "by-x": "da {nome}"
   },
   "podcast": {
     "this-week": "Questa settimana",
     "last-week": "La scorsa settimana",
-    "week-x": "Settimana {count}",
+    "week-x": "Settimana {conta}",
     "action": {
       "play": "Riproduci"
     }
@@ -187,11 +189,11 @@
     "loading-results": "Risultati del caricamento",
     "no-results-yet": "Non ci sono ancora risultati",
     "no-results-found": "Nessun risultato trovato",
-    "result-count": "{count} risultati"
+    "result-count": "{conta} risultati"
   },
   "streak": {
     "your-streak": "Il tuo streak di questa settimana",
-    "days-in-row": "{count} giorni di fila"
+    "days-in-row": "{conta} giorni di fila"
   },
   "transcription": {
     "lyrics": "Testi",
