@@ -1,7 +1,9 @@
 {
   "global": {
     "cancel": "Anulare",
-    "try-again": "Încearcă din nou"
+    "try-again": "Încearcă din nou",
+    "hours-and-minutes": "{0} h {1} min",
+    "minutes-and-seconds": "{0} min {1} sec"
   },
   "nav": {
     "home": "Acasă",
