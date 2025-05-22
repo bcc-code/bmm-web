@@ -122,7 +122,7 @@ watch(statistics, (stats) => {
         :column-groups="[
           {
             key: 'oneEpisode',
-            text: 'Har hørt minst én episode fra «Hvem er du, Herre?»',
+            text: 'Har hørt minst én episode fra «Tjen Gud av hele ditt hjerte»',
             start: 1,
             span: columnGroupWidth,
           },
