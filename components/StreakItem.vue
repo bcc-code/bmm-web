@@ -11,24 +11,28 @@ const getDays = (item: CurrentWeeksStreakVm) => [
   {
     listened: item.monday,
     day: "Monday",
-    color: "#DBE459",
+    color: item.pointColor ?? "#DBE459",
   },
   {
     listened: item.tuesday,
     day: "Tuesday",
-    color: "#B9CC68",
+    color: item.pointColor ?? "#B9CC68",
   },
   {
     listened: item.wednesday,
     day: "Wednesday",
-    color: "#83A174",
+    color: item.pointColor ?? "#83A174",
   },
   {
     listened: item.thursday,
     day: "Thursday",
-    color: "#4E7780",
+    color: item.pointColor ?? "#4E7780",
   },
-  { listened: item.friday, day: "Friday", color: "#265789" },
+  {
+    listened: item.friday,
+    day: "Friday",
+    color: item.pointColor ?? "#265789",
+  },
 ];
 </script>
 
@@ -49,7 +53,7 @@ const getDays = (item: CurrentWeeksStreakVm) => [
       >
         <div
           class="aspect-square w-3 rounded-full"
-          :class="day.listened ? 'bg-[#DBE459]' : ' border border-label-4'"
+          :class="{ 'border border-label-4': !day.listened }"
           :style="'background: ' + (day.listened ? day.color : 'none')"
         ></div>
       </div>
