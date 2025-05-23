@@ -7,56 +7,45 @@ defineProps<{
   item: CurrentWeeksStreakVm;
 }>();
 
-const getDays = (item: CurrentWeeksStreakVm) => [
-  {
-    listened: item.monday,
-    day: "Monday",
-    color: item.pointColor ?? "#DBE459",
-  },
-  {
-    listened: item.tuesday,
-    day: "Tuesday",
-    color: item.pointColor ?? "#B9CC68",
-  },
-  {
-    listened: item.wednesday,
-    day: "Wednesday",
-    color: item.pointColor ?? "#83A174",
-  },
-  {
-    listened: item.thursday,
-    day: "Thursday",
-    color: item.pointColor ?? "#4E7780",
-  },
-  {
-    listened: item.friday,
-    day: "Friday",
-    color: item.pointColor ?? "#265789",
-  },
-];
+const showDialog = ref(false);
 </script>
 
 <template>
-  <div class="col-span-full flex gap-6">
+  <button
+    class="col-span-full flex items-center gap-6 text-start"
+    @click="showDialog = true"
+  >
     <div class="flex flex-col">
       <div class="font-semibold leading-5">{{ t("streak.your-streak") }}</div>
       <div class="text-[15px] leading-5 text-label-3">
         {{ t("streak.days-in-row", item.daysInARow ?? 0) }}
       </div>
     </div>
-    <div class="flex flex-row items-center gap-1">
+    <StreakItemDots :item size="small" />
+  </button>
+  <DialogBase
+    :show="showDialog"
+    :title="$t('streak.your-streak')"
+    @close="showDialog = false"
+  >
+    <div class="min-w-60">
+      <div class="mb-6">
+        <StreakItemDots :item size="large" />
+      </div>
       <div
-        v-for="day in getDays(item)"
-        :key="day.day"
-        class="flex aspect-square items-center justify-center rounded-full p-2"
-        :class="item.dayOfTheWeek === day.day ? 'bg-background-2' : ''"
+        class="type-subtitle-3 flex items-center justify-between text-label-3"
       >
-        <div
-          class="aspect-square w-3 rounded-full"
-          :class="{ 'border border-label-4': !day.listened }"
-          :style="'background: ' + (day.listened ? day.color : 'none')"
-        ></div>
+        <span>
+          {{ $t("streak.days-in-row", { count: item.daysInARow ?? 0 }) }}
+        </span>
+        <span>
+          {{
+            $t("streak.perfect-weeks", {
+              count: item.numberOfPerfectWeeks ?? 0,
+            })
+          }}
+        </span>
       </div>
     </div>
-  </div>
+  </DialogBase>
 </template>
