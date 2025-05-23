@@ -193,7 +193,8 @@
   },
   "streak": {
     "your-streak": "Your streak this week",
-    "days-in-row": "{count} days in a row"
+    "days-in-row": "{count} days in a row",
+    "perfect-weeks": "{count} perfect weeks"
   },
   "transcription": {
     "lyrics": "Lyrics",
