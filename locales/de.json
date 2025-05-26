@@ -193,7 +193,8 @@
   },
   "streak": {
     "your-streak": "Dein Status diese Woche",
-    "days-in-row": "{count} Tage hintereinander"
+    "days-in-row": "{count} Tage hintereinander",
+    "perfect-weeks": "{count} perfekte Wochen"
   },
   "transcription": {
     "lyrics": "Liedtext",
