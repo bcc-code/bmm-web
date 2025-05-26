@@ -219,6 +219,9 @@ jobs:
   deploy_prod:
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
+    concurrency:
+      group: bmm-web-prod
+      cancel-in-progress: false
     needs: build_dotnet
     environment:
       name: "prod"
@@ -259,6 +262,9 @@ jobs:
   deploy_int:
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
+    concurrency:
+      group: bmm-web-int
+      cancel-in-progress: true
     needs: build_dotnet
     environment:
       name: "Production"
