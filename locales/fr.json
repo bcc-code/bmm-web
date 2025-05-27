@@ -193,7 +193,8 @@
   },
   "streak": {
     "your-streak": "Enchaînements de la semaine",
-    "days-in-row": "{count} jours d'affilée"
+    "days-in-row": "{count} jours d'affilée",
+    "perfect-weeks": "{count} semaines parfaites"
   },
   "transcription": {
     "lyrics": "Paroles",
