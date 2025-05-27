@@ -193,7 +193,8 @@
   },
   "streak": {
     "your-streak": "Seu progresso semanal",
-    "days-in-row": "{count} dias consecutivos"
+    "days-in-row": "{count} dias consecutivos",
+    "perfect-weeks": "{count} semanas perfeitas"
   },
   "transcription": {
     "lyrics": "Letra da música",
