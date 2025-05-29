@@ -58,7 +58,7 @@
   "error": {
     "page-not-found": {
       "headline": "Eroare",
-      "text": "Scuze. Nu putem găsi pagina \"{path}\"."
+      "text": "Scuze. Nu putem găsi pagina „{path}”."
     },
     "track-already-in-playlist": "Piesa este deja în lista de redare {0}",
     "album-already-in-playlist": "Acest album este deja în lista ta de redare.",
@@ -122,7 +122,7 @@
     "last-week": "Ultima săptămână",
     "week-x": "Săptămâna {count}",
     "action": {
-      "play": "Rulează"
+      "play": "Redă"
     }
   },
   "player": {
@@ -134,7 +134,7 @@
   },
   "track": {
     "dropdown": {
-      "play-next": "Rulează în continuare",
+      "play-next": "Redă următoarea",
       "download": "Descarcă",
       "go-to-album": "Mergi la album",
       "add-to-queue": "Adaugă în coadă",
@@ -193,7 +193,8 @@
   },
   "streak": {
     "your-streak": "Progresul tău săptămâna aceasta",
-    "days-in-row": "{count} zile consecutive"
+    "days-in-row": "{count} zile consecutive",
+    "perfect-weeks": "{count} săptămâni perfecte"
   },
   "transcription": {
     "lyrics": "Versuri",
