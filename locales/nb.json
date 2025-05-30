@@ -182,7 +182,7 @@
       "Music": "Musikk",
       "Albums": "Album",
       "Contributors": "Bidragsytere",
-      "Podcasts": "Podcaster",
+      "Podcasts": "Podkaster",
       "Playlists": "Spillelister"
     },
     "input-placeholder": "Søk",
@@ -193,12 +193,13 @@
   },
   "streak": {
     "your-streak": "Din streak denne uken",
-    "days-in-row": "{count} dager på rad"
+    "days-in-row": "{count} dager på rad",
+    "perfect-weeks": "{count} perfekte uker"
   },
   "transcription": {
     "lyrics": "Sangtekst",
     "auto-transcribed": {
-      "title": "Automatisk transkribert",
+      "title": "Automatisk avskrevet",
       "explanation": "Transkripsjoner er automatisk generert og kan inneholde feil",
       "confirmation": "Forstått"
     },
