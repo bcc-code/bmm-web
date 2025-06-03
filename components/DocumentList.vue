@@ -328,6 +328,10 @@ onMounted(() => {
               </div>
             </template>
 
+            <template v-else-if="item.type === 'project_box_v2'">
+              <ProjectBoxItem :item="item" />
+            </template>
+
             <li v-else class="col-span-full">
               <div style="background-color: rgba(255, 0, 0, 0.4); color: red">
                 "{{ item.type }}" is not yet implemented ...
