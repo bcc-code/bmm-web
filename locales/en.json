@@ -229,5 +229,9 @@
     "long-copyright": "Long copyright",
     "remove-formatting": "Cleanup formatting",
     "paste-instructions": "Paste text using <shortcut> to remove formatting."
+  },
+  "project": {
+    "achievement": "Achievement",
+    "achievementUnlocked": "Unlocked"
   }
 }
