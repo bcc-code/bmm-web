@@ -164,7 +164,7 @@ jobs:
       - name: Rotate Static Web App Token
         if: always()
         run: |
-          curl -H "Content-Type: application/json" -X POST https://management.azure.com${{ env.swa_id }}/resetapikey?api-version=2024-04-01 -d '{"properties":{"shouldUpdateRepository":true,"repositoryToken":"${{ steps.az_token.outputs.token }}"}}'
+          curl -H "Authorization: Bearer ${{ steps.az_token.outputs.token }}" -X POST https://management.azure.com${{ env.swa_id }}/resetapikey?api-version=2019-08-01 -d ""
 
   remove_azure_static_web_apps_when_pr_closed:
     if: github.event_name == 'pull_request' && github.event.action == 'closed' && github.secret_source == 'Actions'
