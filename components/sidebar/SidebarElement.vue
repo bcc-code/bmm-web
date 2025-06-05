@@ -103,7 +103,11 @@ const { data: currentUser } = await useCurrentUser();
               name: 'playlist-private-id',
               params: { id: collection.id },
             }"
-            icon="icon.category.playlist"
+            :icon="
+              collection.useLikeIcon
+                ? 'icon.category.favorites'
+                : 'icon.category.playlist'
+            "
           />
           <SidebarAddPlaylist></SidebarAddPlaylist>
         </SidebarGroup>
