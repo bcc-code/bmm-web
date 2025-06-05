@@ -142,7 +142,7 @@ jobs:
       - name: Get Static Web App Token
         id: swa_token
         run: |
-          SWA_TOKEN=$(curl -H "Authorization: Bearer ${{ steps.az_token.outputs.token }}" -X POST https://management.azure.com${{ env.swa_id }}/listsecrets?api-version=2019-08-01 -d "" -s -S -f | jq -r '.properties.apiKey')
+          SWA_TOKEN=$(curl -H "Authorization: Bearer ${{ steps.az_token.outputs.token }}" -X POST https://management.azure.com${{ env.swa_id }}/listsecrets?api-version=2019-08-01 -d "" | jq -r '.properties.apiKey')
           echo "::add-mask::$SWA_TOKEN"
           echo "token=$SWA_TOKEN" >> $GITHUB_OUTPUT
 
