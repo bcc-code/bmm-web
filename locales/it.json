@@ -1,7 +1,9 @@
 {
   "global": {
     "cancel": "Annulla",
-    "try-again": "Riprova"
+    "try-again": "Riprova",
+    "hours-and-minutes": "{0} hr {1} min",
+    "minutes-and-seconds": "{0} min  sec"
   },
   "nav": {
     "home": "Home",
@@ -191,7 +193,8 @@
   },
   "streak": {
     "your-streak": "Il tuo streak di questa settimana",
-    "days-in-row": "{count} giorni di fila"
+    "days-in-row": "{count} giorni di fila",
+    "perfect-weeks": "{conteggio} settimane perfette"
   },
   "transcription": {
     "lyrics": "Testi",
