@@ -193,7 +193,8 @@
   },
   "streak": {
     "your-streak": "Jouw Streak deze week",
-    "days-in-row": "{count} dagen op rij"
+    "days-in-row": "{count} dagen op rij",
+    "perfect-weeks": "{0} perfecte weken"
   },
   "transcription": {
     "lyrics": "Lyrics",
