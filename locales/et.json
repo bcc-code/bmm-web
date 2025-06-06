@@ -193,7 +193,8 @@
   },
   "streak": {
     "your-streak": "Sinu selle nädala striik",
-    "days-in-row": "{count} päeva järjest"
+    "days-in-row": "{count} päeva järjest",
+    "perfect-weeks": "{count} täiuslikku nädalat"
   },
   "transcription": {
     "lyrics": "Laulusõnad",
