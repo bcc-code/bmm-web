@@ -1,5 +1,6 @@
 <script lang="ts" setup>
-import { DayOfWeek, type CurrentWeeksStreakVm } from "@bcc-code/bmm-sdk-fetch";
+import { DayOfWeek } from "@bcc-code/bmm-sdk-fetch";
+import type { CurrentWeeksStreakVm } from "@bcc-code/bmm-sdk-fetch";
 
 const { t } = useI18n();
 
