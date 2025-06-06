@@ -194,7 +194,8 @@
   "streak": {
     "your-streak": "Your streak this week",
     "days-in-row": "{count} days in a row",
-    "perfect-weeks": "{count} perfect weeks"
+    "perfect-weeks": "{count} perfect weeks",
+    "time-left-today": "{hours} hours and {minutes} minutes left today"
   },
   "transcription": {
     "lyrics": "Lyrics",

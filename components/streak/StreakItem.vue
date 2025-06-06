@@ -1,13 +1,45 @@
 <script lang="ts" setup>
+import { DayOfWeek } from "@bcc-code/bmm-sdk-fetch";
 import type { CurrentWeeksStreakVm } from "@bcc-code/bmm-sdk-fetch";
 
 const { t } = useI18n();
 
-defineProps<{
+const props = defineProps<{
   item: CurrentWeeksStreakVm;
 }>();
 
 const showDialog = ref(false);
+
+const now = useNow();
+const timeLeft = computed(() => {
+  const end = props.item.eligibleUntil;
+  if (!end)
+    return {
+      hours: 0,
+      minutes: 0,
+    };
+
+  const diff = end.getTime() - now.value.getTime();
+
+  return {
+    hours: Math.floor(diff / (1000 * 60 * 60)),
+    minutes: Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)),
+  };
+});
+
+const daysOfWeek: Partial<Record<DayOfWeek, keyof CurrentWeeksStreakVm>> = {
+  [DayOfWeek.Monday]: "monday",
+  [DayOfWeek.Tuesday]: "tuesday",
+  [DayOfWeek.Wednesday]: "wednesday",
+  [DayOfWeek.Thursday]: "thursday",
+  [DayOfWeek.Friday]: "friday",
+};
+const todayListened = computed(() => {
+  if (!props.item.dayOfTheWeek) return false;
+  const key = daysOfWeek[props.item.dayOfTheWeek];
+  if (!key) return false;
+  return Boolean(props.item[key]);
+});
 </script>
 
 <template>
@@ -28,7 +60,10 @@ const showDialog = ref(false);
     :title="$t('streak.your-streak')"
     @close="showDialog = false"
   >
-    <div class="min-w-60">
+    <div class="min-w-[400px]">
+      <p v-if="!todayListened" class="mb-6 text-center text-sm text-label-4">
+        {{ $t("streak.time-left-today", timeLeft) }}
+      </p>
       <div class="mb-6">
         <StreakItemDots :item size="large" />
       </div>
