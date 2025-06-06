@@ -1,0 +1,31 @@
+name: Phrase Translations
+
+on:
+  push:
+    branches:
+      - "phrase-translations"
+
+jobs:
+  create-pr:
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Reset main branch
+        run: |
+          git fetch origin phrase-translations:phrase-translations
+          git reset --hard phrase-translations
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@271a8d0340265f705b14b6d32b9829c1cb33d45e
+        with:
+          title: "New Phrase Updates"
+          body: "Update phrase translations"
+          branch: "phrase-translations"
+          commit-message: "Update phrase translations"
+          delete-branch: true
