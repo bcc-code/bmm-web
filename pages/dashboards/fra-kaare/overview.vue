@@ -13,10 +13,21 @@ setTitle(() => t("dashboards.title"));
 
 const sortDirection = ref<SortDirection>("descending");
 const churchSize = ref<"small" | "large">("large");
+const selectedChurch = ref<string | null | undefined>(null);
 
 const statistics = ref<GetFraKaareStatisticsResponse>();
+function church() {
+  return statistics.value?.highlightedChurch;
+}
 onBeforeMount(async () => {
   statistics.value = await new StatisticsApi().statisticsFraKaareGet();
+});
+
+watch(selectedChurch, async (churchId) => {
+  console.log("Selected church:", churchId);
+  statistics.value = await new StatisticsApi().statisticsFraKaareGet({
+    church: churchId ?? undefined,
+  });
 });
 
 watch(statistics, (stats) => {
@@ -58,6 +69,12 @@ function sortStringColumn(
   return a.localeCompare(b);
 }
 
+function percent(value: number | undefined) {
+  if (value === null || value === undefined) return "";
+  if (typeof value === "number") return `${Math.round(value * 100)}%`;
+  return value;
+}
+
 const breakpoints = useBreakpoints(breakpointsTailwind);
 const isSmallScreeen = breakpoints.smaller("lg");
 
@@ -80,6 +97,26 @@ watch(statistics, (stats) => {
 
 <template>
   <div class="space-y-12">
+    <div v-if="statistics?.availableChurches">
+      <DropdownMenu placement="bottom-start">
+        <ButtonStyled size="small" intent="tertiary">
+          {{ statistics?.highlightedChurchName }}
+          <NuxtIcon name="icon.chevron.down" class="ml-1" />
+        </ButtonStyled>
+        <template #items>
+          <DropdownMenuGroup>
+            <DropdownMenuItem
+              v-for="church in statistics.availableChurches"
+              :key="church.id"
+              @click="selectedChurch = church.id"
+            >
+              {{ church.name }}
+            </DropdownMenuItem>
+          </DropdownMenuGroup>
+        </template>
+      </DropdownMenu>
+    </div>
+
     <section
       id="chart"
       class="flex min-h-[400px] flex-col rounded-2xl bg-background-2 p-8"
@@ -262,7 +299,7 @@ watch(statistics, (stats) => {
           (item, key) => {
             const value = item[key];
             if (value === null || value === undefined) return '';
-            if (typeof value === 'number') return Math.round(value * 100) + '%';
+            if (typeof value === 'number') return percent(value);
             return value;
           }
         "
@@ -305,9 +342,45 @@ watch(statistics, (stats) => {
       </DashboardDataTable>
     </section>
 
+    <section v-if="church()">
+      <h2 class="type-heading-3 mb-4">
+        {{ statistics?.highlightedChurchName }}
+      </h2>
+      <div class="flex gap-4">
+        <fieldset
+          class="rounded-2xl border border-label-separator bg-background-2 p-3"
+        >
+          <legend class="type-title-3 px-1">
+            Hørt minst én episode i prosjektet
+          </legend>
+          <div>13-17: {{ percent(church()?.oneEpisodePercent13To17) }}</div>
+          <div>18-25: {{ percent(church()?.oneEpisodePercent18To25) }}</div>
+          <div>13-25: {{ percent(church()?.oneEpisodePercent13To25) }}</div>
+          <div>26-35: {{ percent(church()?.oneEpisodePercent26To35) }}</div>
+          <div>
+            Gjennomsnitt: {{ percent(church()?.oneEpisodePercentAverage) }}
+          </div>
+        </fieldset>
+        <fieldset
+          class="rounded-2xl border border-label-separator bg-background-2 p-3"
+        >
+          <legend class="type-title-3 px-1">Totale episoder hørt</legend>
+          <div>13-17: {{ percent(church()?.allEpisodesPercent13To17) }}</div>
+          <div>18-25: {{ percent(church()?.allEpisodesPercent18To25) }}</div>
+          <div>13-25: {{ percent(church()?.allEpisodesPercent13To25) }}</div>
+          <div>26-35: {{ percent(church()?.allEpisodesPercent26To35) }}</div>
+          <div>
+            Gjennomsnitt: {{ percent(church()?.allEpisodesPercentAverage) }}
+          </div>
+          <div>Boys: {{ percent(church()?.allEpisodesPercentBoys) }}</div>
+          <div>Girls: {{ percent(church()?.allEpisodesPercentGirls) }}</div>
+        </fieldset>
+      </div>
+    </section>
+
     <section
       id="info"
-      class="type-paragraph-2 max-w-6xl space-y-3 px-6 text-label-2"
+      class="type-paragraph-2 max-w-6xl space-y-3 text-label-2"
     >
       <p>
         Tilgangen til denne statistikken er kun ment for lokale ungdomsledere og
