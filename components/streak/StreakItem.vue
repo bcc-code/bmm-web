@@ -10,6 +10,7 @@ const props = defineProps<{
 
 const showDialog = ref(false);
 
+const now = useNow();
 const timeLeft = computed(() => {
   const end = props.item.eligibleUntil;
   if (!end)
@@ -18,8 +19,7 @@ const timeLeft = computed(() => {
       minutes: 0,
     };
 
-  const now = new Date();
-  const diff = end.getTime() - now.getTime();
+  const diff = end.getTime() - now.value.getTime();
 
   return {
     hours: Math.floor(diff / (1000 * 60 * 60)),
