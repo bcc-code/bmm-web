@@ -121,77 +121,81 @@ watch(statistics, (stats) => {
     </div>
 
     <section
-      v-if="statistics.timeSeries && church"
+      v-if="statistics.timeSeries || church"
       id="stats"
       class="mt-6 grid grid-cols-1 gap-6 lg:grid-cols-2"
     >
-      <div class="col-span-full min-h-[400px] rounded-2xl bg-background-2 p-8">
+      <div
+        v-if="statistics.timeSeries"
+        class="col-span-full min-h-[400px] rounded-2xl bg-background-2 p-8"
+      >
         <DashboardTimeSeriesChart :data="statistics.timeSeries" />
       </div>
 
-      <div
-        class="rounded-2xl border border-label-separator bg-background-2 p-8 text-sm"
-      >
-        <h3 class="type-title-1 mb-4">Hørt minst én episode i prosjektet</h3>
-        <div class="flex flex-col divide-y divide-label-separator">
-          <div class="flex justify-between py-1">
-            <span class="text-label-3">13-17</span>
-            <span>{{ percent(church.oneEpisodePercent13To17) }}</span>
-          </div>
-          <div class="flex justify-between py-1">
-            <span class="text-label-3">18-25</span>
-            <span>{{ percent(church.oneEpisodePercent18To25) }}</span>
-          </div>
-          <div class="flex justify-between py-1">
-            <span class="text-label-3">13-25</span>
-            <span>{{ percent(church.oneEpisodePercent13To25) }}</span>
-          </div>
-          <div class="flex justify-between py-1">
-            <span class="text-label-3">26-35</span>
-            <span>{{ percent(church.oneEpisodePercent26To35) }}</span>
-          </div>
-          <div class="flex justify-between py-1">
-            <span class="text-label-3">Gjennomsnitt</span>
-            <span>{{ percent(church.oneEpisodePercentAverage) }}</span>
-          </div>
-        </div>
-      </div>
-
-      <div
-        class="rounded-2xl border border-label-separator bg-background-2 p-8 text-sm"
-      >
-        <h3 class="type-title-1 mb-4">Totale episoder hørt</h3>
-        <div class="flex flex-col divide-y divide-label-separator">
-          <div class="flex justify-between py-1">
-            <span class="text-label-3">13-17</span>
-            <span>{{ percent(church.allEpisodesPercent13To17) }}</span>
-          </div>
-          <div class="flex justify-between py-1">
-            <span class="text-label-3">18-25</span>
-            <span>{{ percent(church.allEpisodesPercent18To25) }}</span>
-          </div>
-          <div class="flex justify-between py-1">
-            <span class="text-label-3">13-25</span>
-            <span>{{ percent(church.allEpisodesPercent13To25) }}</span>
-          </div>
-          <div class="flex justify-between py-1">
-            <span class="text-label-3">26-35</span>
-            <span>{{ percent(church.allEpisodesPercent26To35) }}</span>
-          </div>
-          <div class="flex justify-between py-1">
-            <span class="text-label-3">Gjennomsnitt</span>
-            <span>{{ percent(church.allEpisodesPercentAverage) }}</span>
-          </div>
-          <div class="flex justify-between py-1">
-            <span class="text-label-3">Gutter</span>
-            <span>{{ percent(church.allEpisodesPercentBoys) }}</span>
-          </div>
-          <div class="flex justify-between py-1">
-            <span class="text-label-3">Jenter</span>
-            <span>{{ percent(church.allEpisodesPercentGirls) }}</span>
+      <template v-if="church">
+        <div
+          class="rounded-2xl border border-label-separator bg-background-2 p-8 text-sm"
+        >
+          <h3 class="type-title-1 mb-4">Hørt minst én episode i prosjektet</h3>
+          <div class="flex flex-col divide-y divide-label-separator">
+            <div class="flex justify-between py-1">
+              <span class="text-label-3">13-17</span>
+              <span>{{ percent(church.oneEpisodePercent13To17) }}</span>
+            </div>
+            <div class="flex justify-between py-1">
+              <span class="text-label-3">18-25</span>
+              <span>{{ percent(church.oneEpisodePercent18To25) }}</span>
+            </div>
+            <div class="flex justify-between py-1">
+              <span class="text-label-3">13-25</span>
+              <span>{{ percent(church.oneEpisodePercent13To25) }}</span>
+            </div>
+            <div class="flex justify-between py-1">
+              <span class="text-label-3">26-35</span>
+              <span>{{ percent(church.oneEpisodePercent26To35) }}</span>
+            </div>
+            <div class="flex justify-between py-1">
+              <span class="text-label-3">Gjennomsnitt</span>
+              <span>{{ percent(church.oneEpisodePercentAverage) }}</span>
+            </div>
           </div>
         </div>
-      </div>
+        <div
+          class="rounded-2xl border border-label-separator bg-background-2 p-8 text-sm"
+        >
+          <h3 class="type-title-1 mb-4">Totale episoder hørt</h3>
+          <div class="flex flex-col divide-y divide-label-separator">
+            <div class="flex justify-between py-1">
+              <span class="text-label-3">13-17</span>
+              <span>{{ percent(church.allEpisodesPercent13To17) }}</span>
+            </div>
+            <div class="flex justify-between py-1">
+              <span class="text-label-3">18-25</span>
+              <span>{{ percent(church.allEpisodesPercent18To25) }}</span>
+            </div>
+            <div class="flex justify-between py-1">
+              <span class="text-label-3">13-25</span>
+              <span>{{ percent(church.allEpisodesPercent13To25) }}</span>
+            </div>
+            <div class="flex justify-between py-1">
+              <span class="text-label-3">26-35</span>
+              <span>{{ percent(church.allEpisodesPercent26To35) }}</span>
+            </div>
+            <div class="flex justify-between py-1">
+              <span class="text-label-3">Gjennomsnitt</span>
+              <span>{{ percent(church.allEpisodesPercentAverage) }}</span>
+            </div>
+            <div class="flex justify-between py-1">
+              <span class="text-label-3">Gutter</span>
+              <span>{{ percent(church.allEpisodesPercentBoys) }}</span>
+            </div>
+            <div class="flex justify-between py-1">
+              <span class="text-label-3">Jenter</span>
+              <span>{{ percent(church.allEpisodesPercentGirls) }}</span>
+            </div>
+          </div>
+        </div>
+      </template>
     </section>
 
     <section id="table" class="my-12">
