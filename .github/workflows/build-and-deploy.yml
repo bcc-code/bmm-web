@@ -260,7 +260,7 @@ jobs:
           package: .
 
   deploy_int:
-    if: github.ref == 'refs/heads/main' || false
+    if: github.ref == 'refs/heads/main' && false
     runs-on: ubuntu-latest
     concurrency:
       group: bmm-web-int
