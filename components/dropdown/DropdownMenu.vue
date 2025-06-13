@@ -6,6 +6,7 @@ import {
   autoPlacement,
   autoUpdate,
   hide,
+  shift,
 } from "@floating-ui/vue";
 import type { Placement } from "@floating-ui/vue";
 import {
@@ -40,6 +41,7 @@ const { floatingStyles, middlewareData } = useFloating(buttonEl, panelEl, {
       strategy: "referenceHidden",
       padding: 16,
     }),
+    shift(),
   ],
   whileElementsMounted: autoUpdate,
   placement: props.placement,
@@ -74,7 +76,7 @@ const { floatingStyles, middlewareData } = useFloating(buttonEl, panelEl, {
                 'origin-top': middlewareData.offset?.placement === 'bottom',
                 hidden: middlewareData.hide?.referenceHidden,
               }"
-              class="local-anim min-w-56 max-w-80 select-none divide-y divide-label-separator overflow-y-auto whitespace-nowrap rounded-xl bg-background-3 text-sm shadow-lg ring-1 ring-label-separator focus-visible:outline-none"
+              class="local-anim max-h-dvh min-w-56 max-w-80 select-none divide-y divide-label-separator overflow-y-auto whitespace-nowrap rounded-xl bg-background-3 text-sm shadow-lg ring-1 ring-label-separator focus-visible:outline-none"
             >
               <slot name="items" />
             </div>

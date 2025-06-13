@@ -13,10 +13,19 @@ setTitle(() => t("dashboards.title"));
 
 const sortDirection = ref<SortDirection>("descending");
 const churchSize = ref<"small" | "large">("large");
+const selectedChurch = ref<string | null | undefined>(null);
 
 const statistics = ref<GetFraKaareStatisticsResponse>();
+const church = computed(() => statistics.value?.highlightedChurch);
+
 onBeforeMount(async () => {
   statistics.value = await new StatisticsApi().statisticsFraKaareGet();
+});
+
+watch(selectedChurch, async (churchId) => {
+  statistics.value = await new StatisticsApi().statisticsFraKaareGet({
+    church: churchId ?? undefined,
+  });
 });
 
 watch(statistics, (stats) => {
@@ -58,6 +67,12 @@ function sortStringColumn(
   return a.localeCompare(b);
 }
 
+function percent(value: number | undefined) {
+  if (value === null || value === undefined) return "";
+  if (typeof value === "number") return `${Math.round(value * 100)}%`;
+  return value;
+}
+
 const breakpoints = useBreakpoints(breakpointsTailwind);
 const isSmallScreeen = breakpoints.smaller("lg");
 
@@ -79,38 +94,133 @@ watch(statistics, (stats) => {
 </script>
 
 <template>
-  <div class="space-y-12">
-    <section
-      id="chart"
-      class="flex min-h-[400px] flex-col rounded-2xl bg-background-2 p-8"
-    >
-      <h2 class="type-heading-3 mb-4">
-        {{ statistics?.highlightedChurchName }}
+  <div v-if="statistics">
+    <div class="flex items-center gap-4">
+      <h2 class="type-heading-1">
+        {{ statistics.highlightedChurchName }}
       </h2>
-      <DashboardTimeSeriesChart
-        v-if="statistics?.timeSeries"
-        :data="statistics.timeSeries"
-      />
-    </section>
-
-    <section id="table">
-      <div class="mb-4">
-        <DropdownMenu placement="bottom-start">
+      <div v-if="statistics.availableChurches">
+        <DropdownMenu>
           <ButtonStyled size="small" intent="tertiary">
-            {{ churchSize === "large" ? "Store menigheter" : "Små menigheter" }}
-            <NuxtIcon name="icon.chevron.down" class="ml-1" />
+            {{ statistics.highlightedChurchName }}
+            <NuxtIcon name="icon.chevron.down" />
           </ButtonStyled>
           <template #items>
             <DropdownMenuGroup>
-              <DropdownMenuItem @click="churchSize = 'large'">
-                Store menigheter
-              </DropdownMenuItem>
-              <DropdownMenuItem @click="churchSize = 'small'">
-                Små menigheter
+              <DropdownMenuItem
+                v-for="availableChurch in statistics.availableChurches"
+                :key="availableChurch.id"
+                @click="selectedChurch = availableChurch.id"
+              >
+                {{ availableChurch.name }}
               </DropdownMenuItem>
             </DropdownMenuGroup>
           </template>
         </DropdownMenu>
+      </div>
+    </div>
+
+    <section
+      v-if="statistics.timeSeries || church"
+      id="stats"
+      class="mt-6 grid grid-cols-1 gap-6 lg:grid-cols-2"
+    >
+      <div
+        v-if="statistics.timeSeries"
+        class="col-span-full min-h-[400px] rounded-2xl bg-background-2 p-8"
+      >
+        <DashboardTimeSeriesChart :data="statistics.timeSeries" />
+      </div>
+
+      <template v-if="church">
+        <div
+          class="rounded-2xl border border-label-separator bg-background-2 p-8 text-sm"
+        >
+          <h3 class="type-title-1 mb-4">Hørt minst én episode i prosjektet</h3>
+          <div class="flex flex-col divide-y divide-label-separator">
+            <div class="flex justify-between py-1">
+              <span class="text-label-3">13-17</span>
+              <span>{{ percent(church.oneEpisodePercent13To17) }}</span>
+            </div>
+            <div class="flex justify-between py-1">
+              <span class="text-label-3">18-25</span>
+              <span>{{ percent(church.oneEpisodePercent18To25) }}</span>
+            </div>
+            <div class="flex justify-between py-1">
+              <span class="text-label-3">13-25</span>
+              <span>{{ percent(church.oneEpisodePercent13To25) }}</span>
+            </div>
+            <div class="flex justify-between py-1">
+              <span class="text-label-3">26-35</span>
+              <span>{{ percent(church.oneEpisodePercent26To35) }}</span>
+            </div>
+            <div class="flex justify-between py-1">
+              <span class="text-label-3">Gjennomsnitt</span>
+              <span>{{ percent(church.oneEpisodePercentAverage) }}</span>
+            </div>
+          </div>
+        </div>
+        <div
+          class="rounded-2xl border border-label-separator bg-background-2 p-8 text-sm"
+        >
+          <h3 class="type-title-1 mb-4">Totale episoder hørt</h3>
+          <div class="flex flex-col divide-y divide-label-separator">
+            <div class="flex justify-between py-1">
+              <span class="text-label-3">13-17</span>
+              <span>{{ percent(church.allEpisodesPercent13To17) }}</span>
+            </div>
+            <div class="flex justify-between py-1">
+              <span class="text-label-3">18-25</span>
+              <span>{{ percent(church.allEpisodesPercent18To25) }}</span>
+            </div>
+            <div class="flex justify-between py-1">
+              <span class="text-label-3">13-25</span>
+              <span>{{ percent(church.allEpisodesPercent13To25) }}</span>
+            </div>
+            <div class="flex justify-between py-1">
+              <span class="text-label-3">26-35</span>
+              <span>{{ percent(church.allEpisodesPercent26To35) }}</span>
+            </div>
+            <div class="flex justify-between py-1">
+              <span class="text-label-3">Gjennomsnitt</span>
+              <span>{{ percent(church.allEpisodesPercentAverage) }}</span>
+            </div>
+            <div class="flex justify-between py-1">
+              <span class="text-label-3">Gutter</span>
+              <span>{{ percent(church.allEpisodesPercentBoys) }}</span>
+            </div>
+            <div class="flex justify-between py-1">
+              <span class="text-label-3">Jenter</span>
+              <span>{{ percent(church.allEpisodesPercentGirls) }}</span>
+            </div>
+          </div>
+        </div>
+      </template>
+    </section>
+
+    <section id="table" class="my-12">
+      <div class="flex items-baseline gap-4">
+        <h2 class="type-heading-3">Rangering</h2>
+        <div class="mb-4">
+          <DropdownMenu placement="bottom-start">
+            <ButtonStyled size="small" intent="tertiary">
+              {{
+                churchSize === "large" ? "Store menigheter" : "Små menigheter"
+              }}
+              <NuxtIcon name="icon.chevron.down" class="ml-1" />
+            </ButtonStyled>
+            <template #items>
+              <DropdownMenuGroup>
+                <DropdownMenuItem @click="churchSize = 'large'">
+                  Store menigheter
+                </DropdownMenuItem>
+                <DropdownMenuItem @click="churchSize = 'small'">
+                  Små menigheter
+                </DropdownMenuItem>
+              </DropdownMenuGroup>
+            </template>
+          </DropdownMenu>
+        </div>
       </div>
 
       <DashboardDataTable
@@ -262,7 +372,7 @@ watch(statistics, (stats) => {
           (item, key) => {
             const value = item[key];
             if (value === null || value === undefined) return '';
-            if (typeof value === 'number') return Math.round(value * 100) + '%';
+            if (typeof value === 'number') return percent(value);
             return value;
           }
         "
@@ -307,7 +417,7 @@ watch(statistics, (stats) => {
 
     <section
       id="info"
-      class="type-paragraph-2 max-w-6xl space-y-3 px-6 text-label-2"
+      class="type-paragraph-2 max-w-6xl space-y-3 text-label-2"
     >
       <p>
         Tilgangen til denne statistikken er kun ment for lokale ungdomsledere og

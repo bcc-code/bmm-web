@@ -105,7 +105,7 @@ const emptyColumnsBeforeFirstColumnGroup = computed(() => {
 
 <template>
   <div
-    class="overflow-hidden rounded-2xl border border-label-separator bg-background-1"
+    class="overflow-x-auto rounded-2xl border border-label-separator bg-background-1"
   >
     <table class="w-full table-auto">
       <thead class="type-title-3 text-left text-label-3">
