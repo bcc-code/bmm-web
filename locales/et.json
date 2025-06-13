@@ -194,7 +194,8 @@
   "streak": {
     "your-streak": "Sinu selle nädala striik",
     "days-in-row": "{count} päeva järjest",
-    "perfect-weeks": "{count} täiuslikku nädalat"
+    "perfect-weeks": "{count} täiuslikku nädalat",
+    "time-left-today": "{hours} tundi ja {minutes} minutit täna jäänud"
   },
   "transcription": {
     "lyrics": "Laulusõnad",
@@ -229,5 +230,9 @@
     "long-copyright": "Pikk autoriõigus",
     "remove-formatting": "Puhasta vormindus",
     "paste-instructions": "Kleebi tekst, kasutades <shortcut>, et eemaldada vormindust."
+  },
+  "project": {
+    "achievement": "Saavutus",
+    "achievementUnlocked": "Lukustamata"
   }
 }
