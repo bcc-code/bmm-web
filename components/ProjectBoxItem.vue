@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { TrackApi } from "@bcc-code/bmm-sdk-fetch";
 import type { AchievementModel, ProjectBoxV2 } from "@bcc-code/bmm-sdk-fetch";
 
 defineProps<{
@@ -15,6 +16,23 @@ const showDialog = computed({
       selectedAchievement.value = undefined;
     }
   },
+});
+
+const { $mediaPlayer } = useNuxtApp();
+async function playTrackWithId(trackId: number) {
+  const track = await new TrackApi().trackIdGet({ id: trackId });
+  $mediaPlayer.replaceCurrent(track);
+  setTimeout(() => {
+    $mediaPlayer.open.value = true;
+  }, 100);
+}
+
+const trackIsPlaying = computed(() => {
+  if (!$mediaPlayer.currentTrack.value) return false;
+  if (!selectedAchievement.value) return false;
+  return (
+    $mediaPlayer.currentTrack.value.id === selectedAchievement.value.trackId
+  );
 });
 </script>
 
@@ -56,6 +74,20 @@ const showDialog = computed({
         </span>
         <p class="type-heading-2 my-2">{{ selectedAchievement.title }}</p>
         <p class="text-balance">{{ selectedAchievement.description }}</p>
+
+        <div
+          v-if="selectedAchievement.trackId"
+          class="mt-6 flex w-full flex-col gap-2"
+        >
+          <ButtonStyled
+            :disabled="trackIsPlaying"
+            size="large"
+            :icon="trackIsPlaying ? 'icon.playing.animation' : 'icon.play'"
+            @click="playTrackWithId(selectedAchievement.trackId)"
+          >
+            {{ $t("project.achievementPlayNext") }}
+          </ButtonStyled>
+        </div>
       </div>
     </DialogBase>
   </div>

@@ -52,6 +52,7 @@ const className = cva(
 <template>
   <button
     :class="className({ iconOnly: !slots.default, intent, size, disabled })"
+    :disabled
   >
     <NuxtIcon
       v-if="loading"
