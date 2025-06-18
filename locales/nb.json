@@ -194,7 +194,8 @@
   "streak": {
     "your-streak": "Din streak denne uken",
     "days-in-row": "{count} dager på rad",
-    "perfect-weeks": "{count} perfekte uker"
+    "perfect-weeks": "{count} perfekte uker",
+    "time-left-today": "{hours} timer og {minutes} minutter igjen i dag"
   },
   "transcription": {
     "lyrics": "Sangtekst",
@@ -229,5 +230,9 @@
     "long-copyright": "Lang opphavsrett",
     "remove-formatting": "Oppryddingsformatering",
     "paste-instructions": "Lim inn tekst ved hjelp av <shortcut> for å fjerne formatering."
+  },
+  "project": {
+    "achievement": "Achievement",
+    "achievementUnlocked": "Åpnet"
   }
 }
