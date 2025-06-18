@@ -1,9 +1,7 @@
 <script setup lang="ts">
 import { MediaPlayerStatus } from "~/plugins/mediaPlayer/mediaPlayer";
 
-const open = ref(false);
-
-const { status, play, pause, next, previous } = useNuxtApp().$mediaPlayer;
+const { status, play, pause, next, previous, open } = useNuxtApp().$mediaPlayer;
 
 defineShortcuts({
   " ": {

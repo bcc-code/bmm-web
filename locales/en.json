@@ -233,6 +233,7 @@
   },
   "project": {
     "achievement": "Achievement",
-    "achievementUnlocked": "Unlocked"
+    "achievementUnlocked": "Unlocked",
+    "achievementPlayNext": "Play next"
   }
 }

@@ -49,6 +49,7 @@ export interface MediaPlayer {
   addNext: (track: TrackModel, origin?: string) => void;
   replaceCurrent: (track: TrackModel) => void;
   repeatStatus: Ref<RepeatStatus>;
+  open: Ref<boolean>;
 }
 
 export const seekOffset = 15;
@@ -74,6 +75,7 @@ export const initMediaPlayer = (
 
   const volume = ref(1);
   const playbackSpeed = ref(1);
+  const open = ref(false);
 
   function stop() {
     if (activeMedia.value) {
@@ -351,5 +353,6 @@ export const initMediaPlayer = (
     addNext,
     replaceCurrent,
     repeatStatus,
+    open,
   };
 };
