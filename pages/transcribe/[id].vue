@@ -83,6 +83,8 @@ const {
   deletedTranscriptionSegments,
   refetchTranscription,
   syncEditableTranscription,
+  addSegment,
+  appendSegment,
 } = useTranscriptionTool({
   trackId: Number(route.params.id),
   language,
@@ -319,6 +321,30 @@ async function copyToClipboard() {
                         .join(" - ")
                     }}
                   </span>
+                </button>
+                <button
+                  v-if="
+                    !hasInvalidIds &&
+                    (index == 0 ||
+                      (item.start &&
+                        editableTranscription[index - 1]?.end &&
+                        item.start > editableTranscription[index - 1].end + 3))
+                  "
+                  class="flex items-center gap-0.5 rounded-full border border-label-separator px-1.5 hover:text-label-3"
+                  @click="addSegment(index)"
+                >
+                  <NuxtIcon name="icon.close.small" class="opacity-50" />
+                  Insert Before
+                </button>
+                <button
+                  v-if="
+                    !hasInvalidIds && index == editableTranscription.length - 1
+                  "
+                  class="flex items-center gap-0.5 rounded-full border border-label-separator px-1.5 hover:text-label-3"
+                  @click="appendSegment()"
+                >
+                  <NuxtIcon name="icon.close.small" class="opacity-50" />
+                  Insert After
                 </button>
                 <button
                   v-if="!hasInvalidIds"
