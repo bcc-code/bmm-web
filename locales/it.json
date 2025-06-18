@@ -194,7 +194,8 @@
   "streak": {
     "your-streak": "Il tuo streak di questa settimana",
     "days-in-row": "{count} giorni di fila",
-    "perfect-weeks": "{conteggio} settimane perfette"
+    "perfect-weeks": "{conteggio} settimane perfette",
+    "time-left-today": "{ore} ore e {minuti} minuti rimasti oggi"
   },
   "transcription": {
     "lyrics": "Testi",
@@ -229,5 +230,9 @@
     "long-copyright": "Lungo Copyright",
     "remove-formatting": "Pulizia della formattazione",
     "paste-instructions": "Incolla il testo utilizzando <shortcut> per rimuovere la formattazione."
+  },
+  "project": {
+    "achievement": "Risultati",
+    "achievementUnlocked": "Sbloccato"
   }
 }
