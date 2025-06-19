@@ -215,7 +215,12 @@
       "done": "Reviewed",
       "in-progress": "In progress",
       "not-started": "Not reviewed"
-    }
+    },
+    "insertBefore": "Insert before",
+    "insertAfter": "Insert after",
+    "copyToClipboard": "Copy to clipboard",
+    "copiedToClipboard": "Copied to clipboard",
+    "invalidIdsDescription": "Some transcription segments have the same ID, and can therefore not be edited."
   },
   "dashboards": {
     "title": "Dashboard",

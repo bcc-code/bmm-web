@@ -181,6 +181,44 @@ export function useTranscriptionTool(options: UseTranscriptionToolOptions) {
     );
   }
 
+  function addSegment(index: number) {
+    const followingSegment = editableTranscription.value[index];
+    if (!followingSegment) return;
+    const newSegment = {
+      start: Math.max(
+        editableTranscription.value[index - 1]?.end || 0,
+        (followingSegment.start ?? 0) - 6,
+      ),
+      end: followingSegment.start,
+      text: "",
+      isHeader: false,
+      id: index,
+    };
+    editableTranscription.value.splice(index, 0, newSegment);
+    transcription.value?.splice(index, 0, structuredClone(toRaw(newSegment)));
+    const currentSegment = currentTranscriptionSegment.value;
+    for (let i = index; i < editableTranscription.value.length; i++) {
+      if (!editableTranscription.value[i] || !transcription.value?.[i]) return;
+      editableTranscription.value[i]!.id = i;
+      transcription.value[i]!.id = i;
+    }
+    if (currentSegment?.id) currentIndex.value = currentSegment?.id;
+  }
+
+  function appendSegment() {
+    const lastSegment = editableTranscription.value.at(-1);
+    if (!lastSegment?.end) return;
+    const newSegment = {
+      start: lastSegment.end,
+      end: lastSegment.end + 6,
+      text: "",
+      isHeader: false,
+      id: editableTranscription.value.length,
+    };
+    editableTranscription.value.push(newSegment);
+    transcription.value?.push(structuredClone(toRaw(newSegment)));
+  }
+
   return {
     currentIndex,
     transcription,
@@ -198,5 +236,7 @@ export function useTranscriptionTool(options: UseTranscriptionToolOptions) {
     toggleDeletion,
     deletedTranscriptionSegments,
     refetchTranscription,
+    addSegment,
+    appendSegment,
   };
 }
