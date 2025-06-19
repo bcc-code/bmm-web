@@ -196,11 +196,13 @@ export function useTranscriptionTool(options: UseTranscriptionToolOptions) {
     };
     editableTranscription.value.splice(index, 0, newSegment);
     transcription.value?.splice(index, 0, structuredClone(toRaw(newSegment)));
+    const currentSegment = currentTranscriptionSegment.value;
     for (let i = index; i < editableTranscription.value.length; i++) {
       if (!editableTranscription.value[i] || !transcription.value?.[i]) return;
       editableTranscription.value[i]!.id = i;
       transcription.value[i]!.id = i;
     }
+    if (currentSegment?.id) currentIndex.value = currentSegment?.id;
   }
 
   function appendSegment() {
