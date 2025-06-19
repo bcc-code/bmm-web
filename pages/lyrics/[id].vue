@@ -64,24 +64,27 @@ const lyricists = ref<ContributorModel[]>();
 // Initially set composer and lyricist based on the lyrics
 watch(lyrics, async (l) => {
   if (!l) return;
-  if (!l.composers?.length || !l.lyricists?.length) return;
 
   yearPublished.value = l.yearPublished;
-  composers.value = await Promise.all(
-    l.composers.map((c) =>
-      new ContributorApi().contributorIdGet({
-        id: c,
-      }),
-    ),
-  );
+  if (l.composers?.length) {
+    composers.value = await Promise.all(
+      l.composers.map((c) =>
+        new ContributorApi().contributorIdGet({
+          id: c,
+        }),
+      ),
+    );
+  }
 
-  lyricists.value = await Promise.all(
-    l.lyricists.map((c) =>
-      new ContributorApi().contributorIdGet({
-        id: c,
-      }),
-    ),
-  );
+  if (l.lyricists?.length) {
+    lyricists.value = await Promise.all(
+      l.lyricists.map((c) =>
+        new ContributorApi().contributorIdGet({
+          id: c,
+        }),
+      ),
+    );
+  }
 });
 
 watch([composers, lyricists], ([c, l]) => {
