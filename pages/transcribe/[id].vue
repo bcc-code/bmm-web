@@ -109,6 +109,8 @@ function getDiff(
   oldItem: TranscriptionSegment | undefined,
   newItem: TranscriptionSegment | undefined,
 ) {
+  if (!oldItem?.text && newItem?.text)
+    return diffWordsWithSpace("", newItem.text);
   if (!oldItem?.text || !newItem?.text) return [];
   return diffWordsWithSpace(oldItem.text, newItem.text);
 }
@@ -214,10 +216,10 @@ async function copyToClipboard() {
         <div class="flex flex-col items-end gap-2">
           <div class="flex gap-2">
             <ButtonStyled intent="tertiary" @click="copyToClipboard">
-              Copy to clipboard
+              {{ $t("transcription.copyToClipboard") }}
             </ButtonStyled>
             <DialogPlain :show="copiedToClipboard">
-              <p class="p-6">Copied to clipboard</p>
+              <p class="p-6">{{ $t("transcription.copiedToClipboard") }}</p>
             </DialogPlain>
             <ButtonStyled
               intent="primary"
@@ -230,8 +232,7 @@ async function copyToClipboard() {
             </ButtonStyled>
           </div>
           <span v-if="hasInvalidIds" class="type-subtitle-2 text-label-3">
-            Some transcription segments have the same ID, and can therefore not
-            be edited.
+            {{ $t("transcription.invalidIdsDescription") }}
           </span>
         </div>
       </header>
@@ -286,7 +287,7 @@ async function copyToClipboard() {
                     .join(" - ")
                 }}
               </span>
-              <span>{{ item.text }}</span>
+              <span class="block h-7">{{ item.text }}</span>
             </p>
           </div>
           <div class="md:p-6">
@@ -306,10 +307,10 @@ async function copyToClipboard() {
               ]"
             >
               <div
-                class="type-title-3 col-span-full flex h-6 items-center justify-between gap-2 text-label-4"
+                class="type-title-3 col-span-full flex h-6 items-center gap-2 text-label-4"
               >
                 <button
-                  class="-ml-4 flex items-center gap-1"
+                  class="-ml-4 mr-auto flex items-center gap-1"
                   @click="playTranscriptionSegment(item)"
                 >
                   <NuxtIcon name="icon.play" />
@@ -328,13 +329,14 @@ async function copyToClipboard() {
                     (index == 0 ||
                       (item.start &&
                         editableTranscription[index - 1]?.end &&
-                        item.start > editableTranscription[index - 1].end + 3))
+                        item.start >
+                          editableTranscription[index - 1]!.end! + 3))
                   "
                   class="flex items-center gap-0.5 rounded-full border border-label-separator px-1.5 hover:text-label-3"
                   @click="addSegment(index)"
                 >
-                  <NuxtIcon name="icon.close.small" class="opacity-50" />
-                  Insert Before
+                  <NuxtIcon name="icon.add" class="opacity-50" />
+                  {{ t("transcription.insertBefore") }}
                 </button>
                 <button
                   v-if="
@@ -343,8 +345,8 @@ async function copyToClipboard() {
                   class="flex items-center gap-0.5 rounded-full border border-label-separator px-1.5 hover:text-label-3"
                   @click="appendSegment()"
                 >
-                  <NuxtIcon name="icon.close.small" class="opacity-50" />
-                  Insert After
+                  <NuxtIcon name="icon.add" class="opacity-50" />
+                  {{ t("transcription.insertAfter") }}
                 </button>
                 <button
                   v-if="!hasInvalidIds"
@@ -396,11 +398,12 @@ async function copyToClipboard() {
                 @click="editing[index] = true"
               >
                 <span
-                  v-for="change in getDiff(item, transcription?.[index])"
+                  v-for="change in getDiff(transcription?.[index], item)"
                   :key="change.value"
+                  a
                   :class="{
-                    'bg-[red]/10 text-[red]': change.added,
-                    'bg-[green]/10 text-[green]': change.removed,
+                    'bg-[red]/10 text-[red]': change.removed,
+                    'bg-[green]/10 text-[green]': change.added,
                   }"
                 >
                   {{ change.value }}
