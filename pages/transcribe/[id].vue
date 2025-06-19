@@ -85,7 +85,6 @@ const {
   syncEditableTranscription,
   addSegment,
   appendSegment,
-  currentIndex,
 } = useTranscriptionTool({
   trackId: Number(route.params.id),
   language,
@@ -266,7 +265,6 @@ async function copyToClipboard() {
       >
         <template v-if="status === 'success'">
           <div class="md:p-6">
-            <div>current index: {{ currentIndex }}</div>
             <p class="type-title-1 mb-4">{{ t("transcription.original") }}</p>
             <p
               v-for="item in transcription"
