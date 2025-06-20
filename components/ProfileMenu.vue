@@ -52,7 +52,7 @@ const closeInterfaceLanguageDialog = () => {
 const saveAndCloseContentLanguageDialog = () => {
   showContentLanguageDialog.value = false;
 
-  const newLanguages: LanguageEnum[] = ["zxx", ...contentLanguages.value];
+  const newLanguages: LanguageEnum[] = [...contentLanguages.value, "zxx"];
   if (
     newLanguages.toString() !==
     useContentLanguageStore().contentLanguages.toString()
