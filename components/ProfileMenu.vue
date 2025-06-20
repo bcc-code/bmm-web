@@ -227,12 +227,15 @@ const { data: user } = useCurrentUser();
         <label class="flex items-center justify-between gap-4 self-center">
           <span>{{ $t("profile.select-language") }}</span>
           <div
-            class="type-title-2 min-w-[100px] rounded-lg bg-background-1 px-2 py-1.5 text-label-1 shadow-[0_4px_12px_0_#0000000D,0_1px_4px_0_#0000000D,0_0_0_1px_#0000000D]"
+            class="type-title-2 relative min-w-[100px] rounded-lg bg-background-1 px-2 py-1.5 text-label-1 shadow-[0_4px_12px_0_#0000000D,0_1px_4px_0_#0000000D,0_0_0_1px_#0000000D]"
           >
-            <select v-model="profileStore.uiLanguage" class="py-1">
+            <select
+              v-model="profileStore.uiLanguage"
+              class="appearance-none truncate bg-background-1 py-0.5 pl-1 pr-5 leading-normal"
+            >
               <option
-                v-for="(lang, i) in $i18n.availableLocales"
-                :key="`Lang${i}`"
+                v-for="lang in $i18n.availableLocales"
+                :key="lang"
                 :value="lang"
               >
                 {{ getLocalizedLanguageName(lang) }} ({{
@@ -240,6 +243,10 @@ const { data: user } = useCurrentUser();
                 }})
               </option>
             </select>
+            <NuxtIcon
+              name="icon.chevron.down"
+              class="absolute right-2 top-1/2 -translate-y-1/2"
+            />
           </div>
         </label>
       </div>
@@ -279,9 +286,12 @@ const { data: user } = useCurrentUser();
             {{ t("profile.preference-language-" + Math.min(i + 1, 4), i + 1) }}
           </div>
           <div
-            class="type-title-2 min-w-min rounded-lg bg-background-1 px-2 py-1.5 text-label-1 shadow-[0_4px_12px_0_#0000000D,0_1px_4px_0_#0000000D,0_0_0_1px_#0000000D]"
+            class="type-title-2 relative min-w-min rounded-lg bg-background-1 px-2 py-1.5 text-label-1 shadow-[0_4px_12px_0_#0000000D,0_1px_4px_0_#0000000D,0_0_0_1px_#0000000D]"
           >
-            <select v-model="contentLanguages[i]" class="w-full py-1">
+            <select
+              v-model="contentLanguages[i]"
+              class="w-full appearance-none truncate bg-background-1 py-0.5 pl-1 pr-5 leading-normal"
+            >
               <option
                 v-for="(lang, j) in [
                   item,
@@ -289,7 +299,7 @@ const { data: user } = useCurrentUser();
                     (x) => !contentLanguages.includes(x),
                   ),
                 ]"
-                :key="`Lang${j}`"
+                :key="lang"
                 :value="lang"
               >
                 {{ getLocalizedLanguageName(lang) }} ({{
@@ -297,6 +307,10 @@ const { data: user } = useCurrentUser();
                 }})
               </option>
             </select>
+            <NuxtIcon
+              name="icon.chevron.down"
+              class="absolute right-2 top-1/2 -translate-y-1/2"
+            />
           </div>
 
           <button
