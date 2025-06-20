@@ -233,6 +233,7 @@
   },
   "project": {
     "achievement": "Saavutus",
-    "achievementUnlocked": "Lukustamata"
+    "achievementUnlocked": "Lukustamata",
+    "achievementPlayNext": "Mängi järgmine"
   }
 }

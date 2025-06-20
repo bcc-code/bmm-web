@@ -233,6 +233,7 @@
   },
   "project": {
     "achievement": "Abzeichen",
-    "achievementUnlocked": "Freigeschaltet"
+    "achievementUnlocked": "Freigeschaltet",
+    "achievementPlayNext": "Nächstes abspielen"
   }
 }

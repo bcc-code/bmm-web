@@ -111,7 +111,7 @@
     "delete-playlist": "Slett spillelisten",
     "delete-playlist-description": "Er du sikker på at du vil slette spillelisten? Denne handlingen kan ikke reverseres.",
     "action": {
-      "shuffle": "Stokk",
+      "shuffle": "Tilfeldig",
       "add-to-my-playlists": "Legg til mine spillelister",
       "remove-shared-playlist": "Fjern spillelisten"
     },
@@ -215,7 +215,12 @@
       "done": "Gjennomgått",
       "in-progress": "Pågående",
       "not-started": "Ikke gjennomgått"
-    }
+    },
+    "insertBefore": "Sett inn før",
+    "insertAfter": "Sett inn etter",
+    "copyToClipboard": "Kopier til utklippstavle",
+    "copiedToClipboard": "Kopiert til utklippstavlen",
+    "invalidIdsDescription": "Noen transkripsjonssegmenter har samme ID og kan derfor ikke redigeres."
   },
   "dashboards": {
     "title": "Kontrollpanel",
@@ -233,6 +238,7 @@
   },
   "project": {
     "achievement": "Achievement",
-    "achievementUnlocked": "Åpnet"
+    "achievementUnlocked": "Åpnet",
+    "achievementPlayNext": "Spill neste"
   }
 }
