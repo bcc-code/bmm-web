@@ -293,7 +293,7 @@ const { data: user } = useCurrentUser();
               class="w-full appearance-none truncate bg-background-1 py-0.5 pl-1 pr-5 leading-normal"
             >
               <option
-                v-for="(lang, j) in [
+                v-for="lang in [
                   item,
                   ...availableContentLanguages.filter(
                     (x) => !contentLanguages.includes(x),
