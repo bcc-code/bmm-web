@@ -73,6 +73,15 @@ const { data: currentUser } = await useCurrentUser();
             :link="{ name: 'search-term' }"
             icon="nav.search"
           />
+        </SidebarGroup>
+
+        <SidebarGroup :title="$t('sidebar.tools.title')">
+          <SidebarItem
+            v-if="isFraKaareDashboardViewer(currentUser)"
+            :title="$t('dashboards.title')"
+            :link="{ name: 'dashboards-fra-kaare' }"
+            icon="icon.dashboard"
+          />
           <SidebarItem
             v-if="isTranscriptionManager(currentUser)"
             :title="$t('nav.transcribe')"
@@ -84,12 +93,6 @@ const { data: currentUser } = await useCurrentUser();
             :title="$t('nav.lyrics')"
             :link="{ name: 'lyrics' }"
             icon="icon.lyrics"
-          />
-          <SidebarItem
-            v-if="isFraKaareDashboardViewer(currentUser)"
-            title="Dashboard"
-            :link="{ name: 'dashboards-fra-kaare' }"
-            icon="icon.dashboard"
           />
         </SidebarGroup>
 
