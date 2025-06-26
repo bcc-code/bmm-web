@@ -1,6 +1,8 @@
 <script lang="ts" setup>
 import { version } from "~/package.json";
 import { isTranscriptionManager } from "~/utils/roles";
+import type { NuxtIconName } from "#build/nuxt-icons";
+import type { RoutesNamedLocations } from "@typed-router";
 
 const { data: collections } = usePrivatePlaylists();
 const runtimeConfig = useRuntimeConfig();
@@ -13,6 +15,42 @@ onMounted(() => {
 const hamburgerOpen = ref<boolean>(false);
 
 const { data: currentUser } = await useCurrentUser();
+
+const { t } = useI18n();
+
+type Tool = {
+  id: string;
+  name: string;
+  icon: NuxtIconName;
+  link: RoutesNamedLocations;
+  show: boolean;
+};
+const tools = computed<Tool[]>(() => {
+  const items = [
+    {
+      id: "dashboard",
+      name: t("dashboards.title"),
+      icon: "icon.dashboard",
+      link: { name: "dashboards-fra-kaare" },
+      show: isFraKaareDashboardViewer(currentUser.value),
+    },
+    {
+      id: "transcriptions",
+      name: t("nav.transcribe"),
+      icon: "icon.transcription",
+      link: { name: "transcribe" },
+      show: isTranscriptionManager(currentUser.value),
+    },
+    {
+      id: "lyrics",
+      name: t("nav.lyrics"),
+      icon: "icon.lyrics",
+      link: { name: "lyrics" },
+      show: isLyricsManager(currentUser.value),
+    },
+  ].filter((t) => t.show) as Tool[];
+  return items;
+});
 </script>
 
 <template>
@@ -73,26 +111,27 @@ const { data: currentUser } = await useCurrentUser();
             :link="{ name: 'search-term' }"
             icon="nav.search"
           />
+          <template v-if="tools.length === 1">
+            <SidebarItem
+              v-for="tool in tools"
+              :key="tool.id"
+              :link="tool.link"
+              :title="$t(tool.name)"
+              :icon="tool.icon"
+            />
+          </template>
         </SidebarGroup>
 
-        <SidebarGroup :title="$t('sidebar.tools.title')">
+        <SidebarGroup
+          v-if="tools.length > 1"
+          :title="$t('sidebar.tools.title')"
+        >
           <SidebarItem
-            v-if="isFraKaareDashboardViewer(currentUser)"
-            :title="$t('dashboards.title')"
-            :link="{ name: 'dashboards-fra-kaare' }"
-            icon="icon.dashboard"
-          />
-          <SidebarItem
-            v-if="isTranscriptionManager(currentUser)"
-            :title="$t('nav.transcribe')"
-            :link="{ name: 'transcribe' }"
-            icon="icon.transcription"
-          />
-          <SidebarItem
-            v-if="isLyricsManager(currentUser)"
-            :title="$t('nav.lyrics')"
-            :link="{ name: 'lyrics' }"
-            icon="icon.lyrics"
+            v-for="tool in tools"
+            :key="tool.id"
+            :title="tool.name"
+            :link="tool.link"
+            :icon="tool.icon"
           />
         </SidebarGroup>
 
