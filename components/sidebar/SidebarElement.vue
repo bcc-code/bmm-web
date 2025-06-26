@@ -48,7 +48,7 @@ const tools = computed<Tool[]>(() => {
       link: { name: "lyrics" },
       show: isLyricsManager(currentUser.value),
     },
-  ].filter((t) => t.show) as Tool[];
+  ].filter((tool) => tool.show) as Tool[];
   return items;
 });
 </script>
