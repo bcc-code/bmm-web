@@ -194,7 +194,8 @@
   "streak": {
     "your-streak": "Jouw Streak deze week",
     "days-in-row": "{count} dagen op rij",
-    "perfect-weeks": "{0} perfecte weken"
+    "perfect-weeks": "{0} perfecte weken",
+    "time-left-today": "{uren} uur en {minuten} minuten te gaan vandaag"
   },
   "transcription": {
     "lyrics": "Lyrics",
@@ -214,7 +215,12 @@
       "done": "Beoordeeld",
       "in-progress": "In uitvoering",
       "not-started": "Niet beoordeeld"
-    }
+    },
+    "insertBefore": "Invoegen vóór",
+    "insertAfter": "Invoegen na",
+    "copyToClipboard": "Kopiëren naar klembord",
+    "copiedToClipboard": "Gekopieerd naar het klembord",
+    "invalidIdsDescription": "Sommige transcriptiesegmenten hebben dezelfde ID en kunnen daarom niet worden bewerkt."
   },
   "dashboards": {
     "title": "Dashboard",
@@ -229,5 +235,10 @@
     "long-copyright": "Lang copyright",
     "remove-formatting": "Weggooien opmaak",
     "paste-instructions": "Plak tekst met <shortcut> om opmaak te verwijderen."
+  },
+  "project": {
+    "achievement": "Prestatie",
+    "achievementUnlocked": "Ontgrendeld",
+    "achievementPlayNext": "Volgende afspelen"
   }
 }

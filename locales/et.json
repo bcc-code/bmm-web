@@ -215,7 +215,12 @@
       "done": "Üle vaadatud",
       "in-progress": "Käimasolev",
       "not-started": "Pole üle vaadatud"
-    }
+    },
+    "insertBefore": "Lisa enne",
+    "insertAfter": "Lisa peale",
+    "copyToClipboard": "Kopeeri lõikelauale",
+    "copiedToClipboard": "Lõikelauale kopeeritud",
+    "invalidIdsDescription": "Mõnedel transkriptsiooni segmentidel on sama ID ja neid ei saa seetõttu muuta."
   },
   "dashboards": {
     "title": "Juhtpaneel",

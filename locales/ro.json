@@ -194,7 +194,8 @@
   "streak": {
     "your-streak": "Progresul tău săptămâna aceasta",
     "days-in-row": "{count} zile consecutive",
-    "perfect-weeks": "{count} săptămâni perfecte"
+    "perfect-weeks": "{count} săptămâni perfecte",
+    "time-left-today": "{ore} ore și {minute} minute rămase astăzi"
   },
   "transcription": {
     "lyrics": "Versuri",
@@ -214,7 +215,12 @@
       "done": "Revizuit",
       "in-progress": "În curs de desfășurare",
       "not-started": "Nerevizuit"
-    }
+    },
+    "insertBefore": "Inserați înainte",
+    "insertAfter": "Inserați după",
+    "copyToClipboard": "Copiați în clipboard",
+    "copiedToClipboard": "Copiat în clipboard",
+    "invalidIdsDescription": "Unele segmente de transcriere au același ID și, prin urmare, nu pot fi editate."
   },
   "dashboards": {
     "title": "Panou de control",
@@ -229,5 +235,10 @@
     "long-copyright": "Drept de autor lung",
     "remove-formatting": "Șterge formatarea",
     "paste-instructions": "Introdu text folosind <shortcut> pentru a șterge formatarea textului."
+  },
+  "project": {
+    "achievement": "Realizare",
+    "achievementUnlocked": "Deblocată",
+    "achievementPlayNext": "Redă următoarea"
   }
 }
