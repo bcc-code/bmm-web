@@ -215,7 +215,12 @@
       "done": "Überprüft",
       "in-progress": "In Bearbeitung",
       "not-started": "Nicht überprüft"
-    }
+    },
+    "insertBefore": "Davor einfügen",
+    "insertAfter": "Danach einfügen",
+    "copyToClipboard": "In die Zwischenablage kopieren",
+    "copiedToClipboard": "In die Zwischenablage kopiert",
+    "invalidIdsDescription": "Einige Transkriptionssegmente haben dieselbe ID und können daher nicht bearbeitet werden."
   },
   "dashboards": {
     "title": "Dashboard",
