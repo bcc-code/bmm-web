@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { VueDraggable } from "vue-draggable-plus";
 
-const { selectedPage, localStateForSelectedPage, save, loading } =
+const { selectedPage, localStateForSelectedPage, save, loading, refresh } =
   usePageEditor();
 
 const keyForElement = (element: PageEditorElement) => {
@@ -62,7 +62,7 @@ const addElement = (index: number) => {
           intent="secondary"
           :size="hasScrolled ? 'small' : 'medium'"
           class="transition-all duration-200 ease-out"
-          @click="reloadNuxtApp()"
+          @click="refresh"
         >
           Reset
         </ButtonStyled>

@@ -75,26 +75,27 @@ export function usePageEditor() {
 		saving: false,
 	});
 
+	async function refresh() {
+		loading.page = true;
+		if (selectedPage.value === "discover") {
+			elements.value =
+				await new DiscoverApi().discoverRawDiscoverCollectionGet();
+		}
+		if (selectedPage.value === "carplay") {
+			elements.value =
+				await new DiscoverApi().discoverRawCarplayHomeGet();
+		}
+		if (selectedPage.value === "playlists") {
+			elements.value =
+				await new DiscoverApi().discoverRawPlaylistDocumentsGet();
+		}
+		loading.page = false;
+	}
+
 	watch(
 		selectedPage,
-		async (page) => {
-			loading.page = true;
-			if (page === "discover") {
-				elements.value =
-					await new DiscoverApi().discoverRawDiscoverCollectionGet();
-			}
-			if (page === "carplay") {
-				elements.value = await new DiscoverApi().discoverRawCarplayHomeGet();
-			}
-			if (page === "playlists") {
-				elements.value =
-					await new DiscoverApi().discoverRawPlaylistDocumentsGet();
-			}
-			loading.page = false;
-		},
-		{
-			immediate: true,
-		},
+		refresh,
+		{ immediate: true, },
 	);
 
 	async function save() {
@@ -128,5 +129,6 @@ export function usePageEditor() {
 		localStateForSelectedPage,
 		save,
 		loading,
+		refresh
 	};
 }
