@@ -1,242 +1,320 @@
-<script lang="ts">
-export enum ElementTypes {
-  Message = "message",
-  Streak = "streak",
-  PodcastTile = "podcast-tile",
-  AudiobookTile = "audiobook-tile",
-  MessageTile = "message-tile",
-  ProjectBox = "project-box",
-  RecommendTrackToUnlockAchievement = "recommend-track-to-unlock-achievement",
-  Header = "header",
-  Playlists = "playlists",
-  FavoritePlaylists = "favorite-playlists",
-  Audiobooks = "audiobooks",
-  Events = "events",
-  Track = "track",
-  RecommendPrevious = "recommend-previous",
-  RecentMessages = "recent-messages",
-  RecentSongs = "recent-songs",
-  Contributor = "contributor",
-  Podcasts = "podcasts",
-  Music = "music",
-  TrackCollection = "track-collection",
-}
-</script>
-
 <script setup lang="ts">
-import { DiscoverApi } from "@bcc-code/bmm-sdk-fetch";
-import type {
-  DiscoverCollection,
-  DiscoverCollectionElement,
-} from "@bcc-code/bmm-sdk-fetch";
-import hash from "stable-hash";
 import { VueDraggable } from "vue-draggable-plus";
 
-const elements = ref<DiscoverCollection>();
+const { selectedPage, localStateForSelectedPage, save, loading } =
+  usePageEditor();
 
-const selectedPage = ref<"discover" | "carplay" | "playlists">("discover");
-const selectedClient = ref<"web" | "app">("app");
-
-const filteredElements = computed(() => {
-  if (!elements.value?.documents) {
-    return [];
-  }
-  return elements.value.documents.filter((d) => {
-    if (!d.client) return true;
-    return d.client.toLowerCase() === selectedClient.value.toLowerCase();
-  });
-});
-
-watch(
-  selectedPage,
-  async (page) => {
-    if (page === "discover") {
-      elements.value =
-        await new DiscoverApi().discoverRawDiscoverCollectionGet();
-    }
-    if (page === "carplay") {
-      elements.value = await new DiscoverApi().discoverRawCarplayHomeGet();
-    }
-    if (page === "playlists") {
-      elements.value =
-        await new DiscoverApi().discoverRawPlaylistDocumentsGet();
-    }
-  },
-  {
-    immediate: true,
-  },
-);
-
-const getKeyForElement = (element: DiscoverCollectionElement) => {
-  return hash(element);
+const keyForElement = (element: PageEditorElement) => {
+  return `${selectedPage.value}:${element.elementId}`;
 };
 </script>
 
 <template>
   <div>
-    <PageHeading>Page Editor</PageHeading>
-    <div class="mb-8 flex gap-4">
-      <select
-        v-model="selectedPage"
-        class="rounded-lg border border-label-separator bg-background-2 px-4 py-2"
-      >
-        <option value="discover">Discover</option>
-        <option value="carplay">Carplay</option>
-        <option value="playlists">Playlists</option>
-      </select>
-      <select
-        v-if="selectedPage === 'discover'"
-        v-model="selectedClient"
-        class="rounded-lg border border-label-separator bg-background-2 px-4 py-2"
-      >
-        <option value="web">Web</option>
-        <option value="app">App</option>
-      </select>
-    </div>
+    <header class="mb-8 flex items-center justify-between gap-4">
+      <PageHeading>Page Editor</PageHeading>
+      <div class="flex items-center gap-6">
+        <select
+          id="page-selector"
+          v-model="selectedPage"
+          class="rounded-lg border border-label-separator bg-background-2 px-3 py-2"
+        >
+          <option value="discover">Homescreen</option>
+          <option value="carplay">Carplay</option>
+          <option value="playlists">Playlists</option>
+        </select>
+        <ButtonStyled intent="primary" :loading="loading.saving" @click="save">
+          Save changes
+        </ButtonStyled>
+      </div>
+    </header>
 
+    <NuxtIcon
+      v-if="loading.page"
+      name="icon.loading.animation"
+      class="mx-auto text-4xl"
+    />
     <VueDraggable
-      v-model="filteredElements"
+      v-if="!loading.page"
+      v-model="localStateForSelectedPage"
       :animation="200"
-      drag-class=".drag-handle"
-      class="flex flex-col gap-4"
+      direction="vertical"
+      handle=".drag-handle"
+      ghost-class="opacity-50"
+      class="relative z-0 flex flex-col gap-4"
     >
       <template
-        v-for="element in filteredElements"
-        :key="getKeyForElement(element)"
+        v-for="element in localStateForSelectedPage"
+        :key="keyForElement(element)"
       >
         <PageEditorElement
-          v-if="element.type === ElementTypes.Streak"
+          v-if="element.type === PageEditorElementTypes.Streak"
           title="Streak"
-          :element="element"
-        >
-        </PageEditorElement>
+          :element
+        />
         <PageEditorElement
-          v-if="element.type === ElementTypes.Message"
+          v-else-if="element.type == PageEditorElementTypes.Message"
           title="Message"
-          :element="element"
+          :element
         >
+          <PageEditorInput
+            label="English Text"
+            :element
+            v-model="element.messageEn"
+          />
+          <PageEditorInput
+            label="Norwegian Text"
+            :element
+            v-model="element.messageNb"
+          />
         </PageEditorElement>
         <PageEditorElement
-          v-if="element.type === ElementTypes.Header"
+          v-else-if="element.type === PageEditorElementTypes.Header"
           title="Header"
-          :element="element"
+          :element
         >
-          <p class="type-paragraph-1">{{ element.title }}</p>
+          <PageEditorInput label="Title" v-model="element.title" />
+          <PageEditorInput
+            label="Server Translation"
+            v-model="element.serverTranslation"
+          />
         </PageEditorElement>
         <PageEditorElement
-          v-if="element.type === ElementTypes.ProjectBox"
-          title="Project box"
-          :element="element"
+          v-else-if="element.type === PageEditorElementTypes.ProjectBox"
+          title="Project Box"
+          :element
         >
+          <PageEditorInput label="Podcast ID" v-model="element.id" />
         </PageEditorElement>
         <PageEditorElement
-          v-if="element.type === ElementTypes.PodcastTile"
-          title="Podcast tile"
-          :element="element"
+          v-else-if="element.type === PageEditorElementTypes.PodcastTile"
+          title="Podcast Tile"
+          :element
         >
-          <div class="flex flex-col">
-            <span>
-              Color:
-              <span
-                class="rounded px-1 py-0.5 text-on-color-1"
-                :style="{
-                  backgroundColor: element.color ?? 'none',
-                }"
-              >
-                {{ element.color }}
-              </span>
-            </span>
-          </div>
+          <PageEditorInput label="Podcast ID" v-model="element.id" />
+          <PageEditorInput label="Color" type="color" v-model="element.color" />
         </PageEditorElement>
         <PageEditorElement
-          v-if="element.type === ElementTypes.AudiobookTile"
-          title="Audiobook tile"
-          :element="element"
+          v-else-if="element.type === PageEditorElementTypes.AudiobookTile"
+          title="Audiobook Tile"
+          :element
         >
+          {{ element }}
         </PageEditorElement>
         <PageEditorElement
-          v-if="element.type === ElementTypes.MessageTile"
-          title="Message tile"
-          :element="element"
+          v-else-if="element.type === PageEditorElementTypes.MessageTile"
+          title="Message Tile"
+          :element
         >
+          {{ element }}
         </PageEditorElement>
         <PageEditorElement
-          v-if="element.type === ElementTypes.RecommendTrackToUnlockAchievement"
-          title="Recommend track to unlock achievement"
-          :element="element"
+          v-else-if="
+            element.type ===
+            PageEditorElementTypes.RecommendTrackToUnlockAchievement
+          "
+          title="Recommend Track to Unlock Achievement"
+          :element
         >
+          {{ element }}
         </PageEditorElement>
         <PageEditorElement
-          v-if="element.type === ElementTypes.Playlists"
+          v-else-if="element.type === PageEditorElementTypes.Playlists"
           title="Playlists"
-          :element="element"
+          :element
         >
+          <PageEditorInput
+            label="Number of Playlists"
+            type="number"
+            v-model="element.count"
+          />
         </PageEditorElement>
         <PageEditorElement
-          v-if="element.type === ElementTypes.Audiobooks"
+          v-else-if="element.type === PageEditorElementTypes.Audiobooks"
           title="Audiobooks"
-          :element="element"
+          :element
         >
+          <PageEditorInput
+            label="Number of Audiobooks"
+            type="number"
+            v-model="element.count"
+          />
         </PageEditorElement>
         <PageEditorElement
-          v-if="element.type === ElementTypes.Events"
+          v-else-if="element.type === PageEditorElementTypes.Events"
           title="Events"
-          :element="element"
+          :element
         >
+          <PageEditorInput
+            label="Number of Events"
+            type="number"
+            v-model="element.count"
+          />
         </PageEditorElement>
         <PageEditorElement
-          v-if="element.type === ElementTypes.Track"
+          v-else-if="element.type === PageEditorElementTypes.Track"
           title="Track"
-          :element="element"
+          :element
         >
+          <PageEditorInput label="Track ID" v-model="element.id" />
         </PageEditorElement>
         <PageEditorElement
-          v-if="element.type === ElementTypes.RecommendPrevious"
-          title="Recommend previous"
-          :element="element"
+          v-else-if="element.type === PageEditorElementTypes.RecommendPrevious"
+          title="Recommend Previous"
+          :element
         >
+          <PageEditorInput label="ID" v-model="element.id" :element />
         </PageEditorElement>
         <PageEditorElement
-          v-if="element.type === ElementTypes.RecentMessages"
-          title="Recent messages"
-          :element="element"
+          v-else-if="element.type === PageEditorElementTypes.RecentMessages"
+          title="Recent Messages"
+          :element
         >
+          <PageEditorInput
+            label="Number of Messages"
+            type="number"
+            v-model="element.count"
+          />
         </PageEditorElement>
         <PageEditorElement
-          v-if="element.type === ElementTypes.RecentSongs"
-          title="Recent songs"
-          :element="element"
+          v-else-if="element.type === PageEditorElementTypes.RecentSongs"
+          title="Recent Songs"
+          :element
         >
+          <PageEditorInput
+            label="Number of Songs"
+            type="number"
+            v-model="element.count"
+          />
         </PageEditorElement>
         <PageEditorElement
-          v-if="element.type === ElementTypes.Contributor"
+          v-else-if="element.type === PageEditorElementTypes.Contributor"
           title="Contributor"
-          :element="element"
+          :element
         >
+          <PageEditorInput label="Contributor ID" v-model="element.id" />
         </PageEditorElement>
         <PageEditorElement
-          v-if="element.type === ElementTypes.Podcasts"
+          v-else-if="element.type === PageEditorElementTypes.Podcasts"
           title="Podcasts"
-          :element="element"
+          :element
         >
+          <PageEditorInput
+            label="Count"
+            type="number"
+            v-model="element.count"
+          />
         </PageEditorElement>
         <PageEditorElement
-          v-if="element.type === ElementTypes.Music"
+          v-else-if="element.type === PageEditorElementTypes.Music"
           title="Music"
-          :element="element"
+          :element
+        >
+          <PageEditorInput
+            label="Count"
+            type="number"
+            v-model="element.count"
+          />
+        </PageEditorElement>
+        <PageEditorElement
+          v-else-if="element.type === PageEditorElementTypes.TrackCollection"
+          title="Track Collection"
+          :element
+        >
+          <PageEditorInput label="Track Collection ID" v-model="element.id" />
+        </PageEditorElement>
+        <PageEditorElement
+          v-else-if="element.type === PageEditorElementTypes.FavoritePlaylists"
+          title="Favorite Playlists"
+          :element
+        >
+          <PageEditorInput
+            label="Count"
+            type="number"
+            v-model="element.count"
+          />
+        </PageEditorElement>
+        <PageEditorElement
+          v-else-if="
+            element.type === PageEditorElementTypes.UnfinishedAudiobookTile
+          "
+          title="Unfinished Audiobook Tile"
+          :element
         >
         </PageEditorElement>
         <PageEditorElement
-          v-if="element.type === ElementTypes.TrackCollection"
-          title="Track collection"
-          :element="element"
+          v-else-if="
+            element.type === PageEditorElementTypes.UnfinishedMessageTile
+          "
+          title="Unfinished Message Tile"
+          :element
+        />
+        <PageEditorElement
+          v-else-if="element.type === PageEditorElementTypes.Podcast"
+          title="Podcast"
+          :element
         >
+          <PageEditorInput label="Podcast ID" v-model="element.id" />
         </PageEditorElement>
         <PageEditorElement
-          v-if="element.type === ElementTypes.FavoritePlaylists"
-          title="Favorite playlists"
-          :element="element"
+          v-else-if="element.type === PageEditorElementTypes.Album"
+          title="Album"
+          :element
         >
+          <PageEditorInput label="Album ID" v-model="element.id" />
+        </PageEditorElement>
+        <PageEditorElement
+          v-else-if="element.type === PageEditorElementTypes.Playlist"
+          title="Playlist"
+          :element
+        >
+          <PageEditorInput label="Playlist ID" v-model="element.id" />
+        </PageEditorElement>
+        <PageEditorElement
+          v-else-if="element.type === PageEditorElementTypes.YearInReview"
+          title="Year in Review"
+          :element
+        />
+        <PageEditorElement
+          v-else-if="element.type === PageEditorElementTypes.TileSorter"
+          title="Tile Sorter"
+          :element
+        />
+        <PageEditorElement
+          v-else-if="
+            element.type === PageEditorElementTypes.TopTrackCollections
+          "
+          title="Top Track Collections"
+          :element
+        >
+          <PageEditorInput
+            label="Number of Collections"
+            type="number"
+            v-model="element.count"
+          />
+        </PageEditorElement>
+        <PageEditorElement
+          v-else-if="
+            element.type === PageEditorElementTypes.UserLanguagePlaylists
+          "
+          title="User Language Playlists"
+          :element
+        >
+          <PageEditorInput
+            label="Number of Playlists"
+            type="number"
+            v-model="element.count"
+          />
+        </PageEditorElement>
+        <PageEditorElement
+          v-else-if="element.type === PageEditorElementTypes.PlaylistsForTag"
+          title="Playlists for Tag"
+          :element
+        >
+          <PageEditorInput label="Tag" v-model="element.tag" />
+        </PageEditorElement>
+        <PageEditorElement v-else :title="element.type ?? 'Unknown'" :element>
+          {{ element }}
         </PageEditorElement>
       </template>
     </VueDraggable>

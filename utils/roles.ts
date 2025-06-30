@@ -35,3 +35,7 @@ export function isFraKaareDashboardViewer(user: UserModel): boolean {
 export function isLyricsManager(user: UserModel): boolean {
   return hasRole(user, Role.RoleLyricsManager) || isAdmin(user);
 }
+
+export function isHomeScreenManager(user: UserModel): boolean {
+  return hasRole(user, Role.RoleHomeScreenManager) || isAdmin(user);
+}

@@ -12,8 +12,8 @@ importers:
         specifier: ^2.3.3
         version: 2.3.3(typescript@5.3.3)(vue-router@4.3.2(vue@3.4.19(typescript@5.3.3)))
       '@bcc-code/bmm-sdk-fetch':
-        specifier: ^8.8.7
-        version: 8.8.7
+        specifier: ^8.8.8
+        version: 8.8.8
       '@floating-ui/vue':
         specifier: ^1.0.6
         version: 1.0.6(vue@3.4.19(typescript@5.3.3))
@@ -80,9 +80,6 @@ importers:
       pinia-plugin-persistedstate:
         specifier: ^3.2.1
         version: 3.2.1(pinia@2.1.7(typescript@5.3.3)(vue@3.4.19(typescript@5.3.3)))
-      stable-hash:
-        specifier: ^0.0.6
-        version: 0.0.6
       string-strip-html:
         specifier: ^13.4.8
         version: 13.4.8
@@ -522,8 +519,8 @@ packages:
     resolution: {integrity: sha512-emqcG3vHrpxUKTrxcblR36dcrcoRDvKmnL/dCL6ZsHaShW80qxCAcNhzQZrpeM765VzEos+xOi4s+r4IXzTwdQ==}
     engines: {node: '>=6.9.0'}
 
-  '@bcc-code/bmm-sdk-fetch@8.8.7':
-    resolution: {integrity: sha512-pdnId7fHwY2oC04Zy4aUljpbJ+zBQpb+f0LdKZilGWeiLYX447nZYEyIYFZYaFOeLUuiEE8SZAd/ZyeYj234gg==}
+  '@bcc-code/bmm-sdk-fetch@8.8.8':
+    resolution: {integrity: sha512-O4TZVLxzaYGlSIpcrLoyxUvDXRz9Aitv03VP3YM895AJEsKcrxE7Nw9pcBnj1ToMJQ2cV1mt46EH+UgIk5BIkg==}
 
   '@bcoe/v8-coverage@1.0.2':
     resolution: {integrity: sha512-6zABk/ECA/QYSCQ1NGiVwwbQerUCZ+TQbp64Q3AgmfNvurHH0j8TtXa1qbShXA6qqkpAj4V5W8pP6mLe1mcMqA==}
@@ -7158,9 +7155,6 @@ packages:
     resolution: {integrity: sha512-bSf16tAFkGeRlUNDjXu8FzaMQt6g2HZJrun7mtMbIPOddxt3GLMSz5VWUWcqTJUPfLEaDIepGxv+bYQW49596A==}
     engines: {node: ^14.17.0 || ^16.13.0 || >=18.0.0}
 
-  stable-hash@0.0.6:
-    resolution: {integrity: sha512-0afH4mobqTybYZsXImQRLOjHV4gvOW+92HdUIax9t7a8d9v54KWykEuMVIcXhD9BCi+w3kS4x7O6fmZQ3JlG/g==}
-
   stackback@0.0.2:
     resolution: {integrity: sha512-1XMJE5fQo1jGH6Y/7ebnwPOBEkIEnT4QF32d5R1+VXdXveM0IBMJt8zfaxX1P3QhVwrYe+576+jkANtSS2mBbw==}
 
@@ -8695,7 +8689,7 @@ snapshots:
       '@babel/helper-string-parser': 7.25.9
       '@babel/helper-validator-identifier': 7.25.9
 
-  '@bcc-code/bmm-sdk-fetch@8.8.7': {}
+  '@bcc-code/bmm-sdk-fetch@8.8.8': {}
 
   '@bcoe/v8-coverage@1.0.2': {}
 
@@ -16836,8 +16830,6 @@ snapshots:
   ssri@10.0.5:
     dependencies:
       minipass: 7.0.4
-
-  stable-hash@0.0.6: {}
 
   stackback@0.0.2: {}
 

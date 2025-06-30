@@ -48,6 +48,13 @@ const tools = computed<Tool[]>(() => {
       link: { name: "lyrics" },
       show: isLyricsManager(currentUser.value),
     },
+    {
+      id: "homescreen-manager",
+      name: "Page Editor",
+      icon: "icon.dashboard",
+      link: { name: "page-editor" },
+      show: isHomeScreenManager(currentUser.value),
+    },
   ].filter((tool) => tool.show) as Tool[];
   return items;
 });
