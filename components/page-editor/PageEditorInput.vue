@@ -20,6 +20,20 @@ const modelValue = defineModel<string | number | boolean | Date | null>({});
 defineOptions({
   inheritAttrs: false,
 });
+
+function formatForDateTimeLocal(date: unknown) {
+  if (!date) return "";
+  if (typeof date !== "string" && !(date instanceof Date)) return "";
+  const _date = new Date(date);
+  // Get local date/time components
+  const year = _date.getFullYear();
+  const month = String(_date.getMonth() + 1).padStart(2, "0");
+  const day = String(_date.getDate()).padStart(2, "0");
+  const hours = String(_date.getHours()).padStart(2, "0");
+  const minutes = String(_date.getMinutes()).padStart(2, "0");
+
+  return `${year}-${month}-${day}T${hours}:${minutes}`;
+}
 </script>
 
 <template>
@@ -62,7 +76,13 @@ defineOptions({
       <PageEditorDatetimeInput
         class="rounded-lg border border-label-separator bg-background-1 px-2 py-1"
         v-bind="$attrs"
-        v-model="modelValue"
+        :model-value="formatForDateTimeLocal(modelValue)"
+        @update:model-value="
+          (value) =>
+            typeof value == 'string'
+              ? (modelValue = new Date(value))
+              : (modelValue = value as any)
+        "
       />
     </label>
     <label
