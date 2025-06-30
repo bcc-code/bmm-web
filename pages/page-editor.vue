@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { VueDraggable } from "vue-draggable-plus";
+import generateUUID from "~/utils/uuid";
 
 const { selectedPage, localStateForSelectedPage, save, loading, refresh } =
   usePageEditor();
 
-const keyForElement = (element: PageEditorElement) => {
-  return `${selectedPage.value}:${element.elementId}`;
-};
+const keyForElement = (element: PageEditorElement) =>
+  `${selectedPage.value}:${element.elementId}`;
 
 const currentElement = useCurrentElement();
 const scroller = ref<HTMLElement | null>();
@@ -14,9 +14,7 @@ onMounted(() => {
   scroller.value = currentElement.value.closest("main");
 });
 const { arrivedState } = useScroll(scroller);
-const hasScrolled = computed(() => {
-  return !arrivedState.top;
-});
+const hasScrolled = computed(() => !arrivedState.top);
 
 const removeElement = (elementId: string) => {
   localStateForSelectedPage.value = localStateForSelectedPage.value.filter(

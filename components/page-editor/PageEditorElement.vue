@@ -1,4 +1,5 @@
 <script setup lang="ts">
+/* eslint-disable vue/no-mutating-props */
 import type { DiscoverCollectionElement } from "@bcc-code/bmm-sdk-fetch";
 
 defineProps<{
@@ -9,13 +10,13 @@ defineEmits(["add", "remove"]);
 
 const elementTypes = computed(() => Object.values(PageEditorElementTypes));
 
-const elementTypeName = (type: string) => {
-  return type
+const elementTypeName = (type: string) =>
+  type
     .split("-")
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
     .join(" ");
-};
 </script>
+
 <template>
   <div
     class="flex gap-4 rounded-xl border border-label-separator bg-background-2 px-4 py-2"
@@ -54,52 +55,52 @@ const elementTypeName = (type: string) => {
       <PageEditorFieldset title="Standard">
         <div class="flex w-full gap-x-4">
           <PageEditorInput
+            v-model="element.disabled"
             label="Disabled"
             type="checkbox"
-            v-model="element.disabled"
           />
           <PageEditorInput
+            v-model="element.featurePreviewOnly"
             label="Feature preview only"
             type="checkbox"
-            v-model="element.featurePreviewOnly"
           />
         </div>
         <PageEditorInput
+          v-model="element.client"
           label="Platform"
           type="select"
-          v-model="element.client"
           :options="['app', 'web', 'ios', 'android', null]"
         />
         <PageEditorInput
+          v-model="element.hideBefore"
           label="Hide before"
           type="datetime-local"
-          v-model="element.hideBefore"
         />
         <PageEditorInput
+          v-model="element.hideAfter"
           label="Hide after"
           type="datetime-local"
-          v-model="element.hideAfter"
         />
-        <PageEditorInput label="Church ID" v-model="element.churchUid" />
-        <PageEditorInput label="Experiment ID" v-model="element.experimentId" />
-        <PageEditorInput label="Usergroup" v-model="element.userGroup" />
+        <PageEditorInput v-model="element.churchUid" label="Church ID" />
+        <PageEditorInput v-model="element.experimentId" label="Experiment ID" />
+        <PageEditorInput v-model="element.userGroup" label="Usergroup" />
         <PageEditorInput
+          v-model="element.minAge"
           label="Min age"
           type="number"
-          v-model="element.minAge"
         />
         <PageEditorInput
+          v-model="element.maxAge"
           label="Max age"
           type="number"
-          v-model="element.maxAge"
         />
         <PageEditorInput
-          label="Min BMM version"
           v-model="element.minBmmVersion"
+          label="Min BMM version"
         />
         <PageEditorInput
-          label="Max BMM version"
           v-model="element.maxBmmVersion"
+          label="Max BMM version"
         />
       </PageEditorFieldset>
 
@@ -107,135 +108,135 @@ const elementTypeName = (type: string) => {
       <PageEditorFieldset title="Other">
         <template v-if="element.type === PageEditorElementTypes.Message">
           <PageEditorInput
+            v-model="element.messageEn"
             label="English Text"
             :element
-            v-model="element.messageEn"
           />
           <PageEditorInput
+            v-model="element.messageNb"
             label="Norwegian Text"
             :element
-            v-model="element.messageNb"
           />
         </template>
         <template v-if="element.type === PageEditorElementTypes.Header">
-          <PageEditorInput label="Title" v-model="element.title" />
+          <PageEditorInput v-model="element.title" label="Title" />
           <PageEditorInput
-            label="Server Translation"
             v-model="element.serverTranslation"
+            label="Server Translation"
           />
         </template>
         <template v-if="element.type === PageEditorElementTypes.ProjectBox">
-          <PageEditorInput label="Podcast ID" v-model="element.id" />
+          <PageEditorInput v-model="element.id" label="Podcast ID" />
         </template>
         <template v-if="element.type === PageEditorElementTypes.PodcastTile">
-          <PageEditorInput label="Podcast ID" v-model="element.id" />
-          <PageEditorInput label="Color" type="color" v-model="element.color" />
+          <PageEditorInput v-model="element.id" label="Podcast ID" />
+          <PageEditorInput v-model="element.color" label="Color" type="color" />
         </template>
         <template v-if="element.type === PageEditorElementTypes.Playlists">
           <PageEditorInput
+            v-model="element.count"
             label="Number of Playlists"
             type="number"
-            v-model="element.count"
           />
         </template>
         <template v-if="element.type === PageEditorElementTypes.Audiobooks">
           <PageEditorInput
+            v-model="element.count"
             label="Number of Audiobooks"
             type="number"
-            v-model="element.count"
           />
         </template>
         <template v-if="element.type === PageEditorElementTypes.Events">
           <PageEditorInput
+            v-model="element.count"
             label="Number of Events"
             type="number"
-            v-model="element.count"
           />
         </template>
         <template v-if="element.type === PageEditorElementTypes.Track">
-          <PageEditorInput label="Track ID" v-model="element.id" />
+          <PageEditorInput v-model="element.id" label="Track ID" />
         </template>
         <template
           v-if="element.type === PageEditorElementTypes.RecommendPrevious"
         >
-          <PageEditorInput label="ID" v-model="element.id" :element />
+          <PageEditorInput v-model="element.id" label="ID" :element />
         </template>
         <template v-if="element.type === PageEditorElementTypes.RecentMessages">
           <PageEditorInput
+            v-model="element.count"
             label="Number of Messages"
             type="number"
-            v-model="element.count"
           />
         </template>
         <template v-if="element.type === PageEditorElementTypes.RecentSongs">
           <PageEditorInput
+            v-model="element.count"
             label="Number of Songs"
             type="number"
-            v-model="element.count"
           />
         </template>
         <template v-if="element.type === PageEditorElementTypes.Contributor">
-          <PageEditorInput label="Contributor ID" v-model="element.id" />
+          <PageEditorInput v-model="element.id" label="Contributor ID" />
         </template>
         <template v-if="element.type === PageEditorElementTypes.Podcasts">
           <PageEditorInput
+            v-model="element.count"
             label="Count"
             type="number"
-            v-model="element.count"
           />
         </template>
         <template v-if="element.type === PageEditorElementTypes.Music">
           <PageEditorInput
+            v-model="element.count"
             label="Count"
             type="number"
-            v-model="element.count"
           />
         </template>
         <template
           v-if="element.type === PageEditorElementTypes.TrackCollection"
         >
-          <PageEditorInput label="Track Collection ID" v-model="element.id" />
+          <PageEditorInput v-model="element.id" label="Track Collection ID" />
         </template>
         <template
           v-if="element.type === PageEditorElementTypes.FavoritePlaylists"
         >
           <PageEditorInput
+            v-model="element.count"
             label="Count"
             type="number"
-            v-model="element.count"
           />
         </template>
         <template v-if="element.type === PageEditorElementTypes.Podcast">
-          <PageEditorInput label="Podcast ID" v-model="element.id" />
+          <PageEditorInput v-model="element.id" label="Podcast ID" />
         </template>
         <template v-if="element.type === PageEditorElementTypes.Album">
-          <PageEditorInput label="Album ID" v-model="element.id" />
+          <PageEditorInput v-model="element.id" label="Album ID" />
         </template>
         <template v-if="element.type === PageEditorElementTypes.Playlist">
-          <PageEditorInput label="Playlist ID" v-model="element.id" />
+          <PageEditorInput v-model="element.id" label="Playlist ID" />
         </template>
         <template
           v-if="element.type === PageEditorElementTypes.TopTrackCollections"
         >
           <PageEditorInput
+            v-model="element.count"
             label="Number of Collections"
             type="number"
-            v-model="element.count"
           />
         </template>
         <template
           v-if="element.type === PageEditorElementTypes.UserLanguagePlaylists"
         >
           <PageEditorInput
+            v-model="element.count"
             label="Number of Playlists"
             type="number"
-            v-model="element.count"
           />
         </template>
         <template
           v-if="element.type === PageEditorElementTypes.PlaylistsForTag"
         >
-          <PageEditorInput label="Tag" v-model="element.tag" />
+          <PageEditorInput v-model="element.tag" label="Tag" />
         </template>
       </PageEditorFieldset>
     </div>

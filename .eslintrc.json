@@ -25,6 +25,7 @@
         "prettier"
       ],
       "rules": {
+        "no-bitwise": "off",
         "no-plusplus": "off",
         "@intlify/vue-i18n/no-raw-text": [
           "warn",

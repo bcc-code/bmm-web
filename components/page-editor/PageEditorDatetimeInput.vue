@@ -18,5 +18,5 @@ const value = computed({
 </script>
 
 <template>
-  <input type="datetime-local" v-model="value" />
+  <input v-model="value" type="datetime-local" />
 </template>

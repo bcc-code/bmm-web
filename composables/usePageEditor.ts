@@ -3,6 +3,7 @@ import type {
   DiscoverCollectionElement,
 } from "@bcc-code/bmm-sdk-fetch";
 import { DiscoverApi } from "@bcc-code/bmm-sdk-fetch";
+import generateUUID from "~/utils/uuid";
 
 export type PageEditorElement = DiscoverCollectionElement & {
   elementId: string;
@@ -100,13 +101,13 @@ export function usePageEditor() {
           documents: localStateForSelectedPage.value,
         },
       };
-      if (selectedPage.value == "discover") {
+      if (selectedPage.value === "discover") {
         await new DiscoverApi().discoverRawDiscoverCollectionPost(params);
       }
-      if (selectedPage.value == "carplay") {
+      if (selectedPage.value === "carplay") {
         await new DiscoverApi().discoverRawCarplayHomePost(params);
       }
-      if (selectedPage.value == "playlists") {
+      if (selectedPage.value === "playlists") {
         await new DiscoverApi().discoverRawPlaylistDocumentsPost(params);
       }
     } catch (err) {

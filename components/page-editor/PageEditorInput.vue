@@ -24,13 +24,13 @@ defineOptions({
 function formatForDateTimeLocal(date: unknown) {
   if (!date) return "";
   if (typeof date !== "string" && !(date instanceof Date)) return "";
-  const _date = new Date(date);
+  const d = new Date(date);
   // Get local date/time components
-  const year = _date.getFullYear();
-  const month = String(_date.getMonth() + 1).padStart(2, "0");
-  const day = String(_date.getDate()).padStart(2, "0");
-  const hours = String(_date.getHours()).padStart(2, "0");
-  const minutes = String(_date.getMinutes()).padStart(2, "0");
+  const year = d.getFullYear();
+  const month = String(d.getMonth() + 1).padStart(2, "0");
+  const day = String(d.getDate()).padStart(2, "0");
+  const hours = String(d.getHours()).padStart(2, "0");
+  const minutes = String(d.getMinutes()).padStart(2, "0");
 
   return `${year}-${month}-${day}T${hours}:${minutes}`;
 }
@@ -53,10 +53,10 @@ function formatForDateTimeLocal(date: unknown) {
         </button>
       </div>
       <input
-        class="rounded-lg border border-label-separator bg-background-1 px-2 py-1"
         v-bind="$attrs"
-        :type="type"
         v-model="modelValue"
+        class="rounded-lg border border-label-separator bg-background-1 px-2 py-1"
+        :type="type"
       />
     </label>
     <label
@@ -111,12 +111,12 @@ function formatForDateTimeLocal(date: unknown) {
         </button>
       </div>
       <select
-        class="rounded-lg border border-label-separator bg-background-1 px-2 py-1"
-        :placeholder="label"
         v-bind="$attrs"
         v-model="modelValue"
+        class="rounded-lg border border-label-separator bg-background-1 px-2 py-1"
+        :placeholder="label"
       >
-        <option v-for="option in options" :value="option">
+        <option v-for="option in options" :key="option ?? ''" :value="option">
           {{ option }}
         </option>
       </select>
