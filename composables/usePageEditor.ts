@@ -116,6 +116,7 @@ export function usePageEditor() {
 				await new DiscoverApi().discoverRawPlaylistDocumentsPost(params);
 			}
 		} catch (err) {
+			console.error(err);
 		} finally {
 			loading.saving = false;
 		}

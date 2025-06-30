@@ -7,13 +7,35 @@ const { selectedPage, localStateForSelectedPage, save, loading } =
 const keyForElement = (element: PageEditorElement) => {
   return `${selectedPage.value}:${element.elementId}`;
 };
+
+const currentElement = useCurrentElement();
+const scroller = ref<HTMLElement | null>();
+onMounted(() => {
+  scroller.value = currentElement.value.closest("main");
+});
+const { arrivedState } = useScroll(scroller);
+const hasScrolled = computed(() => {
+  return !arrivedState.top;
+});
 </script>
 
 <template>
   <div>
-    <header class="mb-8 flex items-center justify-between gap-4">
-      <PageHeading>Page Editor</PageHeading>
-      <div class="flex items-center gap-6">
+    <header
+      :class="[
+        'sticky top-14 z-20 flex items-center justify-between gap-4 bg-background-1',
+        { 'border-y border-label-separator': hasScrolled },
+      ]"
+    >
+      <PageHeading
+        :class="[
+          'transition-all duration-200 ease-out',
+          { ' !text-3xl': hasScrolled },
+        ]"
+      >
+        Page Editor
+      </PageHeading>
+      <div class="flex items-center gap-4">
         <select
           id="page-selector"
           v-model="selectedPage"
@@ -23,7 +45,21 @@ const keyForElement = (element: PageEditorElement) => {
           <option value="carplay">Carplay</option>
           <option value="playlists">Playlists</option>
         </select>
-        <ButtonStyled intent="primary" :loading="loading.saving" @click="save">
+        <ButtonStyled
+          intent="secondary"
+          :size="hasScrolled ? 'small' : 'medium'"
+          class="transition-all duration-200 ease-out"
+          @click="reloadNuxtApp()"
+        >
+          Reset
+        </ButtonStyled>
+        <ButtonStyled
+          intent="primary"
+          :size="hasScrolled ? 'small' : 'medium'"
+          class="transition-all duration-200 ease-out"
+          :loading="loading.saving"
+          @click="save"
+        >
           Save changes
         </ButtonStyled>
       </div>

@@ -28,10 +28,18 @@ defineOptions({
       v-if="!type || boxTypes.includes(type)"
       class="flex flex-col items-start gap-1"
     >
-      <span class="type-subtitle-3 text-label-3">{{ label }}</span>
+      <div class="flex w-full justify-between gap-4">
+        <span class="type-subtitle-3 text-label-3">{{ label }}</span>
+        <button
+          v-if="modelValue"
+          class="type-subtitle-3 text-label-4"
+          @click="modelValue = null"
+        >
+          Reset
+        </button>
+      </div>
       <input
         class="rounded-lg border border-label-separator bg-background-1 px-2 py-1"
-        :placeholder="label"
         v-bind="$attrs"
         :type="type"
         v-model="modelValue"
@@ -41,7 +49,16 @@ defineOptions({
       v-if="type === 'datetime-local'"
       class="flex flex-col items-start gap-1"
     >
-      <span class="type-subtitle-3 text-label-3">{{ label }}</span>
+      <div class="flex w-full justify-between gap-4">
+        <span class="type-subtitle-3 text-label-3">{{ label }}</span>
+        <button
+          v-if="modelValue"
+          class="type-subtitle-3 text-label-4"
+          @click="modelValue = null"
+        >
+          Reset
+        </button>
+      </div>
       <PageEditorDatetimeInput
         class="rounded-lg border border-label-separator bg-background-1 px-2 py-1"
         v-bind="$attrs"
@@ -63,7 +80,16 @@ defineOptions({
       <span class="type-subtitle-3 text-label-3">{{ label }}</span>
     </label>
     <label v-if="type == 'select'" class="flex flex-col items-start gap-1">
-      <span class="type-subtitle-3 text-label-3">{{ label }}</span>
+      <div class="flex w-full justify-between gap-4">
+        <span class="type-subtitle-3 text-label-3">{{ label }}</span>
+        <button
+          v-if="modelValue"
+          class="type-subtitle-3 text-label-4"
+          @click="modelValue = null"
+        >
+          Reset
+        </button>
+      </div>
       <select
         class="rounded-lg border border-label-separator bg-background-1 px-2 py-1"
         :placeholder="label"

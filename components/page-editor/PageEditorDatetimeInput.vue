@@ -1,6 +1,6 @@
-<script setup lang="ts" generic="T">
+<script setup lang="ts">
 const props = defineProps<{
-  modelValue: T;
+  modelValue: unknown;
 }>();
 
 const emit = defineEmits<{
@@ -12,7 +12,6 @@ const value = computed({
     return String(props.modelValue);
   },
   set(v) {
-    console.log(v);
     emit("update:modelValue", v);
   },
 });

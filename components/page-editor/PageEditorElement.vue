@@ -56,7 +56,9 @@ function formatForDateTimeLocal(date: Date | undefined | null) {
           :model-value="formatForDateTimeLocal(element.hideBefore)"
           @update:model-value="
             (value) =>
-              typeof value == 'string' && (element.hideBefore = new Date(value))
+              typeof value == 'string'
+                ? (element.hideBefore = new Date(value))
+                : (element.hideBefore = value as any)
           "
         />
         <PageEditorInput
@@ -65,7 +67,9 @@ function formatForDateTimeLocal(date: Date | undefined | null) {
           :model-value="formatForDateTimeLocal(element.hideAfter)"
           @update:model-value="
             (value) =>
-              typeof value == 'string' && (element.hideBefore = new Date(value))
+              typeof value == 'string'
+                ? (element.hideBefore = new Date(value))
+                : (element.hideBefore = value as any)
           "
         />
         <PageEditorInput label="Church ID" v-model="element.churchUid" />
