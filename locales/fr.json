@@ -25,6 +25,9 @@
   "sidebar": {
     "playlists": {
       "title": "Playlists"
+    },
+    "tools": {
+      "title": "Outils"
     }
   },
   "share": {
@@ -194,7 +197,8 @@
   "streak": {
     "your-streak": "Enchaînements de la semaine",
     "days-in-row": "{count} jours d'affilée",
-    "perfect-weeks": "{count} semaines parfaites"
+    "perfect-weeks": "{count} semaines parfaites",
+    "time-left-today": "Il reste {hours} heures et {minutes} minutes aujourd'hui."
   },
   "transcription": {
     "lyrics": "Paroles",
@@ -214,7 +218,12 @@
       "done": "Révisé",
       "in-progress": "En cours",
       "not-started": "Non révisé"
-    }
+    },
+    "insertBefore": "Insérer avant",
+    "insertAfter": "Insérer après",
+    "copyToClipboard": "Copier dans le presse-papiers",
+    "copiedToClipboard": "Copié dans le presse-papiers",
+    "invalidIdsDescription": "Certains segments de transcription ont le même identifiant et ne peuvent donc pas être modifiés."
   },
   "dashboards": {
     "title": "Tableau de bord",
@@ -229,5 +238,10 @@
     "long-copyright": "Droit d'auteur de longue durée",
     "remove-formatting": "Nettoyer le formatage",
     "paste-instructions": "Coller le texte en utilisant <shortcut> pour supprimer le formatage."
+  },
+  "project": {
+    "achievement": "Résultats",
+    "achievementUnlocked": "Déverrouillé",
+    "achievementPlayNext": "Lecture suivante"
   }
 }

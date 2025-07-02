@@ -25,6 +25,9 @@
   "sidebar": {
     "playlists": {
       "title": "Esitusloendid"
+    },
+    "tools": {
+      "title": "Tööriistad"
     }
   },
   "share": {
