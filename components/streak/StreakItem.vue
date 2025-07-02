@@ -40,6 +40,13 @@ const todayListened = computed(() => {
   if (!key) return false;
   return Boolean(props.item[key]);
 });
+
+const shouldShowTimeLeft = computed(
+  () =>
+    !todayListened.value &&
+    timeLeft.value.hours >= 0 &&
+    timeLeft.value.minutes >= 0,
+);
 </script>
 
 <template>
@@ -61,7 +68,10 @@ const todayListened = computed(() => {
     @close="showDialog = false"
   >
     <div class="min-w-[400px]">
-      <p v-if="!todayListened" class="mb-6 text-center text-sm text-label-4">
+      <p
+        v-if="shouldShowTimeLeft"
+        class="mb-6 text-center text-sm text-label-4"
+      >
         {{ $t("streak.time-left-today", timeLeft) }}
       </p>
       <div class="mb-6">
