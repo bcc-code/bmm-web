@@ -46,30 +46,33 @@ const shouldShowField = (value: unknown) =>
           label="Disabled"
           type="checkbox"
         />
-        <button
-          class="type-subtitle-2 ml-auto flex items-center gap-1 text-label-4"
-          @click="showUnusedFields = !showUnusedFields"
-        >
-          <NuxtIcon
-            name="icon.chevron.down"
-            :class="{ 'rotate-180': showUnusedFields }"
-          />
-          {{ showUnusedFields ? "Hide" : "Show" }} unused fields
-        </button>
-        <button
-          class="type-subtitle-2 flex items-center gap-1 text-label-4"
-          @click="$emit('add')"
-        >
-          <NuxtIcon name="icon.add" />
-          Add after
-        </button>
-        <button
-          class="type-subtitle-2 flex items-center gap-1 text-label-4"
-          @click="$emit('remove')"
-        >
-          <NuxtIcon name="icon.close.small" />
-          Delete
-        </button>
+        <div class="ml-auto flex items-center gap-4">
+          <button
+            v-if="!collapse"
+            class="type-subtitle-2 flex items-center gap-1 text-label-4"
+            @click="showUnusedFields = !showUnusedFields"
+          >
+            <NuxtIcon
+              name="icon.chevron.down"
+              :class="{ 'rotate-180': showUnusedFields }"
+            />
+            {{ showUnusedFields ? "Hide" : "Show" }} unused fields
+          </button>
+          <button
+            class="type-subtitle-2 flex items-center gap-1 text-label-4"
+            @click="$emit('add')"
+          >
+            <NuxtIcon name="icon.add" />
+            Add after
+          </button>
+          <button
+            class="type-subtitle-2 flex items-center gap-1 text-label-4"
+            @click="$emit('remove')"
+          >
+            <NuxtIcon name="icon.close.small" />
+            Delete
+          </button>
+        </div>
       </div>
 
       <template v-if="!collapse">
