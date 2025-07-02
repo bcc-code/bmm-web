@@ -29,7 +29,7 @@ const shouldShowField = (value: unknown) =>
   >
     <NuxtIcon
       name="icon.sort"
-      class="drag-handle h-max cursor-ns-resize py-[5px] text-label-4"
+      class="drag-handle cursor-ns-resize text-label-4"
     />
     <div class="grid w-full grid-cols-[auto_1fr] gap-y-2">
       <div class="col-span-full flex items-center gap-4">
