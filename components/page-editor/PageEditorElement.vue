@@ -75,7 +75,10 @@ const shouldShowField = (value: unknown) =>
         </div>
       </div>
 
-      <template v-if="!collapse">
+      <div
+        v-if="!collapse"
+        class="col-span-full grid grid-cols-subgrid divide-y divide-label-separator rounded-lg border border-label-separator"
+      >
         <!-- Standard fields -->
         <PageEditorFieldset title="Standard">
           <div
@@ -347,7 +350,7 @@ const shouldShowField = (value: unknown) =>
             />
           </template>
         </PageEditorFieldset>
-      </template>
+      </div>
     </div>
   </div>
 </template>
