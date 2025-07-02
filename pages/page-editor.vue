@@ -28,6 +28,8 @@ const addElement = (index: number) => {
   };
   localStateForSelectedPage.value.splice(index + 1, 0, newElement);
 };
+
+const collapse = ref(false);
 </script>
 
 <template>
@@ -56,6 +58,14 @@ const addElement = (index: number) => {
           <option value="carplay">Carplay</option>
           <option value="playlists">Playlists</option>
         </select>
+        <ButtonStyled
+          intent="tertiary"
+          :size="hasScrolled ? 'small' : 'medium'"
+          class="transition-all duration-200 ease-out"
+          @click="collapse = !collapse"
+        >
+          {{ collapse ? "Expand all" : "Collapse all" }}
+        </ButtonStyled>
         <ButtonStyled
           intent="secondary"
           :size="hasScrolled ? 'small' : 'medium'"
@@ -100,6 +110,7 @@ const addElement = (index: number) => {
           v-for="(element, index) in localStateForSelectedPage"
           :key="keyForElement(element)"
           :element
+          :collapse
           @add="addElement(index)"
           @remove="removeElement(element.elementId)"
         />

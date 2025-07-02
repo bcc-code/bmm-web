@@ -55,7 +55,7 @@ function formatForDateTimeLocal(date: unknown) {
       <input
         v-bind="$attrs"
         v-model="modelValue"
-        class="rounded-lg border border-label-separator bg-background-1 px-2 py-1"
+        class="w-full rounded-lg border border-label-separator bg-background-1 px-2 py-1"
         :type="type"
       />
     </label>
@@ -89,14 +89,21 @@ function formatForDateTimeLocal(date: unknown) {
       v-if="type == 'checkbox'"
       class="grid grid-cols-[1.2em_auto] items-center gap-2"
     >
-      <input
-        type="checkbox"
-        class="grid aspect-square appearance-none place-items-center overflow-hidden rounded-md border border-label-separator bg-background-1 before:size-full before:scale-0 before:bg-tint before:text-center before:text-sm before:text-on-color-1 checked:before:scale-100"
-        :placeholder="label"
-        v-bind="$attrs"
-        :checked="Boolean(modelValue)"
-        @change="modelValue = ($event.target as HTMLInputElement).checked"
-      />
+      <span class="relative">
+        <input
+          type="checkbox"
+          class="grid aspect-square appearance-none place-items-center overflow-hidden rounded-md border border-label-separator bg-background-1 before:size-full before:scale-0 before:bg-tint before:text-center before:text-sm before:text-on-color-1 checked:before:scale-100"
+          :placeholder="label"
+          v-bind="$attrs"
+          :checked="Boolean(modelValue)"
+          @change="modelValue = ($event.target as HTMLInputElement).checked"
+        />
+        <NuxtIcon
+          v-if="Boolean(modelValue)"
+          name="icon.checkmark"
+          class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-on-color-1"
+        />
+      </span>
       <span class="type-subtitle-3 text-label-3">{{ label }}</span>
     </label>
     <label v-if="type == 'select'" class="flex flex-col items-start gap-1">
@@ -123,9 +130,3 @@ function formatForDateTimeLocal(date: unknown) {
     </label>
   </div>
 </template>
-
-<style scoped>
-input[type="checkbox"]::before {
-  content: "✓";
-}
-</style>
