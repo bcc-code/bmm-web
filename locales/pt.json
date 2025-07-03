@@ -25,6 +25,9 @@
   "sidebar": {
     "playlists": {
       "title": "Lista de reprodução"
+    },
+    "tools": {
+      "title": "Ferramentas"
     }
   },
   "share": {
@@ -194,7 +197,8 @@
   "streak": {
     "your-streak": "Seu progresso semanal",
     "days-in-row": "{count} dias consecutivos",
-    "perfect-weeks": "{count} semanas perfeitas"
+    "perfect-weeks": "{count} semanas perfeitas",
+    "time-left-today": "{horas} horas e {minutos} minutos restantes hoje"
   },
   "transcription": {
     "lyrics": "Letra da música",
@@ -214,7 +218,12 @@
       "done": "Revisado",
       "in-progress": "Em andamento",
       "not-started": "Não revisado"
-    }
+    },
+    "insertBefore": "Inserir antes de",
+    "insertAfter": "Inserir após",
+    "copyToClipboard": "Copiar para a área de transferência",
+    "copiedToClipboard": "Copiado para a área de transferência",
+    "invalidIdsDescription": "Alguns segmentos de transcrição têm o mesmo ID e, por isso, não podem ser editados."
   },
   "dashboards": {
     "title": "Painel",
@@ -229,5 +238,10 @@
     "long-copyright": "Direitos autorais",
     "remove-formatting": "Limpa a formatação",
     "paste-instructions": "Colar texto utilizando <shortcut> para remover a formatação."
+  },
+  "project": {
+    "achievement": "Conquista",
+    "achievementUnlocked": "Desbloqueado",
+    "achievementPlayNext": "Tocar a seguir"
   }
 }
