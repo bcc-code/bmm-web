@@ -232,12 +232,28 @@ const shouldShowField = (value: unknown) =>
           <template
             v-if="element.type === PageEditorElementTypes.RecommendPrevious"
           >
-            <PageEditorInput
-              v-if="shouldShowField(element.id)"
-              v-model="element.id"
-              label="ID"
-              :element
-            />
+            <div class="grid w-full grid-cols-2 gap-x-4 gap-y-2">
+              <PageEditorInput
+                v-if="shouldShowField(element.title)"
+                v-model="element.title"
+                label="Title"
+              />
+              <PageEditorInput
+                v-if="shouldShowField(element.serverTranslation)"
+                v-model="element.serverTranslation"
+                label="Title Server Translation"
+              />
+              <PageEditorInput
+                v-if="shouldShowField(element.subtitle)"
+                v-model="element.subtitle"
+                label="Subtitle"
+              />
+              <PageEditorInput
+                v-if="shouldShowField(element.subtitleServerTranslation)"
+                v-model="element.subtitleServerTranslation"
+                label="Subtitle Server Translation"
+              />
+            </div>
           </template>
           <template
             v-if="element.type === PageEditorElementTypes.RecentMessages"
