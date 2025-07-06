@@ -25,6 +25,9 @@
   "sidebar": {
     "playlists": {
       "title": "Afspeellijsten"
+    },
+    "tools": {
+      "title": "Tools"
     }
   },
   "share": {
