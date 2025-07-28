@@ -2,7 +2,7 @@
   "global": {
     "cancel": "Annuler",
     "try-again": "Réessayer",
-    "hours-and-minutes": "0} h {1} min",
+    "hours-and-minutes": "{0} h {1} min",
     "minutes-and-seconds": "{0} min {1} sec"
   },
   "nav": {
