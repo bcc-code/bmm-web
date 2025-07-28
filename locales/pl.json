@@ -25,6 +25,9 @@
   "sidebar": {
     "playlists": {
       "title": "Playlisty"
+    },
+    "tools": {
+      "title": "Narzędzia"
     }
   },
   "share": {
@@ -134,7 +137,7 @@
   },
   "track": {
     "dropdown": {
-      "play-next": "Odtwórz kolejne",
+      "play-next": "Odtwórz jako następne",
       "download": "Pobierz",
       "go-to-album": "Idź do albumu",
       "add-to-queue": "Dodaj do kolejki",
@@ -193,7 +196,9 @@
   },
   "streak": {
     "your-streak": "Twoja seria w tym tygodniu",
-    "days-in-row": "{0} dni pod rząd"
+    "days-in-row": "{0} dni pod rząd",
+    "perfect-weeks": "{count} perfekcyjnych tygodni",
+    "time-left-today": "Pozostało dzisiaj {hours} godzin i {minutes} minut"
   },
   "transcription": {
     "lyrics": "Tekst",
@@ -213,7 +218,12 @@
       "done": "Ocenione",
       "in-progress": "W toku",
       "not-started": "Nie ocenione"
-    }
+    },
+    "insertBefore": "Wstaw przed",
+    "insertAfter": "Wstaw po",
+    "copyToClipboard": "Skopiuj do schowka",
+    "copiedToClipboard": "Skopiowano do schowka",
+    "invalidIdsDescription": "Niektóre segmenty transkrypcji mają ten sam identyfikator i dlatego nie można ich edytować."
   },
   "dashboards": {
     "title": "Panel",
@@ -228,5 +238,10 @@
     "long-copyright": "Prawa autorskie",
     "remove-formatting": "Czyszczenie formatowania",
     "paste-instructions": "Wklej tekst za pomocą <shortcut>, aby usunąć formatowanie."
+  },
+  "project": {
+    "achievement": "Osiągniecie",
+    "achievementUnlocked": "Odblokowane",
+    "achievementPlayNext": "Odtwórz jako następne"
   }
 }
