@@ -61,28 +61,28 @@
   "error": {
     "page-not-found": {
       "headline": "Fehler",
-      "text": "Sorry. Die Seite \"{path}\" gibt es nicht."
+      "text": "Sorry. Wir können die Seite „{path} “ nicht finden."
     },
-    "track-already-in-playlist": "Titel ist bereits in Playlist {0} vorhanden",
+    "track-already-in-playlist": "Titel ist bereits in Playlist '{'0'}' vorhanden",
     "album-already-in-playlist": "Dieses Album ist bereits in deiner Playlist.",
-    "collection-already-in-playlist": "Diese Titel befinden sich bereits in der Playlist {0}."
+    "collection-already-in-playlist": "Diese Titel befinden sich bereits in der Playlist '{'0'}'."
   },
   "collection": {
-    "track-count": "{count} Titel | {count} Titel",
+    "track-count": "{count} Track | {count} Tracks",
     "album-count": "{count} Album | {count} Alben",
     "resume": "Weiterhören"
   },
   "login": {
     "error-message": {
-      "contact-info": "Sollte dieser Fehler weiterhin bestehen, {0}.",
+      "contact-info": "Sollte dieser Fehler weiterhin bestehen, '{'0'}'.",
       "contact-link": "nimm bitte Kontakt mit uns auf",
       "logout-and-redirect-info": "Bei der Anmeldung ist ein Fehler aufgetreten:",
-      "manual-logout-and-redirect-info": "Bitte {0}.",
+      "manual-logout-and-redirect-info": "Bitte '{'0'}'.",
       "logout-and-redirect-link": "Versuche dich erneut anzumelden"
     },
     "redirect-message": {
       "redirect-info": "Du wirst zur Anmeldeseite weitergeleitet.",
-      "manual-redirect-info": "Bitte warten oder {0}.",
+      "manual-redirect-info": "Bitte warten oder '{'0'}'.",
       "redirect-link": "Klicken, um es erneut zu versuchen"
     }
   },
@@ -105,7 +105,7 @@
       "title": "Herunterladen von Inhalten nicht möglich",
       "description": "Die Möglichkeit, Inhalte aus BMM herunterzuladen, ist nicht mehr verfügbar. Wenn du einen Inhalt für einen bestimmten Zweck benötigst, kontaktiere uns bitte und erkläre uns deinen Bedarf."
     },
-    "sendEmailTo": "E-Mail senden an {0}"
+    "sendEmailTo": "E-Mail senden an '{'0'}'"
   },
   "playlist": {
     "add": "Playlist hinzufügen",
@@ -118,12 +118,12 @@
       "add-to-my-playlists": "Zu meinen Wiedergabelisten hinzufügen",
       "remove-shared-playlist": "Wiedergabeliste entfernen"
     },
-    "by-x": "von {name}"
+    "by-x": "von"
   },
   "podcast": {
     "this-week": "Diese Woche",
     "last-week": "Letzte Woche",
-    "week-x": "Woche {count}",
+    "week-x": "Woche '{'0'}'",
     "action": {
       "play": "Abspielen"
     }
@@ -192,13 +192,13 @@
     "loading-results": "Ergebnisse werden geladen",
     "no-results-yet": "Noch keine Ergebnisse",
     "no-results-found": "Keine Ergebnisse gefunden",
-    "result-count": "{count} Ergebnisse"
+    "result-count": "Ergebnisse"
   },
   "streak": {
     "your-streak": "Dein Status diese Woche",
-    "days-in-row": "{count} Tage hintereinander",
-    "perfect-weeks": "{count} perfekte Wochen",
-    "time-left-today": "Heute noch {Stunden} Stunden und {Minuten} Minuten übrig"
+    "days-in-row": "'{'0'}' Tage hintereinander",
+    "perfect-weeks": "'{'0'}' perfekte Wochen",
+    "time-left-today": "Heute noch {hours} Stunden und {minutes} Minuten übrig"
   },
   "transcription": {
     "lyrics": "Liedtext",
