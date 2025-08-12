@@ -2,8 +2,8 @@
   "global": {
     "cancel": "Avbryt",
     "try-again": "Prøv igjen",
-    "hours-and-minutes": "{0} t {1} min",
-    "minutes-and-seconds": "{0} min {1} sek"
+    "hours-and-minutes": "{0} t. {1} min.",
+    "minutes-and-seconds": "{0} min. {1} sek."
   },
   "nav": {
     "home": "Hjem",
@@ -20,11 +20,14 @@
     "contributors": "Bidragsytere",
     "archive": "Arkiv",
     "transcribe": "Transkriber",
-    "lyrics": "Sangtekst"
+    "lyrics": "Sangtekster"
   },
   "sidebar": {
     "playlists": {
       "title": "Spillelister"
+    },
+    "tools": {
+      "title": "Verktøy"
     }
   },
   "share": {
@@ -44,7 +47,7 @@
     "preference-language-1": "Foretrukket språk.",
     "preference-language-2": "Andre språk",
     "preference-language-3": "Tredje språk",
-    "preference-language-4": "{count}. språk",
+    "preference-language-4": "{count} språk",
     "uservoice": "User Voice",
     "privacy-policy": "Personvernerklæring",
     "contact": "Kontakt",
@@ -58,11 +61,11 @@
   "error": {
     "page-not-found": {
       "headline": "Feil",
-      "text": "Beklager Vi finner ikke siden \"{path}\"."
+      "text": "Beklager. Vi kan ikke finne siden «{path}»."
     },
-    "track-already-in-playlist": "Sporet finnes allerede i spillelisten {0}",
+    "track-already-in-playlist": "Sporet finnes allerede i spillelisten '{'0'}'",
     "album-already-in-playlist": "Dette albumet ligger allerede i spillelisten din.",
-    "collection-already-in-playlist": "Disse sporene finnes allerede i spillelisten {0}."
+    "collection-already-in-playlist": "Disse sporene finnes allerede i spillelisten '{'0'}'."
   },
   "collection": {
     "track-count": "{count} spor | {count} spor",
@@ -71,15 +74,15 @@
   },
   "login": {
     "error-message": {
-      "contact-info": "Hvis denne feilen vedvarer, {0}.",
+      "contact-info": "Hvis denne feilen vedvarer, '{'0'}'.",
       "contact-link": "vennligst ta kontakt med oss",
-      "logout-and-redirect-info": "Noe gikk galt med påloggingen:",
-      "manual-logout-and-redirect-info": "Vennligst {0}.",
-      "logout-and-redirect-link": "prøv å logge på igjen"
+      "logout-and-redirect-info": "Noe ved innloggingen gikk galt:",
+      "manual-logout-and-redirect-info": "Vennligst '{'0'}'.",
+      "logout-and-redirect-link": "prøv å logge inn igjen"
     },
     "redirect-message": {
-      "redirect-info": "Du blir omdirigert til påloggingssiden.",
-      "manual-redirect-info": "Vennligst vent eller {0}.",
+      "redirect-info": "Du blir omdirigert til innloggingssiden.",
+      "manual-redirect-info": "Vennligst vent eller '{'0'}'.",
       "redirect-link": "klikk for å prøve igjen"
     }
   },
@@ -93,7 +96,7 @@
     "download-mac-intel": "Last ned for Intel CPU",
     "download-mac-arm": "Last ned for nyere Mac",
     "mac-intel-explanation": "Vanligvis kjøpt før 2021",
-    "mac-arm-explanation": "M1, M2, M3, M4 chip",
+    "mac-arm-explanation": "M1, M2, M3, M4-chip",
 
     "download-bmm-app": "Last ned BMM-appen",
     "download-track": "Last ned spor",
@@ -102,7 +105,7 @@
       "title": "Nedlasting av taler ikke tilgjengelig",
       "description": "Det er ikke lenger mulig å laste ned taler fra BMM. Hvis du trenger en tale til et spesifikt formål, kan du kontakte oss og forklare dine behov."
     },
-    "sendEmailTo": "Send e-post til {0}"
+    "sendEmailTo": "Send e-post til '{'0'}'"
   },
   "playlist": {
     "add": "Legg til spilleliste",
@@ -115,12 +118,12 @@
       "add-to-my-playlists": "Legg til mine spillelister",
       "remove-shared-playlist": "Fjern spillelisten"
     },
-    "by-x": "fra {name}"
+    "by-x": "fra '{'0'}'"
   },
   "podcast": {
     "this-week": "Denne uken",
     "last-week": "Forrige uke",
-    "week-x": "Uke {count}",
+    "week-x": "Uke '{'0'}'",
     "action": {
       "play": "Spill av"
     }
@@ -189,16 +192,16 @@
     "loading-results": "Laster inn resultater",
     "no-results-yet": "Ingen resultater ennå",
     "no-results-found": "Ingen resultater funnet",
-    "result-count": "{count} resultater"
+    "result-count": "Resultater"
   },
   "streak": {
     "your-streak": "Din streak denne uken",
-    "days-in-row": "{count} dager på rad",
-    "perfect-weeks": "{count} perfekte uker",
-    "time-left-today": "{hours} timer og {minutes} minutter igjen i dag"
+    "days-in-row": "'{'0'}' dager på rad",
+    "perfect-weeks": "'{'0'}' perfekte uker",
+    "time-left-today": "{hours} time(r) og{minutes} minutt(er) igjen i dag"
   },
   "transcription": {
-    "lyrics": "Sangtekst",
+    "lyrics": "Sangtekster",
     "auto-transcribed": {
       "title": "Automatisk avskrevet",
       "explanation": "Transkripsjoner er automatisk generert og kan inneholde feil",
@@ -209,8 +212,8 @@
     "original": "Original",
     "edit": "Endre",
     "deleteSegment": "Slett",
-    "undeleteSegment": "Angre sletting",
-    "review": "Gjennomgang",
+    "undeleteSegment": "Angre slett",
+    "review": "Gjennomgå",
     "status": {
       "done": "Gjennomgått",
       "in-progress": "Pågående",
@@ -227,18 +230,18 @@
     "fra-kaare": "Fra Kåre"
   },
   "lyrics": {
-    "edit": "Endre",
-    "create-new-lyrics": "Lag nye tekster",
+    "edit": "Rediger",
+    "create-new-lyrics": "Opprett sangtekster",
     "create": "Opprett",
     "save": "Lagre endringer",
-    "verse-title": "Versets tittel",
-    "long-copyright": "Lang opphavsrett",
-    "remove-formatting": "Oppryddingsformatering",
+    "verse-title": "Verstittel",
+    "long-copyright": "Lang copyright",
+    "remove-formatting": "Rydd opp formatering",
     "paste-instructions": "Lim inn tekst ved hjelp av <shortcut> for å fjerne formatering."
   },
   "project": {
     "achievement": "Achievement",
-    "achievementUnlocked": "Åpnet",
+    "achievementUnlocked": "Oppnådd",
     "achievementPlayNext": "Spill neste"
   }
 }
