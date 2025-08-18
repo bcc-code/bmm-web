@@ -53,6 +53,8 @@ const trackList = templateRef("trackList");
 useDraggable(trackList, orderableTracks, {
   animation: 200,
   disabled: !props.reorder,
+  ghostClass: "opacity-50",
+  handle: ".drag-handle",
   onSort({ oldIndex, newIndex }) {
     if (oldIndex === undefined || newIndex === undefined || !props.tracks) {
       return;
