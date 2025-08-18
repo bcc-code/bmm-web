@@ -49,8 +49,8 @@ onMounted(() => {
     orderableTracks.value = props.tracks;
   }
 });
-const trackList = templateRef("trackList");
-useDraggable(trackList, orderableTracks, {
+const trackList = ref<HTMLOListElement>();
+useDraggable<TrackModel>(trackList, orderableTracks, {
   animation: 200,
   disabled: !props.reorder,
   ghostClass: "opacity-50",
