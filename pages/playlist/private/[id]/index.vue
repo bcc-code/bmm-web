@@ -50,6 +50,21 @@ const addDropdownItems = (items: DropdownMenuItem[], track: TrackModel) => {
     },
   });
 };
+
+const handleReorder = (tracks: TrackModel[]) => {
+  if (!collection.value || !collection.value.canEdit) {
+    return;
+  }
+  new TrackCollectionApi().trackCollectionIdPut({
+    id: collectionId,
+    updateTrackCollectionCommand: {
+      id: collectionId,
+      name: collection.value.name || "",
+      trackReferences: tracksToTrackReferences(tracks),
+    },
+  });
+  collection.value.tracks = tracks;
+};
 </script>
 
 <template>
@@ -106,11 +121,13 @@ const addDropdownItems = (items: DropdownMenuItem[], track: TrackModel) => {
     </TrackCollectionHeader>
 
     <TrackList
+      :key="`tracklist:can-edit:${collection?.canEdit}`"
       :skeleton-count="5"
       :show-skeleton="pending"
       :tracks="collection?.tracks || null"
       :add-dropdown-items="addDropdownItems"
-    >
-    </TrackList>
+      :reorder="collection?.canEdit"
+      @reorder="handleReorder"
+    />
   </div>
 </template>

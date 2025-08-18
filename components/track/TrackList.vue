@@ -1,4 +1,5 @@
 <script lang="ts" setup>
+import { useDraggable } from "vue-draggable-plus";
 import type { TrackModel } from "@bcc-code/bmm-sdk-fetch";
 
 const props = withDefaults(
@@ -11,6 +12,7 @@ const props = withDefaults(
     showThumbnails?: boolean;
     addDropdownItems?: (items: DropdownMenuItem[], track: TrackModel) => void;
     origin?: string;
+    reorder?: boolean;
   }>(),
   {
     skeletonCount: 5,
@@ -18,8 +20,13 @@ const props = withDefaults(
     trackTypeIsKnown: undefined,
     albumIsKnown: false,
     origin: "",
+    reorder: false,
   },
 );
+
+const emit = defineEmits<{
+  reorder: [tracks: TrackModel[]];
+}>();
 
 const { setQueue } = useNuxtApp().$mediaPlayer;
 
@@ -35,10 +42,37 @@ const isTrackTypeKnown = () => {
     ) || false
   );
 };
+
+const orderableTracks = ref<TrackModel[]>([]);
+onMounted(() => {
+  if (props.tracks) {
+    orderableTracks.value = props.tracks;
+  }
+});
+const trackList = ref<HTMLOListElement>();
+useDraggable<TrackModel>(trackList, orderableTracks, {
+  animation: 200,
+  disabled: !props.reorder,
+  ghostClass: "opacity-50",
+  handle: ".drag-handle",
+  onSort({ oldIndex, newIndex }) {
+    if (oldIndex === undefined || newIndex === undefined || !props.tracks) {
+      return;
+    }
+    const tracks = [...props.tracks];
+    const [removed] = tracks.splice(oldIndex, 1);
+    if (!removed) {
+      return;
+    }
+    tracks.splice(newIndex, 0, removed);
+    emit("reorder", tracks);
+  },
+});
 </script>
 
 <template>
   <ol
+    ref="trackList"
     class="grid w-full grid-cols-tracklist grid-rows-1 gap-x-4 divide-y divide-label-separator"
   >
     <template v-if="showSkeleton">
@@ -58,6 +92,7 @@ const isTrackTypeKnown = () => {
         :add-dropdown-items="props.addDropdownItems"
         :is-album-known="props.albumIsKnown"
         :origin="props.origin"
+        :show-drag-handle="props.reorder"
         @play-track="setQueue(tracks, i, props.origin)"
       >
       </TrackItem>

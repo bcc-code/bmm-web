@@ -15,6 +15,7 @@ const props = withDefaults(
     addDropdownItems?: (items: DropdownMenuItem[], track: TrackModel) => void;
     isAlbumKnown?: boolean;
     origin?: string;
+    showDragHandle?: boolean;
   }>(),
   {
     isAlbumKnown: false,
@@ -94,6 +95,13 @@ const selectedTrack: Ref<TrackModel | null> = ref(null);
     class="group relative col-span-full grid cursor-pointer grid-cols-subgrid gap-3 py-3"
     @click.stop="playTrack"
   >
+    <div
+      v-if="showDragHandle"
+      class="drag-handle invisible absolute left-0 top-1/2 z-20 -translate-x-1/2 -translate-y-1/2 cursor-grab text-label-3 active:cursor-grabbing group-hover:visible group-active:visible"
+    >
+      <NuxtIcon name="icon.sort" />
+    </div>
+
     <div
       class="absolute -inset-x-4 -inset-y-0 rounded-xl bg-background-2 opacity-0 group-hover:opacity-100"
     ></div>
