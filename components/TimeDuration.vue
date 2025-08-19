@@ -6,5 +6,5 @@ const props = defineProps<{
 const timeAsText = computed(() => formatTime(props.duration));
 </script>
 <template>
-  {{ timeAsText }}
+  <span class="tabular-nums">{{ timeAsText }}</span>
 </template>
