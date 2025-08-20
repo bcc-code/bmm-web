@@ -235,12 +235,12 @@ useDraggable(queueListElement, queue, {
               'cursor-pointer': disableDraggable,
               'cursor-row-resize': !disableDraggable,
             }"
-            class="flex cursor-row-resize justify-between gap-2 rounded-xl px-3 py-2 transition-all duration-500 ease-out hover:bg-background-2"
+            class="flex cursor-row-resize justify-between gap-2 rounded-xl px-3 py-2 hover:bg-background-2"
           >
             <div class="truncate">
-              <div>{{ trackTitleField(item.track) }}</div>
+              <div class="truncate">{{ trackTitleField(item.track) }}</div>
               <div
-                class="text-sm"
+                class="truncate text-sm"
                 :class="isCurrentTrack(i) ? 'text-black-2' : 'text-label-2'"
               >
                 <span>
