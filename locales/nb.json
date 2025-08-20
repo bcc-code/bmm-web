@@ -198,7 +198,7 @@
     "your-streak": "Din streak denne uken",
     "days-in-row": "{count} dager på rad",
     "perfect-weeks": "{count} perfekte uker",
-    "time-left-today": "{hours} time(r) og{minutes} minutt(er) igjen i dag"
+    "time-left-today": "{hours} time(r) og {minutes} minutt(er) igjen i dag"
   },
   "transcription": {
     "lyrics": "Sangtekster",
