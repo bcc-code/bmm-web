@@ -61,14 +61,14 @@
   "error": {
     "page-not-found": {
       "headline": "Fehler",
-      "text": "Sorry. Die Seite \"{path}\" gibt es nicht."
+      "text": "Sorry. Wir können die Seite „{path} “ nicht finden."
     },
     "track-already-in-playlist": "Titel ist bereits in Playlist {0} vorhanden",
     "album-already-in-playlist": "Dieses Album ist bereits in deiner Playlist.",
     "collection-already-in-playlist": "Diese Titel befinden sich bereits in der Playlist {0}."
   },
   "collection": {
-    "track-count": "{count} Titel | {count} Titel",
+    "track-count": "{count} Track | {count} Tracks",
     "album-count": "{count} Album | {count} Alben",
     "resume": "Weiterhören"
   },
@@ -198,7 +198,7 @@
     "your-streak": "Dein Status diese Woche",
     "days-in-row": "{count} Tage hintereinander",
     "perfect-weeks": "{count} perfekte Wochen",
-    "time-left-today": "Heute noch {Stunden} Stunden und {Minuten} Minuten übrig"
+    "time-left-today": "Heute noch {hours} Stunden und {minutes} Minuten übrig"
   },
   "transcription": {
     "lyrics": "Liedtext",
