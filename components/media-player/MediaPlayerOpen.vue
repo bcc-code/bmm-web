@@ -250,10 +250,6 @@ useDraggable(queueListElement, queue, {
             </div>
 
             <div class="flex items-center justify-between gap-2">
-              <TrackMenu
-                :track="item.track"
-                :origin="`queue-item-${isCurrentTrack(i)}`"
-              />
               <NuxtIcon
                 v-if="isCurrentTrack(i) && status !== MediaPlayerStatus.Stopped"
                 name="icon.playing.animation"
@@ -262,6 +258,14 @@ useDraggable(queueListElement, queue, {
                 :class="{
                   'animation-paused': status !== MediaPlayerStatus.Playing,
                 }"
+              />
+              <TrackMenu
+                :track="item.track"
+                :origin="`queue-item-${isCurrentTrack(i)}`"
+                :button-class="[
+                  'hover:bg-label-separator',
+                  { '!text-black-1 !hover:text-black-1': isCurrentTrack(i) },
+                ]"
               />
             </div>
           </div>
