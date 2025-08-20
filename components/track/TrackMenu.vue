@@ -15,7 +15,10 @@ const copyToClipboardComponent = ref<null | { copyToClipboard: () => void }>(
 const props = withDefaults(
   defineProps<{
     track: TrackModel;
-    buttonClass?: string;
+    buttonClass?:
+      | string
+      | Record<string, boolean>
+      | (string | Record<string, boolean>)[];
     addDropdownItems?: (items: DropdownMenuItem[], track: TrackModel) => void;
     origin?: string;
   }>(),

@@ -215,10 +215,10 @@ const selectedTrack: Ref<TrackModel | null> = ref(null);
         </button>
         <TrackMenu
           :track="track"
-          :button-class="
-            'p-2 hover:bg-label-separator ' +
-            (isPlaying ? 'text-black-1 hover:text-black-1' : 'text-label-1')
-          "
+          :button-class="[
+            'p-2 hover:bg-label-separator',
+            { '!text-black-1 !hover:text-black-1': isPlaying },
+          ]"
           :add-dropdown-items="props.addDropdownItems"
           :origin="props.origin"
         />
