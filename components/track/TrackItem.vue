@@ -185,7 +185,7 @@ const selectedTrack: Ref<TrackModel | null> = ref(null);
         >
       </div>
       <div class="flex items-center">
-        <span class="text-label-3">
+        <span :class="isPlaying ? 'text-black-1' : 'text-label-3'">
           <TimeDuration
             :duration="defaultFileForTrack(track)?.duration || 0"
           ></TimeDuration>
