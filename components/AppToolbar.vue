@@ -17,7 +17,7 @@ watch(height, (h) => {
 <template>
   <header
     ref="toolbar"
-    class="sticky top-0 z-20 flex justify-between border-b border-label-separator bg-background-toolbar backdrop-blur-md"
+    class="sticky top-0 z-20 flex items-start justify-between border-b border-label-separator bg-background-toolbar backdrop-blur-md"
     style="-webkit-app-region: drag"
   >
     <div class="mx-5 flex flex-row">

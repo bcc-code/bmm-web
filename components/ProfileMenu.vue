@@ -67,7 +67,7 @@ const { data: user } = useCurrentUser();
   <div v-if="auth0User">
     <DropdownMenu placement="bottom-end">
       <button
-        class="type-subtitle-1 flex items-center gap-2 rounded-full px-4 py-2 text-label-1 outline-label-separator hover:bg-background-2 hover:outline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-label-1"
+        class="type-subtitle-1 my-2 flex items-center gap-2 rounded-full px-4 py-2 text-label-1 outline-label-separator hover:bg-background-2 hover:outline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-label-1"
       >
         <span>{{ $t("profile.title") }}</span>
         <FadeInImage
