@@ -85,7 +85,7 @@ const onPointerDownProgressBar = () => {
     <svg
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      class="absolute bottom-0 left-1 right-1 h-1 w-full transition-all duration-200 ease-out hover:h-1.5"
+      class="absolute bottom-0 left-1 right-1 h-1 w-full cursor-pointer transition-all duration-200 ease-out hover:h-1.5"
       @pointerdown="onPointerDownProgressBar"
       @pointerup="onPointerUpProgressBar"
       @click.stop
