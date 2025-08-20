@@ -63,9 +63,9 @@
       "headline": "Feil",
       "text": "Beklager. Vi kan ikke finne siden «{path}»."
     },
-    "track-already-in-playlist": "Sporet finnes allerede i spillelisten '{'0'}'",
+    "track-already-in-playlist": "Sporet finnes allerede i spillelisten {0}",
     "album-already-in-playlist": "Dette albumet ligger allerede i spillelisten din.",
-    "collection-already-in-playlist": "Disse sporene finnes allerede i spillelisten '{'0'}'."
+    "collection-already-in-playlist": "Disse sporene finnes allerede i spillelisten {0}."
   },
   "collection": {
     "track-count": "{count} spor | {count} spor",
@@ -74,15 +74,15 @@
   },
   "login": {
     "error-message": {
-      "contact-info": "Hvis denne feilen vedvarer, '{'0'}'.",
+      "contact-info": "Hvis denne feilen vedvarer, {0}.",
       "contact-link": "vennligst ta kontakt med oss",
       "logout-and-redirect-info": "Noe ved innloggingen gikk galt:",
-      "manual-logout-and-redirect-info": "Vennligst '{'0'}'.",
+      "manual-logout-and-redirect-info": "Vennligst {0}.",
       "logout-and-redirect-link": "prøv å logge inn igjen"
     },
     "redirect-message": {
       "redirect-info": "Du blir omdirigert til innloggingssiden.",
-      "manual-redirect-info": "Vennligst vent eller '{'0'}'.",
+      "manual-redirect-info": "Vennligst vent eller {0}.",
       "redirect-link": "klikk for å prøve igjen"
     }
   },
@@ -105,7 +105,7 @@
       "title": "Nedlasting av taler ikke tilgjengelig",
       "description": "Det er ikke lenger mulig å laste ned taler fra BMM. Hvis du trenger en tale til et spesifikt formål, kan du kontakte oss og forklare dine behov."
     },
-    "sendEmailTo": "Send e-post til '{'0'}'"
+    "sendEmailTo": "Send e-post til {0}"
   },
   "playlist": {
     "add": "Legg til spilleliste",
@@ -118,12 +118,12 @@
       "add-to-my-playlists": "Legg til mine spillelister",
       "remove-shared-playlist": "Fjern spillelisten"
     },
-    "by-x": "fra '{'0'}'"
+    "by-x": "fra {name}"
   },
   "podcast": {
     "this-week": "Denne uken",
     "last-week": "Forrige uke",
-    "week-x": "Uke '{'0'}'",
+    "week-x": "Uke {count}",
     "action": {
       "play": "Spill av"
     }
@@ -196,8 +196,8 @@
   },
   "streak": {
     "your-streak": "Din streak denne uken",
-    "days-in-row": "'{'0'}' dager på rad",
-    "perfect-weeks": "'{'0'}' perfekte uker",
+    "days-in-row": "{count} dager på rad",
+    "perfect-weeks": "{count} perfekte uker",
     "time-left-today": "{hours} time(r) og{minutes} minutt(er) igjen i dag"
   },
   "transcription": {
