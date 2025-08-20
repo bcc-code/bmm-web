@@ -73,7 +73,7 @@ export const initMediaPlayer = (
 
   let nextStartPosition = 0;
 
-  const volume = ref(1);
+  const volume = useLocalStorage('media-player:volume', 1);
   const playbackSpeed = ref(1);
   const open = ref(false);
 
