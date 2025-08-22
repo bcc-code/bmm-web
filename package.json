@@ -1,7 +1,7 @@
 {
   "name": "bmm-web",
   "author": "BCC Media",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "BCC Media audio player",
   "license": "AGPL-3.0",
   "main": "dist-electron/main.js",
