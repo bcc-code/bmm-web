@@ -26,6 +26,7 @@ type Tool = {
   show: boolean;
 };
 const tools = computed<Tool[]>(() => {
+  // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
   const items = [
     {
       id: "dashboard",
@@ -146,7 +147,7 @@ const tools = computed<Tool[]>(() => {
           <SidebarItem
             v-for="collection in collections"
             :key="collection.id"
-            type="playlist"
+            type="private-playlist"
             :title="collection.name || ''"
             :link="{
               name: 'playlist-private-id',
