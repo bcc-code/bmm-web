@@ -29,13 +29,6 @@ const tools = computed<Tool[]>(() => {
   // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
   const items = [
     {
-      id: "dashboard",
-      name: t("dashboards.title"),
-      icon: "icon.dashboard",
-      link: { name: "dashboards-fra-kaare" },
-      show: isFraKaareDashboardViewer(currentUser.value),
-    },
-    {
       id: "transcriptions",
       name: t("nav.transcribe"),
       icon: "icon.transcription",
