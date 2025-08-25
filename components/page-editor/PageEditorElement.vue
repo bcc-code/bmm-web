@@ -183,6 +183,12 @@ const shouldShowField = (value: unknown) =>
               v-model="element.serverTranslation"
               label="Server Translation"
             />
+            <PageEditorInput
+              v-if="shouldShowField(element.useCoverCarousel)"
+              v-model="element.useCoverCarousel"
+              type="checkbox"
+              label="Use Cover Carousel"
+            />
           </template>
           <template v-if="element.type === PageEditorElementTypes.ProjectBox">
             <PageEditorInput
