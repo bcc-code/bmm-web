@@ -164,6 +164,12 @@ const shouldShowField = (value: unknown) =>
                 label="English Text"
                 :element
               />
+              <PageEditorInput
+                v-if="shouldShowField(element.link)"
+                v-model="element.link"
+                label="Link"
+                :element
+              />
             </div>
           </template>
           <template v-if="element.type === PageEditorElementTypes.Header">
