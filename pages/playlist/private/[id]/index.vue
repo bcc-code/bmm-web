@@ -75,9 +75,13 @@ const handleReorder = (tracks: TrackModel[]) => {
           class="flex aspect-square w-full justify-center rounded-2xl bg-background-2"
         >
           <NuxtIcon
-            name="icon.category.playlist"
+            :name="
+              collection?.useLikeIcon
+                ? 'icon.category.favorites'
+                : 'icon.category.playlist'
+            "
             class="text-5xl md:text-7xl lg:text-8xl"
-          ></NuxtIcon>
+          />
         </div>
       </template>
       <template v-if="collection" #heading>
