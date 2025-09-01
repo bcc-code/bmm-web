@@ -43,7 +43,7 @@ const onResume = () => {
 <template>
   <section
     class="relative my-4 mr-3 block cursor-pointer gap-2 duration-150"
-    :class="active ? 'large-shadow rounded-3xl p-6' : 'group'"
+    :class="active ? 'large-shadow -m-6 rounded-3xl p-6' : 'group'"
     @click.stop="expand"
   >
     <div
@@ -52,15 +52,14 @@ const onResume = () => {
     ></div>
     <section v-if="album" class="relative flex items-center gap-4">
       <CoverImage :src="album.cover" class="w-[68px] rounded-md" />
-      <div class="text-2xl font-extrabold">{{ album.title }}</div>
-      <div
-        v-if="album?.children && !active"
-        class="ml-auto flex gap-1.5 rounded-3xl border-[1px] border-background-2 bg-background-2 px-4 py-2 group-hover:border-label-separator"
-      >
-        <span class="text-lg font-semibold leading-6">{{
-          t("collection.track-count", album?.children.length)
-        }}</span>
-        <NuxtIcon name="icon.chevron.down" class="text-2xl" />
+      <div>
+        <div class="text-2xl font-extrabold">{{ album.title }}</div>
+        <p class="type-paragraph-3 text-label-3">
+          <TrackCountAndDuration
+            :track-count="album.trackCount"
+            :seconds="album.totalSeconds"
+          ></TrackCountAndDuration>
+        </p>
       </div>
 
       <div
@@ -94,16 +93,8 @@ const onResume = () => {
     </section>
     <section
       v-if="album?.children?.length && album?.children?.length > 0"
-      :class="active ? 'active relative max-h-fit' : 'h-0 overflow-hidden'"
+      :class="active ? 'active relative mt-4 max-h-fit' : 'h-0 overflow-hidden'"
     >
-      <div
-        class="mt-2 border-b-[1px] border-b-label-separator py-3 text-label-3"
-      >
-        <TrackCountAndDuration
-          :track-count="album.trackCount"
-          :seconds="album.totalSeconds"
-        ></TrackCountAndDuration>
-      </div>
       <TrackList
         :track-type-is-known="false"
         :tracks="childTracks"

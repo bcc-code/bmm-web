@@ -50,15 +50,15 @@ const onPressShuffle = () => {
       </template>
       <template v-if="collection" #heading>
         <PageHeading>{{ collection?.name }}</PageHeading>
-        <div>
+        <p class="type-paragraph-2 my-2 text-label-2">
           {{ t("playlist.by-x", { name: collection.authorName }) }}
-        </div>
-        <div v-if="collection?.tracks">
+        </p>
+        <p v-if="collection?.tracks" class="type-paragraph-3 my-2 text-label-3">
           <TrackCountAndDuration
             :track-count="collection.trackCount"
             :seconds="collection.totalSeconds"
           ></TrackCountAndDuration>
-        </div>
+        </p>
       </template>
       <template #actions>
         <ButtonStyled

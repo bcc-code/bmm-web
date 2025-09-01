@@ -86,6 +86,12 @@ const onResume = () => {
         >
           {{ album.description }}
         </p>
+        <p v-if="childTracks.length" class="type-paragraph-3 my-2 text-label-3">
+          <TrackCountAndDuration
+            :track-count="album.trackCount"
+            :seconds="album.totalSeconds"
+          ></TrackCountAndDuration>
+        </p>
       </template>
       <template #actions>
         <ButtonStyled
@@ -116,12 +122,6 @@ const onResume = () => {
       </template>
     </TrackCollectionHeader>
 
-    <p v-if="childTracks.length" class="py-2 text-label-3">
-      <TrackCountAndDuration
-        :track-count="album.trackCount"
-        :seconds="album.totalSeconds"
-      ></TrackCountAndDuration>
-    </p>
     <TrackList :tracks="childTracks" :origin="origin" album-is-known>
     </TrackList>
     <p

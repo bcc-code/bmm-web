@@ -87,15 +87,18 @@ const handleReorder = (tracks: TrackModel[]) => {
       <template v-if="collection" #heading>
         <PageHeading>{{ collection?.name }}</PageHeading>
 
-        <div v-if="collection.authorName && !collection.canEdit">
+        <p
+          v-if="collection.authorName && !collection.canEdit"
+          class="type-paragraph-2 my-2 text-label-2"
+        >
           {{ t("playlist.by-x", { name: collection.authorName }) }}
-        </div>
-        <div v-if="collection?.tracks">
+        </p>
+        <p v-if="collection?.tracks" class="type-paragraph-3 my-2 text-label-3">
           <TrackCountAndDuration
             :track-count="collection.trackCount"
             :seconds="collection.totalSeconds"
           ></TrackCountAndDuration>
-        </div>
+        </p>
       </template>
       <template v-if="collection" #actions>
         <ButtonStyled intent="primary" icon="icon.play" @click="onPressPlay()">
