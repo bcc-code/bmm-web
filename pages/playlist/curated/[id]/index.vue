@@ -42,11 +42,11 @@ useHead({
           <PageHeading>{{ playlist.title }}</PageHeading>
           <p
             v-if="playlist.description"
-            class="type-paragraph-2 mb-2 mt-[-12px] text-label-2"
+            class="type-paragraph-2 mt-[-12px] text-label-2"
           >
             {{ playlist.description }}
           </p>
-          <p>
+          <p class="type-paragraph-3 my-2 text-label-3">
             <TrackCountAndDuration
               :track-count="playlist.trackCount"
               :seconds="playlist.totalSeconds"
