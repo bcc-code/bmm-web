@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import { version } from "~/package.json";
-import { isTranscriptionManager } from "~/utils/roles";
 import type { NuxtIconName } from "#build/nuxt-icons";
 import type { RoutesNamedLocations } from "@typed-router";
 
@@ -28,13 +27,6 @@ type Tool = {
 const tools = computed<Tool[]>(() => {
   // eslint-disable-next-line @typescript-eslint/consistent-type-assertions
   const items = [
-    {
-      id: "transcriptions",
-      name: t("nav.transcribe"),
-      icon: "icon.transcription",
-      link: { name: "transcribe" },
-      show: isTranscriptionManager(currentUser.value),
-    },
     {
       id: "lyrics",
       name: t("nav.lyrics"),
