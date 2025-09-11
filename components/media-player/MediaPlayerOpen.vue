@@ -46,6 +46,8 @@ useDraggable(queueListElement, queue, {
     queue.value.moveTrack(oldIndex, newIndex);
   },
 });
+
+const trackCover = computed(() => coverForTrack(currentTrack.value));
 </script>
 
 <template>
@@ -56,7 +58,7 @@ useDraggable(queueListElement, queue, {
       >
         <div class="relative z-10 hidden overflow-hidden tall:block">
           <CoverImage
-            :src="currentTrack?.meta?.attachedPicture"
+            :src="trackCover"
             class="w-20 rounded-md x-tall:w-40"
             :style="`view-transition-name: player-cover-${currentTrack?.id}`"
           />
@@ -64,8 +66,8 @@ useDraggable(queueListElement, queue, {
 
         <!-- translate3d is needed to fix flickering in Safari: https://graffino.com/til/how-to-fix-filter-blur-performance-issue-in-safari -->
         <ProtectedImage
-          v-if="currentTrack?.meta?.attachedPicture"
-          :src="currentTrack?.meta?.attachedPicture"
+          v-if="trackCover"
+          :src="trackCover"
           class="absolute z-0 w-[160px] blur-[80px]"
           style="transform: translate3d(0, 0, 0)"
           no-border

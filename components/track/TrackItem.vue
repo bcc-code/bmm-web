@@ -115,10 +115,7 @@ const selectedTrack: Ref<TrackModel | null> = ref(null);
     <div class="relative col-span-full grid grid-cols-subgrid">
       <div v-if="showThumbnail" class="hidden flex-col justify-center lg:flex">
         <div class="relative aspect-square w-10">
-          <CoverImage
-            :src="track.meta?.attachedPicture"
-            class="w-10 rounded-md"
-          />
+          <CoverImage :src="coverForTrack(track)" class="w-10 rounded-md" />
           <div
             v-if="!isPlaying"
             class="absolute inset-0 w-10 opacity-0 group-hover:opacity-100"

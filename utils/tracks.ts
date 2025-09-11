@@ -20,3 +20,14 @@ export function defaultFileForTrack(
 export function trackIsSong(track: TrackModel): boolean {
   return track.subtype === "song" || track.subtype === "singsong";
 }
+
+export function coverForTrack(
+  track: TrackModel | undefined,
+): string | null | undefined {
+  return (
+    track?.cover ??
+    track?.meta.attachedPicture ??
+    track?.meta.parent?.cover ??
+    track?.meta.rootParent?.cover
+  );
+}

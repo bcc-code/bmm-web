@@ -46,7 +46,11 @@ async function shufflePodcast() {
       :to="parseLink(item.showAllLink)"
       class="aspect-square w-[120px] overflow-clip rounded-2xl bg-background-1 lg:w-1/2 lg:rounded-none"
     >
-      <CoverImage :src="item.coverUrl" :alt="item.title" no-border />
+      <CoverImage
+        :src="item.coverUrl ?? coverForTrack(item.track)"
+        :alt="item.title"
+        no-border
+      />
     </NuxtLink>
     <div
       class="flex grow cursor-pointer flex-col gap-0.5 rounded-r-2xl p-0 text-black-1 lg:w-1/2 lg:p-4"
