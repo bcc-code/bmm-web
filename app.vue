@@ -1,7 +1,9 @@
 <script lang="ts" setup>
 import { useAuth0 } from "@auth0/auth0-vue";
+import { Toaster } from "vue-sonner";
+import "vue-sonner/style.css";
 
-const { $appInsights } = useNuxtApp();
+const { $appInsights, $colorMode } = useNuxtApp();
 
 const { isLoading, loginWithRedirect, isAuthenticated, error, logout } =
   useAuth0();
@@ -108,6 +110,17 @@ useHead({
 
 <template>
   <div class="h-full">
+    <Toaster
+      :theme="$colorMode.preference"
+      expand
+      position="bottom-center"
+      :toast-options="{
+        style: {
+          background: 'var(--bmm-background-3)',
+          color: 'var(--bmm-label-1)',
+        },
+      }"
+    />
     <NuxtLayout v-if="isAuthenticated && !error">
       <div class="container mx-auto min-w-80 px-2 pb-20 lg:px-9">
         <NuxtPage />
