@@ -170,6 +170,14 @@
     },
     "playback": {
       "normal": "Normal"
+    },
+    "types": {
+      "song": "Song",
+      "singsong": "Congregational Singing",
+      "speech": "Speech",
+      "audiobook": "Audiobook",
+      "podcast": "Podcast",
+      "exegesis": "Exegesis"
     }
   },
   "home": {

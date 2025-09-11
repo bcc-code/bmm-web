@@ -77,7 +77,7 @@ const fields = computed(() => {
 
   const third = props.isTrackTypeKnown
     ? props.track.meta.album
-    : props.track.subtype;
+    : t(`track.types.${props.track.subtype}`);
   return {
     title: filtered[0],
     subtitle: filtered.slice(1).join(" - "),
