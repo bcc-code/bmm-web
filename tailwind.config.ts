@@ -15,7 +15,7 @@ const config: Partial<Config> = {
     extend: {
       gridTemplateColumns: {
         tracklist: "min-content auto auto auto min-content",
-        tilesWide: "repeat(auto-fit, minmax(350px, 1fr))",
+        tilesWide: "repeat(auto-fill, minmax(350px, 1fr))",
         tilesNarrow: "repeat(auto-fit, minmax(200px, 1fr))",
         tilesOneLine: "repeat(10, minmax(220px, 1fr))",
         coverList: "repeat(auto-fill, minmax(158px, 1fr))",

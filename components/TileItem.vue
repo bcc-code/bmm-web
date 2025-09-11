@@ -39,19 +39,14 @@ async function shufflePodcast() {
 <template>
   <div
     v-if="item.showAllLink && item.track && item.title"
-    class="flex w-full flex-col gap-4 rounded-2xl p-4 lg:aspect-[2/1] lg:flex-row lg:gap-0 lg:p-0"
+    class="flex flex-col gap-4 overflow-clip rounded-3xl p-4 lg:aspect-[2/1] lg:flex-row lg:gap-0 lg:p-0"
     :style="'background: ' + (item.backgroundColor ?? '#F5F6F7')"
   >
     <NuxtLink
       :to="parseLink(item.showAllLink)"
-      class="aspect-square w-[120px] rounded-2xl bg-background-1 lg:w-1/2 lg:rounded-none lg:rounded-l-2xl"
+      class="aspect-square w-[120px] overflow-clip rounded-2xl bg-background-1 lg:w-1/2 lg:rounded-none"
     >
-      <CoverImage
-        :src="item.coverUrl"
-        :alt="item.title"
-        class="rounded-2xl lg:rounded-none lg:rounded-l-2xl"
-        no-border
-      />
+      <CoverImage :src="item.coverUrl" :alt="item.title" no-border />
     </NuxtLink>
     <div
       class="flex grow cursor-pointer flex-col gap-0.5 rounded-r-2xl p-0 text-black-1 lg:w-1/2 lg:p-4"
