@@ -67,8 +67,17 @@ async function shufflePodcast() {
         {{ weekDay(item.date) }}
         <span class="opacity-70">{{ formatDate(item.date) }}</span>
       </div>
-      <div v-else class="text-sm">
-        {{ item.subtitle }}
+      <div v-else class="flex items-center text-sm">
+        <span class="shrink-0">{{ item.subtitle }}</span>
+        <div
+          v-if="item.percentage != undefined"
+          class="ml-6 mr-4 h-0.5 w-full rounded-full bg-black-separator"
+        >
+          <div
+            class="h-full w-full rounded-full bg-black-1"
+            :style="{ width: item.percentage + '%' }"
+          />
+        </div>
       </div>
       <div class="mt-auto flex w-full flex-row items-center gap-3.5 pt-1.5">
         <button
