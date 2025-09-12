@@ -170,6 +170,14 @@
     },
     "playback": {
       "normal": "Normal"
+    },
+    "types": {
+      "song": "Lied",
+      "singsong": "Gemeinsames Lied",
+      "speech": "Rede",
+      "audiobook": "Hörbuch",
+      "podcast": "Podcast",
+      "exegesis": "Auslegung"
     }
   },
   "home": {

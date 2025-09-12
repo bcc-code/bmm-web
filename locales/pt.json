@@ -2,7 +2,7 @@
   "global": {
     "cancel": "Cancelar",
     "try-again": "Tente novamente",
-    "hours-and-minutes": "{0} hr {1} min",
+    "hours-and-minutes": "{0} h {1} min",
     "minutes-and-seconds": "{0} min {1} seg"
   },
   "nav": {
@@ -47,7 +47,7 @@
     "preference-language-1": "Idiomas preferidos",
     "preference-language-2": "Idioma secundário",
     "preference-language-3": "Terceira língua",
-    "preference-language-4": "{count}a língua",
+    "preference-language-4": "{count}idioma",
     "uservoice": "Voz do usuário",
     "privacy-policy": "Política de privacidade",
     "contact": "Contato",
@@ -61,11 +61,11 @@
   "error": {
     "page-not-found": {
       "headline": "Erro",
-      "text": "Desculpe. Desculpe. Não conseguimos encontrar a página \"{path}\"."
+      "text": "Desculpe. Não conseguimos encontrar a página \"{path}\"."
     },
-    "track-already-in-playlist": "A faixa já existe na lista de reprodução {0}",
+    "track-already-in-playlist": "A faixa já existe na lista de reprodução '{'0'}'",
     "album-already-in-playlist": "Este álbum já está em sua lista de reprodução.",
-    "collection-already-in-playlist": "Essas faixas já estão na playlist {0}."
+    "collection-already-in-playlist": "Essas faixas já estão na playlist '{'0'}'."
   },
   "collection": {
     "track-count": "{count} faixa | {count} faixas",
@@ -74,15 +74,15 @@
   },
   "login": {
     "error-message": {
-      "contact-info": "Caso esse erro persista, {0}.",
+      "contact-info": "Caso esse erro persista, '{'0'}'.",
       "contact-link": "por favor entre em contato conosco",
       "logout-and-redirect-info": "Algo deu errado no login:",
-      "manual-logout-and-redirect-info": "Por favor {0}.",
+      "manual-logout-and-redirect-info": "Por favor '{'0'}'.",
       "logout-and-redirect-link": "tente fazer login novamente"
     },
     "redirect-message": {
       "redirect-info": "Você será redirecionado para a página de login.",
-      "manual-redirect-info": "Por favor aguarde ou {0}.",
+      "manual-redirect-info": "Por favor aguarde ou '{'0'}'.",
       "redirect-link": "clique para tentar novamente"
     }
   },
@@ -105,7 +105,7 @@
       "title": "Download de falas indisponível",
       "description": "A possibilidade de baixar mensagens do BMM já não está disponível. Se precisar de uma mensagem para uma utilidade específica, contate-nos e explique-nos suas necessidades."
     },
-    "sendEmailTo": "Enviar e-mail para {0}"
+    "sendEmailTo": "Enviar e-mail para '{'0'}'"
   },
   "playlist": {
     "add": "Adicionar à lista de reprodução",
@@ -118,12 +118,12 @@
       "add-to-my-playlists": "Adicionar às minhas listas de reprodução",
       "remove-shared-playlist": "Excluir lista de reprodução"
     },
-    "by-x": "por {name}"
+    "by-x": "por '{'0'}'"
   },
   "podcast": {
     "this-week": "Esta semana",
     "last-week": "Ultima semana",
-    "week-x": "Semana {count}",
+    "week-x": "Semana '{'0'}'",
     "action": {
       "play": "Reproduzir"
     }
@@ -170,6 +170,14 @@
     },
     "playback": {
       "normal": "Normal"
+    },
+    "types": {
+      "song": "Canção",
+      "singsong": "Cançao Congregacional",
+      "speech": "Fala",
+      "audiobook": "Audiolivro",
+      "podcast": "Podcast",
+      "exegesis": "Interpretação"
     }
   },
   "home": {
@@ -192,13 +200,13 @@
     "loading-results": "Carregando resultados",
     "no-results-yet": "Sem resultados",
     "no-results-found": "Nenhum resultado encontrado",
-    "result-count": "{count} resultados"
+    "result-count": "Resultados"
   },
   "streak": {
     "your-streak": "Seu progresso semanal",
-    "days-in-row": "{count} dias consecutivos",
-    "perfect-weeks": "{count} semanas perfeitas",
-    "time-left-today": "{horas} horas e {minutos} minutos restantes hoje"
+    "days-in-row": "'{'0'}' dias seguidos",
+    "perfect-weeks": "'{'0'}' semanas perfeitas",
+    "time-left-today": "{hours} horas e {minutes} minutos restantes hoje"
   },
   "transcription": {
     "lyrics": "Letra da música",
