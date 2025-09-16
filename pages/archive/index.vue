@@ -3,6 +3,9 @@ const { t } = useI18n();
 setTitle(() => t("nav.archive"));
 
 const { data: years } = useYearList();
+const filteredYears = computed(() =>
+  years.value?.filter((year) => year.year !== undefined).toReversed(),
+);
 </script>
 
 <template>
@@ -10,9 +13,9 @@ const { data: years } = useYearList();
     <div class="h-3"></div>
     <div class="columns-2 md:columns-3 xl:columns-4 2xl:columns-5">
       <NuxtLink
-        v-for="year in years?.toReversed()"
+        v-for="year in filteredYears"
         :key="`year_${year.year}`"
-        :to="{ name: 'archive-year', params: { year: year.year } }"
+        :to="{ name: 'archive-year', params: { year: year.year! } }"
         class="flex max-w-36 flex-row items-center justify-center rounded-xl hover:bg-background-2"
       >
         <div class="type-subtitle-1 px-2 py-2">{{ year.year }}</div>
