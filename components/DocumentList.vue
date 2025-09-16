@@ -306,26 +306,7 @@ onMounted(() => {
             />
 
             <template v-else-if="item.type === 'InfoMessage'">
-              <NuxtLink
-                v-if="item.link"
-                :to="parseLink(item.link)"
-                :target="isInternalLink(item.link || '') ? '_self' : '_blank'"
-                class="col-span-full flex gap-3 rounded-2xl bg-background-2 p-4 font-medium"
-              >
-                <div>
-                  <NuxtIcon name="icon.alert" class="text-2xl" />
-                </div>
-                {{ item.translatedMessage }}
-              </NuxtLink>
-              <div
-                v-else
-                class="col-span-full flex gap-3 rounded-2xl bg-background-2 p-4 font-medium"
-              >
-                <div>
-                  <NuxtIcon name="icon.alert" class="text-2xl" />
-                </div>
-                {{ item.translatedMessage }}
-              </div>
+              <InfoMessageItem :item="item" />
             </template>
 
             <template v-else-if="item.type === 'project_box_v2'">
