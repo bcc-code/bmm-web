@@ -2,7 +2,7 @@
   "global": {
     "cancel": "Anulare",
     "try-again": "Încearcă din nou",
-    "hours-and-minutes": "{0} h {1} min",
+    "hours-and-minutes": "{0}h {1} min",
     "minutes-and-seconds": "{0} min {1} sec"
   },
   "nav": {
@@ -25,6 +25,9 @@
   "sidebar": {
     "playlists": {
       "title": "Liste de redare"
+    },
+    "tools": {
+      "title": "Instrumente"
     }
   },
   "share": {
@@ -44,7 +47,7 @@
     "preference-language-1": "Limba preferată",
     "preference-language-2": "A doua limbă",
     "preference-language-3": "A treia limbă",
-    "preference-language-4": "{count}-a limbă",
+    "preference-language-4": "A {count}a limbă",
     "uservoice": "Vocea utilizatorului",
     "privacy-policy": "Politica de confidențialitate",
     "contact": "Contact",
@@ -109,13 +112,13 @@
     "new-playlist": "Listă de redare nouă",
     "name-your-playlist": "Denumește lista de redare",
     "delete-playlist": "Șterge lista de redare",
-    "delete-playlist-description": "Ești sigur că dorești să ștergi lista de redare? Această acțiune nu poate fi anulată.",
+    "delete-playlist-description": "Ești sigur că dorești să ştergi lista de redare? Această acțiune nu poate fi anulată.",
     "action": {
       "shuffle": "Amestecă ordinea",
-      "add-to-my-playlists": "Adaugă printre listele mele de redare",
+      "add-to-my-playlists": "Adaugă la lista mea de redare",
       "remove-shared-playlist": "Elimină lista de redare"
     },
-    "by-x": "după {name}"
+    "by-x": "de la {name}"
   },
   "podcast": {
     "this-week": "Această săptămână",
@@ -188,14 +191,14 @@
     "input-placeholder": "Căutare",
     "loading-results": "Se încarcă rezultatele",
     "no-results-yet": "Niciun rezultat nu a fost găsit încă",
-    "no-results-found": "Niciun rezultat nu a fost găsit",
+    "no-results-found": "Niciun rezultat găsit",
     "result-count": "{count} rezultate"
   },
   "streak": {
     "your-streak": "Progresul tău săptămâna aceasta",
-    "days-in-row": "{count} zile consecutive",
+    "days-in-row": "{count} zile la rând",
     "perfect-weeks": "{count} săptămâni perfecte",
-    "time-left-today": "{ore} ore și {minute} minute rămase astăzi"
+    "time-left-today": "{hours} ore și {minutes} minute rămase astăzi"
   },
   "transcription": {
     "lyrics": "Versuri",
