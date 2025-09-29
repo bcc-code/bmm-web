@@ -1,7 +1,9 @@
 {
   "global": {
     "cancel": "Annuller",
-    "try-again": "Prøv igen"
+    "try-again": "Prøv igen",
+    "hours-and-minutes": "{0} hr {1} min",
+    "minutes-and-seconds": "{0} min {1} sek"
   },
   "nav": {
     "home": "Hjem",
@@ -23,6 +25,9 @@
   "sidebar": {
     "playlists": {
       "title": "Playliste"
+    },
+    "tools": {
+      "title": "Værktøjer"
     }
   },
   "share": {
@@ -42,7 +47,7 @@
     "preference-language-1": "Foretrukket sprog",
     "preference-language-2": "Andet sprog",
     "preference-language-3": "Tredje sprog",
-    "preference-language-4": "{count}. sprog",
+    "preference-language-4": "Modersmål",
     "uservoice": "User Voice",
     "privacy-policy": "Fortrolighedspolitik",
     "contact": "Kontakt",
@@ -56,23 +61,23 @@
   "error": {
     "page-not-found": {
       "headline": "Fejl",
-      "text": "Beklager Beklager, vi kan ikke finde siden \"{path}\"."
+      "text": "Beklager Vi kan ikke finde siden \"{path}\"."
     },
-    "track-already-in-playlist": "Findes allerede i playlisten.",
+    "track-already-in-playlist": "Findes allerede i playlisten  {0}",
     "album-already-in-playlist": "Dette album er allerede på din playliste.",
     "collection-already-in-playlist": "Disse numre er allerede på playliste {0}."
   },
   "collection": {
-    "track-count": "{count} track | {count} track",
-    "album-count": "{antal} album | {antal} albums",
+    "track-count": "{count} spor | {count} spor",
+    "album-count": "{count} album | {count} albummer",
     "resume": "Genoptag"
   },
   "login": {
     "error-message": {
-      "contact-info": "Hvis denne fejl fortsætter, {0}.",
+      "contact-info": "Hvis denne fejl fortsætter,  {0}.",
       "contact-link": "kontakt os venligst",
       "logout-and-redirect-info": "Noget i forbindelse med login gik galt:",
-      "manual-logout-and-redirect-info": "Venligst {0}.",
+      "manual-logout-and-redirect-info": "Venligst  {0}.",
       "logout-and-redirect-link": "prøv at logge ind igen"
     },
     "redirect-message": {
@@ -113,12 +118,12 @@
       "add-to-my-playlists": "Tilføj til mine spillelister",
       "remove-shared-playlist": "Slet spilleliste"
     },
-    "by-x": "af {name}"
+    "by-x": "af {0}"
   },
   "podcast": {
     "this-week": "Denne uge",
     "last-week": "Sidste uge",
-    "week-x": "Uge {count}",
+    "week-x": "Uge {0}",
     "action": {
       "play": "Afspil"
     }
@@ -142,7 +147,8 @@
       "more-info": "Mere information",
       "show-all": "Vis alle",
       "remove-from-playlist": "Slet fra spilleliste",
-      "transcription": "Transskribering"
+      "transcription": "Transskribering",
+      "playback": "Afspil hastighed"
     },
     "a11y": {
       "options": "Vis muligheder"
@@ -161,6 +167,17 @@
       "lyricist": "Tekstforfatter",
       "text": "Tekst",
       "melody": "Melodi"
+    },
+    "playback": {
+      "normal": "Normal"
+    },
+    "types": {
+      "song": "Sang",
+      "singsong": "Korsang",
+      "speech": "Tale",
+      "audiobook": "Lydbog",
+      "podcast": "Podcast",
+      "exegesis": "Tydning"
     }
   },
   "home": {
@@ -183,11 +200,13 @@
     "loading-results": "Indlæser resultater",
     "no-results-yet": "Ingen resultater",
     "no-results-found": "Ingen resultater fundet",
-    "result-count": "{count} resultater"
+    "result-count": "{0} resultater"
   },
   "streak": {
     "your-streak": "Din streak denne uge",
-    "days-in-row": "{count} dage i træk"
+    "days-in-row": "{0} dage i stræk",
+    "perfect-weeks": "{0} perfekte uger",
+    "time-left-today": "{hours} timer og {minutes} minutter tilbage i dag"
   },
   "transcription": {
     "lyrics": "Tekster",
@@ -207,7 +226,12 @@
       "done": "Gennemgået",
       "in-progress": "I gang",
       "not-started": "Ikke gennemgået"
-    }
+    },
+    "insertBefore": "Indsæt før",
+    "insertAfter": "Indsæt efter",
+    "copyToClipboard": "Kopier til udklipsholder",
+    "copiedToClipboard": "Kopieret til udklipsholder",
+    "invalidIdsDescription": "Nogle transskriptionssegmenter har samme ID og kan derfor ikke redigeres."
   },
   "dashboards": {
     "title": "Kontrolpanel",
@@ -222,5 +246,10 @@
     "long-copyright": "Lang copyright",
     "remove-formatting": "Ryd op i formatering",
     "paste-instructions": "Indsæt tekst ved hjælp af <shortcut> for at fjerne formatering."
+  },
+  "project": {
+    "achievement": "Resultater",
+    "achievementUnlocked": "Låst op",
+    "achievementPlayNext": "Afspil næste"
   }
 }
