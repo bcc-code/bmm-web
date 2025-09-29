@@ -1,7 +1,9 @@
 {
   "global": {
     "cancel": "Mégse",
-    "try-again": "Próbáld újra"
+    "try-again": "Próbáld újra",
+    "hours-and-minutes": "{0} óra {1} perc",
+    "minutes-and-seconds": "{0} perc {1} mp"
   },
   "nav": {
     "home": "Főoldal",
@@ -23,6 +25,9 @@
   "sidebar": {
     "playlists": {
       "title": "Lejátszási listák"
+    },
+    "tools": {
+      "title": "Eszközök"
     }
   },
   "share": {
@@ -56,14 +61,14 @@
   "error": {
     "page-not-found": {
       "headline": "Hiba",
-      "text": "Sajnáljuk. Elnézést. Nem találjuk a \"{path}\" oldalt."
+      "text": "Sajnáljuk. Nem találjuk az „{path} ” oldalt."
     },
     "track-already-in-playlist": "Zeneszám már létezik a {0} számú lejátszási listában",
     "album-already-in-playlist": "Ez az album már szerepel a lejátszási listádban.",
     "collection-already-in-playlist": "Ezek a számok már a {0} lejátszási listán vannak."
   },
   "collection": {
-    "track-count": "{count} szám | {count} számok",
+    "track-count": "{count} szám | {count}számok",
     "album-count": "{count} album | {count} albumok",
     "resume": "Folytatás"
   },
@@ -72,7 +77,7 @@
       "contact-info": "Ha ez a hiba továbbra is fennáll, {0}.",
       "contact-link": "kérjük vedd fel velünk a kapcsolatot",
       "logout-and-redirect-info": "Valami hiba történt a bejelentkezéssel kapcsolatban:",
-      "manual-logout-and-redirect-info": "Kérlek {0}.",
+      "manual-logout-and-redirect-info": "Kérek {0}.",
       "logout-and-redirect-link": "próbálj meg újra bejelentkezni"
     },
     "redirect-message": {
@@ -113,7 +118,7 @@
       "add-to-my-playlists": "Hozzáadás lejátszási listámhoz",
       "remove-shared-playlist": "Lejátszási lista eltávolítása"
     },
-    "by-x": "{name} szerint"
+    "by-x": "{name} által"
   },
   "podcast": {
     "this-week": "Ez a hét",
@@ -164,7 +169,15 @@
       "melody": "Dallam"
     },
     "playback": {
-      "normal": "Átlagos"
+      "normal": "Normál"
+    },
+    "types": {
+      "song": "Ének",
+      "singsong": "Közösségi éneklés",
+      "speech": "Beszéd",
+      "audiobook": "Hangoskönyv",
+      "podcast": "Podcast",
+      "exegesis": "Szómagyarázat"
     }
   },
   "home": {
@@ -191,7 +204,9 @@
   },
   "streak": {
     "your-streak": "E heti sorozatod",
-    "days-in-row": "{count} nap egymás után"
+    "days-in-row": "{count} nap egymás után",
+    "perfect-weeks": "{count} perfekt het",
+    "time-left-today": "{hours} óra és {minutes} perc van ma még hátra"
   },
   "transcription": {
     "lyrics": "Szövegek",
@@ -211,11 +226,16 @@
       "done": "Áttekintve",
       "in-progress": "Folyamatban",
       "not-started": "Nincs áttekintve"
-    }
+    },
+    "insertBefore": "Beillesztés előtte",
+    "insertAfter": "Beillesztés utána",
+    "copyToClipboard": "Másolás a vágólapra",
+    "copiedToClipboard": "Vágólapra másolva",
+    "invalidIdsDescription": "Egyes átírási szakaszok azonos azonosítóval rendelkeznek, ezért nem szerkeszthetők."
   },
   "dashboards": {
     "title": "Vezérlőpanel",
-    "fra-kaare": "Kårétól"
+    "fra-kaare": "Kåretól"
   },
   "lyrics": {
     "edit": "Szerkesztés",
@@ -226,5 +246,10 @@
     "long-copyright": "Szerzői jog",
     "remove-formatting": "Formázás letisztítása",
     "paste-instructions": "Szöveg beillesztése a <shortcut> segítségével a formázás eltávolításához."
+  },
+  "project": {
+    "achievement": "Eredmények",
+    "achievementUnlocked": "Feloldott",
+    "achievementPlayNext": "Lejátszás következőként"
   }
 }
