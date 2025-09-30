@@ -2,8 +2,8 @@
   "global": {
     "cancel": "Annuler",
     "try-again": "Réessayer",
-    "hours-and-minutes": "{0} h {1} min",
-    "minutes-and-seconds": "{0} min {1} sec"
+    "hours-and-minutes": "{0}h {1} min",
+    "minutes-and-seconds": "{0}min {1} s"
   },
   "nav": {
     "home": "Accueil",
@@ -61,7 +61,7 @@
   "error": {
     "page-not-found": {
       "headline": "Erreur",
-      "text": "Désolé Nous ne trouvons pas la page «{path}»."
+      "text": "Désolé Nous ne trouvons pas la page «{path} »."
     },
     "track-already-in-playlist": "Le titre existe déjà dans la playlist {0}",
     "album-already-in-playlist": "Cet album est déjà dans votre playlist.",
@@ -112,7 +112,7 @@
     "new-playlist": "Nouvelle playlist",
     "name-your-playlist": "Nommer sa playlist",
     "delete-playlist": "Supprimer la playlist",
-    "delete-playlist-description": "Êtes-vous sûr de vouloir supprimer la playlist ? Cette action est irréversible.",
+    "delete-playlist-description": "Êtes-vous sûr de que vouloir supprimer la liste de lecture «{0} »? Cette action est irréversible.",
     "action": {
       "shuffle": "Aléatoire",
       "add-to-my-playlists": "Ajouter à mes playlists",
@@ -170,6 +170,14 @@
     },
     "playback": {
       "normal": "Normal"
+    },
+    "types": {
+      "song": "Chant",
+      "singsong": "Chant collectif",
+      "speech": "Discours",
+      "audiobook": "Livre audio",
+      "podcast": "Podcast",
+      "exegesis": "Exégèse"
     }
   },
   "home": {
@@ -196,9 +204,9 @@
   },
   "streak": {
     "your-streak": "Enchaînements de la semaine",
-    "days-in-row": "{count} jours d'affilée",
+    "days-in-row": "{count} jours consécutifs",
     "perfect-weeks": "{count} semaines parfaites",
-    "time-left-today": "Il reste {hours} heures et {minutes} minutes aujourd'hui."
+    "time-left-today": "{hours} heures et {minutes} minutes restantes aujourd’hui."
   },
   "transcription": {
     "lyrics": "Paroles",
