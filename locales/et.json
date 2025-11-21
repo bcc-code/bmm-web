@@ -9,12 +9,12 @@
     "home": "Pealeht",
     "browse": "Sirvi",
     "playlist": "Esitusloend",
-    "recent-messages": "Hiljutised jutlused",
+    "recent-messages": "Hiljutised sõnumid",
     "recent-music": "Hiljutine muusika",
     "audiobooks": "Audioraamatud",
     "search": "Otsi",
     "album": "Album",
-    "podcast": "Podcast",
+    "podcast": "Taskuhääling",
     "not-found": "Lehte ei leitud",
     "contributor": "Kaastegija",
     "contributors": "Kaastegijad",
@@ -37,17 +37,17 @@
     "title": "Profiil",
     "autoplay": "Automaatne esitus",
     "theme": "Teema",
-    "theme-description": "Vali liidese jaoks kasutatav teema.",
+    "theme-description": "Valige liidese jaoks kasutatav teema.",
     "app-language": "Keel",
     "interface-language": "Liidese keel",
-    "interface-language-description": "Vali liidese jaoks kasutatav keel.",
+    "interface-language-description": "Valige liidese jaoks kasutatav keel.",
     "select-language": "Vali keel",
     "content-language": "Sisu keel",
     "content-language-description": "Eelistatud keel kuulatava sisu jaoks.",
     "preference-language-1": "Eelistatud keel",
     "preference-language-2": "Teine keel",
     "preference-language-3": "Kolmas keel",
-    "preference-language-4": "{count}s keel",
+    "preference-language-4": "{count}. keel",
     "uservoice": "Kasutaja hääl",
     "privacy-policy": "Isikuandmete kaitse",
     "contact": "Kontakt",
@@ -61,15 +61,15 @@
   "error": {
     "page-not-found": {
       "headline": "Viga",
-      "text": "Vabandust. Vabandust. Me ei leia lehte \"{path}\"."
+      "text": "Vabandust. Me ei leia „{path}” lehekülge."
     },
-    "track-already-in-playlist": "Lugu on juba esitusloendis {0} olemas",
+    "track-already-in-playlist": "Lugu on esitusloendis {0} juba olemas",
     "album-already-in-playlist": "See album on juba esitusloendis.",
     "collection-already-in-playlist": "Need lood on juba esitusloendis {0}."
   },
   "collection": {
-    "track-count": "{count} lugu | {count} loost",
-    "album-count": "{count} album | {count} albumist",
+    "track-count": "{count} lugu | {count} lugu",
+    "album-count": "{count} album | {count} albumit",
     "resume": "Jätka"
   },
   "login": {
@@ -81,9 +81,9 @@
       "logout-and-redirect-link": "proovi uuesti sisse logida"
     },
     "redirect-message": {
-      "redirect-info": "Sind suunatakse sisselogimislehele.",
-      "manual-redirect-info": "Palun oota või {0}.",
-      "redirect-link": "klõpsa uuesti proovimiseks"
+      "redirect-info": "Teid suunatakse sisselogimislehele.",
+      "manual-redirect-info": "Palun oodake või {0}.",
+      "redirect-link": "klõpsake uuesti proovimiseks"
     }
   },
   "download": {
@@ -105,7 +105,7 @@
       "title": "Sõnumite allalaadimine pole saadaval",
       "description": "Sõnumite allalaadimise võimalus BMM-ist ei ole enam saadaval. Kui vajate sõnumit konkreetseks otstarbeks, võtke meiega ühendust ja selgitage oma vajadusi."
     },
-    "sendEmailTo": "Saada meil aadressile {0}"
+    "sendEmailTo": "Saada e-kiri aadressile {0}"
   },
   "playlist": {
     "add": "Lisa esitlusloendisse",
@@ -118,7 +118,7 @@
       "add-to-my-playlists": "Lisa minu esitlusloendisse",
       "remove-shared-playlist": "Eemalda esitusloend"
     },
-    "by-x": "{name} järgi"
+    "by-x": "autor {name}"
   },
   "podcast": {
     "this-week": "Sel nädalal",
@@ -170,6 +170,14 @@
     },
     "playback": {
       "normal": "Tavaline"
+    },
+    "types": {
+      "song": "Laul",
+      "singsong": "Koguduse laulmine",
+      "speech": "Kõne",
+      "audiobook": "Audioraamat",
+      "podcast": "Taskuhääling",
+      "exegesis": "Lahti mõtestamine"
     }
   },
   "home": {
@@ -192,13 +200,13 @@
     "loading-results": "Tulemuste laadimine",
     "no-results-yet": "Tulemusi veel pole",
     "no-results-found": "Tulemusi ei leitud",
-    "result-count": "{count} tulemust"
+    "result-count": "{count} tulemused"
   },
   "streak": {
     "your-streak": "Sinu selle nädala striik",
     "days-in-row": "{count} päeva järjest",
     "perfect-weeks": "{count} täiuslikku nädalat",
-    "time-left-today": "{hours} tundi ja {minutes} minutit täna jäänud"
+    "time-left-today": "Täna on jäänud veel {hours} tundi ja {minutes} minutit."
   },
   "transcription": {
     "lyrics": "Laulusõnad",
@@ -217,7 +225,7 @@
     "status": {
       "done": "Üle vaadatud",
       "in-progress": "Käimasolev",
-      "not-started": "Pole üle vaadatud"
+      "not-started": "Pole läbi vaadatud"
     },
     "insertBefore": "Lisa enne",
     "insertAfter": "Lisa peale",
