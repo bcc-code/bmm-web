@@ -1,7 +1,7 @@
 {
   "recommendations": [
     "Vue.volar",
-    "ZixuanChen.vitest-explorer",
+    "vitest.explorer",
     "dbaeumer.vscode-eslint",
     "esbenp.prettier-vscode",
     "stylelint.vscode-stylelint",
