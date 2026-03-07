@@ -9,6 +9,9 @@ dist
 dist-electron
 dist-app
 coverage
+package-lock.json
+pnpm-lock.yaml
+
 
 cypress.env.json
 cypress/videos/*

@@ -1,3 +1,7 @@
-import { defineVitestConfig } from "@nuxt/test-utils/config";
+import tailwindcss from "@tailwindcss/vite";
+export default defineAppConfig({
+  plugins: [
+    tailwindcss(),
+  ],
+});
 
-export default defineVitestConfig({});

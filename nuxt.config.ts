@@ -4,6 +4,7 @@ import type { NuxtConfig } from "nuxt/config";
 const modules: NuxtConfig["modules"] = [
   ["nuxt-typed-router", { strict: true }],
   "@nuxt/devtools",
+  "@nuxt/eslint",
   // Use TS-path as workaround (See https://github.com/nuxt/nuxt/issues/20912)
   "~/modules/figma2tailwind/index.ts", // Must be placed before "@nuxtjs/tailwindcss"
   "~/modules/icons/module.ts",
@@ -12,7 +13,7 @@ const modules: NuxtConfig["modules"] = [
   "@nuxtjs/color-mode",
   "@nuxt/test-utils/module",
   ["@pinia/nuxt", { autoImports: ["defineStore"] }],
-  "@pinia-plugin-persistedstate/nuxt",
+  "pinia-plugin-persistedstate",
   "@vueuse/nuxt",
   "@nuxtjs/plausible",
 ];
