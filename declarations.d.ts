@@ -4,6 +4,6 @@ import type {
 } from "vue";
 
 declare module "@vue/runtime-core" {
-  interface ComponentCustomProperties extends _ComponentCustomProperties {}
-  interface ComponentCustomOptions extends _ComponentCustomOptions {}
+  type ComponentCustomProperties = _ComponentCustomProperties;
+  type ComponentCustomOptions = _ComponentCustomOptions;
 }

@@ -19,7 +19,7 @@ import ru from "./locales/ru.json";
 import it from "./locales/it.json";
 import pl from "./locales/pl.json";
 
-function cleanupEmptyProperties(obj: any, fallback: any): any {
+function cleanupEmptyProperties(obj, fallback) {
   Object.keys(obj).forEach((key) => {
     if (typeof obj[key] === "object") {
       obj[key] = cleanupEmptyProperties(obj[key], fallback[key]);

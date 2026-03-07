@@ -3,7 +3,10 @@ const { t } = useI18n();
 const { $appInsights } = useNuxtApp();
 
 const props = defineProps({
-  error: Object,
+  error: {
+    type: Object,
+    required: true,
+  },
 });
 
 $appInsights.event("error page shown", props.error);
@@ -24,7 +27,7 @@ function handleError() {
             >contact support</a
           >.
         </p>
-        <br />
+        <br>
 
         <div class="flex gap-2">
           <ButtonStyled intent="primary" @click="handleError">{{

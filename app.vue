@@ -124,7 +124,7 @@ useHead({
     <NuxtLayout v-if="isAuthenticated && !error">
       <div class="container mx-auto min-w-80 px-2 pb-20 lg:px-9">
         <NuxtPage />
-        <div class="teleport"></div>
+        <div class="teleport" />
       </div>
     </NuxtLayout>
     <div
@@ -133,7 +133,7 @@ useHead({
       style="-webkit-app-region: drag"
     >
       <div class="m-auto">
-        <SiteLogo size="medium"></SiteLogo>
+        <SiteLogo size="medium" />
         <div>{{ $t("login.redirect-message.redirect-info") }}</div>
         <i18n-t tag="div" keypath="login.redirect-message.manual-redirect-info">
           <span
@@ -151,7 +151,7 @@ useHead({
       style="-webkit-app-region: drag"
     >
       <div class="m-auto">
-        <SiteLogo size="medium"></SiteLogo>
+        <SiteLogo size="medium" />
         <div>{{ $t("login.error-message.logout-and-redirect-info") }}</div>
         <div class="mb-5">{{ error }}</div>
         <i18n-t

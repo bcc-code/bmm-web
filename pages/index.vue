@@ -12,5 +12,5 @@ const { data: models, pending } = useDiscover({});
     class="mt-6 lg:mt-12"
     show-message-to-mobile-users
     origin="ExploreNewest"
-  ></DocumentList>
+  />
 </template>
