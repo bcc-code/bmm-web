@@ -18,7 +18,7 @@ export default defineNuxtModule<ModuleOptions>({
     name: "nuxt-icons",
     configKey: "nuxtIcons",
     compatibility: {
-      nuxt: "^3.0.0",
+      nuxt: "^4.3.1",
     },
   },
   defaults: {
