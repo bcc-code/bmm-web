@@ -1,5 +1,4 @@
 // This component is a copy of the nuxt-icon component from nuxt-icons (https://nuxt.com/modules/icons)
-/* eslint import/no-extraneous-dependencies: ["error", {"devDependencies": true}] */
 import { defineNuxtModule, createResolver, addComponent } from "@nuxt/kit";
 import { CreateTypedIcons } from "./generator";
 

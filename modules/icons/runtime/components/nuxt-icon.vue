@@ -9,10 +9,11 @@ const props = withDefaults(
   {},
 );
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const icon = ref<string | Record<string, any>>("");
 
 async function getIcon() {
-  const iconsImport = import.meta.glob("assets/icons/**/**.svg", {
+  const iconsImport = import.meta.glob("assets/icons/**.svg", {
     query: "?raw",
     import: "default",
     eager: false,
@@ -24,7 +25,6 @@ async function getIcon() {
 }
 
 getIcon().catch((e) => {
-  // eslint-disable-next-line no-console
   console.warn(
     `[nuxt-icons] Failed. Does icon '${props.name}' exist in 'assets/icons'? Error was:`,
     e,
@@ -35,7 +35,7 @@ watchEffect(getIcon);
 </script>
 
 <template>
-  <span class="nuxt-icon" v-html="icon" />
+  <span v-sanitize="icon" class="nuxt-icon" />
 </template>
 
 <style>

@@ -50,15 +50,15 @@ function linkForOperatingSystem() {
 <template>
   <div>
     <div class="flex h-[85vh] flex-col">
-      <div class="h-28 shrink"></div>
+      <div class="h-28 shrink" />
       <div class="flex justify-center">
-        <img src="public/download-apps-bar.png" width="991.5" height="220.5" />
+        <!---<img src="public/download-apps-bar.png" width="991.5" height="220.5" >-->
       </div>
-      <div class="h-[72px] shrink"></div>
+      <div class="h-[72px] shrink" />
       <div class="type-display-1 p-6 text-center">
         {{ $t("download.get-for-desktop") }}
       </div>
-      <div class="h-5 shrink"></div>
+      <div class="h-5 shrink" />
       <div class="flex flex-col items-center justify-center">
         <NuxtLink :to="linkForOperatingSystem() || ''" class="mb-8 mt-5">
           <ButtonStyled intent="primary" size="large" class="w-[345px] text-lg"
@@ -93,7 +93,7 @@ function linkForOperatingSystem() {
           </div>
         </div>
       </div>
-      <div class="h-28 shrink"></div>
+      <div class="h-28 shrink" />
     </div>
 
     <div v-if="false">

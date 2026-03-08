@@ -21,11 +21,11 @@ watch(height, (h) => {
     style="-webkit-app-region: drag"
   >
     <div class="mx-5 flex flex-row">
-      <div class="hamburger-teleport"></div>
+      <div class="hamburger-teleport"/>
       <div
         class="teleport ml-[-0.75rem]"
         style="-webkit-app-region: no-drag"
-      ></div>
+      />
       <div
         v-if="
           hasHistory &&

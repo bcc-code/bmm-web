@@ -2,5 +2,5 @@
 navigateTo({ name: "index" });
 </script>
 <template>
-  <div></div>
+  <div/>
 </template>
