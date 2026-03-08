@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 // @vitest-environment happy-dom
 
 import { describe, it, expect, vi, afterEach } from "vitest";
@@ -15,6 +16,7 @@ import {
   RepeatStatus,
 } from "./mediaPlayer";
 import EnrichedTrackModel from "./EnrichedTrackModel";
+import { ref } from "vue";
 
 vi.mock("./Queue", async (importOriginal) => {
   const { default: Mod } = (await importOriginal()) as any;
@@ -1022,7 +1024,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
         mediaPlayer.value.setQueue([track(1)]);
         await flushPromises();
 
-        const isLoadingValues: Boolean[] = [];
+        const isLoadingValues: boolean[] = [];
         watch(
           () => mediaPlayer.value.isLoading,
           (v) => {
@@ -1047,7 +1049,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
         MockedMediaTrack.mock.results[0]!.value.obj!.loading = true;
         await flushPromises();
 
-        const isLoadingValues: Boolean[] = [];
+        const isLoadingValues: boolean[] = [];
         watch(
           () => mediaPlayer.value.isLoading,
           (v) => {
@@ -1071,7 +1073,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
         // Arrange
         const mediaPlayer = ref(setupPlayer());
 
-        const hasNextValues: Boolean[] = [];
+        const hasNextValues: boolean[] = [];
         watch(
           () => mediaPlayer.value.hasNext,
           (v) => {
@@ -1094,7 +1096,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
         mediaPlayer.value.setQueue([track(1), track(2), track(3)]);
         await flushPromises();
 
-        const hasNextValues: Boolean[] = [];
+        const hasNextValues: boolean[] = [];
         watch(
           () => mediaPlayer.value.hasNext,
           (v) => {
@@ -1117,7 +1119,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
         mediaPlayer.value.setQueue([track(1), track(2)]);
         await flushPromises();
 
-        const hasNextValues: Boolean[] = [];
+        const hasNextValues: boolean[] = [];
         watch(
           () => mediaPlayer.value.hasNext,
           (v) => {
@@ -1140,7 +1142,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
         mediaPlayer.value.setQueue([track(1), track(2)], 1);
         await flushPromises();
 
-        const hasNextValues: Boolean[] = [];
+        const hasNextValues: boolean[] = [];
         watch(
           () => mediaPlayer.value.hasNext,
           (v) => {
@@ -1163,7 +1165,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
         mediaPlayer.value.setQueue([track(1), track(2)]);
         await flushPromises();
 
-        const hasNextValues: Boolean[] = [];
+        const hasNextValues: boolean[] = [];
         watch(
           () => mediaPlayer.value.hasNext,
           (v) => {
@@ -1187,7 +1189,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
         mediaPlayer.value.repeatStatus = RepeatStatus.RepeatQueue;
         await flushPromises();
 
-        const hasNextValues: Boolean[] = [];
+        const hasNextValues: boolean[] = [];
         watch(
           () => mediaPlayer.value.hasNext,
           (v) => {
@@ -1211,7 +1213,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
         mediaPlayer.value.repeatStatus = RepeatStatus.RepeatQueue;
         await flushPromises();
 
-        const hasNextValues: Boolean[] = [];
+        const hasNextValues: boolean[] = [];
         watch(
           () => mediaPlayer.value.hasNext,
           (v) => {
@@ -1251,7 +1253,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
         mediaPlayer.value.setQueue([track(1), track(2)], 1);
         await flushPromises();
 
-        const hasPreviousValues: Boolean[] = [];
+        const hasPreviousValues: boolean[] = [];
         watch(
           () => mediaPlayer.value.hasPrevious,
           (v) => {
@@ -1271,7 +1273,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
         // Arrange
         const mediaPlayer = ref(setupPlayer());
 
-        const hasPreviousValues: Boolean[] = [];
+        const hasPreviousValues: boolean[] = [];
         watch(
           () => mediaPlayer.value.hasPrevious,
           (v) => {

@@ -1,4 +1,5 @@
-import { defineConfig } from "vitest/config";
+/// <reference types="vitest/config" />
+import { defineConfig } from "vite";
 import tailwindcss from "@tailwindcss/vite";
 
 export default defineConfig({

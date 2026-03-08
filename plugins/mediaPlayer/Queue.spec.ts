@@ -5,6 +5,7 @@ import { flushPromises } from "@vue/test-utils";
 import type { TrackModel } from "@bcc-code/bmm-sdk-fetch";
 import Queue from "./Queue";
 import EnrichedTrackModel from "./EnrichedTrackModel";
+import { ref } from "vue";
 
 const now = new Date();
 function track(id: number) {

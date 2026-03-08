@@ -5,6 +5,7 @@ import { HTMLAudioElement, Event } from "happy-dom";
 import { flushPromises } from "@vue/test-utils";
 import MediaTrack from "./MediaTrack";
 import type { AppInsights } from "../3.applicationInsights";
+import { ref } from "vue";
 
 class MediaTrackMock extends MediaTrack {
   public get audioElementMock() {
@@ -17,7 +18,7 @@ class MediaTrackMock extends MediaTrack {
 }
 
 const appInsights: AppInsights = {
-  event: (_: string, _2: any) => {},
+  event: (_: string, _2: unknown) => {},
 };
 
 describe("plugin mediaPlayer MediaTrack", () => {
@@ -57,11 +58,11 @@ describe("plugin mediaPlayer MediaTrack", () => {
       mT.registerEvents();
       mT.registerSource();
       mT.loading = true;
-      (audio as any).duration = 1000;
+      (audio as unknown).duration = 1000;
       audio.dispatchEvent(
         new Event("durationchange", { bubbles: false, cancelable: false }),
       );
-      (audio as any).currentTime = 500;
+      (audio as unknown).currentTime = 500;
       audio.dispatchEvent(
         new Event("timeupdate", { bubbles: false, cancelable: false }),
       );
@@ -159,12 +160,12 @@ describe("plugin mediaPlayer MediaTrack", () => {
 
       // Act
       await flushPromises();
-      (audio as any).duration = 500;
+      (audio as unknown).duration = 500;
       audio.dispatchEvent(
         new Event("durationchange", { bubbles: false, cancelable: false }),
       );
       await flushPromises();
-      (audio as any).duration = 800;
+      (audio as unknown).duration = 800;
       audio.dispatchEvent(
         new Event("durationchange", { bubbles: false, cancelable: false }),
       );
@@ -200,12 +201,12 @@ describe("plugin mediaPlayer MediaTrack", () => {
 
       // Act
       await flushPromises();
-      (audio as any).duration = 500;
+      (audio as unknown).duration = 500;
       audio.dispatchEvent(
         new Event("durationchange", { bubbles: false, cancelable: false }),
       );
       await flushPromises();
-      (audio as any).duration = +Infinity;
+      (audio as unknown).duration = +Infinity;
       audio.dispatchEvent(
         new Event("durationchange", { bubbles: false, cancelable: false }),
       );
@@ -321,12 +322,12 @@ describe("plugin mediaPlayer MediaTrack", () => {
 
       // Act
       await flushPromises();
-      (audio as any).currentTime = 500;
+      (audio as unknown).currentTime = 500;
       audio.dispatchEvent(
         new Event("timeupdate", { bubbles: false, cancelable: false }),
       );
       await flushPromises();
-      (audio as any).currentTime = 501;
+      (audio as unknown).currentTime = 501;
       audio.dispatchEvent(
         new Event("timeupdate", { bubbles: false, cancelable: false }),
       );
@@ -362,22 +363,22 @@ describe("plugin mediaPlayer MediaTrack", () => {
 
       // Act
       await flushPromises();
-      (audio as any).currentTime = 500;
+      (audio as unknown).currentTime = 500;
       audio.dispatchEvent(
         new Event("timeupdate", { bubbles: false, cancelable: false }),
       );
       await flushPromises();
-      (audio as any).currentTime = 500;
+      (audio as unknown).currentTime = 500;
       audio.dispatchEvent(
         new Event("timeupdate", { bubbles: false, cancelable: false }),
       );
       await flushPromises();
-      (audio as any).currentTime = 500;
+      (audio as unknown).currentTime = 500;
       audio.dispatchEvent(
         new Event("timeupdate", { bubbles: false, cancelable: false }),
       );
       await flushPromises();
-      (audio as any).currentTime = 500;
+      (audio as unknown).currentTime = 500;
       audio.dispatchEvent(
         new Event("timeupdate", { bubbles: false, cancelable: false }),
       );
@@ -495,7 +496,7 @@ describe("plugin mediaPlayer MediaTrack", () => {
   describe("destroy", () => {
     it("resets the option `srcObject` to `null` (best practice)", () => {
       // Arrange
-      const audio: HTMLAudioElement & { srcObject?: {} | null } =
+      const audio: HTMLAudioElement & { srcObject?: object | null } =
         new HTMLAudioElement();
       audio.srcObject = {};
       const mT = new MediaTrackMock(
