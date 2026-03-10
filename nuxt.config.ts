@@ -44,7 +44,6 @@ export default defineNuxtConfig({
   imports: {
     dirs: ["stores"],
   },
-  // TODO: Remove after https://github.com/nuxt-modules/i18n/issues/2000 is fixed
   ssr: false,
   vite: {
     // https://stackoverflow.com/a/75655669/517914

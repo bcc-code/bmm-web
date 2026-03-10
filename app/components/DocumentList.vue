@@ -130,7 +130,7 @@ onMounted(() => {
           v-for="index in 5"
           :key="index"
           class="my-6 h-11 w-full animate-pulse rounded-lg bg-background-2"
-        ></li>
+        />
       </ul>
     </template>
     <template v-else-if="props.items">
@@ -185,7 +185,7 @@ onMounted(() => {
             <TileItem
               v-if="item.type === 'Tile' && item.track"
               :item="item"
-            ></TileItem>
+            />
           </template>
         </div>
 
