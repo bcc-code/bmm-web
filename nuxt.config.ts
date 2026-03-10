@@ -5,9 +5,8 @@ const modules: NuxtConfig["modules"] = [
   ["nuxt-typed-router", { strict: true }],
   "@nuxt/devtools",
   "@nuxt/eslint",
-  // Use TS-path as workaround (See https://github.com/nuxt/nuxt/issues/20912)
-  "~/modules/figma2tailwind/index.ts", // Must be placed before "@nuxtjs/tailwindcss"
-  "~/modules/icons/module.ts",
+  "~~/modules/figma2tailwind/index.ts", // Must be placed before "@nuxtjs/tailwindcss"
+  "~~/modules/icons/module.ts",
   "@nuxtjs/tailwindcss",
   "@nuxtjs/i18n",
   "@nuxtjs/color-mode",
@@ -49,7 +48,7 @@ export default defineNuxtConfig({
   ssr: false,
   vite: {
     // https://stackoverflow.com/a/75655669/517914
-    optimizeDeps: { exclude: ["fsevents"] },
+    optimizeDeps: { exclude: ["fsevents", "@plausible-analytics/tracker"] },
   },
   app: {
     pageTransition: { name: "page", mode: "out-in" },

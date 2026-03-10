@@ -15,7 +15,7 @@ const comment = `/**
 
 async function writeTailwindColors(tailwindColors: Record<string, any>) {
   await fs.writeFile(
-    "./assets/design-tokens/tailwind-colors.generated.ts",
+    "app/assets/design-tokens/tailwind-colors.generated.ts",
     `${comment}\n\nexport default ${JSON.stringify(tailwindColors, null, 2)}`,
     "utf8",
   );
@@ -25,7 +25,7 @@ async function writeTailwindTypography(
   tailwindTypography: Record<string, any>,
 ) {
   await fs.writeFile(
-    "./assets/design-tokens/tailwind-typography.generated.ts",
+    "app/assets/design-tokens/tailwind-typography.generated.ts",
     `${comment}\n\nexport default ${JSON.stringify(tailwindTypography, null, 2)}`,
     "utf8",
   );
@@ -33,7 +33,7 @@ async function writeTailwindTypography(
 
 async function writeColorsCss(content: string) {
   await fs.writeFile(
-    "./assets/design-tokens/colors.generated.css",
+    "app/assets/design-tokens/colors.generated.css",
     `${comment}\n\n${content}`,
     "utf8",
   );
@@ -79,7 +79,7 @@ async function writeColors(figmaInput) {
 
 async function getFigmaInput() {
   const content = await fs.readFile(
-    "./assets/design-tokens/tokens.json",
+    "app/assets/design-tokens/tokens.json",
     "utf-8",
   );
   return JSON.parse(content);

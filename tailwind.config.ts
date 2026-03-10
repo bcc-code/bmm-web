@@ -1,7 +1,7 @@
 import type { Config } from "@tailwindcss/postcss";
 //import plugin from "tailwindcss/plugin";
-import designColors from "./assets/design-tokens/tailwind-colors.generated";
-//import designTypography from "./assets/design-tokens/tailwind-typography.generated";
+import designColors from "./app/assets/design-tokens/tailwind-colors.generated";
+//import designTypography from "./app/assets/design-tokens/tailwind-typography.generated";
 
 const config: Partial<Config> = {
   darkMode: "class",

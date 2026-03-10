@@ -4,7 +4,7 @@
 
 /* eslint-disable no-nested-ternary */
 import { ApplicationInsights } from "@microsoft/applicationinsights-web";
-import { version } from "~/package.json";
+import { version } from "~~/package.json";
 import type { IUserData } from "./2.userData";
 
 export interface AppInsights {
