@@ -1,3 +1,6 @@
+import { describe, it, _should } from "vitest";
+import { cy } from "cypress";
+
 describe("template spec", () => {
   it("passes", () => {
     cy.visit("/");
@@ -14,6 +17,6 @@ describe("template spec", () => {
       cy.get("main._widget button[name=action]").click();
     });
 
-    cy.url().should("match", new RegExp(`^${Cypress.config().baseUrl}/`));
+    cy.url()._should("match", new RegExp(`^${Cypress.config().baseUrl}/`));
   });
 });
