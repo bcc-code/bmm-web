@@ -47,6 +47,7 @@ export default defineNuxtConfig({
   ssr: false,
   vite: {
     // https://stackoverflow.com/a/75655669/517914
+    // @plausible-analytics/tracker cannot be optimised. It gives an warn.
     optimizeDeps: { exclude: ["fsevents", "@plausible-analytics/tracker"] },
   },
   app: {
