@@ -47,7 +47,7 @@
     "preference-language-1": "Limba preferată",
     "preference-language-2": "A doua limbă",
     "preference-language-3": "A treia limbă",
-    "preference-language-4": "A {count}a limbă",
+    "preference-language-4": "Limba nr. {count}",
     "uservoice": "Vocea utilizatorului",
     "privacy-policy": "Politica de confidențialitate",
     "contact": "Contact",
@@ -112,7 +112,7 @@
     "new-playlist": "Listă de redare nouă",
     "name-your-playlist": "Denumește lista de redare",
     "delete-playlist": "Șterge lista de redare",
-    "delete-playlist-description": "Ești sigur că dorești să ştergi lista de redare? Această acțiune nu poate fi anulată.",
+    "delete-playlist-description": "Ești sigur că dorești să ștergi lista de redare? Această acțiune nu poate fi anulată.",
     "action": {
       "shuffle": "Amestecă ordinea",
       "add-to-my-playlists": "Adaugă la lista mea de redare",
@@ -170,6 +170,14 @@
     },
     "playback": {
       "normal": "Normal"
+    },
+    "types": {
+      "song": "Cântare",
+      "singsong": "Cântată în adunare",
+      "speech": "Vorbire",
+      "audiobook": "Carte audio",
+      "podcast": "Podcast",
+      "exegesis": "Tălmăcire"
     }
   },
   "home": {
@@ -221,8 +229,8 @@
     },
     "insertBefore": "Inserați înainte",
     "insertAfter": "Inserați după",
-    "copyToClipboard": "Copiați în clipboard",
-    "copiedToClipboard": "Copiat în clipboard",
+    "copyToClipboard": "Copiați în memorie",
+    "copiedToClipboard": "Copiat în memorie",
     "invalidIdsDescription": "Unele segmente de transcriere au același ID și, prin urmare, nu pot fi editate."
   },
   "dashboards": {
