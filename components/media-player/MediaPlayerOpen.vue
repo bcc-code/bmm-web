@@ -178,6 +178,7 @@ const trackCover = computed(() => coverForTrack(currentTrack.value));
         <div>
           <TrackMenu
             v-if="currentTrack"
+            :key="currentTrack.id"
             :track="currentTrack"
             origin="media-player"
             button-class="rounded-full border border-label-separator p-1.5"
