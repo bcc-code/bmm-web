@@ -1,7 +1,9 @@
 {
   "global": {
-    "cancel": "Peruuta",
-    "try-again": "Yritä uudestaan"
+    "cancel": "Keskeytä",
+    "try-again": "Yritä uudestaan",
+    "hours-and-minutes": "{0} hr {1} min",
+    "minutes-and-seconds": "{0} min {1} sec"
   },
   "nav": {
     "home": "Koti",
@@ -10,7 +12,7 @@
     "recent-messages": "Uusimmat puheet",
     "recent-music": "Uusimmat kappaleet",
     "audiobooks": "Äänikirjat",
-    "search": "Haku",
+    "search": "Etsi",
     "album": "Albumi",
     "podcast": "Podcast",
     "not-found": "Sivua ei löydy",
@@ -18,11 +20,14 @@
     "contributors": "Tekijät",
     "archive": "Arkisto",
     "transcribe": "Tekstiksi",
-    "lyrics": "Sanat\n"
+    "lyrics": "Sanat"
   },
   "sidebar": {
     "playlists": {
       "title": "Soittolistat"
+    },
+    "tools": {
+      "title": "Työkalut"
     }
   },
   "share": {
@@ -45,7 +50,7 @@
     "preference-language-4": "{count}. kieli",
     "uservoice": "Palautteet",
     "privacy-policy": "Tietosuojakäytäntö",
-    "contact": "Yhteydenotto",
+    "contact": "Ota yhteyttä",
     "logout": "Kirjaudu ulos",
     "theme-dark": "Pimeä",
     "theme-light": "Valoisa",
@@ -56,28 +61,28 @@
   "error": {
     "page-not-found": {
       "headline": "Virhe",
-      "text": "Sivua \"{path}\" ei valitettavasti löydy."
+      "text": "Pahoittelemme Emme löydä sivua \"{path}\"."
     },
-    "track-already-in-playlist": "Kappale on jo soittolistalla {0}",
-    "album-already-in-playlist": "Tämä albumi on jo soittolistalla.",
-    "collection-already-in-playlist": "Nämä raidat ovat jo soittolistalla{0}."
+    "track-already-in-playlist": "Kappale on jo soittolistalla '{'0'}'",
+    "album-already-in-playlist": "Tämä albumi on jo soittolistalle.",
+    "collection-already-in-playlist": "Nämä raidat ovat jo soittolistalla '{'0'}'."
   },
   "collection": {
-    "track-count": "{count} kappale | {count} kappaleita",
+    "track-count": "{count} kappale | {count} kappaletta",
     "album-count": "{count} albumi | {count} albumia",
     "resume": "Jatka"
   },
   "login": {
     "error-message": {
-      "contact-info": "Jos tämä virhe jatkuu, {0}.",
+      "contact-info": "Jos tämä virhe jatkuu, '{'0'}'.",
       "contact-link": "ota meihin yhteyttä",
       "logout-and-redirect-info": "Jostain syystä kirjautuminen epäonnistui",
-      "manual-logout-and-redirect-info": "Ole hyvä {0}.",
+      "manual-logout-and-redirect-info": "Ole hyvä '{'0'}'.",
       "logout-and-redirect-link": "yritä kirjautua sisään uudelleen"
     },
     "redirect-message": {
       "redirect-info": "Sinut ohjataan kirjautumissivulle.",
-      "manual-redirect-info": "Odota tai {0}.",
+      "manual-redirect-info": "Odota tai '{'0'}'.",
       "redirect-link": "napsauta yrittääksesi uudestaan"
     }
   },
@@ -92,32 +97,33 @@
     "download-mac-arm": "Lataa uudempaan Maciin",
     "mac-intel-explanation": "Yleensä ostettu ennen vuotta 2021",
     "mac-arm-explanation": "M1, M2, M3, M4 siru",
+
     "download-bmm-app": "Lataa BMM-sovellus",
     "download-track": "Lataa kappale",
     "mobile": "Kännykkä",
     "messages-not-allowed": {
       "title": "Puheiden lataaminen ei ole käytössä.",
-      "description": "Puheita ei voi enää ladata BMM:stä. Jos tarvitset tiettyä puhetta johonkin, ota yhteyttä ja kerro perustelut."
+      "description": "Mahdollisuus ladata puheita BMM:stä ei ole enää käytettävissä. Jos tarvitset puheen tiettyä käyttötarkoitusta varten, ota meihin yhteyttä ja kerro tarpeesi."
     },
-    "sendEmailTo": "Lähetä sähköposti osoitteeseen {0}"
+    "sendEmailTo": "Lähetä sähköposti osoitteeseen '{'0'}'"
   },
   "playlist": {
     "add": "Lisää soittolista",
     "new-playlist": "Uusi soittolista",
     "name-your-playlist": "Nimeä soittolistasi",
     "delete-playlist": "Poista soittolista",
-    "delete-playlist-description": "Haluatko varmasti poistaa soittolistan? Tätä toimintoa ei voi peruuttaa.",
+    "delete-playlist-description": "Haluatko varmasti poistaa soittolistan? Tätä toimenpidettä ei voida peruuttaa.",
     "action": {
       "shuffle": "Sekoita",
       "add-to-my-playlists": "Lisää soittolistoihini",
       "remove-shared-playlist": "Poista soittolista"
     },
-    "by-x": "tekijä {name}"
+    "by-x": "mennessä"
   },
   "podcast": {
     "this-week": "Tämä viikko",
     "last-week": "Viime viikko",
-    "week-x": "Viikko {count}",
+    "week-x": "Vko",
     "action": {
       "play": "Toista"
     }
@@ -141,7 +147,8 @@
       "more-info": "Lisätietoja",
       "show-all": "Näytä kaikki",
       "remove-from-playlist": "Poista soittolistalta",
-      "transcription": "Tekstinä"
+      "transcription": "Tekstinä",
+      "playback": "Toistonopeus"
     },
     "a11y": {
       "options": "Näytä vaihtoehdot"
@@ -160,6 +167,17 @@
       "lyricist": "Sanoittaja",
       "text": "Teksti",
       "melody": "Sävelmä"
+    },
+    "playback": {
+      "normal": "Tavallinen"
+    },
+    "types": {
+      "song": "Laulu",
+      "singsong": "Seurakunnan laulu",
+      "speech": "Puhe",
+      "audiobook": "Äänikirja",
+      "podcast": "Podcast",
+      "exegesis": "Raamatunselitystä"
     }
   },
   "home": {
@@ -178,25 +196,27 @@
       "Podcasts": "Podcastit",
       "Playlists": "Soittolistat"
     },
-    "input-placeholder": "Haku",
-    "loading-results": "Lataustulokset",
+    "input-placeholder": "Etsi",
+    "loading-results": "Ladataan tuloksia",
     "no-results-yet": "Ei tuloksia",
     "no-results-found": "Mitään ei löytynyt",
-    "result-count": "{count} tulosta"
+    "result-count": "Tulokset"
   },
   "streak": {
     "your-streak": "Viikon suorituksesi",
-    "days-in-row": "{count} päivää peräkkäin"
+    "days-in-row": "'{'0'}' päivää peräkkäin",
+    "perfect-weeks": "'{'0'}' täydellistä viikkoa",
+    "time-left-today": "{hours} tuntia ja {minutes} minuuttia jäljellä tänään"
   },
   "transcription": {
-    "lyrics": "Sanat\n",
+    "lyrics": "Sanat",
     "auto-transcribed": {
       "title": "Autolitteroitu",
       "explanation": "Tekstit ovat autolitteroituja ja saattavat sisältää virheitä",
       "confirmation": "Selvä"
     },
     "songtreasures": "Song Treasures",
-    "save": "Tallenna muutokset.",
+    "save": "Tallenna muutokset",
     "original": "Alkuperäinen",
     "edit": "Muokkaa",
     "deleteSegment": "Poista",
@@ -204,22 +224,32 @@
     "review": "Palaa edellisiin",
     "status": {
       "done": "Arvosteltu",
-      "in-progress": "Kesken\n",
+      "in-progress": "Kesken",
       "not-started": "Ei arvosteltu"
-    }
+    },
+    "insertBefore": "Lisää ennen",
+    "insertAfter": "Lisää jälkeen",
+    "copyToClipboard": "Kopioi leikepöydälle",
+    "copiedToClipboard": "Kopioitu leikepöydälle",
+    "invalidIdsDescription": "Jotkut transkriptiosegmentit ovat samaa tunnusta, joten niitä ei voi muokata."
   },
   "dashboards": {
     "title": "Aloitusnäkymä",
-    "fra-kaare": "Terveisiä Kårelta"
+    "fra-kaare": "Terveiset Kårelta"
   },
   "lyrics": {
     "edit": "Muokkaa",
     "create-new-lyrics": "Luo uudet sanoitukset",
     "create": "Luo",
-    "save": "Tallenna muutokset.",
+    "save": "Tallenna muutokset",
     "verse-title": "Säkeistön otsikko",
     "long-copyright": "Pitkä tekijänoikeus",
     "remove-formatting": "Poista muotoilu",
-    "paste-instructions": "Liitä teksti käyttäen <shortcut> poistaaksesi muotoilun."
+    "paste-instructions": "Liitä tekstiä käyttämällä <shortcut> muotoilun poistamiseksi."
+  },
+  "project": {
+    "achievement": "Saavutus",
+    "achievementUnlocked": "Avattu",
+    "achievementPlayNext": "Seuraava kappale"
   }
 }

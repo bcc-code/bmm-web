@@ -61,15 +61,15 @@
   "error": {
     "page-not-found": {
       "headline": "Błąd",
-      "text": "Przepraszamy Przepraszamy. Nie możemy znaleźć strony „{path}”."
+      "text": "Przepraszamy Nie możemy znaleźć strony „{path} ”."
     },
     "track-already-in-playlist": "Utwór znajduje się już na playliście {0}",
     "album-already-in-playlist": "Ten album jest już na playliście.",
     "collection-already-in-playlist": "Te ścieżki znajdują się już na playliście {0}."
   },
   "collection": {
-    "track-count": "{count} utwór | {count} utworów",
-    "album-count": "{count} album | {count} albumów",
+    "track-count": "{count} ścieżka | {count} ścieżki",
+    "album-count": "{count} album | {count} albumy ",
     "resume": "Wznów"
   },
   "login": {
@@ -77,7 +77,7 @@
       "contact-info": "Jeśli błąd będzie się powtarzał, {0}.",
       "contact-link": "proszę skontaktuj się z nami",
       "logout-and-redirect-info": "Wystąpił błąd podczas logowania:",
-      "manual-logout-and-redirect-info": "Proszę {0}.",
+      "manual-logout-and-redirect-info": "Proszę, {0}.",
       "logout-and-redirect-link": "spróbuj zalogować się ponownie"
     },
     "redirect-message": {
@@ -118,7 +118,7 @@
       "add-to-my-playlists": "Dodaj do moich playlist",
       "remove-shared-playlist": "Usuń playlistę"
     },
-    "by-x": "stworzona przez {name}"
+    "by-x": "autorstwa {name}"
   },
   "podcast": {
     "this-week": "W tym tygodniu",
@@ -170,6 +170,14 @@
     },
     "playback": {
       "normal": "Normalna"
+    },
+    "types": {
+      "song": "Pieśni",
+      "singsong": "Pieśni zbiorowe",
+      "speech": "Przemowy",
+      "audiobook": "Audiobooki",
+      "podcast": "Podcasty",
+      "exegesis": "Egzegeza"
     }
   },
   "home": {
@@ -192,13 +200,13 @@
     "loading-results": "Wyniki ładowania",
     "no-results-yet": "Nie ma jeszcze wyników",
     "no-results-found": "Nie znaleziono wyników",
-    "result-count": "{liczba} wyników"
+    "result-count": "{count} wyników"
   },
   "streak": {
     "your-streak": "Twoja seria w tym tygodniu",
-    "days-in-row": "{0} dni pod rząd",
+    "days-in-row": "{count} dni pod rząd",
     "perfect-weeks": "{count} perfekcyjnych tygodni",
-    "time-left-today": "Pozostało dzisiaj {hours} godzin i {minutes} minut"
+    "time-left-today": "Zostało dzisiaj {hours} godzin i {minutes} minut"
   },
   "transcription": {
     "lyrics": "Tekst",

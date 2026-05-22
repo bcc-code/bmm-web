@@ -2,8 +2,8 @@
   "global": {
     "cancel": "Prekliči",
     "try-again": "Poskusi znova",
-    "hours-and-minutes": "{0} hr {1} min",
-    "minutes-and-seconds": "{0} min {1} sek"
+    "hours-and-minutes": "",
+    "minutes-and-seconds": ""
   },
   "nav": {
     "home": "Domov",
@@ -25,6 +25,9 @@
   "sidebar": {
     "playlists": {
       "title": "Seznami predvajanja"
+    },
+    "tools": {
+      "title": ""
     }
   },
   "share": {
@@ -44,7 +47,7 @@
     "preference-language-1": "Želeni jezik",
     "preference-language-2": "Drugi jezik",
     "preference-language-3": "Tretji jezik",
-    "preference-language-4": "{count}i jezik",
+    "preference-language-4": "",
     "uservoice": "Glas uporabnika",
     "privacy-policy": "Pravilnik o zasebnosti",
     "contact": "Kontakt",
@@ -58,28 +61,28 @@
   "error": {
     "page-not-found": {
       "headline": "Napaka",
-      "text": "Opravičujemo se. Ne moremo najti strani \"{path}\"."
+      "text": "Opravičujemo se. "
     },
-    "track-already-in-playlist": "Skladba že obstaja na seznamu predvajanja {0}",
+    "track-already-in-playlist": "Skladba že obstaja na seznamu predvajanja '{'0'}'",
     "album-already-in-playlist": "Ta album je že na tvojem seznamu predvajanja.",
-    "collection-already-in-playlist": "Te skladbe so že na seznamu predvajanja {0}."
+    "collection-already-in-playlist": "Te skladbe so že na seznamu predvajanja '{'0'}'."
   },
   "collection": {
-    "track-count": "{count} skladba | skladbe: {count}",
-    "album-count": "{count} album | albumi: {count}",
+    "track-count": "",
+    "album-count": "",
     "resume": "Nadaljuj"
   },
   "login": {
     "error-message": {
-      "contact-info": "Če se ta napaka ne odpravi, {0}.",
+      "contact-info": "Če se ta napaka ne odpravi, '{'0'}'.",
       "contact-link": "stopite v stik z nami",
       "logout-and-redirect-info": "Nekaj v zvezi s prijavo je šlo narobe:",
-      "manual-logout-and-redirect-info": "Prosim {0}.,",
+      "manual-logout-and-redirect-info": "Prosim '{'0'}'.,",
       "logout-and-redirect-link": "poskusi se prijaviti znova"
     },
     "redirect-message": {
       "redirect-info": "Preusmerjen boš na stran za prijavo.",
-      "manual-redirect-info": "Prosim, počakaj ali {0}.",
+      "manual-redirect-info": "Prosim, počakaj ali '{'0'}'.",
       "redirect-link": "klikni za ponovni poskus"
     }
   },
@@ -102,7 +105,7 @@
       "title": "Prenos govorov ni na voljo",
       "description": "Možnost prenosa govorov iz aplikacije BMM ni več na voljo. Če potrebuje govor za posebno uporabo, se obrni na nas in nam pojasni svoj namen."
     },
-    "sendEmailTo": "Pošlji e-pošto na {0}"
+    "sendEmailTo": "Pošlji e-pošto na '{'0'}'"
   },
   "playlist": {
     "add": "Dodaj seznam predvajanja",
@@ -115,12 +118,12 @@
       "add-to-my-playlists": "Dodaj na moje sezname predvajanja",
       "remove-shared-playlist": "Odstrani seznam predvajanja"
     },
-    "by-x": "od {name}"
+    "by-x": "od '{'0'}'"
   },
   "podcast": {
     "this-week": "Ta teden",
     "last-week": "Prejšnji teden",
-    "week-x": "Teden {count}",
+    "week-x": "Teden '{'0'}'",
     "action": {
       "play": "Predvajaj"
     }
@@ -167,6 +170,14 @@
     },
     "playback": {
       "normal": "Normalno"
+    },
+    "types": {
+      "song": "",
+      "singsong": "",
+      "speech": "",
+      "audiobook": "",
+      "podcast": "",
+      "exegesis": ""
     }
   },
   "home": {
@@ -189,11 +200,13 @@
     "loading-results": "Nalaganje rezultatov",
     "no-results-yet": "Ni še rezultatov",
     "no-results-found": "Ni najdenih rezultatov",
-    "result-count": "Rezultati: {count}"
+    "result-count": "Rezultati"
   },
   "streak": {
     "your-streak": "Tvoj niz ta teden",
-    "days-in-row": "Zaporedni dnevi: {count}"
+    "days-in-row": "'{'0'}' zaporednih dni",
+    "perfect-weeks": "'{'0'}' popolnih tednov",
+    "time-left-today": ""
   },
   "transcription": {
     "lyrics": "Besedilo",
@@ -213,7 +226,12 @@
       "done": "Pregledano",
       "in-progress": "V teku",
       "not-started": "Ni pregledano"
-    }
+    },
+    "insertBefore": "",
+    "insertAfter": "",
+    "copyToClipboard": "",
+    "copiedToClipboard": "{0} kopiran v odlagališče",
+    "invalidIdsDescription": ""
   },
   "dashboards": {
     "title": "Nadzorna plošča",
@@ -228,5 +246,10 @@
     "long-copyright": "Avtorske pravice",
     "remove-formatting": "Odstrani oblikovanje",
     "paste-instructions": "Vstavi besedilo in z uporabo <shortcut>  odstrani oblikovanje."
+  },
+  "project": {
+    "achievement": "Dosežek",
+    "achievementUnlocked": "Odklenjeno",
+    "achievementPlayNext": "Predvajaj naslednje"
   }
 }
