@@ -170,6 +170,14 @@
     },
     "playback": {
       "normal": "Normal"
+    },
+    "types": {
+      "song": "Sang",
+      "singsong": "Fellessang",
+      "speech": "Tale",
+      "audiobook": "Lydbok",
+      "podcast": "Podcast",
+      "exegesis": "Tydning"
     }
   },
   "home": {
