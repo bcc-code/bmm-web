@@ -36,3 +36,6 @@ bld/
 [Oo]bj/
 [Ll]og/
 [Ll]ogs/
+
+# macOS
+.DS_Store
