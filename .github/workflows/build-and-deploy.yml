@@ -45,7 +45,7 @@ jobs:
 
       - name: E2E testing
         if: github.secret_source == 'Actions'
-        uses: cypress-io/github-action@v6
+        uses: cypress-io/github-action@v7
         env:
           CYPRESS_LOGIN_USERNAME: ${{ secrets.CYPRESS_LOGIN_USERNAME }}
           CYPRESS_LOGIN_PASSWORD: ${{ secrets.CYPRESS_LOGIN_PASSWORD }}
