@@ -3,6 +3,7 @@
   "extends": "./.nuxt/tsconfig.json",
   "compilerOptions": {
     "useDefineForClassFields": true,
+    "allowImportingTsExtensions": true, // Nuxt modules in modules/ need explicit .ts extensions for Node's native ESM loader
     "esModuleInterop": true,
     "lib": ["ESNext", "DOM"],
     "noUncheckedIndexedAccess": true,

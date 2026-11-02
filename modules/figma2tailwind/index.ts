@@ -10,7 +10,7 @@ export default defineNuxtModule({
   async setup(_, nuxt) {
     async function runConverter() {
       try {
-        await (await import("./convertToTailwind")).default();
+        await (await import("./convertToTailwind.ts")).default();
         console.log(
           logSymbols.success,
           `Tailwind classes generated from figma tokens 🎨`,

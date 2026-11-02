@@ -89,6 +89,13 @@
       "rules": {
         "import/no-extraneous-dependencies": "off"
       }
+    },
+    {
+      // Nuxt modules are loaded by Node's native ESM loader, which requires explicit file extensions.
+      "files": ["modules/**/*.ts"],
+      "rules": {
+        "import/extensions": ["error", "always", { "ignorePackages": true }]
+      }
     }
   ],
   "parser": "vue-eslint-parser",

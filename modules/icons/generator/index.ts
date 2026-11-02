@@ -3,8 +3,8 @@ import { relative, resolve } from "node:path";
 /* eslint import/no-extraneous-dependencies: ["error", {"devDependencies": true}] */
 import type { Nuxt } from "@nuxt/schema";
 import chalk from "chalk";
-import { saveGeneratedFile } from "./output";
-import { constructIconNames } from "./parser";
+import { saveGeneratedFile } from "./output.ts";
+import { constructIconNames } from "./parser.ts";
 
 type CreateTypedIconsArgs = {
   nuxt: Nuxt;

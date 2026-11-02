@@ -1,8 +1,8 @@
 // @ts-nocheck - This script should fail if anything is wrong and someone needs to have a look at it manually anyways.
 
 import { promises as fs } from "fs";
-import generateColors from "./colors";
-import generateTypography from "./typography";
+import generateColors from "./colors.ts";
+import generateTypography from "./typography.ts";
 
 const shouldNotHaveSuffix = (theme) => ["light", "global"].includes(theme);
 
