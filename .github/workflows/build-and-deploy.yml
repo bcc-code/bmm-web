@@ -45,6 +45,8 @@ jobs:
 
       - name: E2E testing
         if: github.secret_source == 'Actions'
+        # TODO: make blocking again once login.bcc.no exempts CI from the Cloudflare "Verify you are human" challenge.
+        continue-on-error: true
         uses: cypress-io/github-action@v7
         env:
           CYPRESS_LOGIN_USERNAME: ${{ secrets.CYPRESS_LOGIN_USERNAME }}
