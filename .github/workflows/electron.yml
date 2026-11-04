@@ -1,11 +1,18 @@
 name: Build electron app
 
 on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
   workflow_dispatch:
-  workflow_call:
 
 jobs:
   build-electron-app:
+    # Secrets aren't available to Dependabot / fork PRs
+    if: github.secret_source == 'Actions'
     runs-on: ${{ matrix.os }}
     env:
       # GitHub token, automatically provided to the action
